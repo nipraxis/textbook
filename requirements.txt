@@ -1,0 +1,6 @@
+# Requirements for notebooks / Binderhub
+matplotlib
+scipy
+nibabel
+ipython
+jupytext[myst]

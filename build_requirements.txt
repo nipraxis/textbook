@@ -1,0 +1,8 @@
+# Build requirements
+jupyter-book
+
+# To allow static build / upload
+ghp-import
+
+# Notebook etc requirements
+-r requirements.txt
