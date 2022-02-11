@@ -1,5 +1,5 @@
 BUILD_DIR=_build/html
-RMDS:=$(wildcard */*.Rmd)
+RMDS:=$(wildcard [!_]*/*.Rmd)
 IPYNBS:=$(patsubst %.Rmd,%.ipynb,$(RMDS))
 
 delete-ipynbs:
