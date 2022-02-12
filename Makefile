@@ -13,9 +13,11 @@ delete-ipynbs:
 html: bibliography delete-ipynbs $(IPYNBS)
 	# For ucb_pages module
 	( export PYTHONPATH="${PYTHONPATH}:${PWD}" && jupyter-book build . )
+	cp CNAME $(BUILD_DIR)
+
 
 github: html
-	ghp-import -n _build/html -p -f
+	ghp-import -n $(BUILD_DIR) -p -f
 	./_scripts/check_pushed.sh
 
 clean:
