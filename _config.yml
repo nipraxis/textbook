@@ -36,6 +36,35 @@ repository:
   url: https://github.com/nipraxis/nipraxis.github.io
   branch: main
 
+launch_buttons:
+  # The interface interactive links will activate ["classic", "jupyterlab"]
+  notebook_interface: "classic"
+  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  jupyterhub_url: "https://hub.nipraxis.org"
+  # The URL of the BinderHub (e.g., https://mybinder.org)
+  binderhub_url: "https://mybinder.org"
+  # The URL of Google Colab (e.g., https://colab.research.google.com)
+  colab_url: "https://colab.research.google.com"
+  # Deepnote
+  deepnote_url: "https://deepnote.com"
+  thebe: true
+
+sphinx:
+  config:
+    mathjax3_config:
+      TeX:
+        Macros:
+          "N": "\\mathbb{N}"
+          "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat": ["\\left[\\begin{array}"]
+          "emat": ["\\end{array}\\right]"]
+
+    nb_custom_formats:
+      .Rmd:
+        - jupytext.reads
+        - fmt: Rmd
+
+
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
