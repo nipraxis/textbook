@@ -41,3 +41,10 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+# HTML redirection
+# Pages linked, but then renamed.
+redirection:
+  builddir : _build/html
+# redirects:
+#   data-types/Ranges: ../arrays/Ranges
