@@ -30,10 +30,10 @@ html:
   use_edit_page_button: true
   use_repository_button: true
   use_issues_button: true
-  baseurl: https://nipraxis.github.io
+  baseurl: https://textbook.nipraxis.org
 
 repository:
-  url: https://github.com/nipraxis/nipraxis.github.io
+  url: https://github.com/nipraxis/textbook
   branch: main
 
 launch_buttons:
