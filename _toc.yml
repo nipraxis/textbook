@@ -6,5 +6,5 @@ root: intro
 parts:
 - caption: Images and code and images
   chapters:
-  - file: pages/what_is_an_image
-  - file: pages/brisk_python
+  - file: pages/what_is_an_image.Rmd
+  - file: pages/brisk_python.Rmd
