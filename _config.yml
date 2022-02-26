@@ -13,7 +13,113 @@ execute:
   execute_notebooks: auto
   timeout: 120
 
-exclude_patterns: [README.md, todo.md, _scripts, _to_port]
+exclude_patterns:
+  # Remove pages from this list as they are fixed.
+  - README.md
+  - todo.md
+  - _scripts
+  - pages/allclose.Rmd
+  - pages/anterior_cingulate.md
+  - pages/arange.Rmd
+  - pages/array_reductions.md
+  - pages/arrays_and_images.Rmd
+  - pages/assert.md
+  - pages/bibliography.md
+  - pages/boolean_indexing.Rmd
+  - pages/choosing_editor.md
+  - pages/classes.md
+  - pages/classes_and_labs.md
+  - pages/coding_style.md
+  - pages/comparing_arrays.Rmd
+  - pages/comparing_floats.md
+  - pages/convolution_background.Rmd
+  - pages/diag_inverse.md
+  - pages/diagnostics_project.md
+  - pages/diagonal_zooms.Rmd
+  - pages/dipy_registration.Rmd
+  - pages/docstrings.md
+  - pages/dot_and_outer.md
+  - pages/dot_outer.Rmd
+  - pages/ds114_sub009_highres.nii
+  - pages/example_data.md
+  - pages/exercises.md
+  - pages/floating_in_text.md
+  - pages/full_scripting.md
+  - pages/git_videos.md
+  - pages/git_walk_through.Rmd
+  - pages/git_workflow_exercises.md
+  - pages/github_dummies_homework.md
+  - pages/github_glm_homework.md
+  - pages/github_pca_homework.md
+  - pages/glossary.md
+  - pages/hypothesis_tests.Rmd
+  - pages/image_header_and_affine.Rmd
+  - pages/images_and_affines.Rmd
+  - pages/index.md
+  - pages/index_reshape.Rmd
+  - pages/installation_on_linux.md
+  - pages/installation_on_mac.md
+  - pages/installation_on_windows.md
+  - pages/intro_to_4d.Rmd
+  - pages/introducing_nipype.Rmd
+  - pages/introducing_python.Rmd
+  - pages/keyword_arguments.Rmd
+  - pages/list_comprehensions.Rmd
+  - pages/logistics.md
+  - pages/map_coordinates.Rmd
+  - pages/markdown.md
+  - pages/mean_test_example.Rmd
+  - pages/mentors.md
+  - pages/methods_vs_functions.Rmd
+  - pages/model_one_voxel.Rmd
+  - pages/multi_model_homework.md
+  - pages/multi_multiply.Rmd
+  - pages/nans.md
+  - pages/newaxis.Rmd
+  - pages/nibabel_affines.Rmd
+  - pages/nibabel_apply_affine.Rmd
+  - pages/non_tr_onsets.Rmd
+  - pages/numpy_diag.Rmd
+  - pages/numpy_logical.Rmd
+  - pages/numpy_meshgrid.Rmd
+  - pages/numpy_random.Rmd
+  - pages/numpy_squeeze.Rmd
+  - pages/numpy_transpose.Rmd
+  - pages/on_loops.Rmd
+  - pages/on_modules.Rmd
+  - pages/otsu_threshold.Rmd
+  - pages/packages_namespaces.Rmd
+  - pages/participate.md
+  - pages/participate_grading.md
+  - pages/path_manipulation.Rmd
+  - pages/pearson_functions.md
+  - pages/plot_lines.Rmd
+  - pages/preparation.md
+  - pages/printing_floating.Rmd
+  - pages/project_grading.md
+  - pages/projects.md
+  - pages/resampling_with_ndimage.Rmd
+  - pages/reshape_and_3d.Rmd
+  - pages/reshape_and_4d.Rmd
+  - pages/rotation_2d_3d.md
+  - pages/saving_images.Rmd
+  - pages/slicing_with_booleans.Rmd
+  - pages/string_formatting.Rmd
+  - pages/string_literals.md
+  - pages/subplots.Rmd
+  - pages/subtract_mean_math.md
+  - pages/subtract_means.Rmd
+  - pages/sys_path.Rmd
+  - pages/test_one_voxel.Rmd
+  - pages/topics.md
+  - pages/tr_and_headers.Rmd
+  - pages/truthiness.md
+  - pages/two_dunders.md
+  - pages/using_pythonpath.Rmd
+  - pages/validate_against_scipy.Rmd
+  - pages/voxel_time_courses.Rmd
+  - pages/voxels_by_time.Rmd
+  - pages/whole_image_statistics.Rmd
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -50,15 +156,6 @@ launch_buttons:
   thebe: true
 
 sphinx:
-  config:
-    mathjax3_config:
-      TeX:
-        Macros:
-          "N": "\\mathbb{N}"
-          "floor": ["\\lfloor#1\\rfloor", 1]
-          "bmat": ["\\left[\\begin{array}"]
-          "emat": ["\\end{array}\\right]"]
-
     nb_custom_formats:
       .Rmd:
         - jupytext.reads

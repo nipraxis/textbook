@@ -1,0 +1,268 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# What is an image?
+
+In this exercise we explore the nature of NIfTI images.
+
+First we will have a look at Python strings. Here is a variable called
+`my_string` with value “neuroimaging is hard but fair”
+
+```{python}
+my_string = "neuroimaging is hard but fair"
+# Show the result
+my_string
+```
+
+We can see what type of thing this variable contains (points to) using
+the `type` function:
+
+```{python}
+type(my_string)
+```
+
+We can see how many characters the string has with the `len` function:
+
+```{python}
+len(my_string)
+```
+
+```{python}
+# The first character of the string
+print(my_string[0])
+```
+
+```{python}
+# The last character of the string (don't forget indexing starts at 0)
+print(my_string[28])
+```
+
+Now we introduce string *slicing*. This is where you take some sequential
+characters from the string, using the colon (`:`) between the square
+brackets. The value before the colon is the index to the first character you
+want, and the value after the colon is the index to the character *after* the
+last character you want. It sounds strange, but you will get used to it…
+
+```{python}
+# The first two characters of the string
+print(my_string[0:2])  # from index 0 up to, but not including, 2
+```
+
+```{python}
+# The first 5 characters of the string
+print(my_string[0:5])  # from index 0 up to, but not including, 5
+```
+
+We will go into more details on strings and slicing soon.
+
+Now we will try loading an example image and seeing if we can understand
+the image data.
+
+```{python}
+# This is a Python module
+import os  # module for interacting with the operating system
+```
+
+If you want to explore modules or objects, type their name followed by a
+period, and press tab to see what functions or classes are available.
+
+Try this now.  Type  ( followed by a period) then press tab, to see
+what functions are in the `os` module. Continue typing so you have
+`os.getcwd`, and then type `?` followed by Return. This shows you
+the help for the `os.getcwd` function.
+
+The image we are going to explore is in the same directory as this exercise.
+
+```{python}
+# Get the current working directory (CWD)
+cwd = os.getcwd()
+print(cwd)  
+```
+
+```{python}
+# List files and directories in the current working directory
+print(os.listdir(cwd))
+```
+
+Let’s read the image into memory.
+
+```{python}
+# Open a file in Read Binary mode
+fobj = open('ds114_sub009_highres.nii', 'rb')
+print(fobj)
+```
+
+The thing named `fobj` we just made is a [Python file object](https://docs.python.org/3/glossary.html#term-file-object).  This is a thing that knows how to read data from the file into memory.  That is what we will do next.
+
+```{python}
+# read all the characters into a variable in memory
+contents = fobj.read()
+```
+
+How do I find out what `type` of object is attached to this variable
+called `contents`?
+
+```{python}
+# your code here
+```
+
+How big is this file in terms of bytes? Can you find out from the
+`contents` variable? (Hint: you want to know the length of
+`contents`).
+
+```{python}
+# n_bytes = ?
+```
+
+If 1 mebibyte (MiB) ([http://en.wikipedia.org/wiki/Megabyte](http://en.wikipedia.org/wiki/Megabyte)) is size 1024 \*
+1024, what is the file size in MiB? (Hint - the right answer is between 0 and
+100).
+
+```{python}
+# n_mib = ?
+```
+
+This is a [NIfTI1 format](http://nifti.nimh.nih.gov/nifti-1) file.
+That means that the first 352 bytes contains the “header” that describes
+the parameters of the image and the data following.
+
+We might want to print out the contents of the first 352 bytes of `contents`
+to have a look at it.
+
+To do this, you will need to use string slicing to get the first 352
+bytes:
+
+```{python}
+# Here you print out the first 352 characters of `contents`
+# Your code here:
+# print(...)
+```
+
+Which software wrote this image?
+
+Here is the format of the NIfTI1 header :
+[http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields](http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields)
+
+We are now going to try and work out the `datatype` of this image.  This is
+stored in the `datatype` field of the header. Careful - there is also a
+`data_type` field (with an underscore), which we will ignore.
+
+Looking at the web page above, how many bytes is the `datatype` value
+stored in?
+
+How would you get the bytes in `contents` that contain the `datatype`
+value? 
+
+*Hint* - you need slicing again, and the information from `Byte
+offset` column in the NIfTI1 header page above):
+
+*Hint2* - if you want to work it out, don't look at the cell further down!
+
+```{python}
+# data_type_chars = ?
+```
+
+The `datatype` value is stored in binary form (rather than text form).
+The value for `datatype` is stored in the header in the same format
+that the computer stores the number in memory. We want to convert this
+binary format to a number that Python understands. To do that, we use
+the [struct module](https://docs.python.org/2/library/struct.html).
+
+```{python}
+import struct
+```
+
+We are going to use the `struct.unpack` function. Open a new cell
+below this one with `b` and type `struct.unpack?` followed by
+Shift-Return to see the help for this function.
+
+Now we have read the help, we know we need two things. The first is a
+string that give the code for the binary format of the data. This is the
+“format string”. The second is the string containing the bytes of the
+data.
+
+We first need to specify the format of the character data. Have a look
+at the [help on format
+strings](https://docs.python.org/2/library/struct.html#format-characters)
+in the Python documentation and the NIfTI web page above.
+
+Here is the format specifier for our value:
+
+```{python}
+fmt_specifier = 'h'  # Why? (check the web pages above)
+```
+
+Now we read the datatype value into a number that Python understands:
+
+```{python}
+# In case you didn't do this above, this is the way to get the bytes
+# we need from the header.
+data_type_chars = contents[70:72]
+```
+
+```{python}
+datatype = struct.unpack(fmt_specifier, data_type_chars)
+print(datatype)
+```
+
+This is a numerical *code* for a data type. What actual data type is this?
+(See:
+[http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields/nifti1fields_pages/datatype.html](http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields/nifti1fields_pages/datatype.html))
+
+We could continue reading the NIfTI header in the same way, but luckily
+someone has done that work for us. Enter the `nibabel` package:
+
+```{python}
+import nibabel
+```
+
+For now, we will use this package without worrying much about how it works.
+Have a look to see what `nibabel` can do by opening up a new cell with `b`
+and typing `nibabel?` and `nibabel.` followed by Tab.
+
+As with most Python packages, you can check what version of nibabel you have
+by printing the `__version__` variable of the package:
+
+```{python}
+print(nibabel.__version__)  
+```
+
+If you have a nibabel version below 3.0, please let your instructor know so
+they can fix that.
+
+You can make an image object by passing an image file name to `nibabel.load`:
+
+```{python}
+img = nibabel.load('ds114_sub009_highres.nii')
+```
+
+We now have a Nibabel image object - and specifically, a Nifti type of image object.
+
+```{python}
+type(img)
+```
+
+Let’s have a look at the `header` that Nibabel read in when it made the image object.
+
+```{python}
+print(img.header)
+```
+
+As you can see, it has worked out the datatype for us.
+
+Soon, we do some more work to get used to basic Python.  After that we will
+start playing with the image using the Python tools for arrays, and for
+plotting.
