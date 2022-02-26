@@ -1,0 +1,292 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+---
+
+$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
+
+## Registration with dipy
+
+[Dipy](http://nipy.org/dipy) is a Python package for diffusion imaging.
+
+Install in the usual way from the terminal:
+
+```
+pip3 install --user dipy
+```
+
+It has general image registration algorithms, including affine and non-linear
+registration.
+
+These are based on the model and algorithms implemented in the [ANTS](http://picsl.upenn.edu/software/ants/) toolbox.
+ANTS is written in C++.
+
+Python is an excellent language to work in for this problem because Python
+code is easier for most scientists to read than C++. Dipy uses an optimized,
+compiled Python / C fusion language called [Cython](http://cython.org/), that allows us to mix
+Python code and C-like code, to give speed of execution close to that of
+hand-written C code.
+
+This page is closely based on the 3D registration tutorials in the
+Dipy documentation:
+
+* [dipy affine registration tutorial](http://nipy.org/dipy/examples_built/affine_registration_3d.html);
+
+* [dipy non-linear registration tutorial](http://nipy.org/dipy/examples_built/syn_registration_3d.html#example-syn-registration-3d).
+
+```{python}
+# Set up our usual routines and configuration
+import os
+import numpy as np
+np.set_printoptions(precision=4, suppress=True)
+import matplotlib.pyplot as plt
+# - set gray colormap and nearest neighbor interpolation by default
+plt.rcParams['image.cmap'] = 'gray'
+plt.rcParams['image.interpolation'] = 'nearest'
+import nibabel as nib
+```
+
+## Affine registration
+
+Import the Dipy routines we are going to need:
+
+```{python}
+from dipy.viz import regtools
+from dipy.align.imaffine import (AffineMap,
+                                 MutualInformationMetric,
+                                 AffineRegistration)
+from dipy.align.transforms import (TranslationTransform3D,
+                                   RigidTransform3D,
+                                   AffineTransform3D)
+```
+
+Next we load the subject structural image and the template image. These images
+have already had all voxels outside the brain set to zero. For the individual
+subject image, the [OpenFMRI](https://openfmri.org/) project ran the [FSL](http://www.fmrib.ox.ac.uk/fsl) [Brain Extraction Tool](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET) on
+the image before uploading to the OpenFMRI website.  The template comes with
+an image defining in-brain voxels. The registration works better on images for
+which we have masked out the skull and face.
+
+* masked structural: `ds114_sub009_highres_brain_222.nii`;
+
+* masked template:
+  `mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii`.
+
+```{python}
+moving_img = nib.load('ds114_sub009_highres_brain_222.nii')
+template_img = nib.load('mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii')
+```
+
+Dipy works on the image data arrays. It also needs the affine arrays of each
+of the images:
+
+```{python}
+moving_data = moving_img.get_data()
+moving_affine = moving_img.affine
+template_data = template_img.get_data()
+template_affine = template_img.affine
+```
+
+We use the nice Dipy routines to show the spatial correspondence of the
+images, as recorded in the affines.
+
+```{python}
+identity = np.eye(4)
+affine_map = AffineMap(identity,
+                       template_data.shape, template_affine,
+                       moving_data.shape, moving_affine)
+resampled = affine_map.transform(moving_data)
+regtools.overlay_slices(template_data, resampled, None, 0,
+                        "Template", "Moving")
+regtools.overlay_slices(template_data, resampled, None, 1,
+                        "Template", "Moving")
+regtools.overlay_slices(template_data, resampled, None, 2,
+                        "Template", "Moving")
+```
+
+Next we define an affine registration, by giving a few standard parameters.
+See the Dipy registration tutorial for the details of what these parameters
+mean:
+
+```{python}
+# The mismatch metric
+nbins = 32
+sampling_prop = None
+metric = MutualInformationMetric(nbins, sampling_prop)
+```
+
+```{python}
+# The optimization strategy
+level_iters = [10, 10, 5]
+sigmas = [3.0, 1.0, 0.0]
+factors = [4, 2, 1]
+```
+
+We set up the registration object, ready to do the registration:
+
+```{python}
+affreg = AffineRegistration(metric=metric,
+                            level_iters=level_iters,
+                            sigmas=sigmas,
+                            factors=factors)
+```
+
+First we optimize the translations. We do the translations first to get these
+in the ballpark. After that we will estimate translations and rotations
+together, using the estimated translations as a starting point. Last we will
+use the translations and rotations as a starting point for a full affine
+registration.
+
+```{python}
+transform = TranslationTransform3D()
+params0 = None
+translation = affreg.optimize(template_data, moving_data, transform, params0,
+                              template_affine, moving_affine)
+```
+
+We now have our estimated translations.
+
+```{python}
+translation.affine
+```
+
+The visualization tool now shows the images overlay much better than they did
+before:
+
+```{python}
+transformed = translation.transform(moving_data)
+regtools.overlay_slices(template_data, transformed, None, 0,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, transformed, None, 1,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, transformed, None, 2,
+                        "Template", "Transformed")
+```
+
+Next we use the estimated translations as a starting point to optimize a
+rigid-body transform. A rigid-body transform is a transform that does not
+change the shape of the object. It allows only translations and rotations.
+
+```{python}
+transform = RigidTransform3D()
+rigid = affreg.optimize(template_data, moving_data, transform, params0,
+                        template_affine, moving_affine,
+                        starting_affine=translation.affine)
+```
+
+```{python}
+rigid.affine
+```
+
+The estimated rotations are small, so they don’t make much difference to the
+overlay of the image.
+
+```{python}
+transformed = rigid.transform(moving_data)
+regtools.overlay_slices(template_data, transformed, None, 0,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, transformed, None, 1,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, transformed, None, 2,
+                        "Template", "Transformed")
+```
+
+Last, we do a full affine registration, using the rigid body estimate as a
+starting point.
+
+```{python}
+transform = AffineTransform3D()
+# Bump up the iterations to get an more exact fit
+affreg.level_iters = [1000, 1000, 100]
+affine = affreg.optimize(template_data, moving_data, transform, params0,
+                         template_affine, moving_affine,
+                         starting_affine=rigid.affine)
+```
+
+```{python}
+affine.affine
+```
+
+```{python}
+transformed = affine.transform(moving_data)
+regtools.overlay_slices(template_data, transformed, None, 0,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, transformed, None, 1,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, transformed, None, 2,
+                        "Template", "Transformed")
+```
+
+# Non-linear registration
+
+```{python}
+from dipy.align.imwarp import SymmetricDiffeomorphicRegistration
+from dipy.align.imwarp import DiffeomorphicMap
+from dipy.align.metrics import CCMetric
+```
+
+```{python}
+# The mismatch metric
+metric = CCMetric(3)
+# The optimization strategy:
+level_iters = [10, 10, 5]
+# Registration object
+sdr = SymmetricDiffeomorphicRegistration(metric, level_iters)
+```
+
+Do the registration:
+
+```{python}
+mapping = sdr.optimize(template_data, moving_data, template_affine,
+                       moving_affine, affine.affine)
+```
+
+Resample using the new parameters:
+
+```{python}
+warped_moving = mapping.transform(moving_data)
+```
+
+Display the transformed (warped) image:
+
+```{python}
+regtools.overlay_slices(template_data, warped_moving, None, 0,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, warped_moving, None, 1,
+                        "Template", "Transformed")
+regtools.overlay_slices(template_data, warped_moving, None, 2,
+                        "Template", "Transformed")
+```
+
+<!-- vim:ft=rst -->
+<!-- Course -->
+<!-- BIC -->
+<!-- Python distributions -->
+<!-- Version control -->
+<!-- Editors -->
+<!-- Python and common libraries -->
+<!-- IPython -->
+<!-- Virtualenv and helpers -->
+<!-- Pypi and packaging -->
+<!-- Mac development -->
+<!-- Windows development -->
+<!-- Nipy and friends -->
+<!-- FMRI datasets -->
+<!-- Languages -->
+<!-- Imaging software -->
+<!-- Installation -->
+<!-- Tutorials -->
+<!-- MB tutorials -->
+<!-- Ideas -->
+<!-- Psych-214 -->
+<!-- People -->
+<!-- Licenses -->
+<!-- Neuroimaging stuff -->
+<!-- OpenFMRI projects -->
+<!-- Unix -->
+<!-- Substitutions -->

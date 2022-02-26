@@ -1,0 +1,86 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+---
+
+$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
+
+## “for” and “while”, “break” and “else:”
+
+In Brisk introduction to Python, we saw the use of `break` in `for` and `while`
+loops.
+
+`for` and `while` loops that use `break`, can be followed by `else:`
+clauses.  The `else:` clause executes only when there was no `break`
+during the loop.
+
+In the next fragment, we are doing an inefficient search for prime numbers
+from 2 through 30.  In this basic `for` loop, we use the `is_prime`
+variable as a flag to indicate whether we have found the current number to be
+prime:
+
+```{python}
+primes = []
+for x in range(2, 30):
+    # Assume x is prime until shown otherwise
+    is_prime = True
+    for p in primes:
+        # x exactly divisible by prime -> x not prime
+        if (x % p) == 0:
+            is_prime = False
+            break
+    if is_prime:
+        primes.append(x)
+
+print("Primes in 2 through 30", primes)
+```
+
+Using a flag variable like `is_prime` is a common pattern, so Python allows
+us to do the same thing with an extra `else:` clause:
+
+```{python}
+primes = []
+for x in range(2, 30):
+    for p in primes:
+        # x exactly divisible by prime -> x not prime
+        if (x % p) == 0:
+            break
+    else:
+        # else: block executes if no 'break" in previous loop
+        primes.append(x)
+
+print("Primes in 2 through 30", primes)
+```
+
+<!-- vim:ft=rst -->
+<!-- Course -->
+<!-- BIC -->
+<!-- Python distributions -->
+<!-- Version control -->
+<!-- Editors -->
+<!-- Python and common libraries -->
+<!-- IPython -->
+<!-- Virtualenv and helpers -->
+<!-- Pypi and packaging -->
+<!-- Mac development -->
+<!-- Windows development -->
+<!-- Nipy and friends -->
+<!-- FMRI datasets -->
+<!-- Languages -->
+<!-- Imaging software -->
+<!-- Installation -->
+<!-- Tutorials -->
+<!-- MB tutorials -->
+<!-- Ideas -->
+<!-- Psych-214 -->
+<!-- People -->
+<!-- Licenses -->
+<!-- Neuroimaging stuff -->
+<!-- OpenFMRI projects -->
+<!-- Unix -->
+<!-- Substitutions -->

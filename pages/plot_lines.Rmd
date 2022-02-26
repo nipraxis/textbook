@@ -1,0 +1,55 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+---
+
+$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
+
+## Plotting lines in matplotlib
+
+```{python}
+import matplotlib.pyplot as plt
+```
+
+To plot a line in matplotlib, use `plot` with the X coordinates as the first
+argument and the matching Y coordinates as the second argument:
+
+```{python}
+# A line from (1, 2) to (7, 11)
+plt.plot([1, 7], [2, 11])
+# Another line from (2, 6) to (8, 1)
+plt.plot([2, 8], [6, 1])
+```
+
+<!-- vim:ft=rst -->
+<!-- Course -->
+<!-- BIC -->
+<!-- Python distributions -->
+<!-- Version control -->
+<!-- Editors -->
+<!-- Python and common libraries -->
+<!-- IPython -->
+<!-- Virtualenv and helpers -->
+<!-- Pypi and packaging -->
+<!-- Mac development -->
+<!-- Windows development -->
+<!-- Nipy and friends -->
+<!-- FMRI datasets -->
+<!-- Languages -->
+<!-- Imaging software -->
+<!-- Installation -->
+<!-- Tutorials -->
+<!-- MB tutorials -->
+<!-- Ideas -->
+<!-- Psych-214 -->
+<!-- People -->
+<!-- Licenses -->
+<!-- Neuroimaging stuff -->
+<!-- OpenFMRI projects -->
+<!-- Unix -->
+<!-- Substitutions -->

@@ -1,0 +1,122 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+---
+
+$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
+
+## Making and saving new images in nibabel
+
+We often want to do some processing on an image, then save the processed image
+back to an image file on disk.
+
+When we load an image from disk, we get back an image object. When we load a
+NIfTI `.nii` image, we get an image object of type `Nifti1Image`.
+
+```{python}
+import numpy as np
+```
+
+```{python}
+import nibabel as nib
+img = nib.load('ds114_sub009_highres.nii')
+type(img)
+```
+
+Maybe we were worried about some very high values in the image, and we wanted
+to clip them down to a more reasonable number:
+
+```{python}
+data = img.get_data()
+data.max()  
+```
+
+We might consider clipping the top 5 percent of voxel values:
+
+```{python}
+data = img.get_data()
+top_95_thresh = np.percentile(data, 95)
+top_95_thresh
+```
+
+```{python}
+new_data = data.copy()
+new_data[new_data > top_95_thresh] = top_95_thresh
+new_data.max()  
+```
+
+We can make a new `Nifti1Image` by constructing it directly.  We pass the
+new data, the image affine, and (optionally) a template header for the image:
+
+```{python}
+clipped_img = nib.Nifti1Image(new_data, img.affine, img.header)
+type(clipped_img)
+```
+
+The `nib.Nifti1Image` call copies and adapts the passed header to the new
+image data shape, and affine.
+
+```{python}
+# Show the original data array shape from the original header
+img.header.get_data_shape()
+```
+
+```{python}
+# Here we construct a new empty header
+empty_header = nib.Nifti1Header()
+empty_header.get_data_shape()
+```
+
+If we make a new image with this header, the constructor routine fixes the
+header to have the correct shape for the data array:
+
+```{python}
+another_img = nib.Nifti1Image(new_data, img.affine, empty_header)
+another_img.header.get_data_shape()
+```
+
+We can save the new image with `nib.save`:
+
+```{python}
+nib.save(clipped_img, 'clipped_image.nii')
+```
+
+This image has the clipped data:
+
+```{python}
+clipped_back = nib.load('clipped_image.nii')
+clipped_back.get_data().max()  
+```
+
+<!-- vim:ft=rst -->
+<!-- Course -->
+<!-- BIC -->
+<!-- Python distributions -->
+<!-- Version control -->
+<!-- Editors -->
+<!-- Python and common libraries -->
+<!-- IPython -->
+<!-- Virtualenv and helpers -->
+<!-- Pypi and packaging -->
+<!-- Mac development -->
+<!-- Windows development -->
+<!-- Nipy and friends -->
+<!-- FMRI datasets -->
+<!-- Languages -->
+<!-- Imaging software -->
+<!-- Installation -->
+<!-- Tutorials -->
+<!-- MB tutorials -->
+<!-- Ideas -->
+<!-- Psych-214 -->
+<!-- People -->
+<!-- Licenses -->
+<!-- Neuroimaging stuff -->
+<!-- OpenFMRI projects -->
+<!-- Unix -->
+<!-- Substitutions -->
