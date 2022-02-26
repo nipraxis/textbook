@@ -8,24 +8,35 @@ jupyter:
       jupytext_version: 1.11.5
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Brisk introduction to Python
+# Brisk introduction to Python
 
 This is an introduction designed for those of us who already know a [dynamic
-programming language](https://en.wikipedia.org/wiki/Dynamic_programming_language) fairly well.
-MATLAB and the R language are [examples of dynamic programming languages](https://en.wikipedia.org/wiki/Dynamic_programming_language#Examples_of_Dynamic_Programming_Languages).
+programming
+language](https://en.wikipedia.org/wiki/Dynamic_programming_language) fairly
+well. MATLAB and the R language are [examples of dynamic programming
+languages](https://en.wikipedia.org/wiki/Dynamic_programming_language#Examples_of_Dynamic_Programming_Languages).
 
-<!-- import os -->
-### Numbers
+For an alternative introduction at a slightly slower pace, see [Introducing
+Python](./introducing_python.Rmd).
 
-There are two types of numbers in Python: integer and floating point.  In
-Python, an integer is an *object* of type `int`, and a float is an object of
-type `float`.
+## Numbers
+
+There are two types of numbers in Python: integer and floating point.
+
+You may remember that an integer is a whole number - a number without anything
+after the decimal point.  The *counting numbers* are integers — e.g. 0, 1, 2,
+3, ....  But integers also include negative whole numbers — e.g. -1, -2, -3
+...
+
+In Python, an integer is an *object* of type `int`, and a float is an object
+of type `float`.
 
 ```{python}
 a = 99
 type(a)
+```
+
+```{python}
 b = 99.0
 type(b)
 ```
@@ -34,8 +45,17 @@ You can create ints and floats by using `int` and `float` like this:
 
 ```{python}
 float('1')
+```
+
+```{python}
 float(1)
+```
+
+```{python}
 int('1')
+```
+
+```{python}
 int(1)
 ```
 
@@ -46,8 +66,7 @@ a + b
 a * b
 ```
 
-Dividing an int by an int also gives a float – but this is only true by
-default for Python >= 3 (see ):
+Dividing an int by an int also gives a float:
 
 ```{python}
 1 / 2
@@ -57,6 +76,9 @@ If you only want the integer part of the division, use `//`
 
 ```{python}
 1 // 2
+```
+
+```{python}
 1.0 // 2.0
 ```
 
@@ -65,6 +87,8 @@ Python has built-in function called `round`:
 ```{python}
 round(5.0 / 2.0)
 ```
+
+Built-in means it is always available in Python, without you having to load an optional module (library).  You will see modules soon.
 
 The `%` operator on numbers gives you the remainder of integer division
 (also known as the modulus):
@@ -79,27 +103,45 @@ The `%` operator on numbers gives you the remainder of integer division
 
 # True and False
 
-`True` and `False` are special objects in Python.  They are of type
-`bool` (for Boolean).
+`True` and `False` are special objects in Python.  They are of type `bool`
+(for Boolean).
 
 ```{python}
 type(True)
+```
+
+```{python}
 type(False)
-True == False
-True == True
-False == False
+```
+
+To show several results from one cell, we can use the `print` function, that
+displays the value.  As you will soon see, we use a function by giving its
+name (here: `print`) followed by round brackets (parentheses) that contain the
+thing or things we want the function to work on.  For example, to display the
+value `False` I can write:
+
+```{python}
+print(False)
+```
+
+This is similar to what I would get by just putting `False` on the last line of the cell, in the way we have been doing up to now, to show values.  One advantage of `print` is that I can display multiple values from one cell:
+
+```{python}
+print(True == False)
+print(True == True)
+print(False == False)
 ```
 
 You can use the logical operators `and`, `or` and `not` to express logic
 about Boolean values:
 
 ```{python}
-True and True
-True and False
-True or False
-False or False
-not True
-True and not False
+print(True and True)
+print(True and False)
+print(True or False)
+print(False or False)
+print(not True)
+print(True and not False)
 ```
 
 # None
@@ -124,9 +166,21 @@ None
 As for MATLAB and R, `=` is for assignment, `==` is for testing equality.
 
 ```{python}
+# a gets the value 1.  Notice the single =
 a = 1
 a
+```
+
+`==` is a test to ask if the left hand side value is equal to the right hand side value:
+
+```{python}
 a == 1
+```
+
+Notice that Python returns True in this case because `a` is equal to 1.  On the other hand:
+
+```{python}
+a == 2
 ```
 
 Like R, Python uses `!=` for testing that objects are *not* equal. This is
@@ -145,7 +199,6 @@ my_var = 10
 if my_var == 10:
     print("The conditional is True!")
     print("my_var does equal 10")
-
 ```
 
 The first line of the conditional statement, that contains the conditional
@@ -162,7 +215,6 @@ if my_var == 10:  # the "if test"
     # The indented lines are the "if block"
     print("The conditional is True!")
     print("my_var does equal 10")
-
 ```
 
 The first line that returns to the same level of indentation as the `if`
@@ -186,7 +238,6 @@ if my_var == 10:
 else:
     print("The conditional is False!")
     print("my_var does not equal 10")
-
 ```
 
 There may be other conditional tests, with associated conditional blocks.
@@ -207,7 +258,6 @@ elif my_var == 12:
 else:
     print("All conditionals are False!")
     print("my_var does not equal 10, 11 or 12")
-
 ```
 
 # “While” statements
@@ -267,7 +317,6 @@ iterate over a list:
 ```{python}
 for e in my_list:
     print(e)
-
 ```
 
 The `for` loop has the same form as `if` statements and `while` loops,
@@ -708,16 +757,54 @@ my_string
 my_string.strip()
 ```
 
-# Inserting values into strings
+## Inserting values into strings
 
-See: Inserting values into strings.
+We often want to insert values into strings.  This is called *string interpolation*.
 
- Range
+For example, let us say we are running a shepherding business.  The shepherds rotate, some days Mary is on, sometimes Joseph, sometimes their son James.
 
-`range` in Python 3 returns a *range object*.  It is a sequence, and so it
-is rather like a list .  When you use `range` with one
-argument, the argument value is the `stop` index.  For example, to make a
-`range` object generating the numbers from 0 up to *but not including* 5:
+Today, Mary is on.
+
+```{python}
+shepherd_name = "Mary"
+```
+
+She is herding 92 sheep.
+
+```{python}
+flock_size = 92
+```
+
+We may want to send out an announcement, say to the LED message board in front
+of our shepherding business, that tells people which shepherd is on duty, and how many sheep they have.
+
+So, if the number of sheep is 92, the message could be any of these three:
+
+* "Shepherd Mary is on duty with 92 sheep." or
+* "Shepherd Joseph is on duty with 92 sheep." or
+* "Shepherd James is on duty with 92 sheep."
+
+depending on the value in the `shepherd_name` variable.  And, of course, the `flock_size` could be almost any number.  So there are a huge number of potential sentences, that depend on the `shepherd_name` variable, and the `flock_size` variable.
+
+Usually the best way to do this is using something called
+[f-strings](https://datagy.io/python-f-strings).  These are strings with an `f` before the opening quote.  The `f` tells Python you may want to insert a variable into the string.  You specify variables to insert by putting them inside curly braces (`{}`) in the string, like this:
+
+```{python}
+# Notice the f before the first quote to tell Python there may
+# be variables inside this string.
+f"Shepherd {shepherd_name} is on duty with {flock_size} sheep."
+```
+
+There are many ways you can tell Python how to format the values you insert, and there are other, less common and useful ways to do this string interpolation.
+
+For more details and more options, see: [Inserting values into strings](./string_formatting.Rmd).
+
+## Range
+
+`range` returns a *range object*.  It is a sequence, and so it is rather like
+a list .  When you use `range` with one argument, the argument value is the
+`stop` index.  For example, to make a `range` object generating the numbers
+from 0 up to *but not including* 5:
 
 ```{python}
 my_range = range(5)
@@ -734,42 +821,40 @@ A `range` object is a sequence:
 
 ```{python}
 # Has a length
-len(my_range)
+print('Length', len(my_range))
 # Is iterable
 for e in my_range:
-   print(e)
+    print('Value', e)
 # Can be indexed
-my_range[1]
+print('Value at position 1', my_range[1])
 # Can be sliced
-my_range[0:2]
+print('Slice 0:2', my_range[0:2])
 ```
 
 Set the start element for `range` by passing two arguments:
 
 ```{python}
 my_range = range(1, 7)
-my_range
-list(my_range)
+print(my_range)
+print(list(my_range))
 ```
 
 Set the step size with a third argument:
 
 ```{python}
 my_range = range(1, 7, 2)
-my_range
 list(my_range)
 ```
 
-One common use of `range` is to iterate over a sequence of numbers in a
-`for` loop:
+One common use of `range` is to iterate over a sequence of numbers in a `for`
+loop:
 
 ```{python}
 for i in range(5):
-   print(i)
-
+    print(i)
 ```
 
-# Sets
+## Sets
 
 Sets are collections of unique elements, with no defined order.  Python
 reserves the right to order set elements in any way it chooses:
@@ -777,21 +862,20 @@ reserves the right to order set elements in any way it chooses:
 ```{python}
 # Only unique elements collected in the set
 my_set = set((5, 3, 1, 3))
-my_set  
+my_set
 ```
 
 Because there is no defined order, you cannot index into a set:
 
-```{python}
-# Raises a TypeError
-# my_set[1]
+```{python tags=c("raises-exception")}
+my_set[1]
 ```
 
 You can add elements to a set with the `add` method:
 
 ```{python}
 my_set.add(10)
-my_set  
+my_set
 ```
 
 Because set elements must be unique, if you add an element already in the set,
@@ -799,7 +883,7 @@ this does not change the set:
 
 ```{python}
 my_set.add(5)
-my_set  
+my_set
 ```
 
 You can iterate over a set, but the order of elements is arbitrary.  You
@@ -807,15 +891,15 @@ cannot rely on the same order in any two runs of your program:
 
 ```{python}
 # The order of elements is arbitrary
-for element in my_set:  
+for element in my_set:
     print(element)
 ```
 
-Look at the [methods of the set object](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
-for interesting operations such as `difference`, `union`, `intersection`
-etc.
+Look at the [methods of the set
+object](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
+for interesting operations such as `difference`, `union`, `intersection` etc.
 
-# Sets, lists and tuples are containers
+## Sets, lists and tuples are containers
 
 A *container* is a Python object for which you can test an element for
 membership.  So, if an object `c` is a container then we can test if an
@@ -846,9 +930,11 @@ Lists and tuples are also containers:
 
 # Dictionaries
 
-A dictionary is an unordered collection of key / value pairs. The *key* is
-something that identifies the element, and the *value* is the value
-corresponding to the particular key.
+A dictionary is collection of key / value pairs. The *key* is something that
+identifies the element, and the *value* is the value corresponding to the
+particular key.
+
+For nearly all the dictionaries you will use in practice, the keys will be strings, but when you get more advanced, you will find that many things can be used as keys.
 
 ```{python}
 # This is an empty dictionary
@@ -856,18 +942,18 @@ software = {}
 ```
 
 Here we insert a new key / value mapping into the dictionary. The key is a
-string – `'MATLAB'` – and the corresponding value is an integer 50:
+string — `'Python'` — and the corresponding value is an integer 50:
 
 ```{python}
-software['MATLAB'] = 50
+software['Python'] = 100
 software
 ```
 
 Now we insert another key / value mapping:
 
 ```{python}
-software['Python'] = 100
-software  
+software['MATLAB'] = 50
+software
 ```
 
 Get the value corresponding to a key by indexing the dictionary with the key:
@@ -877,30 +963,30 @@ software['Python']
 ```
 
 We can iterate over the keys in the dictionary, but the order of the
-keys is arbitrary. Python returns the keys in any order it chooses, and
-we can’t rely on the order being the same in any two runs of our
-program:
+keys depends on the order you put the keys into the dictionary — and it easy
+to lose track of that order. As as result, we generally find we don't rely much on the particular order of the keys, when we iterate over them.
+
+For example, here you see that the first key is 'Python' (the key for the first key/value pair we put in), even though 'Python' is after 'MATLAB' in an alphabetical sort, for example.
 
 ```{python}
-for key in software.keys():  
+for key in software.keys():
     print(key)
 ```
 
-We can also iterate over the values, with the same constraint, that the
-order is arbitrary:
+We can also iterate over the values, with the same constraint, that the order
+depends on the order we put in the values:
 
 ```{python}
-for value in software.values():  
+for value in software.values():
     print(value)
-
 ```
 
-We can use the `items` method to iterate over the key / value pairs. In
-this case each element is a tuple of length two, where the first element is
-the key and the second element is the value:
+We can use the `items` method to iterate over the key / value pairs. In this
+case each element is a tuple of length two, where the first element is the key
+and the second element is the value:
 
 ```{python}
-for key_value in software.items():  
+for key_value in software.items():
     print(key_value)
 ```
 
@@ -909,7 +995,7 @@ separate the key and value, and commas to separate the pairs:
 
 ```{python}
 software = {'MATLAB': 50, 'Python': 100}
-software  
+software
 ```
 
 Keys must be unique. A later key / value pair will overwrite an earlier key /
@@ -1077,7 +1163,7 @@ could with any other Python variable:
 
 ```{python}
 another_reference_to_func4 = my_fourth_function
-type(another_reference_to_func4)
+print('Type of new variable', type(another_reference_to_func4))
 # We call this function using the new name
 another_reference_to_func4(10)
 ```
@@ -1151,7 +1237,7 @@ pass this in using the sort function parameter name, which is `key`:
 sorted(people, key=get_last_name)
 ```
 
-# Files
+## Files
 
 You can open a file in several different *modes*.  The mode specifies whether
 you want to read or write the file, and whether the data in the file is, or
@@ -1218,31 +1304,32 @@ for line in my_file2:  # iterating over the file object
 my_file2.close()
 ```
 
-<!-- os.unlink('a_text_file.txt') -->
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
+We can delete files by using routines from various *modules*.
+
+## Modules
+
+Modules are libraries of data and functions.  Many of these come pre-installed with Python.
+
+One common module is the `os` module, where `os` is short for [operating system](https://en.wikipedia.org/wiki/Operating_system).  The module has various functions that allow us to look at the system, and work with files.
+
+In order to use the functions and data in modules, we have to *import* the module.  For example, imagine I forgot that fact, and tried to use the `unlink` function from the `os` module:
+
+```{python tags=c("raises-exception")}
+# Try to delete the file.
+# Oops - I haven't imported 'os' yet!
+os.unlink('a_text_file.txt')
+```
+
+This reminds me I need to *import* the module so I can use it:
+
+```{python}
+# Get the module ready to use.
+import os
+```
+
+Now I can use the function as I intended:
+
+```{python tags=c("raises-exception")}
+# Actually delete the file.
+os.unlink('a_text_file.txt')
+```
