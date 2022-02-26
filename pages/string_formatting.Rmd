@@ -1,5 +1,6 @@
 ---
 jupyter:
+  orphan: true
   jupytext:
     notebook_metadata_filter: all,-language_info
     split_at_heading: true
@@ -7,7 +8,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3
     language: python
@@ -57,8 +58,8 @@ to be strings, they can be numbers and other Python objects.
 ```
 
 You can do more complex formatting of numbers and strings using formatting
-options within the curly brackets {{ -- }} see the documentation on [curly
-brace string
+options within the curly brackets — `{` and `}`. See the documentation on
+[curly brace string
 formatting](https://docs.python.org/3/library/string.html#format-examples).
 
 The same formatting rules apply to f-strings.
@@ -69,7 +70,7 @@ instructions.  Here we ask to print in integer (`d`) where the number should
 be prepended with `0` to fill up the field width of `3`:
 
 ```{python}
-"Number \{:03d} is here.".format(11)
+"Number {:03d} is here.".format(11)
 ```
 
 This prints a floating point value (specified by the `f` after the `:` in the

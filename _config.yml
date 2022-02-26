@@ -15,6 +15,13 @@ execute:
 
 exclude_patterns:
   # Remove pages from this list as they are fixed.
+  # When removing, if the pages aren't in the toctree,
+  # add orphan: true to YaML frontmatter, e.g. syllabus.md.
+  # https://myst-parser.readthedocs.io/en/latest/sphinx/use.html#sphinx-specific-page-front-matter
+  # Notebooks need this key/value to be in the `jupyter` YaML section, e.g
+  # string_formatting.Rmd.
+  # https://github.com/executablebooks/meta/discussions/105
+  # https://myst-nb.readthedocs.io/en/latest/use/orphaned_nb.html#orphaned-nb
   - README.md
   - todo.md
   - _scripts
@@ -62,7 +69,6 @@ exclude_patterns:
   - pages/installation_on_windows.md
   - pages/intro_to_4d.Rmd
   - pages/introducing_nipype.Rmd
-  - pages/introducing_python.Rmd
   - pages/keyword_arguments.Rmd
   - pages/list_comprehensions.Rmd
   - pages/logistics.md
@@ -104,7 +110,6 @@ exclude_patterns:
   - pages/rotation_2d_3d.md
   - pages/saving_images.Rmd
   - pages/slicing_with_booleans.Rmd
-  - pages/string_formatting.Rmd
   - pages/string_literals.md
   - pages/subplots.Rmd
   - pages/subtract_mean_math.md
@@ -156,6 +161,7 @@ launch_buttons:
   thebe: true
 
 sphinx:
+  config:
     nb_custom_formats:
       .Rmd:
         - jupytext.reads
