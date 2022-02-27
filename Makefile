@@ -12,6 +12,7 @@ rm-ipynb:
 	rm -rf */*.ipynb
 
 github: html
+	cp CNAME $(BUILD_DIR)
 	ghp-import -n $(BUILD_DIR) -p -f
 	./_scripts/check_pushed.sh
 
