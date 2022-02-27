@@ -154,7 +154,9 @@ But there is something that happens when you start to use code.  Code is written
 
 The way that we use code here, is not only to help you work efficiently, but also to show you how to *build* the analysis, from the ground up.
 
-Again, Richard Feynman put this idea in a very simple and powerful way.  When he died, this sentence was one of a few that he had left up on his Caltech blackboard:
+Again, Richard Feynman put this idea in a very simple and powerful way.  When
+he died, this sentence was still written up on his [Caltech
+blackboard](https://digital.archives.caltech.edu/islandora/object/image%3A2545).
 
 > What I cannot create, I do not understand
 
