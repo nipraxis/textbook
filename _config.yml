@@ -180,3 +180,6 @@ redirection:
   builddir : _build/html
 # redirects:
 #   data-types/Ranges: ../arrays/Ranges
+#
+bibtex_bibfiles:
+  - _references.bib

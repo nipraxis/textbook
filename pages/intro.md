@@ -12,5 +12,5 @@ understand, explain and share. Using this techniques will give you great benefit
 At the end of the course we expect you to be able to analyze fMRI data using
 Python and to track and share your work with version control using git.
 
-Please see the [syllabus](./pages/syllabus.md) for a more detailed list of
+Please see the [syllabus](./syllabus.md) for a more detailed list of
 subjects we will cover.
