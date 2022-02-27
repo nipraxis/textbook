@@ -40,7 +40,7 @@ That makes us ask — what is the typical practice of a neuroimaging researcher?
 
 ## Typical practice
 
-Even in good institutions, we have seen that the great difficulties in learning and doing imaging make it common to fall into this patter.
+Even in good institutions, we have seen that the great difficulties in learning and doing imaging make it common to fall into this pattern.
 
 * The practitioner **learns some of some of the areas** above, but at
   a superficial "makes-sense" level.  The "makes-sense" level is the level at
@@ -93,7 +93,7 @@ It will be hard to collaborate, because it is hard to explain your process to yo
 
 # Like science, but not science
 
-The problem then, is that the *process* of analysis can make it very difficult to do *science*.  That's a big claim, and one that begs the question, what is science?.
+The problem then, is that the *process* of analysis can make it very difficult to do *science*.  That's a big claim, and one that begs the question, "What is science?"
 
 [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) was a Nobel-laureate in theoretical physics, and a famous teacher and writer. He thought a lot about the nature of science.  In a famous talk, called "What is Science"  {cite}`feynman1969science`, he wrote:
 
