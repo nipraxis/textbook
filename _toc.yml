@@ -2,9 +2,12 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: pages/intro
 parts:
+- caption: The neuroimaging problem
+  chapters:
+  - file: pages/the_problem
 - caption: Images and code and images
   chapters:
-  - file: pages/what_is_an_image.Rmd
-  - file: pages/brisk_python.Rmd
+  - file: pages/what_is_an_image
+  - file: pages/brisk_python
