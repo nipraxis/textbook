@@ -7,7 +7,7 @@ In this course, we teach two things:
 1. functional MRI methods;
 2. how to work with functional MRI data.
 
-The first topic is obvious and familiar to those of you working in functional FMRI.  Of course you need to know how the methods work.  But what is this second thing — *how to work with* functional MRI data.   Isn't this the same thing?  Is it really something specific that we have to think about?  And if it is, isn't that an advanced topic, after we know the methods?
+The first topic is obvious and familiar to those of you working in functional FMRI.  Of course you need to know how the methods work.  But what is this second thing — *how to work with* functional MRI data?   Isn't this the same thing?  Is it really something specific that we have to think about?  And if it is, isn't that an advanced topic, after we know the methods?
 
 To answer that question, we need to talk about *the problem*.
 
