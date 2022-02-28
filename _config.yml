@@ -104,7 +104,6 @@ exclude_patterns:
   - pages/project_grading.md
   - pages/projects.md
   - pages/resampling_with_ndimage.Rmd
-  - pages/reshape_and_3d.Rmd
   - pages/reshape_and_4d.Rmd
   - pages/rotation_2d_3d.md
   - pages/saving_images.Rmd

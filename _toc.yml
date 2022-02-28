@@ -12,3 +12,4 @@ parts:
   - file: pages/what_is_an_image
   - file: pages/brisk_python
   - file: pages/arrays_and_images
+  - file: pages/reshape_and_3d
