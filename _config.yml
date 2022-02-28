@@ -41,7 +41,6 @@ exclude_patterns:
   - pages/convolution_background.Rmd
   - pages/diag_inverse.md
   - pages/diagnostics_project.md
-  - pages/diagonal_zooms.Rmd
   - pages/dipy_registration.Rmd
   - pages/docstrings.md
   - pages/dot_and_outer.md
@@ -80,8 +79,6 @@ exclude_patterns:
   - pages/multi_multiply.Rmd
   - pages/nans.md
   - pages/newaxis.Rmd
-  - pages/nibabel_affines.Rmd
-  - pages/nibabel_apply_affine.Rmd
   - pages/non_tr_onsets.Rmd
   - pages/numpy_diag.Rmd
   - pages/numpy_logical.Rmd
