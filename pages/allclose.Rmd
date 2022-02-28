@@ -6,11 +6,13 @@ jupyter:
       format_name: rmarkdown
       format_version: '1.2'
       jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Testing for near equality with “allclose”
+# Testing for near equality with “allclose”
 
 When the computer calculates a floating point value, there will often be some
 degree of error in the calculation, because the computer floating point format
@@ -33,38 +35,14 @@ import numpy as np
 
 ```{python}
 np.pi == 3.1415926
+```
+```{python}
 # pi to 7 decimal places not exactly equal to pi
 np.allclose(np.pi, 3.1415926)
+```
+```{python}
 # pi to 7 dp is "close" to pi
 np.allclose([np.pi, 2 * np.pi], [3.1415926, 6.2831852])
 ```
 
 See the docstring for `np.allclose` for details of what “close” means.
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->

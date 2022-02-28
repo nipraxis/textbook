@@ -22,3 +22,15 @@ parts:
   - file: pages/nibabel_affines
   - file: pages/nibabel_apply_affine
   - file: pages/map_coordinates
+- caption: "NumPy and Matplotlib: reshape, dot products, lines and subplots"
+  chapters:
+  - file: pages/methods_vs_functions
+  - file: pages/reshape_and_4d
+  - file: pages/allclose
+  - file: pages/arange
+  - file: pages/dot_outer
+  - file: pages/newaxis
+  - file: pages/subtract_means
+  - file: pages/plot_lines
+  - file: pages/subplots
+ 
