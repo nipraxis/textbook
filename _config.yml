@@ -69,7 +69,6 @@ exclude_patterns:
   - pages/keyword_arguments.Rmd
   - pages/list_comprehensions.Rmd
   - pages/logistics.md
-  - pages/map_coordinates.Rmd
   - pages/markdown.md
   - pages/mean_test_example.Rmd
   - pages/mentors.md
