@@ -6,11 +6,13 @@ jupyter:
       format_name: rmarkdown
       format_version: '1.2'
       jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Adding length 1 dimensions with newaxis
+# Adding length 1 dimensions with newaxis
 
 NumPy has a nice shortcut for adding a length 1 dimension to an array.  It is
 a little brain-bending, because it operates via array slicing:
@@ -22,13 +24,19 @@ import numpy as np
 ```{python}
 v = np.array([0, 3])
 v.shape
+```
+
+```{python}
 # Insert a new length 1 dimension at the beginning
 row_v = v[np.newaxis, :]
-row_v.shape
+print(row_v.shape)
 row_v
+```
+
+```{python}
 # Insert a new length 1 dimension at the end
 col_v = v[:, np.newaxis]
-col_v.shape
+print(col_v.shape)
 col_v
 ```
 
@@ -47,31 +55,3 @@ So, you also use the `np.newaxis` trick like this:
 row_v = v[None, :]
 row_v.shape
 ```
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->

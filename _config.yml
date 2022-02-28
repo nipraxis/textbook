@@ -25,8 +25,6 @@ exclude_patterns:
   # OE: I have sorted the pages with a tentative sectioning
   #
   # Python and Numpy
-  - pages/allclose.Rmd
-  - pages/arange.Rmd
   - pages/boolean_indexing.Rmd
   - pages/array_reductions.md
   - pages/comparing_arrays.Rmd
@@ -34,14 +32,11 @@ exclude_patterns:
   - pages/diag_inverse.md
   - pages/docstrings.md
   - pages/dot_and_outer.md
-  - pages/dot_outer.Rmd
   - pages/floating_in_text.md
   - pages/index_reshape.Rmd
   - pages/keyword_arguments.Rmd
   - pages/list_comprehensions.Rmd
-  - pages/methods_vs_functions.Rmd
   - pages/nans.md
-  - pages/newaxis.Rmd
   - pages/numpy_diag.Rmd
   - pages/numpy_meshgrid.Rmd
   - pages/numpy_random.Rmd
@@ -52,16 +47,12 @@ exclude_patterns:
   - pages/printing_floating.Rmd
   - pages/string_literals.md
   - pages/subtract_mean_math.md
-  - pages/subtract_means.Rmd
   - pages/two_dunders.md
   # Images and code and images
   - pages/saving_images.Rmd
-  - pages/plot_lines.Rmd
-  - pages/subplots.Rmd
   # Coordinate systems and spatial transforms
   # [all transferred already]
   # Into the fourth dimension
-  - pages/reshape_and_4d.Rmd
   - pages/tr_and_headers.Rmd
   # Statistics
   - pages/whole_image_statistics.Rmd

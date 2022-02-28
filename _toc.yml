@@ -49,3 +49,14 @@ parts:
   - file: pages/path_manipulation
   - file: pages/sys_path
   - file: pages/assert
+- caption: "NumPy and Matplotlib: reshape, dot products, lines and subplots"
+  chapters:
+  - file: pages/methods_vs_functions
+  - file: pages/reshape_and_4d
+  - file: pages/allclose
+  - file: pages/arange
+  - file: pages/dot_outer
+  - file: pages/newaxis
+  - file: pages/subtract_means
+  - file: pages/plot_lines
+  - file: pages/subplots
