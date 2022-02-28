@@ -4,21 +4,22 @@
 
 In this course, we teach two things:
 
-1. how to work with functional MRI data.
-1. functional MRI methods;
+1. Working with brain imaging data.
+2. Principles of analysis methods.
 
-The second topic is obvious and familiar to those of you working in functional
-FMRI.  Of course you need to know how the methods work.  But what is this
-first thing — *how to work with* functional MRI data?   Isn't this the same
-thing?  Why is it *first*?  Doesn't theory come before practice?
+The second topic is obvious and familiar to those of you working in brain
+imaging.  Of course you need to know how the principles of the analysis.  But
+what is this first thing — *working with* brain imaging data?   Isn't this
+the same thing?  Why is it *first*?  Doesn't theory come before practice?
 
 To answer those questions, we need to talk about *the problem*.
 
 ## The problem
 
-Functional MRI is really hard to learn and teach.  For those of us who have
+Brain imaging analysis is hard to learn and teach.  For those of us who have
 tried to learn it, and teach it, this won't be controversial — this is our
-experience.   But some of you are starting to learn, or starting to teach, and you may need to be convinced.
+experience.   But some of you are starting to learn, or starting to teach, and
+you may need to be convinced.
 
 The difficulty is not surprising.  At a superficial level, the neuroimaging
 researcher needs more than a passing knowledge of many fields, from many
@@ -66,12 +67,13 @@ Even in good institutions, we have seen that the great difficulties in learning 
   care, it can be very difficult to replicate your own analysis, and all but
   impossible to replicate an analysis by someone else.  This confusion is
   a poison to clear thought.  [Professor Robin
-  Murray](https://www.kcl.ac.uk/people/professor-sir-robin-murray) once
-  suggested, in a talk on the rather trivial contribution of FMRI research to
-  understanding schizophrenia, that the frontal lobes of FMRI researchers were
-  so occupied by the difficulties of analysis, that they not longer had the
-  capacity to think of a hypothesis.  The collective groan and laugh from the
-  audience was good evidence of its painful truth.
+  Murray](https://www.kcl.ac.uk/people/professor-sir-robin-murray) gave a [talk
+  in 2003](http://www.mattababy.org/~belmonte/Talks/2001_London/speak.html)
+  called "Should psychiatry take fMRI research seriously?". His answer to the
+  question in his title was more or less "no", or at least, "not yet".  Among
+  many painful, wise and funny remarks, he wondered aloud whether the frontal
+  lobes of researchers in the field were so occupied by the difficulties of
+  analysis, that they no longer had the capacity to think of a hypothesis.
 
 ## The tyranny of the typical
 
@@ -206,11 +208,11 @@ We have found this to be a profound truth.   If you cannot imagine how you would
 We take that truth seriously here.  We will show you how to build
 a simple-as-possible analysis of neuroimaging data *from the ground up*, using
 basic building blocks from general scientific libraries.  Our idea is this: if
-there is some terrible disaster, and, for some reason, all the current FMRI
-analysis packages are lost, then you will not be lost.  It would be
-inconvenient, and time-consuming, but you would say — "It's OK, I know what
-the analysis needs to do, I'll build my own, and I'll get others to help me do
-it".  Why?  Because you can create it, and you do understand it.
+there is some terrible disaster, and, for some reason, all the current brain
+imaging analysis packages are lost, then you will not be lost.  It would be
+inconvenient, and time-consuming, but you would say — "It's OK, I know what the
+analysis needs to do, I'll build my own, and I'll get others to help me do it".
+Why?  Because you can create it, and you do understand it.
 
 Building teaches understanding, but we also care about making our work clear, and efficient.  We want to get better and better at doing our analysis, and learning from the results.
 
@@ -241,8 +243,8 @@ and easy leads to stagnation.
 
 As you remember, we plan to teach you two things:
 
-1. how to work with functional MRI data.
-2. functional MRI methods;
+1. Working with brain imaging data.
+2. Principles of analysis methods.
 
 Why is *practice* before *theory*?   Because correct *practice* helps you
 think clearly.  The tools that you will use for practice include *code*,
