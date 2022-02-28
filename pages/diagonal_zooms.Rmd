@@ -80,7 +80,3 @@ import numpy as np
 zoom_mat = np.diag([3, 4, 5])
 zoom_mat
 ```
-
-```{python}
-
-```
