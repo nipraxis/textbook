@@ -13,12 +13,12 @@ parts:
   - file: pages/brisk_python
   - file: pages/arrays_and_images
   - file: pages/reshape_and_3d
+- caption: Into the fourth dimension
+  chapters:
+  - file: pages/intro_to_4d
 - caption: Coordinate systems and spatial transforms
   chapters:
   - file: pages/diagonal_zooms
   - file: pages/nibabel_affines
   - file: pages/nibabel_apply_affine
   - file: pages/map_coordinates
-- caption: Into the fourth dimension
-  chapters:
-  - file: pages/intro_to_4d
