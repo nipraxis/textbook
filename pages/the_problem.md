@@ -199,16 +199,22 @@ and easy leads to stagnation.
 
 ![](../images/simple_easy_velocity.png)
 
-## The plan returns
+## Practice and theory
 
 As you remember, we plan to teach you two things:
 
-1. functional MRI methods;
-2. how to work with functional MRI data.
+1. how to work with functional MRI data.
+2. functional MRI methods;
 
-We want to do that in way that will make your work *simple*.  We will do that
-by using Feynman's idea of understanding by building. That will not be *easy*,
-at first, but we hope you will find, rather quickly, that the basic ideas will be clearer — and you will have better tools to do your work.
+Why is *practice* before *theory*?   Because correct *practice* helps you
+think clearly.  The tools that you will use for practice include *code*,
+a rich language for understanding *theory*.
+
+Good practice is the root of sound understanding, so we will teach you
+practice to make your work *simple*.  We will do that by using Feynman's idea
+of understanding by building. That will not be *easy*, at first, but we hope
+you will find, rather quickly, that the basic ideas will be clearer — and you
+will have better tools to do your work.
 
 To get there, we start with:
 
