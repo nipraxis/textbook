@@ -29,7 +29,6 @@ exclude_patterns:
   - pages/anterior_cingulate.md
   - pages/arange.Rmd
   - pages/array_reductions.md
-  - pages/arrays_and_images.Rmd
   - pages/assert.md
   - pages/bibliography.md
   - pages/boolean_indexing.Rmd
