@@ -13,3 +13,6 @@ parts:
   - file: pages/brisk_python
   - file: pages/arrays_and_images
   - file: pages/reshape_and_3d
+- caption: Into the fourth dimension
+  chapters:
+  - file: pages/intro_to_4d
