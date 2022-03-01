@@ -29,6 +29,10 @@ parts:
 - caption: Statistics
   chapters:
   - file: pages/mean_test_example
+  - file: pages/hypothesis_tests
+- caption: Hemodynamic response modeling
+  chapters:
+  - file: pages/convolution_background
 - caption: Code organization and collaboration
   chapters:
   # - file: pages/git_walk_through
