@@ -1,5 +1,10 @@
 # Build requirements
+pip>=22.0.3
 jupyter-book
+# For nicer sidebars
+sphinx-book-theme>=0.2
+# Notebook execution problem with older attrs?
+# attrs==21.4
 
 # To allow static build / upload
 ghp-import

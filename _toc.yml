@@ -20,7 +20,7 @@ parts:
   - file: pages/otsu_threshold
   - file: pages/numpy_random
 
-- caption: "NumPy arrays, Matplotlib plots"
+- caption: Arrays and plots
   chapters:
   - file: pages/methods_vs_functions
   - file: pages/reshape_and_4d

@@ -3,7 +3,7 @@ matplotlib
 scipy
 nibabel
 ipython
-jupytext[myst]
+jupytext
 okpy
 dipy
 fury<0.8  # pacify dipy imports
