@@ -13,6 +13,7 @@ parts:
   - file: pages/brisk_python
   - file: pages/arrays_and_images
   - file: pages/slicing_with_booleans
+  - file: pages/numpy_logical
   - file: pages/reshape_and_3d
 - caption: Into the fourth dimension
   chapters:
@@ -25,3 +26,10 @@ parts:
   - file: pages/nibabel_affines
   - file: pages/nibabel_apply_affine
   - file: pages/map_coordinates
+- caption: Code organization and collaboration
+  chapters:
+  # - file: pages/git_walk_through
+  - file: pages/on_modules
+  - file: pages/path_manipulation
+  - file: pages/sys_path
+  - file: pages/assert
