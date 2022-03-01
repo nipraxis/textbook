@@ -37,7 +37,6 @@ exclude_patterns:
   - pages/nans.md
   - pages/numpy_diag.Rmd
   - pages/numpy_meshgrid.Rmd
-  - pages/numpy_random.Rmd
   - pages/numpy_squeeze.Rmd
   - pages/numpy_transpose.Rmd
   - pages/on_loops.Rmd

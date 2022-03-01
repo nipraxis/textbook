@@ -17,6 +17,7 @@ parts:
   - file: pages/numpy_logical
   - file: pages/reshape_and_3d
   - file: pages/otsu_threshold
+  - file: pages/numpy_random
 - caption: Into the fourth dimension
   chapters:
   - file: pages/intro_to_4d
