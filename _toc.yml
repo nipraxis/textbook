@@ -26,6 +26,11 @@ parts:
   - file: pages/nibabel_affines
   - file: pages/nibabel_apply_affine
   - file: pages/map_coordinates
+  - file: pages/image_header_and_affine
+  - file: pages/images_and_affines
+  - file: pages/rotation_2d_3d
+  - file: pages/resampling_with_ndimage
+  - file: pages/dipy_registration
 - caption: Statistics
   chapters:
   - file: pages/mean_test_example
