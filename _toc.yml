@@ -2,70 +2,70 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: pages/intro
+root: intro
 parts:
 - caption: The neuroimaging problem
   chapters:
-  - file: pages/the_problem
+  - file: the_problem
 
 - caption: Images and code and images
   chapters:
-  - file: pages/what_is_an_image
-  - file: pages/brisk_python
-  - file: pages/list_comprehensions
-  - file: pages/arrays_and_images
-  - file: pages/slicing_with_booleans
-  - file: pages/numpy_logical
-  - file: pages/reshape_and_3d
-  - file: pages/otsu_threshold
-  - file: pages/numpy_random
+  - file: what_is_an_image
+  - file: brisk_python
+  - file: list_comprehensions
+  - file: arrays_and_images
+  - file: slicing_with_booleans
+  - file: numpy_logical
+  - file: reshape_and_3d
+  - file: otsu_threshold
+  - file: numpy_random
 
 - caption: Arrays and plots
   chapters:
-  - file: pages/methods_vs_functions
-  - file: pages/reshape_and_4d
-  - file: pages/allclose
-  - file: pages/arange
-  - file: pages/dot_outer
-  - file: pages/newaxis
-  - file: pages/subtract_means
-  - file: pages/plot_lines
-  - file: pages/subplots
+  - file: methods_vs_functions
+  - file: reshape_and_4d
+  - file: allclose
+  - file: arange
+  - file: dot_outer
+  - file: newaxis
+  - file: subtract_means
+  - file: plot_lines
+  - file: subplots
 
 - caption: Into the fourth dimension
   chapters:
-  - file: pages/intro_to_4d
-  - file: pages/voxels_by_time
-  - file: pages/voxel_time_courses
+  - file: intro_to_4d
+  - file: voxels_by_time
+  - file: voxel_time_courses
 
 - caption: Coordinate systems and spatial transforms
   chapters:
-  - file: pages/diagonal_zooms
-  - file: pages/nibabel_affines
-  - file: pages/nibabel_apply_affine
-  - file: pages/map_coordinates
-  - file: pages/image_header_and_affine
-  - file: pages/images_and_affines
-  - file: pages/rotation_2d_3d
-  - file: pages/resampling_with_ndimage
-  - file: pages/dipy_registration
+  - file: diagonal_zooms
+  - file: nibabel_affines
+  - file: nibabel_apply_affine
+  - file: map_coordinates
+  - file: image_header_and_affine
+  - file: images_and_affines
+  - file: rotation_2d_3d
+  - file: resampling_with_ndimage
+  - file: dipy_registration
 
 - caption: Statistics and the general linear model
   chapters:
-  - file: pages/mean_test_example
-  - file: pages/hypothesis_tests
-  - file: pages/convolution_background
-  - file: pages/model_one_voxel
-  - file: pages/test_one_voxel
-  - file: pages/multi_multiply
-  - file: pages/non_tr_onsets
-  - file: pages/whole_image_statistics
+  - file: mean_test_example
+  - file: hypothesis_tests
+  - file: convolution_background
+  - file: model_one_voxel
+  - file: test_one_voxel
+  - file: multi_multiply
+  - file: non_tr_onsets
+  - file: whole_image_statistics
 
 - caption: Code organization and collaboration
   chapters:
-  # - file: pages/git_walk_through
-  - file: pages/on_modules
-  - file: pages/path_manipulation
-  - file: pages/sys_path
-  - file: pages/assert
-  - file: pages/coding_style
+  # - file: git_walk_through
+  - file: on_modules
+  - file: path_manipulation
+  - file: sys_path
+  - file: assert
+  - file: coding_style

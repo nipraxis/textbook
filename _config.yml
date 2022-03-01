@@ -30,74 +30,74 @@ exclude_patterns:
   # OE: I have sorted the pages with a tentative sectioning
   #
   # Python and Numpy
-  - pages/boolean_indexing.Rmd
-  - pages/array_reductions.md
-  - pages/comparing_arrays.Rmd
-  - pages/comparing_floats.md
-  - pages/diag_inverse.md
-  - pages/dot_and_outer.md
-  - pages/floating_in_text.md
-  - pages/index_reshape.Rmd
-  - pages/keyword_arguments.Rmd
-  - pages/nans.md
-  - pages/numpy_diag.Rmd
-  - pages/numpy_meshgrid.Rmd
-  - pages/numpy_squeeze.Rmd
-  - pages/numpy_transpose.Rmd
-  - pages/on_loops.Rmd
-  - pages/packages_namespaces.Rmd
-  - pages/printing_floating.Rmd
-  - pages/subtract_mean_math.md
-  - pages/two_dunders.md
+  - boolean_indexing.Rmd
+  - array_reductions.md
+  - comparing_arrays.Rmd
+  - comparing_floats.md
+  - diag_inverse.md
+  - dot_and_outer.md
+  - floating_in_text.md
+  - index_reshape.Rmd
+  - keyword_arguments.Rmd
+  - nans.md
+  - numpy_diag.Rmd
+  - numpy_meshgrid.Rmd
+  - numpy_squeeze.Rmd
+  - numpy_transpose.Rmd
+  - on_loops.Rmd
+  - packages_namespaces.Rmd
+  - printing_floating.Rmd
+  - subtract_mean_math.md
+  - two_dunders.md
   # Images and code and images
-  - pages/saving_images.Rmd
+  - saving_images.Rmd
   # Coordinate systems and spatial transforms
   # [all transferred already]
   # Into the fourth dimension
-  - pages/tr_and_headers.Rmd
+  - tr_and_headers.Rmd
   # Statistics
-  - pages/pearson_functions.md
-  - pages/validate_against_scipy.Rmd
+  - pearson_functions.md
+  - validate_against_scipy.Rmd
   # Hemodynamic response modeling
-  - pages/anterior_cingulate.md
-  - pages/introducing_nipype.Rmd
+  - anterior_cingulate.md
+  - introducing_nipype.Rmd
   # Code organization and collaboration
-  - pages/choosing_editor.md
-  - pages/full_scripting.md
-  - pages/git_videos.md
-  - pages/git_walk_through.Rmd
-  - pages/git_workflow_exercises.md
-  - pages/github_dummies_homework.md
-  - pages/github_glm_homework.md
-  - pages/github_pca_homework.md
-  - pages/installation_on_linux.md
-  - pages/installation_on_mac.md
-  - pages/installation_on_windows.md
+  - choosing_editor.md
+  - full_scripting.md
+  - git_videos.md
+  - git_walk_through.Rmd
+  - git_workflow_exercises.md
+  - github_dummies_homework.md
+  - github_glm_homework.md
+  - github_pca_homework.md
+  - installation_on_linux.md
+  - installation_on_mac.md
+  - installation_on_windows.md
   # Meta-course
   - README.md
   - _todo.md
   - _scripts
-  - pages/bibliography.md
-  - pages/classes.md
-  - pages/classes_and_labs.md
-  - pages/diagnostics_project.md
-  - pages/ds114_sub009_highres.nii
-  - pages/example_data.md
-  - pages/exercises.md
-  - pages/glossary.md
-  - pages/index.md
-  - pages/logistics.md
-  - pages/markdown.md
-  - pages/mentors.md
-  - pages/multi_model_homework.md
-  - pages/participate.md
-  - pages/participate_grading.md
-  - pages/preparation.md
-  - pages/project_grading.md
-  - pages/projects.md
-  - pages/topics.md
+  - bibliography.md
+  - classes.md
+  - classes_and_labs.md
+  - diagnostics_project.md
+  - ds114_sub009_highres.nii
+  - example_data.md
+  - exercises.md
+  - glossary.md
+  - index.md
+  - logistics.md
+  - markdown.md
+  - mentors.md
+  - multi_model_homework.md
+  - participate.md
+  - participate_grading.md
+  - preparation.md
+  - project_grading.md
+  - projects.md
+  - topics.md
   # Drop?
-  - pages/using_pythonpath.Rmd
+  - using_pythonpath.Rmd
 
 # Define the name of the latex output file for PDF builds
 latex:

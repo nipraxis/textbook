@@ -112,7 +112,7 @@ We will come back to this idea again, of science and not-science.
 
 The Royal Society of London was founded on the same idea.  The motto of the Royal Society is "Nullius in Verba", often translated as "Take no-one's word for it".
 
-![](../images/nullius_in_verba.jpg)
+![](images/nullius_in_verba.jpg)
 
 (Image by kladcat under [CC BY
 2.0](http://creativecommons.org/licenses/by/2.0), via Wikimedia Commons).
@@ -237,7 +237,7 @@ easy, then everything stays tangled, and you cannot learn.  Your progress is
 slowed by the knots in your ideas, and your work.  Simple leads to efficiency
 and easy leads to stagnation.
 
-![](../images/simple_easy_velocity.png)
+![](images/simple_easy_velocity.png)
 
 ## Practice and theory
 
