@@ -15,6 +15,7 @@ parts:
   - file: pages/slicing_with_booleans
   - file: pages/numpy_logical
   - file: pages/reshape_and_3d
+  - file: pages/otsu_threshold
 - caption: Into the fourth dimension
   chapters:
   - file: pages/intro_to_4d
@@ -31,17 +32,16 @@ parts:
   - file: pages/rotation_2d_3d
   - file: pages/resampling_with_ndimage
   - file: pages/dipy_registration
-- caption: Statistics
+- caption: Statistics and the general linear model in fMRI
   chapters:
   - file: pages/mean_test_example
   - file: pages/hypothesis_tests
-- caption: Hemodynamic response modeling
-  chapters:
   - file: pages/convolution_background
   - file: pages/model_one_voxel
   - file: pages/test_one_voxel
   - file: pages/multi_multiply
   - file: pages/non_tr_onsets
+  - file: pages/whole_image_statistics
 - caption: Code organization and collaboration
   chapters:
   # - file: pages/git_walk_through

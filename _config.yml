@@ -55,12 +55,10 @@ exclude_patterns:
   # Into the fourth dimension
   - pages/tr_and_headers.Rmd
   # Statistics
-  - pages/whole_image_statistics.Rmd
   - pages/pearson_functions.md
   - pages/validate_against_scipy.Rmd
   # Hemodynamic response modeling
   - pages/anterior_cingulate.md
-  - pages/otsu_threshold.Rmd
   - pages/introducing_nipype.Rmd
   # Code organization and collaboration
   - pages/choosing_editor.md
