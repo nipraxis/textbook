@@ -1,4 +1,4 @@
-# Pratice and theory of brain imaging
+# Practice and theory of brain imaging
 
 This is a hands-on course teaching the principles of functional MRI (fMRI)
 data analysis. We will teach you how to work with data and code to get a
