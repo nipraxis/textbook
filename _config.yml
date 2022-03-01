@@ -37,7 +37,6 @@ exclude_patterns:
   - pages/coding_style.md
   - pages/comparing_arrays.Rmd
   - pages/comparing_floats.md
-  - pages/convolution_background.Rmd
   - pages/diag_inverse.md
   - pages/diagnostics_project.md
   - pages/dipy_registration.Rmd
@@ -56,7 +55,6 @@ exclude_patterns:
   - pages/github_glm_homework.md
   - pages/github_pca_homework.md
   - pages/glossary.md
-  - pages/hypothesis_tests.Rmd
   - pages/image_header_and_affine.Rmd
   - pages/images_and_affines.Rmd
   - pages/index.md
