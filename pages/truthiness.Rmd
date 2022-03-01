@@ -1,0 +1,59 @@
+---
+jupyter:
+  orphan: true
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+---
+
+# Kind-of True
+
+See: [truthiness in
+Python](https://www.humaneer.org/python3/truthiness-in-python/)
+and Python [truth value
+testing](https://docs.python.org/3/library/stdtypes.html#truth).
+
+There are several places where you will find Python applying a
+test of True that is more general than simply `val == True`.
+
+One example is in `if` statements:
+
+```{python}
+val = 'a string'  # A not-empty string is True for truth testing
+if val:
+     print('Truth testing of "val" returned True')
+```
+
+Here the `if val:` clause applies Python [truth value testing]
+to `'a string'`, and returns True. This is because the truth
+value testing algorithm returns True from an not-empty string,
+and False from an empty string:
+
+```{python}
+another_val = ''
+if another_val:
+    print('No need for a message, we will not get here')
+```
+
+You can see the results of truth value testing using `bool()`
+in Python. For example:
+
+```{python}
+print('Bool on True', bool(True))
+print('Bool on False', bool(False))
+print('Bool on not-empty list', bool(['some', 'elements']))
+print('Bool on empty list', bool([]))
+# Bool on any number other than zero evaluates as True
+print('Bool on 10', bool(10))
+print('Bool on -1', bool(-1))
+print('Bool on 0', bool(0))
+# None tests as False
+print('Bool on None', bool(None))
+```
+
+Examples of situations in which Python uses truth value testing
+are `if` statements; `while statements` and {doc}`assert
+statements <assert>`.
