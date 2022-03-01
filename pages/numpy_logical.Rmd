@@ -76,3 +76,17 @@ np.logical_or(bool1, bool2)
 # "logical_not" True where input array is False
 np.logical_not(bool1)
 ```
+
+Equivalently, the `&`, `|` and `~` operators are applied elementwise:
+
+```{python}
+bool1 & bool2
+```
+
+```{python}
+bool1 | bool2
+```
+
+```{python}
+~bool1
+```
