@@ -30,7 +30,6 @@ exclude_patterns:
   - pages/comparing_arrays.Rmd
   - pages/comparing_floats.md
   - pages/diag_inverse.md
-  - pages/docstrings.md
   - pages/dot_and_outer.md
   - pages/floating_in_text.md
   - pages/index_reshape.Rmd
@@ -44,7 +43,6 @@ exclude_patterns:
   - pages/on_loops.Rmd
   - pages/packages_namespaces.Rmd
   - pages/printing_floating.Rmd
-  - pages/string_literals.md
   - pages/subtract_mean_math.md
   - pages/two_dunders.md
   # Images and code and images
@@ -61,7 +59,6 @@ exclude_patterns:
   - pages/introducing_nipype.Rmd
   # Code organization and collaboration
   - pages/choosing_editor.md
-  - pages/coding_style.md
   - pages/full_scripting.md
   - pages/git_videos.md
   - pages/git_walk_through.Rmd
