@@ -102,7 +102,6 @@ exclude_patterns:
   - pages/reshape_and_4d.Rmd
   - pages/rotation_2d_3d.md
   - pages/saving_images.Rmd
-  - pages/slicing_with_booleans.Rmd
   - pages/string_literals.md
   - pages/subplots.Rmd
   - pages/subtract_mean_math.md
@@ -115,8 +114,6 @@ exclude_patterns:
   - pages/two_dunders.md
   - pages/using_pythonpath.Rmd
   - pages/validate_against_scipy.Rmd
-  - pages/voxel_time_courses.Rmd
-  - pages/voxels_by_time.Rmd
   - pages/whole_image_statistics.Rmd
 
 # Define the name of the latex output file for PDF builds
