@@ -6,11 +6,13 @@ jupyter:
       format_name: rmarkdown
       format_version: '1.2'
       jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## A worked example of the general linear model
+# A worked example of the general linear model
 
 See: [introduction to the general linear model](https://matthew-brett.github.io/teaching/glm_intro.html).
 
@@ -47,7 +49,7 @@ scores than women).
 We teat this hypothesis by testing whether the sample mean is far enough from
 zero to make it unlikely that the population mean is actually zero.
 
-## The standard error of the mean
+# The standard error of the mean
 
 One way to test this, is to compare the mean value, to the [standard error of
 the mean](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_mean_2).
@@ -99,11 +101,20 @@ x = differences
 n = len(x)
 x_bar = np.mean(x)
 x_bar
+```
+
+```{python}
 unviased_var_x = 1. / (n - 1) * np.sum((x - x_bar) ** 2)
 s_x = np.sqrt(unviased_var_x)
 s_x
+```
+
+```{python}
 SEM = s_x / np.sqrt(n)
 SEM
+```
+
+```{python}
 t = x_bar / SEM
 t
 ```
@@ -128,7 +139,8 @@ numpy.random to draw samples from this distribution:
 
 ```{python}
 # 10 samples from normal distribution with mean 5 and sd 1.5
-sample = np.random.normal(5, 1.5, size=10)
+rng = np.random.default_rng()
+sample = rng.normal(5, 1.5, size=10)
 sample
 ```
 
@@ -183,9 +195,9 @@ standard deviation of means from many samples of size $n$:
 
 ```{python}
 # Standard deviation of means from population
-1.5 / np.sqrt(n)
+print(1.5 / np.sqrt(n))
 # Our estimate for the standard error of mean
-unbiased_sd_est / np.sqrt(n)
+print(unbiased_sd_est / np.sqrt(n))
 ```
 
 # Testing using the general linear model
@@ -250,31 +262,3 @@ t = \frac{\bar{y}}{s_x \sqrt{\frac{1}{n}}} \\
 = \bar{y} \Big/ \frac{s_x}{\sqrt{n}} \\
 = \frac{\bar{y}}{SE_{\bar{y}}}
 $$
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
