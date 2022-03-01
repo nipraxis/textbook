@@ -33,6 +33,10 @@ parts:
 - caption: Hemodynamic response modeling
   chapters:
   - file: pages/convolution_background
+  - file: pages/model_one_voxel
+  - file: pages/test_one_voxel
+  - file: pages/multi_multiply
+  - file: pages/non_tr_onsets
 - caption: Code organization and collaboration
   chapters:
   # - file: pages/git_walk_through
