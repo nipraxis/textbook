@@ -6,11 +6,13 @@ jupyter:
       format_name: rmarkdown
       format_version: '1.2'
       jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Testing a single voxel
+# Testing a single voxel
 
 A short ago (Modeling a single voxel), we were modeling a single voxel time
 course.
@@ -27,7 +29,7 @@ np.set_printoptions(precision=4)
 ```{python}
 import nibabel as nib
 img = nib.load('ds114_sub009_t2r1.nii')
-data = img.get_data()
+data = img.get_fdata()
 data = data[..., 4:]
 ```
 
@@ -155,7 +157,7 @@ p = 1 - ltp # upper tail p
 p
 ```
 
-## Compare our manual estimation to R
+# Compare our manual estimation to R
 
 Finally let’s save the voxel time course for us to compare this analysis to
 the `lm` estimation in R:
@@ -178,31 +180,3 @@ convolved = convolved[-(1:4)]
 res = lm(voxels ~ convolved)
 print(summary(res))
 ```
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
