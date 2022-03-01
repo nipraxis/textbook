@@ -39,7 +39,7 @@ orphan: true
 - collaborating with peers and mentors;
 - role of working practice in quality, reproducibility, collaboration;
 - choosing and learning simple tools;
-- version control with [git];
+- version control with [git](https://git-scm.com);
 - sharing code with <https://github.com>;
 - scripting and coding with Python;
 - pair coding and code review;
