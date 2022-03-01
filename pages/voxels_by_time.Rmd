@@ -6,11 +6,13 @@ jupyter:
       format_name: rmarkdown
       format_version: '1.2'
       jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Reshaping 4D images to 2D arrays
+# Reshaping 4D images to 2D arrays
 
 See also: Reshaping, 4D to 2D.
 
@@ -47,7 +49,7 @@ volumes, and calculate the standard deviation for each volume:
 
 ```{python}
 n_trs = img.shape[-1]
-data = img.get_data()
+data = img.get_fdata()
 std_devs = []
 for vol_no in range(n_trs):
     vol = data[..., vol_no]
@@ -67,31 +69,3 @@ voxels_by_time = data.reshape((n_voxels, n_trs))
 std_devs_vectorized = np.std(voxels_by_time, axis=0)
 assert np.allclose(std_devs_vectorized, std_devs)
 ```
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
