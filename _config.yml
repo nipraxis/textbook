@@ -71,7 +71,7 @@ exclude_patterns:
   - pages/installation_on_windows.md
   # Meta-course
   - README.md
-  - todo.md
+  - _todo.md
   - _scripts
   - pages/bibliography.md
   - pages/classes.md
