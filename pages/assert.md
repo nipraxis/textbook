@@ -13,12 +13,15 @@ So, if you `assert an_expression` and there is no error, then the result of
 `an_expression` was equivalent to True.  The following expressions evaluate
 to True, and therefore the asserts do not raise an error:
 
+```Python
 >>> assert True
 >>> assert 10 == 10
 >>> assert 10 % 2 == 0
+```
 
 These expressions are equivalent to False, and the asserts do raise errors:
 
+```Python
 >>> assert False
 Traceback (most recent call last):
    ...
@@ -27,14 +30,16 @@ AssertionError
 Traceback (most recent call last):
    ...
 AssertionError
+```
 
 Although `assert` does work with expression values of True and False, the test
 that assert uses is more general than `expr_result == True`.  In fact,
 assert uses {doc}`truth value testing <truthiness>` to decide whether to raise
 an `AssertionError` or not:
 
->>> assert \['some', 'elements'\]  # not-empty list tests as True
->>> assert \[\]  # an empty list tests as False
+```Python
+>>> assert ['some', 'elements']  # not-empty list tests as True
+>>> assert []  # an empty list tests as False
 Traceback (most recent call last):
    ...
 AssertionError
@@ -48,3 +53,4 @@ AssertionError
 Traceback (most recent call last):
    ...
 AssertionError
+```
