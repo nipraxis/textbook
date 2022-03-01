@@ -35,7 +35,6 @@ exclude_patterns:
   - pages/floating_in_text.md
   - pages/index_reshape.Rmd
   - pages/keyword_arguments.Rmd
-  - pages/list_comprehensions.Rmd
   - pages/nans.md
   - pages/numpy_diag.Rmd
   - pages/numpy_meshgrid.Rmd

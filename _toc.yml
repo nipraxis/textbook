@@ -11,6 +11,7 @@ parts:
   chapters:
   - file: pages/what_is_an_image
   - file: pages/brisk_python
+  - file: pages/list_comprehensions
   - file: pages/arrays_and_images
   - file: pages/slicing_with_booleans
   - file: pages/numpy_logical
