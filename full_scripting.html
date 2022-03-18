@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Practice and theory of brain imaging</title>
+    <title>Scripting of SPM analysis with nipype &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Python coding style" href="coding_style.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -407,9 +408,9 @@ const thebe_selector_output = ".output, .cell_output"
   Scripting analyses
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="full_scripting.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Scripting of SPM analysis with nipype
   </a>
  </li>
@@ -446,6 +447,23 @@ const thebe_selector_output = ".output, .cell_output"
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/full_scripting.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
@@ -457,7 +475,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Ffull_scripting.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -485,7 +503,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
+                <h1>Scripting of SPM analysis with nipype</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -496,19 +514,149 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
+  <div class="tex2jax_ignore mathjax_ignore section" id="scripting-of-spm-analysis-with-nipype">
+<h1>Scripting of SPM analysis with nipype<a class="headerlink" href="#scripting-of-spm-analysis-with-nipype" title="Permalink to this headline">¶</a></h1>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p><span class="xref std std-doc">saving_images</span>;</p></li>
+<li><p><span class="xref std std-doc">introducing_nipype</span>;</p></li>
+<li><p><span class="xref std std-doc">spm_slice_timing_exercise</span>;</p></li>
+</ul>
+<p>Can you write a Nipype script to do all the pre-processing in SPM?</p>
+<p>You are doing an analysis for the following scans:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ds114_sub009_t2r1.nii</span></code>; (functional);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ds114_sub009_highres.nii</span></code> (structural).</p></li>
+</ul>
+<p>You downloading these files one by one from the <a class="reference external" href="https://github.com/nipraxis/nipraxis-data">Nipraxis-data
+repository</a>. Another, more automated
+way of getting the files is using Nipraxis to fetch them from the web, then
+copy the resulting files to your working directory.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Automatic download of data files to working directory.</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
 
-<h1 id="index">Index</h1>
+<span class="kn">import</span> <span class="nn">nipraxis</span>
 
-<div class="genindex-jumpbox">
- 
+<span class="n">working_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_filee</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
+<span class="n">struct_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_filee</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">)</span>
+
+<span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">,</span> <span class="n">working_directory</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">struct_fname</span><span class="p">,</span> <span class="n">working_directory</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the following, remember you can explore the individual Nipype objects like
+this:</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>from nipype.interfaces import spm
+slice_timer = spm.SliceTiming()
+slice_timer.help()
+Use spm to perform slice timing correction.
+…</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<p>The script should do the following, using nibabel and Nipype:</p>
+<ul class="simple">
+<li><p>copy the structural image with a prefix of <code class="docutils literal notranslate"><span class="pre">c</span></code> because SPM will modify the
+image during registration (it modifies the image affine);</p></li>
+<li><p>drop the first 4 volumes from the functional run.  Save the new functional
+image with a filename prefix of <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p></li>
+<li><p>run slice timing, assuming an ascending interleaved slice acqusition order
+(first, third, …, second, fourth, …).  See
+<span class="xref std std-doc">spm_slice_timing_exercise</span> for details.  The resulting funcitonal
+image will have a filename prefix of <code class="docutils literal notranslate"><span class="pre">af</span></code>;</p></li>
+<li><p>run motion correction estimation, and write out the mean image across
+volumes.  You will need <code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Realign</span></code>.  The mean image
+will have filename prefix <code class="docutils literal notranslate"><span class="pre">meanaf</span></code>.   Hint: to write only the mean image,
+you need a <code class="docutils literal notranslate"><span class="pre">inputs.write_which</span></code> value of <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>.  See the script
+fragment below;</p></li>
+<li><p>estimate the registration of the structural image to the mean functional
+image: <code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Coregister</span></code>;</p></li>
+<li><p>register the (registered) structural image to the template and write the
+slice-time corrected functional image with these estimated parameters:
+<code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Normalize12</span></code>.  SPM calls this “spatial
+normalization”. The resulting functional image will have a prefix of <code class="docutils literal notranslate"><span class="pre">waf</span></code>.
+Hint: I’ve put suggested values for the <code class="docutils literal notranslate"><span class="pre">bounding_box</span></code> input parameter in
+the script fragment below;</p></li>
+<li><p>smooth the spatially normalized 4D functional image by 8mm FWHM:
+<code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Smooth</span></code>.  The resulting functional image will have
+the prefix <code class="docutils literal notranslate"><span class="pre">swaf</span></code>.</p></li>
+</ul>
+<p>Your script will likely start something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Script to run SPM processing in nipype</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+
+<span class="c1"># Import our own configuration for nipype</span>
+<span class="kn">import</span> <span class="nn">nipype_settings</span>
+
+<span class="kn">import</span> <span class="nn">nipype.interfaces.spm</span> <span class="k">as</span> <span class="nn">spm</span>
+
+<span class="c1"># Start at the original image</span>
+<span class="n">base_fname</span> <span class="o">=</span> <span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span>
+<span class="n">structural_orig</span> <span class="o">=</span> <span class="s1">&#39;ds114_sub009_highres.nii&#39;</span>
+<span class="n">structural_fname</span> <span class="o">=</span> <span class="s1">&#39;cds114_sub009_highres.nii&#39;</span>
+
+<span class="c1"># Copy the structural, because SPM will modify it</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">structural_orig</span><span class="p">,</span> <span class="n">structural_fname</span><span class="p">)</span>
+
+<span class="c1"># Analysis parameters</span>
+<span class="n">TR</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">slice_time_ref_slice</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 1-based indexing</span>
+<span class="n">n_dummies</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="c1"># Realign &quot;write_which&quot; input. The 0 means &#39;do not write resampled versions of</span>
+<span class="c1"># any of the individual volumes`.  The 1 means &#39;write mean across volumes after</span>
+<span class="c1"># motion correction&#39;.  See config/spm_cfg_realign.m in the SPM12 distribution.</span>
+<span class="n">write_which</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Normalize write parameters.  Bounding box gives extreme [[left, posterior,</span>
+<span class="c1"># inferior], [right, anterior, superior]] millimeter coordinates of the voxel</span>
+<span class="c1"># grid that SPM will use to write out the new images in template space.  See</span>
+<span class="c1"># spm_preproc_write8.m for use of the bounding box values.</span>
+<span class="n">bounding_box</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mf">78.</span><span class="p">,</span> <span class="o">-</span><span class="mf">112.</span><span class="p">,</span> <span class="o">-</span><span class="mf">46.</span><span class="p">],</span> <span class="p">[</span><span class="mf">78.</span><span class="p">,</span> <span class="mf">76.</span><span class="p">,</span> <span class="mf">86.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>When you have finished, have a look at the solution script at
+<a class="reference download internal" download="" href="_downloads/7f16e9dd5b74a55bcb43a97b0238cc77/nipype_ds114_sub009_t2r1.py"><code class="xref download docutils literal notranslate"><span class="pre">nipype_ds114_sub009_t2r1.py</span></code></a>.</p>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="coding_style.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python coding style</p>
+        </div>
+    </a>
 </div>
             
         </div>
