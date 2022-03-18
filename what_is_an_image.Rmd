@@ -84,36 +84,60 @@ what functions are in the `os` module. Continue typing so you have
 `os.getcwd`, and then type `?` followed by Return. This shows you
 the help for the `os.getcwd` function.
 
-The image we are going to explore is in the same directory as this exercise.
+For example, here we print out the Python's *working directory*.  It is the
+directory that contains this notebook file.
 
 ```{python}
 # Get the current working directory (CWD)
 cwd = os.getcwd()
-print(cwd)  
+print(cwd)
 ```
+
+You can list all the files in this working directory.  Among them you will see
+the filename of this notebook (the file starting with `what_is_an_image`).
 
 ```{python}
 # List files and directories in the current working directory
 print(os.listdir(cwd))
 ```
 
+We next fetch a data file from the web.  We have a special utility to do that,
+that knows where the data files are for this course.  The utility is called,
+simply, `nipraxis`.
+
+```{python}
+# Load utility that will fetch data from the web and store it.
+import nipraxis
+```
+
+Here was ask Nipraxis to download the data to the local hard disk.
+
+```{python}
+structural_fname = nipraxis.fetch_file('ds114_sub009_highres.nii')
+# Show the filename.
+structural_fname
+```
+
 Let’s read the image into memory.
 
 ```{python}
-# Open a file in Read Binary mode
-fobj = open('ds114_sub009_highres.nii', 'rb')
+# Open a file in Read Binary ('rb') mode
+fobj = open(structural_fname, 'rb')
 print(fobj)
 ```
 
-The thing named `fobj` we just made is a [Python file object](https://docs.python.org/3/glossary.html#term-file-object).  This is a thing that knows how to read data from the file into memory.  That is what we will do next.
+The thing named `fobj` we just made is a [Python file
+object](https://docs.python.org/3/glossary.html#term-file-object).  This is a
+thing that knows how to read data from the file into memory.  That is what we
+will do next.
 
 ```{python}
 # read all the characters into a variable in memory
 contents = fobj.read()
 ```
 
-How do I find out what `type` of object is attached to this variable
-called `contents`?
+How do I find out what `type` of object is attached to this variable called
+`contents`?
 
 ```{python}
 # your code here
@@ -127,9 +151,10 @@ How big is this file in terms of bytes? Can you find out from the
 # n_bytes = ?
 ```
 
-If 1 mebibyte (MiB) ([http://en.wikipedia.org/wiki/Megabyte](http://en.wikipedia.org/wiki/Megabyte)) is size 1024 \*
-1024, what is the file size in MiB? (Hint - the right answer is between 0 and
-100).
+If 1 mebibyte (MiB)
+([http://en.wikipedia.org/wiki/Megabyte](http://en.wikipedia.org/wiki/Megabyte))
+is size 1024 \* 1024, what is the file size in MiB? (Hint - the right answer is
+between 0 and 100).
 
 ```{python}
 # n_mib = ?
@@ -237,7 +262,7 @@ As with most Python packages, you can check what version of nibabel you have
 by printing the `__version__` variable of the package:
 
 ```{python}
-print(nibabel.__version__)  
+print(nibabel.__version__)
 ```
 
 If you have a nibabel version below 3.0, please let your instructor know so
@@ -246,7 +271,7 @@ they can fix that.
 You can make an image object by passing an image file name to `nibabel.load`:
 
 ```{python}
-img = nibabel.load('ds114_sub009_highres.nii')
+img = nibabel.load(structural_fname)
 ```
 
 We now have a Nibabel image object - and specifically, a Nifti type of image object.
