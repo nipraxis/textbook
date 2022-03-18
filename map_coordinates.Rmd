@@ -1,6 +1,8 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
@@ -17,19 +19,15 @@ jupyter:
 Requirements:
 
 * [coordinate systems and affine transforms](http://nipy.org/nibabel/coordinate_systems.html);
-
-* Making coordinate arrays with meshgrid;
-
-* numpy.tranpose for swapping axes;
-
-* The nibabel.affines module;
-
-* Applying coordinate transforms with nibabel.affines.apply_affine;
+* Making coordinate arrays with `meshgrid`;
+* `numpy.tranpose` for swapping axes;
+* The `nibabel.affines` module;
+* Applying coordinate transforms with `nibabel.affines.apply_affine`;
 
 <!-- see coordinate_board.jpg for diagram needed about here. -->
-scipy.ndimage.affine_transform is a routine
-that samples between images where there is an affine transform between the
-coordinates of the output image and the input image.
+`scipy.ndimage.affine_transform` is a routine that samples between images where
+there is an affine transform between the coordinates of the output image and
+the input image.
 
 `scipy.ndimage.map_coordinates` is a more general way of resampling between
 images, where we specify the coordinates in the input image, for each voxel
@@ -44,7 +42,6 @@ be expressed as an affine, such as complex non-linear transformations.
 `map_coordinates` accepts:
 
 * `input` – the array to resample from;
-
 * `coordinates` – the array shape (3,) + `output_shape` giving the
   voxel coordinates at which to sample `input`;
 
@@ -62,14 +59,8 @@ it:
 * inserts `v` into `K` with `K[i, j, k] = v`.
 
 This might be clearer with an example. Let’s resample a structural brain image
-to a functional brain image.   See Reslicing with affines exercise for
+to a functional brain image.   See the Reslicing with affines exercise for
 an exercise using `scipy.ndimage.affine_transform` to do this.
-
-You will need the:
-
-* BOLD (functional) image : `ds114_sub009_t2r1.nii`;
-
-* structural image : `ds114_sub009_highres.nii`.
 
 ```{python}
 #: standard imports
@@ -84,12 +75,28 @@ plt.rcParams['image.interpolation'] = 'nearest'
 import nibabel as nib
 ```
 
-Load the structural and functional data:
+We will need the:
+
+* BOLD (functional) image : `ds114_sub009_t2r1.nii`;
+* structural image : `ds114_sub009_highres.nii`.
 
 ```{python}
-bold_img = nib.load('ds114_sub009_t2r1.nii')
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch the BOLD image
+bold_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+# Show the file name.
+print(bold_fname)
+# Fetch structural image
+structural_fname = nipraxis.fetch_file('ds114_sub009_highres.nii')
+# Show the file names
+print(structural_fname)
+```
+
+```{python}
+bold_img = nib.load(bold_fname)
 mean_bold_data = bold_img.get_fdata().mean(axis=-1)
-structural_img = nib.load('ds114_sub009_highres.nii')
+structural_img = nib.load(structural_fname)
 structural_data = structural_img.get_fdata()
 ```
 
