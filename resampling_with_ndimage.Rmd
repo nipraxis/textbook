@@ -89,9 +89,17 @@ For example, lets say we have an image volume $\mathbf{I}$
 (`ds107_sub012_t1r2.nii`):
 
 ```{python}
+# Fetch the data file.
+import nipraxis
+# Fetch image file.
+bold_fname = nipraxis.fetch_file('ds107_sub012_t1r2.nii')
+bold_fname
+```
+
+```{python}
 import nibabel as nib
-img = nib.load('ds107_sub012_t1r2.nii')
-data = img.get_data()
+img = nib.load(bold_fname)
+data = img.get_fdata()
 I = data[..., 0]  # I is the first volume
 ```
 
@@ -110,22 +118,20 @@ Let’s say we know that the resampling transformation $\mathbf{I} \to
 
 See Rotations and rotation matrices for more on 2D and 3D rotation matrices.
 
-Download the file `rotations.py`. It has routines that will make
-3 by 3 rotation matrices for rotations by given angles around the x, y, and z
-axes.
+Here we use the
+[nipraxis.rotations](https://github.com/nipraxis/nipraxis/blob/main/nipraxis/rotations.py)
+module. It has routines that will make 3 by 3 rotation matrices for rotations
+by given angles around the x, y, and z axes.
 
-Of course you will want to test these functions. Download
-`test_rotations.py` to the same directory as `rotations.py` and
-run the following from your terminal:
+Of course you will want to be assured these functions are tested.  Have a look
+at
+[test_rotations.py](https://github.com/nipraxis/nipraxis/blob/main/nipraxis/tests/test_rotations.py).
 
-```
-py.test test_rotations.py
-```
-
-We use the routines in `rotation.py` to make the rotation matrix we need:
+We use the routines in the `nipraxis.rotations` module to make the rotation
+matrix we need:
 
 ```{python}
-from rotations import x_rotmat  # from rotations.py
+from nipraxis.rotations import x_rotmat
 # rotation matrix for rotation of 0.2 radians around x axis
 M = x_rotmat(0.2)
 M
@@ -141,13 +147,10 @@ implements the following algorithm:
 
 * for each coordinate $(x_i, y_i, z_i)$ implied by the volume `K`:
 
-  > * apply the transformations implied by `M` and `translation` to
-  >   $(x_i, y_i, z_i)$ to get the corresponding point in `J` :
-  >   $(x_j, y_j, z_j)$;
-
-  > * resample `J` at $(x_j, y_j, z_j)$ to get $v$;
-
-  > * place $v$ at $(x_i, y_i, z_i)$ in `K`
+  * apply the transformations implied by `M` and `translation` to $(x_i, y_i,
+    z_i)$ to get the corresponding point in `J` : $(x_j, y_j, z_j)$;
+  * resample `J` at $(x_j, y_j, z_j)$ to get $v$;
+  * place $v$ at $(x_i, y_i, z_i)$ in `K`
 
 ```{python}
 # order=1 for linear interpolation
@@ -170,16 +173,13 @@ Now we can be more precise about the algorithm of `affine_transform`.
 
 * `input` – an array to resample from.  Say this array as `n`
   dimensions (`len(input.shape)`);
-
 * `matrix` – an `n` by `n` transformation matrix (the top left
   `mat` part of an affine);
-
-* `offset` – a optional length `n` translation vector to be applied
-  after the the `matrix` transformation (the `vec` part of an affine);
-
-* `output_shape` : an optional tuple giving the shape of the output array
-  into which we will put the values resampled from `input`. `output_shape`
-  defaults to `input.shape`; this is the default we have been using above.
+* `offset` – a optional length `n` translation vector to be applied after the
+  `matrix` transformation (the `vec` part of an affine);
+* `output_shape` : an optional tuple giving the shape of the output array into
+  which we will put the values resampled from `input`. `output_shape` defaults
+  to `input.shape`; this is the default we have been using above.
 
 `affine_transform` then generates all the voxel coordinates *implied by* the
 `output_shape`, and transforms them with the `matrix` and `offset`
