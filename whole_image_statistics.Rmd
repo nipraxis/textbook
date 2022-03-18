@@ -22,20 +22,26 @@ np.set_printoptions(precision=4)  # print arrays to 4 dp
 import numpy.linalg as npl
 import matplotlib.pyplot as plt
 import nibabel as nib
+import nipraxis
 ```
 
-We load the hemodynamic regressor from Convolving with the hemodyamic response function.  We used
-this regressor in Modeling a single voxel:
+We load the hemodynamic regressor from [Convolving with the hemodyamic response
+function](convolution_background.Rmd).  We used this regressor in [Modeling a
+single voxel](model_one_voxel.Rmd).
 
 ```{python}
-regressor = np.loadtxt('ds114_sub009_t2r1_conv.txt')
+conv_reg_fname = nipraxis.fetch_file('ds114_sub009_t2r1_conv.txt')
+regressor = np.loadtxt(conv_reg_fname)
 plt.plot(regressor)
 ```
 
-Load the FMRI data, drop the first four volumes:
+Fetch and load the FMRI data, drop the first four volumes:
 
 ```{python}
-data = nib.load('ds114_sub009_t2r1.nii').get_fdata()
+# Fetch.
+bold_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+# Load
+data = nib.load(bold_fname).get_fdata()
 data = data[..., 4:]
 print(data.shape)
 n = data.shape[-1]
@@ -52,10 +58,10 @@ Make the design matrix for the simple regression:
 ```{python}
 X = np.ones((n, 2))
 X[:, 1] = regressor
-plt.imshow(X, cmap='gray', aspect=0.2, interpolation='nearest')
+plt.imshow(X, cmap='gray', aspect=0.2)
 ```
 
-# Analysis on whole volume, reshaped
+## Analysis on whole volume, reshaped
 
 Reshape data to time by voxels:
 
@@ -176,9 +182,9 @@ plt.imshow(t_3d[:, :, 15], cmap='gray')
 ```
 
 Notice the white areas at the edge of the image.  These are voxels where the t
-value is `nan` – [Not a number](https://en.wikipedia.org/wiki/NaN).  See also Not a number.  `nan` values
-arise when all the scans have 0 at this voxel, so the numerator and
-denominator of the t statistic are both 0.
+value is `nan` – [Not a number](https://en.wikipedia.org/wiki/NaN).  See also
+Not a number.  `nan` values arise when all the scans have 0 at this voxel, so
+the numerator and denominator of the t statistic are both 0.
 
 ```{python}
 np.array(0) / 0
@@ -200,9 +206,10 @@ sigma_2_3d[0, 0, 15]
 Can we avoid these uninteresting voxels, and only analyze voxels within the
 brain?
 
-# Analysis on voxels within the brain
+## Analysis on voxels within the brain
 
-Here we make a mask of the voxels within the brain using [Otsu’s method](https://en.wikipedia.org/wiki/Otsu%27s_method).  You will need
+Here we make a mask of the voxels within the brain using [Otsu’s
+method](https://en.wikipedia.org/wiki/Otsu%27s_method).  You will need
 [scikit-image](http://scikit-image.org/) installed for this to work:
 
 ```{python}
@@ -230,12 +237,12 @@ data.shape
 This is the number of voxels for which the mask value is True:
 
 ```{python}
-np.sum(mask)  
+np.sum(mask)
 ```
 
 We can use the 3D mask to slice into the 4D data matrix.  For every True value
 in the 3D mask, the result has the vector of values over time for that voxel.
-See: Indexing with boolean masks.
+See: [Indexing with Boolean masks](boolean_indexing.Rmd).
 
 ```{python}
 Y = data[mask]
@@ -285,11 +292,12 @@ p_3d[mask] = p
 plt.imshow(p_3d[:, :, 15], cmap='gray')
 ```
 
-# Multiple comparison correction
+## Multiple comparison correction
 
 We now have a very large number of t statistics and p values.  We want to find
 to control the family-wise error rate, where the “family” is the set of all of
-the voxel t tests / p values.  See: [Bonferroni correction](https://matthew-brett.github.io/teaching/bonferroni_correction.html).
+the voxel t tests / p values.  See: [Bonferroni
+correction](https://matthew-brett.github.io/teaching/bonferroni_correction.html).
 
 We start with the Šidák correction, that gives the correct threshold when all
 the test are independent:
