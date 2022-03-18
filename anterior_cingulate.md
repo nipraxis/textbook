@@ -36,7 +36,7 @@ repository](https://github.com/nipraxis/nipraxis-data). Another, more automated
 way of getting the files is using Nipraxis to fetch them from the web, then
 copy the resulting files to your working directory.
 
-```{python}
+```python
 # Automatic download of data files to working directory.
 import os
 import shutil
@@ -161,3 +161,9 @@ We will be using [MRIcron](https://www.nitrc.org/projects/mricron):
   Do you think the cytoarchitecture lines up with where you think it should be,
   given your drawing and the anatomy of the template and the individual subject
   image?
+
+## References
+
+```{bibliography}
+:filter: docname in docnames
+```

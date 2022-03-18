@@ -58,7 +58,6 @@ exclude_patterns:
   - pearson_functions.md
   - validate_against_scipy.Rmd
   # Hemodynamic response modeling
-  - anterior_cingulate.md
   - introducing_nipype.Rmd
   # Code organization and collaboration
   - choosing_editor.md

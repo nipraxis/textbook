@@ -49,6 +49,7 @@ parts:
   - file: rotation_2d_3d
   - file: resampling_with_ndimage
   - file: dipy_registration
+  - file: anterior_cingulate
 
 - caption: Statistics and the general linear model
   chapters:
