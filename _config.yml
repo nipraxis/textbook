@@ -30,7 +30,6 @@ exclude_patterns:
   # OE: I have sorted the pages with a tentative sectioning
   #
   # Python and Numpy
-  - boolean_indexing.Rmd
   - array_reductions.md
   - comparing_arrays.Rmd
   - comparing_floats.md

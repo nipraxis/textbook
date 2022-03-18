@@ -1,5 +1,6 @@
 ---
 jupyter:
+  orphan: true
   jupytext:
     text_representation:
       extension: .Rmd
@@ -8,13 +9,8 @@ jupyter:
       jupytext_version: 1.11.5
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
+# Indexing with boolean masks
 
-## Indexing with boolean masks
-
-<!-- import numpy as np
-np.set_printoptions(precision=6)  # Only show 6 decimals when printing
-import matplotlib.pyplot as plt -->
 
 ```{python}
 # - import common modules
@@ -81,31 +77,3 @@ a single axis.
 bool_1d_dim3 = np.array([False, True])
 arr_3d[:, :, bool_1d_dim3]
 ```
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
