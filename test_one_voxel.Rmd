@@ -1,6 +1,8 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
@@ -14,8 +16,8 @@ jupyter:
 
 # Testing a single voxel
 
-A short ago (Modeling a single voxel), we were modeling a single voxel time
-course.
+A short ago — [Modeling a single voxel](model_one_voxel.Rmd), we were modeling
+a single voxel time course.
 
 Let’s get that same voxel time course back again:
 
@@ -28,13 +30,17 @@ np.set_printoptions(precision=4)
 
 ```{python}
 import nibabel as nib
-img = nib.load('ds114_sub009_t2r1.nii')
+import nipraxis
+
+# Fetch the data file
+bold_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+img = nib.load(bold_fname)
 data = img.get_fdata()
 data = data[..., 4:]
 ```
 
-The voxel coordinate (3D coordinate) that we were looking at in
-Voxel time courses was at (42, 32, 19):
+The voxel coordinate (3D coordinate) that we were looking at in Voxel time
+courses was at (42, 32, 19):
 
 ```{python}
 voxel_time_course = data[42, 32, 19]
@@ -43,11 +49,16 @@ plt.plot(voxel_time_course)
 
 We then compiled a design for this time-course and estimated it.
 
-We used the `convolved regressor` from
-Convolving with the hemodyamic response function in a simple regression.
+We used the `convolved regressor` from [Convolving with the hemodyamic response
+function](convolution_background.Rmd) in a simple regression.
 
 ```{python}
-convolved = np.loadtxt('ds114_sub009_t2r1_conv.txt')
+conv_reg_fname = nipraxis.fetch_file('ds114_sub009_t2r1_conv.txt')
+conv_reg_fname
+```
+
+```{python}
+convolved = np.loadtxt(conv_reg_fname)
 # Knock off first 4 elements to match data
 convolved = convolved[4:]
 N = len(convolved)
@@ -62,8 +73,8 @@ $\newcommand{\evec}{\vec{\varepsilon}}$
 $\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
 $\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}$
 
-As you will remember from [introduction to the general linear model](https://matthew-brett.github.io/teaching/glm_intro.html), our
-model is:
+As you will remember from [introduction to the general linear
+model](https://matthew-brett.github.io/teaching/glm_intro.html), our model is:
 
 $$
 \yvec = \Xmat \bvec + \evec
@@ -109,10 +120,12 @@ $$
 
 where $\sigma^2$ is the true unknown variance of the errors. See [wikipedia
 proof](https://en.wikipedia.org/wiki/Proofs_involving_ordinary_least_squares#Unbiasedness_of_.CE.B2.CC.82),
-and [stackoverflow proof](http://stats.stackexchange.com/questions/72940/covariance-matrix-of-least-squares-estimator-hat-beta).
+and [stackoverflow
+proof](http://stats.stackexchange.com/questions/72940/covariance-matrix-of-least-squares-estimator-hat-beta).
 
 We can use an estimate $\hat\sigma^2$ of $\sigma^2$ to give us estimated
-standard errors of the variance covariance (see: Unbiased estimate of population variance):
+standard errors of the variance covariance (see: Unbiased estimate of
+population variance):
 
 ```{python}
 y = voxel_time_course
