@@ -1,13 +1,15 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.10.3
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -123,13 +125,26 @@ plt.ylabel('HRF sampled every 2.5 seconds')
 
 We can use this to convolve our neural (on-off) prediction.  This will give us
 a hemodynamic prediction, under the linear-time-invariant assumptions of the
-convolution.  Download `stimuli.py` if you don’t have it already.
+convolution.
+
+First we get the condition file:
 
 ```{python}
-from stimuli import events2neural
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch the data file.
+cond_fname = nipraxis.fetch_file('ds114_sub009_t2r1_cond.txt')
+# Show the file name of the fetched data.
+cond_fname
+```
+
+Next we using a version of the `stimulus.py` file we worked on earlier, to
+convert the onsets in the file, to neural time-courses.
+
+```{python}
+from nipraxis.stimuli import events2neural
 n_vols = 173
-neural_prediction = events2neural('ds114_sub009_t2r1_cond.txt',
-                                  TR, n_vols)
+neural_prediction = events2neural(cond_fname, TR, n_vols)
 all_tr_times = np.arange(173) * TR
 plt.plot(all_tr_times, neural_prediction)
 ```
@@ -163,8 +178,8 @@ plt.plot(all_tr_times, neural_prediction)
 plt.plot(all_tr_times, convolved)
 ```
 
-For our future use, let us save our convolved time course to a numpy text
-file:
+For our future use, might want to save our convolved time course to a numpy
+text file:
 
 ```{python}
 # Save the convolved time course to 6 decimal point precision
@@ -173,3 +188,7 @@ back = np.loadtxt('ds114_sub009_t2r1_conv.txt')
 # Check written data is within 0.000001 of original
 np.allclose(convolved, back, atol=1e-6)
 ```
+
+There is a copy of this saved file in the [Nipraxis data
+collection](https://github.com/nipraxis/nipraxis-data), that we will use
+later.

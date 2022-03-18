@@ -29,11 +29,20 @@ import matplotlib.pyplot as plt
 np.set_printoptions(precision=4, suppress=True)
 ```
 
+```{python}
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch the data file.
+data_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+# Show the file name of the fetched data.
+data_fname
+```
+
 We load a 4D file:
 
 ```{python}
 import nibabel as nib
-img = nib.load('ds114_sub009_t2r1.nii')
+img = nib.load(data_fname)
 img.shape
 ```
 

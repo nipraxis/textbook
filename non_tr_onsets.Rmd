@@ -30,15 +30,32 @@ TR = 2.5
 n_trs = 173
 ```
 
-The actual condition file for this dataset is
-`ds114_sub009_t2r1_cond.txt`. You may remember it has a *block
-design* with blocks of length 12 TRs while the subject is doing the task.
+The actual condition file for this dataset is `ds114_sub009_t2r1_cond.txt`.
+
+```{python}
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch the data file.
+cond_fname = nipraxis.fetch_file('ds114_sub009_t2r1_cond.txt')
+# Show the file name of the fetched data.
+cond_fname
+```
+
+You may remember it has a *block design* with blocks of length 12 TRs while
+the subject is doing the task.
 
 What if we had a different *event related* condition file like the one at
 `new_cond.txt`?
 
 ```{python}
-cond_data = np.loadtxt('new_cond.txt')
+# Fetch the data file.
+new_cond_fname = nipraxis.fetch_file('new_cond.txt')
+# Show the file name of the fetched data.
+new_cond_fname
+```
+
+```{python}
+cond_data = np.loadtxt(new_cond_fname)
 cond_data
 onsets_seconds = cond_data[:, 0]
 durations_seconds = cond_data[:, 1]
