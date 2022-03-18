@@ -30,14 +30,20 @@ time point.
 We’re working on `ds114_sub009_t2r1.nii`.  This is a 4D FMRI image.
 
 ```{python}
+import nipraxis
+bold_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+bold_fname
+```
+
+```{python}
 import nibabel as nib
-img = nib.load('ds114_sub009_t2r1.nii')
+img = nib.load(bold_fname)
 img.shape
 ```
 
-We want to calculate the standard deviation across all voxels.  Remember that
-a voxel is a pixel with volume, and refers to a position in space.
-Therefore we have this number of voxels in each volume:
+We want to calculate the standard deviation across all voxels.  Remember that a
+voxel is a pixel with volume, and refers to a position in space. Therefore we
+have this number of voxels in each volume:
 
 ```{python}
 n_voxels = np.prod(img.shape[:-1])
