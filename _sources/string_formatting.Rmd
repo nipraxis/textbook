@@ -1,0 +1,98 @@
+---
+jupyter:
+  orphan: true
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Inserting values into strings
+
+## f-strings
+
+In [Brisk Python](./brisk_python.Rmd), we claimed that Python f-strings are
+the usual best way to insert variable values into strings.
+
+The example there was:
+
+```{python}
+shepherd_name = "Mary"
+flock_size = 92
+```
+
+```{python}
+f"Shepherd {shepherd_name} is on duty with {flock_size} sheep."
+```
+
+There are a couple of other ways you can do the same thing, that may be useful in particular circumstances.
+
+## String format method
+
+You can use the string method `format` method to create new strings with
+inserted values. Here we insert a string into another string:
+
+```{python}
+"Shepherd {} is on duty.".format(shepherd_name)
+```
+
+The empty curly braces show where the inserted value should go.  `shepherd_name` is the argument to the `format` method, and tells Python which value to insert.
+
+You can insert more than one value.  As for f-strings, the values do not have
+to be strings, they can be numbers and other Python objects.
+
+```{python}
+"Shepherd {} is on duty with {} sheep.".format(shepherd_name, flock_size)
+```
+
+```{python}
+"Here is a {} floating point number".format(3.33333)
+```
+
+You can do more complex formatting of numbers and strings using formatting
+options within the curly brackets — `{` and `}`. See the documentation on
+[curly brace string
+formatting](https://docs.python.org/3/library/string.html#format-examples).
+
+The same formatting rules apply to f-strings.
+
+This system allows us to give formatting instructions for things like numbers,
+by using a `:` inside the curly braces, followed by the formatting
+instructions.  Here we ask to print in integer (`d`) where the number should
+be prepended with `0` to fill up the field width of `3`:
+
+```{python}
+"Number {:03d} is here.".format(11)
+```
+
+This prints a floating point value (specified by the `f` after the `:` in the
+string) with exactly `4` digits after the decimal point:
+
+```{python}
+'A formatted number - {:.4f}'.format(0.213)
+```
+
+See the Python string formatting documentation linked above for more details
+and examples.
+
+## % formatting
+
+This is the oldest way of doing string interpolation, and you will rarely find a use for it.  Here you use the `%` operator to tell Python the values to put into the string.  Just for a quick example, to replicate the example at the top of the page, you could also use:
+
+```{python}
+"Shepherd %s is on duty with %d sheep." % (shepherd_name, flock_size)
+```
+
+The `%s` tells Python you want to insert the first value at that point, and it
+should be treated as a string (the `s` in `%s`).  The `%d` tells Python the
+second value should be treated as an integer.
+
+As we've said, you'll rarely have need for this `%` syntax, but you will see it in older code, and rarely, in special cases for recent code.

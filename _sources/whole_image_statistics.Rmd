@@ -1,0 +1,328 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Whole-brain t tests and p values
+
+Here we do a whole brain analysis on our example dataset:
+
+```{python}
+import numpy as np
+np.set_printoptions(precision=4)  # print arrays to 4 dp
+import numpy.linalg as npl
+import matplotlib.pyplot as plt
+import nibabel as nib
+import nipraxis
+```
+
+We load the hemodynamic regressor from [Convolving with the hemodyamic response
+function](convolution_background.Rmd).  We used this regressor in [Modeling a
+single voxel](model_one_voxel.Rmd).
+
+```{python}
+conv_reg_fname = nipraxis.fetch_file('ds114_sub009_t2r1_conv.txt')
+regressor = np.loadtxt(conv_reg_fname)
+plt.plot(regressor)
+```
+
+Fetch and load the FMRI data, drop the first four volumes:
+
+```{python}
+# Fetch.
+bold_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+# Load
+data = nib.load(bold_fname).get_fdata()
+data = data[..., 4:]
+print(data.shape)
+n = data.shape[-1]
+```
+
+Drop the matching time points in the regressor:
+
+```{python}
+regressor = regressor[4:]
+```
+
+Make the design matrix for the simple regression:
+
+```{python}
+X = np.ones((n, 2))
+X[:, 1] = regressor
+plt.imshow(X, cmap='gray', aspect=0.2)
+```
+
+## Analysis on whole volume, reshaped
+
+Reshape data to time by voxels:
+
+```{python}
+Y = data.reshape((-1, n))
+Y = Y.T
+Y.shape
+```
+
+Fit the design to the data:
+
+$$
+\newcommand{\yvec}{\vec{y}}
+\newcommand{\xvec}{\vec{x}}
+\newcommand{\evec}{\vec{\varepsilon}}
+\newcommand{Xmat}{\boldsymbol X}
+\newcommand{\bvec}{\vec{\beta}}
+\newcommand{\bhat}{\hat{\bvec}}
+\newcommand{\yhat}{\hat{\yvec}}
+\newcommand{\ehat}{\hat{\evec}}
+\newcommand{\cvec}{\vec{c}}
+\newcommand{\rank}{\textrm{rank}}
+
+\yvec = \Xmat \bvec + \evec
+$$
+
+Here we calculate the fit for all the columns in  in one shot - see
+Estimation for many voxels at the same time:
+
+```{python}
+B = npl.pinv(X).dot(Y)
+B.shape
+```
+
+Contrast to test the difference of the slope from 0:
+
+```{python}
+c = np.array([0, 1])
+```
+
+Numerator of t test:
+
+$$
+\newcommand{\cvec}{\vec{c}}
+\hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2 \\
+
+t = \frac{\cvec^T \bhat}
+{\sqrt{\hat{\sigma}^2 \cvec^T (\Xmat^T \Xmat)^+ \cvec}}
+$$
+
+```{python}
+top_of_t = c.dot(B)
+top_of_t.shape
+```
+
+This selected the second row of the `B` array:
+
+```{python}
+np.all(top_of_t == B[1, :])
+```
+
+The denominator of the t statistic:
+
+```{python}
+df_error = n - npl.matrix_rank(X)
+df_error
+```
+
+```{python}
+fitted = X.dot(B)
+E = Y - fitted
+E.shape
+```
+
+```{python}
+sigma_2 = np.sum(E ** 2, axis=0) / df_error
+c_b_cov = c.dot(npl.pinv(X.T.dot(X))).dot(c)
+c_b_cov
+```
+
+Here we left `c` as a 1D vector, and let the default of the `dot` method
+treat the 1D vector as a row vector on the left, and as a column vector on the
+right.  See: Dot, vectors and matrices.
+
+```{python}
+print(c)
+print(c.shape)
+```
+
+We could also make `c` into an explicit row vector to match the formula of
+the t statistic above.  See Adding length 1 dimensions with newaxis:
+
+```{python}
+c = c[:, None]
+c.shape
+```
+
+```{python}
+c_b_cov = c.T.dot(npl.pinv(X.T.dot(X))).dot(c)
+c_b_cov
+```
+
+Now we can have the parts that we need for the denominator, we can calculate
+the t statistic, one for each voxel:
+
+```{python}
+t = top_of_t / np.sqrt(sigma_2 * c_b_cov)
+t.shape
+```
+
+Reshape the 1D t statistic vector back into three dimensions to put the t
+statistic back into the correct voxel position:
+
+```{python}
+t_3d = t.reshape(data.shape[:3])
+print(t_3d.shape)
+plt.imshow(t_3d[:, :, 15], cmap='gray')
+```
+
+Notice the white areas at the edge of the image.  These are voxels where the t
+value is `nan` – [Not a number](https://en.wikipedia.org/wiki/NaN).  See also
+Not a number.  `nan` values arise when all the scans have 0 at this voxel, so
+the numerator and denominator of the t statistic are both 0.
+
+```{python}
+np.array(0) / 0
+```
+
+For example, this is the voxel corresponding to the top left corner of the
+image above:
+
+```{python}
+t_3d[0, 0, 15]
+np.all(data[0, 0, 15] == 0)
+```
+
+```{python}
+sigma_2_3d = sigma_2.reshape(data.shape[:3])
+sigma_2_3d[0, 0, 15]
+```
+
+Can we avoid these uninteresting voxels, and only analyze voxels within the
+brain?
+
+## Analysis on voxels within the brain
+
+Here we make a mask of the voxels within the brain using [Otsu’s
+method](https://en.wikipedia.org/wiki/Otsu%27s_method).  You will need
+[scikit-image](http://scikit-image.org/) installed for this to work:
+
+```{python}
+from skimage.filters import threshold_otsu
+mean = data.mean(axis=-1)
+mean.shape
+```
+
+```{python}
+thresh = threshold_otsu(mean)
+thresh
+```
+
+```{python}
+# The mask has True for voxels above "thresh", False otherwise
+mask = mean > thresh
+mask.shape
+```
+
+```{python}
+plt.imshow(mask[:, :, 15], cmap='gray')
+data.shape
+```
+
+This is the number of voxels for which the mask value is True:
+
+```{python}
+np.sum(mask)
+```
+
+We can use the 3D mask to slice into the 4D data matrix.  For every True value
+in the 3D mask, the result has the vector of values over time for that voxel.
+See: [Indexing with Boolean masks](boolean_indexing).
+
+```{python}
+Y = data[mask]
+Y.shape
+```
+
+For our GLM, we want a time by in-mask voxel array, which is the transpose of
+the result above:
+
+```{python}
+Y = data[mask].T
+Y.shape
+```
+
+Now we can run our GLM on the voxels inside the brain:
+
+```{python}
+B = npl.pinv(X).dot(Y)
+fitted = X.dot(B)
+E = Y - fitted
+sigma_2 = np.sum(E ** 2, axis=0) / df_error
+# c and c_b_cov are the same as before, but recalculate anyway
+c = np.array([0, 1])
+c_b_cov = c.dot(npl.pinv(X.T.dot(X))).dot(c)
+t = c.T.dot(B) / np.sqrt(sigma_2 * c_b_cov)
+t.shape
+```
+
+We can put the t values back into their correct positions in 3D by using the
+mask as an index on the left hand side:
+
+```{python}
+t_3d = np.zeros(data.shape[:3])
+t_3d[mask] = t
+plt.imshow(t_3d[:, :, 15], cmap='gray')
+```
+
+Now we calculate the p value for each t statistic:
+
+```{python}
+import scipy.stats as stats
+t_dist = stats.t(df_error)
+p = 1 - t_dist.cdf(t)
+print(p.shape)
+p_3d = np.zeros(data.shape[:3])
+p_3d[mask] = p
+plt.imshow(p_3d[:, :, 15], cmap='gray')
+```
+
+## Multiple comparison correction
+
+We now have a very large number of t statistics and p values.  We want to find
+to control the family-wise error rate, where the “family” is the set of all of
+the voxel t tests / p values.  See: [Bonferroni
+correction](https://matthew-brett.github.io/teaching/bonferroni_correction.html).
+
+We start with the Šidák correction, that gives the correct threshold when all
+the test are independent:
+
+```{python}
+N = p.shape[0]
+sidak_thresh = 1 - (1 - 0.05) ** (1./N)
+sidak_thresh
+```
+
+Binarize the voxel p values at the Šidák correction threshold, so voxels
+surviving correction have True, other voxels have False:
+
+```{python}
+plt.imshow(p_3d[:, :, 15] < sidak_thresh, cmap='gray')
+```
+
+The voxels outside the brain have p value 0 (see above), so these always
+survive the correction above, and appear white.
+
+Now we threshold at the Bonferroni correction level.  This does not assume the
+tests are independent:
+
+```{python}
+bonferroni_theta = 0.05 / N
+print(bonferroni_theta)
+plt.imshow(p_3d[:, :, 15] < bonferroni_theta, cmap='gray')
+```

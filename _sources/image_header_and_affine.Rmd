@@ -1,0 +1,111 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# The image header and affine
+
+See: [coordinate systems and affine
+transforms](http://nipy.org/nibabel/coordinate_systems.html) for an
+introduction.
+
+```{python}
+# import common modules
+import numpy as np
+np.set_printoptions(precision=4, suppress=True)  # print arrays to 4DP
+```
+
+## The image affine
+
+So far we have not paid much attention to the image *header*.  We first saw
+the image header in What is an image?.
+
+From that exploration, we found that image consists of:
+
+* the array data;
+
+* metadata (data about the array data).
+
+The header contains the metadata for the image.
+
+One piece of metadata, is the image affine.
+
+Here we fetch the image file, and load the image.
+
+```{python}
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch structural image
+structural_fname = nipraxis.fetch_file('ds107_sub012_highres.nii')
+# Show the file names
+structural_fname
+```
+
+Load the image:
+
+```{python}
+import nibabel as nib
+img = nib.load(structural_fname)
+img.affine
+```
+
+As you can imagine, nibabel is getting the affine from the header:
+
+```{python}
+print(img.header)
+```
+
+Notice the `srow_x, srow_y, srow_z` fields in the header, that contain the
+affine for this image. It is not always this simple though – see
+[http://nifti.nimh.nih.gov/nifti-1](http://nifti.nimh.nih.gov/nifti-1) for more
+details. In general, nibabel will take care of this for you, by extracting the
+affine from the header, and returning it via `img.affine`.
+
+# Nifti images can also be `.img, .hdr` pairs
+
+So far, all the images we have seen have been NIfTI format images, stored in a
+single file with a `.nii` extension. The single file contains the header
+information, and the image array data.
+
+The NIfTI format also allows the image to be stored as two files, one with
+extension `.img` storing the image array data, and another with extension
+`.hdr` storing the header. These are called *NIfTI pair* images.
+
+For example, consider this pair of files:
+
+
+```{python}
+# File containing image data.
+struct_img_fname = nipraxis.fetch_file('ds114_sub009_highres_moved.img')
+print(struct_img_fname)
+# File containing image header.
+struct_hdr_fname = nipraxis.fetch_file('ds114_sub009_highres_moved.hdr')
+print(struct_hdr_fname)
+```
+
+We now have `ds114_sub009_highres_moved.img` and
+`ds114_sub009_highres_moved.hdr`. These two files together form one NIfTI
+image. You can load these with nibabel in the usual way:
+
+```{python}
+pair_img = nib.load(struct_img_fname)
+pair_img.affine
+```
+
+This form of the NIfTI image is getting less common, because it is inconvenient
+to have to keep the `.img` and `.hdr` files together, but you may still find
+them used. They have only one advantage, which is that, if some software wants
+to change only the header information, it only has to rewrite a small `.hdr`
+file, rather than the whole `.nii` file containing the image data and the
+header.

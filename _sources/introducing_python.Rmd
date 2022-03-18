@@ -1,0 +1,464 @@
+---
+jupyter:
+  orphan: true
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Introduction to Python
+
+## Variables
+
+Variables are named values.
+
+```{python}
+a = 4
+```
+
+Read this as:
+
+> "a" gets the value 4.
+
+```{python}
+b = 6
+```
+
+> "b" gets the value 6.
+
+```{python}
+a + b
+```
+
+You can also *update* variables, as in:
+
+```{python}
+a = a + 2
+a
+```
+
+So far we've seen numbers as values, but we can also have bits of text called *strings*.  Strings are bits of text between quotes.
+
+```{python}
+a = "Python"
+c = "MATLAB"
+z = " > "
+```
+
+You have seen adding numbers.  We can also add strings.  This as the effect of sticking them together — *concatenating* the strings:
+
+```{python}
+a + z + c
+```
+
+Strings can have apostrophes (`'`) or inverted commas (`"`) at either end, Python accepts either.
+
+```{python}
+first = 'a string'
+second = "b string"
+first + second
+```
+
+You can even use triple apostrophes or inverted commas at either end; this is useful for when you want to put a new line inside your string:
+
+```{python}
+many_line_string = """
+This string
+has
+several
+lines
+"""
+print(many_line_string)
+```
+
+Length of a string:
+
+```{python}
+len(first)
+```
+
+Strings and numbers are different:
+
+```{python tags=c("raises-exception")}
+number = "9"
+number + 6
+```
+
+We can convert between numbers and strings:
+
+```{python}
+int(number) + 6
+str(9)
+```
+
+However ...
+
+```{python tags=c("raises-exception")}
+number = "nine"
+int(number)
+```
+
+## Lists
+
+```{python}
+an_empty_list = []
+list_with_two_items = [1, 2]
+items_can_be_diverse = [1, "Obama", 4.55]
+```
+
+```{python}
+example_list = []
+example_list.append("experiment1")
+example_list
+```
+
+```{python}
+example_list[0]
+```
+
+The length of a list (or any object that can have a length):
+
+```{python}
+len(example_list)
+```
+
+```{python}
+example_list.append("failed_experiment")
+print(example_list)
+example_list.append("failed_experiment")
+print(example_list)
+```
+
+```{python}
+example_list.pop()
+```
+
+```{python}
+example_list
+```
+
+```{python}
+del example_list[0]
+example_list
+```
+
+`range` in returns a “range object”.  It’s like a list, but isn’t quite a
+list.
+
+```{python}
+range(10)
+```
+
+You can make it into a list by using the `list` constructor.  A constructor
+is like a function, but it creates a new object, in this case a new object of
+type `list`.
+
+```{python}
+list(range(10))
+```
+
+You can also set the start element for `range`:
+
+```{python}
+list(range(2, 7))
+```
+
+Use `in` to ask if a element is a collection of things, such as a range, or
+a list:
+
+```{python}
+5 in range(2, 7)
+5 in [2, 5, 7]
+```
+
+```{python}
+9 in range(2, 7)
+```
+
+## Sets
+
+Sets are unordered, and unique.
+
+“Unordered” means the order is arbitrary, and Python reserves the right to
+return the elements in any order it likes:
+
+```{python}
+our_work = set(["metacognition", "mindwandering", "perception"])
+print(our_work)
+```
+
+If you want to get a version of the set that is ordered, use `sorted`, which
+returns a sorted list:
+
+```{python}
+sorted(our_work)
+```
+
+You can't index a set, because the indices 0, or 1, or 2 don’t correspond to
+any particular element (because the set is unordered):
+
+```{python tags=c("raises-exception")}
+our_work[0]
+```
+
+Add to a set with the `add` method:
+
+```{python}
+our_work.add("consciousness")
+print(our_work)
+```
+
+```{python}
+our_work.add("consciousness")
+print(our_work)
+our_work.add("consciousness")
+print(our_work)
+```
+
+You can subtract sets:
+
+```{python}
+competing_labs_work = set(["motor control", "decision making", "memory", "consciousness"])
+what_we_should_focus_on = our_work - competing_labs_work
+print(what_we_should_focus_on)  
+```
+
+```{python}
+what_we_should_avoid = our_work.intersection(competing_labs_work)
+print(what_we_should_avoid)
+```
+
+Sets have lengths as well:
+
+```{python}
+len(what_we_should_focus_on)
+```
+
+## Working with strings
+
+We have already seen strings. Here is another example.
+
+```{python}
+example = "mary had a little lamb"
+print(example)
+```
+
+String slicing:
+
+```{python}
+example[0]
+```
+
+```{python}
+example[0:4]
+```
+
+You can split strings with any character.  This breaks up the string,
+returning a list of strings broken at the separator character:
+
+```{python}
+example.split(" ")
+```
+
+```{python}
+example.split(" ")[4]
+```
+
+You can split with any character:
+
+```{python}
+another_example = 'one:two:three'
+another_example.split(":")
+```
+
+You can also `strip` a string.  That returns a new string with spaces, tabs
+and end of line characters removed from the beginning and end:
+
+```{python}
+my_string = ' a string\n'
+my_string
+my_string.strip()
+```
+
+Adding strings:
+
+```{python}
+example + " or two"
+```
+
+Putting strings into other strings:
+
+```{python}
+subject_id = "sub1"
+print(f"Subject {subject_id} is excellent")
+```
+
+```{python}
+age = 29
+print(f"Subject {subject_id} is {age} years old")
+```
+
+You can do more complex formatting of numbers and strings using formatting
+options after a `:` in the placeholder for the string.  See:
+[https://docs.python.org/3.5/library/string.html#format-examples](https://docs.python.org/3.5/library/string.html#format-examples).
+
+```{python}
+print("Subject {:02d} is here".format(4))
+```
+
+## For loop
+
+```{python}
+for i in range(10):
+    print(i)
+```
+
+Indentation is crucial!
+
+```{python tags=c("raises-exception")}
+for i in range(10):
+print(i)
+```
+
+Watch out for mistakes:
+
+```{python}
+for i in range(10):
+    j = i + 1
+print(j)
+```
+
+## Ifs and breaks
+
+```{python}
+a = 2
+b = 5
+c = a + b
+if c < 6:
+    print("yes")
+```
+
+```{python}
+if c < 6:
+    print("yes")
+else:
+    print("no")
+```
+
+```{python}
+if c < 6:
+    print("yes")
+elif c > 6:
+    print("no")
+else:
+    print("kind of")
+```
+
+```{python}
+if True:
+    print("true, true!")
+```
+
+```{python}
+if False:
+    print("never!")
+```
+
+```{python}
+for i in range(10):
+    if i == 6:
+        break
+    print(i)
+```
+
+```{python}
+for i in range(10):
+    if i == 6:
+        continue
+    print(i)
+```
+
+## Logic
+
+You can use logical operators like `and`, `or` and `not`:
+
+```{python}
+strange_election = True
+uncomfortable_choices = True
+satisfying_experience = False
+strange_election and uncomfortable_choices
+strange_election and satisfying_experience
+strange_election and not satisfying_experience
+```
+
+We often use these in `if` statements:
+
+```{python}
+if strange_election and not satisfying_experience:
+    print('Watching a lot of news')
+```
+
+## Files
+
+Write lines to a text file:
+
+```{python}
+fobj = open("important_notes.txt", "wt")
+type(fobj)
+```
+
+```{python}
+fobj.write("captains log 672828: I had a banana for breakfast.\n")
+fobj.write("captains log 672829: I should watch less TV.\n")
+fobj.close()
+```
+
+Read lines from a text file:
+
+```{python}
+fobj = open("important_notes.txt", "rt")
+print(fobj.readline())
+print(fobj.readline())
+```
+
+```{python}
+print(fobj.readline())
+```
+
+Close a file when you’ve finished with it:
+
+```{python}
+fobj.close()
+```
+
+One way to read all the lines from a text file:
+
+```{python}
+fobj = open("important_notes.txt", "rt")
+lines = fobj.readlines()
+fobj.close()
+len(lines)
+print(lines[0])
+print(lines[1])
+```
+
+We may want to delete the file when we've finished with it.  There are utilities for things like that.  Here I'm using the `unlink` function from the `os` module (library) to delete the file:
+
+```{python}
+# Load the os module (library) so we can use it.
+import os
+```
+
+```{python}
+# Delete the file.
+os.unlink('important_notes.txt')
+```

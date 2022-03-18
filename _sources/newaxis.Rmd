@@ -1,0 +1,57 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Adding length 1 dimensions with newaxis
+
+NumPy has a nice shortcut for adding a length 1 dimension to an array.  It is
+a little brain-bending, because it operates via array slicing:
+
+```{python}
+import numpy as np
+```
+
+```{python}
+v = np.array([0, 3])
+v.shape
+```
+
+```{python}
+# Insert a new length 1 dimension at the beginning
+row_v = v[np.newaxis, :]
+print(row_v.shape)
+row_v
+```
+
+```{python}
+# Insert a new length 1 dimension at the end
+col_v = v[:, np.newaxis]
+print(col_v.shape)
+col_v
+```
+
+Read this last slicing operation as “do slicing as normal, except, before
+slicing, insert a length 1 dimension at the position of `np.newaxis`”.
+
+In fact the name `np.newaxis` points to the familiar Python `None` object:
+
+```{python}
+np.newaxis is None
+```
+
+So, you also use the `np.newaxis` trick like this:
+
+```{python}
+row_v = v[None, :]
+row_v.shape
+```

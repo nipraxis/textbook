@@ -1,0 +1,129 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Reshaping and three-dimensional arrays
+
+Here is a one-dimensional array:
+
+```{python}
+import numpy as np
+arr_1d = np.arange(6)
+arr_1d
+arr_1d.shape
+```
+
+We can reshape this array to two dimensions using the `reshape` method of
+the array:
+
+```{python}
+arr_2d = arr_1d.reshape((2, 3))
+arr_2d
+```
+
+Notice how NumPy used the 1D array elements.  It takes each element from the
+1D array, and fills the rows first, and then the columns.
+
+We can reshape back to one dimension.
+
+```{python}
+arr_2d.reshape((6,))
+```
+
+Here NumPy fetches the data from the rows first, and the columns, to fill out
+the elements of the 1D array.
+
+The value `-1` is special for the `reshape` method.  It means, “make a
+dimension the size that will use the remaining unspecified elements”.   We’ll
+see what “unspecified” means soon.  At the moment, “unspecified” is true of
+all the elements, so the shape is the same as the number of elements in the 2D
+array:
+
+```{python}
+arr_2d.reshape(-1)
+```
+
+It is very common to convert a 2 or 3 or N-dimensional array to a 1D array, so
+there is a short-cut command for that:
+
+```{python}
+arr_2d.ravel()
+```
+
+You can reshape from one shape, to any other shape, as long as the number of
+elements stays the same.  Can you see the algorithm NumPy is using to decide
+which elements go in which position of the array?
+
+```{python}
+arr_2d.reshape((3, 2))
+```
+
+Reshape uses  as a value to mean the shape value that will use the
+remaining unspecified elements.  For example, we could specify that we want
+the first dimension to be length 3, and NumPy can work out the second
+dimension must be length 2, and the other way round:
+
+```{python}
+arr_1d.reshape((3, -1))
+arr_1d.reshape((-1, 2))
+```
+
+NumPy uses the same algorithm for reshaping a three-dimensional array:
+
+```{python}
+arr_1d_bigger = np.arange(24)
+arr_1d_bigger
+arr_1d_bigger.shape
+arr_3d = arr_1d_bigger.reshape((2, 3, 4))
+arr_3d
+```
+
+Here NumPy is showing us the two slices over the first dimension:
+
+```{python}
+arr_3d[0, :, :]
+arr_3d[1, :, :]
+```
+
+To think about what array this is, imagine tipping the bottom of each 2D array
+towards you from the plane of the screen, and look at these tipped planes from
+the left, so the 0 sits nearly on top of 12, in the plane of the screen, and 4
+sits nearly on top of 16, a little forward of the plane of the screen.
+
+Here are the four “planes” of the array (slices over the third dimension):
+
+```{python}
+for i in range(4):
+    print(arr_3d[:, :, i])
+
+```
+
+We can reshape to one dimension in the same way as we did for the 2D arrays.
+
+```{python}
+arr_3d.reshape(24)
+arr_3d.reshape(-1)
+arr_3d.ravel()
+```
+
+To get the elements of the 1D array, NumPy first fetches values across the
+last axis (the depth or plane axis), then the second to last (column) axis,
+then the first (row) axis.
+
+When reshaping to three dimensions, NumPy fills out the last, then second,
+then first dimensions:
+
+```{python}
+arr_3d = arr_1d_bigger.reshape((2, 3, 4))
+arr_3d
+```

@@ -1,0 +1,1037 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hypothesis testing with the general linear model &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Convolving with the hemodyamic response function" href="convolution_background.html" />
+    <link rel="prev" title="A worked example of the general linear model" href="mean_test_example.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_problem.html">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="what_is_an_image.html">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="list_comprehensions.html">
+   List comprehensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slicing_with_booleans.html">
+   Slicing with boolean vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   Numpy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Into the fourth dimension
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Coordinate systems and spatial transforms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics and the general linear model
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code organization and collaboration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/hypothesis_tests.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.Rmd</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fhypothesis_tests.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/hypothesis_tests.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/hypothesis_tests.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Hypothesis testing with the general linear model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-linear-model-reprise">
+     General linear model reprise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-residual-error">
+   The residual error
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unbiased-estimate-of-population-variance">
+   Unbiased estimate of population variance
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing">
+   Hypothesis testing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t-tests-using-contrast-vectors">
+     t tests using contrast vectors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f-tests">
+   F tests
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Hypothesis testing with the general linear model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Hypothesis testing with the general linear model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-linear-model-reprise">
+     General linear model reprise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-residual-error">
+   The residual error
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unbiased-estimate-of-population-variance">
+   Unbiased estimate of population variance
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing">
+   Hypothesis testing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t-tests-using-contrast-vectors">
+     t tests using contrast vectors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f-tests">
+   F tests
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="hypothesis-testing-with-the-general-linear-model">
+<h1>Hypothesis testing with the general linear model<a class="headerlink" href="#hypothesis-testing-with-the-general-linear-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general-linear-model-reprise">
+<h2>General linear model reprise<a class="headerlink" href="#general-linear-model-reprise" title="Permalink to this headline">¶</a></h2>
+<p>This page starts at the same place as <a class="reference external" href="https://matthew-brett.github.io/teaching/glm_intro.html">introduction to the general linear model</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import numerical and plotting libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Only show 6 decimals when printing</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In that page, we had questionnaire measures of psychopathy from 12 students:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psychopathy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">11.416</span><span class="p">,</span>   <span class="mf">4.514</span><span class="p">,</span>  <span class="mf">12.204</span><span class="p">,</span>  <span class="mf">14.835</span><span class="p">,</span>
+                         <span class="mf">8.416</span><span class="p">,</span>   <span class="mf">6.563</span><span class="p">,</span>  <span class="mf">17.343</span><span class="p">,</span> <span class="mf">13.02</span><span class="p">,</span>
+                         <span class="mf">15.19</span> <span class="p">,</span>  <span class="mf">11.902</span><span class="p">,</span>  <span class="mf">22.721</span><span class="p">,</span>  <span class="mf">22.324</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also had skin-conductance scores from the palms of the each of the same 12
+students, to get a measure of how sweaty they are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clammy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.389</span><span class="p">,</span>  <span class="mf">0.2</span>  <span class="p">,</span>  <span class="mf">0.241</span><span class="p">,</span>  <span class="mf">0.463</span><span class="p">,</span>
+                   <span class="mf">4.585</span><span class="p">,</span>  <span class="mf">1.097</span><span class="p">,</span>  <span class="mf">1.642</span><span class="p">,</span>  <span class="mf">4.972</span><span class="p">,</span>
+                   <span class="mf">7.957</span><span class="p">,</span>  <span class="mf">5.585</span><span class="p">,</span>  <span class="mf">5.527</span><span class="p">,</span>  <span class="mf">6.964</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We believe that the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> score has some straight-line relationship to
+the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> scores.  <span class="math notranslate nohighlight">\(n\)</span> is the number of elements in <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>
+and <code class="docutils literal notranslate"><span class="pre">clammy</span></code>: <span class="math notranslate nohighlight">\(n = 12\)</span>.  Call the 12 values for <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> <span class="math notranslate nohighlight">\(\vec{y} =
+[y_1, y_2, .... , y_n]\)</span>. The 12 values for <code class="docutils literal notranslate"><span class="pre">clammy</span></code> are <span class="math notranslate nohighlight">\(\vec{x} = [x_1,
+x_2, ... , x_n]\)</span>.  Our straight line model is:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+\newcommand{\yvec}{\vec{y}}
+\newcommand{\xvec}{\vec{x}}
+\newcommand{\evec}{\vec{\varepsilon}}
+\newcommand{Xmat}{\boldsymbol X}
+\newcommand{\bvec}{\vec{\beta}}
+\newcommand{\bhat}{\hat{\bvec}}
+\newcommand{\yhat}{\hat{\yvec}}
+\newcommand{\ehat}{\hat{\evec}}
+\newcommand{\cvec}{\vec{c}}
+\newcommand{\rank}{\textrm{rank}}\\y_i = c + b x_i + e_i
+\end{aligned}\end{align} \]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is the intercept, <span class="math notranslate nohighlight">\(b\)</span> is the slope, and <span class="math notranslate nohighlight">\(e_i\)</span> is the remainder of
+<span class="math notranslate nohighlight">\(y_i\)</span> after subtracting <span class="math notranslate nohighlight">\(c + b x_i\)</span>.</p>
+<p>We then defined a new vector <span class="math notranslate nohighlight">\(\evec = [e_1, e_2, ... e_n]\)</span> for remaining
+error, and rewrote the same formula in vector notation:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = c + b \xvec + \evec
+\]</div>
+<p>We defined a new <span class="math notranslate nohighlight">\(n=12\)</span> element vector <span class="math notranslate nohighlight">\(\vec{1}\)</span> containing all ones, and
+used this to build a two-column <em>design matrix</em> <span class="math notranslate nohighlight">\(\Xmat\)</span>, with first column
+<span class="math notranslate nohighlight">\(\vec{1}\)</span> and second column <span class="math notranslate nohighlight">\(\vec{x}\)</span>.  This allowed us to rewrite the vector
+formulation as a matrix multiplication and addition:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = \Xmat \bvec + \evec
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bvec\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{\bvec}
+c \\
+b \\
+\end{array}
+\right]
+\end{split}\]</div>
+<!-- note:
+
+We will often use vectors, such as $\vec{x}$, in matrix operations, such
+as $\boldsymbol X \vec{x}$, where $\boldsymbol X$ is a matrix.  When we do
+this, we assume the default that for any vector $\vec{v}$, $\vec{v}$ is a
+column vector, and therefore that $\vec{v}^T$ is a row vector. -->
+<p>Using the matrix formulation of the general linear model, we found the least
+squares <em>estimate</em> for <span class="math notranslate nohighlight">\(\bvec\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\bhat = (\Xmat^T \Xmat)^{-1} \Xmat^T \yvec
+\]</div>
+<p>The formula above applies when <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is invertible.  Generalizing to
+the case where <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is not invertible, the least squares estimate
+is:</p>
+<div class="math notranslate nohighlight">
+\[
+\bhat = \Xmat^+ \yvec
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Xmat^+\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse">Moore-Penrose pseudoinverse</a> of <span class="math notranslate nohighlight">\(\Xmat\)</span>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">^</span></code> on <span class="math notranslate nohighlight">\(\bhat\)</span> reminds us that this is an <em>estimate</em> of <span class="math notranslate nohighlight">\(\bvec\)</span>.  We
+derived this <span class="math notranslate nohighlight">\(\bhat\)</span> estimate from our sample, hoping that it will be a
+reasonable estimate for the <span class="math notranslate nohighlight">\(\bvec\)</span> that applies to the whole population.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="the-residual-error">
+<h1>The residual error<a class="headerlink" href="#the-residual-error" title="Permalink to this headline">¶</a></h1>
+<p><span class="math notranslate nohighlight">\(\bhat\)</span> gives us a corresponding estimate of <span class="math notranslate nohighlight">\(\evec\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\ehat = \yvec - \Xmat \bhat
+\]</div>
+<p>The least squares criterion that we used to derive <span class="math notranslate nohighlight">\(\bhat\)</span> specifies that
+<span class="math notranslate nohighlight">\(\bhat\)</span> is the vector giving us the smallest sum of squares of <span class="math notranslate nohighlight">\(\ehat\)</span>. We can
+write that criterion for <span class="math notranslate nohighlight">\(\bhat\)</span> like this:</p>
+<div class="math notranslate nohighlight">
+\[
+\bhat = \textrm{argmin}_{\bvec} \sum_{i=1}^n e_i^2
+\]</div>
+<p>Read this as “<span class="math notranslate nohighlight">\(\bhat\)</span> is the value of the vector <span class="math notranslate nohighlight">\(\bvec\)</span> that gives the
+minimum value for the sum of the squared residual errors”.</p>
+<p>From now on, we will abbreviate <span class="math notranslate nohighlight">\(\sum_{i=1}^n e_i^2\)</span> as <span class="math notranslate nohighlight">\(\sum e_i^2\)</span>, assuming
+it is the sum over all elements index <span class="math notranslate nohighlight">\(1 .. n\)</span>.</p>
+<p>Remembering the definition of the dot product, we can also write <span class="math notranslate nohighlight">\(\sum e_i^2\)</span>
+as the dot product of <span class="math notranslate nohighlight">\(\ehat\)</span> with itself:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum e_i^2 \equiv \ehat \cdot \ehat
+\]</div>
+<p>Read <span class="math notranslate nohighlight">\(\equiv\)</span> as “equivalent to”.  We can also express <span class="math notranslate nohighlight">\(\sum e_i^2\)</span> as the
+matrix multiplication of <span class="math notranslate nohighlight">\(\ehat\)</span> as a row vector with <span class="math notranslate nohighlight">\(\ehat\)</span> as a column
+vector.  Because we assume that vectors are column vectors in matrix
+operations, we can write that formulation as:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum e_i^2 \equiv \ehat^T \ehat
+\]</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="unbiased-estimate-of-population-variance">
+<h1>Unbiased estimate of population variance<a class="headerlink" href="#unbiased-estimate-of-population-variance" title="Permalink to this headline">¶</a></h1>
+<p>We will soon need an unbiased estimate of the population variance.  The
+population variance is <span class="math notranslate nohighlight">\(\frac{1}{N} \sum e_i^2\)</span> where the population has <span class="math notranslate nohighlight">\(N\)</span>
+elements, and <span class="math notranslate nohighlight">\(e_1, e_2, ... e_N\)</span> are the remaining errors for all <span class="math notranslate nohighlight">\(N\)</span>
+observations in the population.</p>
+<p>However, we do not have all <span class="math notranslate nohighlight">\(N\)</span> observations in the population, we only have a
+<span class="math notranslate nohighlight">\(n\)</span>-size <em>sample</em> from the population.  In our particular case <span class="math notranslate nohighlight">\(n=12\)</span>.</p>
+<p>We could use the sample variance as this estimate: <span class="math notranslate nohighlight">\(\frac{1}{n} \sum e_i\)</span>.
+Unfortunately, for <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel%27s_correction">reasons</a> we don’t have space to go
+into, this is a <em>biased estimate of the population variance</em>.</p>
+<p>To get an unbiased estimate of the variance, we need to allow for the number
+of independent columns in the design <span class="math notranslate nohighlight">\(\Xmat\)</span>.  The number of independent
+columns in the design is given by the <a class="reference external" href="http://matthew-brett.github.io/teaching/matrix_rank.html">matrix rank</a> of <span class="math notranslate nohighlight">\(\Xmat\)</span>. Specifically,
+if <span class="math notranslate nohighlight">\(\rank(\Xmat)\)</span> is the matrix rank of <span class="math notranslate nohighlight">\(\Xmat\)</span>, an unbiased estimate of
+population variance is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2
+\]</div>
+<p>For example, we saw in the <a class="reference external" href="https://github.com/bic-berkeley/psych-214-fall-2014/mean_test_example.html">worked example of GLM</a>, that when we have a
+single regressor, and <span class="math notranslate nohighlight">\(\rank(\Xmat) = 1\)</span>, we divide the sum of squares of the
+residuals by <span class="math notranslate nohighlight">\(n - 1\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the number of rows in the design.  This
+<span class="math notranslate nohighlight">\(n-1\)</span> divisor is <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s correction</a>.</p>
+<p>We will also use these terms below:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rank(\Xmat)\)</span>: <em>degrees of freedom of the design</em>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(n - \rank(\Xmat)\)</span>: <em>degrees of freedom of the error</em>.</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="hypothesis-testing">
+<h1>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h1>
+<p>We used contrast vectors to form particular linear combinations of the
+parameter estimates in <span class="math notranslate nohighlight">\(\bhat\)</span>.  For example, we used the contrast vector
+<span class="math notranslate nohighlight">\(\cvec = [0, 1]\)</span> to select the estimate for <span class="math notranslate nohighlight">\(b\)</span> – the slope of the line:</p>
+<div class="math notranslate nohighlight">
+\[
+b = [0, 1] \bhat
+\]</div>
+<div class="section" id="t-tests-using-contrast-vectors">
+<h2>t tests using contrast vectors<a class="headerlink" href="#t-tests-using-contrast-vectors" title="Permalink to this headline">¶</a></h2>
+<p>The formula for a t statistic test on any linear combination of the parameters
+in <span class="math notranslate nohighlight">\(\bhat\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\newcommand{\cvec}{\vec{c}}
+t = \frac{\cvec^T \bhat}
+{\sqrt{\hat{\sigma}^2 \cvec^T (\Xmat^T \Xmat)^+ \cvec}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{\sigma^2}\)</span> is our unbiased estimate of the population variance.</p>
+<p>Here is the t statistic calculation in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data vector</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">psychopathy</span>
+<span class="c1"># Covariate vector</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">clammy</span>
+<span class="c1"># Contrast vector as column vector</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="c1"># Design matrix</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+<span class="c1"># X.T X is invertible</span>
+<span class="n">iXtX</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="c1"># Least-squares estimate of B</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">iXtX</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="c1"># Degrees of freedom of design</span>
+<span class="n">rank_x</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># The two columns are not colinear, so rank is 2</span>
+<span class="n">rank_x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unbiased estimate of population variance</span>
+<span class="n">df_error</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">rank_x</span>
+<span class="n">s2_hat</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_error</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s2_hat</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">iXtX</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.914389]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="f-tests">
+<h1>F tests<a class="headerlink" href="#f-tests" title="Permalink to this headline">¶</a></h1>
+<p>F tests are another way to test hypotheses about the linear models.  They are
+particularly useful for testing whether there is a significant reduction in
+the residual error when adding one or more regressors.</p>
+<p>The simplest and generally most useful way of thinking of F test is as a test
+comparing two models: a <em>full model</em> and a <em>reduced model</em>.  The full model
+contains the regressors that we want to test.  We will use <span class="math notranslate nohighlight">\(\Xmat_f\)</span> for the
+full model.  The reduced model is a model that does not contain the regressors
+we want to test, but does contain all other regressors in the full model
+.  We will use <span class="math notranslate nohighlight">\(\Xmat_r\)</span> for the reduced model.</p>
+<p>In our case, <span class="math notranslate nohighlight">\(\Xmat_f\)</span> is the model containing the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> regressor, as
+well as the column of ones that models the intercept.</p>
+<p><span class="math notranslate nohighlight">\(\Xmat_r\)</span> is our original model, that only contains the column of ones.</p>
+<p>If the full model is a better fit to the data than the reduced model, then
+adding the new regressor(s) will cause a convincing drop in the size of
+residuals.</p>
+<p>The F test is a measure that reflects the drop in the magnitude of squared
+residuals as a result of adding the new regressors.</p>
+<p>Now we define the <span class="math notranslate nohighlight">\(SSR(\Xmat_r)\)</span> and <span class="math notranslate nohighlight">\(SSR(\Xmat_f)\)</span>.  These are the Sums of
+Squares of the Residuals of the reduced and full model respectively.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}
+\bhat_r = \Xmat_r^+ \yvec \\
+\hat\evec_r = \yvec - \Xmat_r \bhat_r \\
+SSR(\Xmat_r) = \hat\evec_r^T \hat\evec_r \\\end{split}\\\begin{split}\bhat_f = \Xmat_f^+ \yvec \\
+\hat\evec_f = \yvec - \Xmat_f \bhat_f \\
+SSR(\Xmat_f) = \hat\evec_f^T \hat\evec_f
+\end{split}\end{aligned}\end{align} \]</div>
+<p><span class="math notranslate nohighlight">\(ESS = SSR(\Xmat_r) - SSR(\Xmat_f)\)</span> is the Extra Sum of Squared residuals
+explained by the full compared to the reduced model.  The top half of the
+ratio that forms the F statistic is <span class="math notranslate nohighlight">\(ESS / \nu_1\)</span>, where <span class="math notranslate nohighlight">\(\nu_1\)</span> is the number
+of extra independent regressors (columns) in <span class="math notranslate nohighlight">\(\Xmat_f\)</span> compared to <span class="math notranslate nohighlight">\(\Xmat_r\)</span>.
+Specifically:</p>
+<div class="math notranslate nohighlight">
+\[
+\nu_1 = \rank(\Xmat_f) - \rank(\Xmat_r)
+\]</div>
+<p>The bottom half of the F statistic is the estimated variance <span class="math notranslate nohighlight">\(\hat{\sigma^2}\)</span>
+from the full model.  This can also be written as <span class="math notranslate nohighlight">\(SSR(\Xmat_f) / \nu_2\)</span> where
+<span class="math notranslate nohighlight">\(\nu_2\)</span> is the <em>degrees of freedom of the error</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+F_{\nu_1, \nu_2} &amp; = &amp;
+\frac{
+(\hat\evec_r^T \hat\evec_r - \hat\evec_f^T \hat\evec_f)
+/ \nu_{1} }
+{\hat\evec_f^T \hat\evec_f / \nu_{2}} \\
+&amp; = &amp;
+\frac{
+(\textrm{SSR}(\Xmat_r) - \textrm{SSR}(\Xmat_f)) / \nu_1}
+{\textrm{SSR}(\Xmat_f) / \nu_2}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Here is the F-statistic calculation in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We already have X, e, rank_x, for the full model, from</span>
+<span class="c1"># the t calculation</span>
+<span class="n">X_f</span><span class="p">,</span> <span class="n">e_f</span><span class="p">,</span> <span class="n">rank_f</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">rank_x</span>
+<span class="c1"># Now calculate the same for the reduced model</span>
+<span class="n">X_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">iXtX_r</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_r</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_r</span><span class="p">))</span>
+<span class="n">B_r</span> <span class="o">=</span> <span class="n">iXtX_r</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_r</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">e_r</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X_r</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B_r</span><span class="p">)</span>
+<span class="n">rank_r</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X_r</span><span class="p">)</span>  <span class="c1"># One column, rank 1</span>
+<span class="n">rank_r</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the F statistic</span>
+<span class="n">SSR_f</span> <span class="o">=</span> <span class="n">e_f</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_f</span><span class="p">)</span>
+<span class="n">SSR_r</span> <span class="o">=</span> <span class="n">e_r</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_r</span><span class="p">)</span>
+<span class="n">nu_1</span> <span class="o">=</span> <span class="n">rank_f</span> <span class="o">-</span> <span class="n">rank_r</span>
+<span class="n">F</span> <span class="o">=</span> <span class="p">((</span><span class="n">SSR_r</span> <span class="o">-</span> <span class="n">SSR_f</span><span class="p">)</span> <span class="o">/</span> <span class="n">nu_1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">SSR_f</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">rank_f</span><span class="p">))</span>
+<span class="n">F</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.664886189966519
+</pre></div>
+</div>
+</div>
+</div>
+<p>For reasons that we haven’t explained here, the F statistic for a single
+column is the square of the t statistic testing the same column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3.664886]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="mean_test_example.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">A worked example of the general linear model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="convolution_background.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Convolving with the hemodyamic response function</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

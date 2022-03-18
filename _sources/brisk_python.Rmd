@@ -1,0 +1,1335 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+---
+
+# Brisk introduction to Python
+
+This is an introduction designed for those of us who already know a [dynamic
+programming
+language](https://en.wikipedia.org/wiki/Dynamic_programming_language) fairly
+well. MATLAB and the R language are [examples of dynamic programming
+languages](https://en.wikipedia.org/wiki/Dynamic_programming_language#Examples_of_Dynamic_Programming_Languages).
+
+For an alternative introduction at a slightly slower pace, see [Introducing
+Python](./introducing_python.Rmd).
+
+## Numbers
+
+There are two types of numbers in Python: integer and floating point.
+
+You may remember that an integer is a whole number - a number without anything
+after the decimal point.  The *counting numbers* are integers — e.g. 0, 1, 2,
+3, ....  But integers also include negative whole numbers — e.g. -1, -2, -3
+...
+
+In Python, an integer is an *object* of type `int`, and a float is an object
+of type `float`.
+
+```{python}
+a = 99
+type(a)
+```
+
+```{python}
+b = 99.0
+type(b)
+```
+
+You can create ints and floats by using `int` and `float` like this:
+
+```{python}
+float('1')
+```
+
+```{python}
+float(1)
+```
+
+```{python}
+int('1')
+```
+
+```{python}
+int(1)
+```
+
+`+`,  `-`, `\*` or `/` on a mix of floats and ints, give floats:
+
+```{python}
+a + b
+a * b
+```
+
+Dividing an int by an int also gives a float:
+
+```{python}
+1 / 2
+```
+
+If you only want the integer part of the division, use `//`
+
+```{python}
+1 // 2
+```
+
+```{python}
+1.0 // 2.0
+```
+
+Python has built-in function called `round`:
+
+```{python}
+round(5.0 / 2.0)
+```
+
+Built-in means it is always available in Python, without you having to load an optional module (library).  You will see modules soon.
+
+The `%` operator on numbers gives you the remainder of integer division
+(also known as the modulus):
+
+```{python}
+5 % 2
+```
+
+```{python}
+5.0 % 2.0
+```
+
+# True and False
+
+`True` and `False` are special objects in Python.  They are of type `bool`
+(for Boolean).
+
+```{python}
+type(True)
+```
+
+```{python}
+type(False)
+```
+
+To show several results from one cell, we can use the `print` function, that
+displays the value.  As you will soon see, we use a function by giving its
+name (here: `print`) followed by round brackets (parentheses) that contain the
+thing or things we want the function to work on.  For example, to display the
+value `False` I can write:
+
+```{python}
+print(False)
+```
+
+This is similar to what I would get by just putting `False` on the last line of the cell, in the way we have been doing up to now, to show values.  One advantage of `print` is that I can display multiple values from one cell:
+
+```{python}
+print(True == False)
+print(True == True)
+print(False == False)
+```
+
+You can use the logical operators `and`, `or` and `not` to express logic
+about Boolean values:
+
+```{python}
+print(True and True)
+print(True and False)
+print(True or False)
+print(False or False)
+print(not True)
+print(True and not False)
+```
+
+# None
+
+`None` is also a special object in Python.  By convention, Python often uses
+`None` to mean that no valid value resulted from an operation, or to signal
+that we don’t have a value for a parameter.
+
+```{python}
+type(None)
+```
+
+Unlike most other values in Python, the default display output from None, is
+nothing:
+
+```{python}
+None
+```
+
+# Equals
+
+As for MATLAB and R, `=` is for assignment, `==` is for testing equality.
+
+```{python}
+# a gets the value 1.  Notice the single =
+a = 1
+a
+```
+
+`==` is a test to ask if the left hand side value is equal to the right hand side value:
+
+```{python}
+a == 1
+```
+
+Notice that Python returns True in this case because `a` is equal to 1.  On the other hand:
+
+```{python}
+a == 2
+```
+
+Like R, Python uses `!=` for testing that objects are *not* equal. This is
+different from MATLAB, which uses `~=`:
+
+```{python}
+a != 1
+```
+
+# “If” statements, blocks and indention
+
+A conditional statement in Python looks like this:
+
+```{python}
+my_var = 10
+if my_var == 10:
+    print("The conditional is True!")
+    print("my_var does equal 10")
+```
+
+The first line of the conditional statement, that contains the conditional
+test, ends in a colon.  Call this the *if test*.  There follow some lines
+*indented* relative to the `if` test.  Call these indented lines the *if
+block*.  Python executes the statements in the `if` block only when the
+`if` test evaluates to True.  For example, in this case, the `if` test
+evaluates to False, and the block does not execute:
+
+```{python}
+my_var = 11
+# This time the conditional evaluates to False
+if my_var == 10:  # the "if test"
+    # The indented lines are the "if block"
+    print("The conditional is True!")
+    print("my_var does equal 10")
+```
+
+The first line that returns to the same level of indentation as the `if`
+test line, closes the `if` block.
+
+Unless the `if` block has a further indented block (for example, another
+`if` block), then all the lines in the block must have the same indentation.
+
+See note  for equivalent `if` statements in R
+and MATLAB.
+
+The `if` block may be followed by another block where the conditional is
+`else:`. This block will only run if the initial conditional test evaluates
+to False.
+
+```{python}
+my_var = 11
+if my_var == 10:
+    print("The conditional is True!")
+    print("my_var does equal 10")
+else:
+    print("The conditional is False!")
+    print("my_var does not equal 10")
+```
+
+There may be other conditional tests, with associated conditional blocks.
+These tests use the contraction `elif conditional_test`, where `elif` is a
+contraction for `else if`:
+
+```{python}
+my_var = 12
+if my_var == 10:
+    print("The conditional is True!")
+    print("my_var does equal 10")
+elif my_var == 11:
+    print("The second conditional is True!")
+    print("my_var does equal 11")
+elif my_var == 12:
+    print("The third conditional is True!")
+    print("my_var does equal 12")
+else:
+    print("All conditionals are False!")
+    print("my_var does not equal 10, 11 or 12")
+```
+
+# “While” statements
+
+`while` statements are another example with an initial test followed by an
+indented block.   Here’s an example where we find the largest [Fibonacci
+number](https://en.wikipedia.org/wiki/Fibonacci_number) less than 1000:
+
+```{python}
+last_but_1 = 0
+fibonacci = 1
+while fibonacci < 1000:
+    last_but_2 = last_but_1
+    last_but_1 = fibonacci
+    fibonacci = last_but_2 + last_but_1
+
+print("Largest Fibonacci < 1000 is", last_but_1)
+```
+
+Notice the initial *while test*: `while fibonacci < 1000:`, followed by the
+indented *while block*.  Unlike the `if` statement, Python will continue to
+run the statements in the `while` block until the conditional in the
+`while` test evaluates to False.
+
+# Lists
+
+Make a list like this:
+
+```{python}
+my_list = [9, 4, 7, 0, 8]
+my_list
+```
+
+```{python}
+type(my_list)
+```
+
+A list element can be any type of object, including another list:
+
+```{python}
+mixed_list = [9, 3.0, True, my_list]
+mixed_list
+```
+
+```{python}
+type(mixed_list)
+```
+
+A Python list is like a cell array in MATLAB, or a `list` in R.
+
+## “for” loops and iteration
+
+We can *iterate* over a list.  To iterate, means to fetch one element after
+another from some container, such as a list.  We can use a `for` loop to
+iterate over a list:
+
+```{python}
+for e in my_list:
+    print(e)
+```
+
+The `for` loop has the same form as `if` statements and `while` loops,
+with a first line ending in a colon, followed by an indented block.
+
+The first line in the `for` loop is of form: `for loop_variable in
+container:`.  The *container* is the container from which we will fetch the
+elements.  At each iteration of the `for` loop, Python gets a new element
+from the container to put into the *loop variable*.  For each element in the
+container, Python executes the *for block*.
+
+Note  shows equivalent `for` loops in Python, R and
+MATLAB.
+
+See Range for a common way of writing a `for` loop that iterates
+over a sequence of integers.
+
+# Lists are sequences
+
+A [sequence](https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range)
+is a category of Python objects that have a defined element order, have a
+length, are iterable, can be indexed with integers, and *sliced* (see below).
+If object `s` is a sequence, then:
+
+* `s` has a length that can be found with `len(s)`;
+
+* we can iterate over the elements in `s` with `for element in s: # do
+  something with element`;
+
+* we can return the element at position `n` with `s[n]`;
+
+* we can get another sequence by *slicing* `s`.  For example, `s[0:n]`
+  will give a new sequence containing the first `n` elements of `s`.
+
+```{python}
+# Has a length
+len(my_list)
+```
+
+```{python}
+# Is iterable
+for e in my_list:
+    print(e)
+```
+
+```{python}
+# Can be indexed
+my_list[1]
+# Can be sliced
+my_list[0:2]
+```
+
+# Python indices are 0-based
+
+Indices for Python sequences start at 0.  For Python, the first element is at
+index 0, the second element is at index 1, and so on:
+
+```{python}
+my_list[0]
+my_list[1]
+```
+
+# Negative indices
+
+Negative numbers as indices count back from the end of the list. For
+example, use index `-1` to return the last element in the list:
+
+```{python}
+my_list
+my_list[-1]
+```
+
+This is the third from last element:
+
+```{python}
+my_list[-3]
+```
+
+# Lists are mutable
+
+A list is a *mutable* object. Mutable means, that we can change the elements
+in the list, without creating a new list.
+
+```{python}
+my_list[1] = 99
+my_list
+```
+
+In Python, variable names point to an object.
+
+When you do `another_variable = a_variable`, you are telling the name
+`another_variable` to point to the same object as the name
+`a_variable`. When objects are mutable, this can be confusing:
+
+```{python}
+another_list = my_list
+another_list
+```
+
+`my_list` points to a list object in memory. When you do
+`another_list = my_list`, it tells Python that `another_list` points
+to *the same object*. So, if we modify the list, pointed to by
+`my_list`, we also modify the value of `another_list`, because `my_list`
+and `another_list` point at the same list.
+
+```{python}
+my_list[1] = 101
+another_list
+```
+
+# Adding lists
+
+Adding two lists with `+` returns a new list that is the concatenation of
+the two lists:
+
+```{python}
+new_list = my_list + [False, 1, 2]
+new_list
+```
+
+# Appending and removing elements
+
+You can append elements with the `append` method.
+
+A method is a function attached to the object.  See Functions for more
+on functions in Python.
+
+We can see that `append` is a method by displaying the value of
+`my_list.append`:
+
+```{python}
+my_list.append
+```
+
+To call the method, we add parentheses, surrounding any arguments we want to
+pass into the method.  In this case we want to pass in the element to append:
+
+```{python}
+my_list.append(20)
+my_list
+```
+
+Note that the `append` method does *not* return the list, it just changes
+the list in-place. Python returns `None` from the `append` method:
+
+```{python}
+result = my_list.append(42)
+result == None
+```
+
+This is also true for some other methods that modify the list in-place, such
+as the `sort` method:
+
+```{python}
+new_list = [10, 1, 3]
+result = new_list.sort()
+# Return value is None
+result == None
+# But the original list now in ascending order from sort
+new_list
+```
+
+You can remove elements from the list with the `pop` method:
+
+```{python}
+# Remove and return the last element of the list
+my_list.pop()
+my_list
+# Remove and return the third element of the list
+my_list.pop(2)
+my_list
+```
+
+# Slicing
+
+You can return slices from any sequence, including lists, by putting a slice
+specifier in square brackets. For example, this returns the first 3 elements
+of the list:
+
+```{python}
+my_list[0:3]
+```
+
+The first number after the square bracket and before the colon is the *start*
+index. In this case we start at the first element (element at index 0). The
+second number, after the colon, is the *stop* index. This is the end index
+*plus one*.  So we return elements at index 0, 1 and 2. That is, elements *up
+to, but not including* 3.
+
+If you omit the first number (the start index) Python assumes 0:
+
+```{python}
+my_list[:3]
+```
+
+If you omit the second number, Python assumes the length of the list as
+the stop index.
+
+```{python}
+my_list[2:]
+my_list[2:len(my_list)]
+```
+
+You can omit both numbers, in which case you return all the elements of the
+list. This can be useful if you want to make a new list that contains the same
+elements as the first:
+
+```{python}
+another_list = my_list[:]
+another_list
+```
+
+Because this is a new list object, you can change the original list without
+changing the new list:
+
+```{python}
+my_list[1] = 999
+another_list
+```
+
+You can also specify a second colon, and a third number. This third
+number is the *step size*. For example, to get every second element of
+the list:
+
+```{python}
+my_list[0:len(my_list):2]
+```
+
+```{python}
+# Length of list assumed as stop index if omitted
+my_list[0::2]
+```
+
+You can use negative numbers for the `start` and `stop` indices. As for
+indexing, negative `start` and `stop` values count back from the end of
+the list:
+
+```{python}
+my_list
+my_list[-4:-2]
+```
+
+Negative numbers for the `step` count backwards from the `start` to the
+`stop` index:
+
+```{python}
+my_list[4:1:-1]
+```
+
+If you have a negative step size, and you don’t specify the start index, then
+the start index defaults to the last element in the list. If you don’t specify
+the stop index, it defaults to one prior to index 0:
+
+```{python}
+my_list
+my_list[-1:1:-1]
+my_list[:1:-1]
+my_list[-2::-1]
+```
+
+One consequence that is worth remembering is that the following idiom gives
+you a reversed copy of the list:
+
+```{python}
+my_list[::-1]
+```
+
+Tuples
+
+Tuples are almost the same as lists, except they are not mutable. That
+is, you cannot change the elements of a tuple, or change the number of
+elements.
+
+```{python}
+my_tuple = (9, 4, 7, 0, 8)
+my_tuple
+```
+
+```{python}
+# This raises a TypeError
+# my_tuple[1] = 99
+```
+
+```{python}
+# This raises an AttributeError, because tuples have no append method
+# my_tuple.append(20)
+```
+
+Here’s an empty tuple:
+
+```{python}
+empty_tuple = ()
+empty_tuple
+```
+
+A tuple with two elements:
+
+```{python}
+two_tuple = (1, 5)
+two_tuple
+```
+
+There is a little complication when making a tuple with one element:
+
+```{python}
+not_a_tuple = (1)
+not_a_tuple
+```
+
+This is because Python can’t tell that you meant this to be a tuple,
+rather than an expression with parentheses round it:
+
+```{python}
+not_a_tuple = (1 + 5 + 3)
+not_a_tuple
+```
+
+To tell Python that you mean this to be a length-one tuple, add a comma after
+the element, and before the closing parenthesis:
+
+```{python}
+one_tuple = (1,)
+one_tuple
+```
+
+# Strings
+
+Make a string like this:
+
+```{python}
+my_string = 'interesting text'
+my_string
+```
+
+You can use single quotes or double quotes for your string, the two strings
+are the same:
+
+```{python}
+another_string = "interesting text"
+another_string
+my_string == another_string
+```
+
+Convert other objects to strings using `str`:
+
+```{python}
+# Convert integer to string
+str(9)
+# Convert floating point value to string
+str(1.2)
+```
+
+## Strings are sequences
+
+Like lists, strings are sequences (have length, can be iterated, can index,
+can slice).
+
+```{python}
+# Length
+len(my_string)
+```
+
+```{python}
+# Iterable
+for c in my_string:
+    print(c)
+```
+
+```{python}
+# Can index
+my_string[1]
+```
+
+```{python}
+# Can slice
+my_string[1:5]
+```
+
+# Strings are immutable
+
+Unlike lists, strings are immutable. You cannot change the characters within a
+string:
+
+```{python}
+# Raises a TypeError
+# my_string[1] = 'N'
+```
+
+# Adding strings
+
+```{python}
+my_string + ' with added insight'
+```
+
+# String methods
+
+Strings have lots of interesting methods. In IPython, try tab-complete on a
+string variable name, followed by a period – e.g. type `my_string.`,
+followed by the tab key.  See also the [list of string methods in the Python
+docs](http://docs.python.org/library/stdtypes.html#string-methods).
+
+One interesting method is `replace`. It returns a new string that is a copy
+of the input, but replacing instances of one string with another:
+
+```{python}
+another_string = my_string.replace('interesting', 'extraordinary')
+another_string
+```
+
+Notice that the original string has not changed (it’s immutable):
+
+```{python}
+my_string
+```
+
+Use the `split` method to break a string into a list of strings.  By
+default, `split` will split the string at any white space (spaces, tab
+characters or line breaks):
+
+```{python}
+my_string.split()
+```
+
+Pass a character to `split` to split the string at that character:
+
+```{python}
+another_example = 'one:two:three'
+another_example.split(":")
+```
+
+The `strip` method returns a new string with spaces, tabs and end of line
+characters removed from the beginning and end of the string:
+
+```{python}
+# A string with a newline character at the end
+my_string = ' a string\n'
+my_string
+my_string.strip()
+```
+
+## Inserting values into strings
+
+We often want to insert values into strings.  This is called *string interpolation*.
+
+For example, let us say we are running a shepherding business.  The shepherds rotate, some days Mary is on, sometimes Joseph, sometimes their son James.
+
+Today, Mary is on.
+
+```{python}
+shepherd_name = "Mary"
+```
+
+She is herding 92 sheep.
+
+```{python}
+flock_size = 92
+```
+
+We may want to send out an announcement, say to the LED message board in front
+of our shepherding business, that tells people which shepherd is on duty, and how many sheep they have.
+
+So, if the number of sheep is 92, the message could be any of these three:
+
+* "Shepherd Mary is on duty with 92 sheep." or
+* "Shepherd Joseph is on duty with 92 sheep." or
+* "Shepherd James is on duty with 92 sheep."
+
+depending on the value in the `shepherd_name` variable.  And, of course, the `flock_size` could be almost any number.  So there are a huge number of potential sentences, that depend on the `shepherd_name` variable, and the `flock_size` variable.
+
+Usually the best way to do this is using something called
+[f-strings](https://datagy.io/python-f-strings).  These are strings with an `f` before the opening quote.  The `f` tells Python you may want to insert a variable into the string.  You specify variables to insert by putting them inside curly braces (`{}`) in the string, like this:
+
+```{python}
+# Notice the f before the first quote to tell Python there may
+# be variables inside this string.
+f"Shepherd {shepherd_name} is on duty with {flock_size} sheep."
+```
+
+There are many ways you can tell Python how to format the values you insert, and there are other, less common and useful ways to do this string interpolation.
+
+For more details and more options, see: [Inserting values into strings](./string_formatting.Rmd).
+
+## Range
+
+`range` returns a *range object*.  It is a sequence, and so it is rather like
+a list .  When you use `range` with one argument, the argument value is the
+`stop` index.  For example, to make a `range` object generating the numbers
+from 0 up to *but not including* 5:
+
+```{python}
+my_range = range(5)
+my_range
+```
+
+You can make a range object into a list by using `list`:
+
+```{python}
+list(range(5))
+```
+
+A `range` object is a sequence:
+
+```{python}
+# Has a length
+print('Length', len(my_range))
+# Is iterable
+for e in my_range:
+    print('Value', e)
+# Can be indexed
+print('Value at position 1', my_range[1])
+# Can be sliced
+print('Slice 0:2', my_range[0:2])
+```
+
+Set the start element for `range` by passing two arguments:
+
+```{python}
+my_range = range(1, 7)
+print(my_range)
+print(list(my_range))
+```
+
+Set the step size with a third argument:
+
+```{python}
+my_range = range(1, 7, 2)
+list(my_range)
+```
+
+One common use of `range` is to iterate over a sequence of numbers in a `for`
+loop:
+
+```{python}
+for i in range(5):
+    print(i)
+```
+
+## Sets
+
+Sets are collections of unique elements, with no defined order.  Python
+reserves the right to order set elements in any way it chooses:
+
+```{python}
+# Only unique elements collected in the set
+my_set = set((5, 3, 1, 3))
+my_set
+```
+
+Because there is no defined order, you cannot index into a set:
+
+```{python tags=c("raises-exception")}
+my_set[1]
+```
+
+You can add elements to a set with the `add` method:
+
+```{python}
+my_set.add(10)
+my_set
+```
+
+Because set elements must be unique, if you add an element already in the set,
+this does not change the set:
+
+```{python}
+my_set.add(5)
+my_set
+```
+
+You can iterate over a set, but the order of elements is arbitrary.  You
+cannot rely on the same order in any two runs of your program:
+
+```{python}
+# The order of elements is arbitrary
+for element in my_set:
+    print(element)
+```
+
+Look at the [methods of the set
+object](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
+for interesting operations such as `difference`, `union`, `intersection` etc.
+
+## Sets, lists and tuples are containers
+
+A *container* is a Python object for which you can test an element for
+membership.  So, if an object `c` is a container then we can test if an
+element is in the container with `true_or_false = element in c`.
+
+Be careful – the word `in` has different meanings in `for element in
+c:` and `true_or_false = element in c`.  With  `for element in c:`,
+`in` is a part of the `for` loop syntax.  With `true_or_false = element
+in c`, `in` triggers a test of membership, returning True or False.
+
+```{python}
+5 in my_set
+11 in my_set
+```
+
+You can use `not in` to test if an element is not in a container:
+
+```{python}
+11 not in my_set
+```
+
+Lists and tuples are also containers:
+
+```{python}
+9 in [9, 4, 7, 0, 8]
+3 in (1, 3, 5)
+```
+
+# Dictionaries
+
+A dictionary is collection of key / value pairs. The *key* is something that
+identifies the element, and the *value* is the value corresponding to the
+particular key.
+
+For nearly all the dictionaries you will use in practice, the keys will be strings, but when you get more advanced, you will find that many things can be used as keys.
+
+```{python}
+# This is an empty dictionary
+software = {}
+```
+
+Here we insert a new key / value mapping into the dictionary. The key is a
+string — `'Python'` — and the corresponding value is an integer 50:
+
+```{python}
+software['Python'] = 100
+software
+```
+
+Now we insert another key / value mapping:
+
+```{python}
+software['MATLAB'] = 50
+software
+```
+
+Get the value corresponding to a key by indexing the dictionary with the key:
+
+```{python}
+software['Python']
+```
+
+We can iterate over the keys in the dictionary, but the order of the
+keys depends on the order you put the keys into the dictionary — and it easy
+to lose track of that order. As as result, we generally find we don't rely much on the particular order of the keys, when we iterate over them.
+
+For example, here you see that the first key is 'Python' (the key for the first key/value pair we put in), even though 'Python' is after 'MATLAB' in an alphabetical sort, for example.
+
+```{python}
+for key in software.keys():
+    print(key)
+```
+
+We can also iterate over the values, with the same constraint, that the order
+depends on the order we put in the values:
+
+```{python}
+for value in software.values():
+    print(value)
+```
+
+We can use the `items` method to iterate over the key / value pairs. In this
+case each element is a tuple of length two, where the first element is the key
+and the second element is the value:
+
+```{python}
+for key_value in software.items():
+    print(key_value)
+```
+
+One way to construct a dictionary is with curly brackets, using colons to
+separate the key and value, and commas to separate the pairs:
+
+```{python}
+software = {'MATLAB': 50, 'Python': 100}
+software
+```
+
+Keys must be unique. A later key / value pair will overwrite an earlier key /
+value pair that had the same key:
+
+```{python}
+software = {'MATLAB': 50, 'Python': 100, 'MATLAB': 45}
+software  
+```
+
+## Dictionaries are containers
+
+Dictionaries are also containers.  Python takes the elements in the container
+to be the dictionary keys.  This is a convenient way to test if you already
+have a key in a dictionary:
+
+```{python}
+'MATLAB' in software
+'happiness' in software
+```
+
+“for”, “while”, “continue” and “break”
+
+`for` statements and `while` statement are *loops*, because Python keeps
+executing the `for` or `while` block until the `for` runs out of
+elements or the `while` condition is False.  You can break out of a loop
+using the `break` statement:
+
+```{python}
+for i in range(10):
+    if i == 6:
+        break
+    print(i)
+
+```
+
+The `continue` statement short-circuits execution of the current iteration
+of the `for` or `while` block, to continue with the next iteration:
+
+```{python}
+for i in range(10):
+    if i == 6:
+        continue
+    print(i)
+```
+
+See “for” and “while”, “break” and “else:” for more on loops and `break`.
+
+# Functions
+
+Here we define our first function in Python:
+
+```{python}
+def my_function(an_argument):
+    return an_argument + 1
+```
+
+The function definition begins with the `def` keyword followed by a space.
+There follows the name of the function `my_function`. Next we have an open
+parenthesis, followed by a specification of the arguments that the function
+expects to be passed to it. In this case, the function expects a single
+argument. In our case, the value of the input argument will be attached to the
+name `an_argument` when the function starts to execute.  Last, we have an
+indented block, with code that will run when the function is called. We can
+return a value from the function using the `return` statement.
+
+```{python}
+my_function(10)
+```
+
+We called `my_function` by appending the opening parenthesis, and the
+arguments, followed by the closing parenthesis. The function began to execute
+with the variable `an_argument` set to 10. It returned 10 + 1 = 11.
+
+A function need not accept any arguments:
+
+```{python}
+def my_second_function():
+    return 42
+
+my_second_function()
+```
+
+A function does not need to have a `return` statement.  If there is no
+return statement, the function returns `None`:
+
+```{python}
+def function_with_no_return():
+    # Function with no return statement
+    a = 1
+
+function_with_no_return() == None
+```
+
+A function can have more than one argument:
+
+```{python}
+def my_third_function(first_argument, second_argument):
+    return first_argument + second_argument
+
+my_third_function(10, 42)
+```
+
+## Default values for function arguments
+
+The function definition can give a default value for a function argument:
+
+```{python}
+def my_fourth_function(first_argument, extra_argument=101):
+    return first_argument + extra_argument
+```
+
+This function, like `my_third_function`, has two arguments, and we can call
+it the same way that we call `my_third_function`:
+
+```{python}
+my_fourth_function(10, 42)
+```
+
+But, we can also omit the second argument, because it has a default value.  In
+that case the argument will get its default value:
+
+```{python}
+my_fourth_function(10)  # Pass one argument, get default for second
+```
+
+So far we have passed in arguments by position, the first argument in our call
+becoming the first argument in the function, and so on.  We can also pass in
+arguments by name.  For example, we could pass in `extra_argument` by giving
+the parameter name and value, like this:
+
+```{python}
+my_fourth_function(10, extra_argument=202)
+```
+
+Passing arguments this way can make the code easier to read, because the name
+of the argument often gives a good clue as to its purpose in the function.  It
+can also be useful with functions having many parameters with default values;
+in that case using the argument name makes it easier to pass in one or few
+values that are different from the defaults.
+
+# Functions are objects too
+
+Remember that everything in Python is an object. The function is itself an
+object, where the name of the function is a variable, that refers to the
+function:
+
+```{python}
+my_fourth_function
+```
+
+```{python}
+type(my_fourth_function)
+```
+
+We call the function by adding the open parenthesis followed by the arguments
+and the close parenthesis:
+
+```{python}
+my_fourth_function(10)
+```
+
+We can make a new name to point to this same function as easily as we can
+could with any other Python variable:
+
+```{python}
+another_reference_to_func4 = my_fourth_function
+print('Type of new variable', type(another_reference_to_func4))
+# We call this function using the new name
+another_reference_to_func4(10)
+```
+
+Sorting
+
+The Python function `sorted` returns a sorted list from something that
+Python can iterate over:
+
+```{python}
+sorted('adcea')
+```
+
+```{python}
+sorted((1, 5, 3, 2))
+```
+
+In order to do the sorting, Python compares the elements with
+`one_element < another_element`. For example, to do the sort above,
+Python needed results like:
+
+```{python}
+3 < 5
+```
+
+Sometimes you want to order the objects in some other way than simply
+comparing the elements. If so, then you can define a *sort function*.  A sort
+function is a function that accepts an element as its argument, and returns a
+*sort value* for that element. Python does the sorting, not on the elements
+themselves, but on the returned sort value for each element.
+
+For example, let’s say we have first and last names stored as tuples:
+
+```{python}
+people = [('JB', 'Poline'), ('Matthew', 'Brett'), ('Mark', 'DEsposito')]
+```
+
+By default, Python compares tuples by comparing the first value first, then
+the second value, and so on. This means for our case that we are sorting on
+the first name:
+
+```{python}
+('Matthew', 'Brett') > ('Mark', 'DEsposito')
+```
+
+```{python}
+sorted(people)
+```
+
+That may not be what you want.  You might want to sort by the last name, which
+is the second value in the tuple.  In that case you can make a sort function,
+that accepts the element as an input (the tuple in this case), and returns a
+value:
+
+```{python}
+def get_last_name(person):
+    return person[1]  # The last name
+```
+
+Remember everything in Python is an object. The function we have just defined
+is also an object, with name `get_last_name`:
+
+```{python}
+get_last_name
+```
+
+We can pass this value to the `sorted` function as a sort function.  We will
+pass this in using the sort function parameter name, which is `key`:
+
+```{python}
+sorted(people, key=get_last_name)
+```
+
+## Files
+
+You can open a file in several different *modes*.  The mode specifies whether
+you want to read or write the file, and whether the data in the file is, or
+will be, text data (string) or binary data (bytes).  For example, here we open
+a file for Writing Text (`wt`):
+
+```{python}
+my_file = open("a_text_file.txt", "wt")
+```
+
+If we had wanted to write binary (byte) data, we would have used `wb` for
+the mode (Write Binary).
+
+As usual, you can explore this new file object in IPython by appending the
+object name with a period, and pressing the tab key to get a list of
+attributes and methods – e.g. `myfile.` followed by tab.
+
+To write to a file, use the `write` method.
+
+```{python}
+# Write a line of text with a newline character at the end
+# The method returns the number of characters written
+my_file.write("MATLAB is good for matrices\n")
+# Another line
+my_file.write("Python is good for coding\n")
+```
+
+You should close the file when you’ve finished with it:
+
+```{python}
+my_file.close()
+```
+
+To read a file, open the file in read mode:
+
+```{python}
+# Open file in Read Text mode
+my_file2 = open("a_text_file.txt", "rt")
+```
+
+You can read all the contents in one shot by calling the `read` method
+without arguments:
+
+```{python}
+contents = my_file2.read()
+print(contents)
+```
+
+Remember to close the file afterwards:
+
+```{python}
+my_file2.close()
+```
+
+An open text file object is also *iterable*, meaning, that you can ask the
+file object to return its contents line by line, in a `for` loop. Let’s open
+the file again to show this in action:
+
+```{python}
+my_file2 = open("a_text_file.txt", "rt")
+for line in my_file2:  # iterating over the file object
+    print("Line is:", line)
+
+my_file2.close()
+```
+
+We can delete files by using routines from various *modules*.
+
+## Modules
+
+Modules are libraries of data and functions.  Many of these come pre-installed with Python.
+
+One common module is the `os` module, where `os` is short for [operating system](https://en.wikipedia.org/wiki/Operating_system).  The module has various functions that allow us to look at the system, and work with files.
+
+In order to use the functions and data in modules, we have to *import* the module.  For example, imagine I forgot that fact, and tried to use the `unlink` function from the `os` module:
+
+```{python tags=c("raises-exception")}
+# Try to delete the file.
+# Oops - I haven't imported 'os' yet!
+os.unlink('a_text_file.txt')
+```
+
+This reminds me I need to *import* the module so I can use it:
+
+```{python}
+# Get the module ready to use.
+import os
+```
+
+Now I can use the function as I intended:
+
+```{python tags=c("raises-exception")}
+# Actually delete the file.
+os.unlink('a_text_file.txt')
+```

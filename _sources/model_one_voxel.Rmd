@@ -1,0 +1,136 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.10.3
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Modeling a single voxel
+
+Earlier – Voxel time courses – we were looking at a single voxel
+time course.
+
+Let’s get that same voxel time course back again:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import nibabel as nib
+# Only show 6 decimals when printing
+np.set_printoptions(precision=6)
+```
+
+We load the data, and knock off the first four volumes to remove the artefact
+we discovered in First go at brain activation exercise:
+
+```{python}
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch the data file.
+data_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+# Show the file name of the fetched data.
+data_fname
+```
+
+```{python}
+img = nib.load(data_fname)
+data = img.get_fdata()
+data = data[..., 4:]
+```
+
+The voxel coordinate (3D coordinate) that we were looking at in
+Voxel time courses was at (42, 32, 19):
+
+```{python}
+voxel_time_course = data[42, 32, 19]
+plt.plot(voxel_time_course)
+```
+
+Now we are going to use the convolved regressor from [Convolving with the
+hemodyamic response function](convolution_background) to do a simple
+regression on this voxel time course.
+
+First fetch the text file with the convolved time course:
+
+```{python}
+tc_fname = nipraxis.fetch_file('ds114_sub009_t2r1_conv.txt')
+# Show the file name of the fetched data.
+tc_fname
+```
+
+```{python}
+convolved = np.loadtxt(tc_fname)
+# Knock off first 4 elements to match data
+convolved = convolved[4:]
+plt.plot(convolved)
+```
+
+First we make our *design matrix*.  It has a column for the convolved
+regressor, and a column of ones:
+
+```{python}
+N = len(convolved)
+X = np.ones((N, 2))
+X[:, 0] = convolved
+plt.imshow(X, interpolation='nearest', cmap='gray', aspect=0.1)
+```
+
+$\newcommand{\yvec}{\vec{y}}$
+$\newcommand{\xvec}{\vec{x}}$
+$\newcommand{\evec}{\vec{\varepsilon}}$
+$\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
+$\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}$
+
+As you will remember from the [introduction to the General Linear Model](https://matthew-brett.github.io/teaching/glm_intro.html), our
+model is:
+
+$$
+\yvec = \Xmat \bvec + \evec
+$$
+
+We can get our least squares parameter *estimates* for $\bvec$ with:
+
+$$
+\bhat = \Xmat^+y
+$$
+
+where $\Xmat^+$ is the *pseudoinverse* of $\Xmat$.  When $\Xmat$ is
+invertible, the pseudoinverse is given by:
+
+$$
+\Xmat^+ = (\Xmat^T \Xmat)^{-1} \Xmat^T
+$$
+
+Let’s calculate the pseudoinverse for our design:
+
+```{python}
+import numpy.linalg as npl
+Xp = npl.pinv(X)
+Xp.shape
+```
+
+We calculate $\bhat$:
+
+```{python}
+beta_hat = Xp.dot(voxel_time_course)
+beta_hat
+```
+
+We can then calculate $\yhat$ (also called the *fitted data*):
+
+```{python}
+y_hat = X.dot(beta_hat)
+e_vec = voxel_time_course - y_hat
+print(np.sum(e_vec ** 2))
+plt.plot(voxel_time_course)
+plt.plot(y_hat)
+```

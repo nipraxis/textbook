@@ -1,0 +1,92 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Random numbers with `np.random`
+
+```{python}
+#: standard imports
+import numpy as np
+# print arrays to 4 decimal places
+np.set_printoptions(precision=4, suppress=True)
+```
+
+We often need random numbers, for tests and for taking random samples, and for
+other things. `np.random` is a submodule within numpy:
+
+```{python}
+type(np.random)
+```
+
+It has a set of functions for returning random numbers of various sorts.  For
+example, to return a single random number from the default normal distribution
+(mean 0, variance 1):
+
+```{python}
+np.random.normal()
+```
+
+You can set the mean and variance with the first two input parameters:
+
+```{python}
+# Random number from distribution with mean 15, variance 2
+np.random.normal(15, 2)
+```
+
+To return a 8 by 5 array of random numbers from the same distribution:
+
+```{python}
+np.random.normal(15, 2, size=(8, 5))
+```
+
+A 5 by 3 array of random numbers from the standard normal distribution with
+mean 1 and variance 1:
+
+```{python}
+np.random.normal(size=(8, 5))
+```
+
+# Making random numbers predictable
+
+Sometimes you want to make sure that the random numbers are predictable, in
+that you will always get the same set of random numbers from a series of calls
+to the `numpy.random` functions.  You can achieve this by giving the random
+numbers a *seed*.  This is an integer that sets the random number generator
+into a predictable state, such that it will always return the same sequence of
+random numbers from this point:
+
+```{python}
+# Set the state of the random number generator
+np.random.seed(42)
+# One set of random numbers
+first_random_arr = np.random.normal(size=(4, 2))
+first_random_arr
+```
+
+```{python}
+# Another set
+second_random_arr = np.random.normal(size=(4, 2))
+second_random_arr
+```
+
+```{python}
+# Reset the state of the random number generator
+np.random.seed(42)
+# The same as "first_random_arr" above.
+np.random.normal(size=(4, 2))
+```
+
+```{python}
+# The same as "second_random_arr" above.
+np.random.normal(size=(4, 2))
+```

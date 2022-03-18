@@ -1,0 +1,199 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Arrays as images, images as arrays
+
+You can consider arrays as images, and images as arrays.
+
+We start off with our usual imports:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+Let’s make an array of numbers between 0 through 99:
+
+```{python}
+an_array = np.array([[ 0,  0,  0,  0,  0,  0,  0,  0],
+                     [ 0,  0,  0,  9, 99, 99, 94,  0],
+                     [ 0,  0,  0, 25, 99, 99, 79,  0],
+                     [ 0,  0,  0,  0,  0,  0,  0,  0],
+                     [ 0,  0,  0, 56, 99, 99, 49,  0],
+                     [ 0,  0,  0, 73, 99, 99, 31,  0],
+                     [ 0,  0,  0, 91, 99, 99, 13,  0],
+                     [ 0,  0,  9, 99, 99, 94,  0,  0],
+                     [ 0,  0, 27, 99, 99, 77,  0,  0],
+                     [ 0,  0, 45, 99, 99, 59,  0,  0],
+                     [ 0,  0, 63, 99, 99, 42,  0,  0],
+                     [ 0,  0, 80, 99, 99, 24,  0,  0],
+                     [ 0,  1, 96, 99, 99,  6,  0,  0],
+                     [ 0, 16, 99, 99, 88,  0,  0,  0],
+                     [ 0,  0,  0,  0,  0,  0,  0,  0]])
+an_array.shape
+```
+
+In fact this array represents a monochrome picture of a letter.
+
+We can show arrays as images using the `plt.imshow` command from
+[matplotlib](http://matplotlib.org/). Here is the default output:
+
+```{python}
+plt.imshow(an_array)
+```
+
+If you have a version of matplotlib older than version 2.0, this image will
+look rather blurry. This is because matplotlib is drawing an image with many
+more pixels than the array has values. For the pixels in-between array values,
+older matplotlib has a default of using [linear interpolation](http://en.wikipedia.org/wiki/Linear_interpolation) to estimate a
+good pixel value. We can turn off this blurring effect by using [nearest
+neighbor interpolation](https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation) instead of linear interpolation:
+
+```{python}
+plt.imshow(an_array, interpolation='nearest')
+```
+
+The image is weirdly colorful. That is because matplotlib is using the default
+*colormap*. A colormap is a mapping from values in the array to colors. The default Matplotlib colormap is called `viridis` and maps low numbers
+in the image (0 in our case) to purple, and high numbers (99 in our case) to
+yellow.
+
+We can see the relationship of the numbers to the colors by asking matplotlib
+to show the colormap:
+
+```{python}
+# Nearest interpolation is now the default
+plt.imshow(an_array)
+plt.colorbar()
+```
+
+In our case, our image would make more sense as grayscale, so we use the
+`gray` colormap, like this:
+
+```{python}
+plt.imshow(an_array, cmap='gray')
+plt.colorbar()
+```
+
+A grayscale image is an array containing numbers giving the pixel intensity
+values - in our case between 0 and 99.
+
+Here we set `gray` to the default colormap for the rest of our plots:
+
+```{python}
+# Set 'gray' as the default colormap
+plt.rcParams['image.cmap'] = 'gray'
+```
+
+We can also plot lines in matplotlib. For example, we might want to plot the
+values in row 8 from this array.  Because Python indices start at 0, this is
+the 9th row of the array.
+
+```{python}
+plt.plot(an_array[8])
+```
+
+The x axis is the position in the array (0 through 7) and the y axis is the
+value of the array row at that position.
+
+The plot shows us the 0 values at the edges of the bar of the “i”, an the ramp
+up to the peak at the middle of the bar of the “i”, in columns number 3 and 4.
+
+A transpose in numpy uses the `.T` method on the array. This has the effect
+of flipping the rows and columns (in 2D):
+
+```{python}
+an_array.T
+```
+
+```{python}
+# Defaults of nearest interpolation and gray colormap
+plt.imshow(an_array.T)
+```
+
+We can also reshape the original array to a 1D array, by stacking all the rows
+end to end:
+
+```{python}
+old_shape = an_array.shape
+a_1d_array = np.reshape(an_array, old_shape[0] * old_shape[1])
+a_1d_array
+```
+
+```{python}
+a_1d_array.shape
+```
+
+Reshaping the array to one dimension is a common operation, so there is a
+separate numpy command for that, `np.ravel`:
+
+```{python}
+np.ravel(an_array)
+```
+
+One use of the 1D version of the array, is for making a histogram of the
+distribution of values in the array:
+
+```{python}
+plt.hist(a_1d_array)
+```
+
+By default, the `plt.hist` function uses 50 bins, but you can specify how
+many bins you want with the `bins` keyword:
+
+```{python}
+plt.hist(a_1d_array, bins=75)
+```
+
+As you can imagine, it’s not hard to go back to the 2D shape, by splitting the
+1D array back into 15 rows of 8 values each (and therefore 8 columns):
+
+```{python}
+array_back = np.reshape(a_1d_array, (15, 8))
+array_back
+plt.imshow(array_back)
+```
+
+In numpy, basic operations like multiplication, addition, comparison, are
+always elementwise. For example, this multiplies every array value by 10:
+
+```{python}
+an_array * 10
+```
+
+Comparison is also elementwise. For example, this gives True for every value >
+50, and False for every value <= 50:
+
+```{python}
+an_array > 50
+```
+
+Matplotlib will treat False as 0 and True as 1, so this is one way of
+binarizing the image at a threshold (of 50 in this case):
+
+```{python}
+plt.imshow(an_array > 50)
+```
+
+We can slice arrays as we slice strings or lists. The difference for arrays is
+that we can slice in any or all dimensions at the same time.  For example, to
+get the dot of the “i” it looks (from the numbers at the sides of the ploat)
+that we want to the top 4 rows, and the last 5 columns:
+
+```{python}
+an_array[0:4, 3:]
+plt.imshow(an_array[0:4, 3:])
+```

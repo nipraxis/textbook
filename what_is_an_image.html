@@ -1,0 +1,1030 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What is an image? &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Brisk introduction to Python" href="brisk_python.html" />
+    <link rel="prev" title="The problem and the plan" href="the_problem.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_problem.html">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="list_comprehensions.html">
+   List comprehensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slicing_with_booleans.html">
+   Slicing with boolean vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   Numpy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Into the fourth dimension
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Coordinate systems and spatial transforms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics and the general linear model
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code organization and collaboration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/what_is_an_image.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.Rmd</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fwhat_is_an_image.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/what_is_an_image.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/what_is_an_image.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>What is an image?</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="what-is-an-image">
+<h1>What is an image?<a class="headerlink" href="#what-is-an-image" title="Permalink to this headline">¶</a></h1>
+<p>In this exercise we explore the nature of NIfTI images.</p>
+<p>First we will have a look at Python strings. Here is a variable called
+<code class="docutils literal notranslate"><span class="pre">my_string</span></code> with value “neuroimaging is hard but fair”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s2">&quot;neuroimaging is hard but fair&quot;</span>
+<span class="c1"># Show the result</span>
+<span class="n">my_string</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;neuroimaging is hard but fair&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see what type of thing this variable contains (points to) using
+the <code class="docutils literal notranslate"><span class="pre">type</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">my_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see how many characters the string has with the <code class="docutils literal notranslate"><span class="pre">len</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">my_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first character of the string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The last character of the string (don&#39;t forget indexing starts at 0)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">[</span><span class="mi">28</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we introduce string <em>slicing</em>. This is where you take some sequential
+characters from the string, using the colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) between the square
+brackets. The value before the colon is the index to the first character you
+want, and the value after the colon is the index to the character <em>after</em> the
+last character you want. It sounds strange, but you will get used to it…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first two characters of the string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># from index 0 up to, but not including, 2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ne
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first 5 characters of the string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>  <span class="c1"># from index 0 up to, but not including, 5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>neuro
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will go into more details on strings and slicing soon.</p>
+<p>Now we will try loading an example image and seeing if we can understand
+the image data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a Python module</span>
+<span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># module for interacting with the operating system</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to explore modules or objects, type their name followed by a
+period, and press tab to see what functions or classes are available.</p>
+<p>Try this now.  Type  ( followed by a period) then press tab, to see
+what functions are in the <code class="docutils literal notranslate"><span class="pre">os</span></code> module. Continue typing so you have
+<code class="docutils literal notranslate"><span class="pre">os.getcwd</span></code>, and then type <code class="docutils literal notranslate"><span class="pre">?</span></code> followed by Return. This shows you
+the help for the <code class="docutils literal notranslate"><span class="pre">os.getcwd</span></code> function.</p>
+<p>For example, here we print out the Python’s <em>working directory</em>.  It is the
+directory that contains this notebook file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the current working directory (CWD)</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/mb312/dev_trees/nipt
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can list all the files in this working directory.  Among them you will see
+the filename of this notebook (the file starting with <code class="docutils literal notranslate"><span class="pre">what_is_an_image</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List files and directories in the current working directory</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;reshape_and_4d.Rmd&#39;, &#39;pearson_functions.md&#39;, &#39;new_cond.txt&#39;, &#39;classes_and_labs.md&#39;, &#39;two_dunders.md&#39;, &#39;example_data.md&#39;, &#39;on_loops.Rmd&#39;, &#39;bibliography.md&#39;, &#39;my_script.py&#39;, &#39;nibabel_affines.Rmd&#39;, &#39;git_videos.md&#39;, &#39;subtract_means.Rmd&#39;, &#39;printing_floating.Rmd&#39;, &#39;the_problem.md&#39;, &#39;brisk_python.Rmd&#39;, &#39;using_pythonpath.Rmd&#39;, &#39;docstrings.Rmd&#39;, &#39;plot_lines.Rmd&#39;, &#39;whole_image_statistics.Rmd&#39;, &#39;anterior_cingulate.md&#39;, &#39;keyword_arguments.Rmd&#39;, &#39;intro_to_4d.Rmd&#39;, &#39;diagnostics_project.md&#39;, &#39;list_comprehensions.Rmd&#39;, &#39;choosing_editor.md&#39;, &#39;requirements.txt&#39;, &#39;nans.md&#39;, &#39;topics.md&#39;, &#39;multi_multiply.Rmd&#39;, &#39;mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii&#39;, &#39;build_requirements.txt&#39;, &#39;index_reshape.Rmd&#39;, &#39;CNAME&#39;, &#39;images&#39;, &#39;numpy_transpose.Rmd&#39;, &#39;references.bib&#39;, &#39;subtract_mean_math.md&#39;, &#39;Makefile&#39;, &#39;path_manipulation.Rmd&#39;, &#39;_scripts&#39;, &#39;exercises.md&#39;, &#39;voxels_by_time.Rmd&#39;, &#39;mean_test_example.Rmd&#39;, &#39;voxel_time_courses.Rmd&#39;, &#39;glossary.md&#39;, &#39;numpy_squeeze.Rmd&#39;, &#39;_references.bib&#39;, &#39;arange.Rmd&#39;, &#39;intro.md&#39;, &#39;preparation.md&#39;, &#39;nibabel_apply_affine.Rmd&#39;, &#39;tr_and_headers.Rmd&#39;, &#39;truthiness.Rmd&#39;, &#39;code&#39;, &#39;classes.md&#39;, &#39;newaxis.Rmd&#39;, &#39;participate.md&#39;, &#39;string_formatting.Rmd&#39;, &#39;test_one_voxel.Rmd&#39;, &#39;reshape_and_3d.Rmd&#39;, &#39;rotation_2d_3d.md&#39;, &#39;diag_inverse.md&#39;, &#39;introducing_python.Rmd&#39;, &#39;comparing_arrays.Rmd&#39;, &#39;methods_vs_functions.Rmd&#39;, &#39;convolution_background.Rmd&#39;, &#39;git_workflow_exercises.md&#39;, &#39;subplots.Rmd&#39;, &#39;rotations.py&#39;, &#39;participate_grading.md&#39;, &#39;projects.md&#39;, &#39;floating_in_text.md&#39;, &#39;multi_model_homework.md&#39;, &#39;installation_on_linux.md&#39;, &#39;arrays_and_images.Rmd&#39;, &#39;dot_outer.Rmd&#39;, &#39;packages_namespaces.Rmd&#39;, &#39;installation_on_windows.md&#39;, &#39;non_tr_onsets.Rmd&#39;, &#39;slicing_with_booleans.Rmd&#39;, &#39;numpy_diag.Rmd&#39;, &#39;_toc.yml&#39;, &#39;github_glm_homework.md&#39;, &#39;allclose.Rmd&#39;, &#39;_todo.md&#39;, &#39;assert.Rmd&#39;, &#39;introducing_nipype.Rmd&#39;, &#39;what_is_an_image.Rmd&#39;, &#39;voxel_time_course.txt&#39;, &#39;ds114_sub009_t2r1_conv.txt&#39;, &#39;installation_on_mac.md&#39;, &#39;.gitignore&#39;, &#39;dipy_registration.py&#39;, &#39;array_reductions.md&#39;, &#39;syllabus.md&#39;, &#39;stimuli.py&#39;, &#39;_build&#39;, &#39;full_scripting.md&#39;, &#39;_config.yml&#39;, &#39;camera.txt&#39;, &#39;bib&#39;, &#39;comparing_floats.md&#39;, &#39;numpy_logical.Rmd&#39;, &#39;coding_style.md&#39;, &#39;mymodule.py&#39;, &#39;project_grading.md&#39;, &#39;image_header_and_affine.Rmd&#39;, &#39;numpy_random.Rmd&#39;, &#39;.ipynb_checkpoints&#39;, &#39;dot_and_outer.md&#39;, &#39;resampling_with_ndimage.Rmd&#39;, &#39;clipped_image.nii&#39;, &#39;numpy_meshgrid.Rmd&#39;, &#39;string_literals.Rmd&#39;, &#39;saving_images.Rmd&#39;, &#39;map_coordinates.Rmd&#39;, &#39;some_numbers.txt&#39;, &#39;mentors.md&#39;, &#39;hypothesis_tests.Rmd&#39;, &#39;on_modules.Rmd&#39;, &#39;.git&#39;, &#39;git_walk_through.Rmd&#39;, &#39;diagonal_zooms.Rmd&#39;, &#39;github_dummies_homework.md&#39;, &#39;sys_path.Rmd&#39;, &#39;boolean_indexing.Rmd&#39;, &#39;github_pca_homework.md&#39;, &#39;validate_against_scipy.Rmd&#39;, &#39;model_one_voxel.Rmd&#39;, &#39;otsu_threshold.Rmd&#39;, &#39;images_and_affines.Rmd&#39;, &#39;dipy_registration.Rmd&#39;, &#39;logistics.md&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We next fetch a data file from the web.  We have a special utility to do that,
+that knows where the data files are for this course.  The utility is called,
+simply, <code class="docutils literal notranslate"><span class="pre">nipraxis</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load utility that will fetch data from the web and store it.</span>
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here was ask Nipraxis to download the data to the local hard disk.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">structural_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">)</span>
+<span class="c1"># Show the filename.</span>
+<span class="n">structural_fname</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/mb312/Library/Caches/nipraxis/0.2/ds114_sub009_highres.nii&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s read the image into memory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open a file in Read Binary (&#39;rb&#39;) mode</span>
+<span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">structural_fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fobj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;_io.BufferedReader name=&#39;/Users/mb312/Library/Caches/nipraxis/0.2/ds114_sub009_highres.nii&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The thing named <code class="docutils literal notranslate"><span class="pre">fobj</span></code> we just made is a <a class="reference external" href="https://docs.python.org/3/glossary.html#term-file-object">Python file
+object</a>.  This is a
+thing that knows how to read data from the file into memory.  That is what we
+will do next.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read all the characters into a variable in memory</span>
+<span class="n">contents</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do I find out what <code class="docutils literal notranslate"><span class="pre">type</span></code> of object is attached to this variable called
+<code class="docutils literal notranslate"><span class="pre">contents</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How big is this file in terms of bytes? Can you find out from the
+<code class="docutils literal notranslate"><span class="pre">contents</span></code> variable? (Hint: you want to know the length of
+<code class="docutils literal notranslate"><span class="pre">contents</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># n_bytes = ?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If 1 mebibyte (MiB)
+(<a class="reference external" href="http://en.wikipedia.org/wiki/Megabyte">http://en.wikipedia.org/wiki/Megabyte</a>)
+is size 1024 * 1024, what is the file size in MiB? (Hint - the right answer is
+between 0 and 100).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># n_mib = ?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a <a class="reference external" href="http://nifti.nimh.nih.gov/nifti-1">NIfTI1 format</a> file.
+That means that the first 352 bytes contains the “header” that describes
+the parameters of the image and the data following.</p>
+<p>We might want to print out the contents of the first 352 bytes of <code class="docutils literal notranslate"><span class="pre">contents</span></code>
+to have a look at it.</p>
+<p>To do this, you will need to use string slicing to get the first 352
+bytes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here you print out the first 352 characters of `contents`</span>
+<span class="c1"># Your code here:</span>
+<span class="c1"># print(...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which software wrote this image?</p>
+<p>Here is the format of the NIfTI1 header :
+<a class="reference external" href="http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields">http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields</a></p>
+<p>We are now going to try and work out the <code class="docutils literal notranslate"><span class="pre">datatype</span></code> of this image.  This is
+stored in the <code class="docutils literal notranslate"><span class="pre">datatype</span></code> field of the header. Careful - there is also a
+<code class="docutils literal notranslate"><span class="pre">data_type</span></code> field (with an underscore), which we will ignore.</p>
+<p>Looking at the web page above, how many bytes is the <code class="docutils literal notranslate"><span class="pre">datatype</span></code> value
+stored in?</p>
+<p>How would you get the bytes in <code class="docutils literal notranslate"><span class="pre">contents</span></code> that contain the <code class="docutils literal notranslate"><span class="pre">datatype</span></code>
+value?</p>
+<p><em>Hint</em> - you need slicing again, and the information from <code class="docutils literal notranslate"><span class="pre">Byte</span> <span class="pre">offset</span></code> column in the NIfTI1 header page above):</p>
+<p><em>Hint2</em> - if you want to work it out, don’t look at the cell further down!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data_type_chars = ?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">datatype</span></code> value is stored in binary form (rather than text form).
+The value for <code class="docutils literal notranslate"><span class="pre">datatype</span></code> is stored in the header in the same format
+that the computer stores the number in memory. We want to convert this
+binary format to a number that Python understands. To do that, we use
+the <a class="reference external" href="https://docs.python.org/2/library/struct.html">struct module</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">struct</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are going to use the <code class="docutils literal notranslate"><span class="pre">struct.unpack</span></code> function. Open a new cell
+below this one with <code class="docutils literal notranslate"><span class="pre">b</span></code> and type <code class="docutils literal notranslate"><span class="pre">struct.unpack?</span></code> followed by
+Shift-Return to see the help for this function.</p>
+<p>Now we have read the help, we know we need two things. The first is a
+string that give the code for the binary format of the data. This is the
+“format string”. The second is the string containing the bytes of the
+data.</p>
+<p>We first need to specify the format of the character data. Have a look
+at the <a class="reference external" href="https://docs.python.org/2/library/struct.html#format-characters">help on format
+strings</a>
+in the Python documentation and the NIfTI web page above.</p>
+<p>Here is the format specifier for our value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmt_specifier</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>  <span class="c1"># Why? (check the web pages above)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we read the datatype value into a number that Python understands:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In case you didn&#39;t do this above, this is the way to get the bytes</span>
+<span class="c1"># we need from the header.</span>
+<span class="n">data_type_chars</span> <span class="o">=</span> <span class="n">contents</span><span class="p">[</span><span class="mi">70</span><span class="p">:</span><span class="mi">72</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datatype</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">fmt_specifier</span><span class="p">,</span> <span class="n">data_type_chars</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datatype</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(16,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a numerical <em>code</em> for a data type. What actual data type is this?
+(See:
+<a class="reference external" href="http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields/nifti1fields_pages/datatype.html">http://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields/nifti1fields_pages/datatype.html</a>)</p>
+<p>We could continue reading the NIfTI header in the same way, but luckily
+someone has done that work for us. Enter the <code class="docutils literal notranslate"><span class="pre">nibabel</span></code> package:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For now, we will use this package without worrying much about how it works.
+Have a look to see what <code class="docutils literal notranslate"><span class="pre">nibabel</span></code> can do by opening up a new cell with <code class="docutils literal notranslate"><span class="pre">b</span></code>
+and typing <code class="docutils literal notranslate"><span class="pre">nibabel?</span></code> and <code class="docutils literal notranslate"><span class="pre">nibabel.</span></code> followed by Tab.</p>
+<p>As with most Python packages, you can check what version of nibabel you have
+by printing the <code class="docutils literal notranslate"><span class="pre">__version__</span></code> variable of the package:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nibabel</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.2.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you have a nibabel version below 3.0, please let your instructor know so
+they can fix that.</p>
+<p>You can make an image object by passing an image file name to <code class="docutils literal notranslate"><span class="pre">nibabel.load</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">nibabel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">structural_fname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have a Nibabel image object - and specifically, a Nifti type of image object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nibabel.nifti1.Nifti1Image
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s have a look at the <code class="docutils literal notranslate"><span class="pre">header</span></code> that Nibabel read in when it made the image object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Header&#39;&gt; object, endian=&#39;&lt;&#39;
+sizeof_hdr      : 348
+data_type       : b&#39;&#39;
+db_name         : b&#39;&#39;
+extents         : 0
+session_error   : 0
+regular         : b&#39;r&#39;
+dim_info        : 0
+dim             : [  3 256 156 256   1   1   1   1]
+intent_p1       : 0.0
+intent_p2       : 0.0
+intent_p3       : 0.0
+intent_code     : none
+datatype        : float32
+bitpix          : 32
+slice_start     : 0
+pixdim          : [1.        1.        1.3002223 1.        0.00972   0.        0.
+ 0.       ]
+vox_offset      : 0.0
+scl_slope       : nan
+scl_inter       : nan
+slice_end       : 0
+slice_code      : unknown
+xyzt_units      : 10
+cal_max         : 0.0
+cal_min         : 0.0
+slice_duration  : 0.0
+toffset         : 0.0
+glmax           : 0
+glmin           : 0
+descrip         : b&#39;FSL5.0&#39;
+aux_file        : b&#39;&#39;
+qform_code      : scanner
+sform_code      : scanner
+quatern_b       : -0.11747453
+quatern_c       : 0.008146102
+quatern_d       : 0.022481605
+qoffset_x       : -129.82573
+qoffset_y       : -119.09057
+qoffset_z       : -143.41777
+srow_x          : [ 9.9885648e-01 -6.0528666e-02  1.0895197e-02 -1.2982573e+02]
+srow_y          : [ 4.2725317e-02  1.2630211e+00  2.3362094e-01 -1.1909057e+02]
+srow_z          : [-2.1454209e-02 -3.0280653e-01  9.7226673e-01 -1.4341777e+02]
+intent_name     : b&#39;&#39;
+magic           : b&#39;n+1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, it has worked out the datatype for us.</p>
+<p>Soon, we do some more work to get used to basic Python.  After that we will
+start playing with the image using the Python tools for arrays, and for
+plotting.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="the_problem.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The problem and the plan</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="brisk_python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Brisk introduction to Python</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

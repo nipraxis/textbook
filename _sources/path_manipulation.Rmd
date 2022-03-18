@@ -1,0 +1,114 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Making and breaking file paths in Python
+
+See: [https://docs.python.org/3.5/library/os.path.html](https://docs.python.org/3.5/library/os.path.html)
+
+* `os.path`
+
+* `dirname, basename, join, splitext, abspath`
+
+```{python}
+import os.path
+```
+
+In IPython, you can tab complete on `os.path` to list the functions and
+attributes there.
+
+The first function we will use from `os.path` is `dirname`.  To avoid
+typing `os.path.dirname` all the time, import the `dirname` function
+directly into the current name-space, by using the `from module import ...`
+version of the `import` command:
+
+```{python}
+from os.path import dirname
+dirname
+```
+
+```{python}
+# This gives "os.path.dirname" the name "dirname"
+os.path.dirname
+dirname is os.path.dirname
+```
+
+The `dirname` function gives the directory name from a full file path. It
+works correctly for Unix paths on Unix machines, and Windows paths on Windows
+machines:
+
+```{python}
+# On Unix
+dirname('/a/full/path/then_filename.txt')
+```
+
+```
+>>> # On Windows
+>>> dirname('c:\\a\\full\\path\\then_filename.txt') 
+'c:\\a\\full\\path'
+```
+
+`dirname` also works for relative paths,  A relative path where the starting
+directory is relative to the current directory, rather than absolute, in terms
+of the root of the file system:
+
+```{python}
+# On Unix
+dirname('relative/path/then_filename.txt')
+```
+
+Use `basename` to get the filename rather than the directory name:
+
+```{python}
+from os.path import basename
+# On Unix
+basename('/a/full/path/then_filename.txt')
+```
+
+Sometimes you want to join one or more directory names with a filename to get
+a path.   Windows and Unix have different characters to separate directories
+in a path.  Windows uses the backslash: `\\`, Unix uses a forward slash:
+`/`.  If your code will run on Windows and Unix, you need to take care that
+you get the right character joining your paths.  This is what `os.path.join`
+does:
+
+```{python}
+from os.path import join
+# On Unix
+join('relative', 'path', 'then_filename.txt')
+```
+
+This also works on Windows:
+
+```
+>>> # On Windows
+>>> join('relative', 'path', 'then_filename.txt')  
+'relative\\path\\then_filename.txt'
+```
+
+To convert a relative to an absolute path, use `abspath`:
+
+```{python}
+from os.path import abspath
+# Show the current working directory
+os.getcwd()  
+abspath('relative/path/then_filename.txt')  
+```
+
+Use `splitext` to split a path into: the path + filename; and the file
+extension:
+
+```{python}
+from os.path import splitext
+splitext('relative/path/then_filename.txt')
+```

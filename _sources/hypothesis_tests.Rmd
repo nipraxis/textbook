@@ -1,0 +1,348 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Hypothesis testing with the general linear model
+
+## General linear model reprise
+
+This page starts at the same place as [introduction to the general linear model](https://matthew-brett.github.io/teaching/glm_intro.html).
+
+```{python}
+# Import numerical and plotting libraries
+import numpy as np
+import numpy.linalg as npl
+import matplotlib.pyplot as plt
+# Only show 6 decimals when printing
+np.set_printoptions(precision=6)
+```
+
+In that page, we had questionnaire measures of psychopathy from 12 students:
+
+```{python}
+psychopathy = np.array([11.416,   4.514,  12.204,  14.835,
+                         8.416,   6.563,  17.343, 13.02,
+                         15.19 ,  11.902,  22.721,  22.324])
+```
+
+We also had skin-conductance scores from the palms of the each of the same 12
+students, to get a measure of how sweaty they are:
+
+```{python}
+clammy = np.array([0.389,  0.2  ,  0.241,  0.463,
+                   4.585,  1.097,  1.642,  4.972,
+                   7.957,  5.585,  5.527,  6.964])
+```
+
+We believe that the `clammy` score has some straight-line relationship to
+the `psychopathy` scores.  $n$ is the number of elements in `psychopathy`
+and `clammy`: $n = 12$.  Call the 12 values for `psychopathy` $\vec{y} =
+[y_1, y_2, .... , y_n]$. The 12 values for `clammy` are $\vec{x} = [x_1,
+x_2, ... , x_n]$.  Our straight line model is:
+
+$$
+\newcommand{\yvec}{\vec{y}}
+\newcommand{\xvec}{\vec{x}}
+\newcommand{\evec}{\vec{\varepsilon}}
+\newcommand{Xmat}{\boldsymbol X}
+\newcommand{\bvec}{\vec{\beta}}
+\newcommand{\bhat}{\hat{\bvec}}
+\newcommand{\yhat}{\hat{\yvec}}
+\newcommand{\ehat}{\hat{\evec}}
+\newcommand{\cvec}{\vec{c}}
+\newcommand{\rank}{\textrm{rank}}
+
+y_i = c + b x_i + e_i
+$$
+
+where $c$ is the intercept, $b$ is the slope, and $e_i$ is the remainder of
+$y_i$ after subtracting $c + b x_i$.
+
+We then defined a new vector $\evec = [e_1, e_2, ... e_n]$ for remaining
+error, and rewrote the same formula in vector notation:
+
+$$
+\yvec = c + b \xvec + \evec
+$$
+
+We defined a new $n=12$ element vector $\vec{1}$ containing all ones, and
+used this to build a two-column *design matrix* $\Xmat$, with first column
+$\vec{1}$ and second column $\vec{x}$.  This allowed us to rewrite the vector
+formulation as a matrix multiplication and addition:
+
+$$
+\yvec = \Xmat \bvec + \evec
+$$
+
+where $\bvec$ is:
+
+$$
+\left[
+\begin{array}{\bvec}
+c \\
+b \\
+\end{array}
+\right]
+$$
+
+<!-- note:
+
+We will often use vectors, such as $\vec{x}$, in matrix operations, such
+as $\boldsymbol X \vec{x}$, where $\boldsymbol X$ is a matrix.  When we do
+this, we assume the default that for any vector $\vec{v}$, $\vec{v}$ is a
+column vector, and therefore that $\vec{v}^T$ is a row vector. -->
+Using the matrix formulation of the general linear model, we found the least
+squares *estimate* for $\bvec$ is:
+
+$$
+\bhat = (\Xmat^T \Xmat)^{-1} \Xmat^T \yvec
+$$
+
+The formula above applies when $\Xmat^T \Xmat$ is invertible.  Generalizing to
+the case where $\Xmat^T \Xmat$ is not invertible, the least squares estimate
+is:
+
+$$
+\bhat = \Xmat^+ \yvec
+$$
+
+where $\Xmat^+$ is the [Moore-Penrose pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) of $\Xmat$.
+
+The `^` on $\bhat$ reminds us that this is an *estimate* of $\bvec$.  We
+derived this $\bhat$ estimate from our sample, hoping that it will be a
+reasonable estimate for the $\bvec$ that applies to the whole population.
+
+# The residual error
+
+$\bhat$ gives us a corresponding estimate of $\evec$:
+
+$$
+\ehat = \yvec - \Xmat \bhat
+$$
+
+The least squares criterion that we used to derive $\bhat$ specifies that
+$\bhat$ is the vector giving us the smallest sum of squares of $\ehat$. We can
+write that criterion for $\bhat$ like this:
+
+$$
+\bhat = \textrm{argmin}_{\bvec} \sum_{i=1}^n e_i^2
+$$
+
+Read this as “$\bhat$ is the value of the vector $\bvec$ that gives the
+minimum value for the sum of the squared residual errors”.
+
+From now on, we will abbreviate $\sum_{i=1}^n e_i^2$ as $\sum e_i^2$, assuming
+it is the sum over all elements index $1 .. n$.
+
+Remembering the definition of the dot product, we can also write $\sum e_i^2$
+as the dot product of $\ehat$ with itself:
+
+$$
+\sum e_i^2 \equiv \ehat \cdot \ehat
+$$
+
+Read $\equiv$ as “equivalent to”.  We can also express $\sum e_i^2$ as the
+matrix multiplication of $\ehat$ as a row vector with $\ehat$ as a column
+vector.  Because we assume that vectors are column vectors in matrix
+operations, we can write that formulation as:
+
+$$
+\sum e_i^2 \equiv \ehat^T \ehat
+$$
+
+# Unbiased estimate of population variance
+
+We will soon need an unbiased estimate of the population variance.  The
+population variance is $\frac{1}{N} \sum e_i^2$ where the population has $N$
+elements, and $e_1, e_2, ... e_N$ are the remaining errors for all $N$
+observations in the population.
+
+However, we do not have all $N$ observations in the population, we only have a
+$n$-size *sample* from the population.  In our particular case $n=12$.
+
+We could use the sample variance as this estimate: $\frac{1}{n} \sum e_i$.
+Unfortunately, for [reasons](https://en.wikipedia.org/wiki/Bessel%27s_correction) we don’t have space to go
+into, this is a *biased estimate of the population variance*.
+
+To get an unbiased estimate of the variance, we need to allow for the number
+of independent columns in the design $\Xmat$.  The number of independent
+columns in the design is given by the [matrix rank](http://matthew-brett.github.io/teaching/matrix_rank.html) of $\Xmat$. Specifically,
+if $\rank(\Xmat)$ is the matrix rank of $\Xmat$, an unbiased estimate of
+population variance is given by:
+
+$$
+\hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2
+$$
+
+For example, we saw in the [worked example of GLM](https://github.com/bic-berkeley/psych-214-fall-2014/mean_test_example.html), that when we have a
+single regressor, and $\rank(\Xmat) = 1$, we divide the sum of squares of the
+residuals by $n - 1$ where $n$ is the number of rows in the design.  This
+$n-1$ divisor is [Bessel’s correction](https://en.wikipedia.org/wiki/Bessel%27s_correction).
+
+We will also use these terms below:
+
+* $\rank(\Xmat)$: *degrees of freedom of the design*;
+
+* $n - \rank(\Xmat)$: *degrees of freedom of the error*.
+
+# Hypothesis testing
+
+We used contrast vectors to form particular linear combinations of the
+parameter estimates in $\bhat$.  For example, we used the contrast vector
+$\cvec = [0, 1]$ to select the estimate for $b$ – the slope of the line:
+
+$$
+b = [0, 1] \bhat
+$$
+
+## t tests using contrast vectors
+
+The formula for a t statistic test on any linear combination of the parameters
+in $\bhat$ is:
+
+$$
+\newcommand{\cvec}{\vec{c}}
+t = \frac{\cvec^T \bhat}
+{\sqrt{\hat{\sigma}^2 \cvec^T (\Xmat^T \Xmat)^+ \cvec}}
+$$
+
+where $\hat{\sigma^2}$ is our unbiased estimate of the population variance.
+
+Here is the t statistic calculation in Python:
+
+```{python}
+# Data vector
+y = psychopathy
+# Covariate vector
+x = clammy
+# Contrast vector as column vector
+c = np.array([0, 1]).reshape((2, 1))
+n = len(y)
+# Design matrix
+X = np.ones((n, 2))
+X[:, 1] = x
+# X.T X is invertible
+iXtX = npl.inv(X.T.dot(X))
+# Least-squares estimate of B
+B = iXtX.dot(X.T).dot(y)
+e = y - X.dot(B)
+# Degrees of freedom of design
+rank_x = npl.matrix_rank(X)
+# The two columns are not colinear, so rank is 2
+rank_x
+```
+
+```{python}
+# Unbiased estimate of population variance
+df_error = n - rank_x
+s2_hat = e.dot(e) / df_error
+t = c.T.dot(B) / np.sqrt(s2_hat * c.T.dot(iXtX).dot(c))
+t
+```
+
+# F tests
+
+F tests are another way to test hypotheses about the linear models.  They are
+particularly useful for testing whether there is a significant reduction in
+the residual error when adding one or more regressors.
+
+The simplest and generally most useful way of thinking of F test is as a test
+comparing two models: a *full model* and a *reduced model*.  The full model
+contains the regressors that we want to test.  We will use $\Xmat_f$ for the
+full model.  The reduced model is a model that does not contain the regressors
+we want to test, but does contain all other regressors in the full model
+.  We will use $\Xmat_r$ for the reduced model.
+
+In our case, $\Xmat_f$ is the model containing the `clammy` regressor, as
+well as the column of ones that models the intercept.
+
+$\Xmat_r$ is our original model, that only contains the column of ones.
+
+If the full model is a better fit to the data than the reduced model, then
+adding the new regressor(s) will cause a convincing drop in the size of
+residuals.
+
+The F test is a measure that reflects the drop in the magnitude of squared
+residuals as a result of adding the new regressors.
+
+Now we define the $SSR(\Xmat_r)$ and $SSR(\Xmat_f)$.  These are the Sums of
+Squares of the Residuals of the reduced and full model respectively.
+
+$$
+\bhat_r = \Xmat_r^+ \yvec \\
+\hat\evec_r = \yvec - \Xmat_r \bhat_r \\
+SSR(\Xmat_r) = \hat\evec_r^T \hat\evec_r \\
+
+\bhat_f = \Xmat_f^+ \yvec \\
+\hat\evec_f = \yvec - \Xmat_f \bhat_f \\
+SSR(\Xmat_f) = \hat\evec_f^T \hat\evec_f
+$$
+
+$ESS = SSR(\Xmat_r) - SSR(\Xmat_f)$ is the Extra Sum of Squared residuals
+explained by the full compared to the reduced model.  The top half of the
+ratio that forms the F statistic is $ESS / \nu_1$, where $\nu_1$ is the number
+of extra independent regressors (columns) in $\Xmat_f$ compared to $\Xmat_r$.
+Specifically:
+
+$$
+\nu_1 = \rank(\Xmat_f) - \rank(\Xmat_r)
+$$
+
+The bottom half of the F statistic is the estimated variance $\hat{\sigma^2}$
+from the full model.  This can also be written as $SSR(\Xmat_f) / \nu_2$ where
+$\nu_2$ is the *degrees of freedom of the error*:
+
+$$
+\begin{eqnarray}
+F_{\nu_1, \nu_2} & = &
+\frac{
+(\hat\evec_r^T \hat\evec_r - \hat\evec_f^T \hat\evec_f)
+/ \nu_{1} }
+{\hat\evec_f^T \hat\evec_f / \nu_{2}} \\
+& = &
+\frac{
+(\textrm{SSR}(\Xmat_r) - \textrm{SSR}(\Xmat_f)) / \nu_1}
+{\textrm{SSR}(\Xmat_f) / \nu_2}
+\end{eqnarray}
+$$
+
+Here is the F-statistic calculation in Python:
+
+```{python}
+# We already have X, e, rank_x, for the full model, from
+# the t calculation
+X_f, e_f, rank_f = X, e, rank_x
+# Now calculate the same for the reduced model
+X_r = np.ones((n, 1))
+iXtX_r = npl.inv(X_r.T.dot(X_r))
+B_r = iXtX_r.dot(X_r.T).dot(y)
+e_r = y - X_r.dot(B_r)
+rank_r = npl.matrix_rank(X_r)  # One column, rank 1
+rank_r
+```
+
+```{python}
+# Calculate the F statistic
+SSR_f = e_f.dot(e_f)
+SSR_r = e_r.dot(e_r)
+nu_1 = rank_f - rank_r
+F = ((SSR_r - SSR_f) / nu_1) / (SSR_f / (n - rank_f))
+F
+```
+
+For reasons that we haven’t explained here, the F statistic for a single
+column is the square of the t statistic testing the same column:
+
+```{python}
+t ** 2
+```

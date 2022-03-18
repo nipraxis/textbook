@@ -1,0 +1,56 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Applying coordinate transforms with `nibabel.affines.apply_affine`
+
+We often want to apply an affine to an array of coordinates, where the last
+axis of the array is length 3, containing the x, y and z coordinates.
+
+Nibabel uses `nibabel.affines.apply_affine` for this.
+
+For background see: The nibabel.affines module.
+
+```{python}
+import numpy as np
+from nibabel.affines import from_matvec, to_matvec, apply_affine
+```
+
+```{python}
+points = np.array([[0, 1, 2], [2, 2, 4], [3, -2, 1], [5, 3, 1]])
+points
+```
+
+```{python}
+zooms_plus_translations = from_matvec(np.diag([3, 4, 5]),
+                                      [11, 12, 13])
+zooms_plus_translations
+```
+
+```{python}
+apply_affine(zooms_plus_translations, points)
+```
+
+Of course, this is the same as:
+
+```{python}
+mat, vec = to_matvec(zooms_plus_translations)
+mat.dot(points.T).T + vec.reshape((1, 3))
+```
+
+The advantage of `nib.affines.apply_affine` is that it can deal with arrays
+of more than two dimensions, and it transposes the transformation matrices for
+you to apply the transforms correctly.
+
+A typical use is when applying extra affine transformations to a X by Y by Z
+by 3 array of coordinates.

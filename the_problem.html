@@ -1,0 +1,979 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The problem and the plan &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What is an image?" href="what_is_an_image.html" />
+    <link rel="prev" title="Practice and theory of brain imaging" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="what_is_an_image.html">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="list_comprehensions.html">
+   List comprehensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slicing_with_booleans.html">
+   Slicing with boolean vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   Numpy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Into the fourth dimension
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Coordinate systems and spatial transforms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics and the general linear model
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code organization and collaboration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/the_problem.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fthe_problem.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   The problem and the plan
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-plan">
+     The plan
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-problem">
+     The problem
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typical-practice">
+     Typical practice
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-tyranny-of-the-typical">
+     The tyranny of the typical
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#like-science-but-not-science">
+   Like science, but not science
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-ubiquity-of-error">
+   The ubiquity of error
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understanding-by-building">
+     Understanding by building
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-be-efficient">
+   How to be efficient
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-and-theory">
+     Practice and theory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The problem and the plan</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   The problem and the plan
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-plan">
+     The plan
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-problem">
+     The problem
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typical-practice">
+     Typical practice
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-tyranny-of-the-typical">
+     The tyranny of the typical
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#like-science-but-not-science">
+   Like science, but not science
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-ubiquity-of-error">
+   The ubiquity of error
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understanding-by-building">
+     Understanding by building
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-be-efficient">
+   How to be efficient
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-and-theory">
+     Practice and theory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-problem-and-the-plan">
+<h1>The problem and the plan<a class="headerlink" href="#the-problem-and-the-plan" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-plan">
+<h2>The plan<a class="headerlink" href="#the-plan" title="Permalink to this headline">¶</a></h2>
+<p>In this course, we teach two things:</p>
+<ol class="simple">
+<li><p>Working with brain imaging data.</p></li>
+<li><p>Principles of analysis methods.</p></li>
+</ol>
+<p>The second topic is obvious and familiar to those of you working in brain
+imaging.  Of course you need to know how the principles of the analysis.  But
+what is this first thing — <em>working with</em> brain imaging data?   Isn’t this
+the same thing?  Why is it <em>first</em>?  Doesn’t theory come before practice?</p>
+<p>To answer those questions, we need to talk about <em>the problem</em>.</p>
+</div>
+<div class="section" id="the-problem">
+<h2>The problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
+<p>Brain imaging analysis is hard to learn and teach.  For those of us who have
+tried to learn it, and teach it, this won’t be controversial — this is our
+experience.   But some of you are starting to learn, or starting to teach, and
+you may need to be convinced.</p>
+<p>The difficulty is not surprising.  At a superficial level, the neuroimaging
+researcher needs more than a passing knowledge of many fields, from many
+disciplines.  Here is a back-of-the-envelope list:</p>
+<ul class="simple">
+<li><p>neuroanatomy;</p></li>
+<li><p>neurophysiology;</p></li>
+<li><p>data analysis;</p></li>
+<li><p>physics;</p></li>
+<li><p>signal processing;</p></li>
+<li><p>image processing;</p></li>
+<li><p>linear algebra;</p></li>
+<li><p>statistics.</p></li>
+</ul>
+<p>You can do neuroimaging badly without knowing much about some of these, but to do it well, to ask intelligent fruitful questions, you will need a working knowledge of all of these, and deep knowledge in some of them.</p>
+<p>That is a lot to ask, and a lot to teach.</p>
+<p>Given there is so much to learn, how do we put ourselves in the best position to keep learning, and keep asking better questions?  If we are not careful, we can sink into disorganized practice, and the lack of organization will make it harder to see when we are thinking badly, or making mistakes.</p>
+<p>That makes us ask — what is the typical practice of a neuroimaging researcher?</p>
+</div>
+<div class="section" id="typical-practice">
+<h2>Typical practice<a class="headerlink" href="#typical-practice" title="Permalink to this headline">¶</a></h2>
+<p>Even in good institutions, we have seen that the great difficulties in learning and doing imaging make it common to fall into this pattern.</p>
+<ul class="simple">
+<li><p>The practitioner <strong>learns some of some of the areas</strong> above, but at
+a superficial “makes-sense” level.  The “makes-sense” level is the level at
+which you are prepared to take the word of your teacher on facts and
+interpretation, but you can’t challenge what your teacher is saying, because
+you don’t understand it deeply enough.</p></li>
+<li><p>Then you <strong>pick up the rest as you go</strong>.  In practice there is a very strong
+temptation to accept practice on faith, consciously or unconsciously.  It’s
+what your mentor does, or what the lab does.  You may not even ask yourself
+why your mentor or your lab does what it does.  They may not know
+themselves.  As the writer and doctor Anton Chekhov once said: “Medicine is
+the application of the laws of science; except there is a lot of law, and
+not much science.”  Accepting practice on faith is particularly likely if
+you didn’t get beyond the “makes-sense” level during your training.  And,
+the way we often do training, it’s very difficult to get beyond that level.</p></li>
+<li><p>Most analysis practice is <strong>encrusted habit</strong>.  Neuroimaging analysis
+involves a great deal of computation, has many steps, and many possible
+analysis choices <span id="id1">[<a class="reference internal" href="#id17" title="Joshua Carp. On the plurality of (methodological) worlds: estimating the analytic flexibility of fmri experiments. Frontiers in neuroscience, 6:149, 2012.">Car12</a>]</span>.  It is very easy to get
+confused, it is very easy to make mistakes, and, unless you take a lot of
+care, it can be very difficult to replicate your own analysis, and all but
+impossible to replicate an analysis by someone else.  This confusion is
+a poison to clear thought.  <a class="reference external" href="https://www.kcl.ac.uk/people/professor-sir-robin-murray">Professor Robin
+Murray</a> gave a <a class="reference external" href="http://www.mattababy.org/~belmonte/Talks/2001_London/speak.html">talk
+in 2001</a>
+called “Should psychiatry take fMRI research seriously?”. His answer to the
+question in his title was more or less “no”, or at least, “not yet”.  Among
+many painful, wise and funny remarks, he wondered aloud whether the frontal
+lobes of researchers in the field were so occupied by the difficulties of
+analysis, that they no longer had the capacity to think of a hypothesis.</p></li>
+</ul>
+</div>
+<div class="section" id="the-tyranny-of-the-typical">
+<h2>The tyranny of the typical<a class="headerlink" href="#the-tyranny-of-the-typical" title="Permalink to this headline">¶</a></h2>
+<p>The problem then, is that disorganized analysis can make it impossible to
+recover enough brain time to learn what you need to learn.  When the analysis
+process is too disorganized, and too complicated to conceive of clearly, then
+it becomes impossibly hard to ask the questions you need to ask.  These are
+questions like “Do I believe this result?”.  “What does this result mean at
+a neural, physiological level?”.  “How would I know if my hypothesis was
+wrong?”.  “What do I need to read and learn to understand this result
+better?”.</p>
+<p>Disorganized analysis throws you into a hole, where you have many problems of thought as well as practice.</p>
+<p>It leads to scientific work that is like science, but not science.  You’ll see more on that below.</p>
+<p>You will find that you make many mistakes, but you won’t realize this, because your analysis process makes it very hard to check.</p>
+<p>You will be inefficient; you will take a long time to do your analysis, and this time will not reduce markedly, with more experience.  You are not learning to automate and streamline your tasks, to make them easier to think about, and harder to get wrong.</p>
+<p>It will be hard to collaborate, because it is hard to explain your process to yourself, and harder to explain to others, so they can engage with what you are doing.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="like-science-but-not-science">
+<h1>Like science, but not science<a class="headerlink" href="#like-science-but-not-science" title="Permalink to this headline">¶</a></h1>
+<p>The problem then, is that the <em>process</em> of analysis can make it very difficult to do <em>science</em>.  That’s a big claim, and one that begs the question, “What is science?”</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Richard_Feynman">Richard Feynman</a> was a Nobel-laureate in theoretical physics, and a famous teacher and writer. He thought a lot about the nature of science.  In a famous talk, called “What is Science”  <span id="id2">[<a class="reference internal" href="#id18" title="Richard P Feynman. What is science. The Physics Teacher, 7(6):313–320, 1969. URL: http://www.feynman.com/science/what-is-science.">Fey69</a>]</span>, he wrote:</p>
+<blockquote>
+<div><p>Science alone of all the subjects contains within itself the lesson of the
+danger of belief in the infallibility of the greatest teachers in the
+preceding generation… Learn from science that you must doubt the experts
+…
+Science is the belief in the ignorance of experts</p>
+</div></blockquote>
+<p>We will come back to this idea again, of science and not-science.</p>
+<p>The Royal Society of London was founded on the same idea.  The motto of the Royal Society is “Nullius in Verba”, often translated as “Take no-one’s word for it”.</p>
+<p><img alt="" src="_images/nullius_in_verba.jpg" /></p>
+<p>(Image by kladcat under <a class="reference external" href="http://creativecommons.org/licenses/by/2.0">CC BY
+2.0</a>, via Wikimedia Commons).</p>
+<p>For Feynman, and the Royal Society, you cannot do science without having the
+ability to question your assumptions and your teachers.  In imaging that can
+be very difficult, because of the confusion from the process of analysis, and
+because of the huge range of subjects you need to understand.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="the-ubiquity-of-error">
+<h1>The ubiquity of error<a class="headerlink" href="#the-ubiquity-of-error" title="Permalink to this headline">¶</a></h1>
+<p>We would not have to worry, if, despite our disorganized process, we rarely
+made mistakes.  But, in fact, error is invariable, pervasive in the
+computational sciences.  David Donoho is a famous researcher in computation
+statistics based at Stanford.  He has enormous knowledge and experience, and
+this makes him worry <em>primarily</em> about error in his own work, and the work of
+others.</p>
+<blockquote>
+<div><p>The scientific method’s central motivation is the ubiquity of error - the
+awareness that mistakes and self-delusion can creep in absolutely anywhere
+and that the scientist’s effort is primarily expended in recognizing and
+rooting out error.” <span id="id3">[<a class="reference internal" href="#id8" title="David L Donoho, Arian Maleki, Inam Ur Rahman, Morteza Shahram, and Victoria Stodden. Reproducible research in computational harmonic analysis. Computing in Science &amp; Engineering, 11(1):8–18, 2009. URL: http://stanford.edu/~vcs/papers/RRCiSE-STODDEN2009.pdf.">DMR+09</a>]</span>.</p>
+</div></blockquote>
+<p>This led Donoho and others to conclude that it was not reasonable to trust
+a paper on computation, unless the authors had given the readers the ability to <em>reproduce</em> the exact analysis the authors had done.  The Stanford group put this strongly in an early article:</p>
+<blockquote>
+<div><p>An article about computational science in a scientific publication is not
+the scholarship itself, it is merely advertising of the scholarship.  The
+actual scholarship is the complete software development environment and the
+complete set of instructions which generated the figures”
+<span id="id4">[<a class="reference internal" href="#id19" title="Jonathan B Buckheit and David L Donoho. Wavelab and reproducible research. In Wavelets and statistics, pages 55–81. Springer, 1995. URL: https://statweb.stanford.edu/~wavelab.">BD95</a>]</span>, also quoted in the <a class="reference external" href="http://statweb.stanford.edu/~wavelab">Wavelab front
+page</a></p>
+</div></blockquote>
+<p>Feynman cared greatly about the importance of transparency in describing your
+work. For him, it was the difference between science, and stuff that looks like
+science. He gave a famous talk about this, called “Cargo Cult Science”
+<span id="id5">[<a class="reference internal" href="#id21" title="Richard P Feynman. Cargo cult science. Engineering and Science, 37(7):10–13, 1974. URL: http://calteches.library.caltech.edu/51/2/CargoCult.pdf.">Fey74</a>]</span>.  He gives a few examples of apparently scientific
+studies where the results don’t seem to hold up in practice.</p>
+<blockquote>
+<div><p>I think the educational and psychological studies I mentioned are examples of
+what I would like to call cargo cult science. In the South Seas there is a
+cargo cult of people. During the war they saw airplanes land with lots of
+good materials, and they want the same thing to happen now. So they’ve
+arranged to imitate things like runways, to put fires along the sides of the
+runways, to make a wooden hut for a man to sit in, with two wooden pieces on
+his head like headphones and bars of bamboo sticking out like antennas —–
+he’s the controller – and they wait for the airplanes to land.  They’re
+doing everything right. The form is perfect. It looks exactly the way it
+looked before. But it doesn’t work. No airplanes land. So I call these things
+cargo cult science, because they follow all the apparent precepts and forms
+of scientific investigation, but they’re missing something essential, because
+the planes don’t land.</p>
+</div></blockquote>
+<p>What is the thing that distinguishes between real science from cargo cult
+science?</p>
+<blockquote>
+<div><p>It’s a kind of scientific integrity, a principle of scientific thought that
+corresponds to a kind of utter honesty — a kind of leaning over backwards.
+[…] the idea is to give all of the information to help others to judge the
+value of your contribution; not just the information that leads to judgement
+in one particular direction or another. […] And, although you may gain some
+temporary fame and excitement, you will not gain a good reputation as a
+scientist if you haven’t tried to be very careful in this kind of work. And
+it’s this type of integrity, this kind of care not to fool yourself, that is
+missing to a large extent in much of the research in cargo cult science.</p>
+</div></blockquote>
+<p>This is the idea behind reproducibility; it is your true and essential work as
+a scientist to make it simple for others to replicate and check your work.</p>
+<p>But — this is not an easy path to take.  If you want to make your work
+reproducible, it has to be organized <em>as you do the work</em>.  As we said in
+a paper on an earlier version of a course like this <span id="id6">[<a class="reference internal" href="#id20" title="K. Jarrod Millman, Matthew Brett, Ross Barnowski, and Jean-Baptiste Poline. Teaching computational reproducibility for neuroimaging. Frontiers in Neuroscience, 2018. URL: https://www.frontiersin.org/articles/10.3389/fnins.2018.00727.">MBBP18</a>]</span>,
+rigor is hard to retrofit.  You can try to do your analysis without much thought for organized process, but you will find it takes an enormous amount of work to go back and make your process reproducible.  And you won’t gain from that work, because you’ll have to do it all again for your next paper.  But if you learn to work in an organized thoughtful way <em>from the start</em>, it will take time, but that time will start to repay you over and over, in your future work.</p>
+<div class="section" id="understanding-by-building">
+<h2>Understanding by building<a class="headerlink" href="#understanding-by-building" title="Permalink to this headline">¶</a></h2>
+<p>We have talked about organized working, and you will soon find that organized
+working for neuroimaging, as for many other data-intensive sciences, will need
+to use code.</p>
+<p>But there is something that happens when you start to use code.  Code is written in a <em>language</em> such as Python, and this language expresses <em>ideas</em> and <em>procedures</em>.  You will quickly find that this language is very powerful as a way to think about the ideas behind what you are doing.</p>
+<p>The way that we use code here, is not only to help you work efficiently, but also to show you how to <em>build</em> the analysis, from the ground up.</p>
+<p>Again, Richard Feynman put this idea in a very simple and powerful way.  When
+he died, this sentence was still written up on his <a class="reference external" href="https://digital.archives.caltech.edu/islandora/object/image%3A2545">Caltech
+blackboard</a>.</p>
+<blockquote>
+<div><p>What I cannot create, I do not understand</p>
+</div></blockquote>
+<p>We have found this to be a profound truth.   If you cannot imagine how you would build your own analysis, that’s a good indication that you do not really understand your analysis.</p>
+<p>We take that truth seriously here.  We will show you how to build
+a simple-as-possible analysis of neuroimaging data <em>from the ground up</em>, using
+basic building blocks from general scientific libraries.  Our idea is this: if
+there is some terrible disaster, and, for some reason, all the current brain
+imaging analysis packages are lost, then you will not be lost.  It would be
+inconvenient, and time-consuming, but you would say — “It’s OK, I know what the
+analysis needs to do, I’ll build my own, and I’ll get others to help me do it”.
+Why?  Because you can create it, and you do understand it.</p>
+<p>Building teaches understanding, but we also care about making our work clear, and efficient.  We want to get better and better at doing our analysis, and learning from the results.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="how-to-be-efficient">
+<h1>How to be efficient<a class="headerlink" href="#how-to-be-efficient" title="Permalink to this headline">¶</a></h1>
+<p>The route to being efficient it to make your analysis <em>simple</em>.  But <em>simple</em> is <em>not</em> the same thing as <em>easy</em>.  As <a class="reference external" href="https://en.wikipedia.org/wiki/Rich_Hickey">Rich Hickey</a> describes it in <a class="reference external" href="http://www.infoq.com/presentations/Simple-Made-Easy">talk about programming languages</a>:</p>
+<ul class="simple">
+<li><p>Simple comes from Latin <em>simplex</em> - one fold.  The opposite of <em>complex</em> -
+Latin for twisted together.</p></li>
+<li><p>Easy comes from old French <em>aiser</em> to Latin <em>adjacens</em> “lying close by”.</p></li>
+</ul>
+<p>Easy is what you are familiar with, not far from something you already know.
+Simple is when you have succeeded in breaking the problem into separate ideas.</p>
+<p>You can find a similar explanation in the Oxford dictionary of Word origins
+edited by Julia Cresswell.</p>
+<p>The point is that <em>simple</em> takes work.  You need to untangle the things that
+are tangled.   Once you have done that, you can think about what you are doing
+clearly.  You become more efficient.  On the other hand, if you stick with
+easy, then everything stays tangled, and you cannot learn.  Your progress is
+slowed by the knots in your ideas, and your work.  Simple leads to efficiency
+and easy leads to stagnation.</p>
+<p><img alt="" src="_images/simple_easy_velocity.png" /></p>
+<div class="section" id="practice-and-theory">
+<h2>Practice and theory<a class="headerlink" href="#practice-and-theory" title="Permalink to this headline">¶</a></h2>
+<p>As you remember, we plan to teach you two things:</p>
+<ol class="simple">
+<li><p>Working with brain imaging data.</p></li>
+<li><p>Principles of analysis methods.</p></li>
+</ol>
+<p>Why is <em>practice</em> before <em>theory</em>?   Because correct <em>practice</em> helps you
+think clearly.  The tools that you will use for practice include <em>code</em>,
+a rich language for understanding <em>theory</em>.</p>
+<p>Good practice is the root of sound understanding, so we will teach you
+practice to make your work <em>simple</em>.  We will do that by using Feynman’s idea
+of understanding by building. That will not be <em>easy</em>, at first, but we hope
+you will find, rather quickly, that the basic ideas will be clearer — and you
+will have better tools to do your work.</p>
+<p>To get there, we start with:</p>
+<ul class="simple">
+<li><p>Python;</p></li>
+<li><p>organized coding;</p></li>
+<li><p>version control.</p></li>
+</ul>
+<p>We’ll use that as a foundation for teaching imaging analysis.</p>
+<p>We will emphasize:</p>
+<ul class="simple">
+<li><p>collaboration;</p></li>
+<li><p>transparency;</p></li>
+<li><p>reproducibility;</p></li>
+<li><p>learning from your peers.</p></li>
+</ul>
+<p>We started to teach this course at Berkeley, and some of us still think of this as the “Berkeley Way”, in a tribute to the famous <a class="reference external" href="https://en.wikipedia.org/wiki/The_Toyota_Way">Toyota Way</a> of working.  We hope you find it useful, and we hope you go on to teach your friends and colleagues how to work this way.  We firmly believe that will lead to better, clearer, more interesting research, and then, to a better world.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id7"><dl class="citation">
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id4">BD95</a></span></dt>
+<dd><p>Jonathan B Buckheit and David L Donoho. Wavelab and reproducible research. In <em>Wavelets and statistics</em>, pages 55–81. Springer, 1995. URL: <a class="reference external" href="https://statweb.stanford.edu/~wavelab">https://statweb.stanford.edu/~wavelab</a>.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id1">Car12</a></span></dt>
+<dd><p>Joshua Carp. On the plurality of (methodological) worlds: estimating the analytic flexibility of fmri experiments. <em>Frontiers in neuroscience</em>, 6:149, 2012.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id3">DMR+09</a></span></dt>
+<dd><p>David L Donoho, Arian Maleki, Inam Ur Rahman, Morteza Shahram, and Victoria Stodden. Reproducible research in computational harmonic analysis. <em>Computing in Science &amp; Engineering</em>, 11(1):8–18, 2009. URL: <a class="reference external" href="http://stanford.edu/~vcs/papers/RRCiSE-STODDEN2009.pdf">http://stanford.edu/~vcs/papers/RRCiSE-STODDEN2009.pdf</a>.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id2">Fey69</a></span></dt>
+<dd><p>Richard P Feynman. What is science. <em>The Physics Teacher</em>, 7(6):313–320, 1969. URL: <a class="reference external" href="http://www.feynman.com/science/what-is-science">http://www.feynman.com/science/what-is-science</a>.</p>
+</dd>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id5">Fey74</a></span></dt>
+<dd><p>Richard P Feynman. Cargo cult science. <em>Engineering and Science</em>, 37(7):10–13, 1974. URL: <a class="reference external" href="http://calteches.library.caltech.edu/51/2/CargoCult.pdf">http://calteches.library.caltech.edu/51/2/CargoCult.pdf</a>.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id6">MBBP18</a></span></dt>
+<dd><p>K. Jarrod Millman, Matthew Brett, Ross Barnowski, and Jean-Baptiste Poline. Teaching computational reproducibility for neuroimaging. <em>Frontiers in Neuroscience</em>, 2018. URL: <a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fnins.2018.00727">https://www.frontiersin.org/articles/10.3389/fnins.2018.00727</a>.</p>
+</dd>
+</dl>
+</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Practice and theory of brain imaging</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="what_is_an_image.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">What is an image?</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

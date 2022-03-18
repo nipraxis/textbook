@@ -1,0 +1,32 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Plotting lines in matplotlib
+
+```{python}
+import matplotlib.pyplot as plt
+```
+
+To plot a line in matplotlib, use `plot` with the X coordinates as the first
+argument and the matching Y coordinates as the second argument:
+
+```{python}
+# A line from (1, 2) to (7, 11)
+plt.plot([1, 7], [2, 11])
+```
+
+```{python}
+# Another line from (2, 6) to (8, 1)
+plt.plot([2, 8], [6, 1])
+```

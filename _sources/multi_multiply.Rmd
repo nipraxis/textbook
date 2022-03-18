@@ -1,0 +1,70 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Estimation for many voxels at the same time
+
+We often want to fit the same design to many different voxels.
+
+Let’s make a design with a linear trend and a constant term:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+# Print arrays to 4 decimal places
+np.set_printoptions(precision=4)
+```
+
+```{python}
+X = np.ones((12, 2))
+X[:, 0] = np.linspace(-1, 1, 12)
+plt.imshow(X, interpolation='nearest', cmap='gray')
+```
+
+To fit this design to any data, we take the pseudoinverse:
+
+```{python}
+import numpy.linalg as npl
+piX = npl.pinv(X)
+piX.shape
+```
+
+Now let’s make some data to fit to. We will draw some somples from the standar
+normal distribution using numpy.random.  We use
+`numpy.random.seed` to make sure the random numbers are predictable:
+
+```{python}
+np.random.seed(42)
+y_0 = np.random.normal(size=12)
+beta_0 = piX.dot(y_0)
+beta_0
+```
+
+We can fit this same design to another set of data:
+
+```{python}
+y_1 = np.random.normal(size=12)
+beta_1 = piX.dot(y_1)
+beta_1
+```
+
+Now the trick. Because of the way that matrix multiplication works, we can fit
+to these two sets of data with the same call to `dot`:
+
+```{python}
+Y = np.vstack((y_0, y_1)).T
+betas = piX.dot(Y)
+betas
+```
+
+Of course this is true for any number of columns of Y.

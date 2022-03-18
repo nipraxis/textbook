@@ -1,0 +1,241 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Images and affines
+
+See: [coordinate systems and affine transforms](http://nipy.org/nibabel/coordinate_systems.html) for background.
+
+```{python}
+# import common modules
+import numpy as np
+# print arrays to 4DP
+np.set_printoptions(precision=4, suppress=True)
+import numpy.linalg as npl
+import nibabel as nib
+```
+
+## Affines, inverses
+
+We often have the situation where we compose an affine of several transformations.
+We do the composing using matrix multiplication.
+For example, the following code composes two rotations and a translation.
+
+<div class="alert alert-info">
+
+**Remember:**
+Matrix multiplication works right to left.
+
+</div>
+
+Here is a rotation matrix (3 x 3) for a rotation of -0.2 radians around the x
+axis:
+
+```{python}
+def x_rotmat(theta):
+    """ Rotation matrix for rotation of `theta` radians around x axis
+
+    Parameters
+    ----------
+    theta : scalar
+        Rotation angle in radians
+
+    Returns
+    -------
+    M : shape (3, 3) array
+        Rotation matrix
+    """
+    cos_t = np.cos(theta)
+    sin_t = np.sin(theta)
+    return np.array([[1, 0, 0],
+                     [0, cos_t, -sin_t],
+                     [0, sin_t, cos_t]])
+
+first_rotation = x_rotmat(-0.2)
+first_rotation
+```
+
+We can make this rotation matrix into an affine transformation, by putting it
+into the top left of a 4 x 4 identity matrix:
+
+```{python}
+first_affine = np.eye(4)  # The identity affine
+first_affine[:3, :3] = first_rotation
+first_affine
+```
+
+Now we made a second affine matrix for a rotation around y of 0.4 radians:
+
+```{python}
+def y_rotmat(theta):
+    """ Rotation matrix for rotation of `theta` radians around y axis
+
+    Parameters
+    ----------
+    theta : scalar
+        Rotation angle in radians
+
+    Returns
+    -------
+    M : shape (3, 3) array
+        Rotation matrix
+    """
+    cos_t = np.cos(theta)
+    sin_t = np.sin(theta)
+    return np.array([[cos_t, 0, sin_t],
+                     [0, 1, 0],
+                     [-sin_t, 0, cos_t]])
+
+second_affine = np.eye(4)
+second_affine[:3, :3] = y_rotmat(0.4)
+second_affine
+```
+
+Finally we make a translation of 10 in x, 20 in y and 30 in z:
+
+```{python}
+third_affine = np.eye(4)
+third_affine[:3, 3] = [10, 20, 30]
+third_affine
+```
+
+We compose these three affine matrices to give an affine implementing *first*
+a rotation of -0.2 around the x axis, *then* a rotation of 0.4 around the y
+axis, and *finally* a translation [10, 20, 30] in [x, y, z]. Note the order
+– matrix multiplication goes from right to left:
+
+```{python}
+combined = third_affine.dot(second_affine.dot(first_affine))
+combined
+```
+
+See The nibabel.affines module for a module with useful functions for working with
+affine matrices.
+
+# Manipulating affines with inverses
+
+Let us say we have an affine, like the one we just made:
+
+```{python}
+combined
+```
+
+Imagine that we knew that this affine was composed of three affines, and we
+knew the last two, but not the first. How would we find what the first affine
+was?
+
+Call our combined affine $\mathbf{D}$. We know that $\mathbf{D} =
+\mathbf{C} \cdot \mathbf{B} \cdot \mathbf{A}$. We know $\mathbf{C}$ and
+$\mathbf{B}$ but we want to find $\mathbf{A}$.
+
+Above I’ve written matrix multiplication with a dot - as in $\mathbf{B}
+\cdot \mathbf{A}$, but in what follows I’ll omit the dot, just writing
+$\mathbf{B} \mathbf{A}$ to mean matrix multiplication.
+
+We find $\mathbf{A}$ using matrix inverses. Call $\mathbf{E} =
+\mathbf{C} \mathbf{B}$. Then $\mathbf{D} = \mathbf{E} \mathbf{A}$. If we
+can find the inverse of $\mathbf{E}$ (written as
+$\mathbf{E^{-1}}$) then (by the definition of the inverse):
+
+$$
+\mathbf{E^{-1}} \mathbf{E} = \mathbf{I}
+$$
+
+and:
+
+$$
+\mathbf{E^{-1}} \mathbf{D} = \mathbf{E^{-1}} \mathbf{E} \mathbf{A} \\
+\mathbf{E^{-1}} \mathbf{D} = \mathbf{I} \mathbf{A} \\
+\mathbf{E^{-1}} \mathbf{D} = \mathbf{A}
+$$
+
+For reasons we do not have time to go into, our affine matrices are almost
+invariably invertible.
+
+Let’s see if we can reconstruct our `first_affine` from the `combined`
+affine, given we know the `third_affine` and `second_affine`:
+
+```{python}
+E = third_affine.dot(second_affine)
+E_inv = npl.inv(E)
+E_inv.dot(combined)  
+```
+
+This is the same as our first affine:
+
+```{python}
+first_affine
+np.allclose(E_inv.dot(combined), first_affine)
+```
+
+What about the situation where we know the first part of the affine, but we
+want to find the rest?
+
+To solve this problem, we will need the *right inverse*.
+
+The inverse we have used so far is the *left inverse* - so called because we
+apply it multiplying on the left of the original matrix:
+
+$$
+\mathbf{E^{-1}} \mathbf{E} = \mathbf{I}
+$$
+
+Luckily, it turns out that, for square matrices, if there is a *left inverse*
+$\mathbf{E^{-1}}$ then this is also the right inverse:
+
+$$
+\mathbf{E^{-1}} \mathbf{E} = \mathbf{E} \mathbf{E^{-1}} = \mathbf{I}
+$$
+
+It is a bit out of our way to prove that a matrix with a left inverse must
+also have a right inverse.  If you accept that on faith for now, it is easy to
+prove that, if there is a right inverse, it must be the same as the left
+inverse. Call the left inverse $\mathbf{L}$ and the right inverse
+$\mathbf{R}$:
+
+$$
+\mathbf{LA} = \mathbf{I}\\
+\mathbf{AR} = \mathbf{I}\\
+$$
+
+then:
+
+$$
+\mathbf{LAR} = \mathbf{LAR}\\
+\mathbf{L(AR)} = \mathbf{(LA)R}\\
+\mathbf{L} = \mathbf{R}
+$$
+
+So, in our case, where we want to find the transformations *following* the
+first affine, we can do this:
+
+$$
+\mathbf{F} \triangleq \mathbf{C} \mathbf{B} \\
+\mathbf{D} = \mathbf{F} \mathbf{A} \\
+\mathbf{D} \mathbf{A^{-1}} = \mathbf{F} \mathbf{A} \mathbf{A^{-1}} \\
+\mathbf{D} \mathbf{A^{-1}} = \mathbf{F}
+$$
+
+For our actual affines:
+
+```{python}
+third_with_second = combined.dot(npl.inv(first_affine))
+third_with_second  
+```
+
+```{python}
+# This is the same as
+F = third_affine.dot(second_affine)
+F  
+np.allclose(third_with_second, F)
+```

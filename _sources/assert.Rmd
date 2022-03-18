@@ -1,0 +1,78 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+---
+
+# Using `assert` for testing
+
+The Python `assert` statement means - "raise an error unless
+the following expression is equivalent to True".
+
+By "equivalent to True", I mean the expression returns True
+from Python {doc}`truth value testing <truthiness>`.
+
+`assert` raises an `AssertionError` if the statement is
+equivalent to False.  It does nothing if the statement is
+equivalent to True.
+
+So, if you `assert an_expression` and there is no error, then
+the result of `an_expression` was equivalent to True.  The
+following expressions evaluate to True, and therefore the
+asserts do not raise an error:
+
+```{python}
+# No errors here.
+assert True
+assert 10 == 10
+assert 10 % 2 == 0
+```
+
+These expressions are equivalent to False, and the asserts do
+raise errors:
+
+```{python tags=c("raises-exception")}
+# Raises error
+assert False
+```
+
+```{python tags=c("raises-exception")}
+# Raises error
+assert 10 == 11
+```
+
+Although `assert` does work with expression values of True and
+False, the test that assert uses is more general than
+`expr_result == True`.  In fact, assert uses {doc}`truth value
+testing <truthiness>` to decide whether to raise an
+`AssertionError` or not:
+
+```{python}
+# No error
+assert ['some', 'elements']  # not-empty list tests as True
+```
+
+```{python tags=c("raises-exception")}
+# Error
+assert []  # an empty list tests as False
+```
+
+```{python}
+# No errors
+assert 10  # any number other than zero evaluates as True
+assert 1
+```
+
+```{python tags=c("raises-exception")}
+# Error
+assert 0
+```
+
+```{python tags=c("raises-exception")}
+# Error
+assert None
+```
