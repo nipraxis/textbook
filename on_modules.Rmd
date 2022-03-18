@@ -183,5 +183,5 @@ sys.argv == ['my_script.py', '1']
 
 Example files at:
 
-* [mymodule.py](mymodule.py)
-* [my_script.py](my_script.py)
+* {download}`mymodule.py`
+* {download}`my_script.py`

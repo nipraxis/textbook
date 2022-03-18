@@ -1,6 +1,8 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
@@ -122,11 +124,19 @@ To get this on-off measure, we will use our pre-packaged function for OpenFMRI
 data:
 
 ```{python}
+# Fetch the condition file
+import nipraxis
+
+cond_fname = nipraxis.fetch_file('ds114_sub009_t2r1_cond.txt')
+cond_fname
+```
+
+```{python}
 # Load the neural time course using pre-packaged function
-from stimuli import events2neural
+from nipraxis.stimuli import events2neural
 TR = 2.5  # time between volumes
 n_trs = img.shape[-1]  # The original number of TRs
-neural = events2neural('ds114_sub009_t2r1_cond.txt', TR, n_trs)
+neural = events2neural(cond_fname, TR, n_trs)
 plt.plot(neural)
 ```
 

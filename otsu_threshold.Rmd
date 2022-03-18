@@ -1,6 +1,8 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
@@ -67,10 +69,19 @@ Conceptually, Otsu’s method proceeds like this:
 Here is Otsu’s threshold in action.  First we load an image:
 
 ```{python}
+# Get the image file from the web.
+import nipraxis
+camera_fname = nipraxis.fetch_file('camera.txt')
+camera_fname
+```
+
+```{python}
+# Loat the file, show the image.
 import numpy as np
 import matplotlib.pyplot as plt
-cameraman = np.loadtxt('camera.txt').reshape((512, 512))
-plt.imshow(cameraman.T, cmap='gray', interpolation='nearest')
+
+cameraman = np.loadtxt(camera_fname).reshape((512, 512))
+plt.imshow(cameraman.T, cmap='gray')
 ```
 
 Make a histogram:

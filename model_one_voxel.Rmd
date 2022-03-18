@@ -56,7 +56,7 @@ plt.plot(voxel_time_course)
 ```
 
 Now we are going to use the convolved regressor from [Convolving with the
-hemodyamic response function](convolution_backround.Rmd) to do a simple
+hemodyamic response function](convolution_background) to do a simple
 regression on this voxel time course.
 
 First fetch the text file with the convolved time course:

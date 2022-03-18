@@ -242,7 +242,7 @@ np.sum(mask)
 
 We can use the 3D mask to slice into the 4D data matrix.  For every True value
 in the 3D mask, the result has the vector of values over time for that voxel.
-See: [Indexing with Boolean masks](boolean_indexing.Rmd).
+See: [Indexing with Boolean masks](boolean_indexing).
 
 ```{python}
 Y = data[mask]
