@@ -8,9 +8,7 @@ jupyter:
       jupytext_version: 1.11.5
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Making and saving new images in nibabel
+# Making and saving new images in nibabel
 
 We often want to do some processing on an image, then save the processed image
 back to an image file on disk.
@@ -20,11 +18,20 @@ NIfTI `.nii` image, we get an image object of type `Nifti1Image`.
 
 ```{python}
 import numpy as np
+import nibabel as nib
 ```
 
 ```{python}
-import nibabel as nib
-img = nib.load('ds114_sub009_highres.nii')
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch the data file.
+data_fname = nipraxis.fetch_file('ds114_sub009_highres.nii')
+# Show the file name of the fetched data.
+data_fname
+```
+
+```{python}
+img = nib.load(data_fname)
 type(img)
 ```
 
@@ -32,14 +39,14 @@ Maybe we were worried about some very high values in the image, and we wanted
 to clip them down to a more reasonable number:
 
 ```{python}
-data = img.get_data()
-data.max()  
+data = img.get_fdata()
+data.max()
 ```
 
 We might consider clipping the top 5 percent of voxel values:
 
 ```{python}
-data = img.get_data()
+data = img.get_fdata()
 top_95_thresh = np.percentile(data, 95)
 top_95_thresh
 ```
@@ -47,7 +54,7 @@ top_95_thresh
 ```{python}
 new_data = data.copy()
 new_data[new_data > top_95_thresh] = top_95_thresh
-new_data.max()  
+new_data.max()
 ```
 
 We can make a new `Nifti1Image` by constructing it directly.  We pass the
@@ -90,33 +97,5 @@ This image has the clipped data:
 
 ```{python}
 clipped_back = nib.load('clipped_image.nii')
-clipped_back.get_data().max()  
+clipped_back.get_fdata().max()
 ```
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
