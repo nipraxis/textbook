@@ -14,7 +14,7 @@ jupyter:
 
 # Reshaping, 4D to 2D
 
-See also: Reshaping 4D images to 2D arrays.
+See also: [Reshaping 4D images to 2D arrays](voxels_by_time.Rmd).
 
 ## Revision on 3D
 
@@ -52,14 +52,22 @@ arr_2d
 
 See also: Reshaping and three-dimensional arrays.
 
-# To 4D
+## To 4D
 
-It is a common to do this kind of operation on image data arrays.  Here we
-have a 4D array from an FMRI run (`ds114_sub009_t2r1.nii`):
+It is a common to do this kind of operation on image data arrays.  Here we have
+a 4D array from an FMRI run (`ds114_sub009_t2r1.nii`):
+
+```{python}
+# Fetch the data file to this computer.
+import nipraxis
+bold_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+# Show the filename
+bold_fname
+```
 
 ```{python}
 import nibabel as nib
-img = nib.load('ds114_sub009_t2r1.nii')
+img = nib.load(bold_fname)
 data = img.get_fdata()
 data.shape
 ```
