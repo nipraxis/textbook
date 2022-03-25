@@ -5,7 +5,11 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.0
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
 ---
 
 # Brisk introduction to Python
@@ -365,6 +369,9 @@ for e in my_list:
 ```{python}
 # Can be indexed
 my_list[1]
+```
+
+```{python}
 # Can be sliced
 my_list[0:2]
 ```
@@ -375,7 +382,12 @@ Indices for Python sequences start at 0.  For Python, the first element is at
 index 0, the second element is at index 1, and so on:
 
 ```{python}
+# the first element
 my_list[0]
+```
+
+```{python}
+# the second element
 my_list[1]
 ```
 
@@ -385,7 +397,9 @@ Negative numbers as indices count back from the end of the list. For
 example, use index `-1` to return the last element in the list:
 
 ```{python}
-my_list
+print(my_list)
+
+# the last element
 my_list[-1]
 ```
 
@@ -485,6 +499,9 @@ You can remove elements from the list with the `pop` method:
 # Remove and return the last element of the list
 my_list.pop()
 my_list
+```
+
+```{python}
 # Remove and return the third element of the list
 my_list.pop(2)
 my_list
@@ -517,6 +534,9 @@ the stop index.
 
 ```{python}
 my_list[2:]
+```
+
+```{python}
 my_list[2:len(my_list)]
 ```
 
@@ -555,7 +575,7 @@ indexing, negative `start` and `stop` values count back from the end of
 the list:
 
 ```{python}
-my_list
+print(my_list)
 my_list[-4:-2]
 ```
 
@@ -571,9 +591,15 @@ the start index defaults to the last element in the list. If you don’t specify
 the stop index, it defaults to one prior to index 0:
 
 ```{python}
-my_list
+print(my_list)
 my_list[-1:1:-1]
+```
+
+```{python}
 my_list[:1:-1]
+```
+
+```{python}
 my_list[-2::-1]
 ```
 
@@ -584,7 +610,7 @@ you a reversed copy of the list:
 my_list[::-1]
 ```
 
-Tuples
+# Tuples
 
 Tuples are almost the same as lists, except they are not mutable. That
 is, you cannot change the elements of a tuple, or change the number of
@@ -595,14 +621,14 @@ my_tuple = (9, 4, 7, 0, 8)
 my_tuple
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 # This raises a TypeError
-# my_tuple[1] = 99
+my_tuple[1] = 99
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 # This raises an AttributeError, because tuples have no append method
-# my_tuple.append(20)
+my_tuple.append(20)
 ```
 
 Here’s an empty tuple:
@@ -665,6 +691,9 @@ Convert other objects to strings using `str`:
 ```{python}
 # Convert integer to string
 str(9)
+```
+
+```{python}
 # Convert floating point value to string
 str(1.2)
 ```
@@ -695,14 +724,19 @@ my_string[1]
 my_string[1:5]
 ```
 
+```{python}
+# Can slice
+my_string[::-1]
+```
+
 # Strings are immutable
 
 Unlike lists, strings are immutable. You cannot change the characters within a
 string:
 
-```{python}
+```{python tags=c("raises-exception")}
 # Raises a TypeError
-# my_string[1] = 'N'
+my_string[1] = 'N'
 ```
 
 # Adding strings
@@ -912,6 +946,9 @@ in c`, `in` triggers a test of membership, returning True or False.
 
 ```{python}
 5 in my_set
+```
+
+```{python}
 11 in my_set
 ```
 
@@ -925,6 +962,9 @@ Lists and tuples are also containers:
 
 ```{python}
 9 in [9, 4, 7, 0, 8]
+```
+
+```{python}
 3 in (1, 3, 5)
 ```
 
@@ -1014,10 +1054,13 @@ have a key in a dictionary:
 
 ```{python}
 'MATLAB' in software
+```
+
+```{python}
 'happiness' in software
 ```
 
-“for”, “while”, “continue” and “break”
+# “for”, “while”, “continue” and “break”
 
 `for` statements and `while` statement are *loops*, because Python keeps
 executing the `for` or `while` block until the `for` runs out of
@@ -1029,7 +1072,6 @@ for i in range(10):
     if i == 6:
         break
     print(i)
-
 ```
 
 The `continue` statement short-circuits execution of the current iteration
