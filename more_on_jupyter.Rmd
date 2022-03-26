@@ -1,0 +1,96 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.1'
+      jupytext_version: 1.2.4
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# More on the Jupyter notebook
+
+As you heard in [about the software](the_software), Jupyter is an *interface* that allows you to run Python code and see the results.
+
+It consists of two parts:
+
+* The web client (the thing you are looking at now, if you are running this
+  notebook in Jupyter);
+* The kernel (that does the work of running code, and generating results).
+
+For example, consider this cell, where I make a new variable `a`, and display the value of `a`:
+
+```{python}
+a = 10.50
+a
+```
+
+<!-- #region -->
+I type this code in the web client.
+
+When I press Shift-Enter, or Run the cell via the web interface, this sends a *message* to the *kernel*.
+
+The message says something like:
+
+> Here is some Python code: "a = 1" and "a".  Run this code, and show me any
+> results.
+
+The kernel accepts the message, runs the code in Python, and then sends back any results, in this case, as text to display (the text representation of the value 10.50).
+
+The web client shows the results.
+
+## The prompts
+
+Notice the prompts for the code cells.  Before I have run the cell, there is an empty prompt, like this `In [ ]:`.  `In` means "Input", meaning, this is a cell where you input code.
+<!-- #endregion -->
+
+```{python}
+b = 9.25
+```
+
+Then, when you run the cell, the prompt changes to something like `In [1]:` where 1 means this is the first piece of code that the kernel ran.
+
+If there is any output, you will now see the *output* from that cell, with a prefix `Out [1]:` where 1 is the same number as the number for the input cell.  This is output from the first piece of code that the kernel ran.
+
+## Interrupting, restarting
+
+
+Sometimes you will find that the kernel gets stuck.  That may be because the kernel is running code that takes a long time, but sometimes, it is because the kernel has crashed.
+
+In the next cell I load a function that makes the computer wait for a number of seconds.
+
+Don't worry about the `from ... import` here, we will come onto that later.
+
+```{python}
+# Get the sleep function
+from time import sleep
+```
+
+The sleep function has the effect of putting the Python process to sleep for the give number of seconds.  Here I ask the Python process to sleep for 2 seconds:
+
+```{python}
+sleep(2)
+```
+
+I can ask the computer to sleep for much longer.  Try making a new code cell and executing the code `sleep(1000)`.
+
+When you do this, notice that the prompt gets an asterisk symbol `*` instead of a number, meaning that the kernel is busy doing something (busy sleeping).
+
+You can interrupt this long-running process by clicking on the stop icon in the toolbar, or selecting "Interrupt" from the "Kernel" menu.  Try it.
+
+```{python}
+# Try running the code "sleep(10000)" below.
+```
+
+Very rarely, the kernel crashes, so you can't interrupt it.  In that case you may want to "Restart" from the "Kernel" menu.  This will:
+
+* Shut down the old kernel with extreme prejudice, therefore throwing away any variables you have stored in the workspace;
+* Start a new kernel for the web client to talk to.
+
+If you do this, you will notice that all the variables you defined in the old kernel have disappeared.   Rerun the cells to create the variables, to re-create them.
