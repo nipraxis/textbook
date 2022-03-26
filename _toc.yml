@@ -11,10 +11,10 @@ parts:
 - caption: The tools
   chapters:
   - file: to_code
-  - file: intro/surviving_computers
-  - file: intro/the_software
-  - file: intro/using_jupyter
-  - file: intro/more_on_jupyter
+  - file: surviving_computers
+  - file: the_software
+  - file: using_jupyter
+  - file: more_on_jupyter
   - file: brisk_python
 
 - caption: Images and code and images
