@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Our tools &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using Jupyter notebooks" href="using_jupyter.html" />
+    <link rel="prev" title="Surviving the computer" href="surviving_computers.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_problem.html">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  The tools
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="to_code.html">
+   Ode to code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surviving_computers.html">
+   Surviving the computer
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Our tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="using_jupyter.html">
+   Using Jupyter notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_on_jupyter.html">
+   More on the Jupyter notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="what_is_an_image.html">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slicing_with_booleans.html">
+   Slicing with boolean vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   Numpy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Into the fourth dimension
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Coordinate systems and spatial transforms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Statistics and the general linear model
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Code organization and collaboration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/the_software.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fthe_software.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python">
+   Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-jupyter-notebook">
+   The Jupyter Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-python">
+   Installing Python
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="our-tools">
+<h1>Our tools<a class="headerlink" href="#our-tools" title="Permalink to this headline">¶</a></h1>
+<p>We are going to start working in the <a class="reference external" href="https://jupyter.org">Jupyter Notebook</a>.
+This is an <em>interface</em> that allows us to interact with the
+<a class="reference external" href="https://www.python.org">Python</a> programming language.</p>
+<p>There are many ways of installing Python and the Jupyter Notebook.  The
+best way of installing Python depends on many things.  For this iteration
+of the class, we installed Python using the <a class="reference external" href="https://www.anaconda.com/distribution">Anaconda
+distribution</a>.  We discuss this
+more below.</p>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>Python is a <a class="reference external" href="http://pypl.github.io/PYPL.html">very popular</a> programming
+language that is <a class="reference external" href="https://stackoverflow.blog/2017/09/06/incredible-growth-python">growing
+quickly</a>.</p>
+<p>It is free and open-source.</p>
+<p>Among its advantages are:</p>
+<ul class="simple">
+<li><p>Python code is famously easy to read and write;</p></li>
+<li><p>As a result, it is a popular language for teaching, in schools and
+universities.  Just for example, the <a class="reference external" href="https://www.raspberrypi.org">Raspberry
+Pi</a> computer is so-named because many of its
+teaching materials are in Python.</p></li>
+<li><p>It has a very wide range of libraries, including many libraries for
+tasks in science, such as data analysis, statistics and visualization.
+For example, there are libraries for designing and running Psychology
+experiments.</p></li>
+<li><p>It is widely used in teaching, science and industry.</p></li>
+<li><p>Because it has a large open-source community, it is easy to find other
+people working on the same thing as you, in Python.  The community has
+a strong background in good practices for code, such as testing, and
+writing code that is clear and simple.</p></li>
+</ul>
+<p>For a comparison of Matlab and Python, see <a class="reference external" href="http://asterisk.dynevor.org/python-matlab.html">this blog
+post</a>.</p>
+</section>
+<section id="the-jupyter-notebook">
+<h2>The Jupyter Notebook<a class="headerlink" href="#the-jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<p>We will soon here more about the Jupyter Notebook.  It is a particularly
+easy interface to run Python code, and display the results.</p>
+<p>The Notebook has two parts.  The first is the web application, that you
+interact with.  This is the web <em>client</em>.   The web client then sends
+commands to another process on your computer, called the <em>kernel</em>.  The
+kernel runs Python.  The client sends Python commands to the kernel, and
+the kernel runs the commands, generates the results, and sends any output
+back to the client for display.  Outputs include the display of values,
+and plots from plotting commands.</p>
+<p>The Notebook is just one way to run Python commands; there are many
+others, and we will cover some of these later in the course.  The notebook
+is a particularly good way of running code for beginners, because it gets
+you started very quickly, in a familiar interface (the web browser).  As
+you gain experience, you will find that you will outgrow the Notebook,
+because it is not a good interface for writing more than a small amount of
+code.  When you get there, you be much more efficient using a good code
+editor, such as <a class="reference external" href="https://atom.io">Atom</a>.</p>
+</section>
+<section id="installing-python">
+<h2>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline">¶</a></h2>
+<p>As we said above, there are many ways to install Python.</p>
+<p>Which way you choose will depend on factors such as:</p>
+<ul class="simple">
+<li><p>How much you are using Python;</p></li>
+<li><p>What operating system you are running (macOS, Windows, Linux);</p></li>
+<li><p>What method your colleagues are using.</p></li>
+</ul>
+<p>The method that many people use for courses such as this, is to use
+<a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> to install Python and
+various important Python libraries.</p>
+<p>Anaconda is an application that can install Python and various libraries with a few clicks.  It is built and maintained by a company, also called Anaconda, but they give away the distribution for free, for various reasons.</p>
+<p>Anaconda is a good option for Windows, because Windows is a relatively complicated platform for building code, such as Python and its libraries.  As a result, some of the other methods of installing Python libraries do not work as well on Windows as they do for other platforms.   Because Anaconda works on Windows and Mac and Linux, it is easier to deal with installation problems for a class; everyone is likely to have similar problems, and you (the student) will be using the same installation as us (the instructors).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="surviving_computers.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Surviving the computer</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="using_jupyter.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Using Jupyter notebooks</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

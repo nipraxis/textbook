@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scripting of SPM analysis with nipype &#8212; Practice and theory of brain imaging</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Ode to code &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -31,34 +32,30 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Python coding style" href="coding_style.html" />
+    <link rel="next" title="Surviving the computer" href="surviving_computers.html" />
+    <link rel="prev" title="The problem and the plan" href="the_problem.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -97,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p>
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -109,7 +106,44 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p>
+ <span class="caption-text">
+  The tools
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Ode to code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surviving_computers.html">
+   Surviving the computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_software.html">
+   Our tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="using_jupyter.html">
+   Using Jupyter notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_on_jupyter.html">
+   More on the Jupyter notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+</ul>
+<p>
  <span class="caption-text">
   Images and code and images
  </span>
@@ -118,16 +152,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="what_is_an_image.html">
    What is an image?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="brisk_python.html">
-   Brisk introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="list_comprehensions.html">
-   List comprehensions
   </a>
  </li>
  <li class="toctree-l1">
@@ -166,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p>
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -218,7 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p>
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -240,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p>
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -318,7 +342,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p>
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -365,7 +389,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p>
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -400,18 +424,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="coding_style.html">
    Python coding style
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Scripting analyses
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Scripting of SPM analysis with nipype
   </a>
  </li>
 </ul>
@@ -455,12 +467,12 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/full_scripting.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/to_code.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -475,7 +487,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Ffull_scripting.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fto_code.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -494,136 +506,59 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
         </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Scripting of SPM analysis with nipype</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="scripting-of-spm-analysis-with-nipype">
-<h1>Scripting of SPM analysis with nipype<a class="headerlink" href="#scripting-of-spm-analysis-with-nipype" title="Permalink to this headline">¶</a></h1>
-<p>Requirements:</p>
-<ul class="simple">
-<li><p><span class="xref std std-doc">saving_images</span>;</p></li>
-<li><p><span class="xref std std-doc">introducing_nipype</span>;</p></li>
-<li><p><span class="xref std std-doc">spm_slice_timing_exercise</span>;</p></li>
-</ul>
-<p>Can you write a Nipype script to do all the pre-processing in SPM?</p>
-<p>You are doing an analysis for the following scans:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ds114_sub009_t2r1.nii</span></code>; (functional);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ds114_sub009_highres.nii</span></code> (structural).</p></li>
-</ul>
-<p>You downloading these files one by one from the <a class="reference external" href="https://github.com/nipraxis/nipraxis-data">Nipraxis-data
-repository</a>. Another, more automated
-way of getting the files is using Nipraxis to fetch them from the web, then
-copy the resulting files to your working directory.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Automatic download of data files to working directory.</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
-
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-
-<span class="n">working_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-
-<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_filee</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
-<span class="n">struct_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_filee</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">)</span>
-
-<span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">,</span> <span class="n">working_directory</span><span class="p">)</span>
-<span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">struct_fname</span><span class="p">,</span> <span class="n">working_directory</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In the following, remember you can explore the individual Nipype objects like
-this:</p>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>from nipype.interfaces import spm
-slice_timer = spm.SliceTiming()
-slice_timer.help()
-Use spm to perform slice timing correction.
-…</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-<p>The script should do the following, using nibabel and Nipype:</p>
-<ul class="simple">
-<li><p>copy the structural image with a prefix of <code class="docutils literal notranslate"><span class="pre">c</span></code> because SPM will modify the
-image during registration (it modifies the image affine);</p></li>
-<li><p>drop the first 4 volumes from the functional run.  Save the new functional
-image with a filename prefix of <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p></li>
-<li><p>run slice timing, assuming an ascending interleaved slice acqusition order
-(first, third, …, second, fourth, …).  See
-<span class="xref std std-doc">spm_slice_timing_exercise</span> for details.  The resulting funcitonal
-image will have a filename prefix of <code class="docutils literal notranslate"><span class="pre">af</span></code>;</p></li>
-<li><p>run motion correction estimation, and write out the mean image across
-volumes.  You will need <code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Realign</span></code>.  The mean image
-will have filename prefix <code class="docutils literal notranslate"><span class="pre">meanaf</span></code>.   Hint: to write only the mean image,
-you need a <code class="docutils literal notranslate"><span class="pre">inputs.write_which</span></code> value of <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>.  See the script
-fragment below;</p></li>
-<li><p>estimate the registration of the structural image to the mean functional
-image: <code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Coregister</span></code>;</p></li>
-<li><p>register the (registered) structural image to the template and write the
-slice-time corrected functional image with these estimated parameters:
-<code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Normalize12</span></code>.  SPM calls this “spatial
-normalization”. The resulting functional image will have a prefix of <code class="docutils literal notranslate"><span class="pre">waf</span></code>.
-Hint: I’ve put suggested values for the <code class="docutils literal notranslate"><span class="pre">bounding_box</span></code> input parameter in
-the script fragment below;</p></li>
-<li><p>smooth the spatially normalized 4D functional image by 8mm FWHM:
-<code class="docutils literal notranslate"><span class="pre">nipype.interfaces.spm.Smooth</span></code>.  The resulting functional image will have
-the prefix <code class="docutils literal notranslate"><span class="pre">swaf</span></code>.</p></li>
-</ul>
-<p>Your script will likely start something like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Script to run SPM processing in nipype</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
-
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-
-<span class="c1"># Import our own configuration for nipype</span>
-<span class="kn">import</span> <span class="nn">nipype_settings</span>
-
-<span class="kn">import</span> <span class="nn">nipype.interfaces.spm</span> <span class="k">as</span> <span class="nn">spm</span>
-
-<span class="c1"># Start at the original image</span>
-<span class="n">base_fname</span> <span class="o">=</span> <span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span>
-<span class="n">structural_orig</span> <span class="o">=</span> <span class="s1">&#39;ds114_sub009_highres.nii&#39;</span>
-<span class="n">structural_fname</span> <span class="o">=</span> <span class="s1">&#39;cds114_sub009_highres.nii&#39;</span>
-
-<span class="c1"># Copy the structural, because SPM will modify it</span>
-<span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">structural_orig</span><span class="p">,</span> <span class="n">structural_fname</span><span class="p">)</span>
-
-<span class="c1"># Analysis parameters</span>
-<span class="n">TR</span> <span class="o">=</span> <span class="mf">2.5</span>
-<span class="n">slice_time_ref_slice</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 1-based indexing</span>
-<span class="n">n_dummies</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="c1"># Realign &quot;write_which&quot; input. The 0 means &#39;do not write resampled versions of</span>
-<span class="c1"># any of the individual volumes`.  The 1 means &#39;write mean across volumes after</span>
-<span class="c1"># motion correction&#39;.  See config/spm_cfg_realign.m in the SPM12 distribution.</span>
-<span class="n">write_which</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="c1"># Normalize write parameters.  Bounding box gives extreme [[left, posterior,</span>
-<span class="c1"># inferior], [right, anterior, superior]] millimeter coordinates of the voxel</span>
-<span class="c1"># grid that SPM will use to write out the new images in template space.  See</span>
-<span class="c1"># spm_preproc_write8.m for use of the bounding box values.</span>
-<span class="n">bounding_box</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mf">78.</span><span class="p">,</span> <span class="o">-</span><span class="mf">112.</span><span class="p">,</span> <span class="o">-</span><span class="mf">46.</span><span class="p">],</span> <span class="p">[</span><span class="mf">78.</span><span class="p">,</span> <span class="mf">76.</span><span class="p">,</span> <span class="mf">86.</span><span class="p">]]</span>
-</pre></div>
-</div>
-<p>When you have finished, have a look at the solution script at
-<a class="reference download internal" download="" href="_downloads/7f16e9dd5b74a55bcb43a97b0238cc77/nipype_ds114_sub009_t2r1.py"><code class="xref download docutils literal notranslate"><span class="pre">nipype_ds114_sub009_t2r1.py</span></code></a>.</p>
-</div>
+  <section id="ode-to-code">
+<h1>Ode to code<a class="headerlink" href="#ode-to-code" title="Permalink to this headline">¶</a></h1>
+<p>Computer languages like <a class="reference external" href="https://python.org">Python</a> and
+<a class="reference external" href="https://r-project.org">R</a> are - languages.</p>
+<p>They express ideas.</p>
+<p>Computer languages consist of series of <em>statements</em>.  The statements define
+actions to take on data in the memory of the computer, or the devices
+connected to it, such as the network.</p>
+<p>Statements also express the logic of when to do the actions.
+They can express repeated actions or actions that are only
+performed, if a condition is met.</p>
+<p>There was a time in your academic life when you did not need
+code, because the sets of steps you needed to do were so
+repetitive and well understood, that someone could design
+a simple graphical interface (GUI) o to express all the options
+that you needed.</p>
+<p>At least, it seemed that way.  If you have not found out
+already, graphical user interfaces can trip you up.  They can
+make you feel like you understand what you are doing, when you
+do not.  They make it easy to do many analysis steps, without
+keeping track of what you are doing, so it is easy to make
+mistakes, and hard to check what you did.  Graphical interfaces
+make easy things easy, but difficult things, impossible.</p>
+<p>You will soon find that most work that is worth doing, is
+difficult.  If you want to do something interesting, that has
+not been done before, you will often need code.</p>
+<p><img alt="GUIs and code" src="_images/gui_and_code.png" /></p>
+<p>We need code more than we did ten years ago, because we have
+much more data, and the data is of many different types.  If
+you want to load the data into a form that you use, you will
+need to move it around, rearrange it, fix it. You will be doing
+a series of logical steps, and these steps are most clearly
+expressed in code.</p>
+<p>Put another way, <a class="reference external" href="https://asterisk.dynevor.org/you-cant-do-data-science-in-a-gui.html">You can’t do data science in
+a GUI</a>.</p>
+<p>Luckily, coding can be <a class="reference external" href="https://asterisk.dynevor.org/joys-of-craft.html">very
+rewarding</a> in
+terms of pleasure and profit.</p>
+<p>We are not the only ones who know we need code.  Many people, including many
+scientists, have been working on languages and libraries and tools, to make our
+coding life simpler, clearer, and more efficient.</p>
+<p>You will be learning some of the main tools and libraries on this course.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -647,35 +582,54 @@ the prefix <code class="docutils literal notranslate"><span class="pre">swaf</sp
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="coding_style.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Python coding style</p>
-        </div>
-    </a>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="the_problem.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">The problem and the plan</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="surviving_computers.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Surviving the computer</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

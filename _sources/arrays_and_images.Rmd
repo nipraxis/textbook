@@ -18,10 +18,12 @@ jupyter:
 
 You can consider arrays as images, and images as arrays.
 
-We start off with our usual imports:
+We start off with the imports that we need.
 
 ```{python}
+# The standard library for working with arrays.
 import numpy as np
+# Standard library for plotting.
 import matplotlib.pyplot as plt
 ```
 
