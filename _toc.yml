@@ -16,6 +16,7 @@ parts:
   - file: using_jupyter
   - file: more_on_jupyter
   - file: brisk_python
+  - file: installing
 
 - caption: Images and code and images
   chapters:
