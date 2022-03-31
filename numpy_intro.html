@@ -4,12 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Introduction to Numpy &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,30 +31,35 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script >let toggleHintShow = 'Click to show';</script>
+    <script >let toggleHintHide = 'Click to hide';</script>
+    <script >let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Arrays as images, images as arrays" href="arrays_and_images.html" />
     <link rel="prev" title="What is an image?" href="what_is_an_image.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -94,7 +98,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -106,7 +110,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The tools
  </span>
@@ -148,7 +152,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Images and code and images
  </span>
@@ -200,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -252,7 +256,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -274,7 +278,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -352,7 +356,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -399,7 +403,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -477,12 +481,12 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/numpy_intro.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/numpy_intro.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.Rmd</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -518,20 +522,24 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/numpy_intro.Rmd"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/numpy_intro.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/numpy_intro.Rmd&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/numpy_intro.ipynb&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="_static/images/logo_jupyterhub.svg"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/numpy_intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -543,17 +551,83 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-numpy-arrays">
+   Making Numpy arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculations-with-numpy-arrays">
+   Calculations with Numpy arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-arrays">
+   2D arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reshaping">
+   Reshaping
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to Numpy</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-numpy-arrays">
+   Making Numpy arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculations-with-numpy-arrays">
+   Calculations with Numpy arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-arrays">
+   2D arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reshaping">
+   Reshaping
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <section id="introduction-to-numpy">
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-numpy">
 <h1>Introduction to Numpy<a class="headerlink" href="#introduction-to-numpy" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -620,14 +694,259 @@
 </div>
 </div>
 </div>
+<div class="section" id="making-numpy-arrays">
+<h2>Making Numpy arrays<a class="headerlink" href="#making-numpy-arrays" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="calculations-with-numpy-arrays">
+<h2>Calculations with Numpy arrays<a class="headerlink" href="#calculations-with-numpy-arrays" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Making Numpy </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;24719.f3_beh_CHYM.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="n">lines</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;response,response_time,trial_ISI,trial_shape\n&#39;,
+ &#39;None,0,2000,red_star\n&#39;,
+ &#39;None,0,1000,red_circle\n&#39;,
+ &#39;None,0,2500,green_triangle\n&#39;,
+ &#39;None,0,1500,yellow_square\n&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">lines</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;None,0,2000,red_star\n&#39;,
+ &#39;None,0,1000,red_circle\n&#39;,
+ &#39;None,0,2500,green_triangle\n&#39;,
+ &#39;None,0,1500,yellow_square\n&#39;,
+ &#39;None,0,1500,blue_circle\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">n_lines</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>320
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;None,0,2000,red_star\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parts</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">parts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;None&#39;, &#39;0&#39;, &#39;2000&#39;, &#39;red_star\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">trial_isis</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_lines</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">response_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">trial_isis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">trial_isis</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2000.0, 1000.0, 2500.0, 1500.0, 1500.0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">response_times</span><span class="p">)</span>
+<span class="n">rt_arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 427.,
+         0.,   0., 369.,   0., 337.,   0., 308.,   0.,   0.,   0.,   0.,
+         0., 375., 478., 300.,   0.,   0.,   0., 321.,   0., 306.,   0.,
+         0.,   0.,   0.,   0.,   0., 370.,   0.,   0.,   0.,   0., 372.,
+       372., 342.,   0.,   0., 382.,   0.,   0., 318.,   0.,   0.,   0.,
+         0., 371.,   0., 450.,   0.,   0., 442.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0., 452., 381.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0., 351.,   0.,   0.,   0., 394.,   0., 353.,   0.,   0.,
+         0.,   0.,   0., 380.,   0., 387., 341., 366., 432., 415.,   0.,
+       406.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 466.,   0.,   0.,
+       364., 462., 477.,   0.,   0.,   0.,   0., 374., 384.,   0.,   0.,
+         0., 375.,   0.,   0.,   0.,   0.,   0., 432.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0., 369.,   0.,   0.,   0., 354.,   0.,
+       455.,   0.,   0., 338.,   0.,   0., 364.,   0.,   0., 376., 345.,
+       299., 308., 381.,   0., 375., 438., 325.,   0.,   0.,   0., 371.,
+       377., 314.,   0., 297.,   0.,   0.,   0.,   0., 349.,   0., 607.,
+       391., 334.,   0., 385.,   0.,   0.,   0., 386., 369.,   0.,   0.,
+       394.,   0.,   0., 361., 480.,   0.,   0.,   0., 375.,   0., 368.,
+         0., 325.,   0.,   0.,   0.,   0., 410., 328.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0., 412.,   0., 379.,   0.,   0.,   0., 383.,
+       376., 351.,   0.,   0.,   0., 361.,   0., 403., 411.,   0.,   0.,
+         0.,   0.,   0.,   0., 447.,   0., 590.,   0., 328.,   0., 376.,
+       410.,   0., 433., 370., 353.,   0.,   0.,   0.,   0.,   0.,   0.,
+       353.,   0., 386., 417., 315.,   0., 298.,   0.,   0.,   0., 370.,
+         0.,   0.,   0.,   0., 365.,   0.,   0., 439., 391.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 351.,   0.,
+         0.,   0.,   0.,   0., 464.,   0.,   0.,   0.,   0.,   0., 357.,
+         0.,   0.,   0.,   0.,   0.,   0., 328., 294.,   0.,   0., 471.,
+         0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isi_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">trial_isis</span><span class="p">)</span>
+<span class="n">isi_arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2000., 1000., 2500., 1500., 1500., 2000., 2500., 1500., 2000.,
+       1000., 1000., 1500., 1500., 2000., 1500., 1500., 1500., 2000.,
+       2000., 1500., 2500., 1000., 2500., 1000., 2500., 2000., 2000.,
+       1000., 1000., 1000., 1500., 1500., 1500., 1500., 1000., 1000.,
+       2500., 1000., 2000., 2000., 2500., 1500., 1500., 1000., 2500.,
+       2000., 1000., 1500., 2000., 1500., 2000., 1000., 1000., 2500.,
+       1500., 2000., 1000., 1000., 1000., 1000., 2500., 2500., 2000.,
+       2500., 2500., 1500., 2000., 1500., 2000., 1000., 1500., 2500.,
+       1000., 1000., 2500., 2000., 2500., 2500., 2500., 1500., 1500.,
+       1000., 2500., 2500., 2500., 1500., 1000., 2500., 2000., 1500.,
+       2000., 2500., 1500., 1500., 2500., 2500., 2000., 2000., 1000.,
+       1000., 2000., 2500., 1000., 2000., 2000., 1000., 2000., 2000.,
+       1500., 1000., 1000., 1500., 1500., 2500., 2500., 2500., 1500.,
+       2500., 1500., 1000., 1500., 2500., 1000., 2000., 2500., 1000.,
+       2000., 2500., 1500., 2000., 1000., 1000., 2500., 1500., 2000.,
+       1000., 1000., 2500., 1000., 2500., 2500., 2500., 1000., 2000.,
+       1000., 1500., 2000., 1500., 1500., 1500., 1000., 1000., 1500.,
+       1000., 2500., 2000., 2500., 1500., 2000., 2500., 1000., 1000.,
+       2500., 1500., 1500., 1500., 2500., 1000., 2500., 2000., 2000.,
+       1000., 2000., 2000., 2000., 2500., 1500., 2000., 2000., 2000.,
+       1000., 2000., 2000., 1500., 1000., 1000., 2000., 2000., 1500.,
+       1500., 1000., 2000., 1500., 1500., 1000., 2000., 1500., 1000.,
+       1500., 2500., 2000., 1000., 2000., 2000., 2000., 1500., 1000.,
+       1500., 1500., 1000., 2000., 1000., 1500., 2500., 2000., 2500.,
+       2500., 1500., 1000., 2500., 2500., 1000., 2500., 2500., 2000.,
+       2000., 1000., 2500., 2500., 1500., 2500., 2000., 2500., 2000.,
+       2500., 1000., 1000., 1500., 2500., 1500., 2500., 2500., 1500.,
+       1000., 2500., 1500., 2000., 1000., 2000., 2500., 2000., 1500.,
+       2500., 2500., 1500., 1500., 1000., 1500., 1500., 1500., 1000.,
+       2500., 1500., 2500., 2000., 2500., 1000., 2500., 2000., 2000.,
+       2000., 2500., 2000., 1000., 1500., 1000., 2000., 2500., 2500.,
+       1000., 1500., 1500., 2000., 2500., 1500., 2000., 1500., 1500.,
+       2500., 2500., 1000., 2500., 2000., 1500., 2000., 2500., 2000.,
+       2000., 1500., 1000., 1000., 2500., 2000., 2000., 2000., 1500.,
+       2000., 1000., 1000., 2000., 1000., 1500., 1500., 2500., 2000.,
+       1000., 2500., 1000., 1000., 1000.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
+<span class="n">response_times</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
+<span class="n">isi_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_lines</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">rt_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">isi_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">isi_arr</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2000., 1000., 2500., 1500., 1500.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The inter-stimulus interval is the interval between the previous trial and the current one.</p>
+<p>For example, the first ISI here, 1000, means that the first trial started at 1000ms from the start of the experiment.</p>
+<p>The second ISI, 2500, means that the second trial started at 1000ms + 2500ms from the start of the experiment.</p>
+<p>We want to work out how these stimulus times relate to the scanning we did.</p>
+<p>Let’s think first about the trial onset times, in terms of scans.</p>
+<p>The first thing we need to know is that the experimental software started 4 seconds after the first scan.</p>
+<p>We know from the first ISI above that the first trial happened 1000ms after the experimental software started.   That means that it happened 4 * 1000 + 1000 milliseconds after the scanner started.</p>
+<p>The second then we need to know is that the TR (time-to-repeat) for the scanner was 2 seconds.  So, the first scan happens at time 0, the second at time 2000ms, and so on.</p>
+</div>
+<div class="section" id="d-arrays">
+<h2>2D arrays<a class="headerlink" href="#d-arrays" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="reshaping">
+<h2>Reshaping<a class="headerlink" href="#reshaping" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -651,54 +970,42 @@
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="what_is_an_image.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">What is an image?</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="what_is_an_image.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">What is an image?</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="arrays_and_images.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Arrays as images, images as arrays</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="arrays_and_images.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Arrays as images, images as arrays</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The nipraxis team<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
