@@ -1,8 +1,8 @@
-# Installation
+# Installing on your computer
 
 We are going to be using the following major software for the class:
 
-- [Python] 3 (see {ref}`why-python-3`);
+- [Python] 3 (see {ref}`why-python`);
 - [numpy] (the Python array package);
 - [matplotlib] (Python plotting package);
 - [scipy] (Python scientific library);
@@ -66,6 +66,8 @@ python3 -m jupyter notebook
 
 This will open your web browser in the Jupyter interface.  Select the file you
 are interested in.
+
+(why-python)=
 
 ## Why Python
 

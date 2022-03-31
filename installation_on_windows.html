@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Reshaping, 4D to 2D &#8212; Practice and theory of brain imaging</title>
+    <title>Installation on Windows &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,8 +52,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Testing for near equality with “allclose”" href="allclose.html" />
-    <link rel="prev" title="Methods vs functions in NumPy" href="methods_vs_functions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -200,14 +198,14 @@
   Arrays and plots
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="methods_vs_functions.html">
    Methods vs functions in NumPy
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
    Reshaping, 4D to 2D
   </a>
  </li>
@@ -472,9 +470,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/reshape_and_4d.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/installation_on_windows.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.Rmd</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -492,7 +490,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Freshape_and_4d.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Finstallation_on_windows.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -508,33 +506,6 @@
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/reshape_and_4d.Rmd"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/reshape_and_4d.Rmd&branch=main"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
@@ -546,13 +517,35 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#revision-on-3d">
-   Revision on 3D
+  <a class="reference internal nav-link" href="#git-version-control">
+   Git version control
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#to-4d">
-   To 4D
+  <a class="reference internal nav-link" href="#python">
+   Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#copy-python-exe-to-python3-exe">
+   Copy python.exe to python3.exe
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-long-hand-way">
+     The long-hand way
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-short-hand-way">
+     The short-hand way
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#to-finish">
+   To finish
   </a>
  </li>
 </ul>
@@ -566,155 +559,62 @@
         
               <div>
                 
-  <section id="reshaping-4d-to-2d">
-<h1>Reshaping, 4D to 2D<a class="headerlink" href="#reshaping-4d-to-2d" title="Permalink to this headline">¶</a></h1>
-<p>See also: <a class="reference internal" href="voxels_by_time.html"><span class="doc std std-doc">Reshaping 4D images to 2D arrays</span></a>.</p>
-<section id="revision-on-3d">
-<h2>Revision on 3D<a class="headerlink" href="#revision-on-3d" title="Permalink to this headline">¶</a></h2>
-<p>We often find ourselves doing complicated reshape operations when we are
-dealing with images.   For example, we may find ourselves reshaping the first
-few dimensions, but leaving the last intact:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="c1"># now define first of 2 2D arrays (arr_3d[0, :, :])</span>
-                    <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]],</span>
-                    <span class="c1"># define second of 2 2D arrays (arr_3d[1, :, :])</span>
-                    <span class="p">[[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]</span>
-                  <span class="p">])</span>
-<span class="n">arr_3d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0,  1,  2,  3],
-        [ 4,  5,  6,  7],
-        [ 8,  9, 10, 11]],
-
-       [[12, 13, 14, 15],
-        [16, 17, 18, 19],
-        [20, 21, 22, 23]]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>For example, we might want to reshape only the first two dimensions, leaving
-the last the same. This will take us from an array of shape (2, 3, 4), to an
-array of shape (6, 4). The procedure is the same for all reshapes in NumPy.
-NumPy makes an output array shape (6, 4), then takes each element over the
-last dimension in the input, and fills the last dimension of the output, moves
-one across on the second dimension of the input, then fills a line in the
-first dimension of the output, and so on.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_2d</span> <span class="o">=</span> <span class="n">arr_3d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">arr_2d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6, 4)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3],
-       [ 4,  5,  6,  7],
-       [ 8,  9, 10, 11],
-       [12, 13, 14, 15],
-       [16, 17, 18, 19],
-       [20, 21, 22, 23]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>See also: Reshaping and three-dimensional arrays.</p>
+  <section id="installation-on-windows">
+<h1>Installation on Windows<a class="headerlink" href="#installation-on-windows" title="Permalink to this headline">¶</a></h1>
+<section id="git-version-control">
+<h2>Git version control<a class="headerlink" href="#git-version-control" title="Permalink to this headline">¶</a></h2>
+<p>Go to <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></p>
+<p>Click on the Downloads for Windows link at the bottom right.</p>
+<p>Download the file they propose, with a filename something like
+<code class="docutils literal notranslate"><span class="pre">Git-2.35.1.2-32-bit.exe</span></code>.</p>
+<p>Run the file to start the installation.</p>
+<p>We suggest you accept the defaults, except the screen called “Adjusting your
+PATH environment”, where we suggest you choose the option “Use git from the
+Windows Command Prompt”.</p>
 </section>
-<section id="to-4d">
-<h2>To 4D<a class="headerlink" href="#to-4d" title="Permalink to this headline">¶</a></h2>
-<p>It is a common to do this kind of operation on image data arrays.  Here we have
-a 4D array from an FMRI run (<code class="docutils literal notranslate"><span class="pre">ds114_sub009_t2r1.nii</span></code>):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the data file to this computer.</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
-<span class="c1"># Show the filename</span>
-<span class="n">bold_fname</span>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>We suggest you use <a class="reference external" href="https://chocolatey.org/">Chocolatey</a> to install Python.</p>
+<p>Go to the <a class="reference external" href="https://chocolatey.org/install">Choclately install page</a> and follow the instructions there.  Choose the ‘individual’ install.</p>
+<p>Install.  Then, in a Powershell terminal with Administrator privileges, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">choco</span> <span class="n">install</span> <span class="n">python</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/mb312/Library/Caches/nipraxis/0.2/ds114_sub009_t2r1.nii&#39;
+<p>Close the Powershell, and open it again, again with Administrator privileges.</p>
+<p>To open Powershell, you can press the Windows key, and type Powershell, then
+right click on the Powershell suggestion and select ‘Run as administrator’.</p>
+</section>
+<section id="copy-python-exe-to-python3-exe">
+<h2>Copy python.exe to python3.exe<a class="headerlink" href="#copy-python-exe-to-python3-exe" title="Permalink to this headline">¶</a></h2>
+<section id="the-long-hand-way">
+<h3>The long-hand way<a class="headerlink" href="#the-long-hand-way" title="Permalink to this headline">¶</a></h3>
+<p>Type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
-<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+<p>This will show you where Choco installed Python.</p>
+<p>In my case, Python was at <code class="docutils literal notranslate"><span class="pre">c:\Python310\python.exe</span></code></p>
+<p>Go to the directory containing Python.  In my case this was <code class="docutils literal notranslate"><span class="pre">c:\Python310</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Python310</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30, 173)
+<p>Then copy the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> file to <code class="docutils literal notranslate"><span class="pre">python3.exe</span></code>, so <code class="docutils literal notranslate"><span class="pre">python3</span></code> will also run the Python command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">python3</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
-</div>
-</div>
-<p>We can think of the 4D array as a sequence of 3D volumes:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol_shape</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">vol_shape</span>
+</section>
+<section id="the-short-hand-way">
+<h3>The short-hand way<a class="headerlink" href="#the-short-hand-way" title="Permalink to this headline">¶</a></h3>
+<p>If you prefer, you can do this copy step by copy-pasting the code below to the Powershell prompt, and pressing Enter:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$py_path</span> <span class="p">=</span> <span class="p">(</span><span class="nb">get-command</span> <span class="n">-CommandType</span> <span class="n">Application</span> <span class="n">python</span><span class="p">).</span><span class="n">Source</span>
+<span class="nb">cp </span><span class="nv">$py_path</span> <span class="p">((</span><span class="nb">Split-Path</span> <span class="nv">$py_path</span><span class="p">)</span> <span class="p">+</span> <span class="s1">&#39;\python3.exe&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30)
-</pre></div>
-</div>
-</div>
-</div>
-<p>To get the number of voxels in the volume, we can use the <code class="docutils literal notranslate"><span class="pre">np.prod</span></code>
-function on the shape. <code class="docutils literal notranslate"><span class="pre">np.prod</span></code> is like <code class="docutils literal notranslate"><span class="pre">np.sum</span></code>, but instead of adding
-the elements, it multiplies them:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_voxels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">vol_shape</span><span class="p">)</span>
-<span class="n">n_voxels</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>122880
-</pre></div>
-</div>
-</div>
-</div>
-<p>Then we can reshape the array to 2D, with voxels on the first axis, and time
-(volume) on the second.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_by_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_voxels</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">voxel_by_time</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(122880, 173)
-</pre></div>
-</div>
-</div>
-</div>
-<p>This is a useful operation when we want to apply some processing on all
-voxels, without regard to their relative spatial position.</p>
+</section>
+</section>
+<section id="to-finish">
+<h2>To finish<a class="headerlink" href="#to-finish" title="Permalink to this headline">¶</a></h2>
+<p>Close the Powershell.  All done.</p>
 </section>
 </section>
 
@@ -747,24 +647,6 @@ voxels, without regard to their relative spatial position.</p>
 
 <div class='prev-next-bottom'>
     
-    <div id="prev">
-        <a class="left-prev" href="methods_vs_functions.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Methods vs functions in NumPy</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="allclose.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Testing for near equality with “allclose”</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
 
 </div>
         

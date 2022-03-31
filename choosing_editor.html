@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Reshaping, 4D to 2D &#8212; Practice and theory of brain imaging</title>
+    <title>Choosing an editor &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,8 +52,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Testing for near equality with “allclose”" href="allclose.html" />
-    <link rel="prev" title="Methods vs functions in NumPy" href="methods_vs_functions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -200,14 +198,14 @@
   Arrays and plots
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="methods_vs_functions.html">
    Methods vs functions in NumPy
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
    Reshaping, 4D to 2D
   </a>
  </li>
@@ -472,9 +470,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/reshape_and_4d.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/choosing_editor.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.Rmd</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -492,7 +490,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Freshape_and_4d.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fchoosing_editor.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -508,33 +506,6 @@
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/reshape_and_4d.Rmd"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/reshape_and_4d.Rmd&branch=main"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
@@ -546,13 +517,45 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#revision-on-3d">
-   Revision on 3D
+  <a class="reference internal nav-link" href="#vim">
+   vim
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#to-4d">
-   To 4D
+  <a class="reference internal nav-link" href="#emacs">
+   Emacs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atom">
+   Atom
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-editors-that-you-might-consider">
+   Other editors that you might consider
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-any-platform">
+     For any platform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-osx">
+     For OSX
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-windows">
+     For Windows
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#suggestions">
+   Suggestions?
   </a>
  </li>
 </ul>
@@ -566,155 +569,106 @@
         
               <div>
                 
-  <section id="reshaping-4d-to-2d">
-<h1>Reshaping, 4D to 2D<a class="headerlink" href="#reshaping-4d-to-2d" title="Permalink to this headline">¶</a></h1>
-<p>See also: <a class="reference internal" href="voxels_by_time.html"><span class="doc std std-doc">Reshaping 4D images to 2D arrays</span></a>.</p>
-<section id="revision-on-3d">
-<h2>Revision on 3D<a class="headerlink" href="#revision-on-3d" title="Permalink to this headline">¶</a></h2>
-<p>We often find ourselves doing complicated reshape operations when we are
-dealing with images.   For example, we may find ourselves reshaping the first
-few dimensions, but leaving the last intact:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="c1"># now define first of 2 2D arrays (arr_3d[0, :, :])</span>
-                    <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]],</span>
-                    <span class="c1"># define second of 2 2D arrays (arr_3d[1, :, :])</span>
-                    <span class="p">[[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]</span>
-                  <span class="p">])</span>
-<span class="n">arr_3d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0,  1,  2,  3],
-        [ 4,  5,  6,  7],
-        [ 8,  9, 10, 11]],
-
-       [[12, 13, 14, 15],
-        [16, 17, 18, 19],
-        [20, 21, 22, 23]]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>For example, we might want to reshape only the first two dimensions, leaving
-the last the same. This will take us from an array of shape (2, 3, 4), to an
-array of shape (6, 4). The procedure is the same for all reshapes in NumPy.
-NumPy makes an output array shape (6, 4), then takes each element over the
-last dimension in the input, and fills the last dimension of the output, moves
-one across on the second dimension of the input, then fills a line in the
-first dimension of the output, and so on.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_2d</span> <span class="o">=</span> <span class="n">arr_3d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">arr_2d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6, 4)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3],
-       [ 4,  5,  6,  7],
-       [ 8,  9, 10, 11],
-       [12, 13, 14, 15],
-       [16, 17, 18, 19],
-       [20, 21, 22, 23]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>See also: Reshaping and three-dimensional arrays.</p>
+  <section id="choosing-an-editor">
+<span id="choosing-editor"></span><h1>Choosing an editor<a class="headerlink" href="#choosing-an-editor" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p><em>Use a Single Editor Well</em></p>
+<p>The editor should be an extension of your hand; make sure your editor is
+configurable, extensible, and programmable.</p>
+<p class="attribution">-From: "The pragmatic programmer" </p>
+</div></blockquote>
+<p>Being efficient means being able to use your tools well.  If you are fluent in
+using your editor, you will be able think better.  You will do better work
+more quickly and you will make fewer mistakes.</p>
+<p>This is particularly so for a text file editor.  Bear in mind that you will
+likely spend many hundreds of hours using this editor for various parts of
+your work over the rest of your career.  Be careful with your choice, and
+consider investing time to learn an editor well.</p>
+<p>If you do learn your text editor well, you will find yourself using it for
+many different tasks, including editing code, documents and configuration
+files.</p>
+<p>Programmers are a strange bunch of people who are extremely intolerant of
+tools that waste their time or energy.  Take their impatience seriously when
+you consider choosing your editor.  No programmer would use Windows Notepad
+for writing code, and that is for a very good reason.</p>
+<p>The two most well-known and fully-featured cross-platform general text editors
+are [emacs] and [vim] / [gvim].  These run on any platform.  [Atom] is another
+open-source cross-platform general text editor.</p>
+<p>No doubt you want to know what your instructors use for their daily work?  No?
+Well, in any case, the answer is that Matthew and JB use vim.</p>
+<section id="vim">
+<h2>vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
+<p>Vim is based on a classic Unix editor called [vi].  To quote from the [about
+vim][about vim] page:</p>
+<blockquote>
+<div><p>Vim isn’t an editor designed to hold its users’ hands. It is a tool, the
+use of which must be learned.</p>
+</div></blockquote>
+<p>To use Vim well, you have to practice using its commands, by following any one
+of several online tutorials. For example, you might try the <a class="reference external" href="http://www.openvim.com/tutorial.html">openvim tutorial</a>.  The trick is to teach your fingers
+what to do so you don’t think about it any more. This takes a long time,
+budget a week of 30 minutes a day to start to feel comfortable.</p>
+<p>If you do invest this effort, vim is an immensely satisfying editor to use,
+because you quickly find that your fingers remember what to do.  A
+programmer’s joke about vim is that “the cursor follows your eyes”, because
+your fingers are moving the cursor around the text without any apparent
+thought or effort on your part.</p>
+<p>It is relatively complicated to configure vim to its full potential.  Please
+ask for help if you are interested to do this.  It is time well spent.</p>
 </section>
-<section id="to-4d">
-<h2>To 4D<a class="headerlink" href="#to-4d" title="Permalink to this headline">¶</a></h2>
-<p>It is a common to do this kind of operation on image data arrays.  Here we have
-a 4D array from an FMRI run (<code class="docutils literal notranslate"><span class="pre">ds114_sub009_t2r1.nii</span></code>):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the data file to this computer.</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
-<span class="c1"># Show the filename</span>
-<span class="n">bold_fname</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/mb312/Library/Caches/nipraxis/0.2/ds114_sub009_t2r1.nii&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
-<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30, 173)
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can think of the 4D array as a sequence of 3D volumes:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol_shape</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">vol_shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30)
-</pre></div>
-</div>
-</div>
-</div>
-<p>To get the number of voxels in the volume, we can use the <code class="docutils literal notranslate"><span class="pre">np.prod</span></code>
-function on the shape. <code class="docutils literal notranslate"><span class="pre">np.prod</span></code> is like <code class="docutils literal notranslate"><span class="pre">np.sum</span></code>, but instead of adding
-the elements, it multiplies them:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_voxels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">vol_shape</span><span class="p">)</span>
-<span class="n">n_voxels</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>122880
-</pre></div>
-</div>
-</div>
-</div>
-<p>Then we can reshape the array to 2D, with voxels on the first axis, and time
-(volume) on the second.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_by_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_voxels</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">voxel_by_time</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(122880, 173)
-</pre></div>
-</div>
-</div>
-</div>
-<p>This is a useful operation when we want to apply some processing on all
-voxels, without regard to their relative spatial position.</p>
+<section id="emacs">
+<h2>Emacs<a class="headerlink" href="#emacs" title="Permalink to this headline">¶</a></h2>
+<p>Emacs is a classic and highly configurable text editor originally written by
+the great [Richard Stallman].  It is quicker to learn than vim, probably
+harder to configure, and has great power.  A good place to start is the [emacs
+tour][emacs tour].  About an hour of research and practice gets you far enough to learn
+how to start learning emacs.</p>
+<p>As for vim, to use it well, it needs some practice to get used to the
+keystrokes used, and as for vim, this practice is amply repaid by very fluent
+movement and editing.</p>
+<p>Emacs hard to configure, largely because it is so powerful.  We are very happy
+to help with this if you are interested.</p>
+</section>
+<section id="atom">
+<h2>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h2>
+<p>[Atom] is another open-source text editor that describes itself as “A hackable
+text editor for the 21st Century”.  It has installers for OSX, Linux and
+Windows.  It has many “packages” that can configure the editor in various
+ways, including setting it to use the same key combinations as [vim]
+([vim-mode], [ex-mode]) and emacs ([emacs-mode]).  It integrates with [git]
+version control out of the box.  It has useful features for development, such
+as the ability to run code from the editor and return the results to the
+editor window (see the [hydrogen] package).</p>
+</section>
+<section id="other-editors-that-you-might-consider">
+<h2>Other editors that you might consider<a class="headerlink" href="#other-editors-that-you-might-consider" title="Permalink to this headline">¶</a></h2>
+<p>We will support these editors too for anyone who wants to use them.  If you
+prefer another editor, we will help as best we can.</p>
+<p>This suggested set of editors comes from the top four editors from  [text
+editor competition][text editor competition] with the addition of TextMate and PyCharm (because we know at least
+one very efficient coder who use these).</p>
+<section id="for-any-platform">
+<h3>For any platform<a class="headerlink" href="#for-any-platform" title="Permalink to this headline">¶</a></h3>
+<p>Some people really like [Sublime text].  It is free to try, and the trial
+version does not expire, but if you continue to use it, the authors ask you to
+buy a license for 70 USD.</p>
+<p>We have heard good things about PyCharm.  This is a general text editor with
+features that allow it to be used as an integrated development environment for
+Python. See the <span class="xref myst">PyCharm web site</span> for more detail.</p>
+</section>
+<section id="for-osx">
+<h3>For OSX<a class="headerlink" href="#for-osx" title="Permalink to this headline">¶</a></h3>
+<p>[textmate] has some very serious enthusiasts among people who know what they
+are doing on OSX. There’s a free [textmate download for UC Berkeley].</p>
+</section>
+<section id="for-windows">
+<h3>For Windows<a class="headerlink" href="#for-windows" title="Permalink to this headline">¶</a></h3>
+<p>[Notepad++] seems to be a Windows favorite.</p>
+</section>
+</section>
+<section id="suggestions">
+<h2>Suggestions?<a class="headerlink" href="#suggestions" title="Permalink to this headline">¶</a></h2>
+<p>If you have any other suggestions or recommendations, please let us know.</p>
 </section>
 </section>
 
@@ -747,24 +701,6 @@ voxels, without regard to their relative spatial position.</p>
 
 <div class='prev-next-bottom'>
     
-    <div id="prev">
-        <a class="left-prev" href="methods_vs_functions.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Methods vs functions in NumPy</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="allclose.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Testing for near equality with “allclose”</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
 
 </div>
         
