@@ -434,7 +434,7 @@ print(fobj.readline())
 print(fobj.readline())
 ```
 
-Close a file when you’ve finished with it:
+Close a file when you have finished with it:
 
 ```{python}
 fobj.close()

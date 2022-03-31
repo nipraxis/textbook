@@ -13,10 +13,35 @@ program giving the terminal prompt is `Terminal.app`.  It comes installed
 with macOS.
 
 Press the Command key and the spacebar at the same time to open the Spotlight
-search box.  Type "terminal" and press return to open Terminal.app.  You
-should get a terminal window.  Consider pinning Terminal.app to your dock by
-right-clicking on the Terminal icon in the dock, chose "Options" and "Keep in
-dock".
+search box.  (You can also click on the magnifier glass icon in menu bar
+towards the right). Type "terminal" and press return to open Terminal.app.
+You should get a terminal window.  Consider pinning Terminal.app to your dock
+by right-clicking on the Terminal icon in the dock, chose "Options" and "Keep
+in dock".
+
+## Git
+
+Git comes with the Apple macOS command line tools.
+
+Install these by typing:
+
+```bash
+xcode-select --install
+```
+
+in Terminal.app.   If you don't have the command line tools, you will get a dialog box like this:
+
+![](image/xcode_cli_dialog.png)
+
+Select "Install".  You may need to wait a while for that to complete.
+
+When it has run, check you can run the `git` command with this, in Terminal.app:
+
+```bash
+git
+```
+
+It should show you the Git help message.
 
 ## Homebrew
 
@@ -27,21 +52,10 @@ instructions on this page.
 
 To install Homebrew, follow the instructions on the [homebrew home page](https://brew.sh/).
 
-## Git
-
-Git comes with the Apple macOS command line tools.
-
-To get these, if you do not have them, open Terminal.app (see above) and type
-`git` at the terminal command line.  If Git is not installed already you will
-get a dialog box offering to install the command line tools.  See [installing the command line tools](https://www.freecodecamp.org/news/install-xcode-command-line-tools/) for an illustration.
-
-Click 'install' to install the macOS developer command line tools, including
-Git.
-
 ## Python
 
 In {ref}`terminal.app`, type:
 
-```
+```bash
 brew install python
 ```
