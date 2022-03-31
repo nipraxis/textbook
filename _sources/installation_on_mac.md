@@ -54,8 +54,40 @@ To install Homebrew, follow the instructions on the [homebrew home page](https:/
 
 ## Python
 
+Mac actually comes with a version of Python for its own use, but it's nearly always better to install your own version, for your use.
+
+First, install with Homebrew.
+
 In {ref}`terminal-app`, type:
 
 ```bash
 brew install python
+```
+
+Next, open the file `~/.bash_profile` with a text editor, for example, like this:
+
+```
+touch ~/.bash_profile
+open -a TextEdit ~/.bash_profile
+```
+
+Scroll to the end of the file, and add this line:
+
+```
+export PATH=/usr/local/bin:$PATH
+```
+
+Be very careful that TextEdit doesn't capitalize Export for you.  Correct it
+again to lower case if it does.
+
+Save, and close the text editor.  Close Terminal.app  Start Terminal.app again, and confirm you are looking at the right Python:
+
+```bash
+which python3
+```
+
+You should see:
+
+```
+/usr/local/bin/python3
 ```

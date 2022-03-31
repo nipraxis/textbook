@@ -16,33 +16,343 @@ jupyter:
 
 # Introduction to Numpy
 
+Numpy is the fundamental package for creating and manipulating *arrays* in
+Python.
+
+As for all Python libraries, we need to load the library into Python, in order to use it.  We use the `import` statement to do that:
+
 ```{python}
 import numpy
 ```
 
+`numpy` is now a *module* available for use.  A module is Python's term for a library of code and / or data.
+
 ```{python}
+# Show what 'numpy' is
+numpy
+```
+
+Numpy is now ready to use, and has the name `numpy`.  For example, if we want to see the value of pi, according to Numpy, we could run this code:
+
+```{python}
+numpy.pi
+```
+
+Although it is perfectly reasonable to import Numpy with the simplest statement above, in practice, nearly everyone imports Numpy like this:
+
+```{python}
+# Make numpy available, but give it the name "np".
 import numpy as np
 ```
 
+All this is, is a version of the `import` statement where we *rename* the `numpy` module to `np`.
+
+Now, instead of using the longer `numpy` as the name for the module, we can use `np`.
+
 ```{python}
-rts = [10, 20, 30]
-rts
+# Show what 'np' is
+np
 ```
 
 ```{python}
-type(rts)
+np.pi
+```
+
+You will see that we nearly always use that `import numpy as np` form, and you
+will also see that almost everyone else in the Python world does the same
+thing.  It's near-universal convention.  That way, everyone knows you mean
+`numpy` when you use `np`.
+
+## Some example data
+
+Let's start with some data, and then go on to process these data with arrays.
+
+Here is a text file with some data about an experiment running in the scanner.
+The subject saw stimuli every 1.75 seconds or so.  Sometimes they press a
+spacebar in response to the stimulus. The file records the subject's data.  There is one row per trial, where each row records:
+
+* `response` — what response the subject make for this trial ('None' or
+  'spacebar')
+* `response_time` — the reaction time for their response (milliseconds after
+  the stimulus, 0 if no response)
+* `trial_ISI` — the time to wait until the *next* stimulus (the Interstimulus
+  Interval)
+* `trial_shape` — the name of the stimulus ('red_star', 'red_circle' and so
+  on).
+
+Here we open the file as text, and load the lines of the file into memory as a list.
+
+```{python}
+# Load the lines in the file as a list.
+lines = open('24719.f3_beh_CHYM.csv', 'rt').readlines()
+# Show the first 5 lines.
+lines[:5]
+```
+
+As you can see, the first line in the file gives the names of the fields in each row.  We will throw away that line to start.
+
+```{python}
+del lines[0]
+lines[:5]
+```
+
+There is one line for each trial, so the number of lines in the file is also the number of trials.
+
+```{python}
+n_trials = len(lines)
+n_trials
+```
+
+Let's look at the first line again:
+
+```{python}
+type(lines[0])
 ```
 
 ```{python}
-rts_arr = np.array(rts)
-rts_arr
+lines[0]
+```
+
+We can use the `split` *method* of the string to split the string at the commas (`,`).  This gives us a list of strings:
+
+```{python}
+parts = lines[0].split(',')
+parts
+```
+
+This in turn suggests how we could use `for` loop to collect the response times and the trial ISIs into lists, with one element per trial.
+
+```{python}
+rt_list = []  # List to hold the response times.
+isi_list = []  # List to hold the trial_isis
+# For each number from 0 up to (not including) the value of n_trials.
+for i in range(n_trials):
+    line = lines[i]  # Get the corresponding line for trial position i
+    parts = line.split(',')  # Split at commas
+    rt_list.append(float(parts[1]))  # Second thing is response time
+    isi_list.append(float(parts[2]))  # Third thing is trialISI
+# Show the first 5 trial ISIs.
+isi_list[:5]
+```
+
+## From lists to arrays
+
+Lists are useful, but we very often need arrays to help us process the data.
+
+We hope you will see why by example.
+
+You can make an array from a list by using the `np.array` function.
+
+```{python}
+isi_arr = np.array(isi_list)
+isi_arr
+```
+
+Let us do the same for the reaction times:
+
+```{python}
+rt_arr = np.array(rt_list)
+# Show the first 15 elements for brevity
+rt_list[:15]
+```
+
+## Arrays have a shape
+
+The array object has `shape` data attached to it:
+
+```{python}
+isi_arr.shape
+```
+
+The shape gives the number of dimensions, and the number of elements for each dimension.  We only have a one-dimensional array, so we see one number, which is the number of elements in the array.  We will get on to two-dimensional arrays later.
+
+## Arrays have a datatype
+
+Notice that the `np.array` function worked out that all the values in the list
+are floating point values, so the array has a *datatype* (`dtype`) of
+`float64` — the standard type of floating point value for Numpy and most other
+numerical packages (such as Matlab and R).   The array `dtype` specifies what
+type of elements the array does and can contain.
+
+```{python}
+isi_arr.dtype
+```
+
+This means that, for example, you cannot put data into this array that can very simply make a floating point value:
+
+```{python tags=c("raises-exception")}
+isi_arr[0] = 'some text'
+```
+
+This is in contrast to a list, where the elements can be a mixture of any type of Python value.
+
+```{python}
+my_list = [10.1, 15.3, 0.5]
+my_list[1] = 'some_text'
+my_list
+```
+
+There is another way we could have collected the information from the file, and put it directly into arrays.
+
+We could have started with an array of the right length and type, by using the `np.zeros` function to make an array with all 0.0 values.
+
+```{python}
+rt_arr = np.zeros(n_trials)
+rt_arr
 ```
 
 ```{python}
-rts_arr = np.array([10, 20, 30])
-rts_arr
+rt_arr = np.zeros(n_trials)
+isi_arr = np.zeros(n_trials)
+for i in range(n_trials):
+    line = lines[i]
+    parts = line.split(',')
+    rt_arr[i] = float(parts[1])
+    isi_arr[i] = float(parts[2])
+isi_arr[:5]
+```
+
+This is a fairly typical use of `np.zeros`.  We make an array of the right size and then fill in the elements later.
+
+## Our task
+
+We want to calculate the relationship between the onsets of the trials, the onsets of the responses, and the onsets of the scans in the scanner.
+
+As you saw above, the inter-stimulus interval is the interval between the
+previous trial and the current one.
+
+For example, the first ISI here, 2000, means that the first trial started at 2000ms from the start of the experiment.
+
+The second ISI, 1000, means that the second trial started at 2000ms + 1000ms from the start of the experiment.
+
+We want to work out how these stimulus times relate to the scanning we did.
+
+Let's think first about the trial onset times, in terms of scans.
+
+The first thing we need to know is that the experimental software started 4 seconds after the start of the first scan.
+
+We know from the first ISI above that the first trial happened 2000ms after the experimental software started.   That means that it happened 4000 + 2000 milliseconds after the scanner started.
+
+The second then we need to know is that the TR (time-to-repeat) for the scanner was 2 seconds.  So, the first scan happens at time 0, the second at time 2000ms, and so on.
+
+
+## Baby steps
+
+Let's proceed in steps.  First let us work out the time for each trial *from
+the start of the experimental software*.   Call this the `cumulative_times`.
+
+
+Because we are careful, we first work out what that would look like if we did it by hand.   Here are the first five ISI values.
+
+```{python}
+isi_arr[:5]
+```
+
+The first value for `cumulative_times` should be 2000.  The second will be 2000 + 1000.  The third will be 2000 + 1000 + 2500.
+
+```{python}
+[2000, 2000 + 1000, 2000 + 1000 + 2500, 2000 + 1000 + 2500 + 1500]
+```
+
+We could do the calculation for every trial with a `for` loop, like this:
+
+```{python}
+cumulative_times = np.zeros(n_trials)
+start_time = 0
+for i in range(0, n_trials):
+    start_time = start_time + isi_arr[i]
+    cumulative_times[i] = start_time
+# Show the first 10 values
+cumulative_times[:10]
+```
+
+That calculation looks right, comparing to our by-hand calculation above.
+
+Luckily, Numpy has a useful function called `np.cumsum` that does the cumulative sum of the elements in the array.  As you can see, this does exactly what we want here:
+
+```{python}
+# Show the cumulative sum
+cumulative_times = np.cumsum(isi_arr)
+# Show the first 10 values
+cumulative_times[:10]
+```
+
+Next we need to make these experiment time into times in terms of the scanner start.  To do this, we need to add 4000 to every time.   Of course we could go through and do that with a For loop:
+
+```{python}
+scanner_times = np.zeros(n_trials)
+for i in range(n_trials):
+    scanner_times[i] = cumulative_times[i] + 4000
+scanner_times[:10]
+```
+
+Luckily, however, Numpy will do that for us, because when we add a single number to an array, it has the effect of adding that number to *every element* in the array:
+
+```{python}
+scanner_times = cumulative_times + 4000
+scanner_times[:10]
+```
+
+We now have trial onset times in milliseconds, from the start of the first scan.  We want to recode these numbers in terms of scans since the scanner session started.
+
+For example, the first time is 6000 ms.  The scans each last 2000 ms.  So, in terms of scans, the first time is:
+
+```{python}
+scan_length_ms = 2000
+6000 / scan_length_ms
+```
+
+Luckily — Numpy does division in the same way as it does addition, with a single number against an array:
+
+```{python}
+times_in_scans = scanner_times / scan_length_ms
+times_in_scans[:10]
+```
+
+## 2D arrays
+
+We can also have arrays with more than one dimension.  For example, we can make our original trial and reaction times into a two-dimensional array, like this:
+
+```{python}
+all_times = np.zeros((n_trials, 2))
+all_times.shape
 ```
 
 ```{python}
-## Making Numpy 
+# Fill all of the rows, first column with the isi_arr values.
+all_times[:, 0] = isi_arr
+# Fill all of the rows, second column with the rt_arr values.
+all_times[:, 1] = rt_arr
+# Show the first 5 rows, and all columns.
+all_times[:5, :]
 ```
+
+## Reshaping
+
+Finally, we often want to change the *shape* of arrays.
+
+One common thing we may want to do is to take a 2D array and flatten it out into a 1D array, or visa versa.  That does not make much sense in this particular case, but bear with us.
+
+```{python}
+flattened = np.reshape(all_times, [n_trials * 2])
+flattened.shape
+```
+
+```{python}
+# The first 10 values.
+flattened[:10]
+```
+
+Here we take the flattened array, and put it back into its original two dimensions:
+
+```{python}
+unflattened = np.reshape(flattened, [n_trials, 2])
+unflattened.shape
+```
+
+```{python}
+# Show the first five rows.
+unflattened[:5, :]
+```
+
+

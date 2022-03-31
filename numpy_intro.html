@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Introduction to Numpy &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,35 +32,30 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >let toggleHintShow = 'Click to show';</script>
-    <script >let toggleHintHide = 'Click to hide';</script>
-    <script >let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Arrays as images, images as arrays" href="arrays_and_images.html" />
     <link rel="prev" title="What is an image?" href="what_is_an_image.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -110,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The tools
  </span>
@@ -152,7 +148,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Images and code and images
  </span>
@@ -204,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -256,7 +252,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -278,7 +274,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -356,7 +352,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -403,7 +399,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -481,12 +477,12 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/numpy_intro.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/numpy_intro.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -522,24 +518,20 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/numpy_intro.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/numpy_intro.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/numpy_intro.ipynb&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/numpy_intro.Rmd&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="_static/images/logo_jupyterhub.svg"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/numpy_intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -551,7 +543,7 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -559,13 +551,33 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-numpy-arrays">
-   Making Numpy arrays
+  <a class="reference internal nav-link" href="#some-example-data">
+   Some example data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculations-with-numpy-arrays">
-   Calculations with Numpy arrays
+  <a class="reference internal nav-link" href="#from-lists-to-arrays">
+   From lists to arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arrays-have-a-shape">
+   Arrays have a shape
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arrays-have-a-datatype">
+   Arrays have a datatype
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#our-task">
+   Our task
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baby-steps">
+   Baby steps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -586,49 +598,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Numpy</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-numpy-arrays">
-   Making Numpy arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculations-with-numpy-arrays">
-   Calculations with Numpy arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-arrays">
-   2D arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping">
-   Reshaping
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-numpy">
+  <section id="introduction-to-numpy">
 <h1>Introduction to Numpy<a class="headerlink" href="#introduction-to-numpy" title="Permalink to this headline">¶</a></h1>
+<p>Numpy is the fundamental package for creating and manipulating <em>arrays</em> in
+Python.</p>
+<p>As for all Python libraries, we need to load the library into Python, in order to use it.  We use the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement to do that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
@@ -636,72 +613,95 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> is now a <em>module</em> available for use.  A module is Python’s term for a library of code and / or data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
-<span class="n">rts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show what &#39;numpy&#39; is</span>
+<span class="n">numpy</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 20, 30]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;numpy&#39; from &#39;/Users/mb312/Library/Python/3.8/lib/python/site-packages/numpy/__init__.py&#39;&gt;
 </pre></div>
 </div>
 </div>
 </div>
+<p>Numpy is now ready to use, and has the name <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.  For example, if we want to see the value of pi, according to Numpy, we could run this code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">rts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
 </pre></div>
 </div>
 </div>
 </div>
+<p>Although it is perfectly reasonable to import Numpy with the simplest statement above, in practice, nearly everyone imports Numpy like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rts_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rts</span><span class="p">)</span>
-<span class="n">rts_arr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make numpy available, but give it the name &quot;np&quot;.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>All this is, is a version of the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement where we <em>rename</em> the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module to <code class="docutils literal notranslate"><span class="pre">np</span></code>.</p>
+<p>Now, instead of using the longer <code class="docutils literal notranslate"><span class="pre">numpy</span></code> as the name for the module, we can use <code class="docutils literal notranslate"><span class="pre">np</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show what &#39;np&#39; is</span>
+<span class="n">np</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10, 20, 30])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;numpy&#39; from &#39;/Users/mb312/Library/Python/3.8/lib/python/site-packages/numpy/__init__.py&#39;&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rts_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
-<span class="n">rts_arr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10, 20, 30])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="making-numpy-arrays">
-<h2>Making Numpy arrays<a class="headerlink" href="#making-numpy-arrays" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="calculations-with-numpy-arrays">
-<h2>Calculations with Numpy arrays<a class="headerlink" href="#calculations-with-numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<p>You will see that we nearly always use that <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code> form, and you
+will also see that almost everyone else in the Python world does the same
+thing.  It’s near-universal convention.  That way, everyone knows you mean
+<code class="docutils literal notranslate"><span class="pre">numpy</span></code> when you use <code class="docutils literal notranslate"><span class="pre">np</span></code>.</p>
+<section id="some-example-data">
+<h2>Some example data<a class="headerlink" href="#some-example-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start with some data, and then go on to process these data with arrays.</p>
+<p>Here is a text file with some data about an experiment running in the scanner.
+The subject saw stimuli every 1.75 seconds or so.  Sometimes they press a
+spacebar in response to the stimulus. The file records the subject’s data.  There is one row per trial, where each row records:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">response</span></code> — what response the subject make for this trial (‘None’ or
+‘spacebar’)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">response_time</span></code> — the reaction time for their response (milliseconds after
+the stimulus, 0 if no response)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trial_ISI</span></code> — the time to wait until the <em>next</em> stimulus (the Interstimulus
+Interval)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trial_shape</span></code> — the name of the stimulus (‘red_star’, ‘red_circle’ and so
+on).</p></li>
+</ul>
+<p>Here we open the file as text, and load the lines of the file into memory as a list.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;24719.f3_beh_CHYM.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the lines in the file as a list.</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;24719.f3_beh_CHYM.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="c1"># Show the first 5 lines.</span>
 <span class="n">lines</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -716,6 +716,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>As you can see, the first line in the file gives the names of the fields in each row.  We will throw away that line to start.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -733,15 +734,29 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>There is one line for each trial, so the number of lines in the file is also the number of trials.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
-<span class="n">n_lines</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_trials</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">n_trials</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>320
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the first line again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
 </pre></div>
 </div>
 </div>
@@ -758,6 +773,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">split</span></code> <em>method</em> of the string to split the string at the commas (<code class="docutils literal notranslate"><span class="pre">,</span></code>).  This gives us a list of strings:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parts</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
@@ -771,16 +787,19 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>This in turn suggests how we could use <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to collect the response times and the trial ISIs into lists, with one element per trial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">trial_isis</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_lines</span><span class="p">):</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-    <span class="n">response_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="n">trial_isis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-<span class="n">trial_isis</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_list</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List to hold the response times.</span>
+<span class="n">isi_list</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List to hold the trial_isis</span>
+<span class="c1"># For each number from 0 up to (not including) the value of n_trials.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trials</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># Get the corresponding line for trial position i</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>  <span class="c1"># Split at commas</span>
+    <span class="n">rt_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># Second thing is response time</span>
+    <span class="n">isi_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>  <span class="c1"># Third thing is trialISI</span>
+<span class="c1"># Show the first 5 trial ISIs.</span>
+<span class="n">isi_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -790,51 +809,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+</section>
+<section id="from-lists-to-arrays">
+<h2>From lists to arrays<a class="headerlink" href="#from-lists-to-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Lists are useful, but we very often need arrays to help us process the data.</p>
+<p>We hope you will see why by example.</p>
+<p>You can make an array from a list by using the <code class="docutils literal notranslate"><span class="pre">np.array</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">response_times</span><span class="p">)</span>
-<span class="n">rt_arr</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 427.,
-         0.,   0., 369.,   0., 337.,   0., 308.,   0.,   0.,   0.,   0.,
-         0., 375., 478., 300.,   0.,   0.,   0., 321.,   0., 306.,   0.,
-         0.,   0.,   0.,   0.,   0., 370.,   0.,   0.,   0.,   0., 372.,
-       372., 342.,   0.,   0., 382.,   0.,   0., 318.,   0.,   0.,   0.,
-         0., 371.,   0., 450.,   0.,   0., 442.,   0.,   0.,   0.,   0.,
-         0.,   0.,   0.,   0., 452., 381.,   0.,   0.,   0.,   0.,   0.,
-         0.,   0., 351.,   0.,   0.,   0., 394.,   0., 353.,   0.,   0.,
-         0.,   0.,   0., 380.,   0., 387., 341., 366., 432., 415.,   0.,
-       406.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
-         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 466.,   0.,   0.,
-       364., 462., 477.,   0.,   0.,   0.,   0., 374., 384.,   0.,   0.,
-         0., 375.,   0.,   0.,   0.,   0.,   0., 432.,   0.,   0.,   0.,
-         0.,   0.,   0.,   0.,   0., 369.,   0.,   0.,   0., 354.,   0.,
-       455.,   0.,   0., 338.,   0.,   0., 364.,   0.,   0., 376., 345.,
-       299., 308., 381.,   0., 375., 438., 325.,   0.,   0.,   0., 371.,
-       377., 314.,   0., 297.,   0.,   0.,   0.,   0., 349.,   0., 607.,
-       391., 334.,   0., 385.,   0.,   0.,   0., 386., 369.,   0.,   0.,
-       394.,   0.,   0., 361., 480.,   0.,   0.,   0., 375.,   0., 368.,
-         0., 325.,   0.,   0.,   0.,   0., 410., 328.,   0.,   0.,   0.,
-         0.,   0.,   0.,   0., 412.,   0., 379.,   0.,   0.,   0., 383.,
-       376., 351.,   0.,   0.,   0., 361.,   0., 403., 411.,   0.,   0.,
-         0.,   0.,   0.,   0., 447.,   0., 590.,   0., 328.,   0., 376.,
-       410.,   0., 433., 370., 353.,   0.,   0.,   0.,   0.,   0.,   0.,
-       353.,   0., 386., 417., 315.,   0., 298.,   0.,   0.,   0., 370.,
-         0.,   0.,   0.,   0., 365.,   0.,   0., 439., 391.,   0.,   0.,
-         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 351.,   0.,
-         0.,   0.,   0.,   0., 464.,   0.,   0.,   0.,   0.,   0., 357.,
-         0.,   0.,   0.,   0.,   0.,   0., 328., 294.,   0.,   0., 471.,
-         0.])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isi_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">trial_isis</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isi_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">isi_list</span><span class="p">)</span>
 <span class="n">isi_arr</span>
 </pre></div>
 </div>
@@ -880,11 +863,97 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Another way:</p>
+<p>Let us do the same for the reaction times:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
-<span class="n">response_times</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rt_list</span><span class="p">)</span>
+<span class="c1"># Show the first 15 elements for brevity</span>
+<span class="n">rt_list</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 427.0, 0.0, 0.0, 369.0, 0.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="arrays-have-a-shape">
+<h2>Arrays have a shape<a class="headerlink" href="#arrays-have-a-shape" title="Permalink to this headline">¶</a></h2>
+<p>The array object has <code class="docutils literal notranslate"><span class="pre">shape</span></code> data attached to it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isi_arr</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(320,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The shape gives the number of dimensions, and the number of elements for each dimension.  We only have a one-dimensional array, so we see one number, which is the number of elements in the array.  We will get on to two-dimensional arrays later.</p>
+</section>
+<section id="arrays-have-a-datatype">
+<h2>Arrays have a datatype<a class="headerlink" href="#arrays-have-a-datatype" title="Permalink to this headline">¶</a></h2>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">np.array</span></code> function worked out that all the values in the list
+are floating point values, so the array has a <em>datatype</em> (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>) of
+<code class="docutils literal notranslate"><span class="pre">float64</span></code> — the standard type of floating point value for Numpy and most other
+numerical packages (such as Matlab and R).   The array <code class="docutils literal notranslate"><span class="pre">dtype</span></code> specifies what
+type of elements the array does and can contain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isi_arr</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;float64&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that, for example, you cannot put data into this array that can very simply make a floating point value:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isi_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;some text&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [18],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">isi_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;some text&#39;</span>
+
+<span class="ne">ValueError</span>: could not convert string to float: &#39;some text&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is in contrast to a list, where the elements can be a mixture of any type of Python value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.1</span><span class="p">,</span> <span class="mf">15.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="n">my_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;some_text&#39;</span>
+<span class="n">my_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10.1, &#39;some_text&#39;, 0.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is another way we could have collected the information from the file, and put it directly into arrays.</p>
+<p>We could have started with an array of the right length and type, by using the <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> function to make an array with all 0.0 values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<span class="n">rt_arr</span>
 </pre></div>
 </div>
 </div>
@@ -914,9 +983,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
-<span class="n">isi_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_lines</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<span class="n">isi_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trials</span><span class="p">):</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
     <span class="n">rt_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -931,22 +1000,60 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>The inter-stimulus interval is the interval between the previous trial and the current one.</p>
-<p>For example, the first ISI here, 1000, means that the first trial started at 1000ms from the start of the experiment.</p>
-<p>The second ISI, 2500, means that the second trial started at 1000ms + 2500ms from the start of the experiment.</p>
+<p>This is a fairly typical use of <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code>.  We make an array of the right size and then fill in the elements later.</p>
+</section>
+<section id="our-task">
+<h2>Our task<a class="headerlink" href="#our-task" title="Permalink to this headline">¶</a></h2>
+<p>We want to calculate the relationship between the onsets of the trials, the onsets of the responses, and the onsets of the scans in the scanner.</p>
+<p>As you saw above, the inter-stimulus interval is the interval between the
+previous trial and the current one.</p>
+<p>For example, the first ISI here, 2000, means that the first trial started at 2000ms from the start of the experiment.</p>
+<p>The second ISI, 1000, means that the second trial started at 2000ms + 1000ms from the start of the experiment.</p>
 <p>We want to work out how these stimulus times relate to the scanning we did.</p>
 <p>Let’s think first about the trial onset times, in terms of scans.</p>
-<p>The first thing we need to know is that the experimental software started 4 seconds after the first scan.</p>
-<p>We know from the first ISI above that the first trial happened 1000ms after the experimental software started.   That means that it happened 4 * 1000 + 1000 milliseconds after the scanner started.</p>
+<p>The first thing we need to know is that the experimental software started 4 seconds after the start of the first scan.</p>
+<p>We know from the first ISI above that the first trial happened 2000ms after the experimental software started.   That means that it happened 4000 + 2000 milliseconds after the scanner started.</p>
 <p>The second then we need to know is that the TR (time-to-repeat) for the scanner was 2 seconds.  So, the first scan happens at time 0, the second at time 2000ms, and so on.</p>
-<p>Let’s proceed in steps.  First let us work out the time for each trial <em>from the start of the experimental software</em>.  We could do it like this:</p>
+</section>
+<section id="baby-steps">
+<h2>Baby steps<a class="headerlink" href="#baby-steps" title="Permalink to this headline">¶</a></h2>
+<p>Let’s proceed in steps.  First let us work out the time for each trial <em>from
+the start of the experimental software</em>.   Call this the <code class="docutils literal notranslate"><span class="pre">cumulative_times</span></code>.</p>
+<p>Because we are careful, we first work out what that would look like if we did it by hand.   Here are the first five ISI values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isi_arr</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2000., 1000., 2500., 1500., 1500.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first value for <code class="docutils literal notranslate"><span class="pre">cumulative_times</span></code> should be 2000.  The second will be 2000 + 1000.  The third will be 2000 + 1000 + 2500.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span> <span class="o">+</span> <span class="mi">1500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2000, 3000, 5500, 7000]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could do the calculation for every trial with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
 <span class="n">start_time</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_lines</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_trials</span><span class="p">):</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">isi_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">cumulative_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_time</span>
+<span class="c1"># Show the first 10 values</span>
 <span class="n">cumulative_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -958,14 +1065,189 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>That calculation looks right, comparing to our by-hand calculation above.</p>
+<p>Luckily, Numpy has a useful function called <code class="docutils literal notranslate"><span class="pre">np.cumsum</span></code> that does the cumulative sum of the elements in the array.  As you can see, this does exactly what we want here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the cumulative sum</span>
+<span class="n">cumulative_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">isi_arr</span><span class="p">)</span>
+<span class="c1"># Show the first 10 values</span>
+<span class="n">cumulative_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
 </div>
-<div class="section" id="d-arrays">
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2000.,  3000.,  5500.,  7000.,  8500., 10500., 13000., 14500.,
+       16500., 17500.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we need to make these experiment time into times in terms of the scanner start.  To do this, we need to add 4000 to every time.   Of course we could go through and do that with a For loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trials</span><span class="p">):</span>
+    <span class="n">scanner_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cumulative_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4000</span>
+<span class="n">scanner_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6000.,  7000.,  9500., 11000., 12500., 14500., 17000., 18500.,
+       20500., 21500.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luckily, however, Numpy will do that for us, because when we add a single number to an array, it has the effect of adding that number to <em>every element</em> in the array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_times</span> <span class="o">=</span> <span class="n">cumulative_times</span> <span class="o">+</span> <span class="mi">4000</span>
+<span class="n">scanner_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6000.,  7000.,  9500., 11000., 12500., 14500., 17000., 18500.,
+       20500., 21500.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have trial onset times in milliseconds, from the start of the first scan.  We want to recode these numbers in terms of scans since the scanner session started.</p>
+<p>For example, the first time is 6000 ms.  The scans each last 2000 ms.  So, in terms of scans, the first time is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scan_length_ms</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="mi">6000</span> <span class="o">/</span> <span class="n">scan_length_ms</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luckily — Numpy does division in the same way as it does addition, with a single number against an array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times_in_scans</span> <span class="o">=</span> <span class="n">scanner_times</span> <span class="o">/</span> <span class="n">scan_length_ms</span>
+<span class="n">times_in_scans</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3.  ,  3.5 ,  4.75,  5.5 ,  6.25,  7.25,  8.5 ,  9.25, 10.25,
+       10.75])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="d-arrays">
 <h2>2D arrays<a class="headerlink" href="#d-arrays" title="Permalink to this headline">¶</a></h2>
+<p>We can also have arrays with more than one dimension.  For example, we can make our original trial and reaction times into a two-dimensional array, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_trials</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">all_times</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
 </div>
-<div class="section" id="reshaping">
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(320, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fill all of the rows, first column with the isi_arr values.</span>
+<span class="n">all_times</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">isi_arr</span>
+<span class="c1"># Fill all of the rows, second column with the rt_arr values.</span>
+<span class="n">all_times</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">rt_arr</span>
+<span class="c1"># Show the first 5 rows, and all columns.</span>
+<span class="n">all_times</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2000.,    0.],
+       [1000.,    0.],
+       [2500.,    0.],
+       [1500.,    0.],
+       [1500.,    0.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reshaping">
 <h2>Reshaping<a class="headerlink" href="#reshaping" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we often want to change the <em>shape</em> of arrays.</p>
+<p>One common thing we may want to do is to take a 2D array and flatten it out into a 1D array, or visa versa.  That does not make much sense in this particular case, but bear with us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flattened</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">all_times</span><span class="p">,</span> <span class="p">[</span><span class="n">n_trials</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">flattened</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(640,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first 10 values.</span>
+<span class="n">flattened</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2000.,    0., 1000.,    0., 2500.,    0., 1500.,    0., 1500.,
+          0.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we take the flattened array, and put it back into its original two dimensions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unflattened</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">flattened</span><span class="p">,</span> <span class="p">[</span><span class="n">n_trials</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">unflattened</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(320, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the first five rows.</span>
+<span class="n">unflattened</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2000.,    0.],
+       [1000.,    0.],
+       [2500.,    0.],
+       [1500.,    0.],
+       [1500.,    0.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -989,42 +1271,54 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="what_is_an_image.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">What is an image?</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="arrays_and_images.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Arrays as images, images as arrays</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="what_is_an_image.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">What is an image?</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="arrays_and_images.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Arrays as images, images as arrays</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

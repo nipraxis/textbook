@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Brisk introduction to Python &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,35 +32,30 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >let toggleHintShow = 'Click to show';</script>
-    <script >let toggleHintHide = 'Click to hide';</script>
-    <script >let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Installing on your computer" href="installation.html" />
     <link rel="prev" title="More on the Jupyter notebook" href="more_on_jupyter.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -110,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The tools
  </span>
@@ -152,7 +148,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Images and code and images
  </span>
@@ -204,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -256,7 +252,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -278,7 +274,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -356,7 +352,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -403,7 +399,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -486,7 +482,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -536,6 +532,7 @@ const thebe_selector_output = ".output, .cell_output"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
+        
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
@@ -546,7 +543,7 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -745,212 +742,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Brisk introduction to Python</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Brisk introduction to Python
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numbers">
-     Numbers
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#true-and-false">
-   True and False
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#none">
-   None
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#equals">
-   Equals
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#if-statements-blocks-and-indention">
-   “If” statements, blocks and indention
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#while-statements">
-   “While” statements
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lists">
-   Lists
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#for-loops-and-iteration">
-     “for” loops and iteration
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lists-are-sequences">
-   Lists are sequences
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python-indices-are-0-based">
-   Python indices are 0-based
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#negative-indices">
-   Negative indices
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lists-are-mutable">
-   Lists are mutable
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adding-lists">
-   Adding lists
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#appending-and-removing-elements">
-   Appending and removing elements
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#slicing">
-   Slicing
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tuples">
-   Tuples
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#strings">
-   Strings
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strings-are-sequences">
-     Strings are sequences
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#strings-are-immutable">
-   Strings are immutable
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adding-strings">
-   Adding strings
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-methods">
-   String methods
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#inserting-values-into-strings">
-     Inserting values into strings
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#range">
-     Range
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sets">
-     Sets
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sets-lists-and-tuples-are-containers">
-     Sets, lists and tuples are containers
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dictionaries">
-   Dictionaries
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dictionaries-are-containers">
-     Dictionaries are containers
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#for-while-continue-and-break">
-   “for”, “while”, “continue” and “break”
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#functions">
-   Functions
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#default-values-for-function-arguments">
-     Default values for function arguments
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#functions-are-objects-too">
-   Functions are objects too
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#files">
-     Files
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modules">
-     Modules
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="brisk-introduction-to-python">
+  <section id="brisk-introduction-to-python">
 <h1>Brisk introduction to Python<a class="headerlink" href="#brisk-introduction-to-python" title="Permalink to this headline">¶</a></h1>
 <p>This is an introduction designed for those of us who already know a <a class="reference external" href="https://en.wikipedia.org/wiki/Dynamic_programming_language">dynamic
 programming
@@ -959,7 +754,7 @@ well. MATLAB and the R language are <a class="reference external" href="https://
 languages</a>.</p>
 <p>For an alternative introduction at a slightly slower pace, see <a class="reference internal" href="introducing_python.html"><span class="doc std std-doc">Introducing
 Python</span></a>.</p>
-<div class="section" id="numbers">
+<section id="numbers">
 <h2>Numbers<a class="headerlink" href="#numbers" title="Permalink to this headline">¶</a></h2>
 <p>There are two types of numbers in Python: integer and floating point.</p>
 <p>You may remember that an integer is a whole number - a number without anything
@@ -1135,9 +930,9 @@ of type <code class="docutils literal notranslate"><span class="pre">float</span
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="true-and-false">
+</section>
+</section>
+<section id="true-and-false">
 <h1>True and False<a class="headerlink" href="#true-and-false" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> are special objects in Python.  They are of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>
 (for Boolean).</p>
@@ -1223,8 +1018,8 @@ True
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="none">
+</section>
+<section id="none">
 <h1>None<a class="headerlink" href="#none" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">None</span></code> is also a special object in Python.  By convention, Python often uses
 <code class="docutils literal notranslate"><span class="pre">None</span></code> to mean that no valid value resulted from an operation, or to signal
@@ -1250,8 +1045,8 @@ nothing:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="equals">
+</section>
+<section id="equals">
 <h1>Equals<a class="headerlink" href="#equals" title="Permalink to this headline">¶</a></h1>
 <p>As for MATLAB and R, <code class="docutils literal notranslate"><span class="pre">=</span></code> is for assignment, <code class="docutils literal notranslate"><span class="pre">==</span></code> is for testing equality.</p>
 <div class="cell docutils container">
@@ -1308,8 +1103,8 @@ different from MATLAB, which uses <code class="docutils literal notranslate"><sp
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="if-statements-blocks-and-indention">
+</section>
+<section id="if-statements-blocks-and-indention">
 <h1>“If” statements, blocks and indention<a class="headerlink" href="#if-statements-blocks-and-indention" title="Permalink to this headline">¶</a></h1>
 <p>A conditional statement in Python looks like this:</p>
 <div class="cell docutils container">
@@ -1402,8 +1197,8 @@ my_var does equal 12
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="while-statements">
+</section>
+<section id="while-statements">
 <h1>“While” statements<a class="headerlink" href="#while-statements" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">while</span></code> statements are another example with an initial test followed by an
 indented block.   Here’s an example where we find the largest <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci
@@ -1431,8 +1226,8 @@ number</a> less than 1000:</p>
 indented <em>while block</em>.  Unlike the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, Python will continue to
 run the statements in the <code class="docutils literal notranslate"><span class="pre">while</span></code> block until the conditional in the
 <code class="docutils literal notranslate"><span class="pre">while</span></code> test evaluates to False.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="lists">
+</section>
+<section id="lists">
 <h1>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h1>
 <p>Make a list like this:</p>
 <div class="cell docutils container">
@@ -1487,7 +1282,7 @@ run the statements in the <code class="docutils literal notranslate"><span class
 </div>
 </div>
 <p>A Python list is like a cell array in MATLAB, or a <code class="docutils literal notranslate"><span class="pre">list</span></code> in R.</p>
-<div class="section" id="for-loops-and-iteration">
+<section id="for-loops-and-iteration">
 <h2>“for” loops and iteration<a class="headerlink" href="#for-loops-and-iteration" title="Permalink to this headline">¶</a></h2>
 <p>We can <em>iterate</em> over a list.  To iterate, means to fetch one element after
 another from some container, such as a list.  We can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to
@@ -1519,9 +1314,9 @@ container, Python executes the <em>for block</em>.</p>
 MATLAB.</p>
 <p>See Range for a common way of writing a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that iterates
 over a sequence of integers.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="lists-are-sequences">
+</section>
+</section>
+<section id="lists-are-sequences">
 <h1>Lists are sequences<a class="headerlink" href="#lists-are-sequences" title="Permalink to this headline">¶</a></h1>
 <p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range">sequence</a>
 is a category of Python objects that have a defined element order, have a
@@ -1591,8 +1386,8 @@ will give a new sequence containing the first <code class="docutils literal notr
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="python-indices-are-0-based">
+</section>
+<section id="python-indices-are-0-based">
 <h1>Python indices are 0-based<a class="headerlink" href="#python-indices-are-0-based" title="Permalink to this headline">¶</a></h1>
 <p>Indices for Python sequences start at 0.  For Python, the first element is at
 index 0, the second element is at index 1, and so on:</p>
@@ -1622,8 +1417,8 @@ index 0, the second element is at index 1, and so on:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="negative-indices">
+</section>
+<section id="negative-indices">
 <h1>Negative indices<a class="headerlink" href="#negative-indices" title="Permalink to this headline">¶</a></h1>
 <p>Negative numbers as indices count back from the end of the list. For
 example, use index <code class="docutils literal notranslate"><span class="pre">-1</span></code> to return the last element in the list:</p>
@@ -1658,8 +1453,8 @@ example, use index <code class="docutils literal notranslate"><span class="pre">
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="lists-are-mutable">
+</section>
+<section id="lists-are-mutable">
 <h1>Lists are mutable<a class="headerlink" href="#lists-are-mutable" title="Permalink to this headline">¶</a></h1>
 <p>A list is a <em>mutable</em> object. Mutable means, that we can change the elements
 in the list, without creating a new list.</p>
@@ -1711,8 +1506,8 @@ and <code class="docutils literal notranslate"><span class="pre">another_list</s
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="adding-lists">
+</section>
+<section id="adding-lists">
 <h1>Adding lists<a class="headerlink" href="#adding-lists" title="Permalink to this headline">¶</a></h1>
 <p>Adding two lists with <code class="docutils literal notranslate"><span class="pre">+</span></code> returns a new list that is the concatenation of
 the two lists:</p>
@@ -1729,8 +1524,8 @@ the two lists:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="appending-and-removing-elements">
+</section>
+<section id="appending-and-removing-elements">
 <h1>Appending and removing elements<a class="headerlink" href="#appending-and-removing-elements" title="Permalink to this headline">¶</a></h1>
 <p>You can append elements with the <code class="docutils literal notranslate"><span class="pre">append</span></code> method.</p>
 <p>A method is a function attached to the object.  See Functions for more
@@ -1827,8 +1622,8 @@ as the <code class="docutils literal notranslate"><span class="pre">sort</span><
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="slicing">
+</section>
+<section id="slicing">
 <h1>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h1>
 <p>You can return slices from any sequence, including lists, by putting a slice
 specifier in square brackets. For example, this returns the first 3 elements
@@ -2038,8 +1833,8 @@ you a reversed copy of the list:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="tuples">
+</section>
+<section id="tuples">
 <h1>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h1>
 <p>Tuples are almost the same as lists, except they are not mutable. That
 is, you cannot change the elements of a tuple, or change the number of
@@ -2167,8 +1962,8 @@ the element, and before the closing parenthesis:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="strings">
+</section>
+<section id="strings">
 <h1>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h1>
 <p>Make a string like this:</p>
 <div class="cell docutils container">
@@ -2227,7 +2022,7 @@ are the same:</p>
 </div>
 </div>
 </div>
-<div class="section" id="strings-are-sequences">
+<section id="strings-are-sequences">
 <h2>Strings are sequences<a class="headerlink" href="#strings-are-sequences" title="Permalink to this headline">¶</a></h2>
 <p>Like lists, strings are sequences (have length, can be iterated, can index,
 can slice).</p>
@@ -2312,9 +2107,9 @@ t
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="strings-are-immutable">
+</section>
+</section>
+<section id="strings-are-immutable">
 <h1>Strings are immutable<a class="headerlink" href="#strings-are-immutable" title="Permalink to this headline">¶</a></h1>
 <p>Unlike lists, strings are immutable. You cannot change the characters within a
 string:</p>
@@ -2337,8 +2132,8 @@ string:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="adding-strings">
+</section>
+<section id="adding-strings">
 <h1>Adding strings<a class="headerlink" href="#adding-strings" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2352,8 +2147,8 @@ string:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="string-methods">
+</section>
+<section id="string-methods">
 <h1>String methods<a class="headerlink" href="#string-methods" title="Permalink to this headline">¶</a></h1>
 <p>Strings have lots of interesting methods. In IPython, try tab-complete on a
 string variable name, followed by a period – e.g. type <code class="docutils literal notranslate"><span class="pre">my_string.</span></code>,
@@ -2433,7 +2228,7 @@ characters removed from the beginning and end of the string:</p>
 </div>
 </div>
 </div>
-<div class="section" id="inserting-values-into-strings">
+<section id="inserting-values-into-strings">
 <h2>Inserting values into strings<a class="headerlink" href="#inserting-values-into-strings" title="Permalink to this headline">¶</a></h2>
 <p>We often want to insert values into strings.  This is called <em>string interpolation</em>.</p>
 <p>For example, let us say we are running a shepherding business.  The shepherds rotate, some days Mary is on, sometimes Joseph, sometimes their son James.</p>
@@ -2480,8 +2275,8 @@ of our shepherding business, that tells people which shepherd is on duty, and ho
 </div>
 <p>There are many ways you can tell Python how to format the values you insert, and there are other, less common and useful ways to do this string interpolation.</p>
 <p>For more details and more options, see: <a class="reference internal" href="string_formatting.html"><span class="doc std std-doc">Inserting values into strings</span></a>.</p>
-</div>
-<div class="section" id="range">
+</section>
+<section id="range">
 <h2>Range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">range</span></code> returns a <em>range object</em>.  It is a sequence, and so it is rather like
 a list .  When you use <code class="docutils literal notranslate"><span class="pre">range</span></code> with one argument, the argument value is the
@@ -2590,8 +2385,8 @@ loop:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="sets">
+</section>
+<section id="sets">
 <h2>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h2>
 <p>Sets are collections of unique elements, with no defined order.  Python
 reserves the right to order set elements in any way it chooses:</p>
@@ -2678,8 +2473,8 @@ cannot rely on the same order in any two runs of your program:</p>
 <p>Look at the <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset">methods of the set
 object</a>
 for interesting operations such as <code class="docutils literal notranslate"><span class="pre">difference</span></code>, <code class="docutils literal notranslate"><span class="pre">union</span></code>, <code class="docutils literal notranslate"><span class="pre">intersection</span></code> etc.</p>
-</div>
-<div class="section" id="sets-lists-and-tuples-are-containers">
+</section>
+<section id="sets-lists-and-tuples-are-containers">
 <h2>Sets, lists and tuples are containers<a class="headerlink" href="#sets-lists-and-tuples-are-containers" title="Permalink to this headline">¶</a></h2>
 <p>A <em>container</em> is a Python object for which you can test an element for
 membership.  So, if an object <code class="docutils literal notranslate"><span class="pre">c</span></code> is a container then we can test if an
@@ -2748,9 +2543,9 @@ element is in the container with <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dictionaries">
+</section>
+</section>
+<section id="dictionaries">
 <h1>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h1>
 <p>A dictionary is collection of key / value pairs. The <em>key</em> is something that
 identifies the element, and the <em>value</em> is the value corresponding to the
@@ -2887,7 +2682,7 @@ value pair that had the same key:</p>
 </div>
 </div>
 </div>
-<div class="section" id="dictionaries-are-containers">
+<section id="dictionaries-are-containers">
 <h2>Dictionaries are containers<a class="headerlink" href="#dictionaries-are-containers" title="Permalink to this headline">¶</a></h2>
 <p>Dictionaries are also containers.  Python takes the elements in the container
 to be the dictionary keys.  This is a convenient way to test if you already
@@ -2916,9 +2711,9 @@ have a key in a dictionary:</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="for-while-continue-and-break">
+</section>
+</section>
+<section id="for-while-continue-and-break">
 <h1>“for”, “while”, “continue” and “break”<a class="headerlink" href="#for-while-continue-and-break" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">for</span></code> statements and <code class="docutils literal notranslate"><span class="pre">while</span></code> statement are <em>loops</em>, because Python keeps
 executing the <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> block until the <code class="docutils literal notranslate"><span class="pre">for</span></code> runs out of
@@ -2970,8 +2765,8 @@ of the <code class="docutils literal notranslate"><span class="pre">for</span></
 </div>
 </div>
 <p>See “for” and “while”, “break” and “else:” for more on loops and <code class="docutils literal notranslate"><span class="pre">break</span></code>.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="functions">
+</section>
+<section id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
 <p>Here we define our first function in Python:</p>
 <div class="cell docutils container">
@@ -3055,7 +2850,7 @@ return statement, the function returns <code class="docutils literal notranslate
 </div>
 </div>
 </div>
-<div class="section" id="default-values-for-function-arguments">
+<section id="default-values-for-function-arguments">
 <h2>Default values for function arguments<a class="headerlink" href="#default-values-for-function-arguments" title="Permalink to this headline">¶</a></h2>
 <p>The function definition can give a default value for a function argument:</p>
 <div class="cell docutils container">
@@ -3115,9 +2910,9 @@ of the argument often gives a good clue as to its purpose in the function.  It
 can also be useful with functions having many parameters with default values;
 in that case using the argument name makes it easier to pass in one or few
 values that are different from the defaults.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="functions-are-objects-too">
+</section>
+</section>
+<section id="functions-are-objects-too">
 <h1>Functions are objects too<a class="headerlink" href="#functions-are-objects-too" title="Permalink to this headline">¶</a></h1>
 <p>Remember that everything in Python is an object. The function is itself an
 object, where the name of the function is a variable, that refers to the
@@ -3302,7 +3097,7 @@ pass this in using the sort function parameter name, which is <code class="docut
 </div>
 </div>
 </div>
-<div class="section" id="files">
+<section id="files">
 <h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
 <p>You can open a file in several different <em>modes</em>.  The mode specifies whether
 you want to read or write the file, and whether the data in the file is, or
@@ -3400,8 +3195,8 @@ Line is: Python is good for coding
 </div>
 </div>
 <p>We can delete files by using routines from various <em>modules</em>.</p>
-</div>
-<div class="section" id="modules">
+</section>
+<section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <p>Modules are libraries of data and functions.  Many of these come pre-installed with Python.</p>
 <p>One common module is the <code class="docutils literal notranslate"><span class="pre">os</span></code> module, where <code class="docutils literal notranslate"><span class="pre">os</span></code> is short for <a class="reference external" href="https://en.wikipedia.org/wiki/Operating_system">operating system</a>.  The module has various functions that allow us to look at the system, and work with files.</p>
@@ -3445,8 +3240,8 @@ Line is: Python is good for coding
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3470,42 +3265,54 @@ Line is: Python is good for coding
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="more_on_jupyter.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">More on the Jupyter notebook</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="installation.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Installing on your computer</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="more_on_jupyter.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">More on the Jupyter notebook</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="installation.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Installing on your computer</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

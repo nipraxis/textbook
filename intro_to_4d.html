@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Working with four dimensional images, masks and functions &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,35 +32,30 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >let toggleHintShow = 'Click to show';</script>
-    <script >let toggleHintHide = 'Click to hide';</script>
-    <script >let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reshaping 4D images to 2D arrays" href="voxels_by_time.html" />
     <link rel="prev" title="Subplots and axes in matplotlib" href="subplots.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -110,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The tools
  </span>
@@ -152,7 +148,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Images and code and images
  </span>
@@ -204,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -256,7 +252,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -278,7 +274,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -356,7 +352,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -403,7 +399,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -486,7 +482,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -536,6 +532,7 @@ const thebe_selector_output = ".output, .cell_output"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
+        
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
@@ -546,7 +543,7 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -591,58 +588,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Working with four dimensional images, masks and functions</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reading-text-files">
-   Reading text files
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loading-data-with-nibabel">
-   Loading data with Nibabel
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#four-dimensional-arrays-space-time">
-   Four dimensional arrays - space + time
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numpy-operations-work-on-the-whole-array-by-default">
-   Numpy operations work on the whole array by default
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#indexing-with-boolean-arrays">
-   Indexing with Boolean arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#defining-functions">
-   Defining functions
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="working-with-four-dimensional-images-masks-and-functions">
+  <section id="working-with-four-dimensional-images-masks-and-functions">
 <h1>Working with four dimensional images, masks and functions<a class="headerlink" href="#working-with-four-dimensional-images-masks-and-functions" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -653,7 +602,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="reading-text-files">
+<section id="reading-text-files">
 <h2>Reading text files<a class="headerlink" href="#reading-text-files" title="Permalink to this headline">¶</a></h2>
 <p>We’ve been reading values from text files in the exercises.</p>
 <p>Here is some revision on how to do that, going from the crude to the
@@ -729,8 +678,8 @@ returning a list of strings:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="loading-data-with-nibabel">
+</section>
+<section id="loading-data-with-nibabel">
 <h2>Loading data with Nibabel<a class="headerlink" href="#loading-data-with-nibabel" title="Permalink to this headline">¶</a></h2>
 <p>Nibabel allows us to <code class="docutils literal notranslate"><span class="pre">load</span></code> images. First we need to <code class="docutils literal notranslate"><span class="pre">import</span></code> the nibabel
 library:</p>
@@ -794,8 +743,8 @@ get the image array data is with the <code class="docutils literal notranslate">
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="four-dimensional-arrays-space-time">
+</section>
+<section id="four-dimensional-arrays-space-time">
 <h2>Four dimensional arrays - space + time<a class="headerlink" href="#four-dimensional-arrays-space-time" title="Permalink to this headline">¶</a></h2>
 <p>The image we have just loaded is a four-dimensional image, with a
 four-dimensional array:</p>
@@ -861,14 +810,14 @@ exactly the same meaning:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10f9ea790&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x111271670&gt;
 </pre></div>
 </div>
 <img alt="_images/intro_to_4d_28_1.png" src="_images/intro_to_4d_28_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="numpy-operations-work-on-the-whole-array-by-default">
+</section>
+<section id="numpy-operations-work-on-the-whole-array-by-default">
 <h2>Numpy operations work on the whole array by default<a class="headerlink" href="#numpy-operations-work-on-the-whole-array-by-default" title="Permalink to this headline">¶</a></h2>
 <p>Numpy operations like <code class="docutils literal notranslate"><span class="pre">min</span></code>, and <code class="docutils literal notranslate"><span class="pre">max</span></code> and <code class="docutils literal notranslate"><span class="pre">std</span></code> operate on the whole numpy
 array by default, ignoring any array shape. For example, here is the maximum
@@ -912,14 +861,14 @@ across time):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10fae80a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x11135ff40&gt;
 </pre></div>
 </div>
 <img alt="_images/intro_to_4d_34_1.png" src="_images/intro_to_4d_34_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="indexing-with-boolean-arrays">
+</section>
+<section id="indexing-with-boolean-arrays">
 <h2>Indexing with Boolean arrays<a class="headerlink" href="#indexing-with-boolean-arrays" title="Permalink to this headline">¶</a></h2>
 <p>See the scipy lectures notes on the <a class="reference external" href="http://scipy-lectures.github.io/intro/numpy/array_object.html">numpy array
 object</a>.</p>
@@ -990,8 +939,8 @@ wanted to select only values less than 10 in <code class="docutils literal notra
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="defining-functions">
+</section>
+<section id="defining-functions">
 <h2>Defining functions<a class="headerlink" href="#defining-functions" title="Permalink to this headline">¶</a></h2>
 <p>See Brisk introduction to Python.</p>
 <p>A function takes input arguments, transforms them, and returns the
@@ -1026,8 +975,8 @@ Temperature: 78
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1051,42 +1000,54 @@ Temperature: 78
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="subplots.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Subplots and axes in matplotlib</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="voxels_by_time.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Reshaping 4D images to 2D arrays</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="subplots.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Subplots and axes in matplotlib</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="voxels_by_time.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Reshaping 4D images to 2D arrays</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>
