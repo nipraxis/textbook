@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (choosing-editor)=
 
 # Choosing an editor
@@ -87,9 +91,9 @@ editor window (see the [hydrogen] package).
 We will support these editors too for anyone who wants to use them.  If you
 prefer another editor, we will help as best we can.
 
-This suggested set of editors comes from the top four editors from  [text
-editor competition][text editor competition] with the addition of TextMate and PyCharm (because we know at least
-one very efficient coder who use these).
+This suggested set of editors comes from the top four editors from [text
+editor competition][text editor competition] with the addition of TextMate and
+PyCharm (because we know at least one very efficient coder who use these).
 
 ### For any platform
 
@@ -99,12 +103,7 @@ buy a license for 70 USD.
 
 We have heard good things about PyCharm.  This is a general text editor with
 features that allow it to be used as an integrated development environment for
-Python. See the [PyCharm web site](PyCharm) for more detail.
-
-### For OSX
-
-[textmate] has some very serious enthusiasts among people who know what they
-are doing on OSX. There's a free [textmate download for UC Berkeley].
+Python. See the [PyCharm web site](https://www.jetbrains.com/pycharm/) for more detail.
 
 ### For Windows
 

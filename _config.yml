@@ -60,7 +60,6 @@ exclude_patterns:
   # Hemodynamic response modeling
   - introducing_nipype.Rmd
   # Code organization and collaboration
-  - choosing_editor.md
   - full_scripting.md
   - git_videos.md
   - git_walk_through.Rmd
@@ -68,11 +67,9 @@ exclude_patterns:
   - github_dummies_homework.md
   - github_glm_homework.md
   - github_pca_homework.md
-  - installation_on_linux.md
-  - installation_on_mac.md
-  - installation_on_windows.md
   # Meta-course
   - README.md
+  - data/README.md
   - _todo.md
   - _scripts
   - bibliography.md
@@ -85,7 +82,6 @@ exclude_patterns:
   - glossary.md
   - index.md
   - logistics.md
-  - markdown.md
   - mentors.md
   - multi_model_homework.md
   - participate.md

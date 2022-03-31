@@ -1,8 +1,8 @@
-# Installation
+# Installing on your computer
 
 We are going to be using the following major software for the class:
 
-- [Python] 3 (see {ref}`why-python-3`);
+- [Python] 3 (see {ref}`why-python`);
 - [numpy] (the Python array package);
 - [matplotlib] (Python plotting package);
 - [scipy] (Python scientific library);
@@ -67,13 +67,15 @@ python3 -m jupyter notebook
 This will open your web browser in the Jupyter interface.  Select the file you
 are interested in.
 
+(why-python)=
+
 ## Why Python
 
 Python is well-suited to scientific computing for [many
 reasons](https://github.com/nipy/nipy/blob/master/doc/faq/why.rst#why-python).
 
 Python code is famously easy to read, and Python has become a common choice
-for introductions to programming {{ -- }} see for example the [Berkeley CS61A
+for introductions to programming — see for example the [Berkeley CS61A
 course](http://cs61a.org) and the [MIT introduction to computer science and
 programming](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-introduction-to-computer-science-and-programming-spring-2011/).
 

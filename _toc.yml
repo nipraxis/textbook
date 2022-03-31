@@ -16,11 +16,12 @@ parts:
   - file: using_jupyter
   - file: more_on_jupyter
   - file: brisk_python
-  - file: installing
+  - file: installation
 
 - caption: Images and code and images
   chapters:
   - file: what_is_an_image
+  - file: numpy_intro
   - file: arrays_and_images
   - file: slicing_with_booleans
   - file: numpy_logical
