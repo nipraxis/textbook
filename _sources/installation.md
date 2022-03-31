@@ -75,7 +75,7 @@ Python is well-suited to scientific computing for [many
 reasons](https://github.com/nipy/nipy/blob/master/doc/faq/why.rst#why-python).
 
 Python code is famously easy to read, and Python has become a common choice
-for introductions to programming {{ -- }} see for example the [Berkeley CS61A
+for introductions to programming — see for example the [Berkeley CS61A
 course](http://cs61a.org) and the [MIT introduction to computer science and
 programming](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-introduction-to-computer-science-and-programming-spring-2011/).
 

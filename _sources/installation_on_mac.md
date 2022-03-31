@@ -31,7 +31,7 @@ xcode-select --install
 
 in Terminal.app.   If you don't have the command line tools, you will get a dialog box like this:
 
-![](image/xcode_cli_dialog.png)
+![](images/xcode_cli_dialog.png)
 
 Select "Install".  You may need to wait a while for that to complete.
 
@@ -54,7 +54,7 @@ To install Homebrew, follow the instructions on the [homebrew home page](https:/
 
 ## Python
 
-In {ref}`terminal.app`, type:
+In {ref}`terminal-app`, type:
 
 ```bash
 brew install python
