@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Installation &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_problem.html">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  The tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="to_code.html">
+   Ode to code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surviving_computers.html">
+   Surviving the computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_software.html">
+   Our tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="using_jupyter.html">
+   Using Jupyter notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_on_jupyter.html">
+   More on the Jupyter notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="what_is_an_image.html">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slicing_with_booleans.html">
+   Slicing with boolean vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   Numpy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Into the fourth dimension
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Coordinate systems and spatial transforms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Statistics and the general linear model
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p>
+ <span class="caption-text">
+  Code organization and collaboration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/installation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Finstallation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation-1">
+   Installation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-python">
+   Why Python
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>We are going to be using the following major software for the class:</p>
+<ul class="simple">
+<li><p>[Python] 3 (see <span class="xref std std-ref">why-python-3</span>);</p></li>
+<li><p>[numpy] (the Python array package);</p></li>
+<li><p>[matplotlib] (Python plotting package);</p></li>
+<li><p>[scipy] (Python scientific library);</p></li>
+<li><p>[nibabel] (read / write of neuroimaging file formats in Python);</p></li>
+</ul>
+<p>For the class and homework we will use:</p>
+<ul class="simple">
+<li><p>a text editor of your choice - see <span class="xref std std-doc">choosing_editor</span>.  Choosing an
+editor is an important and personal decision, and one we recommend you invest
+some time in.</p></li>
+<li><p>the <a class="reference external" href="https://git-scm.com/">git</a> version control system.</p></li>
+</ul>
+<section id="installation-1">
+<h2>Installation<a class="headerlink" href="#installation-1" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s common to run into problems with installation - don’t worry, we’re
+expecting that.  One of the things we are teaching in this class is how to
+solve problems like installing and using scientific software.  So, if you
+run into trouble - great - that will be a good opportunity for us to work
+together on a not-trivial problem.</p>
+</aside>
+<p>Here are the instructions for installing Git and Python:</p>
+<ul class="simple">
+<li><p><span class="xref std std-doc">installation_on_mac</span>;</p></li>
+<li><p><span class="xref std std-doc">installation_on_linux</span>;</p></li>
+<li><p><span class="xref std std-doc">installation_on_windows</span>.</p></li>
+</ul>
+<p>Next, open Terminal (Mac) or Powershell (Windows) or a terminal of your choice on Linux:</p>
+<p>Check you have Python installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python3</span>
+</pre></div>
+</div>
+<p>Check you have the Python package manager installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">pip3</span>
+</pre></div>
+</div>
+<p>Now finish the install with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">scipy</span> <span class="n">matplotlib</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span> <span class="n">nibabel</span> <span class="n">jupyter</span> <span class="n">ipython</span> <span class="n">jupytext</span>
+</pre></div>
+</div>
+<p>Finally, to git a copy of the textbook files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">/</span><span class="n">textbook</span>
+</pre></div>
+</div>
+<p>Now you can open the textbook notebooks with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">textbook</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">jupyter</span> <span class="n">notebook</span>
+</pre></div>
+</div>
+<p>This will open your web browser in the Jupyter interface.  Select the file you
+are interested in.</p>
+</section>
+<section id="why-python">
+<h2>Why Python<a class="headerlink" href="#why-python" title="Permalink to this headline">¶</a></h2>
+<p>Python is well-suited to scientific computing for <a class="reference external" href="https://github.com/nipy/nipy/blob/master/doc/faq/why.rst#why-python">many
+reasons</a>.</p>
+<p>Python code is famously easy to read, and Python has become a common choice
+for introductions to programming  see for example the <a class="reference external" href="http://cs61a.org">Berkeley CS61A
+course</a> and the <a class="reference external" href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-introduction-to-computer-science-and-programming-spring-2011/">MIT introduction to computer science and
+programming</a>.</p>
+<p>The CS61A course notes have a good introduction to the <a class="reference external" href="http://composingprograms.com/pages/11-getting-started.html#programming-in-python">benefits of
+Python</a>.
+You may want to read <a class="reference external" href="https://blog.fanplastic.org/2010/11/03/10-reasons-python-rocks-for-research/">10 reasons Python rocks for
+research</a>
+for a comparison between Python and MATLAB.</p>
+<p>Berkeley teaches its new data science courses using Python.</p>
+<p>For the class, you will need a version of Python &gt;= 3.8.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
