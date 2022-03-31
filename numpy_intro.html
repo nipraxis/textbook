@@ -939,6 +939,25 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The first thing we need to know is that the experimental software started 4 seconds after the first scan.</p>
 <p>We know from the first ISI above that the first trial happened 1000ms after the experimental software started.   That means that it happened 4 * 1000 + 1000 milliseconds after the scanner started.</p>
 <p>The second then we need to know is that the TR (time-to-repeat) for the scanner was 2 seconds.  So, the first scan happens at time 0, the second at time 2000ms, and so on.</p>
+<p>Let’s proceed in steps.  First let us work out the time for each trial <em>from the start of the experimental software</em>.  We could do it like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_lines</span><span class="p">)</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_lines</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">isi_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">cumulative_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_time</span>
+<span class="n">cumulative_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2000.,  3000.,  5500.,  7000.,  8500., 10500., 13000., 14500.,
+       16500., 17500.])
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="d-arrays">
 <h2>2D arrays<a class="headerlink" href="#d-arrays" title="Permalink to this headline">¶</a></h2>
