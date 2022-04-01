@@ -36,7 +36,7 @@ are [emacs] and [vim] / [gvim].  These run on any platform.  [Atom] is another
 open-source cross-platform general text editor.
 
 No doubt you want to know what your instructors use for their daily work?  No?
-Well, in any case, the answer is that Matthew and JB use vim.
+Well, in any case, the answer is that most of us use Vim.
 
 ## vim
 
