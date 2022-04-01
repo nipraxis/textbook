@@ -522,13 +522,13 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#git-version-control">
-   Git version control
+  <a class="reference internal nav-link" href="#chocalatey">
+   Chocalatey
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   Python
+  <a class="reference internal nav-link" href="#git-and-python">
+   Git and Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -542,11 +542,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-short-hand-way">
-     The short-hand way
+    <a class="reference internal nav-link" href="#copying-the-short-hand-way">
+     Copying the short-hand way
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#check">
+   Check
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#to-finish">
@@ -566,39 +571,58 @@
                 
   <section id="installation-on-windows">
 <h1>Installation on Windows<a class="headerlink" href="#installation-on-windows" title="Permalink to this headline">¶</a></h1>
-<section id="git-version-control">
-<h2>Git version control<a class="headerlink" href="#git-version-control" title="Permalink to this headline">¶</a></h2>
-<p>Go to <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></p>
-<p>Click on the Downloads for Windows link at the bottom right.</p>
-<p>Download the file they propose, with a filename something like
-<code class="docutils literal notranslate"><span class="pre">Git-2.35.1.2-32-bit.exe</span></code>.</p>
-<p>Run the file to start the installation.</p>
-<p>We suggest you accept the defaults, except the screen called “Adjusting your
-PATH environment”, where we suggest you choose the option “Use git from the
-Windows Command Prompt”.</p>
+<section id="chocalatey">
+<h2>Chocalatey<a class="headerlink" href="#chocalatey" title="Permalink to this headline">¶</a></h2>
+<p>We suggest you use <a class="reference external" href="https://chocolatey.org/">Chocolatey</a> to install Git and
+Python.</p>
+<p>Go to the <a class="reference external" href="https://chocolatey.org/install">Choclately install page</a> and follow
+the instructions there.  Choose the ‘individual’ install.</p>
+<p>To do the install, as that page says, open a Powershell window with
+Administrator permissions.  For example, press the Windows key, type
+“powershell”, right-click on the “Windows PowerShell” option, chose “Run as
+administrator”.</p>
+<p>A Powershell window will open.  Continue with the Choco install instructions, including checking, maybe setting the <code class="docutils literal notranslate"><span class="pre">ExecutionPolicy</span></code>.</p>
 </section>
-<section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
-<p>We suggest you use <a class="reference external" href="https://chocolatey.org/">Chocolatey</a> to install Python.</p>
-<p>Go to the <a class="reference external" href="https://chocolatey.org/install">Choclately install page</a> and follow the instructions there.  Choose the ‘individual’ install.</p>
-<p>Install.  Then, in a Powershell terminal with Administrator privileges, type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">choco</span> <span class="n">install</span> <span class="n">python</span>
+<section id="git-and-python">
+<h2>Git and Python<a class="headerlink" href="#git-and-python" title="Permalink to this headline">¶</a></h2>
+<p>In the same, or a new Powershell administrator window, type:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">choco</span> <span class="n">install</span> <span class="n">-y</span> <span class="n">git</span> <span class="n">python</span>
 </pre></div>
 </div>
-<p>Close the Powershell, and open it again, again with Administrator privileges.</p>
-<p>To open Powershell, you can press the Windows key, and type Powershell, then
-right click on the Powershell suggestion and select ‘Run as administrator’.</p>
+<p><strong>Close the Powershell, and open it again, again with Administrator
+privileges.</strong></p>
+<p>To check the install, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get</span><span class="o">-</span><span class="n">command</span> <span class="n">python</span>
+</pre></div>
+</div>
+<p>This should show something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CommandType</span>     <span class="n">Name</span>         <span class="n">Version</span>    <span class="n">Source</span>
+<span class="o">-----------</span>     <span class="o">----</span>         <span class="o">-------</span>    <span class="o">------</span>
+<span class="n">Application</span>     <span class="n">python</span><span class="o">.</span><span class="n">exe</span>   <span class="mf">3.10.41</span><span class="o">...</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Python310</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+<p>If, instead, you see a value for “Source” that starts
+<code class="docutils literal notranslate"><span class="pre">C:\Users\scipy\AppData\Local\Microsoft...</span></code>, either your install has failed,
+or you have forgotten to close and restart the Powershell window after doing
+the <code class="docutils literal notranslate"><span class="pre">choco</span> <span class="pre">install</span></code> step.  Just in case, do that now, and recheck the command
+above.</p>
 </section>
 <section id="copy-python-exe-to-python3-exe">
 <h2>Copy python.exe to python3.exe<a class="headerlink" href="#copy-python-exe-to-python3-exe" title="Permalink to this headline">¶</a></h2>
 <section id="the-long-hand-way">
 <h3>The long-hand way<a class="headerlink" href="#the-long-hand-way" title="Permalink to this headline">¶</a></h3>
-<p>Type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python</span>
+<p>The output of <code class="docutils literal notranslate"><span class="pre">get-command</span> <span class="pre">python</span></code> above has shown you where Choco installed Python.  For example, as you’ve already seen, I got:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CommandType</span>     <span class="n">Name</span>         <span class="n">Version</span>    <span class="n">Source</span>
+<span class="o">-----------</span>     <span class="o">----</span>         <span class="o">-------</span>    <span class="o">------</span>
+<span class="n">Application</span>     <span class="n">python</span><span class="o">.</span><span class="n">exe</span>   <span class="mf">3.10.41</span><span class="o">...</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Python310</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
-<p>This will show you where Choco installed Python.</p>
-<p>In my case, Python was at <code class="docutils literal notranslate"><span class="pre">c:\Python310\python.exe</span></code></p>
+<p>If, instead, you see a value for “Source” that starts
+<code class="docutils literal notranslate"><span class="pre">C:\Users\scipy\AppData\Local\Microsoft</span> <span class="pre">...</span></code>, either your install has failed,
+or you have forgotten to close and restart the Powershell window after doing
+the <code class="docutils literal notranslate"><span class="pre">choco</span> <span class="pre">install</span></code> step.  Just in case, do that now, and recheck the command
+above.</p>
+<p>In my case, as you see above, Python was at <code class="docutils literal notranslate"><span class="pre">c:\Python310\python.exe</span></code></p>
 <p>Go to the directory containing Python.  In my case this was <code class="docutils literal notranslate"><span class="pre">c:\Python310</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Python310</span>
 </pre></div>
@@ -608,14 +632,29 @@ right click on the Powershell suggestion and select ‘Run as administrator’.<
 </pre></div>
 </div>
 </section>
-<section id="the-short-hand-way">
-<h3>The short-hand way<a class="headerlink" href="#the-short-hand-way" title="Permalink to this headline">¶</a></h3>
-<p>If you prefer, you can do this copy step by copy-pasting the code below to the Powershell prompt, and pressing Enter:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$py_path</span> <span class="p">=</span> <span class="p">(</span><span class="nb">get-command</span> <span class="n">-CommandType</span> <span class="n">Application</span> <span class="n">python</span><span class="p">).</span><span class="n">Source</span>
+<section id="copying-the-short-hand-way">
+<h3>Copying the short-hand way<a class="headerlink" href="#copying-the-short-hand-way" title="Permalink to this headline">¶</a></h3>
+<p>If you prefer, you can do this copy step by copy-pasting the code below to the
+administrator Powershell prompt, and pressing Enter:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$py_path</span> <span class="p">=</span> <span class="p">(</span><span class="nb">get-command</span> <span class="n">-CommandType</span> <span class="n">Application</span> <span class="n">-TotalCount</span> <span class="n">1</span> <span class="n">python</span><span class="p">).</span><span class="n">Source</span>
 <span class="nb">cp </span><span class="nv">$py_path</span> <span class="p">((</span><span class="nb">Split-Path</span> <span class="nv">$py_path</span><span class="p">)</span> <span class="p">+</span> <span class="s1">&#39;\python3.exe&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="check">
+<h2>Check<a class="headerlink" href="#check" title="Permalink to this headline">¶</a></h2>
+<p>Close the administrator Powershell window.</p>
+<p>Open a new PowerShell window, not as administrator.  Try this command:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">get-command</span> <span class="n">python3</span>
+</pre></div>
+</div>
+<p>You should see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CommandType</span>     <span class="n">Name</span>         <span class="n">Version</span>    <span class="n">Source</span>
+<span class="o">-----------</span>     <span class="o">----</span>         <span class="o">-------</span>    <span class="o">------</span>
+<span class="n">Application</span>     <span class="n">python3</span><span class="o">.</span><span class="n">exe</span>  <span class="mf">3.10.41</span><span class="o">...</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Python310</span>\<span class="n">python3</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
 </section>
 <section id="to-finish">
 <h2>To finish<a class="headerlink" href="#to-finish" title="Permalink to this headline">¶</a></h2>

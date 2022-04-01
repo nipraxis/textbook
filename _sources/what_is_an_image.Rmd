@@ -204,7 +204,7 @@ The `datatype` value is stored in binary form (rather than text form).
 The value for `datatype` is stored in the header in the same format
 that the computer stores the number in memory. We want to convert this
 binary format to a number that Python understands. To do that, we use
-the [struct module](https://docs.python.org/2/library/struct.html).
+the [struct module](https://docs.python.org/3/library/struct.html).
 
 ```{python}
 import struct
@@ -221,7 +221,7 @@ data.
 
 We first need to specify the format of the character data. Have a look
 at the [help on format
-strings](https://docs.python.org/2/library/struct.html#format-characters)
+strings](https://docs.python.org/3/library/struct.html#format-characters)
 in the Python documentation and the NIfTI web page above.
 
 Here is the format specifier for our value:

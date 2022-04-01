@@ -477,9 +477,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/numpy_intro.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/numpy_intro.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.Rmd</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -518,20 +518,30 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/numpy_intro.Rmd"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/numpy_intro.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/numpy_intro.Rmd&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/numpy_intro.ipynb&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="_static/images/logo_jupyterhub.svg"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/numpy_intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+        <a class="colab-button" href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fnumpy_intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Deepnote" data-toggle="tooltip" data-placement="left"><img class="deepnote-button-logo"
+                    src="_static/images/logo_deepnote.svg"
+                    alt="Interact in Deepnote">Deepnote</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -578,6 +588,16 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#baby-steps">
    Baby steps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trial-times-and-selecting-values">
+   Trial times, and selecting values.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selecting-with-boolean-arrays">
+   Selecting with Boolean arrays
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1146,6 +1166,82 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </section>
+<section id="trial-times-and-selecting-values">
+<h2>Trial times, and selecting values.<a class="headerlink" href="#trial-times-and-selecting-values" title="Permalink to this headline">¶</a></h2>
+<p>OK — we have the stimulus onset times, but what about the times for the <em>responses</em>.</p>
+<p>Here are the first 15 reaction times:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 427.,
+         0.,   0., 369.,   0.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that there is a reaction time of 0 when there was no response.  We’ll ignore that for now.</p>
+<p>Now we want to calculate the response times in terms of the start of the scanner.  We have the times of the trials onsets in terms of the scanner:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_times</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6000.,  7000.,  9500., 11000., 12500., 14500., 17000., 18500.,
+       20500., 21500., 22500., 24000., 25500., 27500., 29000.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The response onset times, in terms of the scanner start, are just the trial onset times, plus the corresponding reaction times.  Of course we could do this with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_rts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trials</span><span class="p">):</span>
+    <span class="n">trial_onset</span> <span class="o">=</span> <span class="n">scanner_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">this_rt</span> <span class="o">=</span> <span class="n">rt_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">scanner_rts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">trial_onset</span> <span class="o">+</span> <span class="n">this_rt</span>
+<span class="n">scanner_rts</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6000.,  7000.,  9500., 11000., 12500., 14500., 17000., 18500.,
+       20500., 21500., 22927., 24000., 25500., 27869., 29000.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luckily though, Numpy knows what to do when we add two arrays with the same shape.  It takes each element in the first array and adds the corresponding element in the second array - just like the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop above.</p>
+<p>This is call <em>elementwise</em> addition, because it does the addition (or subtraction or division …) <em>element</em> by <em>element</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same result from adding the two arrays with the same shape.</span>
+<span class="n">scanner_rts</span> <span class="o">=</span> <span class="n">scanner_times</span> <span class="o">+</span> <span class="n">rt_arr</span>
+<span class="n">scanner_rts</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6000.,  7000.,  9500., 11000., 12500., 14500., 17000., 18500.,
+       20500., 21500., 22927., 24000., 25500., 27869., 29000.])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="selecting-with-boolean-arrays">
+<h2>Selecting with Boolean arrays<a class="headerlink" href="#selecting-with-boolean-arrays" title="Permalink to this headline">¶</a></h2>
+<p>We will soon cover this in a lot more detail; this is just a taster.</p>
+<p>Remember that the trials with no response have a reaction time of zero.</p>
+<p>That means that all the trials with a reaction time of zero will not give sensible times for a response onset - because, for those trials, there was no response.</p>
+<p>We can select the <code class="docutils literal notranslate"><span class="pre">scanner_rts</span></code> corresponding to non-zero reaction times using Boolean arrays.</p>
+</section>
 <section id="d-arrays">
 <h2>2D arrays<a class="headerlink" href="#d-arrays" title="Permalink to this headline">¶</a></h2>
 <p>We can also have arrays with more than one dimension.  For example, we can make our original trial and reaction times into a two-dimensional array, like this:</p>
@@ -1188,6 +1284,34 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 <h2>Reshaping<a class="headerlink" href="#reshaping" title="Permalink to this headline">¶</a></h2>
 <p>Finally, we often want to change the <em>shape</em> of arrays.</p>
 <p>One common thing we may want to do is to take a 2D array and flatten it out into a 1D array, or visa versa.  That does not make much sense in this particular case, but bear with us.</p>
+<p>Remember, the original 2D shape was:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_times</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(320, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we want to <em>flatten</em> this 2D thing into a 1D thing.   The new shape we want is therefore:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_trials</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">new_shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[640]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We pass the new shape to the <code class="docutils literal notranslate"><span class="pre">np.reshape</span></code> function, along with the array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flattened</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">all_times</span><span class="p">,</span> <span class="p">[</span><span class="n">n_trials</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span>
