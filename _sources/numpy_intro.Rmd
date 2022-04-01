@@ -309,6 +309,58 @@ times_in_scans = scanner_times / scan_length_ms
 times_in_scans[:10]
 ```
 
+## Trial times, and selecting values.
+
+OK — we have the stimulus onset times, but what about the times for the *responses*.
+
+Here are the first 15 reaction times:
+
+```{python}
+rt_arr[:15]
+```
+
+Notice that there is a reaction time of 0 when there was no response.  We'll ignore that for now.
+
+Now we want to calculate the response times in terms of the start of the scanner.  We have the times of the trials onsets in terms of the scanner:
+
+```{python}
+scanner_times[:15]
+```
+
+The response onset times, in terms of the scanner start, are just the trial onset times, plus the corresponding reaction times.  Of course we could do this with a `for` loop, like this:
+
+```{python}
+scanner_rts = np.zeros(n_trials)
+for i in range(n_trials):
+    trial_onset = scanner_times[i]
+    this_rt = rt_arr[i]
+    scanner_rts[i] = trial_onset + this_rt
+scanner_rts[:15]
+```
+
+Luckily though, Numpy knows what to do when we add two arrays with the same shape.  It takes each element in the first array and adds the corresponding element in the second array - just like the `for` loop above.
+
+This is call *elementwise* addition, because it does the addition (or subtraction or division ...) *element* by *element*.
+
+```{python}
+# Same result from adding the two arrays with the same shape.
+scanner_rts = scanner_times + rt_arr
+scanner_rts[:15]
+```
+
+## Selecting with Boolean arrays
+
+
+We will soon cover this in a lot more detail; this is just a taster.
+
+Remember that the trials with no response have a reaction time of zero.
+
+That means that all the trials with a reaction time of zero will not give sensible times for a response onset - because, for those trials, there was no response.
+
+We can select the `scanner_rts` corresponding to non-zero reaction times using Boolean arrays.
+
+
+
 ## 2D arrays
 
 We can also have arrays with more than one dimension.  For example, we can make our original trial and reaction times into a two-dimensional array, like this:
@@ -329,9 +381,26 @@ all_times[:5, :]
 
 ## Reshaping
 
+
 Finally, we often want to change the *shape* of arrays.
 
 One common thing we may want to do is to take a 2D array and flatten it out into a 1D array, or visa versa.  That does not make much sense in this particular case, but bear with us.
+
+
+Remember, the original 2D shape was:
+
+```{python}
+all_times.shape
+```
+
+Now we want to *flatten* this 2D thing into a 1D thing.   The new shape we want is therefore:
+
+```{python}
+new_shape = [n_trials * 2]
+new_shape
+```
+
+We pass the new shape to the `np.reshape` function, along with the array:
 
 ```{python}
 flattened = np.reshape(all_times, [n_trials * 2])
@@ -354,5 +423,3 @@ unflattened.shape
 # Show the first five rows.
 unflattened[:5, :]
 ```
-
-
