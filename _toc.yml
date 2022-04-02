@@ -24,7 +24,7 @@ parts:
   - file: numpy_intro
   - file: boolean_indexing
   - file: arrays_and_images
-  - file: boolea_indexing_nd
+  - file: boolean_indexing_nd
   - file: numpy_logical
   - file: reshape_and_3d
   - file: otsu_threshold
