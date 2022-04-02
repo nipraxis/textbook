@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Indexing with boolean masks &#8212; Practice and theory of brain imaging</title>
+    <title>Indexing with Boolean arrays &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,6 +52,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Arrays as images, images as arrays" href="arrays_and_images.html" />
+    <link rel="prev" title="Introduction to Numpy" href="numpy_intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -151,7 +153,7 @@
   Images and code and images
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is_an_image.html">
    What is an image?
@@ -162,14 +164,14 @@
    Introduction to Numpy
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arrays_and_images.html">
-   Arrays as images, images as arrays
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Indexing with Boolean arrays
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="slicing_with_booleans.html">
-   Slicing with boolean vectors
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
   </a>
  </li>
  <li class="toctree-l1">
@@ -511,11 +513,61 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/boolean_indexing.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/boolean_indexing.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#select-values-with-boolean-arrays">
+   Select values with Boolean arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boolean-arrays">
+   Boolean arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-values-with-boolean-arrays">
+   Setting values with Boolean arrays
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -524,184 +576,225 @@
         
               <div>
                 
-  <section id="indexing-with-boolean-masks">
-<h1>Indexing with boolean masks<a class="headerlink" href="#indexing-with-boolean-masks" title="Permalink to this headline">¶</a></h1>
+  <section id="indexing-with-boolean-arrays">
+<h1>Indexing with Boolean arrays<a class="headerlink" href="#indexing-with-boolean-arrays" title="Permalink to this headline">¶</a></h1>
+<p>As usual with arrays, we need the Numpy library:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># - import common modules</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># the Python array package</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># the Python plotting package</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>First we make a 3D array of shape (4, 3, 2)</p>
+<p>Remember <a class="reference internal" href="brisk_python.html#true-and-false"><span class="std std-ref">Boolean values</span></a>, and
+<a class="reference internal" href="brisk_python.html#comparison-operators"><span class="std std-ref">Comparison operators</span></a> from <a class="reference internal" href="brisk_python.html"><span class="doc">Brisk introduction to Python</span></a>.  We will be using these
+values and operators, in and with arrays.</p>
+<section id="select-values-with-boolean-arrays">
+<h2>Select values with Boolean arrays<a class="headerlink" href="#select-values-with-boolean-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Here we are using Boolean arrays to <em>index</em> into other arrays.  You will see
+what we mean by that by the end of this section.</p>
+<p>We often want to select several elements from an array according to some
+criterion.</p>
+<p>The most common way to do this, is to do array slicing, using a Boolean array
+between the square brackets.</p>
+<p>It can be easier to understand this by example than by description.</p>
+<p>Here we are going to use some example data from <a class="reference external" href="https://github.com/odsti/datasets/tree/master/good_and_easy">student ratings of their professors</a>.</p>
+<p>You can go to the link for the long story, but the short story is that the
+dataset is a table where the rows are academic disciplines, and the columns
+contain the average student rating values for the corresponding discipline.</p>
+<p>Here we have extracted the ratings for the six largest subjects — the subjects with the largest number of rated professors.</p>
+<p>Here is the array of discipline names for those six largest subjects:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slab0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">slab0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">disciplines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;English&#39;</span><span class="p">,</span> <span class="s1">&#39;Mathematics&#39;</span><span class="p">,</span> <span class="s1">&#39;Biology&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Psychology&#39;</span><span class="p">,</span> <span class="s1">&#39;History&#39;</span><span class="p">,</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">])</span>
+<span class="n">disciplines</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2],
-       [ 3,  4,  5],
-       [ 6,  7,  8],
-       [ 9, 10, 11]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;English&#39;, &#39;Mathematics&#39;, &#39;Biology&#39;, &#39;Psychology&#39;, &#39;History&#39;,
+       &#39;Chemistry&#39;], dtype=&#39;&lt;U11&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>One of the ratings the students gave was of how easy the course was, on a five
+point scale from 1 (hard) to 5 (easy).</p>
+<p>Here are the average “Easiness” scores for the six largest courses named above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">easiness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.16</span><span class="p">,</span> <span class="mf">3.06</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">,</span> <span class="mf">3.32</span><span class="p">,</span> <span class="mf">3.05</span><span class="p">,</span> <span class="mf">2.65</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The top (largest) discipline is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">disciplines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;English&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Easiness rating for that course is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">easiness</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.16
+</pre></div>
+</div>
+</div>
+</div>
+<p>and so on.</p>
+</section>
+<section id="boolean-arrays">
+<h2>Boolean arrays<a class="headerlink" href="#boolean-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Boolean arrays are arrays that contain values that are one of True or False.</p>
+<p>Here is a Boolean array, created from applying a comparison to an array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">greater_than_3</span> <span class="o">=</span> <span class="n">easiness</span> <span class="o">&gt;</span> <span class="mi">3</span>
+<span class="n">greater_than_3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True, False,  True,  True, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This has a <code class="docutils literal notranslate"><span class="pre">True</span></code> value at the positions of elements &gt; 3, and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.</p>
+<p>We can do things like count the number of <code class="docutils literal notranslate"><span class="pre">True</span></code> values in the Boolean array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">greater_than_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let us say that we wanted to get the elements from <code class="docutils literal notranslate"><span class="pre">easiness</span></code>
+that are greater than 3.   That is, we want to get the elements in <code class="docutils literal notranslate"><span class="pre">easiness</span></code>
+for which the corresponding element in <code class="docutils literal notranslate"><span class="pre">greater_than_3</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>We can do this with <em>Boolean array indexing</em>.  The Boolean array goes between
+the square brackets, after the array name.  As a reminder:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The easiness array</span>
+<span class="n">easiness</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.16, 3.06, 2.71, 3.32, 3.05, 2.65])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slab1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">slab1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The greater_than_3 Boolean array</span>
+<span class="n">greater_than_3</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[100, 101, 102],
-       [103, 104, 105],
-       [106, 107, 108],
-       [109, 110, 111]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True, False,  True,  True, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We put the Boolean array between square brackets, after the array we want to get values from, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Boolean indexing into the easiness array.</span>
+<span class="n">easiness</span><span class="p">[</span><span class="n">greater_than_3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.16, 3.06, 3.32, 3.05])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have selected the numbers in <code class="docutils literal notranslate"><span class="pre">easiness</span></code> that are greater than 3.</p>
+<p>See the picture below for an illustration of what is happening:</p>
+<p><img alt="" src="_images/easiness_values.png" /></p>
+<p>We can use this same Boolean array to index into another array.  For example,
+here we show the discipline <em>names</em> corresponding to the courses with Easiness
+scores greater than 3:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">disciplines</span><span class="p">[</span><span class="n">greater_than_3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;English&#39;, &#39;Mathematics&#39;, &#39;Psychology&#39;, &#39;History&#39;], dtype=&#39;&lt;U11&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>See the picture below for an illustration of how this works:</p>
+<p><img alt="" src="_images/easiness_reused.png" /></p>
+</section>
+<section id="setting-values-with-boolean-arrays">
+<h2>Setting values with Boolean arrays<a class="headerlink" href="#setting-values-with-boolean-arrays" title="Permalink to this headline">¶</a></h2>
+<p>You have seen, above, that Boolean indexing can select values from an array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the Boolean array</span>
+<span class="n">another_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">are_gt_2</span> <span class="o">=</span> <span class="n">another_array</span> <span class="o">&gt;</span> <span class="mi">2</span>
+<span class="n">are_gt_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False,  True,  True, False, False,  True, False, False,  True])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">slab0</span>
-<span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">slab1</span>
-<span class="n">arr_3d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the values by indexing with the Boolean array.</span>
+<span class="c1"># Return only the values of &#39;another_array&#39; where the Boolean array has True.</span>
+<span class="n">another_array</span><span class="p">[</span><span class="n">are_gt_2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  0., 100.],
-        [  1., 101.],
-        [  2., 102.]],
-
-       [[  3., 103.],
-        [  4., 104.],
-        [  5., 105.]],
-
-       [[  6., 106.],
-        [  7., 107.],
-        [  8., 108.]],
-
-       [[  9., 109.],
-        [ 10., 110.],
-        [ 11., 111.]]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 5, 3])
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can index this with a one-dimensional boolean array. This selects
-elements from the first axis.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
-<span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_1d</span><span class="p">]</span>
+<p>Given what you know, what do you think would happen with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">another_array</span><span class="p">[</span><span class="n">are_gt_2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">another_array</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  3., 103.],
-        [  4., 104.],
-        [  5., 105.]],
-
-       [[  6., 106.],
-        [  7., 107.],
-        [  8., 108.]]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can also index with a two-dimensional boolean array, this selects elements
-from the first two axes.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
-                    <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
-                    <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
-                    <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
-                   <span class="p">])</span>
-<span class="n">bool_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[False,  True, False],
-       [ True, False,  True],
-       [ True, False, False],
-       [False, False,  True]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_2d</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1., 101.],
-       [  3., 103.],
-       [  5., 105.],
-       [  6., 106.],
-       [ 11., 111.]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can even index with a 3D array, this selects elements over all three
-dimensions.  In which order does it get the elements?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_is_odd</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr_3d</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-<span class="n">arr_is_odd</span>
-<span class="n">arr_3d</span><span class="p">[</span><span class="n">arr_is_odd</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  1., 101.,   3., 103.,   5., 105.,   7., 107.,   9., 109.,  11.,
-       111.])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can mix 1D boolean arrays with ordinary slicing to select elements on
-a single axis.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool_1d_dim3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
-<span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">bool_1d_dim3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[100.],
-        [101.],
-        [102.]],
-
-       [[103.],
-        [104.],
-        [105.]],
-
-       [[106.],
-        [107.],
-        [108.]],
-
-       [[109.],
-        [110.],
-        [111.]]])
-</pre></div>
-</div>
-</div>
-</div>
+<p>Try it.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -733,6 +826,24 @@ a single axis.</p>
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="numpy_intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction to Numpy</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="arrays_and_images.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Arrays as images, images as arrays</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
 </div>
         
