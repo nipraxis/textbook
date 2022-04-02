@@ -1,79 +1,171 @@
 ---
 jupyter:
-  orphan: true
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
 ---
 
-# Indexing with boolean masks
+# Indexing with Boolean arrays
 
-
-```{python}
-# - import common modules
-import numpy as np  # the Python array package
-import matplotlib.pyplot as plt  # the Python plotting package
-```
-
-First we make a 3D array of shape (4, 3, 2)
+As usual with arrays, we need the Numpy library:
 
 ```{python}
-slab0 = np.reshape(np.arange(12), (4, 3))
-slab0
+import numpy as np
+```
+
+Remember {ref}`Boolean values <true-and-false>`, and
+{ref}`comparison-operators` from {doc}`brisk_python`.  We will be using these
+values and operators, in and with arrays.
+
+## Select values with Boolean arrays
+
+Here we are using Boolean arrays to *index* into other arrays.  You will see
+what we mean by that by the end of this section.
+
+We often want to select several elements from an array according to some
+criterion.
+
+The most common way to do this, is to do array slicing, using a Boolean array
+between the square brackets.
+
+It can be easier to understand this by example than by description.
+
+
+Here we are going to use some example data from [student ratings of their professors](https://github.com/odsti/datasets/tree/master/good_and_easy).
+
+You can go to the link for the long story, but the short story is that the
+dataset is a table where the rows are academic disciplines, and the columns
+contain the average student rating values for the corresponding discipline.
+
+Here we have extracted the ratings for the six largest subjects — the subjects with the largest number of rated professors.
+
+Here is the array of discipline names for those six largest subjects:
+
+```{python}
+disciplines = np.array(
+    ['English', 'Mathematics', 'Biology',
+    'Psychology', 'History', 'Chemistry'])
+disciplines
+```
+
+One of the ratings the students gave was of how easy the course was, on a five
+point scale from 1 (hard) to 5 (easy).
+
+Here are the average "Easiness" scores for the six largest courses named above:
+
+```{python}
+easiness = np.array([3.16, 3.06, 2.71, 3.32, 3.05, 2.65])
+```
+
+The top (largest) discipline is:
+
+```{python}
+disciplines[0]
+```
+
+The Easiness rating for that course is:
+
+```{python}
+easiness[0]
+```
+
+and so on.
+
+## Boolean arrays
+
+Boolean arrays are arrays that contain values that are one of True or False.
+
+Here is a Boolean array, created from applying a comparison to an array:
+
+```{python}
+greater_than_3 = easiness > 3
+greater_than_3
+```
+
+This has a `True` value at the positions of elements > 3, and `False`
+otherwise.
+
+
+We can do things like count the number of `True` values in the Boolean array:
+
+```{python}
+np.count_nonzero(greater_than_3)
+```
+
+Now let us say that we wanted to get the elements from `easiness`
+that are greater than 3.   That is, we want to get the elements in `easiness`
+for which the corresponding element in `greater_than_3` is `True`.
+
+We can do this with *Boolean array indexing*.  The Boolean array goes between
+the square brackets, after the array name.  As a reminder:
+
+```{python}
+# The easiness array
+easiness
 ```
 
 ```{python}
-slab1 = np.reshape(np.arange(100, 112), (4, 3))
-slab1
+# The greater_than_3 Boolean array
+greater_than_3
+```
+
+We put the Boolean array between square brackets, after the array we want to get values from, like this:
+
+```{python}
+# Boolean indexing into the easiness array.
+easiness[greater_than_3]
+```
+
+We have selected the numbers in `easiness` that are greater than 3.
+
+See the picture below for an illustration of what is happening:
+
+![](images/easiness_values.png)
+
+We can use this same Boolean array to index into another array.  For example,
+here we show the discipline *names* corresponding to the courses with Easiness
+scores greater than 3:
+
+```{python}
+disciplines[greater_than_3]
+```
+
+See the picture below for an illustration of how this works:
+
+![](images/easiness_reused.png)
+
+
+## Setting values with Boolean arrays
+
+You have seen, above, that Boolean indexing can select values from an array:
+
+```{python}
+# Create the Boolean array
+another_array = np.array([2, 3, 4, 2, 1, 5, 1, 0, 3])
+are_gt_2 = another_array > 2
+are_gt_2
 ```
 
 ```{python}
-arr_3d = np.zeros((4, 3, 2))
-arr_3d[:, :, 0] = slab0
-arr_3d[:, :, 1] = slab1
-arr_3d
+# Get the values by indexing with the Boolean array.
+# Return only the values of 'another_array' where the Boolean array has True.
+another_array[are_gt_2]
 ```
 
-We can index this with a one-dimensional boolean array. This selects
-elements from the first axis.
+Given what you know, what do you think would happen with:
 
-```{python}
-bool_1d = np.array([False, True, True, False])
-arr_3d[bool_1d]
+```
+another_array[are_gt_2] = 10
+another_array
 ```
 
-We can also index with a two-dimensional boolean array, this selects elements
-from the first two axes.
-
-```{python}
-bool_2d = np.array([[False, True, False],
-                    [True, False, True],
-                    [True, False, False],
-                    [False, False, True],
-                   ])
-bool_2d
-```
-
-```{python}
-arr_3d[bool_2d]
-```
-
-We can even index with a 3D array, this selects elements over all three
-dimensions.  In which order does it get the elements?
-
-```{python}
-arr_is_odd = (arr_3d % 2) == 1
-arr_is_odd
-arr_3d[arr_is_odd]
-```
-
-We can mix 1D boolean arrays with ordinary slicing to select elements on
-a single axis.
-
-```{python}
-bool_1d_dim3 = np.array([False, True])
-arr_3d[:, :, bool_1d_dim3]
-```
+Try it.
