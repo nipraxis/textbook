@@ -52,7 +52,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Arrays as images, images as arrays" href="arrays_and_images.html" />
+    <link rel="next" title="Indexing with Boolean arrays" href="boolean_indexing.html" />
     <link rel="prev" title="What is an image?" href="what_is_an_image.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -165,13 +165,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing.html">
+   Indexing with Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="arrays_and_images.html">
    Arrays as images, images as arrays
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="slicing_with_booleans.html">
-   Slicing with boolean vectors
+  <a class="reference internal" href="boolean_indexing_nd.html">
+   Boolean indexing with more than one dimension
   </a>
  </li>
  <li class="toctree-l1">
@@ -556,6 +561,16 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-task">
+   The task
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#back-to-the-file">
+   Back to the file.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#from-lists-to-arrays">
    From lists to arrays
   </a>
@@ -571,23 +586,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#our-task">
-   Our task
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#baby-steps">
    Baby steps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#trial-times-and-selecting-values">
-   Trial times, and selecting values.
+  <a class="reference internal nav-link" href="#processing-reaction-times">
+   Processing reaction times
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#selecting-with-boolean-arrays">
-   Selecting with Boolean arrays
+  <a class="reference internal nav-link" href="#boolean-arrays">
+   Boolean arrays
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -693,9 +703,11 @@ thing.  It’s near-universal convention.  That way, everyone knows you mean
 <section id="some-example-data">
 <h2>Some example data<a class="headerlink" href="#some-example-data" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with some data, and then go on to process these data with arrays.</p>
-<p>Here is a text file with some data about an experiment running in the scanner.
-The subject saw stimuli every 1.75 seconds or so.  Sometimes they press a
-spacebar in response to the stimulus. The file records the subject’s data.  There is one row per trial, where each row records:</p>
+<p><span class="xref myst">Here is a text file</span> with some data about an
+experiment running in the scanner.</p>
+<p>The subject saw stimuli every 1.75 seconds or so.  Sometimes they press a
+spacebar in response to the stimulus. The file records the subject’s data.
+There is one row per trial, where each row records:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">response</span></code> — what response the subject make for this trial (‘None’ or
 ‘spacebar’)</p></li>
@@ -706,12 +718,100 @@ Interval)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">trial_shape</span></code> — the name of the stimulus (‘red_star’, ‘red_circle’ and so
 on).</p></li>
 </ul>
+<p>Our task here is to take the values in this file and generate a sequence of times that record the <em>stimulus onset times</em>, in terms of the <em>number of scans</em> since the scanner run started.  More on this below.</p>
 <p>Here we open the file as text, and load the lines of the file into memory as a list.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the lines in the file as a list.</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;24719.f3_beh_CHYM.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="c1"># Show the first 5 lines.</span>
+<span class="n">lines</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;response,response_time,trial_ISI,trial_shape\n&#39;,
+ &#39;None,0,2000,red_star\n&#39;,
+ &#39;None,0,1000,red_circle\n&#39;,
+ &#39;None,0,2500,green_triangle\n&#39;,
+ &#39;None,0,1500,yellow_square\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-task">
+<h2>The task<a class="headerlink" href="#the-task" title="Permalink to this headline">¶</a></h2>
+<p>Now we can give some more detail of what we need to do.</p>
+<ul class="simple">
+<li><p>The times in this file are from the experimental software.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">trial_ISI</span></code> values are times <em>between</em> the stimuli.  Thus the first
+stimulus occurred 2000 ms after the experimental software started, and the second stimulus occurred 2000 + 1000 = 3000 ms after the experimental software started.  Call these the <code class="docutils literal notranslate"><span class="pre">exp_onset_times</span></code>.</p></li>
+<li><p>The scanner started 4 seconds (4000ms) <em>before</em> the experimental software.
+So the onset times in relation to the <em>scanner start</em> are 4000 + 2000 = 6000, 4000 + 2000 + 1000 = 7000ms.  Call these the <code class="docutils literal notranslate"><span class="pre">scan_onset_times</span></code>.</p></li>
+<li><p>Finally, the scanner starts a new scan each 2 second (2000 ms).  To get the
+times in terms of scans we divide the <code class="docutils literal notranslate"><span class="pre">scan_onset_times</span></code> by 2000.  Call these
+the <code class="docutils literal notranslate"><span class="pre">scan_onset_in_scans</span></code> These are the times we need for our later
+statistical modeling.</p></li>
+</ul>
+<p>The first four <code class="docutils literal notranslate"><span class="pre">trial_ISI</span></code> values from the lines above are: 2000, 1000, 2500,
+1500.</p>
+<p>Therefore the first four values for <code class="docutils literal notranslate"><span class="pre">exp_onset_times</span></code> are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First four values of exp_onset_times</span>
+<span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span> <span class="o">+</span> <span class="mi">1500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2000, 3000, 5500, 7000]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">scan_onset_times</span></code> are just these values + 4000:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First four values of scan_onset_times</span>
+<span class="p">[</span><span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span><span class="p">,</span>
+ <span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">,</span>
+ <span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span><span class="p">,</span>
+ <span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span> <span class="o">+</span> <span class="mi">1500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6000, 7000, 9500, 11000]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">scan_onset_in_scans</span></code> values will start:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First four values of scan_onset_in_scans</span>
+<span class="p">[(</span><span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">4000</span> <span class="o">+</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span> <span class="o">+</span> <span class="mi">1500</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3.0, 3.5, 4.75, 5.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>All this is ugly to type out.  Luckily Numpy is an excellent tool for this calculation.</p>
+</section>
+<section id="back-to-the-file">
+<h2>Back to the file.<a class="headerlink" href="#back-to-the-file" title="Permalink to this headline">¶</a></h2>
+<p>Here are the first five lines of the file again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the first 5 lines.</span>
 <span class="n">lines</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -935,7 +1035,7 @@ type of elements the array does and can contain.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">Input In [18],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="nn">Input In [22],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">isi_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;some text&#39;</span>
 
 <span class="ne">ValueError</span>: could not convert string to float: &#39;some text&#39;
@@ -1012,23 +1112,11 @@ type of elements the array does and can contain.</p>
 </div>
 <p>This is a fairly typical use of <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code>.  We make an array of the right size and then fill in the elements later.</p>
 </section>
-<section id="our-task">
-<h2>Our task<a class="headerlink" href="#our-task" title="Permalink to this headline">¶</a></h2>
-<p>We want to calculate the relationship between the onsets of the trials, the onsets of the responses, and the onsets of the scans in the scanner.</p>
-<p>As you saw above, the inter-stimulus interval is the interval between the
-previous trial and the current one.</p>
-<p>For example, the first ISI here, 2000, means that the first trial started at 2000ms from the start of the experiment.</p>
-<p>The second ISI, 1000, means that the second trial started at 2000ms + 1000ms from the start of the experiment.</p>
-<p>We want to work out how these stimulus times relate to the scanning we did.</p>
-<p>Let’s think first about the trial onset times, in terms of scans.</p>
-<p>The first thing we need to know is that the experimental software started 4 seconds after the start of the first scan.</p>
-<p>We know from the first ISI above that the first trial happened 2000ms after the experimental software started.   That means that it happened 4000 + 2000 milliseconds after the scanner started.</p>
-<p>The second then we need to know is that the TR (time-to-repeat) for the scanner was 2 seconds.  So, the first scan happens at time 0, the second at time 2000ms, and so on.</p>
-</section>
 <section id="baby-steps">
 <h2>Baby steps<a class="headerlink" href="#baby-steps" title="Permalink to this headline">¶</a></h2>
 <p>Let’s proceed in steps.  First let us work out the time for each trial <em>from
-the start of the experimental software</em>.   Call this the <code class="docutils literal notranslate"><span class="pre">cumulative_times</span></code>.</p>
+the start of the experimental software</em>.   We called these the
+<code class="docutils literal notranslate"><span class="pre">exp_onset_times</span></code>.</p>
 <p>Because we are careful, we first work out what that would look like if we did it by hand.   Here are the first five ISI values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1042,7 +1130,7 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </div>
-<p>The first value for <code class="docutils literal notranslate"><span class="pre">cumulative_times</span></code> should be 2000.  The second will be 2000 + 1000.  The third will be 2000 + 1000 + 2500.</p>
+<p>The first value for <code class="docutils literal notranslate"><span class="pre">exp_onset_times</span></code> should be 2000.  The second will be 2000 + 1000.  The third will be 2000 + 1000 + 2500.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">2500</span> <span class="o">+</span> <span class="mi">1500</span><span class="p">]</span>
@@ -1058,13 +1146,13 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 <p>We could do the calculation for every trial with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp_onset_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
 <span class="n">start_time</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_trials</span><span class="p">):</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">isi_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">cumulative_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_time</span>
+    <span class="n">exp_onset_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_time</span>
 <span class="c1"># Show the first 10 values</span>
-<span class="n">cumulative_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">exp_onset_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1080,9 +1168,9 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the cumulative sum</span>
-<span class="n">cumulative_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">isi_arr</span><span class="p">)</span>
+<span class="n">exp_onset_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">isi_arr</span><span class="p">)</span>
 <span class="c1"># Show the first 10 values</span>
-<span class="n">cumulative_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">exp_onset_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1093,13 +1181,16 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </div>
-<p>Next we need to make these experiment time into times in terms of the scanner start.  To do this, we need to add 4000 to every time.   Of course we could go through and do that with a For loop:</p>
+<p>Next we need to make these experiment time into times in terms of the scanner
+start.  We decided to call these the <code class="docutils literal notranslate"><span class="pre">scan_onset_times</span></code>. To do this, we need to
+add 4000 to every time.   Of course we could go through and do that with a For
+loop:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scan_onset_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trials</span><span class="p">):</span>
-    <span class="n">scanner_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cumulative_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4000</span>
-<span class="n">scanner_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">scan_onset_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp_onset_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4000</span>
+<span class="n">scan_onset_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1113,8 +1204,8 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 <p>Luckily, however, Numpy will do that for us, because when we add a single number to an array, it has the effect of adding that number to <em>every element</em> in the array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_times</span> <span class="o">=</span> <span class="n">cumulative_times</span> <span class="o">+</span> <span class="mi">4000</span>
-<span class="n">scanner_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scan_onset_times</span> <span class="o">=</span> <span class="n">exp_onset_times</span> <span class="o">+</span> <span class="mi">4000</span>
+<span class="n">scan_onset_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1125,7 +1216,7 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </div>
-<p>We now have trial onset times in milliseconds, from the start of the first scan.  We want to recode these numbers in terms of scans since the scanner session started.</p>
+<p>We now have trial onset times in milliseconds, from the start of the first scan.  We want to recode these numbers in terms of scans since the scanner session started.  We call these the <code class="docutils literal notranslate"><span class="pre">scan_onset_in_scans</span></code>.</p>
 <p>For example, the first time is 6000 ms.  The scans each last 2000 ms.  So, in terms of scans, the first time is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1143,8 +1234,8 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 <p>Luckily — Numpy does division in the same way as it does addition, with a single number against an array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times_in_scans</span> <span class="o">=</span> <span class="n">scanner_times</span> <span class="o">/</span> <span class="n">scan_length_ms</span>
-<span class="n">times_in_scans</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scan_onset_in_scans</span> <span class="o">=</span> <span class="n">scan_onset_times</span> <span class="o">/</span> <span class="n">scan_length_ms</span>
+<span class="n">scan_onset_in_scans</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1156,9 +1247,9 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </section>
-<section id="trial-times-and-selecting-values">
-<h2>Trial times, and selecting values.<a class="headerlink" href="#trial-times-and-selecting-values" title="Permalink to this headline">¶</a></h2>
-<p>OK — we have the stimulus onset times, but what about the times for the <em>responses</em>.</p>
+<section id="processing-reaction-times">
+<h2>Processing reaction times<a class="headerlink" href="#processing-reaction-times" title="Permalink to this headline">¶</a></h2>
+<p>OK — we have the stimulus onset times, but what about the times for the <em>responses</em>?</p>
 <p>Here are the first 15 reaction times:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1173,11 +1264,12 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </div>
-<p>Notice that there is a reaction time of 0 when there was no response.  We’ll ignore that for now.</p>
-<p>Now we want to calculate the response times in terms of the start of the scanner.  We have the times of the trials onsets in terms of the scanner:</p>
+<p>Notice that there is a reaction time of 0 when there was no response.  We’ll
+pretend we haven’t noticed that, for now.</p>
+<p>Now we want to calculate the <em>response times</em> in terms of the start of the scanner.  We have the times of the trials onsets in terms of the scanner:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_times</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scan_onset_times</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1188,15 +1280,17 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </div>
-<p>The response onset times, in terms of the scanner start, are just the trial onset times, plus the corresponding reaction times.  Of course we could do this with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, like this:</p>
+<p>The response onset times, in terms of the scanner start, are just the trial
+onset times, plus the corresponding reaction times.  Of course we could do this
+with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_rts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scan_response_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_trials</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trials</span><span class="p">):</span>
-    <span class="n">trial_onset</span> <span class="o">=</span> <span class="n">scanner_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">trial_onset</span> <span class="o">=</span> <span class="n">scan_onset_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">this_rt</span> <span class="o">=</span> <span class="n">rt_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">scanner_rts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">trial_onset</span> <span class="o">+</span> <span class="n">this_rt</span>
-<span class="n">scanner_rts</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+    <span class="n">scan_response_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">trial_onset</span> <span class="o">+</span> <span class="n">this_rt</span>
+<span class="n">scan_response_times</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1212,8 +1306,8 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same result from adding the two arrays with the same shape.</span>
-<span class="n">scanner_rts</span> <span class="o">=</span> <span class="n">scanner_times</span> <span class="o">+</span> <span class="n">rt_arr</span>
-<span class="n">scanner_rts</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+<span class="n">scan_response_times</span> <span class="o">=</span> <span class="n">scan_onset_times</span> <span class="o">+</span> <span class="n">rt_arr</span>
+<span class="n">scan_response_times</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1225,12 +1319,133 @@ the start of the experimental software</em>.   Call this the <code class="docuti
 </div>
 </div>
 </section>
-<section id="selecting-with-boolean-arrays">
-<h2>Selecting with Boolean arrays<a class="headerlink" href="#selecting-with-boolean-arrays" title="Permalink to this headline">¶</a></h2>
-<p>We will soon cover this in a lot more detail; this is just a taster.</p>
-<p>Remember that the trials with no response have a reaction time of zero.</p>
-<p>That means that all the trials with a reaction time of zero will not give sensible times for a response onset - because, for those trials, there was no response.</p>
-<p>We can select the <code class="docutils literal notranslate"><span class="pre">scanner_rts</span></code> corresponding to non-zero reaction times using Boolean arrays.</p>
+<section id="boolean-arrays">
+<h2>Boolean arrays<a class="headerlink" href="#boolean-arrays" title="Permalink to this headline">¶</a></h2>
+<p>We still have the problem of the 0 values for reaction time, indicating that there was no response.</p>
+<p>We can use Boolean arrays to select the response times that were not equal to zero.</p>
+<p>This is just a taster of selecting with Boolean arrays.  See <a class="reference internal" href="boolean_indexing.html"><span class="doc std std-doc">Boolean
+indexing</span></a> for more.</p>
+<p>Boolean arrays are arrays that contain values that are one of the two Boolean values <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Remember <a class="reference internal" href="brisk_python.html#true-and-false"><span class="std std-ref">Boolean values</span></a>, and
+<a class="reference internal" href="brisk_python.html#comparison-operators"><span class="std std-ref">Comparison operators</span></a> from <a class="reference internal" href="brisk_python.html"><span class="doc">Brisk introduction to Python</span></a>.  We can be use comparison operators on arrays, to create Boolean arrays.</p>
+<p>Let’s start by looking at the first 15 reaction times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts</span> <span class="o">=</span> <span class="n">rt_arr</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+<span class="n">first_rts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0., 427.,
+         0.,   0., 369.,   0.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember that comparisons are operators that give answers to a <em>comparison
+question</em>.  This is how comparisons work on individual values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>What do you think will happen if we do the comparison on the whole array, like this?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>You have seen how Numpy works when adding a single number to an array — it
+takes this to mean that you want to add that number <em>to every element in the
+array</em>.</p>
+<p>Comparisons work the same way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts_not_zero</span> <span class="o">=</span> <span class="n">first_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">first_rts_not_zero</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
+       False,  True, False, False,  True, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is the result of asking the comparison question <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> of <em>every element in
+the array</em>.</p>
+<p>So the values that end up in the <code class="docutils literal notranslate"><span class="pre">first_rts_not_zero</span></code> array come from these comparisons:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 0:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 1:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; ... and so on, up to ...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 13:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 14:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Position 0: False
+Position 1: False
+ ... and so on, up to ...
+Position 13: True
+Position 14: False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the equivalent array for all the reaction times:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rts_not_zero</span> <span class="o">=</span> <span class="n">rt_arr</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="c1"># Show the first 50 values.</span>
+<span class="n">rts_not_zero</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
+       False,  True, False, False,  True, False,  True, False,  True,
+       False, False, False, False, False,  True,  True,  True, False,
+       False, False,  True, False,  True, False, False, False, False,
+       False, False,  True, False, False, False, False,  True,  True,
+        True, False, False,  True, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will <a class="reference internal" href="boolean_indexing.html"><span class="doc std std-doc">soon see</span></a> that we can use these arrays to select elements from other arrays.</p>
+<p>Specifically, if we put a Boolean array like <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> between square brackets for another array, that will have the effect of selecting the elements at positions where <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has True, and throwing away elements where <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has False.</p>
+<p>For example, rushing ahead, we can select the values in <code class="docutils literal notranslate"><span class="pre">rt_arr</span></code> corresponding to reaction times greater than zero with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span><span class="p">[</span><span class="n">rts_not_zero</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([427., 369., 337., 308., 375., 478., 300., 321., 306., 370., 372.,
+       372., 342., 382., 318., 371., 450., 442., 452., 381., 351., 394.,
+       353., 380., 387., 341., 366., 432., 415., 406., 466., 364., 462.,
+       477., 374., 384., 375., 432., 369., 354., 455., 338., 364., 376.,
+       345., 299., 308., 381., 375., 438., 325., 371., 377., 314., 297.,
+       349., 607., 391., 334., 385., 386., 369., 394., 361., 480., 375.,
+       368., 325., 410., 328., 412., 379., 383., 376., 351., 361., 403.,
+       411., 447., 590., 328., 376., 410., 433., 370., 353., 353., 386.,
+       417., 315., 298., 370., 365., 439., 391., 351., 464., 357., 328.,
+       294., 471.])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="d-arrays">
 <h2>2D arrays<a class="headerlink" href="#d-arrays" title="Permalink to this headline">¶</a></h2>
@@ -1402,10 +1617,10 @@ the start of the experimental software</em>.   Call this the <code class="docuti
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="arrays_and_images.html" title="next page">
+        <a class="right-next" href="boolean_indexing.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Arrays as images, images as arrays</p>
+                <p class="prevnext-title">Indexing with Boolean arrays</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
