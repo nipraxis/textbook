@@ -67,9 +67,12 @@ thing.  It's near-universal convention.  That way, everyone knows you mean
 
 Let's start with some data, and then go on to process these data with arrays.
 
-Here is a text file with some data about an experiment running in the scanner.
+[Here is a text file](./24719.f3_beh_CHYM.csv) with some data about an
+experiment running in the scanner.
+
 The subject saw stimuli every 1.75 seconds or so.  Sometimes they press a
-spacebar in response to the stimulus. The file records the subject's data.  There is one row per trial, where each row records:
+spacebar in response to the stimulus. The file records the subject's data.
+There is one row per trial, where each row records:
 
 * `response` — what response the subject make for this trial ('None' or
   'spacebar')
@@ -80,11 +83,68 @@ spacebar in response to the stimulus. The file records the subject's data.  Ther
 * `trial_shape` — the name of the stimulus ('red_star', 'red_circle' and so
   on).
 
+Our task here is to take the values in this file and generate a sequence of times that record the *stimulus onset times*, in terms of the *number of scans* since the scanner run started.  More on this below.
+
 Here we open the file as text, and load the lines of the file into memory as a list.
 
 ```{python}
 # Load the lines in the file as a list.
 lines = open('24719.f3_beh_CHYM.csv', 'rt').readlines()
+# Show the first 5 lines.
+lines[:5]
+```
+
+## The task
+
+Now we can give some more detail of what we need to do.
+
+* The times in this file are from the experimental software.
+* The `trial_ISI` values are times *between* the stimuli.  Thus the first
+  stimulus occurred 2000 ms after the experimental software started, and the second stimulus occurred 2000 + 1000 = 3000 ms after the experimental software started.  Call these the `exp_onset_times`.
+* The scanner started 4 seconds (4000ms) *before* the experimental software.
+  So the onset times in relation to the *scanner start* are 4000 + 2000 = 6000, 4000 + 2000 + 1000 = 7000ms.  Call these the `scan_onset_times`.
+* Finally, the scanner starts a new scan each 2 second (2000 ms).  To get the
+  times in terms of scans we divide the `scan_onset_times` by 2000.  Call these
+  the `scan_onset_in_scans` These are the times we need for our later
+  statistical modeling.
+
+The first four `trial_ISI` values from the lines above are: 2000, 1000, 2500,
+1500.
+
+Therefore the first four values for `exp_onset_times` are:
+
+```{python}
+# First four values of exp_onset_times
+[2000, 2000 + 1000, 2000 + 1000 + 2500, 2000 + 1000 + 2500 + 1500]
+```
+
+The `scan_onset_times` are just these values + 4000:
+
+```{python}
+# First four values of scan_onset_times
+[4000 + 2000,
+ 4000 + 2000 + 1000,
+ 4000 + 2000 + 1000 + 2500,
+ 4000 + 2000 + 1000 + 2500 + 1500]
+```
+
+Finally, the `scan_onset_in_scans` values will start:
+
+```{python}
+# First four values of scan_onset_in_scans
+[(4000 + 2000) / 2000,
+ (4000 + 2000 + 1000) / 2000,
+ (4000 + 2000 + 1000 + 2500) / 2000,
+ (4000 + 2000 + 1000 + 2500 + 1500) / 2000]
+```
+
+All this is ugly to type out.  Luckily Numpy is an excellent tool for this calculation.
+
+## Back to the file.
+
+Here are the first five lines of the file again.
+
+```{python}
 # Show the first 5 lines.
 lines[:5]
 ```
@@ -214,33 +274,11 @@ isi_arr[:5]
 
 This is a fairly typical use of `np.zeros`.  We make an array of the right size and then fill in the elements later.
 
-## Our task
-
-We want to calculate the relationship between the onsets of the trials, the onsets of the responses, and the onsets of the scans in the scanner.
-
-As you saw above, the inter-stimulus interval is the interval between the
-previous trial and the current one.
-
-For example, the first ISI here, 2000, means that the first trial started at 2000ms from the start of the experiment.
-
-The second ISI, 1000, means that the second trial started at 2000ms + 1000ms from the start of the experiment.
-
-We want to work out how these stimulus times relate to the scanning we did.
-
-Let's think first about the trial onset times, in terms of scans.
-
-The first thing we need to know is that the experimental software started 4 seconds after the start of the first scan.
-
-We know from the first ISI above that the first trial happened 2000ms after the experimental software started.   That means that it happened 4000 + 2000 milliseconds after the scanner started.
-
-The second then we need to know is that the TR (time-to-repeat) for the scanner was 2 seconds.  So, the first scan happens at time 0, the second at time 2000ms, and so on.
-
-
 ## Baby steps
 
 Let's proceed in steps.  First let us work out the time for each trial *from
-the start of the experimental software*.   Call this the `cumulative_times`.
-
+the start of the experimental software*.   We called these the
+`exp_onset_times`.
 
 Because we are careful, we first work out what that would look like if we did it by hand.   Here are the first five ISI values.
 
@@ -248,7 +286,7 @@ Because we are careful, we first work out what that would look like if we did it
 isi_arr[:5]
 ```
 
-The first value for `cumulative_times` should be 2000.  The second will be 2000 + 1000.  The third will be 2000 + 1000 + 2500.
+The first value for `exp_onset_times` should be 2000.  The second will be 2000 + 1000.  The third will be 2000 + 1000 + 2500.
 
 ```{python}
 [2000, 2000 + 1000, 2000 + 1000 + 2500, 2000 + 1000 + 2500 + 1500]
@@ -257,13 +295,13 @@ The first value for `cumulative_times` should be 2000.  The second will be 2000 
 We could do the calculation for every trial with a `for` loop, like this:
 
 ```{python}
-cumulative_times = np.zeros(n_trials)
+exp_onset_times = np.zeros(n_trials)
 start_time = 0
 for i in range(0, n_trials):
     start_time = start_time + isi_arr[i]
-    cumulative_times[i] = start_time
+    exp_onset_times[i] = start_time
 # Show the first 10 values
-cumulative_times[:10]
+exp_onset_times[:10]
 ```
 
 That calculation looks right, comparing to our by-hand calculation above.
@@ -272,28 +310,31 @@ Luckily, Numpy has a useful function called `np.cumsum` that does the cumulative
 
 ```{python}
 # Show the cumulative sum
-cumulative_times = np.cumsum(isi_arr)
+exp_onset_times = np.cumsum(isi_arr)
 # Show the first 10 values
-cumulative_times[:10]
+exp_onset_times[:10]
 ```
 
-Next we need to make these experiment time into times in terms of the scanner start.  To do this, we need to add 4000 to every time.   Of course we could go through and do that with a For loop:
+Next we need to make these experiment time into times in terms of the scanner
+start.  We decided to call these the `scan_onset_times`. To do this, we need to
+add 4000 to every time.   Of course we could go through and do that with a For
+loop:
 
 ```{python}
-scanner_times = np.zeros(n_trials)
+scan_onset_times = np.zeros(n_trials)
 for i in range(n_trials):
-    scanner_times[i] = cumulative_times[i] + 4000
-scanner_times[:10]
+    scan_onset_times[i] = exp_onset_times[i] + 4000
+scan_onset_times[:10]
 ```
 
 Luckily, however, Numpy will do that for us, because when we add a single number to an array, it has the effect of adding that number to *every element* in the array:
 
 ```{python}
-scanner_times = cumulative_times + 4000
-scanner_times[:10]
+scan_onset_times = exp_onset_times + 4000
+scan_onset_times[:10]
 ```
 
-We now have trial onset times in milliseconds, from the start of the first scan.  We want to recode these numbers in terms of scans since the scanner session started.
+We now have trial onset times in milliseconds, from the start of the first scan.  We want to recode these numbers in terms of scans since the scanner session started.  We call these the `scan_onset_in_scans`.
 
 For example, the first time is 6000 ms.  The scans each last 2000 ms.  So, in terms of scans, the first time is:
 
@@ -305,13 +346,13 @@ scan_length_ms = 2000
 Luckily — Numpy does division in the same way as it does addition, with a single number against an array:
 
 ```{python}
-times_in_scans = scanner_times / scan_length_ms
-times_in_scans[:10]
+scan_onset_in_scans = scan_onset_times / scan_length_ms
+scan_onset_in_scans[:10]
 ```
 
-## Trial times, and selecting values.
+## Processing reaction times
 
-OK — we have the stimulus onset times, but what about the times for the *responses*.
+OK — we have the stimulus onset times, but what about the times for the *responses*?
 
 Here are the first 15 reaction times:
 
@@ -319,23 +360,26 @@ Here are the first 15 reaction times:
 rt_arr[:15]
 ```
 
-Notice that there is a reaction time of 0 when there was no response.  We'll ignore that for now.
+Notice that there is a reaction time of 0 when there was no response.  We'll
+pretend we haven't noticed that, for now.
 
-Now we want to calculate the response times in terms of the start of the scanner.  We have the times of the trials onsets in terms of the scanner:
+Now we want to calculate the *response times* in terms of the start of the scanner.  We have the times of the trials onsets in terms of the scanner:
 
 ```{python}
-scanner_times[:15]
+scan_onset_times[:15]
 ```
 
-The response onset times, in terms of the scanner start, are just the trial onset times, plus the corresponding reaction times.  Of course we could do this with a `for` loop, like this:
+The response onset times, in terms of the scanner start, are just the trial
+onset times, plus the corresponding reaction times.  Of course we could do this
+with a `for` loop, like this:
 
 ```{python}
-scanner_rts = np.zeros(n_trials)
+scan_response_times = np.zeros(n_trials)
 for i in range(n_trials):
-    trial_onset = scanner_times[i]
+    trial_onset = scan_onset_times[i]
     this_rt = rt_arr[i]
-    scanner_rts[i] = trial_onset + this_rt
-scanner_rts[:15]
+    scan_response_times[i] = trial_onset + this_rt
+scan_response_times[:15]
 ```
 
 Luckily though, Numpy knows what to do when we add two arrays with the same shape.  It takes each element in the first array and adds the corresponding element in the second array - just like the `for` loop above.
@@ -344,22 +388,84 @@ This is call *elementwise* addition, because it does the addition (or subtractio
 
 ```{python}
 # Same result from adding the two arrays with the same shape.
-scanner_rts = scanner_times + rt_arr
-scanner_rts[:15]
+scan_response_times = scan_onset_times + rt_arr
+scan_response_times[:15]
 ```
 
-## Selecting with Boolean arrays
+## Boolean arrays
 
+We still have the problem of the 0 values for reaction time, indicating that there was no response.
 
-We will soon cover this in a lot more detail; this is just a taster.
+We can use Boolean arrays to select the response times that were not equal to zero.
 
-Remember that the trials with no response have a reaction time of zero.
+This is just a taster of selecting with Boolean arrays.  See [Boolean
+indexing](boolean_indexing) for more.
 
-That means that all the trials with a reaction time of zero will not give sensible times for a response onset - because, for those trials, there was no response.
+Boolean arrays are arrays that contain values that are one of the two Boolean values `True` or `False`.
 
-We can select the `scanner_rts` corresponding to non-zero reaction times using Boolean arrays.
+Remember {ref}`Boolean values <true-and-false>`, and
+{ref}`comparison-operators` from {doc}`brisk_python`.  We can be use comparison operators on arrays, to create Boolean arrays.
 
+Let's start by looking at the first 15 reaction times.
 
+```{python}
+first_rts = rt_arr[:15]
+first_rts
+```
+
+Remember that comparisons are operators that give answers to a *comparison
+question*.  This is how comparisons work on individual values:
+
+```{python}
+first_rts[0] > 0
+```
+
+What do you think will happen if we do the comparison on the whole array, like this?
+
+```python
+first_rts > 0
+```
+
+You have seen how Numpy works when adding a single number to an array — it
+takes this to mean that you want to add that number *to every element in the
+array*.
+
+Comparisons work the same way:
+
+```{python}
+first_rts_not_zero = first_rts > 0
+first_rts_not_zero
+```
+
+This is the result of asking the comparison question `> 0` of *every element in
+the array*.
+
+So the values that end up in the `first_rts_not_zero` array come from these comparisons:
+
+```{python}
+print('Position 0:', first_rts[0] > 0)
+print('Position 1:', first_rts[1] > 0)
+print(' ... and so on, up to ...')
+print('Position 13:', first_rts[13] > 0)
+print('Position 14:', first_rts[14] > 0)
+```
+Here is the equivalent array for all the reaction times:
+
+```{python}
+rts_not_zero = rt_arr > 0
+# Show the first 50 values.
+rts_not_zero[:50]
+```
+
+We will [soon see](boolean_indexing) that we can use these arrays to select elements from other arrays.
+
+Specifically, if we put a Boolean array like `rts_not_zero` between square brackets for another array, that will have the effect of selecting the elements at positions where `rts_not_zero` has True, and throwing away elements where `rts_not_zero` has False.
+
+For example, rushing ahead, we can select the values in `rt_arr` corresponding to reaction times greater than zero with:
+
+```{python}
+rt_arr[rts_not_zero]
+```
 
 ## 2D arrays
 
