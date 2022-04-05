@@ -14,8 +14,8 @@ orphan: true
 > <p class="attribution">-From: "The pragmatic programmer" </p>
 
 Being efficient means being able to use your tools well.  If you are fluent in
-using your editor, you will be able think better.  You will do better work
-more quickly and you will make fewer mistakes.
+using your editor, you will be able think better.  You will do better work more
+quickly and you will make fewer mistakes.
 
 This is particularly so for a text file editor.  Bear in mind that you will
 likely spend many hundreds of hours using this editor for various parts of
@@ -30,6 +30,32 @@ Programmers are a strange bunch of people who are extremely intolerant of
 tools that waste their time or energy.  Take their impatience seriously when
 you consider choosing your editor.  No programmer would use Windows Notepad
 for writing code, and that is for a very good reason.
+
+## What are the options?
+
+Choosing an editor is an important, even fateful decision.  You choose an editor in order to invest in it, so choose carefully, and choose for the long haul.
+
+There are various surveys on the editors that Python developers use.  Some recent examples are:
+
+*   [The Jetbrains 2020
+    Python developer
+    survey](https://www.jetbrains.com/lp/python-developers-survey-2020/)
+    (though note, this survey was by the makers of one of the editors,
+    PyCharm).
+*   [The 2021 StackOverflow developer
+    survey](https://insights.stackoverflow.com/survey/2021#section-most-popular-technologies-integrated-development-environment)
+    (though note, this is for developers in all languages).
+*   [A discussion of recent
+    trends](https://asterisk.dynevor.org/editor-dominance.html).
+
+We believe your practical long-term options are:
+
+* [Visual studio code](https://code.visualstudio.com)
+* [Note
+
+- <>
+- [Kaggle 2021
+  survey](https://storage.googleapis.com/kaggle-media/surveys/Kaggle's%20State%20of%20Machine%20Learning%20and%20Data%20Science%202021.pdf)
 
 The two most well-known and fully-featured cross-platform general text editors
 are [emacs] and [vim] / [gvim].  These run on any platform.  [Atom] is another
