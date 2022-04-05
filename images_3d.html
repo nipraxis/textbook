@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Reshaping and three-dimensional arrays &#8212; Practice and theory of brain imaging</title>
+    <title>Three-dimensional images, NIfTI &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,8 +52,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Indexing with Boolean arrays" href="boolean_indexing.html" />
-    <link rel="prev" title="Three-dimensional images, NIfTI" href="images_3d.html" />
+    <link rel="next" title="Reshaping and three-dimensional arrays" href="reshape_and_3d.html" />
+    <link rel="prev" title="Three-dimensional arrays" href="arrays_3d.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -174,13 +174,13 @@
    Three-dimensional arrays
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="images_3d.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Three-dimensional images, NIfTI
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
    Reshaping and three-dimensional arrays
   </a>
  </li>
@@ -492,7 +492,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/reshape_and_3d.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/images_3d.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
@@ -512,7 +512,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Freshape_and_3d.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fimages_3d.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -533,14 +533,14 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/reshape_and_3d.Rmd"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/images_3d.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/reshape_and_3d.Rmd&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/images_3d.Rmd&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="_static/images/logo_jupyterhub.svg"
@@ -560,39 +560,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-dimensional-arrays">
-   One-dimensional arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapes-are-tuples">
-   Shapes are tuples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping">
-   Reshaping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#into-the-third-dimension">
-   Into the third dimension
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping-a-three-dimensional-array">
-   Reshaping a three-dimensional array
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -601,387 +568,282 @@
         
               <div>
                 
-  <section id="reshaping-and-three-dimensional-arrays">
-<h1>Reshaping and three-dimensional arrays<a class="headerlink" href="#reshaping-and-three-dimensional-arrays" title="Permalink to this headline">¶</a></h1>
-<section id="one-dimensional-arrays">
-<h2>One-dimensional arrays<a class="headerlink" href="#one-dimensional-arrays" title="Permalink to this headline">¶</a></h2>
-<p>Our usual import:</p>
+  <section id="three-dimensional-images-nifti">
+<h1>Three-dimensional images, NIfTI<a class="headerlink" href="#three-dimensional-images-nifti" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here is a one-dimensional array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">arr_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">arr_1d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="shapes-are-tuples">
-<h2>Shapes are tuples<a class="headerlink" href="#shapes-are-tuples" title="Permalink to this headline">¶</a></h2>
-<p>Notice the shape:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6,)
-</pre></div>
-</div>
-</div>
-</div>
-<p>What type of thing is the shape?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">arr_1d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tuple
-</pre></div>
-</div>
-</div>
-</div>
-<p>A tuple is a basic Python object, like a list, with some small differences.</p>
-<p>Where we form a list with square brackets, as in:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A list</span>
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">my_list</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
-</pre></div>
-</div>
-</div>
-</div>
-<p>— we form a tuple with parentheses (round brackets):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A tuple</span>
-<span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">my_tuple</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 3)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Like a list, we can get the length of a tuple, and we can index into a tuple:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Length of the tuple is:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tuple element at position 1 is:&#39;</span><span class="p">,</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of the tuple is: 3
-tuple element at position 1 is: 2
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can change a list, by replacing the values, adding or removing elements.  Formally, this means a list is <em>mutable</em>.   A tuple is <em>immutable</em> — we cannot change its elements, or add or remove elements.  For example:</p>
-<div class="cell tag_raises-exception docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Our usual set-up</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
-</pre></div>
-</div>
-</div>
-</div>
-<p>There is also a wrinkle with making a length-1 tuple, because Python interprets this as your usual brackets for arithmetic:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python interprets this parentheses in arithmetic.</span>
-<span class="n">just_a_number</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">just_a_number</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-</pre></div>
-</div>
-</div>
-</div>
-<p>To form a length-1 tuple, you need to disambiguate with an extra comma:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">short_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>  <span class="c1"># Notice the extra comma</span>
-<span class="n">short_tuple</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1,)
-</pre></div>
-</div>
-</div>
-</div>
-<p>We will now be using tuples to give our array shapes, although will also work.</p>
-<p>See <a class="reference internal" href="brisk_python.html#tuples"><span class="std std-ref">Tuples</span></a> for more.</p>
-</section>
-<section id="reshaping">
-<h2>Reshaping<a class="headerlink" href="#reshaping" title="Permalink to this headline">¶</a></h2>
-<p>We can reshape this array to two dimensions using the <code class="docutils literal notranslate"><span class="pre">np.reshape</span></code> function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># New shape, as a tuple.</span>
-<span class="n">arr_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d</span><span class="p">,</span> <span class="n">new_shape</span><span class="p">)</span>
-<span class="n">arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
-       [3, 4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Notice how NumPy used the 1D array elements.  It takes each element from the
-1D array, and fills the rows first, and then the columns.</p>
-<p>We can reshape back to one dimension.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_d_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,)</span>  <span class="c1"># 1D shape, as a tuple.  Notice extra comma.</span>
-<span class="n">arr_2d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">one_d_shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here NumPy fetches the data from the <em>rows first</em>, and then the columns, to
-fill out the elements of the 1D array.</p>
-<p>The value <code class="docutils literal notranslate"><span class="pre">-1</span></code> is special for <code class="docutils literal notranslate"><span class="pre">np.reshape</span></code>.  It means, “make a
-dimension the size that will use the remaining unspecified elements”.   We’ll
-see what “unspecified” means soon.  At the moment, “unspecified” is true of
-all the elements, so the shape is the same as the number of elements in the 2D
-array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>It is very common to convert a 2 or 3 or N-dimensional array to a 1D array, so
-there is a short-cut command for that:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can reshape from one shape, to any other shape, as long as the number of
-elements stays the same.  Notice the algorithm NumPy is using to decide which
-elements go in which position of the array — rows first, and then columns.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
-       [2, 3],
-       [4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Reshape uses -1 as a value to mean the shape value that will use the remaining
-unspecified elements.  For example, we could specify that we want the first
-dimension to be length 3, and NumPy can work out the second dimension must be
-length 2, and the other way round:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
-       [2, 3],
-       [4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
-       [2, 3],
-       [4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="into-the-third-dimension">
-<h2>Into the third dimension<a class="headerlink" href="#into-the-third-dimension" title="Permalink to this headline">¶</a></h2>
-<p>So far we have seen one-dimensional and two-dimensional arrays.  These are easy to think about, the one-dimensional array is like a row from a table or spreadsheet.  A two-dimensional array is has rows and columns, like a table or a spreadsheet.</p>
-<p>A three-dimensional array takes a little bit more work to visualize, and get used to.</p>
-</section>
-<section id="reshaping-a-three-dimensional-array">
-<h2>Reshaping a three-dimensional array<a class="headerlink" href="#reshaping-a-three-dimensional-array" title="Permalink to this headline">¶</a></h2>
-<p>NumPy uses the same algorithm for reshaping a three-dimensional array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d_bigger</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">arr_1d_bigger</span>
-<span class="n">arr_1d_bigger</span><span class="o">.</span><span class="n">shape</span>
-<span class="n">arr_3d</span> <span class="o">=</span> <span class="n">arr_1d_bigger</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">arr_3d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0,  1,  2,  3],
-        [ 4,  5,  6,  7],
-        [ 8,  9, 10, 11]],
+<span class="c1"># Set &#39;gray&#39; as the default colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
 
-       [[12, 13, 14, 15],
-        [16, 17, 18, 19],
-        [20, 21, 22, 23]]])
+<span class="c1"># Display array values to 4 digits of precision</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Here NumPy is showing us the two slices over the first dimension:</p>
+<p>We will spend a lot of time loading data from brain images.</p>
+<p>MRI images for functional MRI are usually stored using the <a class="reference external" href="https://nifti.nimh.nih.gov/nifti-1">NIfTi
+format</a>.</p>
+<p>As you’ve already seen, this is a very simple format that is typically
+a single file with extension <code class="docutils literal notranslate"><span class="pre">.nii</span></code>.  If the file is compressed, it will
+end with <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> instead.</p>
+<p>Inside, the file contains:</p>
+<ul class="simple">
+<li><p>352 bytes of <em>header</em> information.  Among other things, the header
+gives the 3D or 4D shape of the file, and the data type of the pixel
+(voxel) data.</p></li>
+<li><p>Usually, directly after the header, we have the image data.  If the image
+data is shape (I, J, K), and S is the number of bytes to store the data for
+one pixel (voxel) value, then the image data is <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">*</span> <span class="pre">J</span> <span class="pre">*</span> <span class="pre">K</span> <span class="pre">*</span> <span class="pre">S</span></code> in length.
+For example, the image might be shape 64, 64, 32, and the data type might be
+64-bit float, which is 8 bytes long, so the image data would be <code class="docutils literal notranslate"><span class="pre">64</span> <span class="pre">*</span> <span class="pre">64</span> <span class="pre">*</span> <span class="pre">32</span> <span class="pre">*</span> <span class="pre">8</span></code> bytes long.</p></li>
+</ul>
+<p>To load these images into Python, and the <a class="reference external" href="http://nipy.org/nibabel">Nibabel</a>
+package.</p>
+<p>Start by importing the Nibabel library:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
-<span class="n">arr_3d</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[12, 13, 14, 15],
-       [16, 17, 18, 19],
-       [20, 21, 22, 23]])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>To think about what array this is, imagine tipping the bottom of each 2D array
-towards you from the plane of the screen, and look at these tipped planes from
-the left, so the 0 sits nearly on top of 12, in the plane of the screen, and 4
-sits nearly on top of 16, a little forward of the plane of the screen.</p>
-<p>Here are the four “planes” of the array (slices over the third dimension):</p>
+<p>We will also use the Nipraxis package to fetch the image data file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0  4  8]
- [12 16 20]]
-[[ 1  5  9]
- [13 17 21]]
-[[ 2  6 10]
- [14 18 22]]
-[[ 3  7 11]
- [15 19 23]]
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can reshape to one dimension in the same way as we did for the 2D arrays.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">arr_3d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">arr_3d</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
-       17, 18, 19, 20, 21, 22, 23])
-</pre></div>
-</div>
-</div>
-</div>
-<p>To get the elements of the 1D array, NumPy first fetches values across the
-last axis (the depth or plane axis), then the second to last (column) axis,
-then the first (row) axis.</p>
-<p>When reshaping to three dimensions, NumPy fills out the last, then second,
-then first dimensions:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">arr_1d_bigger</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">arr_3d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0,  1,  2,  3],
-        [ 4,  5,  6,  7],
-        [ 8,  9, 10, 11]],
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nipraxis</span>
 
-       [[12, 13, 14, 15],
-        [16, 17, 18, 19],
-        [20, 21, 22, 23]]])
+<span class="n">structural_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">)</span>
+<span class="n">structural_fname</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/mb312/Library/Caches/nipraxis/0.3/ds114_sub009_highres.nii&#39;
 </pre></div>
 </div>
 </div>
 </div>
-</section>
+<p>Load the image into memory:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">structural_fname</span><span class="p">)</span>
+<span class="n">img</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x110c8bb20&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The image has a “header” containing the information about the image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Header&#39;&gt; object, endian=&#39;&lt;&#39;
+sizeof_hdr      : 348
+data_type       : b&#39;&#39;
+db_name         : b&#39;&#39;
+extents         : 0
+session_error   : 0
+regular         : b&#39;r&#39;
+dim_info        : 0
+dim             : [  3 256 156 256   1   1   1   1]
+intent_p1       : 0.0
+intent_p2       : 0.0
+intent_p3       : 0.0
+intent_code     : none
+datatype        : float32
+bitpix          : 32
+slice_start     : 0
+pixdim          : [1.     1.     1.3002 1.     0.0097 0.     0.     0.    ]
+vox_offset      : 0.0
+scl_slope       : nan
+scl_inter       : nan
+slice_end       : 0
+slice_code      : unknown
+xyzt_units      : 10
+cal_max         : 0.0
+cal_min         : 0.0
+slice_duration  : 0.0
+toffset         : 0.0
+glmax           : 0
+glmin           : 0
+descrip         : b&#39;FSL5.0&#39;
+aux_file        : b&#39;&#39;
+qform_code      : scanner
+sform_code      : scanner
+quatern_b       : -0.11747453
+quatern_c       : 0.008146102
+quatern_d       : 0.022481605
+qoffset_x       : -129.82573
+qoffset_y       : -119.09057
+qoffset_z       : -143.41777
+srow_x          : [   0.9989   -0.0605    0.0109 -129.8257]
+srow_y          : [   0.0427    1.263     0.2336 -119.0906]
+srow_z          : [  -0.0215   -0.3028    0.9723 -143.4178]
+intent_name     : b&#39;&#39;
+magic           : b&#39;n+1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you happen to have the <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/">FSL
+package</a> installed, you can get the
+same information from FSL’s <code class="docutils literal notranslate"><span class="pre">fslinfo</span></code>. If you do have FSL, run this command
+from the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fslinfo</span> <span class="n">ds114_sub009_highres</span><span class="o">.</span><span class="n">nii</span>
+</pre></div>
+</div>
+<p>We can load the image data as an array with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(256, 156, 256)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Think of this as 256 2D images, stacked on top of one another.  Each 2D image
+is a “slice”, of shape (256, 156).</p>
+<p>The first (bottom) slice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x110f61460&gt;
+</pre></div>
+</div>
+<img alt="_images/images_3d_14_1.png" src="_images/images_3d_14_1.png" />
+</div>
+</div>
+<p>The middle slice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">127</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x11104b760&gt;
+</pre></div>
+</div>
+<img alt="_images/images_3d_16_1.png" src="_images/images_3d_16_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_3d_17_0.png" src="_images/images_3d_17_0.png" />
+</div>
+</div>
+<p>As for any array, we can transpose it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">127</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1111e0e20&gt;
+</pre></div>
+</div>
+<img alt="_images/images_3d_19_1.png" src="_images/images_3d_19_1.png" />
+</div>
+</div>
+<p>To get the display you usually see, we need to transpose and flip up to down:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">127</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x11125bdc0&gt;
+</pre></div>
+</div>
+<img alt="_images/images_3d_21_1.png" src="_images/images_3d_21_1.png" />
+</div>
+</div>
+<p>We are looking at a slice over the third dimension.  We can see that the slices over this dimension are 2D images, where left to right is the first axis, and back to front is the second axis.</p>
+<p>We can also think of this 3D image as a stack of 2D images where the 2D images are (back to front, bottom to top).   Like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yz_slice</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="n">yz_slice</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(156, 256)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">yz_slice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x115233ac0&gt;
+</pre></div>
+</div>
+<img alt="_images/images_3d_25_1.png" src="_images/images_3d_25_1.png" />
+</div>
+</div>
+<p>Here, we have all the pixels corresponding to 127 in the left to right
+direction, giving us an image of shape (156, 256).</p>
+<p>Here’s a coronal slice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xz_slice</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">78</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">xz_slice</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(256, 256)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">xz_slice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1152a4a00&gt;
+</pre></div>
+</div>
+<img alt="_images/images_3d_28_1.png" src="_images/images_3d_28_1.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1014,19 +876,19 @@ then first dimensions:</p>
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="images_3d.html" title="previous page">
+        <a class="left-prev" href="arrays_3d.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Three-dimensional images, NIfTI</p>
+                <p class="prevnext-title">Three-dimensional arrays</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="boolean_indexing.html" title="next page">
+        <a class="right-next" href="reshape_and_3d.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Indexing with Boolean arrays</p>
+                <p class="prevnext-title">Reshaping and three-dimensional arrays</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

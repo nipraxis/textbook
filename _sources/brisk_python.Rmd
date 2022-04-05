@@ -687,6 +687,8 @@ you a reversed copy of the list:
 my_list[::-1]
 ```
 
+(tuples)=
+
 ## Tuples
 
 Tuples are almost the same as lists, except they are not mutable. That
