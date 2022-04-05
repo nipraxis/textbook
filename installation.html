@@ -170,18 +170,33 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="slicing_with_booleans.html">
-   Slicing with boolean vectors
+  <a class="reference internal" href="arrays_3d.html">
+   Three-dimensional arrays
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+  <a class="reference internal" href="images_3d.html">
+   Three-dimensional images, NIfTI
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="reshape_and_3d.html">
    Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing.html">
+   Indexing with Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing_nd.html">
+   Boolean indexing with more than one dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on boolean arrays
   </a>
  </li>
  <li class="toctree-l1">
@@ -548,11 +563,12 @@
 <h1>Installing on your computer<a class="headerlink" href="#installing-on-your-computer" title="Permalink to this headline">¶</a></h1>
 <p>We are going to be using the following major software for the class:</p>
 <ul class="simple">
-<li><p>[Python] 3 (see <a class="reference internal" href="#why-python"><span class="std std-ref">Why Python</span></a>);</p></li>
-<li><p>[numpy] (the Python array package);</p></li>
-<li><p>[matplotlib] (Python plotting package);</p></li>
-<li><p>[scipy] (Python scientific library);</p></li>
-<li><p>[nibabel] (read / write of neuroimaging file formats in Python);</p></li>
+<li><p><a class="reference external" href="https://python.org">Python</a> (see <a class="reference internal" href="#why-python"><span class="std std-ref">Why Python</span></a>);</p></li>
+<li><p><a class="reference external" href="https://numpy.org">numpy</a> (the Python array package);</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org">matplotlib</a> (Python plotting package);</p></li>
+<li><p><a class="reference external" href="https://scipy.org">scipy</a> (Python scientific library);</p></li>
+<li><p><a class="reference external" href="https://nipy.org/nibabel">nibabel</a> (read / write of neuroimaging file
+formats in Python);</p></li>
 </ul>
 <p>For the class and homework we will use:</p>
 <ul class="simple">
@@ -577,20 +593,23 @@ together on a not-trivial problem.</p>
 <li><p><a class="reference internal" href="installation_on_linux.html"><span class="doc">Installation on Linux</span></a>;</p></li>
 <li><p><a class="reference internal" href="installation_on_windows.html"><span class="doc">Installation on Windows</span></a>.</p></li>
 </ul>
-<p>Next, open Terminal (Mac) or Powershell (Windows) or a terminal of your choice on Linux:</p>
-<p>Check you have Python installed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python3</span>
+<p>Next, open Terminal (Mac) or Powershell (Windows) or a terminal of your choice
+on Linux.</p>
+<p>In that terminal, check you have Python installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
+<p>This should show you the Python 3 help messages.</p>
 <p>Check you have the Python package manager installed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">pip3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
+<p>This should show you the Pip program’s help message.</p>
 <p>Now finish the install with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">scipy</span> <span class="n">matplotlib</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span> <span class="n">nibabel</span> <span class="n">jupyter</span> <span class="n">ipython</span> <span class="n">jupytext</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">scipy</span> <span class="n">matplotlib</span> <span class="n">pandas</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span> <span class="n">nibabel</span> <span class="n">jupyter</span> <span class="n">ipython</span> <span class="n">jupytext</span>
 </pre></div>
 </div>
-<p>Finally, to git a copy of the textbook files:</p>
+<p>Finally, to get a copy of the textbook files:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">/</span><span class="n">textbook</span>
 </pre></div>
 </div>
