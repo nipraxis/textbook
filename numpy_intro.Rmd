@@ -73,7 +73,7 @@ We fetch the text file we will be working on:
 import nipraxis
 
 # Fetch the file.
-stim_fname = nipraxis.fetch_data('24719.f3_beh_CHYM.csv')
+stim_fname = nipraxis.fetch_file('24719.f3_beh_CHYM.csv')
 # Show the filename.
 stim_fname
 ```

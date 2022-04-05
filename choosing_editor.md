@@ -14,8 +14,8 @@ orphan: true
 > <p class="attribution">-From: "The pragmatic programmer" </p>
 
 Being efficient means being able to use your tools well.  If you are fluent in
-using your editor, you will be able think better.  You will do better work
-more quickly and you will make fewer mistakes.
+using your editor, you will be able think better.  You will do better work more
+quickly and you will make fewer mistakes.
 
 This is particularly so for a text file editor.  Bear in mind that you will
 likely spend many hundreds of hours using this editor for various parts of
@@ -31,83 +31,145 @@ tools that waste their time or energy.  Take their impatience seriously when
 you consider choosing your editor.  No programmer would use Windows Notepad
 for writing code, and that is for a very good reason.
 
+## What are the options?
+
+Choosing an editor is an important, even fateful decision.  You choose an
+editor in order to invest in it; if you choose wisely, your will find your
+investment repaid, handsomely, and daily.  Choose carefully, and choose for
+the long haul.
+
+There are various surveys on the editors that Python developers use.  Some recent examples are:
+
+*   [The Jetbrains 2020
+    Python developer
+    survey](https://www.jetbrains.com/lp/python-developers-survey-2020/)
+    (though note, this survey was by the makers of one of the editors,
+    PyCharm).
+*   [The 2021 StackOverflow developer
+    survey](https://insights.stackoverflow.com/survey/2021#section-most-popular-technologies-integrated-development-environment)
+    (though note, this is for developers in all languages).
+*   [A discussion of recent
+    trends](https://asterisk.dynevor.org/editor-dominance.html).
+
+From these, and from our own experience talking to other people with lots of
+experience writing Python code, we believe your practical long-term options
+are the following.  The editors are in the order from the Jetbrains survey
+above, but with the position of PyCharm estimated from the StackOverflow
+survey, on the basis that the JetBrains survey results are likely to be biased
+to PyCharm users).
+
+* A version of [Visual studio code](https://code.visualstudio.com).  More on
+  what we mean by "a version" below.
+* [Vim](https://www.vim.org)
+* [PyCharm](https://www.jetbrains.com/pycharm)
+* [Sublime text](https://www.sublimetext.com)
+* [Emacs](https://emacs.org)
+* [Spyder](https://www.spyder-ide.org)
+
+## Some version of Visual Studio Code
+
+[Visual studio code](https://code.visualstudio.com) is a code editor and
+integrated development environment almost entirely written by programmers at
+Microsoft.  It is entirely free to download (free as in free beer).  See below
+for more discussion about whether it truly open-source (free as in freedom).
+
+It is very popular as a Python editor, and [increasingly
+so](https://asterisk.dynevor.org/editor-dominance.html).
+
+You will find many powerful features for interacting with Python code, and, more recently and experimentally, with Jupyter Notebooks.
+
+It works well and looks good out of the box, but it is highly configurable.
+Configuration takes some getting used to, and can be fiddly, but there is a
+lot of help from others trying to do the same thing, online.
+
+There are various controversies about Visual Studio Code (or VSCode for short).
+
+Although Microsoft releases the code to build a version of VSCode on your own computer, the installer you download from their website contains and refers to to not-free, not-open-source components, and it sends telemetry data to Microsoft.  See the [VSCodium site](https://vscodium.com) for a discussion, and links to download versions of VSCode without these features, and so, less locked to Microsoft.
+
+Another controversy is the practical extent to which the community can
+influence the direction of development of the VSCode editor.  In practice,
+Microsoft decides the direction of the project, and drives the changes,
+because they pay the programmers that write it.  See [this post for some
+discussion](https://www.eclipse.org/org/press-release/20200331-theia.php). For
+those reasons, some people prefer to use a build of the more open
+[Theia editor](https://theia-ide.org), that uses much of machinery behind VSCode.
+
+## Vim
+
 The two most well-known and fully-featured cross-platform general text editors
-are [emacs] and [vim] / [gvim].  These run on any platform.  [Atom] is another
-open-source cross-platform general text editor.
+are Emacs and Vim.  These run on any platform.  More about Emacs further down
+the page.
 
-No doubt you want to know what your instructors use for their daily work?  No?
-Well, in any case, the answer is that most of us use Vim.
+Vim is based on a classic Unix editor called
+[vi](https://en.wikipedia.org/wiki/Vi).  To quote from the [about
+vim](https://www.vim.org/about.php) page:
 
-## vim
-
-Vim is based on a classic Unix editor called [vi].  To quote from the [about
-vim][about vim] page:
-
-> Vim isn't an editor designed to hold its users' hands. It is a tool, the
-> use of which must be learned.
+> Vim isn't an editor designed to hold its users' hands. It is a tool, the use
+> of which must be learned.
 
 To use Vim well, you have to practice using its commands, by following any one
-of several online tutorials. For example, you might try the [openvim tutorial](http://www.openvim.com/tutorial.html).  The trick is to teach your fingers
+of several online tutorials. For example, you might try the [openvim
+tutorial](http://www.openvim.com/tutorial.html) or [Vim
+adventures](https://vim-adventures.com/).  The trick is to teach your fingers
 what to do so you don't think about it any more. This takes a long time,
 budget a week of 30 minutes a day to start to feel comfortable.
 
-If you do invest this effort, vim is an immensely satisfying editor to use,
+If you do invest this effort, Vim is an immensely satisfying editor to use,
 because you quickly find that your fingers remember what to do.  A
-programmer's joke about vim is that "the cursor follows your eyes", because
+programmer's joke about Vim is that "the cursor follows your eyes", because
 your fingers are moving the cursor around the text without any apparent
 thought or effort on your part.
 
-It is relatively complicated to configure vim to its full potential.  Please
+It is relatively complicated to configure Vim to its full potential.  Please
 ask for help if you are interested to do this.  It is time well spent.
+
+## PyCharm
+
+We have heard good things about PyCharm, from people who know what they are
+talking about.  This is a general text editor with features that allow it to
+be used as an integrated development environment for Python.  There is a free
+"community" version and a £149 initial annual fee for the professional
+version.  The free version does have Python editing support, and support for
+other languages, but the professional edition supports more languages and
+features.  See the [PyCharm web site](https://www.jetbrains.com/pycharm/) and
+[PyCharm feature
+comparison](https://www.jetbrains.com/products/compare/?product=pycharm&product=pycharm-ce)
+for more detail.
+
+### Sublime Text
+
+Some people really like [Sublime text](https://www.sublimetext.com).  It is
+free to try, and it appears the trial version does not expire, but if you
+continue to use it, the authors ask you to buy a license for \$99.
 
 ## Emacs
 
-Emacs is a classic and highly configurable text editor originally written by
-the great [Richard Stallman].  It is quicker to learn than vim, probably
-harder to configure, and has great power.  A good place to start is the [emacs
-tour][emacs tour].  About an hour of research and practice gets you far enough to learn
-how to start learning emacs.
+Emacs is a very powerful classic free, and open-source text editor. The great
+[Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) wrote the
+original version. It is quicker to learn than vim, probably harder to
+configure, and configurable to an extreme degree.  A good place to start is
+the [emacs tour](https://www.gnu.org/software/emacs/tour).  About an hour of
+research and practice gets you far enough to learn how to start learning
+Emacs.
 
-As for vim, to use it well, it needs some practice to get used to the
-keystrokes used, and as for vim, this practice is amply repaid by very fluent
+As for Vim, to use it well, it needs practice.  You will need to get used to
+the keystrokes, and as for Vim, this practice is amply repaid by very fluent
 movement and editing.
 
-Emacs hard to configure, largely because it is so powerful.  We are very happy
-to help with this if you are interested.
+Emacs is hard to configure, largely because it is so powerful.  We are very
+happy to help with this if you are interested.
 
-## Atom
+## Spyder
 
-[Atom] is another open-source text editor that describes itself as "A hackable
-text editor for the 21st Century".  It has installers for OSX, Linux and
-Windows.  It has many "packages" that can configure the editor in various
-ways, including setting it to use the same key combinations as [vim]
-([vim-mode], [ex-mode]) and emacs ([emacs-mode]).  It integrates with [git]
-version control out of the box.  It has useful features for development, such
-as the ability to run code from the editor and return the results to the
-editor window (see the [hydrogen] package).
+[Spyder](https://www.spyder-ide.org) is a code editor and integrated
+development environment that is specific to Python.  It is free, and
+open-source.  You can install it in the same way you install other Python
+packages.  It has a similar interface to, for example, the Matlab graphical
+environment, with separate windows for code, plots, variables and so on.
 
-## Other editors that you might consider
+## Another option for Windows
 
-We will support these editors too for anyone who wants to use them.  If you
-prefer another editor, we will help as best we can.
-
-This suggested set of editors comes from the top four editors from [text
-editor competition][text editor competition] with the addition of TextMate and
-PyCharm (because we know at least one very efficient coder who use these).
-
-### For any platform
-
-Some people really like [Sublime text].  It is free to try, and the trial
-version does not expire, but if you continue to use it, the authors ask you to
-buy a license for 70 USD.
-
-We have heard good things about PyCharm.  This is a general text editor with
-features that allow it to be used as an integrated development environment for
-Python. See the [PyCharm web site](https://www.jetbrains.com/pycharm/) for more detail.
-
-### For Windows
-
-[Notepad++] seems to be a Windows favorite.
+[Notepad++](https://notepad-plus-plus.org) only works on Windows, but seems to be a popular choice.
 
 ## Suggestions?
 
