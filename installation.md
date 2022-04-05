@@ -18,15 +18,14 @@ For the class and homework we will use:
 
 ## Installation
 
-:::{note}
+```{note}
 
-It's common to run into problems with installation - don't worry, we're
+It is common to run into problems with installation - don't worry, we're
 expecting that.  One of the things we are teaching in this class is how to
-solve problems like installing and using scientific software.  So, if you
-run into trouble - great - that will be a good opportunity for us to work
-together on a not-trivial problem.
-
-:::
+solve problems like installing and using scientific software.  So, if you run
+into trouble - great - that will be a good opportunity for us to work together
+on a not-trivial problem.
+```
 
 Here are the instructions for installing Git and Python:
 
