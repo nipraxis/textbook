@@ -67,8 +67,19 @@ thing.  It's near-universal convention.  That way, everyone knows you mean
 
 Let's start with some data, and then go on to process these data with arrays.
 
-[Here is a text file](./24719.f3_beh_CHYM.csv) with some data about an
-experiment running in the scanner.
+We fetch the text file we will be working on:
+
+```{python}
+import nipraxis
+
+# Fetch the file.
+stim_fname = nipraxis.fetch_data('24719.f3_beh_CHYM.csv')
+# Show the filename.
+stim_fname
+```
+
+The file is the output from some experimental delivery software that recorded
+various aspects of the presented stimuli and the subject's responses.
 
 The subject saw stimuli every 1.75 seconds or so.  Sometimes they press a
 spacebar in response to the stimulus. The file records the subject's data.
@@ -89,7 +100,7 @@ Here we open the file as text, and load the lines of the file into memory as a l
 
 ```{python}
 # Load the lines in the file as a list.
-lines = open('24719.f3_beh_CHYM.csv', 'rt').readlines()
+lines = open(stim_fname, 'rt').readlines()
 # Show the first 5 lines.
 lines[:5]
 ```
@@ -461,7 +472,7 @@ We will [soon see](boolean_indexing) that we can use these arrays to select elem
 
 Specifically, if we put a Boolean array like `rts_not_zero` between square brackets for another array, that will have the effect of selecting the elements at positions where `rts_not_zero` has True, and throwing away elements where `rts_not_zero` has False.
 
-For example, rushing ahead, we can select the values in `rt_arr` corresponding to reaction times greater than zero with:
+For0 example, rushing ahead, we can select the values in `rt_arr` corresponding to reaction times greater than zero with:
 
 ```{python}
 rt_arr[rts_not_zero]
