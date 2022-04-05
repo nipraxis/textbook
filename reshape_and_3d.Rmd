@@ -14,20 +14,93 @@ jupyter:
 
 # Reshaping and three-dimensional arrays
 
+## One-dimensional arrays
+
+Our usual import:
+
+```{python}
+import numpy as np
+```
+
 Here is a one-dimensional array:
 
 ```{python}
 import numpy as np
 arr_1d = np.arange(6)
 arr_1d
+```
+
+## Shapes are tuples
+
+Notice the shape:
+
+```{python}
 arr_1d.shape
 ```
 
-We can reshape this array to two dimensions using the `reshape` method of
-the array:
+What type of thing is the shape?
 
 ```{python}
-arr_2d = arr_1d.reshape((2, 3))
+type(arr_1d.shape)
+```
+
+A tuple is a basic Python object, like a list, with some small differences.
+
+Where we form a list with square brackets, as in:
+
+```{python}
+# A list
+my_list = [1, 2, 3]
+my_list
+```
+
+— we form a tuple with parentheses (round brackets):
+
+```{python}
+# A tuple
+my_tuple = (1, 2, 3)
+my_tuple
+```
+
+Like a list, we can get the length of a tuple, and we can index into a tuple:
+
+```{python}
+print('Length of the tuple is:', len(my_tuple))
+print('tuple element at position 1 is:', my_tuple[1])
+```
+
+We can change a list, by replacing the values, adding or removing elements.  Formally, this means a list is *mutable*.   A tuple is *immutable* — we cannot change its elements, or add or remove elements.  For example:
+
+```{python tags=c("raises-exception")}
+my_tuple[1] = 99
+```
+
+There is also a wrinkle with making a length-1 tuple, because Python interprets this as your usual brackets for arithmetic:
+
+```{python}
+# Python interprets this parentheses in arithmetic.
+just_a_number = (1)
+just_a_number
+```
+
+To form a length-1 tuple, you need to disambiguate with an extra comma:
+
+```{python}
+short_tuple = (1,)  # Notice the extra comma
+short_tuple
+```
+
+We will now be using tuples to give our array shapes, although will also work.
+
+See {ref}`tuples` for more.
+
+## Reshaping
+
+We can reshape this array to two dimensions using the `np.reshape` function:
+
+```{python}
+new_shape = (2, 3)  # New shape, as a tuple.
+arr_2d = np.reshape(arr_1d, new_shape)
 arr_2d
 ```
 
@@ -37,46 +110,58 @@ Notice how NumPy used the 1D array elements.  It takes each element from the
 We can reshape back to one dimension.
 
 ```{python}
-arr_2d.reshape((6,))
+one_d_shape = (6,)  # 1D shape, as a tuple.  Notice extra comma.
+arr_2d.reshape(one_d_shape)
 ```
 
-Here NumPy fetches the data from the rows first, and the columns, to fill out
-the elements of the 1D array.
+Here NumPy fetches the data from the *rows first*, and then the columns, to
+fill out the elements of the 1D array.
 
-The value `-1` is special for the `reshape` method.  It means, “make a
-dimension the size that will use the remaining unspecified elements”.   We’ll
-see what “unspecified” means soon.  At the moment, “unspecified” is true of
+The value `-1` is special for `np.reshape`.  It means, "make a
+dimension the size that will use the remaining unspecified elements".   We’ll
+see what “unspecified” means soon.  At the moment, "unspecified" is true of
 all the elements, so the shape is the same as the number of elements in the 2D
 array:
 
 ```{python}
-arr_2d.reshape(-1)
+np.reshape(arr_2d, (-1,))
 ```
 
 It is very common to convert a 2 or 3 or N-dimensional array to a 1D array, so
 there is a short-cut command for that:
 
 ```{python}
-arr_2d.ravel()
+np.ravel(arr_2d)
 ```
 
 You can reshape from one shape, to any other shape, as long as the number of
-elements stays the same.  Can you see the algorithm NumPy is using to decide
-which elements go in which position of the array?
+elements stays the same.  Notice the algorithm NumPy is using to decide which
+elements go in which position of the array — rows first, and then columns.
 
 ```{python}
-arr_2d.reshape((3, 2))
+np.reshape(arr_2d, (3, 2))
 ```
 
-Reshape uses  as a value to mean the shape value that will use the
-remaining unspecified elements.  For example, we could specify that we want
-the first dimension to be length 3, and NumPy can work out the second
-dimension must be length 2, and the other way round:
+Reshape uses -1 as a value to mean the shape value that will use the remaining
+unspecified elements.  For example, we could specify that we want the first
+dimension to be length 3, and NumPy can work out the second dimension must be
+length 2, and the other way round:
 
 ```{python}
 arr_1d.reshape((3, -1))
+```
+
+```{python}
 arr_1d.reshape((-1, 2))
 ```
+
+## Into the third dimension
+
+So far we have seen one-dimensional and two-dimensional arrays.  These are easy to think about, the one-dimensional array is like a row from a table or spreadsheet.  A two-dimensional array is has rows and columns, like a table or a spreadsheet.
+
+A three-dimensional array takes a little bit more work to visualize, and get used to.
+
+## Reshaping a three-dimensional array
 
 NumPy uses the same algorithm for reshaping a three-dimensional array:
 
