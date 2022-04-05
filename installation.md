@@ -2,11 +2,12 @@
 
 We are going to be using the following major software for the class:
 
-- [Python] 3 (see {ref}`why-python`);
-- [numpy] (the Python array package);
-- [matplotlib] (Python plotting package);
-- [scipy] (Python scientific library);
-- [nibabel] (read / write of neuroimaging file formats in Python);
+- [Python](https://python.org) (see {ref}`why-python`);
+- [numpy](https://numpy.org) (the Python array package);
+- [matplotlib](https://matplotlib.org) (Python plotting package);
+- [scipy](https://scipy.org) (Python scientific library);
+- [nibabel](https://nipy.org/nibabel) (read / write of neuroimaging file
+  formats in Python);
 
 For the class and homework we will use:
 
@@ -18,11 +19,13 @@ For the class and homework we will use:
 ## Installation
 
 :::{note}
+
 It's common to run into problems with installation - don't worry, we're
 expecting that.  One of the things we are teaching in this class is how to
 solve problems like installing and using scientific software.  So, if you
 run into trouble - great - that will be a good opportunity for us to work
 together on a not-trivial problem.
+
 :::
 
 Here are the instructions for installing Git and Python:
@@ -31,27 +34,32 @@ Here are the instructions for installing Git and Python:
 - {doc}`installation_on_linux`;
 - {doc}`installation_on_windows`.
 
-Next, open Terminal (Mac) or Powershell (Windows) or a terminal of your choice on Linux:
+Next, open Terminal (Mac) or Powershell (Windows) or a terminal of your choice
+on Linux.
 
-Check you have Python installed:
+In that terminal, check you have Python installed:
 
 ```
-which python3
+python3 --help
 ```
+
+This should show you the Python 3 help messages.
 
 Check you have the Python package manager installed:
 
 ```
-which pip3
+pip3 --help
 ```
+
+This should show you the Pip program's help message.
 
 Now finish the install with:
 
 ```
-pip3 install --user scipy matplotlib scikit-image nibabel jupyter ipython jupytext
+pip3 install --user scipy matplotlib pandas scikit-image nibabel jupyter ipython jupytext
 ```
 
-Finally, to git a copy of the textbook files:
+Finally, to get a copy of the textbook files:
 
 ```
 git clone https://github.com/nipraxis/textbook
