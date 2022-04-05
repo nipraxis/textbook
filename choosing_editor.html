@@ -542,9 +542,26 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vim">
-   vim
+  <a class="reference internal nav-link" href="#some-version-of-visual-studio-code">
+   Some version of Visual Studio Code
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vim">
+   Vim
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pycharm">
+   PyCharm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sublime-text">
+     Sublime Text
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#emacs">
@@ -552,26 +569,14 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#atom">
-   Atom
+  <a class="reference internal nav-link" href="#spyder">
+   Spyder
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-editors-that-you-might-consider">
-   Other editors that you might consider
+  <a class="reference internal nav-link" href="#another-option-for-windows">
+   Another option for Windows
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#for-any-platform">
-     For any platform
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#for-windows">
-     For Windows
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#suggestions">
@@ -613,7 +618,10 @@ you consider choosing your editor.  No programmer would use Windows Notepad
 for writing code, and that is for a very good reason.</p>
 <section id="what-are-the-options">
 <h2>What are the options?<a class="headerlink" href="#what-are-the-options" title="Permalink to this headline">¶</a></h2>
-<p>Choosing an editor is an important, even fateful decision.  You choose an editor in order to invest in it, so choose carefully, and choose for the long haul.</p>
+<p>Choosing an editor is an important, even fateful decision.  You choose an
+editor in order to invest in it; if you choose wisely, your will find your
+investment repaid, handsomely, and daily.  Choose carefully, and choose for
+the long haul.</p>
 <p>There are various surveys on the editors that Python developers use.  Some recent examples are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.jetbrains.com/lp/python-developers-survey-2020/">The Jetbrains 2020
@@ -627,86 +635,115 @@ survey</a>
 <li><p><a class="reference external" href="https://asterisk.dynevor.org/editor-dominance.html">A discussion of recent
 trends</a>.</p></li>
 </ul>
-<p>We believe your practical long-term options are:</p>
+<p>From these, and from our own experience talking to other people with lots of
+experience writing Python code, we believe your practical long-term options
+are the following.  The editors are in the order from the Jetbrains survey
+above, but with the position of PyCharm estimated from the StackOverflow
+survey, on the basis that the JetBrains survey results are likely to be biased
+to PyCharm users).</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://code.visualstudio.com">Visual studio code</a></p></li>
-<li><p>[Note</p></li>
+<li><p>A version of <a class="reference external" href="https://code.visualstudio.com">Visual studio code</a>.  More on
+what we mean by “a version” below.</p></li>
+<li><p><a class="reference external" href="https://www.vim.org">Vim</a></p></li>
+<li><p><a class="reference external" href="https://www.jetbrains.com/pycharm">PyCharm</a></p></li>
+<li><p><a class="reference external" href="https://www.sublimetext.com">Sublime text</a></p></li>
+<li><p><a class="reference external" href="https://emacs.org">Emacs</a></p></li>
+<li><p><a class="reference external" href="https://www.spyder-ide.org">Spyder</a></p></li>
 </ul>
-<ul class="simple">
-<li><p>&lt;&gt;</p></li>
-<li><p><a class="reference external" href="https://storage.googleapis.com/kaggle-media/surveys/Kaggle%27s%20State%20of%20Machine%20Learning%20and%20Data%20Science%202021.pdf">Kaggle 2021
-survey</a></p></li>
-</ul>
-<p>The two most well-known and fully-featured cross-platform general text editors
-are [emacs] and [vim] / [gvim].  These run on any platform.  [Atom] is another
-open-source cross-platform general text editor.</p>
-<p>No doubt you want to know what your instructors use for their daily work?  No?
-Well, in any case, the answer is that most of us use Vim.</p>
+</section>
+<section id="some-version-of-visual-studio-code">
+<h2>Some version of Visual Studio Code<a class="headerlink" href="#some-version-of-visual-studio-code" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://code.visualstudio.com">Visual studio code</a> is a code editor and
+integrated development environment almost entirely written by programmers at
+Microsoft.  It is entirely free to download (free as in free beer).  See below
+for more discussion about whether it truly open-source (free as in freedom).</p>
+<p>It is very popular as a Python editor, and <a class="reference external" href="https://asterisk.dynevor.org/editor-dominance.html">increasingly
+so</a>.</p>
+<p>You will find many powerful features for interacting with Python code, and, more recently and experimentally, with Jupyter Notebooks.</p>
+<p>It works well and looks good out of the box, but it is highly configurable.
+Configuration takes some getting used to, and can be fiddly, but there is a
+lot of help from others trying to do the same thing, online.</p>
+<p>There are various controversies about Visual Studio Code (or VSCode for short).</p>
+<p>Although Microsoft releases the code to build a version of VSCode on your own computer, the installer you download from their website contains and refers to to not-free, not-open-source components, and it sends telemetry data to Microsoft.  See the <a class="reference external" href="https://vscodium.com">VSCodium site</a> for a discussion, and links to download versions of VSCode without these features, and so, less locked to Microsoft.</p>
+<p>Another controversy is the practical extent to which the community can
+influence the direction of development of the VSCode editor.  In practice,
+Microsoft decides the direction of the project, and drives the changes,
+because they pay the programmers that write it.  See <a class="reference external" href="https://www.eclipse.org/org/press-release/20200331-theia.php">this post for some
+discussion</a>. For
+those reasons, some people prefer to use a build of the more open
+<a class="reference external" href="https://theia-ide.org">Theia editor</a>, that uses much of machinery behind VSCode.</p>
 </section>
 <section id="vim">
-<h2>vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
-<p>Vim is based on a classic Unix editor called [vi].  To quote from the [about
-vim][about vim] page:</p>
+<h2>Vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
+<p>The two most well-known and fully-featured cross-platform general text editors
+are Emacs and Vim.  These run on any platform.  More about Emacs further down
+the page.</p>
+<p>Vim is based on a classic Unix editor called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Vi">vi</a>.  To quote from the <a class="reference external" href="https://www.vim.org/about.php">about
+vim</a> page:</p>
 <blockquote>
-<div><p>Vim isn’t an editor designed to hold its users’ hands. It is a tool, the
-use of which must be learned.</p>
+<div><p>Vim isn’t an editor designed to hold its users’ hands. It is a tool, the use
+of which must be learned.</p>
 </div></blockquote>
 <p>To use Vim well, you have to practice using its commands, by following any one
-of several online tutorials. For example, you might try the <a class="reference external" href="http://www.openvim.com/tutorial.html">openvim tutorial</a>.  The trick is to teach your fingers
+of several online tutorials. For example, you might try the <a class="reference external" href="http://www.openvim.com/tutorial.html">openvim
+tutorial</a> or <a class="reference external" href="https://vim-adventures.com/">Vim
+adventures</a>.  The trick is to teach your fingers
 what to do so you don’t think about it any more. This takes a long time,
 budget a week of 30 minutes a day to start to feel comfortable.</p>
-<p>If you do invest this effort, vim is an immensely satisfying editor to use,
+<p>If you do invest this effort, Vim is an immensely satisfying editor to use,
 because you quickly find that your fingers remember what to do.  A
-programmer’s joke about vim is that “the cursor follows your eyes”, because
+programmer’s joke about Vim is that “the cursor follows your eyes”, because
 your fingers are moving the cursor around the text without any apparent
 thought or effort on your part.</p>
-<p>It is relatively complicated to configure vim to its full potential.  Please
+<p>It is relatively complicated to configure Vim to its full potential.  Please
 ask for help if you are interested to do this.  It is time well spent.</p>
+</section>
+<section id="pycharm">
+<h2>PyCharm<a class="headerlink" href="#pycharm" title="Permalink to this headline">¶</a></h2>
+<p>We have heard good things about PyCharm, from people who know what they are
+talking about.  This is a general text editor with features that allow it to
+be used as an integrated development environment for Python.  There is a free
+“community” version and a £149 initial annual fee for the professional
+version.  The free version does have Python editing support, and support for
+other languages, but the professional edition supports more languages and
+features.  See the <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm web site</a> and
+<a class="reference external" href="https://www.jetbrains.com/products/compare/?product=pycharm&amp;product=pycharm-ce">PyCharm feature
+comparison</a>
+for more detail.</p>
+<section id="sublime-text">
+<h3>Sublime Text<a class="headerlink" href="#sublime-text" title="Permalink to this headline">¶</a></h3>
+<p>Some people really like <a class="reference external" href="https://www.sublimetext.com">Sublime text</a>.  It is
+free to try, and it appears the trial version does not expire, but if you
+continue to use it, the authors ask you to buy a license for $99.</p>
+</section>
 </section>
 <section id="emacs">
 <h2>Emacs<a class="headerlink" href="#emacs" title="Permalink to this headline">¶</a></h2>
-<p>Emacs is a classic and highly configurable text editor originally written by
-the great [Richard Stallman].  It is quicker to learn than vim, probably
-harder to configure, and has great power.  A good place to start is the [emacs
-tour][emacs tour].  About an hour of research and practice gets you far enough to learn
-how to start learning emacs.</p>
-<p>As for vim, to use it well, it needs some practice to get used to the
-keystrokes used, and as for vim, this practice is amply repaid by very fluent
+<p>Emacs is a very powerful classic free, and open-source text editor. The great
+<a class="reference external" href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a> wrote the
+original version. It is quicker to learn than vim, probably harder to
+configure, and configurable to an extreme degree.  A good place to start is
+the <a class="reference external" href="https://www.gnu.org/software/emacs/tour">emacs tour</a>.  About an hour of
+research and practice gets you far enough to learn how to start learning
+Emacs.</p>
+<p>As for Vim, to use it well, it needs practice.  You will need to get used to
+the keystrokes, and as for Vim, this practice is amply repaid by very fluent
 movement and editing.</p>
-<p>Emacs hard to configure, largely because it is so powerful.  We are very happy
-to help with this if you are interested.</p>
+<p>Emacs is hard to configure, largely because it is so powerful.  We are very
+happy to help with this if you are interested.</p>
 </section>
-<section id="atom">
-<h2>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h2>
-<p>[Atom] is another open-source text editor that describes itself as “A hackable
-text editor for the 21st Century”.  It has installers for OSX, Linux and
-Windows.  It has many “packages” that can configure the editor in various
-ways, including setting it to use the same key combinations as [vim]
-([vim-mode], [ex-mode]) and emacs ([emacs-mode]).  It integrates with [git]
-version control out of the box.  It has useful features for development, such
-as the ability to run code from the editor and return the results to the
-editor window (see the [hydrogen] package).</p>
+<section id="spyder">
+<h2>Spyder<a class="headerlink" href="#spyder" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.spyder-ide.org">Spyder</a> is a code editor and integrated
+development environment that is specific to Python.  It is free, and
+open-source.  You can install it in the same way you install other Python
+packages.  It has a similar interface to, for example, the Matlab graphical
+environment, with separate windows for code, plots, variables and so on.</p>
 </section>
-<section id="other-editors-that-you-might-consider">
-<h2>Other editors that you might consider<a class="headerlink" href="#other-editors-that-you-might-consider" title="Permalink to this headline">¶</a></h2>
-<p>We will support these editors too for anyone who wants to use them.  If you
-prefer another editor, we will help as best we can.</p>
-<p>This suggested set of editors comes from the top four editors from [text
-editor competition][text editor competition] with the addition of TextMate and
-PyCharm (because we know at least one very efficient coder who use these).</p>
-<section id="for-any-platform">
-<h3>For any platform<a class="headerlink" href="#for-any-platform" title="Permalink to this headline">¶</a></h3>
-<p>Some people really like [Sublime text].  It is free to try, and the trial
-version does not expire, but if you continue to use it, the authors ask you to
-buy a license for 70 USD.</p>
-<p>We have heard good things about PyCharm.  This is a general text editor with
-features that allow it to be used as an integrated development environment for
-Python. See the <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm web site</a> for more detail.</p>
-</section>
-<section id="for-windows">
-<h3>For Windows<a class="headerlink" href="#for-windows" title="Permalink to this headline">¶</a></h3>
-<p>[Notepad++] seems to be a Windows favorite.</p>
-</section>
+<section id="another-option-for-windows">
+<h2>Another option for Windows<a class="headerlink" href="#another-option-for-windows" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://notepad-plus-plus.org">Notepad++</a> only works on Windows, but seems to be a popular choice.</p>
 </section>
 <section id="suggestions">
 <h2>Suggestions?<a class="headerlink" href="#suggestions" title="Permalink to this headline">¶</a></h2>
