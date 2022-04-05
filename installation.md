@@ -56,8 +56,30 @@ This should show you the Pip program's help message.
 Now finish the install with:
 
 ```
-pip3 install --user scipy matplotlib pandas scikit-image nibabel jupyter ipython jupytext
+pip3 install --user scipy matplotlib pandas scikit-image nibabel jupyter ipython jupytext nipraxis okpy
 ```
+
+Check your install by downloading {download}`check_install.py` to your
+computer, to some directory, say `/Users/your-user/Downloads`, then, in your
+terminal:
+
+```
+python3 /Users/your-user/Downloads/check_install.py
+```
+
+Don't forget to replace `/Users/your-user/Downloads` with the location that you downloaded the file to, in the step above.
+
+You should see something like:
+
+```
+Platform: macOS-12.3.1-x86_64-i386-64bit
+Python version: 3.8.13 (default, Mar 16 2022, 20:38:07) 
+[Clang 13.0.0 (clang-1300.0.29.30)]
+
+Congratulations, all checks passed
+```
+
+where the details in the first three lines will depend on your system.
 
 Finally, to get a copy of the textbook files:
 
