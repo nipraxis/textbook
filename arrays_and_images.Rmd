@@ -57,12 +57,20 @@ We can show arrays as images using the `plt.imshow` command from
 plt.imshow(an_array)
 ```
 
-If you have a version of matplotlib older than version 2.0, this image will
-look rather blurry. This is because matplotlib is drawing an image with many
-more pixels than the array has values. For the pixels in-between array values,
-older matplotlib has a default of using [linear interpolation](http://en.wikipedia.org/wiki/Linear_interpolation) to estimate a
-good pixel value. We can turn off this blurring effect by using [nearest
-neighbor interpolation](https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation) instead of linear interpolation:
+In older versions of matplotlib (before 2.0), this image would look rather blurry.
+This is because matplotlib is drawing an image with many more pixels than the array
+has values, and has to decide how to draw the pixels in between the "known" values.
+For the pixels in between array values, matplotlib had a default of using
+[linear interpolation](http://en.wikipedia.org/wiki/Linear_interpolation) to estimate a
+good pixel value. We can see this by using the argument `interpolation='bilinear'`:
+
+```{python}
+plt.imshow(an_array, interpolation='bilinear')
+```
+
+Modern matplotlib uses [nearest neighbor
+interpolation](https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation) instead,
+which we can ask for explicitly:
 
 ```{python}
 plt.imshow(an_array, interpolation='nearest')
