@@ -599,7 +599,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>We will spend a lot of time loading data from brain images.</p>
-<p>MRI images for functional MRI are usually stored using the <a class="reference external" href="https://nifti.nimh.nih.gov/nifti-1">NIfTi
+<p>MRI images for functional MRI are usually stored using the <a class="reference external" href="https://nifti.nimh.nih.gov/nifti-1">NIfTI
 format</a>.</p>
 <p>As you’ve already seen, this is a very simple format that is typically
 a single file with extension <code class="docutils literal notranslate"><span class="pre">.nii</span></code>.  If the file is compressed, it will
@@ -613,7 +613,8 @@ gives the 3D or 4D shape of the file, and the data type of the pixel
 data is shape (I, J, K), and S is the number of bytes to store the data for
 one pixel (voxel) value, then the image data is <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">*</span> <span class="pre">J</span> <span class="pre">*</span> <span class="pre">K</span> <span class="pre">*</span> <span class="pre">S</span></code> in length.
 For example, the image might be shape 64, 64, 32, and the data type might be
-64-bit float, which is 8 bytes long, so the image data would be <code class="docutils literal notranslate"><span class="pre">64</span> <span class="pre">*</span> <span class="pre">64</span> <span class="pre">*</span> <span class="pre">32</span> <span class="pre">*</span> <span class="pre">8</span></code> bytes long.</p></li>
+64-bit float, which is 8 bytes long, so the image data would be
+<code class="docutils literal notranslate"><span class="pre">64</span> <span class="pre">*</span> <span class="pre">64</span> <span class="pre">*</span> <span class="pre">32</span> <span class="pre">*</span> <span class="pre">8</span></code> bytes long.</p></li>
 </ul>
 <p>To load these images into Python, and the <a class="reference external" href="http://nipy.org/nibabel">Nibabel</a>
 package.</p>
@@ -650,7 +651,7 @@ package.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x120e2cac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x10ed14fa0&gt;
 </pre></div>
 </div>
 </div>
@@ -742,7 +743,7 @@ is a “slice”, of shape (256, 156).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x120ed2370&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10efe45e0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_14_1.png" src="_images/images_3d_14_1.png" />
@@ -756,7 +757,7 @@ is a “slice”, of shape (256, 156).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x120fbd7f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10f0d3880&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_16_1.png" src="_images/images_3d_16_1.png" />
@@ -780,7 +781,7 @@ is a “slice”, of shape (256, 156).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x121161340&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10f279100&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_19_1.png" src="_images/images_3d_19_1.png" />
@@ -794,7 +795,7 @@ is a “slice”, of shape (256, 156).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1211ced30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10f2e2fa0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_21_1.png" src="_images/images_3d_21_1.png" />
@@ -822,7 +823,7 @@ is a “slice”, of shape (256, 156).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x121236b80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1192a4c10&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_25_1.png" src="_images/images_3d_25_1.png" />
@@ -851,7 +852,7 @@ direction, giving us an image of shape (156, 256).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1212a69a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x119315af0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_28_1.png" src="_images/images_3d_28_1.png" />

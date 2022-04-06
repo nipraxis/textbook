@@ -38,7 +38,7 @@ np.set_printoptions(precision=4, suppress=True)
 
 We will spend a lot of time loading data from brain images.
 
-MRI images for functional MRI are usually stored using the [NIfTi
+MRI images for functional MRI are usually stored using the [NIfTI
 format](https://nifti.nimh.nih.gov/nifti-1).
 
 As you've already seen, this is a very simple format that is typically
@@ -54,8 +54,8 @@ Inside, the file contains:
   data is shape (I, J, K), and S is the number of bytes to store the data for
   one pixel (voxel) value, then the image data is `I * J * K * S` in length.
   For example, the image might be shape 64, 64, 32, and the data type might be
-  64-bit float, which is 8 bytes long, so the image data would be `64 * 64 *
-  32 * 8` bytes long.
+  64-bit float, which is 8 bytes long, so the image data would be
+  `64 * 64 * 32 * 8` bytes long.
 
 To load these images into Python, and the [Nibabel](http://nipy.org/nibabel)
 package.

@@ -633,29 +633,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x112775790&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10b31a760&gt;
 </pre></div>
 </div>
 <img alt="_images/arrays_and_images_5_1.png" src="_images/arrays_and_images_5_1.png" />
-</div>
-</div>
-<p>If you have a version of matplotlib older than version 2.0, this image will
-look rather blurry. This is because matplotlib is drawing an image with many
-more pixels than the array has values. For the pixels in-between array values,
-older matplotlib has a default of using <a class="reference external" href="http://en.wikipedia.org/wiki/Linear_interpolation">linear interpolation</a> to estimate a
-good pixel value. We can turn off this blurring effect by using <a class="reference external" href="https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation">nearest
-neighbor interpolation</a> instead of linear interpolation:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x11284faf0&gt;
-</pre></div>
-</div>
-<img alt="_images/arrays_and_images_7_1.png" src="_images/arrays_and_images_7_1.png" />
 </div>
 </div>
 <p>The image is weirdly colorful. That is because matplotlib is using the default
@@ -666,17 +647,16 @@ yellow.</p>
 to show the colormap:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nearest interpolation is now the default</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x112904670&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x10b434610&gt;
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_9_1.png" src="_images/arrays_and_images_9_1.png" />
+<img alt="_images/arrays_and_images_7_1.png" src="_images/arrays_and_images_7_1.png" />
 </div>
 </div>
 <p>In our case, our image would make more sense as grayscale, so we use the
@@ -689,10 +669,10 @@ to show the colormap:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1129d05b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x10b506760&gt;
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_11_1.png" src="_images/arrays_and_images_11_1.png" />
+<img alt="_images/arrays_and_images_9_1.png" src="_images/arrays_and_images_9_1.png" />
 </div>
 </div>
 <p>A grayscale image is an array containing numbers giving the pixel intensity
@@ -716,10 +696,10 @@ the 9th row of the array.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x112a61280&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10b592610&gt;]
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_15_1.png" src="_images/arrays_and_images_15_1.png" />
+<img alt="_images/arrays_and_images_13_1.png" src="_images/arrays_and_images_13_1.png" />
 </div>
 </div>
 <p>The x axis is the position in the array (0 through 7) and the y axis is the
@@ -749,16 +729,16 @@ of flipping the rows and columns (in 2D):</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Defaults of nearest interpolation and gray colormap</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Defaults to gray colormap</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">an_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x112ac3e50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x10b604250&gt;
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_18_1.png" src="_images/arrays_and_images_18_1.png" />
+<img alt="_images/arrays_and_images_16_1.png" src="_images/arrays_and_images_16_1.png" />
 </div>
 </div>
 <p>We can also reshape the original array to a 1D array, by stacking all the rows
@@ -831,7 +811,7 @@ distribution of values in the array:</p>
  &lt;BarContainer object of 10 artists&gt;)
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_25_1.png" src="_images/arrays_and_images_25_1.png" />
+<img alt="_images/arrays_and_images_23_1.png" src="_images/arrays_and_images_23_1.png" />
 </div>
 </div>
 <p>By default, the <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> function uses 50 bins, but you can specify how
@@ -861,7 +841,7 @@ many bins you want with the <code class="docutils literal notranslate"><span cla
  &lt;BarContainer object of 75 artists&gt;)
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_27_1.png" src="_images/arrays_and_images_27_1.png" />
+<img alt="_images/arrays_and_images_25_1.png" src="_images/arrays_and_images_25_1.png" />
 </div>
 </div>
 <p>As you can imagine, it’s not hard to go back to the 2D shape, by splitting the
@@ -875,10 +855,10 @@ many bins you want with the <code class="docutils literal notranslate"><span cla
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x114d5dd30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1118270d0&gt;
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_29_1.png" src="_images/arrays_and_images_29_1.png" />
+<img alt="_images/arrays_and_images_27_1.png" src="_images/arrays_and_images_27_1.png" />
 </div>
 </div>
 <p>In numpy, basic operations like multiplication, addition, comparison, are
@@ -946,10 +926,10 @@ binarizing the image at a threshold (of 50 in this case):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x114dd3c70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x11188e100&gt;
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_35_1.png" src="_images/arrays_and_images_35_1.png" />
+<img alt="_images/arrays_and_images_33_1.png" src="_images/arrays_and_images_33_1.png" />
 </div>
 </div>
 <p>We can slice arrays as we slice strings or lists. The difference for arrays is
@@ -964,10 +944,10 @@ that we want to the top 4 rows, and the last 5 columns:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x114e482e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1118f0880&gt;
 </pre></div>
 </div>
-<img alt="_images/arrays_and_images_37_1.png" src="_images/arrays_and_images_37_1.png" />
+<img alt="_images/arrays_and_images_35_1.png" src="_images/arrays_and_images_35_1.png" />
 </div>
 </div>
 </div>
