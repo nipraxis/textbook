@@ -130,3 +130,10 @@ into_3d[1, :, :]
 ```
 
 ![](images/two_d_slice_np.png)
+
+Make a prediction of what the values would look like by slicing in the second dimension.
+Check your guess below:
+
+```{python}
+# Your code here
+```
