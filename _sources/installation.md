@@ -2,7 +2,7 @@
 
 We are going to be using the following major software for the class:
 
-- [Python](https://python.org) (see {ref}`why-python`);
+- [Python](https://python.org)
 - [numpy](https://numpy.org) (the Python array package);
 - [matplotlib](https://matplotlib.org) (Python plotting package);
 - [scipy](https://scipy.org) (Python scientific library);
@@ -18,13 +18,15 @@ For the class and homework we will use:
 
 ## Installation
 
-```{note}
+:::{note}
+
 It is common to run into problems with installation - don't worry, we're
 expecting that.  One of the things we are teaching in this class is how to
 solve problems like installing and using scientific software.  So, if you run
 into trouble - great - that will be a good opportunity for us to work together
 on a not-trivial problem.
-```
+
+:::
 
 Here are the instructions for installing Git and Python:
 
@@ -35,21 +37,82 @@ Here are the instructions for installing Git and Python:
 Next, open Terminal (Mac) or Powershell (Windows) or a terminal of your choice
 on Linux.
 
-In that terminal, check you have Python installed:
+We suggest you start the steps below in the `Documents` directory in your home
+(user) directory.  To make sure you are working in that directory, run this
+command in the terminal.
 
 ```
-python3 --help
+cd $HOME/Documents
 ```
 
-This should show you the Python 3 help messages.
+```{warning}
+If you get `The system cannot find the path specified`, and you are on Windows,
+make sure you are running a **Powershell** shell, not the much older Windows `cmd` shell.
+```
+
+Make a new directory to store your work:
+
+```
+mkdir nipraxis-work
+```
+
+Change your shell to that directory:
+
+```
+cd nipraxis-work
+```
+
+Confirm you are in the right directory with:
+
+```
+pwd
+```
+
+This Prints the Working Directory (pwd).  You should see something like the following:
+
+````{tabbed} Windows Powershell
+```
+Path
+----
+C:\Users\your-user\Documents\nipraxis-working
+```
+````
+
+````{tabbed} Mac
+```
+/Users/your-user/Documents/nipraxis-working
+```
+````
+
+````{tabbed} Linux
+```
+/home/your-user/Documents/nipraxis-working
+```
+````
+
+Now, in the terminal, check you have Python installed:
+
+```
+python3 --version
+```
+
+This should show you the Python 3 version report, something like this:
+
+```
+Python 3.10.4
+```
 
 Check you have the Python package manager installed:
 
 ```
-pip3 --help
+pip3 --version
 ```
 
-This should show you the Pip program's help message.
+This should show you something like this:
+
+```
+pip 22.0.4 from <some-directory/site-packages/pip (python 3.10)
+```
 
 Now finish the install with:
 
@@ -57,15 +120,57 @@ Now finish the install with:
 pip3 install --user scipy matplotlib pandas scikit-image nibabel jupyter ipython jupytext nipraxis okpy
 ```
 
+:::{note}
+
+Don't worry about warnings like this:
+
+```
+WARNING: The script <some-program> is installed in 'C:\Users\scipy\AppData\Roaming\Python\Python310\Scripts' which is not on PATH.
+```
+
+:::
+
+Keep the terminal open.
+
 Check your install by downloading {download}`check_install.py` to your
-computer, to some directory, say `/Users/your-user/Downloads`, then, in your
-terminal:
+computer.   Note where the file went.  For example, you might have downloaded the file to your `Downloads` directory.
+
+Move the file to your `Documents/nipraxis-work` directory.  You can use the terminal for this.  For example, if the file did appear in your default `Downloads` folder:
 
 ```
-python3 /Users/your-user/Downloads/check_install.py
+mv $HOME/Downloads/check_install.py .
 ```
 
-Don't forget to replace `/Users/your-user/Downloads` with the location that you downloaded the file to, in the step above.
+Check you do have the file in the `nipraxis-work` directory with:
+
+```
+ls check_install.py
+```
+
+from your terminal.  You should see something like:
+
+````{tabbed} Windows Powershell
+```
+    Directory: C:\Users\your-user\Documents\nipraxis-work
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          4/6/2022   5:04 AM           1937 check_install.py
+```
+````
+
+````{tabbed} Mac or Linux
+```
+check_install.py
+```
+````
+
+Now check your installation has succeeded with:
+
+```
+python3 check_install.py
+```
 
 You should see something like:
 
@@ -89,30 +194,8 @@ Now you can open the textbook notebooks with:
 
 ```
 cd textbook
-python3 -m jupyter notebook
+python3 -m notebook
 ```
 
 This will open your web browser in the Jupyter interface.  Select the file you
 are interested in.
-
-(why-python)=
-
-## Why Python
-
-Python is well-suited to scientific computing for [many
-reasons](https://github.com/nipy/nipy/blob/master/doc/faq/why.rst#why-python).
-
-Python code is famously easy to read, and Python has become a common choice
-for introductions to programming — see for example the [Berkeley CS61A
-course](http://cs61a.org) and the [MIT introduction to computer science and
-programming](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-introduction-to-computer-science-and-programming-spring-2011/).
-
-The CS61A course notes have a good introduction to the [benefits of
-Python](http://composingprograms.com/pages/11-getting-started.html#programming-in-python).
-You may want to read [10 reasons Python rocks for
-research](https://blog.fanplastic.org/2010/11/03/10-reasons-python-rocks-for-research/)
-for a comparison between Python and MATLAB.
-
-Berkeley teaches its new data science courses using Python.
-
-For the class, you will need a version of Python >= 3.8.
