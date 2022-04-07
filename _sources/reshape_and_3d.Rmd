@@ -89,7 +89,7 @@ short_tuple = (1,)  # Notice the extra comma
 short_tuple
 ```
 
-We will now be using tuples to give our array shapes, although will also work.
+We will now be using tuples to give our array shapes, although lists will also work.
 
 See {ref}`tuples` for more.
 

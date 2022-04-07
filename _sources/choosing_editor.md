@@ -84,15 +84,21 @@ lot of help from others trying to do the same thing, online.
 
 There are various controversies about Visual Studio Code (or VSCode for short).
 
-Although Microsoft releases the code to build a version of VSCode on your own computer, the installer you download from their website contains and refers to to not-free, not-open-source components, and it sends telemetry data to Microsoft.  See the [VSCodium site](https://vscodium.com) for a discussion, and links to download versions of VSCode without these features, and so, less locked to Microsoft.
+Although Microsoft releases the code to build a version of VSCode on your own
+computer, the installer you download from their website contains and refers to
+to [not-free, not-open-source
+components](https://code.visualstudio.com/docs/supporting/faq#_what-does-built-on-open-source-mean),
+and it sends telemetry data to Microsoft.  See the [VSCodium
+site](https://vscodium.com) for a discussion, and links to download versions
+of VSCode without these features, and so, less locked to Microsoft.
 
 Another controversy is the practical extent to which the community can
 influence the direction of development of the VSCode editor.  In practice,
 Microsoft decides the direction of the project, and drives the changes,
 because they pay the programmers that write it.  See [this post for some
-discussion](https://www.eclipse.org/org/press-release/20200331-theia.php). For
-those reasons, some people prefer to use a build of the more open
-[Theia editor](https://theia-ide.org), that uses much of machinery behind VSCode.
+discussion](https://eclipse-foundation.blog/2020/05/05/eclipse-theia-and-vs-code-differences-explained).
+For those reasons, some people prefer to use a build of the more open [Theia
+editor](https://theia-ide.org), that uses much of machinery behind VSCode.
 
 ## Vim
 
