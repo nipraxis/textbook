@@ -22,53 +22,6 @@ import numpy as np  # the Python array package
 import matplotlib.pyplot as plt  # the Python plotting package
 ```
 
-## Reading text files
-
-We've been reading values from text files in the exercises.
-
-Here is some revision on how to do that, going from the crude to the
-elegant way.
-
-I first write a little text file out to disk:
-
-```{python}
-numbers = [1.2, 2.3, 3.4, 4.5]
-fobj = open('some_numbers.txt', 'wt')
-for number in numbers:
-    # String version of number, plus end-of-line character
-    fobj.write(str(number) + '\n')
-fobj.close()
-```
-
-Now I read it back again. First, I will read the all the lines in one shot,
-returning a list of strings:
-
-```{python}
-fobj = open('some_numbers.txt', 'rt')
-lines = fobj.readlines()
-len(lines)
-```
-
-```{python}
-lines[0]
-```
-
-Next I will read the file, but converting each number to a float:
-
-```{python}
-fobj = open('some_numbers.txt', 'rt')
-numbers_again = []
-for line in fobj.readlines():
-    numbers_again.append(float(line))
-numbers_again
-```
-
-In fact we can do this even more simply by using `np.loadtxt`:
-
-```{python}
-np.loadtxt('some_numbers.txt')
-```
-
 ## Loading data with Nibabel
 
 Nibabel allows us to `load` images. First we need to `import` the nibabel
@@ -100,8 +53,10 @@ img = nib.load(image_fname)
 type(img)
 ```
 
-You can explore the image object with `img.` followed by TAB at the IPython
-prompt.
+You can explore the image object with `img.` followed by the Tab key at the
+Jupyter / IPython prompt.
+
+## Saving memory
 
 Because images can have large arrays, Nibabel does not load the image array
 when you `load` the image, in order to save time and memory. The best way to
@@ -111,6 +66,8 @@ get the image array data is with the `get_fdata()` method.
 data = img.get_fdata()
 type(data)
 ```
+
+See 
 
 ## Four dimensional arrays - space + time
 
