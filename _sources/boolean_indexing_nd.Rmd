@@ -21,19 +21,19 @@ import matplotlib.pyplot as plt  # the Python plotting package
 First we make a 3D array of shape (4, 3, 2)
 
 ```{python}
-slab0 = np.reshape(np.arange(12), (4, 3))
-slab0
+plane0 = np.reshape(np.arange(12), (4, 3))
+plane0
 ```
 
 ```{python}
-slab1 = np.reshape(np.arange(100, 112), (4, 3))
-slab1
+plane1 = np.reshape(np.arange(100, 112), (4, 3))
+plane1
 ```
 
 ```{python}
 arr_3d = np.zeros((4, 3, 2))
-arr_3d[:, :, 0] = slab0
-arr_3d[:, :, 1] = slab1
+arr_3d[:, :, 0] = plane0
+arr_3d[:, :, 1] = plane1
 arr_3d
 ```
 
