@@ -88,18 +88,59 @@ Here we set `gray` to the default colormap for the rest of our plots:
 plt.rcParams['image.cmap'] = 'gray'
 ```
 
-We can also plot lines in matplotlib. For example, we might want to plot the
-values in row 8 from this array.  Because Python indices start at 0, this is
+This setting means that, by default, Matplotlib will use the `gray` colormap for the *rest of this session*.
+
+```{python}
+# The default colormap is now gray.
+plt.imshow(an_array)
+plt.colorbar()
+```
+
+Matplotlib does not save this change, so we would have to rerun this command
+for each session we want to change the default.  There are ways of making
+[Matplotlib remember default
+changes](https://matplotlib.org/stable/tutorials/introductory/customizing.html),
+but we won't go into those here.
+
+We can also plot *lines* in matplotlib. For example, here are the values from
+the row at position 8 in this array. Because Python indices start at 0, this is
 the 9th row of the array.
 
 ```{python}
+# Row position 8, all the columns.
+an_array[8, :]
+```
+
+Actually, we can omit the second `:`, Numpy will assume we mean all the columns, if we just specify the row:
+
+```{python}
+# Also, row position 8, all the columns.
+an_array[8]
+```
+
+We might want to plot the values in row 8.  To do this, we use the `plt.plot` function.  The first argument to this function is the `x` values for the plot, and the second argument is the `y` values.  We will use the column positions as for the `x` values:
+
+```{python}
+col_positions = np.arange(8)
+col_positions
+```
+
+```{python}
+# Specifying x and y values.
+plt.plot(col_positions, an_array[8])
+```
+
+The x axis is the column position in the array (0 through 7) and the y axis is
+the value of the array row at that position.
+
+In fact, we can even omit the `x` values in this case, and Matplotlib will assume we mean the x values to be `np.arange(8)`, where 8 is the length of the `y` values array.
+
+```{python}
+# Just specifying the y values, we get the x values default.
 plt.plot(an_array[8])
 ```
 
-The x axis is the position in the array (0 through 7) and the y axis is the
-value of the array row at that position.
-
-The plot shows us the 0 values at the edges of the bar of the “i”, an the ramp
+The plot shows us the 0 values at the edges of the bar of the “i”, and the ramp
 up to the peak at the middle of the bar of the “i”, in columns number 3 and 4.
 
 A transpose in numpy uses the `.T` method on the array. This has the effect
@@ -115,11 +156,18 @@ plt.imshow(an_array.T)
 ```
 
 We can also reshape the original array to a 1D array, by stacking all the rows
-end to end:
+end to end.
+
+Here's the original array:
 
 ```{python}
-old_shape = an_array.shape
-a_1d_array = np.reshape(an_array, old_shape[0] * old_shape[1])
+an_array
+```
+
+Here is the array, reshaped to 1D
+
+```{python}
+a_1d_array = np.reshape(an_array, 15 * 8)
 a_1d_array
 ```
 
@@ -128,7 +176,7 @@ a_1d_array.shape
 ```
 
 Reshaping the array to one dimension is a common operation, so there is a
-separate numpy command for that, `np.ravel`:
+separate Numpy command for that, `np.ravel`:
 
 ```{python}
 np.ravel(an_array)
@@ -148,7 +196,7 @@ many bins you want with the `bins` keyword:
 plt.hist(a_1d_array, bins=75)
 ```
 
-As you can imagine, it’s not hard to go back to the 2D shape, by splitting the
+As you can imagine, it's not hard to go back to the 2D shape, by splitting the
 1D array back into 15 rows of 8 values each (and therefore 8 columns):
 
 ```{python}
