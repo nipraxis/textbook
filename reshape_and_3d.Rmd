@@ -156,7 +156,8 @@ arr_1d.reshape((-1, 2))
 
 ## Into the third dimension
 
-As mentioned on the [Three-dimensional arrays](arrays_3d.Rmd) page, one-dimensional and two-dimensional arrays are easy to think about. The one-dimensional array is like a row from a table or spreadsheet.  A two-dimensional array has rows and columns, like a table or a spreadsheet.
+As we discussed in the [three-dimensional arrays page](arrays_3d) page,
+one-dimensional and two-dimensional arrays are easy to think about.  For example we can think of a 2D array as a table or a spreadsheet.
 
 A three-dimensional array takes a little bit more work to visualize, and get used to.
 

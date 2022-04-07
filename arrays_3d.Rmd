@@ -94,7 +94,7 @@ first_2d.size
 
 Here we make a three-dimensional array, by stacking the two 2D arrays together.
 
-Let's look again at the `first_2d` array: 
+Let's look again at the `first_2d` array:
 
 ```{python}
 first_2d
@@ -106,13 +106,15 @@ and the `second_2d` array:
 second_2d
 ```
 
-If you imagine the `first_2d` array and the `second_2d` array as physical objects, then when we stack them, we will get the 3D array shown in the image below:
+If you imagine the `first_2d` array and the `second_2d` array as flat physical
+objects, such as trays, then when we stack them, we will get the 3D array
+shown in the image below:
 
 
 ![](images/two_d_slices_without_annotation.png)
 
 
-The object in the foreground of the image (with 10, 11, 12 on its topmost row) is the first *slab* of the 3D array, and contains the values from the `first_2d` array. The object in the background of the image (with 100, 101, 102 on its topmost row) is the second slab, and contains the values from the `second_2d` array.
+The object in the foreground of the image (with 10, 11, 12 on its topmost row) is the first *plane* of the 3D array, and contains the values from the `first_2d` array. The object in the background of the image (with 100, 101, 102 on its topmost row) is the second plane, and contains the values from the `second_2d` array.
 
 To create the 3D array, first we create an empty array of the right shape:
 
@@ -124,7 +126,8 @@ into_3d = np.zeros((4, 3, 2))
 into_3d
 ```
 
-The 3D array, as numpy shows it, might not have an obvious resemblance to the image of the two slabs shown above, but bear with us.
+The 3D array, as numpy shows it, might not have an obvious resemblance to the
+image of the two planes shown above, but bear with us.
 
 The 3D array is of the right shape:
 
@@ -132,9 +135,11 @@ The 3D array is of the right shape:
 into_3d.shape
 ```
 
-The shape can be read as 'two slabs, each with 4 rows and 3 columns', which corresponds to what is shown in the image of the slabs above.
+The shape can be read as "two planes, each with 4 rows and 3 columns", which
+corresponds to what is shown in the image of the planes above.
 
-Currently the 3D array only contains 0s, so next we make the `first_2d` array be the first 4 by 3 slab of the 3D array:
+Currently the 3D array only contains zeros, so next we make the `first_2d`
+array be the first 4 by 3 plane of the 3D array:
 
 ```{python}
 # show the first_2d array
@@ -142,17 +147,17 @@ first_2d
 ```
 
 ```{python}
-# Set all rows, all columns for slab 0 to be the first_2d array
+# Set all rows, all columns for plane 0 to be the first_2d array
 into_3d[:, :, 0] = first_2d
 ```
 
-The image below shows how the `into_3d` array now looks, with the `first_2d` array as the first 3 by 4 slab:
+The image below shows how the `into_3d` array now looks, with the `first_2d` array as the first 3 by 4 plane:
 
 
-![](images/two_d_slices_first_slab.png)
+![](images/two_d_slices_first_plane.png)
 
 
-Next we make the `second_2d` array be the second 4 by 3 slab of the 3D array:
+Next we make the `second_2d` array be the second 4 by 3 plane of the 3D array:
 
 ```{python}
 # show the second_2d array
@@ -160,14 +165,14 @@ second_2d
 ```
 
 ```{python}
-# Set all rows, all columns for slab 1 to be the second_2d array
+# Set all rows, all columns for plane 1 to be the second_2d array
 into_3d[:, :, 1] = second_2d
 ```
-We have just stacked the `first_2d` and `second_2d` arrays into the `into_3d` array. The image below shows how the index commands we just used in order to do this relate to the slabs of the `into_3d` array, and to the values that are now in each slab.
+We have just stacked the `first_2d` and `second_2d` arrays into the `into_3d` array. The image below shows how the index commands we just used in order to do this relate to the planes of the `into_3d` array, and to the values that are now in each plane.
 
-`into_3d[:, :, 0]` can be read as *'all rows, all columns of slab 0'*.
+`into_3d[:, :, 0]` can be read as *'all rows, all columns of plane 0'*.
 
-`into_3d[:, :, 1]` can be read as *'all rows, all columns of slab 1'*.
+`into_3d[:, :, 1]` can be read as *'all rows, all columns of plane 1'*.
 
 
 ![](images/two_d_slices.png)
@@ -182,21 +187,23 @@ into_3d
 Relative to the images above, this is a different way of looking at the `into_3d` array, where the slices are in the first dimension, like this:
 
 ```{python}
-# First row, all columns, all slabs.
+# First row, all columns, all planes.
 into_3d[0, :, :]
 ```
 
 ![](images/two_d_slice_np.png)
 
 ```{python}
-# Second row, all columns, all slabs.
+# Second row, all columns, all planes.
 into_3d[1, :, :]
 ```
 
 ![](images/two_d_second_slice_np.png)
 
 
-Make a prediction of what the values would look like by slicing in the second dimension.
+Make a prediction of what the values would look like by slicing in the second
+dimension.
+
 Check your guess below:
 
 ```{python}
