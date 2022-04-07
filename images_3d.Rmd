@@ -57,7 +57,7 @@ Inside, the file contains:
   64-bit float, which is 8 bytes long, so the image data would be
   `64 * 64 * 32 * 8` bytes long.
 
-To load these images into Python, and the [Nibabel](http://nipy.org/nibabel)
+To load these images into Python, use the [Nibabel](http://nipy.org/nibabel)
 package.
 
 Start by importing the Nibabel library:
