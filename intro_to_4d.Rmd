@@ -31,10 +31,10 @@ library:
 import nibabel as nib
 ```
 
-I am going to load the image with filename `ds114_sub009_t2r1.nii`.
+We are going to load the image with filename `ds114_sub009_t2r1.nii`.
 
-First I use the `nipraxis` utility to find the file on the web and download it
-to the computer I'm working on.
+First we use the `nipraxis` utility to find the file on the web and download
+it to the computer we are working on.
 
 ```{python}
 # Import the utility.
@@ -46,7 +46,7 @@ image_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
 image_fname
 ```
 
-Next I `load` the image, to give me an “image” object:
+Next we `load` the image, to give me an “image” object:
 
 ```{python}
 img = nib.load(image_fname)
@@ -67,9 +67,10 @@ data = img.get_fdata()
 type(data)
 ```
 
-See 
+See [Nibabel images and
+memory](https://nipy.org/nibabel/images_and_memory.html) for more detail.
 
-## Four dimensional arrays - space + time
+## Four dimensional arrays: space + time
 
 The image we have just loaded is a four-dimensional image, with a
 four-dimensional array:
@@ -79,10 +80,10 @@ data.shape
 ```
 
 The first three axes represent three dimensional space. The last axis
-represents time. Here the last (time) axis has length 173. This means that, for
-each of these 173 elements, there is one whole three dimensional image. We
-often call the three-dimensional images *volumes*. So we could say that this 4D
-image contains 173 volumes.
+represents time. Here the last (time) axis has length 173. This means that,
+for each of these 173 elements, there is one whole three dimensional image. We
+often call the three-dimensional images *volumes*. So we could say that this
+4D image contains 173 volumes.
 
 We have previously been taking slices over the third axis of a
 three-dimensional image. We can now take slices over the fourth axis of this
