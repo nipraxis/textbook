@@ -200,6 +200,13 @@ into_3d[1, :, :]
 
 ![](images/two_d_second_slice_np.png)
 
+```{python}
+# Third row, all columns, all planes.
+into_3d[2, :, :]
+```
+
+![](images/two_d_third_slice_np.png)
+
 
 Make a prediction of what the values would look like by slicing in the second
 dimension.
