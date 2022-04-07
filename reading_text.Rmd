@@ -1,6 +1,5 @@
 ---
 jupyter:
-  orphan: true
   jupytext:
     notebook_metadata_filter: all,-language_info
     split_at_heading: true
@@ -13,6 +12,7 @@ jupyter:
     display_name: Python 3
     language: python
     name: python3
+  orphan: true
 ---
 
 # Reading data from text files
@@ -58,9 +58,12 @@ numbers_again
 ```
 
 In fact we read these data even more concisely, and quickly, by using
-`np.loadtxt`:
+`np.loadtxt`.
+
+```{python}
+import numpy as np
+```
 
 ```{python}
 np.loadtxt('some_numbers.txt')
 ```
-
