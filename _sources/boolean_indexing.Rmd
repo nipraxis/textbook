@@ -40,7 +40,8 @@ between the square brackets.
 It can be easier to understand this by example than by description.
 
 
-Here we are going to use some example data from [student ratings of their professors](https://github.com/odsti/datasets/tree/master/good_and_easy).
+Here we are going to use some example data from [student ratings of their
+professors](https://github.com/odsti/datasets/tree/master/good_and_easy).
 
 You can go to the link for the long story, but the short story is that the
 dataset is a table where the rows are academic disciplines, and the columns

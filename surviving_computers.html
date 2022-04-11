@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Surviving the computer &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,35 +32,30 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >let toggleHintShow = 'Click to show';</script>
-    <script >let toggleHintHide = 'Click to hide';</script>
-    <script >let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Our tools" href="the_software.html" />
     <link rel="prev" title="Ode to code" href="to_code.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -110,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The tools
  </span>
@@ -152,7 +148,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Images and code and images
  </span>
@@ -219,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -271,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -293,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -371,7 +367,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -418,7 +414,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -501,7 +497,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -535,7 +531,7 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -565,43 +561,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Surviving the computer</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#have-a-piece-of-paper-and-a-pen-next-to-you">
-   Have a piece of paper and a pen next to you
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#work-in-pairs">
-   Work in pairs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="surviving-the-computer">
+  <section id="surviving-the-computer">
 <h1>Surviving the computer<a class="headerlink" href="#surviving-the-computer" title="Permalink to this headline">¶</a></h1>
 <p>Computers have vastly extended the range of tasks we can do, in data analysis,
 as for many other fields.  But, they can be awkward partners, because we have
@@ -610,7 +573,7 @@ to use some of our mental energy to communicate with the computer.</p>
 taking up enough mental energy that we stop thinking carefully about the task
 at hand.  This is particularly dangerous when programming, because programming
 needs careful logical thought.</p>
-<p>For example, consider <span id="id1">[<a class="reference internal" href="#id18" title="Pam A Mueller and Daniel M Oppenheimer. The pen is mightier than the keyboard: advantages of longhand over laptop note taking. Psychological science, 25(6):1159–1168, 2014.">MO14</a>]</span>.  In their study 1, the
+<p>For example, consider <span id="pending-xref-1">[<a class="reference internal" href="#citation-15">MO14</a>]</span>.  In their study 1, the
 authors asked students to take notes while listening to TED talks, and answer
 questions about the talks afterwards.  They randomly allocated students into
 two groups, where one group took notes with a pen and a notebook, and the
@@ -619,15 +582,15 @@ less able to answer questions about ideas in the talks.</p>
 <p>The students with the laptops are us, programming.  We have to be careful about the dulling effect that using the computer can have, on our ability to think straight.</p>
 <p>Experienced programmers know this problem, and they use tricks to deal with them.</p>
 <p>Among these tricks, are the following.</p>
-<div class="section" id="have-a-piece-of-paper-and-a-pen-next-to-you">
+<section id="have-a-piece-of-paper-and-a-pen-next-to-you">
 <h2>Have a piece of paper and a pen next to you<a class="headerlink" href="#have-a-piece-of-paper-and-a-pen-next-to-you" title="Permalink to this headline">¶</a></h2>
 <p>When <em>working</em> on the computer, have a piece of paper and a pen next to you on your desk.  When you notice that you don’t fully understand an error or a task on the computer, stop, move the laptop out of the way, and write down your problem on a piece of paper.  Give yourself some time to reflect on what the problem is, and how to solve it.  Only then, you can return to the computer and try your solutions, or do more research.   You will find that disengaging from the computer is a) difficult and b) very productive in releasing you from the various mental traps that it is easy to fall into when you get stuck on the computer.</p>
-</div>
-<div class="section" id="work-in-pairs">
+</section>
+<section id="work-in-pairs">
 <h2>Work in pairs<a class="headerlink" href="#work-in-pairs" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Pair_programming">Pair programming</a> is
 a standard technique that programmers use to improve the quality of their work
-and accelerate learning.  It is particularly useful early in learning, and with new tasks <span id="id2">[<a class="reference internal" href="#id19" title="Kim Man Lui and Keith CC Chan. Pair programming productivity: novice–novice vs. expert–expert. International Journal of Human-computer studies, 64(9):915–925, 2006. URL: http://www.cs.utexas.edu/users/mckinley/305j/pair-hcs-2006.pdf.">LC06</a>]</span>.</p>
+and accelerate learning.  It is particularly useful early in learning, and with new tasks <span id="pending-xref-2">[<a class="reference internal" href="#citation-16">LC06</a>]</span>.</p>
 <p>Pair programming has a standard form.</p>
 <p>One member of the team is the <em>driver</em>.  They sit in front of the keyboard and
 type.</p>
@@ -637,20 +600,21 @@ type.</p>
 than the navigator, because you are thinking about two things, the task, and
 interacting with the computer.  When you switch to being the navigator, you
 will find that you can think more quickly and carefully.</p>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p id="id3"><dl class="citation">
-<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id2">LC06</a></span></dt>
-<dd><p>Kim Man Lui and Keith CC Chan. Pair programming productivity: novice–novice vs. expert–expert. <em>International Journal of Human-computer studies</em>, 64(9):915–925, 2006. URL: <a class="reference external" href="http://www.cs.utexas.edu/users/mckinley/305j/pair-hcs-2006.pdf">http://www.cs.utexas.edu/users/mckinley/305j/pair-hcs-2006.pdf</a>.</p>
-</dd>
-<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id1">MO14</a></span></dt>
-<dd><p>Pam A Mueller and Daniel M Oppenheimer. The pen is mightier than the keyboard: advantages of longhand over laptop note taking. <em>Psychological science</em>, 25(6):1159–1168, 2014.</p>
-</dd>
-</dl>
+<p id="bibliography-1"><div class="citation" id="citation-16" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#pending-xref-2">LC06</a><span class="fn-bracket">]</span></span>
+<p>Kim Man Lui and Keith CC Chan. Pair programming productivity: novice–novice vs. expert–expert. <em>International Journal of Human-computer studies</em>, 64(9):915–925, 2006. URL: <a class="reference external" href="http://www.cs.utexas.edu/users/mckinley/305j/pair-hcs-2006.pdf">http://www.cs.utexas.edu/users/mckinley/305j/pair-hcs-2006.pdf</a>.</p>
+</div>
+<div class="citation" id="citation-15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#pending-xref-1">MO14</a><span class="fn-bracket">]</span></span>
+<p>Pam A Mueller and Daniel M Oppenheimer. The pen is mightier than the keyboard: advantages of longhand over laptop note taking. <em>Psychological science</em>, 25(6):1159–1168, 2014.</p>
+</div>
+</div>
 </p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -674,42 +638,54 @@ will find that you can think more quickly and carefully.</p>
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="to_code.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Ode to code</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="the_software.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Our tools</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="to_code.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Ode to code</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="the_software.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Our tools</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

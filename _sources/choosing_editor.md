@@ -31,14 +31,25 @@ tools that waste their time or energy.  Take their impatience seriously when
 you consider choosing your editor.  No programmer would use Windows Notepad
 for writing code, and that is for a very good reason.
 
-## What are the options?
+## Take time to choose
 
 Choosing an editor is an important, even fateful decision.  You choose an
 editor in order to invest in it; if you choose wisely, your will find your
-investment repaid, handsomely, and daily.  Choose carefully, and choose for
-the long haul.
+investment repaid, handsomely, and daily.  Choose carefully, and choose for the
+long haul.
 
-There are various surveys on the editors that Python developers use.  Some recent examples are:
+Please be careful that you do not underestimate this task.  It is tempting to
+choose an editor "for now", but, whichever editor you choose, there is a good
+chance you will still be using it in a few years.  If you choose the wrong
+editor, you will find that you have lost a great deal of learning time, when
+you have to change later, and you will curse yourself, with reason.  Be free
+from future self-recrimination, and choose deliberately, now, for the long
+haul.
+
+## What are the options?
+
+There are various surveys on the editors that Python developers use.  Some
+recent examples are:
 
 *   [The Jetbrains 2020
     Python developer

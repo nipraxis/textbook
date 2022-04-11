@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Introduction to Numpy &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,35 +32,30 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >let toggleHintShow = 'Click to show';</script>
-    <script >let toggleHintHide = 'Click to hide';</script>
-    <script >let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Arrays as images, images as arrays" href="arrays_and_images.html" />
     <link rel="prev" title="What is an image?" href="what_is_an_image.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +94,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -110,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   The tools
  </span>
@@ -152,7 +148,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Images and code and images
  </span>
@@ -219,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -271,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -293,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -371,7 +367,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -418,7 +414,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p class="caption">
+<p>
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -501,7 +497,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -551,6 +547,7 @@ const thebe_selector_output = ".output, .cell_output"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
+        
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
@@ -561,7 +558,7 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -631,83 +628,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Numpy</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-example-data">
-   Some example data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-task">
-   The task
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#back-to-the-file">
-   Back to the file.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#from-lists-to-arrays">
-   From lists to arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arrays-have-a-shape">
-   Arrays have a shape
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arrays-have-a-datatype">
-   Arrays have a datatype
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#baby-steps">
-   Baby steps
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#processing-reaction-times">
-   Processing reaction times
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#boolean-arrays">
-   Boolean arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-arrays">
-   2D arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping">
-   Reshaping
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-numpy">
+  <section id="introduction-to-numpy">
 <h1>Introduction to Numpy<a class="headerlink" href="#introduction-to-numpy" title="Permalink to this headline">¶</a></h1>
 <p>Numpy is the fundamental package for creating and manipulating <em>arrays</em> in
 Python.</p>
@@ -786,7 +710,7 @@ Python.</p>
 will also see that almost everyone else in the Python world does the same
 thing.  It’s near-universal convention.  That way, everyone knows you mean
 <code class="docutils literal notranslate"><span class="pre">numpy</span></code> when you use <code class="docutils literal notranslate"><span class="pre">np</span></code>.</p>
-<div class="section" id="some-example-data">
+<section id="some-example-data">
 <h2>Some example data<a class="headerlink" href="#some-example-data" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with some data, and then go on to process these data with arrays.</p>
 <p>We fetch the text file we will be working on:</p>
@@ -843,8 +767,8 @@ on).</p></li>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="the-task">
+</section>
+<section id="the-task">
 <h2>The task<a class="headerlink" href="#the-task" title="Permalink to this headline">¶</a></h2>
 <p>Now we can give some more detail of what we need to do.</p>
 <ul class="simple">
@@ -909,8 +833,8 @@ statistical modeling.</p></li>
 </div>
 </div>
 <p>All this is ugly to type out.  Luckily Numpy is an excellent tool for this calculation.</p>
-</div>
-<div class="section" id="back-to-the-file">
+</section>
+<section id="back-to-the-file">
 <h2>Back to the file.<a class="headerlink" href="#back-to-the-file" title="Permalink to this headline">¶</a></h2>
 <p>Here are the first five lines of the file again.</p>
 <div class="cell docutils container">
@@ -1023,8 +947,8 @@ statistical modeling.</p></li>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="from-lists-to-arrays">
+</section>
+<section id="from-lists-to-arrays">
 <h2>From lists to arrays<a class="headerlink" href="#from-lists-to-arrays" title="Permalink to this headline">¶</a></h2>
 <p>Lists are useful, but we very often need arrays to help us process the data.</p>
 <p>We hope you will see why by example.</p>
@@ -1092,8 +1016,8 @@ statistical modeling.</p></li>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="arrays-have-a-shape">
+</section>
+<section id="arrays-have-a-shape">
 <h2>Arrays have a shape<a class="headerlink" href="#arrays-have-a-shape" title="Permalink to this headline">¶</a></h2>
 <p>The array object has <code class="docutils literal notranslate"><span class="pre">shape</span></code> data attached to it:</p>
 <div class="cell docutils container">
@@ -1109,8 +1033,8 @@ statistical modeling.</p></li>
 </div>
 </div>
 <p>The shape gives the number of dimensions, and the number of elements for each dimension.  We only have a one-dimensional array, so we see one number, which is the number of elements in the array.  We will get on to two-dimensional arrays later.</p>
-</div>
-<div class="section" id="arrays-have-a-datatype">
+</section>
+<section id="arrays-have-a-datatype">
 <h2>Arrays have a datatype<a class="headerlink" href="#arrays-have-a-datatype" title="Permalink to this headline">¶</a></h2>
 <p>Notice that the <code class="docutils literal notranslate"><span class="pre">np.array</span></code> function worked out that all the values in the list
 are floating point values, so the array has a <em>datatype</em> (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>) of
@@ -1215,8 +1139,8 @@ type of elements the array does and can contain.</p>
 </div>
 </div>
 <p>This is a fairly typical use of <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code>.  We make an array of the right size and then fill in the elements later.</p>
-</div>
-<div class="section" id="baby-steps">
+</section>
+<section id="baby-steps">
 <h2>Baby steps<a class="headerlink" href="#baby-steps" title="Permalink to this headline">¶</a></h2>
 <p>Let’s proceed in steps.  First let us work out the time for each trial <em>from
 the start of the experimental software</em>.   We called these the
@@ -1350,8 +1274,8 @@ loop:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="processing-reaction-times">
+</section>
+<section id="processing-reaction-times">
 <h2>Processing reaction times<a class="headerlink" href="#processing-reaction-times" title="Permalink to this headline">¶</a></h2>
 <p>OK — we have the stimulus onset times, but what about the times for the <em>responses</em>?</p>
 <p>Here are the first 15 reaction times:</p>
@@ -1422,8 +1346,8 @@ with a <code class="docutils literal notranslate"><span class="pre">for</span></
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="boolean-arrays">
+</section>
+<section id="boolean-arrays">
 <h2>Boolean arrays<a class="headerlink" href="#boolean-arrays" title="Permalink to this headline">¶</a></h2>
 <p>We still have the problem of the 0 values for reaction time, indicating that there was no response.</p>
 <p>We can use Boolean arrays to select the response times that were not equal to zero.</p>
@@ -1550,8 +1474,8 @@ Position 14: False
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="d-arrays">
+</section>
+<section id="d-arrays">
 <h2>2D arrays<a class="headerlink" href="#d-arrays" title="Permalink to this headline">¶</a></h2>
 <p>We can also have arrays with more than one dimension.  For example, we can make our original trial and reaction times into a two-dimensional array, like this:</p>
 <div class="cell docutils container">
@@ -1588,8 +1512,8 @@ Position 14: False
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="reshaping">
+</section>
+<section id="reshaping">
 <h2>Reshaping<a class="headerlink" href="#reshaping" title="Permalink to this headline">¶</a></h2>
 <p>Finally, we often want to change the <em>shape</em> of arrays.</p>
 <p>One common thing we may want to do is to take a 2D array and flatten it out into a 1D array, or visa versa.  That does not make much sense in this particular case, but bear with us.</p>
@@ -1679,8 +1603,8 @@ Position 14: False
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1704,42 +1628,54 @@ Position 14: False
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="what_is_an_image.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">What is an image?</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="arrays_and_images.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Arrays as images, images as arrays</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="what_is_an_image.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">What is an image?</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="arrays_and_images.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Arrays as images, images as arrays</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By The nipraxis team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

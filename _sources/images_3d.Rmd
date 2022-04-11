@@ -38,12 +38,12 @@ np.set_printoptions(precision=4, suppress=True)
 
 We will spend a lot of time loading data from brain images.
 
-MRI images for functional MRI are usually stored using the [NIfTI
+MRI images for functional MRI analysis are usually stored using the [NIfTI
 format](https://nifti.nimh.nih.gov/nifti-1).
 
-As you've already seen, this is a very simple format that is typically
-a single file with extension `.nii`.  If the file is compressed, it will
-end with `.nii.gz` instead.
+As you've already seen, this is a very simple format that is typically a
+single file with extension `.nii`.  If the file is compressed, it will end
+with `.nii.gz` instead.
 
 Inside, the file contains:
 
@@ -66,7 +66,7 @@ Start by importing the Nibabel library:
 import nibabel as nib
 ```
 
-We will also use the Nipraxis package to fetch the image data file:
+We will use the Nipraxis package to fetch the image data file:
 
 ```{python}
 import nipraxis
@@ -98,7 +98,7 @@ fslinfo ds114_sub009_highres.nii
 ```
 
 
-We can load the image data as an array with:
+We can load the image data as an array of floating point numbers with:
 
 ```{python}
 data = img.get_fdata()
@@ -111,35 +111,49 @@ is a "slice", of shape (256, 156).
 The first (bottom) slice:
 
 ```{python}
-plt.imshow(data[:, :, 0])
+bottom_slice = data[:, :, 0]
+plt.imshow(bottom_slice)
 ```
 
 The middle slice:
 
 ```{python}
-plt.imshow(data[:, :, 127])
+middle_slice = data[:, :, 127]
+plt.imshow(middle_slice)
 ```
+
+We might be interested to look at the histogram of voxel values in this 3D block.  In order to do that, we `np.ravel` the 3D volume to 1D, to throw away the spatial arrangement of the voxels.
 
 ```{python}
-plt.hist(data.ravel(), bins=100);
+# Show histogram of the values in the 3D image.
+plt.hist(np.ravel(data), bins=100);
 ```
 
-As for any array, we can transpose it:
+Let us return to the middle slice. As for any array, we can transpose it, to flip the rows and the columns:
 
 ```{python}
-plt.imshow(data[:, :, 127].T)
+plt.imshow(middle_slice.T)
 ```
 
-To get the display you usually see, we need to transpose and flip up to down:
+To get the display you usually see in dedicated imaging display software, we
+need to transpose *and* flip up to down:
 
 ```{python}
-plt.imshow(np.flipud(data[:, :, 127].T))
+to_display = np.flipud(middle_slice.T)
+plt.imshow(to_display)
 ```
 
-We are looking at a slice over the third dimension.  We can see that the slices over this dimension are 2D images, where left to right is the first axis, and back to front is the second axis.
+We are looking at a slice *over the third dimension*.  We will sometimes refer
+to this as a *plane*.  We can see that the planes are 2D images, where left to
+right is the first axis, and back to front is the second axis.
 
+As in [arrays and 3D](arrays_3d), we can think of the 3D image as a stack of
+planes, where the bottom plane is the first, then the second is the second
+from bottom, and so on:
 
-We can also think of this 3D image as a stack of 2D images where the 2D images are (back to front, bottom to top).   Like this:
+![](images/image_plane_stack.png)
+
+We can also think of this 3D image as a stack of 2D images where the 2D images are (back to front, bottom to top), like this:
 
 ```{python}
 yz_slice = data[127, :, :]
@@ -152,6 +166,8 @@ plt.imshow(yz_slice)
 
 Here, we have all the pixels corresponding to 127 in the left to right
 direction, giving us an image of shape (156, 256).
+
+![](images/image_plane_stack_row.png)
 
 Here's a coronal slice:
 
