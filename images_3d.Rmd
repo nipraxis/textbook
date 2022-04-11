@@ -179,3 +179,5 @@ xz_slice.shape
 ```{python}
 plt.imshow(xz_slice)
 ```
+
+![](images/image_plane_stack_col.png)
