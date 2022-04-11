@@ -702,25 +702,7 @@ tuple element at position 1 is: 2
 </div>
 </div>
 </div>
-<p>We can change a list, by replacing the values, adding or removing elements.  Formally, this means a list is <em>mutable</em>.   A tuple is <em>immutable</em> — we cannot change its elements, or add or remove elements.  For example:</p>
-<div class="cell tag_raises-exception docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
-
-<span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
-</pre></div>
-</div>
-</div>
-</div>
-<p>There is also a wrinkle with making a length-1 tuple, because Python interprets this as your usual brackets for arithmetic:</p>
+<p>There is a wrinkle with making a length-1 tuple.  Just putting something in between parentheses does not work, because Python thinks you are using the parentheses to bracket an expression, not define a tuple.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python interprets this parentheses in arithmetic.</span>
@@ -735,28 +717,7 @@ tuple element at position 1 is: 2
 </div>
 </div>
 </div>
-<p>Why?  Because, Python has to decide what this means:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Wait - what do the parentheses mean?</span>
-<span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Is this adding two one-element tuples, to give a two-element tuple <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">7)</span></code>?
-Or is it our usual mathematical expression giving 3 + 7 = 10.  You’ll see that
-Python decided it was an arithmetical expression.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># They mean parentheses as in arithmetic.</span>
-<span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-</pre></div>
-</div>
-</div>
-</div>
-<p>To form a length-1 tuple, you need to disambiguate with an extra comma:</p>
+<p>To form a length-1 tuple, you need to disambiguate from bracketing an expression by appending a trailing comma, like this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">short_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>  <span class="c1"># Notice the extra comma</span>
@@ -770,22 +731,6 @@ Python decided it was an arithmetical expression.</p>
 </div>
 </div>
 </div>
-<p>So, for example, to add two length one tuples together, as above:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice the extra comma to say - we mean these to be a length-1 tuples.</span>
-<span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 7)
-</pre></div>
-</div>
-</div>
-</div>
-<p>We will now be using tuples to give our array shapes, although lists will also
-work.</p>
 <p>See <a class="reference internal" href="brisk_python.html#tuples"><span class="std std-ref">Tuples</span></a> for more.</p>
 </section>
 <section id="reshaping">

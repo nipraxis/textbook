@@ -70,13 +70,7 @@ print('Length of the tuple is:', len(my_tuple))
 print('tuple element at position 1 is:', my_tuple[1])
 ```
 
-We can change a list, by replacing the values, adding or removing elements.  Formally, this means a list is *mutable*.   A tuple is *immutable* — we cannot change its elements, or add or remove elements.  For example:
-
-```{python tags=c("raises-exception")}
-my_tuple[1] = 99
-```
-
-There is also a wrinkle with making a length-1 tuple, because Python interprets this as your usual brackets for arithmetic:
+There is a wrinkle with making a length-1 tuple.  Just putting something in between parentheses does not work, because Python thinks you are using the parentheses to bracket an expression, not define a tuple.
 
 ```{python}
 # Python interprets this parentheses in arithmetic.
@@ -84,38 +78,12 @@ just_a_number = (1)
 just_a_number
 ```
 
-Why?  Because, Python has to decide what this means:
-
-```python
-# Wait - what do the parentheses mean?
-(1 + 2) + (3 + 4)
-```
-
-Is this adding two one-element tuples, to give a two-element tuple `(3, 7)`?
-Or is it our usual mathematical expression giving 3 + 7 = 10.  You'll see that
-Python decided it was an arithmetical expression.
-
-```{python}
-# They mean parentheses as in arithmetic.
-(1 + 2) + (3 + 4)
-```
-
-To form a length-1 tuple, you need to disambiguate with an extra comma:
+To form a length-1 tuple, you need to disambiguate from bracketing an expression by appending a trailing comma, like this.
 
 ```{python}
 short_tuple = (1,)  # Notice the extra comma
 short_tuple
 ```
-
-So, for example, to add two length one tuples together, as above:
-
-```{python}
-# Notice the extra comma to say - we mean these to be a length-1 tuples.
-(1 + 2,) + (3 + 4,)
-```
-
-We will now be using tuples to give our array shapes, although lists will also
-work.
 
 See {ref}`tuples` for more.
 

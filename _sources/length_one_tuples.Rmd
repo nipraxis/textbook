@@ -1,0 +1,90 @@
+---
+jupyter:
+  orphan: true
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Length 1 tuples
+
+Remember {ref}`tuples`.  For example, here are a couple of length two tuples:
+
+```{python}
+first_tuple = (1, 2)
+first_tuple
+```
+
+```{python}
+second_tuple = (3, 4)
+```
+
+As for lists, you can add tuples, to concatenate the contents:
+
+```{python}
+tuples_together = first_tuple + second_tuple
+tuples_together
+```
+
+## Length 1 tuples
+
+Let us say you want to write code for a tuple with only one element.
+
+You might think this would work:
+
+```{python}
+# Python interprets this parentheses in arithmetic.
+just_a_number = (1)
+just_a_number
+```
+
+Just a single number or string, with parentheses around it, does not make a
+tuple, because Python interprets this as your usual brackets for arithmetic.  That means that:
+
+```{python}
+(1)
+```
+
+is exactly the same as:
+
+```{python}
+1
+```
+
+Why?  Because, Python has to decide what expressions like this mean:
+
+```python
+# Wait - what do the parentheses mean?
+(1 + 2) + (3 + 4)
+```
+
+Is this adding two one-element tuples, to give a two-element tuple `(3, 7)`? Or
+is it our usual mathematical expression giving 3 + 7 = 10.  The designer of the Python language decided it should be an arithmetical expression.
+
+```{python}
+# They mean parentheses as in arithmetic.
+(1 + 2) + (3 + 4)
+```
+
+To form a length-1 tuple, you need to disambiguate what you mean by the parentheses, with a trailing comma:
+
+```{python}
+short_tuple = (1,)  # Notice the trailing comma
+short_tuple
+```
+
+So, for example, to add two length one tuples together, as above:
+
+```{python}
+# Notice the extra comma to say - we mean these to be length-1 tuples.
+(1 + 2,) + (3 + 4,)
+```

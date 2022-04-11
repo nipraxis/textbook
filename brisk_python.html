@@ -2067,6 +2067,19 @@ elements.</p>
 </div>
 </div>
 </div>
+<p>As with lists, you can add tuples, forming the concatenation of the tuples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 5, 6)
+</pre></div>
+</div>
+</div>
+</div>
 <p>There is a little complication when making a tuple with one element:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2082,26 +2095,13 @@ elements.</p>
 </div>
 </div>
 <p>This is because Python can’t tell that you meant this to be a tuple,
-rather than an expression with parentheses round it:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">not_a_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">not_a_tuple</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
-</pre></div>
-</div>
-</div>
-</div>
+rather than an expression with parentheses round it.  See <a class="reference internal" href="length_one_tuples.html"><span class="doc">Length 1 tuples</span></a> for an explanation.</p>
 <p>To tell Python that you mean this to be a length-one tuple, add a comma after
 the element, and before the closing parenthesis:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
-<span class="n">one_tuple</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">length_one_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+<span class="n">length_one_tuple</span>
 </pre></div>
 </div>
 </div>
@@ -3116,10 +3116,7 @@ could with any other Python variable:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of new variable
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> &lt;class &#39;function&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of new variable &lt;class &#39;function&#39;&gt;
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
