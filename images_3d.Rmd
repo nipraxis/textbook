@@ -167,6 +167,8 @@ plt.imshow(yz_slice)
 Here, we have all the pixels corresponding to 127 in the left to right
 direction, giving us an image of shape (156, 256).
 
+![](images/image_plane_stack_row.png)
+
 Here's a coronal slice:
 
 ```{python}
