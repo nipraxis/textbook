@@ -98,15 +98,42 @@ See {ref}`tuples` for more.
 We can reshape this array to two dimensions using the `np.reshape` function:
 
 ```{python}
+# show the array before reshaping
+arr_1d
+```
+
+```{python}
 new_shape = (2, 3)  # New shape, as a tuple.
 arr_2d = np.reshape(arr_1d, new_shape)
 arr_2d
 ```
 
 Notice how NumPy used the 1D array elements.  It takes each element from the
-1D array, and fills the rows first, and then the columns.
+1D array, and fills the rows first, and then the columns. This is illustrated further in the two cells below:
+
+```{python}
+# another 1D array
+another_arr_1d = np.array(['a', 'b', 'c',
+                    'd', 'e', 'f',
+                    'g', 'h', 'i'])
+
+another_arr_1d
+```
+
+```{python}
+# rehaping to a three by three 2D array, notice that numpy fills the rows of the new array first, and then the columns
+
+new_shape = (3, 3)  # New shape, as a tuple.
+another_arr_2d = np.reshape(another_arr_1d, new_shape)
+another_arr_2d
+```
 
 We can reshape back to one dimension.
+
+```{python}
+# show the 2D array, before reshaping
+arr_2d
+```
 
 ```{python}
 one_d_shape = (6,)  # 1D shape, as a tuple.  Notice extra comma.
@@ -134,10 +161,37 @@ np.ravel(arr_2d)
 ```
 
 You can reshape from one shape, to any other shape, as long as the number of
-elements stays the same.  Notice the algorithm NumPy is using to decide which
-elements go in which position of the array — rows first, and then columns.
+elements stays the same (remember, we can use the `.size` attribute to show the number of elements). 
 
 ```{python}
+# show the 2D array
+arr_2d
+```
+
+```{python}
+# reshape arr_2d to a 3 by 2 array
+arr_2d_3_by_2 = np.reshape(arr_2d, (3, 2))
+arr_2d_3_by_2
+```
+
+```{python}
+# the reshaping in the cell above is possible because the arrays have the same number of elements
+print(arr_2d.size)
+print(arr_2d_3_by_2.size)
+
+# same size?
+arr_2d.size == arr_2d_3_by_2.size
+```
+
+Again, notice the algorithm NumPy is using to decide which elements go in which position of the array — rows first, and then columns.
+
+```{python}
+# show the 2D array
+arr_2d
+```
+
+```{python}
+# reshape arr_2d to a 3 by 2 array
 np.reshape(arr_2d, (3, 2))
 ```
 
@@ -147,10 +201,17 @@ dimension to be length 3, and NumPy can work out the second dimension must be
 length 2, and the other way round:
 
 ```{python}
+# show the 1D array
+arr_1d
+```
+
+```{python}
+# reshape to an array with 3 rows, and whatever number of columns fits, given the size of the array
 arr_1d.reshape((3, -1))
 ```
 
 ```{python}
+# reshape to an array with 2 columns, and whatever number of rows fits, given the size of the array
 arr_1d.reshape((-1, 2))
 ```
 
@@ -176,7 +237,14 @@ arr_3d = arr_1d_bigger.reshape((2, 3, 4))
 arr_3d
 ```
 
-Here NumPy is showing us the two slices over the first dimension:
+Remember from the [three-dimensional arrays page](arrays_3d) page that we can read the shape of `arr_3d` - which is `(2, 3, 4)` - as 'two rows, three columns, four planes'.
+
+Let's just translate that into the output of `arr_3d` as NumPy shows it. If we picture `arr_3d` in physical space, it would be four planes stacked in a line, each containing 2 rows and 3 columns.
+
+![](images/two_by_three_by_4_array.png)
+
+
+NumPy is showing us the two slices over the first dimension:
 
 ```{python}
 print(arr_3d[0, :, :])
@@ -188,12 +256,31 @@ towards you from the plane of the screen, and look at these tipped planes from
 the left, so the 0 sits nearly on top of 12, in the plane of the screen, and 4
 sits nearly on top of 16, a little forward of the plane of the screen.
 
-Here are the four “planes” of the array (slices over the third dimension):
+Compare the NumPy outputs to the image above, to makes sure you can visualize the array from both perspectives.
+
+Here are the four planes of the array (slices over the third dimension) as NumPy shows them:
 
 ```{python}
-for i in range(4):
-    print(arr_3d[:, :, i])
+# first plane
+arr_3d[:, :, 0]
 ```
+
+```{python}
+# second plane
+arr_3d[:, :, 1]
+```
+
+```{python}
+# third plane
+arr_3d[:, :, 2]
+```
+
+```{python}
+# fourth plane
+arr_3d[:, :, 3]
+```
+
+Again, compare the NumPy outputs to the image above, to makes sure you can visualize the array from both perspectives.
 
 We can reshape to one dimension in the same way as we did for the 2D arrays.
 
