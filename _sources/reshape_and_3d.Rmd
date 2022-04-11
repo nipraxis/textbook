@@ -84,6 +84,22 @@ just_a_number = (1)
 just_a_number
 ```
 
+Why?  Because, Python has to decide what this means:
+
+```python
+# Wait - what do the parentheses mean?
+(1 + 2) + (3 + 4)
+```
+
+Is this adding two one-element tuples, to give a two-element tuple `(3, 7)`?
+Or is it our usual mathematical expression giving 3 + 7 = 10.  You'll see that
+Python decided it was an arithmetical expression.
+
+```{python}
+# They mean parentheses as in arithmetic.
+(1 + 2) + (3 + 4)
+```
+
 To form a length-1 tuple, you need to disambiguate with an extra comma:
 
 ```{python}
@@ -91,7 +107,15 @@ short_tuple = (1,)  # Notice the extra comma
 short_tuple
 ```
 
-We will now be using tuples to give our array shapes, although lists will also work.
+So, for example, to add two length one tuples together, as above:
+
+```{python}
+# Notice the extra comma to say - we mean these to be a length-1 tuples.
+(1 + 2,) + (3 + 4,)
+```
+
+We will now be using tuples to give our array shapes, although lists will also
+work.
 
 See {ref}`tuples` for more.
 
