@@ -12,12 +12,14 @@ jupyter:
     name: python3
 ---
 
-# Numpy arange
+# NumPy arange
 
-`arange` in NumPy is very like the Python Range callable with two
-important differences:
+[`arange`](https://numpy.org/doc/stable/reference/generated/numpy.arange.html)
+in NumPy is very like the Python
+[`range`](https://docs.python.org/3/library/stdtypes.html#range)
+callable with two important differences:
 
-* `arange` returns an array rather than a `range` object;
+* `arange` returns an array rather than a `range` instance;
 
 * `arange` arguments can be floating point values.
 
@@ -35,7 +37,9 @@ np.arange(4, 11, 0.5)
 
 Because `arange` returns arrays, you can use NumPy element-wise operations
 to multiply by the step size and add a start value.  This is one way to create
-equally spaced vectors (`np.linspace` is another):
+equally spaced vectors
+([`np.linspace`](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html)
+is another):
 
 ```{python}
 np.arange(10) * 0.5 + 4

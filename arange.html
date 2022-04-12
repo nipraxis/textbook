@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Numpy arange &#8212; Practice and theory of brain imaging</title>
+    <title>NumPy arange &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -242,7 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Numpy arange
+   NumPy arange
   </a>
  </li>
  <li class="toctree-l1">
@@ -570,7 +570,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Numpy arange</h1>
+                <h1>NumPy arange</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -582,11 +582,13 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="numpy-arange">
-<h1>Numpy arange<a class="headerlink" href="#numpy-arange" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">arange</span></code> in NumPy is very like the Python Range callable with two
-important differences:</p>
+<h1>NumPy arange<a class="headerlink" href="#numpy-arange" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html"><code class="docutils literal notranslate"><span class="pre">arange</span></code></a>
+in NumPy is very like the Python
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range"><code class="docutils literal notranslate"><span class="pre">range</span></code></a>
+callable with two important differences:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">arange</span></code> returns an array rather than a <code class="docutils literal notranslate"><span class="pre">range</span></code> object;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arange</span></code> returns an array rather than a <code class="docutils literal notranslate"><span class="pre">range</span></code> instance;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">arange</span></code> arguments can be floating point values.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -623,7 +625,9 @@ important differences:</p>
 </div>
 <p>Because <code class="docutils literal notranslate"><span class="pre">arange</span></code> returns arrays, you can use NumPy element-wise operations
 to multiply by the step size and add a start value.  This is one way to create
-equally spaced vectors (<code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> is another):</p>
+equally spaced vectors
+(<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html"><code class="docutils literal notranslate"><span class="pre">np.linspace</span></code></a>
+is another):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mi">4</span>
