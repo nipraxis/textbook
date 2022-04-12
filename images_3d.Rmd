@@ -47,7 +47,7 @@ with `.nii.gz` instead.
 
 Inside, the file contains:
 
-* 352 bytes of *header* information.  Among other things, the header
+* 348 bytes of *header* information.  Among other things, the header
   gives the 3D or 4D shape of the file, and the data type of the pixel
   (voxel) data.
 * Usually, directly after the header, we have the image data.  If the image
