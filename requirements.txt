@@ -1,4 +1,5 @@
 # Requirements for notebooks / Binderhub
+attrs==19.3.0  # pacify okpy
 matplotlib
 scipy
 nibabel
