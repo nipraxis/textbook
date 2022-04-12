@@ -108,7 +108,7 @@ data.shape
 Think of this as 256 2D images, stacked on top of one another.  Each 2D image
 is a "slice", of shape (256, 156).
 
-To get a sense of how a 2D slice looks like, let's visualize the middle slice:
+To get a sense of what a 2D slice looks like, let's visualize the middle slice:
 
 ```{python}
 middle_slice = data[:, :, img.shape[-1] // 2 - 1]
