@@ -1,0 +1,59 @@
+name: deploy-book
+
+# Only run this when the master branch changes
+on:
+  push:
+    branches:
+    - main
+
+# This job installs dependencies, build the book, and pushes it to `gh-pages`
+jobs:
+  deploy-book:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/cache@v2
+      with:
+        path: /var/lib/apt
+        key: apt-cache-v2
+        restore-keys: |
+          apt-cache-v2
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends \
+                             curl \
+                             bzip2 \
+                             ca-certificates \
+                             dvipng \
+                             texlive-fonts-recommended \
+                             texlive-fonts-extra \
+                             texlive-latex-extra \
+                             fonts-freefont-ttf \
+                             cm-super
+
+    - uses: actions/checkout@v2
+
+    # Install dependencies
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install jupyter-book
+
+    # Build the page
+    - name: Build the book
+      run: |
+        export PATH=$ANTSPATH:$PATH
+        jupyter-book build .
+
+    # Push the book's HTML to github-pages
+    # uncomment when the action builds correctly
+    # - name: GitHub Pages action
+    #   uses: peaceiris/actions-gh-pages@v3.6.1
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_dir: ./_build/html
