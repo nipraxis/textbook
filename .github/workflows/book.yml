@@ -49,10 +49,9 @@ jobs:
         make html
 
     # Push the book's HTML to github-pages
-    # uncomment when the action builds correctly
-    # - name: GitHub Pages action
-    #   if: ${{ github.ref == 'refs/heads/main' }}
-    #   uses: peaceiris/actions-gh-pages@v3.6.1
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     publish_dir: ./_build/html
+    - name: GitHub Pages action
+      if: ${{ github.ref == 'refs/heads/main' }}
+      uses: peaceiris/actions-gh-pages@v3.6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_build/html
