@@ -1,10 +1,13 @@
-name: deploy-book
+name: build-and-deploy
 
 # Only run this when the master branch changes
 on:
   push:
     branches:
     - main
+  pull_request:
+    branches:
+    - master
 
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
@@ -48,6 +51,7 @@ jobs:
     # Push the book's HTML to github-pages
     # uncomment when the action builds correctly
     # - name: GitHub Pages action
+    #   if: ${{ github.ref == 'refs/heads/main' }}
     #   uses: peaceiris/actions-gh-pages@v3.6.1
     #   with:
     #     github_token: ${{ secrets.GITHUB_TOKEN }}
