@@ -26,8 +26,9 @@ When we check the results of a floating point calculation, we often want to
 avoid checking if the returned value is exactly equal to a desired value.
 Rather, we want to check whether the returned value is close enough, given the
 usual floating point error.  A common idiom in NumPy is to use the
-`np.allclose` function, which checks whether two values or two arrays are
-equal, within a small amount of error:
+[`np.allclose`](https://numpy.org/doc/stable/reference/generated/numpy.allclose.html)
+function, which checks whether two values or two arrays are equal, within a
+small amount of error:
 
 ```{python}
 import numpy as np
@@ -45,4 +46,6 @@ np.allclose(np.pi, 3.1415926)
 np.allclose([np.pi, 2 * np.pi], [3.1415926, 6.2831852])
 ```
 
-See the docstring for `np.allclose` for details of what “close” means.
+See the docstring for
+[`np.allclose`](https://numpy.org/doc/stable/reference/generated/numpy.allclose.html)
+for details of what “close” means.
