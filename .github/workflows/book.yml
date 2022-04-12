@@ -46,7 +46,7 @@ jobs:
     # Build the page
     - name: Build the book
       run: |
-        jupyter-book build .
+        make html
 
     # Push the book's HTML to github-pages
     # uncomment when the action builds correctly

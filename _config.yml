@@ -149,4 +149,4 @@ redirection:
 #   data-types/Ranges: ../arrays/Ranges
 #
 bibtex_bibfiles:
-  - _references.bib
+  - bib/course_refs.bib
