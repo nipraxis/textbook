@@ -1091,10 +1091,66 @@ one-dimensional and two-dimensional arrays are easy to think about.  For example
 </div>
 </div>
 </div>
-<p>Remember from the <a class="reference internal" href="arrays_3d.html"><span class="doc std std-doc">three-dimensional arrays page</span></a> page that we can read the shape of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> - which is <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4)</span></code> - as ‘two rows, three columns, four planes’.</p>
-<p>Let’s just translate that into the output of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> as NumPy shows it. If we picture <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> in physical space, it would be four planes stacked in a line, each containing 2 rows and 3 columns.</p>
+<p>Remember from the <a class="reference internal" href="arrays_3d.html"><span class="doc std std-doc">three-dimensional arrays page</span></a> page that we can read the shape of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> - which is <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4)</span></code> - as “two rows, three columns, four planes”.</p>
+<p>Let us translate that into the output of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> as NumPy shows it. If we
+picture <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> in physical space, it would be four planes stacked in a line,
+each containing 2 rows and 3 columns.</p>
 <p><img alt="" src="_images/two_by_three_by_4_array.png" /></p>
-<p>NumPy is showing us the two slices over the first dimension:</p>
+<p>Notice too that Numpy has filled in the 3D array in the order:</p>
+<ul class="simple">
+<li><p>plane, then</p></li>
+<li><p>column, then</p></li>
+<li><p>row.</p></li>
+</ul>
+<p>This is the same way Numpy works for 2D arrays, when it fills in by:</p>
+<ul class="simple">
+<li><p>column, then</p></li>
+<li><p>row.</p></li>
+</ul>
+<p>This means, as in the diagram above, that the first <em>plane</em> will get every 4th value from the original 1D array, because:</p>
+<ul class="simple">
+<li><p>0, 1, 2, 3 fills the first row, <strong>first</strong> column, over the planes.  We see 0
+in the first row, first column of the first plane.</p></li>
+<li><p>4, 5, 6, 7 fills the first row, <strong>second</strong> column, over the planes.  We see
+4 in the first row, second column, first plane.  And so on.</p></li>
+</ul>
+<p>For example, here, as in the diagram, is the first <em>plane</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The First plane.</span>
+<span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  4,  8],
+       [12, 16, 20]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, you will see above, and below, that NumPy is showing us the two
+slices over the <em>first</em> dimension, when we ask to see the array values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The default display shows the array by *rows*.</span>
+<span class="c1"># Each row is 3 columns and 4 planes.</span>
+<span class="n">arr_3d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7],
+        [ 8,  9, 10, 11]],
+
+       [[12, 13, 14, 15],
+        [16, 17, 18, 19],
+        [20, 21, 22, 23]]])
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First row of data from 3D array:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">arr_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span>

@@ -238,14 +238,47 @@ arr_3d = np.reshape(arr_1d_bigger, (2, 3, 4))
 arr_3d
 ```
 
-Remember from the [three-dimensional arrays page](arrays_3d) page that we can read the shape of `arr_3d` - which is `(2, 3, 4)` - as 'two rows, three columns, four planes'.
+Remember from the [three-dimensional arrays page](arrays_3d) page that we can read the shape of `arr_3d` - which is `(2, 3, 4)` - as "two rows, three columns, four planes".
 
-Let's just translate that into the output of `arr_3d` as NumPy shows it. If we picture `arr_3d` in physical space, it would be four planes stacked in a line, each containing 2 rows and 3 columns.
+Let us translate that into the output of `arr_3d` as NumPy shows it. If we
+picture `arr_3d` in physical space, it would be four planes stacked in a line,
+each containing 2 rows and 3 columns.
 
 ![](images/two_by_three_by_4_array.png)
 
+Notice too that Numpy has filled in the 3D array in the order:
 
-NumPy is showing us the two slices over the first dimension:
+* plane, then
+* column, then
+* row.
+
+This is the same way Numpy works for 2D arrays, when it fills in by:
+
+* column, then
+* row.
+
+This means, as in the diagram above, that the first *plane* will get every 4th value from the original 1D array, because:
+
+* 0, 1, 2, 3 fills the first row, **first** column, over the planes.  We see 0
+  in the first row, first column of the first plane.
+* 4, 5, 6, 7 fills the first row, **second** column, over the planes.  We see
+  4 in the first row, second column, first plane.  And so on.
+
+For example, here, as in the diagram, is the first *plane*.
+
+```{python}
+# The First plane.
+arr_3d[:, :, 0]
+```
+
+However, you will see above, and below, that NumPy is showing us the two
+slices over the *first* dimension, when we ask to see the array values:
+
+```{python}
+# The default display shows the array by *rows*.
+# Each row is 3 columns and 4 planes.
+arr_3d
+```
 
 ```{python}
 print('First row of data from 3D array:\n', arr_3d[0, :, :])
