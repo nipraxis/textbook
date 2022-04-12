@@ -4,12 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Installing on your computer &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,30 +31,35 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script >let toggleHintShow = 'Click to show';</script>
+    <script >let toggleHintHide = 'Click to hide';</script>
+    <script >let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="What is an image?" href="what_is_an_image.html" />
     <link rel="prev" title="Brisk introduction to Python" href="brisk_python.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -94,7 +98,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -106,7 +110,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The tools
  </span>
@@ -148,7 +152,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Images and code and images
  </span>
@@ -215,7 +219,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -267,7 +271,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -289,7 +293,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -367,7 +371,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -414,7 +418,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -497,7 +501,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -531,7 +535,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -551,10 +555,33 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Installing on your computer</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <section id="installing-on-your-computer">
+  <div class="tex2jax_ignore mathjax_ignore section" id="installing-on-your-computer">
 <h1>Installing on your computer<a class="headerlink" href="#installing-on-your-computer" title="Permalink to this headline">¶</a></h1>
 <p>We are going to be using the following major software for the class:</p>
 <ul class="simple">
@@ -572,7 +599,7 @@ editor is an important and personal decision, and one we recommend you invest
 some time in.</p></li>
 <li><p>the <a class="reference external" href="https://git-scm.com/">git</a> version control system.</p></li>
 </ul>
-<section id="installation">
+<div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -581,7 +608,7 @@ expecting that.  One of the things we are teaching in this class is how to
 solve problems like installing and using scientific software.  So, if you run
 into trouble - great - that will be a good opportunity for us to work together
 on a not-trivial problem.</p>
-</aside>
+</div>
 <p>Here are the instructions for installing Git and Python:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="installation_on_mac.html"><span class="doc">Installation on Mac</span></a>;</p></li>
@@ -600,7 +627,7 @@ command in the terminal.</p>
 <p class="admonition-title">Warning</p>
 <p>If you get <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">system</span> <span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">the</span> <span class="pre">path</span> <span class="pre">specified</span></code>, and you are on Windows,
 make sure you are running a <strong>Powershell</strong> shell, not the much older Windows <code class="docutils literal notranslate"><span class="pre">cmd</span></code> shell.</p>
-</aside>
+</div>
 <p>Make a new directory to store your work:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 </pre></div>
@@ -615,8 +642,8 @@ make sure you are running a <strong>Powershell</strong> shell, not the much olde
 </div>
 <p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="05b6541d-3bf0-4dc7-853c-73acc2d6b59c" name="b5014982-26e3-4e5a-b09b-d90b73bc74aa" type="radio">
-</input><label class="tabbed-label" for="05b6541d-3bf0-4dc7-853c-73acc2d6b59c">
+<input checked="checked" id="f1f31738-c3d1-4a29-8c49-343fe29d4838" name="1b2606cc-3203-4984-99d7-2eafe12a94f9" type="radio">
+</input><label class="tabbed-label" for="f1f31738-c3d1-4a29-8c49-343fe29d4838">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
 <span class="o">----</span>
@@ -624,15 +651,15 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="49999c5a-0013-4d9b-b423-7f039927e78f" name="b5014982-26e3-4e5a-b09b-d90b73bc74aa" type="radio">
-</input><label class="tabbed-label" for="49999c5a-0013-4d9b-b423-7f039927e78f">
+<input id="0f2964c2-e232-4c5d-b3ff-147076dc1b5f" name="1b2606cc-3203-4984-99d7-2eafe12a94f9" type="radio">
+</input><label class="tabbed-label" for="0f2964c2-e232-4c5d-b3ff-147076dc1b5f">
 Mac</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
 </div>
 </div>
-<input id="4e7c344c-1809-40f7-9322-d5f605b20d76" name="b5014982-26e3-4e5a-b09b-d90b73bc74aa" type="radio">
-</input><label class="tabbed-label" for="4e7c344c-1809-40f7-9322-d5f605b20d76">
+<input id="6db138ad-5109-4ccd-8e9d-fb337a8bf924" name="1b2606cc-3203-4984-99d7-2eafe12a94f9" type="radio">
+</input><label class="tabbed-label" for="6db138ad-5109-4ccd-8e9d-fb337a8bf924">
 Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
@@ -665,7 +692,7 @@ Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARNING</span><span class="p">:</span> <span class="n">The</span> <span class="n">script</span> <span class="o">&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">program</span><span class="o">&gt;</span> <span class="ow">is</span> <span class="n">installed</span> <span class="ow">in</span> <span class="s1">&#39;C:\Users\scipy\AppData\Roaming\Python\Python310\Scripts&#39;</span> <span class="n">which</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">on</span> <span class="n">PATH</span><span class="o">.</span>
 </pre></div>
 </div>
-</aside>
+</div>
 <p>Keep the terminal open.</p>
 <p>Check your install by downloading <a class="reference download internal" download="" href="_downloads/e88b942b5a72a94c7f29024f97020f7e/check_install.py"><code class="xref download docutils literal notranslate"><span class="pre">check_install.py</span></code></a> to your
 computer.   Note where the file went.  For example, you might have downloaded the file to your <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> directory.</p>
@@ -679,8 +706,8 @@ computer.   Note where the file went.  For example, you might have downloaded th
 </div>
 <p>from your terminal.  You should see something like:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6a93e64f-87e1-44bf-a1e2-2090efaf8f50" name="b1bb9b30-8151-4620-9fb5-b02494202886" type="radio">
-</input><label class="tabbed-label" for="6a93e64f-87e1-44bf-a1e2-2090efaf8f50">
+<input checked="checked" id="9145465b-ff8a-4833-ab58-2ebbd94d7034" name="a5ab25af-933c-4459-9ade-aefebefcbd1c" type="radio">
+</input><label class="tabbed-label" for="9145465b-ff8a-4833-ab58-2ebbd94d7034">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 
@@ -691,8 +718,8 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="aaf947e0-aa6d-4d64-aa9b-93cec74f1905" name="b1bb9b30-8151-4620-9fb5-b02494202886" type="radio">
-</input><label class="tabbed-label" for="aaf947e0-aa6d-4d64-aa9b-93cec74f1905">
+<input id="1213a60b-876b-4945-bc0f-52e878cf54c6" name="a5ab25af-933c-4459-9ade-aefebefcbd1c" type="radio">
+</input><label class="tabbed-label" for="1213a60b-876b-4945-bc0f-52e878cf54c6">
 Mac or Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
@@ -723,8 +750,8 @@ Mac or Linux</label><div class="tabbed-content docutils">
 </div>
 <p>This will open your web browser in the Jupyter interface.  Select the file you
 are interested in.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -748,54 +775,42 @@ are interested in.</p>
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="brisk_python.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Brisk introduction to Python</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="brisk_python.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Brisk introduction to Python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="what_is_an_image.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">What is an image?</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="what_is_an_image.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">What is an image?</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The nipraxis team<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

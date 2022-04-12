@@ -4,12 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random numbers with np.random &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,30 +31,35 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script >let toggleHintShow = 'Click to show';</script>
+    <script >let toggleHintHide = 'Click to hide';</script>
+    <script >let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Methods vs functions in NumPy" href="methods_vs_functions.html" />
     <link rel="prev" title="Otsu’s method for binarizing images" href="otsu_threshold.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -94,7 +98,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -106,7 +110,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The tools
  </span>
@@ -148,7 +152,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Images and code and images
  </span>
@@ -215,7 +219,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -267,7 +271,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -289,7 +293,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -367,7 +371,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -414,7 +418,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -497,7 +501,7 @@
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -547,7 +551,6 @@
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
-        
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
@@ -558,7 +561,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -588,10 +591,43 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Random numbers with np.random</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-random-numbers-predictable">
+   Making random numbers predictable
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <section id="random-numbers-with-np-random">
+  <div class="tex2jax_ignore mathjax_ignore section" id="random-numbers-with-np-random">
 <h1>Random numbers with <code class="docutils literal notranslate"><span class="pre">np.random</span></code><a class="headerlink" href="#random-numbers-with-np-random" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -627,7 +663,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.4510794643979819
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.3377914843630043
 </pre></div>
 </div>
 </div>
@@ -641,7 +677,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.36177634497202
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14.171645253776706
 </pre></div>
 </div>
 </div>
@@ -654,14 +690,14 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7.4972, 16.425 , 15.0217, 14.6857, 16.3156],
-       [13.9606, 13.3949, 13.5589, 13.4454, 16.6927],
-       [12.9199, 16.3028, 16.1537, 16.6463, 16.0015],
-       [14.0936, 14.1127, 16.1891, 14.1661, 14.9497],
-       [11.4026, 13.7763, 13.3332, 11.8432, 12.8693],
-       [16.4951, 16.1207, 13.9836, 15.3338, 16.0727],
-       [14.3595, 14.8501, 12.5356, 15.7189, 12.9636],
-       [16.828 , 12.6825, 14.4647, 12.1349, 14.5837]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[14.6864, 13.978 , 16.4424, 16.1172, 14.8927],
+       [14.9305, 14.7895, 16.1331,  9.4591, 14.08  ],
+       [12.611 , 13.4888, 14.6072, 16.2713, 12.2522],
+       [12.1764, 16.4718, 13.1466, 16.926 , 16.0231],
+       [14.2097, 12.677 , 15.4733, 14.4199, 14.2678],
+       [14.1683, 13.2796, 17.257 , 16.2019, 12.5094],
+       [15.939 , 12.709 , 16.9152, 17.8477, 17.8999],
+       [14.9551, 15.956 , 12.0017, 15.6765, 15.4889]])
 </pre></div>
 </div>
 </div>
@@ -675,20 +711,20 @@ mean 1 and variance 1:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.5721,  0.3903,  0.0557,  2.4639,  0.0225],
-       [ 1.4697,  0.3635,  0.4661,  0.5674,  2.0822],
-       [ 1.3571,  0.415 , -0.4768, -0.8865,  0.3722],
-       [ 1.2598,  0.2911, -1.3012, -1.6049, -0.396 ],
-       [ 0.4507,  0.5305, -0.4919, -1.2894, -0.1513],
-       [-0.8373, -1.0486, -0.7269,  1.0956, -1.9738],
-       [-0.1626, -0.2415,  0.8615,  1.6503, -0.5681],
-       [-3.0222, -0.9988, -0.4443, -0.0886, -0.8933]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.9711, -0.7032, -0.1379,  0.1714,  0.8618],
+       [ 0.6746,  0.6738,  1.3215,  0.6122,  0.3825],
+       [-1.6151, -1.6008, -1.1127,  0.2793, -0.453 ],
+       [ 0.7179,  0.6466,  0.5771,  0.0592, -1.5223],
+       [-0.1207, -0.768 , -0.838 ,  0.7788,  0.435 ],
+       [-0.1597, -1.0546, -1.2694, -1.9033, -1.0436],
+       [-0.0405,  0.6326,  0.1635, -0.5282,  1.558 ],
+       [ 0.583 , -0.0901, -1.6857,  0.6764, -0.3844]])
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="making-random-numbers-predictable">
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="making-random-numbers-predictable">
 <h1>Making random numbers predictable<a class="headerlink" href="#making-random-numbers-predictable" title="Permalink to this headline">¶</a></h1>
 <p>Sometimes you want to make sure that the random numbers are predictable, in
 that you will always get the same set of random numbers from a series of calls
@@ -766,7 +802,7 @@ random numbers from this point:</p>
 </div>
 </div>
 </div>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -790,54 +826,42 @@ random numbers from this point:</p>
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="otsu_threshold.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Otsu’s method for binarizing images</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="otsu_threshold.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Otsu’s method for binarizing images</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="methods_vs_functions.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Methods vs functions in NumPy</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="methods_vs_functions.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Methods vs functions in NumPy</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The nipraxis team<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

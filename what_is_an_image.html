@@ -4,12 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>What is an image? &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,30 +31,35 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script >let toggleHintShow = 'Click to show';</script>
+    <script >let toggleHintHide = 'Click to hide';</script>
+    <script >let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Introduction to Numpy" href="numpy_intro.html" />
     <link rel="prev" title="Installing on your computer" href="installation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -94,7 +98,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -106,7 +110,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The tools
  </span>
@@ -148,7 +152,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Images and code and images
  </span>
@@ -215,7 +219,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -267,7 +271,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -289,7 +293,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -367,7 +371,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -414,7 +418,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -497,7 +501,7 @@
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -547,7 +551,6 @@
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
-        
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
@@ -558,17 +561,27 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
         </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>What is an image?</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <section id="what-is-an-image">
+  <div class="tex2jax_ignore mathjax_ignore section" id="what-is-an-image">
 <h1>What is an image?<a class="headerlink" href="#what-is-an-image" title="Permalink to this headline">¶</a></h1>
 <p>In this exercise we explore the nature of NIfTI images.</p>
 <p>First we will have a look at Python strings. Here is a variable called
@@ -714,7 +727,7 @@ the filename of this notebook (the file starting with <code class="docutils lite
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;reshape_and_4d.Rmd&#39;, &#39;pearson_functions.md&#39;, &#39;classes_and_labs.md&#39;, &#39;two_dunders.md&#39;, &#39;example_data.md&#39;, &#39;on_loops.Rmd&#39;, &#39;bibliography.md&#39;, &#39;using_jupyter.Rmd&#39;, &#39;my_script.py&#39;, &#39;nibabel_affines.Rmd&#39;, &#39;git_videos.md&#39;, &#39;subtract_means.Rmd&#39;, &#39;printing_floating.Rmd&#39;, &#39;the_problem.md&#39;, &#39;brisk_python.Rmd&#39;, &#39;using_pythonpath.Rmd&#39;, &#39;docstrings.Rmd&#39;, &#39;plot_lines.Rmd&#39;, &#39;whole_image_statistics.Rmd&#39;, &#39;anterior_cingulate.md&#39;, &#39;keyword_arguments.Rmd&#39;, &#39;intro_to_4d.Rmd&#39;, &#39;reading_text.Rmd&#39;, &#39;diagnostics_project.md&#39;, &#39;list_comprehensions.Rmd&#39;, &#39;choosing_editor.md&#39;, &#39;requirements.txt&#39;, &#39;nans.md&#39;, &#39;topics.md&#39;, &#39;multi_multiply.Rmd&#39;, &#39;build_requirements.txt&#39;, &#39;index_reshape.Rmd&#39;, &#39;CNAME&#39;, &#39;images&#39;, &#39;numpy_transpose.Rmd&#39;, &#39;references.bib&#39;, &#39;subtract_mean_math.md&#39;, &#39;Makefile&#39;, &#39;path_manipulation.Rmd&#39;, &#39;_scripts&#39;, &#39;exercises.md&#39;, &#39;voxels_by_time.Rmd&#39;, &#39;mean_test_example.Rmd&#39;, &#39;voxel_time_courses.Rmd&#39;, &#39;glossary.md&#39;, &#39;numpy_squeeze.Rmd&#39;, &#39;_references.bib&#39;, &#39;arange.Rmd&#39;, &#39;intro.md&#39;, &#39;check_install.py&#39;, &#39;nibabel_apply_affine.Rmd&#39;, &#39;tr_and_headers.Rmd&#39;, &#39;truthiness.Rmd&#39;, &#39;code&#39;, &#39;classes.md&#39;, &#39;newaxis.Rmd&#39;, &#39;participate.md&#39;, &#39;string_formatting.Rmd&#39;, &#39;test_one_voxel.Rmd&#39;, &#39;surviving_computers.md&#39;, &#39;boolean_indexing_nd.Rmd&#39;, &#39;reshape_and_3d.Rmd&#39;, &#39;numpy_intro.Rmd&#39;, &#39;rotation_2d_3d.md&#39;, &#39;diag_inverse.md&#39;, &#39;introducing_python.Rmd&#39;, &#39;comparing_arrays.Rmd&#39;, &#39;methods_vs_functions.Rmd&#39;, &#39;convolution_background.Rmd&#39;, &#39;git_workflow_exercises.md&#39;, &#39;subplots.Rmd&#39;, &#39;rotations.py&#39;, &#39;participate_grading.md&#39;, &#39;projects.md&#39;, &#39;floating_in_text.md&#39;, &#39;multi_model_homework.md&#39;, &#39;installation_on_linux.md&#39;, &#39;arrays_and_images.Rmd&#39;, &#39;dot_outer.Rmd&#39;, &#39;packages_namespaces.Rmd&#39;, &#39;installation_on_windows.md&#39;, &#39;non_tr_onsets.Rmd&#39;, &#39;slicing_with_booleans.Rmd&#39;, &#39;numpy_diag.Rmd&#39;, &#39;_toc.yml&#39;, &#39;github_glm_homework.md&#39;, &#39;allclose.Rmd&#39;, &#39;_todo.md&#39;, &#39;assert.Rmd&#39;, &#39;introducing_nipype.Rmd&#39;, &#39;what_is_an_image.Rmd&#39;, &#39;more_on_jupyter.Rmd&#39;, &#39;voxel_time_course.txt&#39;, &#39;ds114_sub009_t2r1_conv.txt&#39;, &#39;the_software.md&#39;, &#39;installation_on_mac.md&#39;, &#39;.gitignore&#39;, &#39;dipy_registration.py&#39;, &#39;array_reductions.md&#39;, &#39;syllabus.md&#39;, &#39;_build&#39;, &#39;full_scripting.md&#39;, &#39;_config.yml&#39;, &#39;bib&#39;, &#39;comparing_floats.md&#39;, &#39;arrays_3d.Rmd&#39;, &#39;numpy_logical.Rmd&#39;, &#39;coding_style.md&#39;, &#39;mymodule.py&#39;, &#39;project_grading.md&#39;, &#39;image_header_and_affine.Rmd&#39;, &#39;numpy_random.Rmd&#39;, &#39;.ipynb_checkpoints&#39;, &#39;dot_and_outer.md&#39;, &#39;resampling_with_ndimage.Rmd&#39;, &#39;numpy_meshgrid.Rmd&#39;, &#39;string_literals.Rmd&#39;, &#39;saving_images.Rmd&#39;, &#39;map_coordinates.Rmd&#39;, &#39;some_numbers.txt&#39;, &#39;mentors.md&#39;, &#39;hypothesis_tests.Rmd&#39;, &#39;on_modules.Rmd&#39;, &#39;.git&#39;, &#39;git_walk_through.Rmd&#39;, &#39;diagonal_zooms.Rmd&#39;, &#39;data&#39;, &#39;images_3d.Rmd&#39;, &#39;installation.md&#39;, &#39;to_code.md&#39;, &#39;github_dummies_homework.md&#39;, &#39;sys_path.Rmd&#39;, &#39;boolean_indexing.Rmd&#39;, &#39;github_pca_homework.md&#39;, &#39;validate_against_scipy.Rmd&#39;, &#39;model_one_voxel.Rmd&#39;, &#39;otsu_threshold.Rmd&#39;, &#39;images_and_affines.Rmd&#39;, &#39;dipy_registration.Rmd&#39;, &#39;logistics.md&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;reshape_and_4d.Rmd&#39;, &#39;pearson_functions.md&#39;, &#39;classes_and_labs.md&#39;, &#39;two_dunders.md&#39;, &#39;example_data.md&#39;, &#39;on_loops.Rmd&#39;, &#39;bibliography.md&#39;, &#39;using_jupyter.Rmd&#39;, &#39;my_script.py&#39;, &#39;nibabel_affines.Rmd&#39;, &#39;git_videos.md&#39;, &#39;subtract_means.Rmd&#39;, &#39;printing_floating.Rmd&#39;, &#39;the_problem.md&#39;, &#39;brisk_python.Rmd&#39;, &#39;length_one_tuples.Rmd&#39;, &#39;using_pythonpath.Rmd&#39;, &#39;docstrings.Rmd&#39;, &#39;plot_lines.Rmd&#39;, &#39;whole_image_statistics.Rmd&#39;, &#39;anterior_cingulate.md&#39;, &#39;keyword_arguments.Rmd&#39;, &#39;intro_to_4d.Rmd&#39;, &#39;reading_text.Rmd&#39;, &#39;diagnostics_project.md&#39;, &#39;list_comprehensions.Rmd&#39;, &#39;choosing_editor.md&#39;, &#39;requirements.txt&#39;, &#39;nans.md&#39;, &#39;topics.md&#39;, &#39;multi_multiply.Rmd&#39;, &#39;build_requirements.txt&#39;, &#39;index_reshape.Rmd&#39;, &#39;CNAME&#39;, &#39;images&#39;, &#39;numpy_transpose.Rmd&#39;, &#39;references.bib&#39;, &#39;subtract_mean_math.md&#39;, &#39;Makefile&#39;, &#39;path_manipulation.Rmd&#39;, &#39;_scripts&#39;, &#39;exercises.md&#39;, &#39;voxels_by_time.Rmd&#39;, &#39;mean_test_example.Rmd&#39;, &#39;voxel_time_courses.Rmd&#39;, &#39;glossary.md&#39;, &#39;numpy_squeeze.Rmd&#39;, &#39;_references.bib&#39;, &#39;arange.Rmd&#39;, &#39;intro.md&#39;, &#39;check_install.py&#39;, &#39;nibabel_apply_affine.Rmd&#39;, &#39;tr_and_headers.Rmd&#39;, &#39;truthiness.Rmd&#39;, &#39;code&#39;, &#39;classes.md&#39;, &#39;newaxis.Rmd&#39;, &#39;participate.md&#39;, &#39;string_formatting.Rmd&#39;, &#39;test_one_voxel.Rmd&#39;, &#39;surviving_computers.md&#39;, &#39;boolean_indexing_nd.Rmd&#39;, &#39;reshape_and_3d.Rmd&#39;, &#39;numpy_intro.Rmd&#39;, &#39;rotation_2d_3d.md&#39;, &#39;diag_inverse.md&#39;, &#39;introducing_python.Rmd&#39;, &#39;comparing_arrays.Rmd&#39;, &#39;methods_vs_functions.Rmd&#39;, &#39;convolution_background.Rmd&#39;, &#39;git_workflow_exercises.md&#39;, &#39;subplots.Rmd&#39;, &#39;rotations.py&#39;, &#39;participate_grading.md&#39;, &#39;projects.md&#39;, &#39;floating_in_text.md&#39;, &#39;multi_model_homework.md&#39;, &#39;installation_on_linux.md&#39;, &#39;arrays_and_images.Rmd&#39;, &#39;dot_outer.Rmd&#39;, &#39;packages_namespaces.Rmd&#39;, &#39;installation_on_windows.md&#39;, &#39;non_tr_onsets.Rmd&#39;, &#39;slicing_with_booleans.Rmd&#39;, &#39;numpy_diag.Rmd&#39;, &#39;_toc.yml&#39;, &#39;github_glm_homework.md&#39;, &#39;allclose.Rmd&#39;, &#39;_todo.md&#39;, &#39;assert.Rmd&#39;, &#39;introducing_nipype.Rmd&#39;, &#39;what_is_an_image.Rmd&#39;, &#39;more_on_jupyter.Rmd&#39;, &#39;voxel_time_course.txt&#39;, &#39;ds114_sub009_t2r1_conv.txt&#39;, &#39;the_software.md&#39;, &#39;installation_on_mac.md&#39;, &#39;.gitignore&#39;, &#39;dipy_registration.py&#39;, &#39;array_reductions.md&#39;, &#39;syllabus.md&#39;, &#39;_build&#39;, &#39;full_scripting.md&#39;, &#39;_config.yml&#39;, &#39;bib&#39;, &#39;comparing_floats.md&#39;, &#39;arrays_3d.Rmd&#39;, &#39;numpy_logical.Rmd&#39;, &#39;coding_style.md&#39;, &#39;mymodule.py&#39;, &#39;project_grading.md&#39;, &#39;image_header_and_affine.Rmd&#39;, &#39;numpy_random.Rmd&#39;, &#39;.ipynb_checkpoints&#39;, &#39;dot_and_outer.md&#39;, &#39;resampling_with_ndimage.Rmd&#39;, &#39;numpy_meshgrid.Rmd&#39;, &#39;string_literals.Rmd&#39;, &#39;saving_images.Rmd&#39;, &#39;map_coordinates.Rmd&#39;, &#39;some_numbers.txt&#39;, &#39;mentors.md&#39;, &#39;hypothesis_tests.Rmd&#39;, &#39;on_modules.Rmd&#39;, &#39;.git&#39;, &#39;git_walk_through.Rmd&#39;, &#39;diagonal_zooms.Rmd&#39;, &#39;data&#39;, &#39;images_3d.Rmd&#39;, &#39;installation.md&#39;, &#39;to_code.md&#39;, &#39;github_dummies_homework.md&#39;, &#39;sys_path.Rmd&#39;, &#39;boolean_indexing.Rmd&#39;, &#39;github_pca_homework.md&#39;, &#39;validate_against_scipy.Rmd&#39;, &#39;model_one_voxel.Rmd&#39;, &#39;otsu_threshold.Rmd&#39;, &#39;images_and_affines.Rmd&#39;, &#39;dipy_registration.Rmd&#39;, &#39;logistics.md&#39;]
 </pre></div>
 </div>
 </div>
@@ -1004,7 +1017,7 @@ magic           : b&#39;n+1&#39;
 <p>Soon, we do some more work to get used to basic Python.  After that we will
 start playing with the image using the Python tools for arrays, and for
 plotting.</p>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1028,54 +1041,42 @@ plotting.</p>
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="installation.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Installing on your computer</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="installation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Installing on your computer</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="numpy_intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Numpy</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="numpy_intro.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Introduction to Numpy</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The nipraxis team<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

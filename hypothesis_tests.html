@@ -4,12 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hypothesis testing with the general linear model &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,32 +31,37 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script >let toggleHintShow = 'Click to show';</script>
+    <script >let toggleHintHide = 'Click to hide';</script>
+    <script >let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Convolving with the hemodyamic response function" href="convolution_background.html" />
     <link rel="prev" title="A worked example of the general linear model" href="mean_test_example.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -96,7 +100,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -108,7 +112,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   The tools
  </span>
@@ -150,7 +154,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Images and code and images
  </span>
@@ -217,7 +221,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Arrays and plots
  </span>
@@ -269,7 +273,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Into the fourth dimension
  </span>
@@ -291,7 +295,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Coordinate systems and spatial transforms
  </span>
@@ -369,7 +373,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Statistics and the general linear model
  </span>
@@ -416,7 +420,7 @@
   </a>
  </li>
 </ul>
-<p>
+<p class="caption">
  <span class="caption-text">
   Code organization and collaboration
  </span>
@@ -499,7 +503,7 @@
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -549,7 +553,6 @@
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
-        
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
@@ -560,7 +563,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -614,12 +617,69 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Hypothesis testing with the general linear model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Hypothesis testing with the general linear model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-linear-model-reprise">
+     General linear model reprise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-residual-error">
+   The residual error
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unbiased-estimate-of-population-variance">
+   Unbiased estimate of population variance
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing">
+   Hypothesis testing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t-tests-using-contrast-vectors">
+     t tests using contrast vectors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f-tests">
+   F tests
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <section id="hypothesis-testing-with-the-general-linear-model">
+  <div class="tex2jax_ignore mathjax_ignore section" id="hypothesis-testing-with-the-general-linear-model">
 <h1>Hypothesis testing with the general linear model<a class="headerlink" href="#hypothesis-testing-with-the-general-linear-model" title="Permalink to this headline">¶</a></h1>
-<section id="general-linear-model-reprise">
+<div class="section" id="general-linear-model-reprise">
 <h2>General linear model reprise<a class="headerlink" href="#general-linear-model-reprise" title="Permalink to this headline">¶</a></h2>
 <p>This page starts at the same place as <a class="reference external" href="https://matthew-brett.github.io/teaching/glm_intro.html">introduction to the general linear model</a>.</p>
 <div class="cell docutils container">
@@ -722,9 +782,9 @@ is:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">^</span></code> on <span class="math notranslate nohighlight">\(\bhat\)</span> reminds us that this is an <em>estimate</em> of <span class="math notranslate nohighlight">\(\bvec\)</span>.  We
 derived this <span class="math notranslate nohighlight">\(\bhat\)</span> estimate from our sample, hoping that it will be a
 reasonable estimate for the <span class="math notranslate nohighlight">\(\bvec\)</span> that applies to the whole population.</p>
-</section>
-</section>
-<section id="the-residual-error">
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="the-residual-error">
 <h1>The residual error<a class="headerlink" href="#the-residual-error" title="Permalink to this headline">¶</a></h1>
 <p><span class="math notranslate nohighlight">\(\bhat\)</span> gives us a corresponding estimate of <span class="math notranslate nohighlight">\(\evec\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -756,8 +816,8 @@ operations, we can write that formulation as:</p>
 \[
 \sum e_i^2 \equiv \ehat^T \ehat
 \]</div>
-</section>
-<section id="unbiased-estimate-of-population-variance">
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="unbiased-estimate-of-population-variance">
 <h1>Unbiased estimate of population variance<a class="headerlink" href="#unbiased-estimate-of-population-variance" title="Permalink to this headline">¶</a></h1>
 <p>We will soon need an unbiased estimate of the population variance.  The
 population variance is <span class="math notranslate nohighlight">\(\frac{1}{N} \sum e_i^2\)</span> where the population has <span class="math notranslate nohighlight">\(N\)</span>
@@ -786,8 +846,8 @@ residuals by <span class="math notranslate nohighlight">\(n - 1\)</span> where <
 <li><p><span class="math notranslate nohighlight">\(\rank(\Xmat)\)</span>: <em>degrees of freedom of the design</em>;</p></li>
 <li><p><span class="math notranslate nohighlight">\(n - \rank(\Xmat)\)</span>: <em>degrees of freedom of the error</em>.</p></li>
 </ul>
-</section>
-<section id="hypothesis-testing">
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="hypothesis-testing">
 <h1>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h1>
 <p>We used contrast vectors to form particular linear combinations of the
 parameter estimates in <span class="math notranslate nohighlight">\(\bhat\)</span>.  For example, we used the contrast vector
@@ -796,7 +856,7 @@ parameter estimates in <span class="math notranslate nohighlight">\(\bhat\)</spa
 \[
 b = [0, 1] \bhat
 \]</div>
-<section id="t-tests-using-contrast-vectors">
+<div class="section" id="t-tests-using-contrast-vectors">
 <h2>t tests using contrast vectors<a class="headerlink" href="#t-tests-using-contrast-vectors" title="Permalink to this headline">¶</a></h2>
 <p>The formula for a t statistic test on any linear combination of the parameters
 in <span class="math notranslate nohighlight">\(\bhat\)</span> is:</p>
@@ -854,9 +914,9 @@ t = \frac{\cvec^T \bhat}
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="f-tests">
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="f-tests">
 <h1>F tests<a class="headerlink" href="#f-tests" title="Permalink to this headline">¶</a></h1>
 <p>F tests are another way to test hypotheses about the linear models.  They are
 particularly useful for testing whether there is a significant reduction in
@@ -964,7 +1024,7 @@ column is the square of the t statistic testing the same column:</p>
 </div>
 </div>
 </div>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -988,54 +1048,42 @@ column is the square of the t statistic testing the same column:</p>
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="mean_test_example.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">A worked example of the general linear model</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="mean_test_example.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">A worked example of the general linear model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="convolution_background.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Convolving with the hemodyamic response function</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="convolution_background.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Convolving with the hemodyamic response function</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The nipraxis team<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

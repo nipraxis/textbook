@@ -97,16 +97,44 @@ from the terminal:
 fslinfo ds114_sub009_highres.nii
 ```
 
+It is important to have a clear picture of what we are dealing with.
+First, we have the NIfTI file, which is a regular file stored in a hard disk with name `ds114_sub009_highres.nii`.
+In order to access the contents of the file, we invoked NiBabel's `load()` function.
+The call created a Pyton representation (meaning, a Python object) that is capable of understanding the NIfTI format and therefore access the file.
+As an example, we printed out the information contained in the header with NiBabel's interface.
+The interface has other convenience tools to access information about the image, for instance, the shape of the data grid contained by the NIfTI file:
 
-We can load the image data as an array of floating point numbers with:
+```{python}
+img.shape
+```
+
+Think of this as 256 2D images, stacked on top of one another.
+Each 2D image is a "slice", of shape (256, 156).
+
+At this point, we haven't accessed yet the actual values that make up this image.
+Because we haven't done so yet, NiBabel has not allocated any memory space for it, meaning, data remains sitting in a hard disk and it has not been copied into your RAM (random access memory or fast memory).
+When you are ready to visualize or analyze the data, you will need to create such a copy into the fast memory of your machine.
+
+Like the `img.header` property, NiBabel's representation of NIfTI images offers direct access to the data array through its own property:
+
+```
+img.dataobj
+```
+
+Accessing the data array directly with `img.dataobj` is generally not recommended.
+Instead, we can load the image data directly as an array of floating point numbers with `img.get_fdata()`.
+Once loaded, we can confirm that now the values in the NIfTI file have been loaded into memory as a Numpy data array, of data type `float64`.
 
 ```{python}
 data = img.get_fdata()
-data.shape
+data.dtype
 ```
 
-Think of this as 256 2D images, stacked on top of one another.  Each 2D image
-is a "slice", of shape (256, 156).
+Naturally, we can use all the tooling Numpy offers, for example, to extract summary statistics:
+
+```{python}
+print(f"The mean intensity of this image is {data.mean()}, and the standard deviation is {data.std()}.")
+```
 
 The first (bottom) slice:
 
