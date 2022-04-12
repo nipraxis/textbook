@@ -108,18 +108,24 @@ data.shape
 Think of this as 256 2D images, stacked on top of one another.  Each 2D image
 is a "slice", of shape (256, 156).
 
-The first (bottom) slice:
+To get a sense of how a 2D slice looks like, let's visualize the middle slice:
 
 ```{python}
-bottom_slice = data[:, :, 0]
-plt.imshow(bottom_slice)
+middle_slice = data[:, :, img.shape[-1] // 2 - 1]
+plt.imshow(middle_slice)
 ```
 
-The middle slice:
+We can also *cut* the image through a different plane, for instance, sagittal:
 
 ```{python}
-middle_slice = data[:, :, 127]
+middle_slice = data[:, img.shape[1] // 2 - 1, :]
 plt.imshow(middle_slice)
+```
+
+NiBabel's Python representation of images offers a helpful utility to look at images through three viewplanes, implemented as a function attached to image objects (hence, a *method* of the object):
+
+```{python}
+img.orthoview()
 ```
 
 We might be interested to look at the histogram of voxel values in this 3D block.  In order to do that, we `np.ravel` the 3D volume to 1D, to throw away the spatial arrangement of the voxels.
