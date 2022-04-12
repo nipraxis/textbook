@@ -24,12 +24,7 @@ jobs:
                              curl \
                              bzip2 \
                              ca-certificates \
-                             dvipng \
-                             texlive-fonts-recommended \
-                             texlive-fonts-extra \
-                             texlive-latex-extra \
-                             fonts-freefont-ttf \
-                             cm-super
+                             dvipng
 
     - uses: actions/checkout@v2
 
@@ -41,13 +36,13 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -U pip
         pip install jupyter-book
+        pip install -r requirements.txt
 
     # Build the page
     - name: Build the book
       run: |
-        export PATH=$ANTSPATH:$PATH
         jupyter-book build .
 
     # Push the book's HTML to github-pages
