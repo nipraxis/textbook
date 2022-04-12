@@ -1,12 +1,12 @@
 # Requirements for notebooks / Binderhub
-attrs==19.3.0  # pacify okpy
 matplotlib
 scipy
 nibabel
 ipython
 jupytext
+jupyter-book
 okpy
-dipy
-fury<0.8  # pacify dipy imports
+dipy==1.4.1
+fury==0.7.1  # pacify dipy imports
 scikit-image
 nipraxis
