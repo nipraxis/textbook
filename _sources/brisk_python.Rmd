@@ -412,10 +412,8 @@ container, Python executes the *for block*.
 Note  shows equivalent `for` loops in Python, R and
 MATLAB.
 
-See
-[`range`](https://docs.python.org/3/library/functions.html#func-range)
-for a common way of writing a `for` loop that iterates over a sequence of
-integers.
+See Range for a common way of writing a `for` loop that iterates
+over a sequence of integers.
 
 ## Lists are sequences
 
