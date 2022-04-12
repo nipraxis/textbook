@@ -143,19 +143,6 @@ middle_slice = data[:, :, img.shape[-1] // 2 - 1]
 plt.imshow(middle_slice)
 ```
 
-We can also *cut* the image through a different plane, for instance, sagittal:
-
-```{python}
-middle_slice = data[:, img.shape[1] // 2 - 1, :]
-plt.imshow(middle_slice)
-```
-
-NiBabel's Python representation of images offers a helpful utility to look at images through three viewplanes, implemented as a function attached to image objects (hence, a *method* of the object):
-
-```{python}
-img.orthoview()
-```
-
 We might be interested to look at the histogram of voxel values in this 3D block.  In order to do that, we `np.ravel` the 3D volume to 1D, to throw away the spatial arrangement of the voxels.
 
 ```{python}
@@ -190,7 +177,7 @@ from bottom, and so on:
 We can also think of this 3D image as a stack of 2D images where the 2D images are (back to front, bottom to top), like this:
 
 ```{python}
-yz_slice = data[127, :, :]
+yz_slice = data[img.shape[0] // 2 - 1, :, :]
 yz_slice.shape
 ```
 
@@ -215,3 +202,10 @@ plt.imshow(xz_slice)
 ```
 
 ![](images/image_plane_stack_col.png)
+
+
+NiBabel's Python representation of images offers a helpful utility to look at images through three viewplanes, implemented as a function attached to image objects (hence, a *method* of the object):
+
+```{python}
+img.orthoview()
+```
