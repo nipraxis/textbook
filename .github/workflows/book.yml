@@ -47,6 +47,7 @@ jobs:
     - name: Build the book
       run: |
         make html
+        echo "textbook.nipraxis.org" >> ./build/html/CNAME
 
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
