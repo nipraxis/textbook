@@ -143,11 +143,22 @@ middle_slice = data[:, :, img.shape[-1] // 2 - 1]
 plt.imshow(middle_slice)
 ```
 
-We might be interested to look at the histogram of voxel values in this 3D block.  In order to do that, we `np.ravel` the 3D volume to 1D, to throw away the spatial arrangement of the voxels.
+We might be interested to look at the histogram of voxel values in this 3D block.
+In order to do that, we `np.ravel` the 3D volume to 1D, to throw away the spatial arrangement of the voxels.
 
 ```{python}
 # Show histogram of the values in the 3D image.
 plt.hist(np.ravel(data), bins=100);
+```
+
+At a bird's eye view, the extremes of the histogram are the most informative bits.
+On the far end, the histogram extends to very large voxel values (a bit above 3000) with very small voxel counts (just a few voxels that are very bright).
+On the origin, there's a massive amount of pixels with zero or almost-zero value (corresponding to the background).
+Let's plot the histogram corresponding to values above zero to exclude the very large number of zero-valued voxels, and below 1000 to exclude the scarce voxels with very high values.
+
+```{python}
+# Show histogram of the values in the 3D image.
+plt.hist(data[(data > 0) & (data < 1000)], bins=100);
 ```
 
 Let us return to the middle slice. As for any array, we can transpose it, to flip the rows and the columns:
