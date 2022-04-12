@@ -7,7 +7,7 @@ on:
     - main
   pull_request:
     branches:
-    - master
+    - main
 
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
