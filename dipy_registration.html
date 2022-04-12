@@ -685,34 +685,6 @@ Dipy documentation:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">regtools</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">dipy.align.imaffine</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AffineMap</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                  <span class="n">MutualInformationMetric</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                  <span class="n">AffineRegistration</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">dipy.align.transforms</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TranslationTransform3D</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                    <span class="n">RigidTransform3D</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                                    <span class="n">AffineTransform3D</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.9.12</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">dipy</span><span class="o">/</span><span class="n">viz</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">fury</span><span class="p">,</span> <span class="n">has_fury</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">optional_package</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="s1">&#39;fury&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="s2">&quot;You do not have FURY installed. Some visualization functions&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="s2">&quot;might not work for you. For installation instructions, please visit: &quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="s2">&quot;https://fury.gl/&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">if</span> <span class="n">has_fury</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">14</span>     <span class="kn">from</span> <span class="nn">fury</span> <span class="kn">import</span> <span class="n">actor</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">lib</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="kn">from</span> <span class="nn">fury</span> <span class="kn">import</span> <span class="n">interactor</span><span class="p">,</span> <span class="n">ui</span><span class="p">,</span> <span class="n">utils</span><span class="p">,</span> <span class="n">shaders</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="kn">from</span> <span class="nn">fury.data</span> <span class="kn">import</span> <span class="p">(</span><span class="n">fetch_viz_icons</span><span class="p">,</span> <span class="n">read_viz_icons</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>                            <span class="n">DATA_DIR</span> <span class="k">as</span> <span class="n">FURY_DATA_DIR</span><span class="p">)</span>
-
-<span class="ne">ImportError</span>: cannot import name &#39;lib&#39; from &#39;fury&#39; (/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/fury/__init__.py)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Next we load the subject structural image and the template image. These images
 have already had all voxels outside the brain set to zero. For the individual
@@ -728,6 +700,14 @@ which we have masked out the skull and face.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds114_sub009_highres_brain_222.nii&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.3/ds114_sub009_highres_brain_222.nii&#39; to &#39;/home/runner/.cache/nipraxis/0.3&#39;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.3/ds114_sub009_highres_brain_222.nii&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -735,6 +715,14 @@ which we have masked out the skull and face.</p>
 <span class="n">masked_template_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span>
     <span class="s1">&#39;mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii&#39;</span><span class="p">)</span>
 <span class="n">masked_template_fname</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.3/mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii&#39; to &#39;/home/runner/.cache/nipraxis/0.3&#39;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.3/mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii&#39;
 </pre></div>
 </div>
 </div>
@@ -776,6 +764,12 @@ images, as recorded in the affines.</p>
                         <span class="s2">&quot;Template&quot;</span><span class="p">,</span> <span class="s2">&quot;Moving&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/dipy_registration_11_0.png" src="_images/dipy_registration_11_0.png" />
+<img alt="_images/dipy_registration_11_1.png" src="_images/dipy_registration_11_1.png" />
+<img alt="_images/dipy_registration_11_2.png" src="_images/dipy_registration_11_2.png" />
+<img alt="_images/dipy_registration_11_3.png" src="_images/dipy_registration_11_3.png" />
 </div>
 </div>
 <p>Next we define an affine registration, by giving a few standard parameters.
@@ -826,11 +820,28 @@ registration.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing level 2 [max iter: 10]
+Optimizing level 1 [max iter: 10]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing level 0 [max iter: 5]
+</pre></div>
+</div>
+</div>
 </div>
 <p>We now have our estimated translations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">translation</span><span class="o">.</span><span class="n">affine</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1.    ,   0.    ,   0.    ,  -1.8557],
+       [  0.    ,   1.    ,   0.    ,  39.6567],
+       [  0.    ,   0.    ,   1.    , -22.0912],
+       [  0.    ,   0.    ,   0.    ,   1.    ]])
 </pre></div>
 </div>
 </div>
@@ -849,6 +860,12 @@ before:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/dipy_registration_22_0.png" src="_images/dipy_registration_22_0.png" />
+<img alt="_images/dipy_registration_22_1.png" src="_images/dipy_registration_22_1.png" />
+<img alt="_images/dipy_registration_22_2.png" src="_images/dipy_registration_22_2.png" />
+<img alt="_images/dipy_registration_22_3.png" src="_images/dipy_registration_22_3.png" />
+</div>
 </div>
 <p>Next we use the estimated translations as a starting point to optimize a
 rigid-body transform. A rigid-body transform is a transform that does not
@@ -862,10 +879,27 @@ change the shape of the object. It allows only translations and rotations.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing level 2 [max iter: 10]
+Optimizing level 1 [max iter: 10]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing level 0 [max iter: 5]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rigid</span><span class="o">.</span><span class="n">affine</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0.9995,  -0.0269,  -0.0166,  -2.3604],
+       [  0.0265,   0.9993,  -0.0268,  40.0467],
+       [  0.0173,   0.0264,   0.9995, -21.0786],
+       [  0.    ,   0.    ,   0.    ,   1.    ]])
 </pre></div>
 </div>
 </div>
@@ -884,6 +918,12 @@ overlay of the image.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/dipy_registration_27_0.png" src="_images/dipy_registration_27_0.png" />
+<img alt="_images/dipy_registration_27_1.png" src="_images/dipy_registration_27_1.png" />
+<img alt="_images/dipy_registration_27_2.png" src="_images/dipy_registration_27_2.png" />
+<img alt="_images/dipy_registration_27_3.png" src="_images/dipy_registration_27_3.png" />
+</div>
 </div>
 <p>Last, we do a full affine registration, using the rigid body estimate as a
 starting point.</p>
@@ -898,10 +938,29 @@ starting point.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing level 2 [max iter: 1000]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing level 1 [max iter: 1000]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizing level 0 [max iter: 100]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">affine</span><span class="o">.</span><span class="n">affine</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0.935 ,  -0.0268,   0.0009,  -2.1728],
+       [  0.0438,   0.9553,  -0.0418,  39.0283],
+       [  0.0117,   0.0239,   0.8903, -19.107 ],
+       [  0.    ,   0.    ,   0.    ,   1.    ]])
 </pre></div>
 </div>
 </div>
@@ -917,6 +976,12 @@ starting point.</p>
                         <span class="s2">&quot;Template&quot;</span><span class="p">,</span> <span class="s2">&quot;Transformed&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/dipy_registration_31_0.png" src="_images/dipy_registration_31_0.png" />
+<img alt="_images/dipy_registration_31_1.png" src="_images/dipy_registration_31_1.png" />
+<img alt="_images/dipy_registration_31_2.png" src="_images/dipy_registration_31_2.png" />
+<img alt="_images/dipy_registration_31_3.png" src="_images/dipy_registration_31_3.png" />
 </div>
 </div>
 </div>
@@ -972,6 +1037,12 @@ starting point.</p>
                         <span class="s2">&quot;Template&quot;</span><span class="p">,</span> <span class="s2">&quot;Transformed&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/dipy_registration_40_0.png" src="_images/dipy_registration_40_0.png" />
+<img alt="_images/dipy_registration_40_1.png" src="_images/dipy_registration_40_1.png" />
+<img alt="_images/dipy_registration_40_2.png" src="_images/dipy_registration_40_2.png" />
+<img alt="_images/dipy_registration_40_3.png" src="_images/dipy_registration_40_3.png" />
 </div>
 </div>
 </div>
