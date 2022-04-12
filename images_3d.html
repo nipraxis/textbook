@@ -654,7 +654,7 @@ package.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7fcaa8e38cd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7f5c41539d90&gt;
 </pre></div>
 </div>
 </div>
@@ -787,13 +787,14 @@ Once loaded, we can confirm that now the values in the NIfTI file have been load
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fcaa8ce1d90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5c41464b20&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_17_1.png" src="_images/images_3d_17_1.png" />
 </div>
 </div>
-<p>We might be interested to look at the histogram of voxel values in this 3D block.  In order to do that, we <code class="docutils literal notranslate"><span class="pre">np.ravel</span></code> the 3D volume to 1D, to throw away the spatial arrangement of the voxels.</p>
+<p>We might be interested to look at the histogram of voxel values in this 3D block.
+In order to do that, we <code class="docutils literal notranslate"><span class="pre">np.ravel</span></code> the 3D volume to 1D, to throw away the spatial arrangement of the voxels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show histogram of the values in the 3D image.</span>
@@ -805,6 +806,21 @@ Once loaded, we can confirm that now the values in the NIfTI file have been load
 <img alt="_images/images_3d_19_0.png" src="_images/images_3d_19_0.png" />
 </div>
 </div>
+<p>At a bird’s eye view, the extremes of the histogram are the most informative bits.
+On the far end, the histogram extends to very large voxel values (a bit above 3000) with very small voxel counts (just a few voxels that are very bright).
+On the origin, there’s a massive amount of pixels with zero or almost-zero value (corresponding to the background).
+Let’s plot the histogram corresponding to values above zero to exclude the very large number of zero-valued voxels, and below 1000 to exclude the scarce voxels with very high values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show histogram of the values in the 3D image.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/images_3d_21_0.png" src="_images/images_3d_21_0.png" />
+</div>
+</div>
 <p>Let us return to the middle slice. As for any array, we can transpose it, to flip the rows and the columns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,10 +829,10 @@ Once loaded, we can confirm that now the values in the NIfTI file have been load
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fcaa6aa1d60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5c3f0df6a0&gt;
 </pre></div>
 </div>
-<img alt="_images/images_3d_21_1.png" src="_images/images_3d_21_1.png" />
+<img alt="_images/images_3d_23_1.png" src="_images/images_3d_23_1.png" />
 </div>
 </div>
 <p>To get the display you usually see in dedicated imaging display software, we
@@ -829,10 +845,10 @@ need to transpose <em>and</em> flip up to down:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fcaa6a199d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5c3f0bf310&gt;
 </pre></div>
 </div>
-<img alt="_images/images_3d_23_1.png" src="_images/images_3d_23_1.png" />
+<img alt="_images/images_3d_25_1.png" src="_images/images_3d_25_1.png" />
 </div>
 </div>
 <p>We are looking at a slice <em>over the third dimension</em>.  We will sometimes refer
@@ -863,10 +879,10 @@ from bottom, and so on:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fcaa6a08310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5c3f02bcd0&gt;
 </pre></div>
 </div>
-<img alt="_images/images_3d_26_1.png" src="_images/images_3d_26_1.png" />
+<img alt="_images/images_3d_28_1.png" src="_images/images_3d_28_1.png" />
 </div>
 </div>
 <p>Here, we have all the pixels corresponding to 127 in the left to right
@@ -893,10 +909,10 @@ direction, giving us an image of shape (156, 256).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fcaa6970ca0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5c3ef9c700&gt;
 </pre></div>
 </div>
-<img alt="_images/images_3d_29_1.png" src="_images/images_3d_29_1.png" />
+<img alt="_images/images_3d_31_1.png" src="_images/images_3d_31_1.png" />
 </div>
 </div>
 <p><img alt="" src="_images/image_plane_stack_col.png" /></p>
@@ -911,7 +927,7 @@ direction, giving us an image of shape (156, 256).</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;OrthoSlicer3D: /home/runner/.cache/nipraxis/0.3/ds114_sub009_highres.nii (256, 156, 256)&gt;
 </pre></div>
 </div>
-<img alt="_images/images_3d_32_1.png" src="_images/images_3d_32_1.png" />
+<img alt="_images/images_3d_34_1.png" src="_images/images_3d_34_1.png" />
 </div>
 </div>
 </div>
