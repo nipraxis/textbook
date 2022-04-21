@@ -40,7 +40,7 @@ between the square brackets.
 It can be easier to understand this by example than by description.
 
 
-Here we are going to use some example data from [student ratings of their
+We are going to use some example data from [student ratings of their
 professors](https://github.com/odsti/datasets/tree/master/good_and_easy).
 
 You can go to the link for the long story, but the short story is that the
@@ -49,7 +49,7 @@ contain the average student rating values for the corresponding discipline.
 
 Here we have extracted the ratings for the six largest subjects — the subjects with the largest number of rated professors.
 
-Here is the array of discipline names for those six largest subjects:
+This is the array of discipline names for those six largest subjects:
 
 ```{python}
 disciplines = np.array(
@@ -61,7 +61,8 @@ disciplines
 One of the ratings the students gave was of how easy the course was, on a five
 point scale from 1 (hard) to 5 (easy).
 
-Here are the average "Easiness" scores for the six largest courses named above:
+These are the average "Easiness" scores for the six largest courses named
+above:
 
 ```{python}
 easiness = np.array([3.16, 3.06, 2.71, 3.32, 3.05, 2.65])
