@@ -64,8 +64,7 @@ means = mymodule.vol_means('ds107_sub012_t1r2.nii')
 ```
 
 In fact, what I would really like to do, is to be able to have a script called
-`my_script.py` that prints the scan means out to the terminal window like
-this:
+`my_script.py` that prints the scan means out to the terminal window like this:
 
 ```
 import mymodule
@@ -82,8 +81,8 @@ python my_script.py
 ```
 
 A Python *module* is a Python file with functions (and variables and other
-things) that other modules and scripts may use. These other modules and
-scripts will `import` the module.
+things) that other modules and scripts may use. These other modules and scripts
+will `import` the module.
 
 A script is a file that you can run with `python3 my_script.py`. The script
 will usually do some processing, and may print something to the terminal, put
