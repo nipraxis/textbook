@@ -532,6 +532,32 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/boolean_indexing_nd.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/boolean_indexing_nd.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -559,7 +585,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Boolean indexing with more than one dimension<a class="headerlink" href="#boolean-indexing-with-more-than-one-dimension" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># - import common modules</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import common modules</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># the Python array package</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># the Python plotting package</span>
 </pre></div>
@@ -569,7 +595,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p>First we make a 3D array of shape (4, 3, 2)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plane0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create an array of numbers from 0 to 11 inclusive, reshape this into a 4 rows by 3 columns array</span>
+<span class="n">plane0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">plane0</span>
 </pre></div>
 </div>
@@ -585,7 +612,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plane1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create an array of numbers from 100 to 111 inclusive, reshape this into a 4 rows by 3 columns array</span>
+<span class="n">plane1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">plane1</span>
 </pre></div>
 </div>
@@ -601,9 +629,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a 3D array, full of 0s, with 4 rows, 3 columns and 2 planes, all filled with 0s</span>
+<span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># set the first plane to be equal to plane0</span>
 <span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">plane0</span>
+
+<span class="c1"># set the first plane to be equal to plane1</span>
 <span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">plane1</span>
+
+<span class="c1"># show the array</span>
 <span class="n">arr_3d</span>
 </pre></div>
 </div>
@@ -628,11 +663,37 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>Pictured in 3D space, this array looks as below:</p>
+<p><img alt="" src="_images/boolean_planes.png" /></p>
 <p>We can index this with a one-dimensional Boolean array. This selects
 elements from the first axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+<span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_1d</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  3., 103.],
+        [  4., 104.],
+        [  5., 105.]],
+
+       [[  6., 106.],
+        [  7., 107.],
+        [  8., 108.]]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pictured in 3D space, the first axis is the rows, across each plane. So, using <code class="docutils literal notranslate"><span class="pre">[False,</span> <span class="pre">True,</span> <span class="pre">True,</span> <span class="pre">False]</span></code> to index <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> is equivalent to stating “give me the the 2nd and 3rd rows, across both planes, from <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>”.</p>
+<p>Visualised in 3D space, this looks as follows:</p>
+<p><img alt="" src="_images/boolean_planes_bools.png" /></p>
+<p>Remember that the <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> values in the boolean array act as ‘switches’: only the elements corresponding to <code class="docutils literal notranslate"><span class="pre">True</span></code> make it into the final array:</p>
+<p><img alt="" src="_images/boolean_planes_bools_after_indexing.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the final array, from indexing arr_3d with bool_1d</span>
 <span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_1d</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -673,6 +734,28 @@ from the first two axes.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># index arr_3d with bool_2d</span>
+<span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_2d</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1., 101.],
+       [  3., 103.],
+       [  5., 105.],
+       [  6., 106.],
+       [ 11., 111.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can think of the <code class="docutils literal notranslate"><span class="pre">bool_2d</span></code> array as ‘switching’ on or off individual columns of the <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> array. If we show this as a sequence, pictured in 3D space, it looks as follows:</p>
+<p><img alt="" src="_images/boolean_planes.png" /></p>
+<p><img alt="" src="_images/boolean_planes_bools_2d.png" /></p>
+<p><img alt="" src="_images/boolean_planes_bools_2d_after_indexing.png" /></p>
+<p>In this case, using <code class="docutils literal notranslate"><span class="pre">bool_2d</span></code> to index <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> yields an array with one plane, with 5 rows and 2 columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_2d</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -687,12 +770,54 @@ from the first two axes.</p>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the shape of the arr_3d array, when indexed with the bool_2d boolean array</span>
+<span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_2d</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pictured in 3D space, the final array, from indexing <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> with <code class="docutils literal notranslate"><span class="pre">bool_2d</span></code>, looks as below:</p>
+<p><img alt="" src="_images/boolean_planes_bools_2d_after_indexing_2.png" /></p>
 <p>We can even index with a 3D array, this selects elements over all three
 dimensions.  In which order does it get the elements?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_is_odd</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr_3d</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a boolean array, True where arr_3d is odd, False otherwise</span>
+<span class="n">arr_is_odd</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr_3d</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
 <span class="n">arr_is_odd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[False, False],
+        [ True,  True],
+        [False, False]],
+
+       [[ True,  True],
+        [False, False],
+        [ True,  True]],
+
+       [[False, False],
+        [ True,  True],
+        [False, False]],
+
+       [[ True,  True],
+        [False, False],
+        [ True,  True]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use arr_is_odd to index arr_3d</span>
 <span class="n">arr_3d</span><span class="p">[</span><span class="n">arr_is_odd</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -704,8 +829,10 @@ dimensions.  In which order does it get the elements?</p>
 </div>
 </div>
 </div>
+<p>For reference, here is the 3D visualisation of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>:</p>
+<p><img alt="" src="_images/boolean_planes.png" /></p>
 <p>We can mix 1D Boolean arrays with ordinary slicing to select elements on
-a single axis.</p>
+a single axis. E.g. the code below returns the entire second plane of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool_1d_dim3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
