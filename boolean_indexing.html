@@ -649,13 +649,13 @@ criterion.</p>
 <p>The most common way to do this, is to do array slicing, using a Boolean array
 between the square brackets.</p>
 <p>It can be easier to understand this by example than by description.</p>
-<p>Here we are going to use some example data from <a class="reference external" href="https://github.com/odsti/datasets/tree/master/good_and_easy">student ratings of their
+<p>We are going to use some example data from <a class="reference external" href="https://github.com/odsti/datasets/tree/master/good_and_easy">student ratings of their
 professors</a>.</p>
 <p>You can go to the link for the long story, but the short story is that the
 dataset is a table where the rows are academic disciplines, and the columns
 contain the average student rating values for the corresponding discipline.</p>
 <p>Here we have extracted the ratings for the six largest subjects — the subjects with the largest number of rated professors.</p>
-<p>Here is the array of discipline names for those six largest subjects:</p>
+<p>This is the array of discipline names for those six largest subjects:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">disciplines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
@@ -674,7 +674,8 @@ contain the average student rating values for the corresponding discipline.</p>
 </div>
 <p>One of the ratings the students gave was of how easy the course was, on a five
 point scale from 1 (hard) to 5 (easy).</p>
-<p>Here are the average “Easiness” scores for the six largest courses named above:</p>
+<p>These are the average “Easiness” scores for the six largest courses named
+above:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">easiness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.16</span><span class="p">,</span> <span class="mf">3.06</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">,</span> <span class="mf">3.32</span><span class="p">,</span> <span class="mf">3.05</span><span class="p">,</span> <span class="mf">2.65</span><span class="p">])</span>
