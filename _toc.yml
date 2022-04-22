@@ -28,6 +28,7 @@ parts:
   - file: reshape_and_3d
   - file: boolean_indexing
   - file: boolean_indexing_nd
+  - file: intro_to_4d
   - file: numpy_logical
   - file: otsu_threshold
   - file: numpy_random
@@ -46,7 +47,6 @@ parts:
 
 - caption: Into the fourth dimension
   chapters:
-  - file: intro_to_4d
   - file: voxels_by_time
   - file: voxel_time_courses
 
