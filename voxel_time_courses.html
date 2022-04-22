@@ -649,8 +649,9 @@ from the rest of the volumes in the series:</p>
 </div>
 </div>
 </div>
-<p>We can think of this 4D data as a series of 3D volumes.  That is the way we
-have been thinking of the 4D data so far:</p>
+<p>As you have seen in <a class="reference internal" href="intro_to_4d.html"><span class="doc std std-doc">the 4D introduction</span></a>, we can think of
+this 4D data as a series of 3D volumes.  That is the way we have been thinking
+of the 4D data so far:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is slicing over the last (time) axis</span>
@@ -665,35 +666,25 @@ have been thinking of the 4D data so far:</p>
 </div>
 </div>
 </div>
-<p>We can also index over the first three axes.  The first three axes in this
-array represent space.</p>
-<ul class="simple">
-<li><p>The first axis goes from right to left (0 index value means right, 63 means
-left);</p></li>
-<li><p>The second axis goes from back to front (0 index value means back, 63 means
-front);</p></li>
-<li><p>The third axes goes from bottom to top (0 means bottom, 29 means top).</p></li>
-</ul>
-<p>If you give me index values for these first three axes, you have given me a
-<em>coordinate</em> in the first three axes of the array.</p>
-<p>For example, you could give me an index tuple for the first three axes like
-this: <code class="docutils literal notranslate"><span class="pre">(42,</span> <span class="pre">32,</span> <span class="pre">19)</span></code>.  The first index of 42 refers to a position towards
-the left of the brain (&gt; 31).  The second index of 32 refers to a position
-almost in the center front to back.  The last index of 19 refers to a position
-a little further towards the top of the brain – in this image.</p>
-<p>This coordinate therefore refers to a particular part of the image:</p>
+<p>In that page, we found a 3D <em>coordinate</em> for an interesting voxel. The 3D coordinate is just the indices in the first three dimensions — the dimensions representing space.  We can write the coordinate as indices in a tuple like
+this: <code class="docutils literal notranslate"><span class="pre">(42,</span> <span class="pre">32,</span> <span class="pre">19)</span></code>.  As you saw in the 4D page, the first index of 42 refers
+to a position towards the left of the brain (&gt; 31).  The second index of 32
+refers to a position almost in the center front to back.  The last index of 19
+refers to a position a little further towards the top of the brain – in this
+image.</p>
+<p>Here is the position of that coordinate displayed on a plane of the 3D volume (in fact, the mean volume).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Where is this in the brain?</span>
 <span class="n">mean_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Make a nice bright dot in the right place</span>
 <span class="n">mean_data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mean_data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">19</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">19</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f8a10afc4f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6766e3f4c0&gt;
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_10_1.png" src="_images/voxel_time_courses_10_1.png" />
@@ -714,13 +705,13 @@ with the image value at that position (43, 32, 19), for every point in time:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(172,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8a0e9f7fd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6766d3f370&gt;]
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_12_2.png" src="_images/voxel_time_courses_12_2.png" />
 </div>
 </div>
-<p>We could call this a “voxel time course”.</p>
+<p>This is a “voxel time course”.</p>
 <p>We might want to do ordinary statistical type things with this time course.
 For example, we might want to correlate this time course with a measure of
 whether the subject was doing the task or not.</p>
@@ -759,7 +750,7 @@ data:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8a0e979370&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6766d373a0&gt;]
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_15_1.png" src="_images/voxel_time_courses_15_1.png" />
