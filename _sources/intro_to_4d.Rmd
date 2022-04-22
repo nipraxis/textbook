@@ -166,6 +166,8 @@ voxel_time_course = data[42, 32, 19, :]
 voxel_time_course.shape
 ```
 
+![](images/volumes_and_voxel.png)
+
 ```{python}
 # Do a plot of these values.
 plt.plot(voxel_time_course)
