@@ -58,8 +58,9 @@ data = data[..., 1:]
 data.shape
 ```
 
-We can think of this 4D data as a series of 3D volumes.  That is the way we
-have been thinking of the 4D data so far:
+As you have seen in [the 4D introduction](intro_to_4d.Rmd), we can think of
+this 4D data as a series of 3D volumes.  That is the way we have been thinking
+of the 4D data so far:
 
 ```{python}
 # This is slicing over the last (time) axis
@@ -67,34 +68,21 @@ vol0 = data[..., 0]
 vol0.shape
 ```
 
-We can also index over the first three axes.  The first three axes in this
-array represent space.
+In that page, we found a 3D *coordinate* for an interesting voxel. The 3D coordinate is just the indices in the first three dimensions — the dimensions representing space.  We can write the coordinate as indices in a tuple like
+this: `(42, 32, 19)`.  As you saw in the 4D page, the first index of 42 refers
+to a position towards the left of the brain (> 31).  The second index of 32
+refers to a position almost in the center front to back.  The last index of 19
+refers to a position a little further towards the top of the brain – in this
+image.
 
-* The first axis goes from right to left (0 index value means right, 63 means
-  left);
-
-* The second axis goes from back to front (0 index value means back, 63 means
-  front);
-
-* The third axes goes from bottom to top (0 means bottom, 29 means top).
-
-If you give me index values for these first three axes, you have given me a
-*coordinate* in the first three axes of the array.
-
-For example, you could give me an index tuple for the first three axes like
-this: `(42, 32, 19)`.  The first index of 42 refers to a position towards
-the left of the brain (> 31).  The second index of 32 refers to a position
-almost in the center front to back.  The last index of 19 refers to a position
-a little further towards the top of the brain – in this image.
-
-This coordinate therefore refers to a particular part of the image:
+Here is the position of that coordinate displayed on a plane of the 3D volume (in fact, the mean volume).
 
 ```{python}
 # Where is this in the brain?
 mean_data = np.mean(data, axis=-1)
 # Make a nice bright dot in the right place
 mean_data[42, 32, 19] = np.max(mean_data)
-plt.imshow(mean_data[:, :, 19], cmap='gray', interpolation='nearest')
+plt.imshow(mean_data[:, :, 19], cmap='gray')
 ```
 
 If I slice into the data array with these coordinates, I will get a vector,
@@ -107,7 +95,7 @@ print(voxel_time_course.shape)
 plt.plot(voxel_time_course)
 ```
 
-We could call this a “voxel time course”.
+This is a “voxel time course”.
 
 We might want to do ordinary statistical type things with this time course.
 For example, we might want to correlate this time course with a measure of
