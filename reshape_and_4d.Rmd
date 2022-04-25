@@ -39,10 +39,10 @@ arr_3d
 For example, we might want to reshape only the first two dimensions, leaving
 the last the same. This will take us from an array of shape (2, 3, 4), to an
 array of shape (6, 4). The procedure is the same for all reshapes in NumPy.
-NumPy makes an output array shape (6, 4), then takes each element over the
-last dimension in the input, and fills the last dimension of the output, moves
-one across on the second dimension of the input, then fills a line in the
-first dimension of the output, and so on.
+NumPy makes an output array shape (6, 4), then takes each element over the last
+dimension in the input, and fills the last dimension of the output, moves one
+across on the second dimension of the input, then fills a line in the first
+dimension of the output, and so on.
 
 ```{python}
 arr_2d = arr_3d.reshape(6, 4)
