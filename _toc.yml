@@ -45,7 +45,6 @@ parts:
 
 - caption: Into the fourth dimension
   chapters:
-  - file: voxels_by_time
   - file: voxel_time_courses
   - file: otsu_threshold
   - file: numpy_random
