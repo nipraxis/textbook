@@ -206,23 +206,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -238,11 +228,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="allclose.html">
    Testing for near equality with “allclose”
   </a>
@@ -253,6 +238,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
@@ -260,6 +250,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -285,13 +290,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -795,8 +800,8 @@ numpy.random to draw samples from this distribution:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.5718, 3.6033, 6.6016, 5.3527, 4.4291, 3.5072, 1.3336, 5.6168,
-       6.8762, 4.3448])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.7981, 7.4432, 7.7668, 5.4558, 6.3721, 4.5702, 4.51  , 3.8444,
+       7.4034, 2.6711])
 </pre></div>
 </div>
 </div>
@@ -835,7 +840,7 @@ number of means from samples size 10:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4748811891631984
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.47360290421253526
 </pre></div>
 </div>
 </div>
@@ -864,7 +869,7 @@ standard deviation (<span class="math notranslate nohighlight">\(\sigma = 1.5\)<
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3935849242789882
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.420143412695368
 </pre></div>
 </div>
 </div>
@@ -883,7 +888,7 @@ standard deviation of means from many samples of size <span class="math notransl
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4743416490252569
-0.44069024735948864
+0.4490887788201845
 </pre></div>
 </div>
 </div>

@@ -204,23 +204,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -236,11 +226,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="allclose.html">
    Testing for near equality with “allclose”
   </a>
@@ -251,6 +236,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
@@ -258,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -283,13 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -654,7 +659,7 @@ package.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7f273c3e8f10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7fae1c7ba490&gt;
 </pre></div>
 </div>
 </div>
@@ -787,7 +792,7 @@ Once loaded, we can confirm that now the values in the NIfTI file have been load
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f273c1f7580&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fae1c46bbb0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_17_1.png" src="_images/images_3d_17_1.png" />
@@ -829,7 +834,7 @@ Let’s plot the histogram corresponding to values above zero to exclude the ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f2735e4f280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fae1c0dd9d0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_23_1.png" src="_images/images_3d_23_1.png" />
@@ -845,7 +850,7 @@ need to transpose <em>and</em> flip up to down:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f2735e28f70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fae1c0c95b0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_25_1.png" src="_images/images_3d_25_1.png" />
@@ -879,7 +884,7 @@ from bottom, and so on:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f2735da27f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fae1c036b20&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_28_1.png" src="_images/images_3d_28_1.png" />
@@ -909,7 +914,7 @@ direction, giving us an image of shape (156, 256).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f2735d191f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fae15f97700&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_31_1.png" src="_images/images_3d_31_1.png" />

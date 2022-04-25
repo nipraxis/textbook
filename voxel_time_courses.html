@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Encoding zooms (scaling) with a diagonal matrix" href="diagonal_zooms.html" />
-    <link rel="prev" title="Reshaping 4D images to 2D arrays" href="voxels_by_time.html" />
+    <link rel="next" title="Otsu’s method for binarizing images" href="otsu_threshold.html" />
+    <link rel="prev" title="Subplots and axes in matplotlib" href="subplots.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -204,23 +204,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -236,11 +226,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="allclose.html">
    Testing for near equality with “allclose”
   </a>
@@ -251,6 +236,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
@@ -258,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -282,14 +287,14 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Voxel time courses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -684,7 +689,7 @@ image.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc1657af4c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7ba0575b50&gt;
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_10_1.png" src="_images/voxel_time_courses_10_1.png" />
@@ -705,16 +710,16 @@ with the image value at that position (43, 32, 19), for every point in time:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(172,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc163724c10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7ba03f9790&gt;]
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_12_2.png" src="_images/voxel_time_courses_12_2.png" />
 </div>
 </div>
 <p>This is a “voxel time course”.</p>
-<p>We might want to do ordinary statistical type things with this time course.
-For example, we might want to correlate this time course with a measure of
-whether the subject was doing the task or not.</p>
+<p>We might want to do ordinary statistical type things with this time course. For
+example, we might want to correlate this time course with a measure of whether
+the subject was doing the task or not.</p>
 <p>This measure will have 1 for each volume (time point) where the subject was
 doing the task, and 0 for each volume where the subject was at rest.</p>
 <p>We call this a “neural” time course, because we believe that the nerves in the
@@ -750,7 +755,7 @@ data:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc16369fa30&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7ba03eda30&gt;]
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_15_1.png" src="_images/voxel_time_courses_15_1.png" />
@@ -819,17 +824,17 @@ time course:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="voxels_by_time.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="subplots.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Reshaping 4D images to 2D arrays</p>
+            <p class="prev-next-title">Subplots and axes in matplotlib</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="diagonal_zooms.html" title="next page">
+    <a class='right-next' id="next-link" href="otsu_threshold.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Encoding zooms (scaling) with a diagonal matrix</p>
+        <p class="prev-next-title">Otsu’s method for binarizing images</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Testing for near equality with “allclose”" href="allclose.html" />
-    <link rel="prev" title="Methods vs functions in NumPy" href="methods_vs_functions.html" />
+    <link rel="next" title="Reshaping 4D images to 2D arrays" href="voxels_by_time.html" />
+    <link rel="prev" title="Working with four dimensional images, masks and functions" href="intro_to_4d.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
   Images and code and images
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is_an_image.html">
    What is an image?
@@ -203,24 +203,14 @@ const thebe_selector_output = ".output, .cell_output"
    Working with four dimensional images, masks and functions
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -229,15 +219,10 @@ const thebe_selector_output = ".output, .cell_output"
   Arrays and plots
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="methods_vs_functions.html">
    Methods vs functions in NumPy
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
@@ -251,6 +236,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
@@ -258,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -283,13 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -620,23 +625,22 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="reshaping-4d-to-2d">
 <h1>Reshaping, 4D to 2D<a class="headerlink" href="#reshaping-4d-to-2d" title="Permalink to this headline">¶</a></h1>
 <p>See also: <a class="reference internal" href="voxels_by_time.html"><span class="doc std std-doc">Reshaping 4D images to 2D arrays</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="revision-on-3d">
 <h2>Revision on 3D<a class="headerlink" href="#revision-on-3d" title="Permalink to this headline">¶</a></h2>
 <p>We often find ourselves doing complicated reshape operations when we are
 dealing with images.   For example, we may find ourselves reshaping the first
-few dimensions, but leaving the last intact:</p>
+few dimensions, but leaving the last intact.</p>
+<p>Let’s start with a <a class="reference internal" href="#"><span class="doc std std-doc">familiar 3D array</span></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="c1"># now define first of 2 2D arrays (arr_3d[0, :, :])</span>
-                    <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]],</span>
-                    <span class="c1"># define second of 2 2D arrays (arr_3d[1, :, :])</span>
-                    <span class="p">[[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
-                     <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]</span>
-                  <span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">arr_3d</span>
 </pre></div>
 </div>
@@ -653,25 +657,28 @@ few dimensions, but leaving the last intact:</p>
 </div>
 </div>
 </div>
-<p>For example, we might want to reshape only the first two dimensions, leaving
-the last the same. This will take us from an array of shape (2, 3, 4), to an
-array of shape (6, 4). The procedure is the same for all reshapes in NumPy.
-NumPy makes an output array shape (6, 4), then takes each element over the
-last dimension in the input, and fills the last dimension of the output, moves
-one across on the second dimension of the input, then fills a line in the
-first dimension of the output, and so on.</p>
+<p><img alt="" src="_images/two_by_three_by_4_array.png" /></p>
+<p>Notice that Numpy has filled in the 3D array in the order <em>last</em> axis to <em>first</em> axis, therefore:</p>
+<ul class="simple">
+<li><p>plane, then</p></li>
+<li><p>column, then</p></li>
+<li><p>row.</p></li>
+</ul>
+<p>Now imagine that we want to reshape only the first two dimensions, leaving the
+last the same. This will take us from an array of shape (2, 3, 4), to an array
+of shape (6, 4). The procedure is the same for all reshapes in NumPy. NumPy
+makes an output array shape (6, 4), then takes each element over the last
+dimension in the input, and fills the last dimension of the output, moves one
+across on the second dimension of the input, then fills a line in the first
+dimension of the output, and so on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_2d</span> <span class="o">=</span> <span class="n">arr_3d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">arr_2d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_3d</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">arr_2d</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6, 4)
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3],
        [ 4,  5,  6,  7],
        [ 8,  9, 10, 11],
@@ -682,6 +689,18 @@ first dimension of the output, and so on.</p>
 </div>
 </div>
 </div>
+<p>Notice how Numpy has filled out the two-dimensional array - by <em>getting</em> the data in the order <em>last</em> axis to <em>first</em> axis, so:</p>
+<ul class="simple">
+<li><p>plane, then</p></li>
+<li><p>column, then</p></li>
+<li><p>row</p></li>
+</ul>
+<p>It therefore <em>gets</em> the original <code class="docutils literal notranslate"><span class="pre">np.arange(24)</span></code> array, and then <em>sets</em> the
+data into the new array in the order last axis to first, therefore:</p>
+<ul class="simple">
+<li><p>column, then</p></li>
+<li><p>row.</p></li>
+</ul>
 <p>See also: <a class="reference internal" href="reshape_and_3d.html"><span class="doc std std-doc">Reshaping and three-dimensional arrays</span></a>.</p>
 </div>
 <div class="section" id="to-4d">
@@ -753,7 +772,7 @@ the elements, it multiplies them:</p>
 (volume) on the second.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_by_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_voxels</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_by_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">n_voxels</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 <span class="n">voxel_by_time</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -794,17 +813,17 @@ voxels, without regard to their relative spatial position.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="methods_vs_functions.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="intro_to_4d.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Methods vs functions in NumPy</p>
+            <p class="prev-next-title">Working with four dimensional images, masks and functions</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="allclose.html" title="next page">
+    <a class='right-next' id="next-link" href="voxels_by_time.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Testing for near equality with “allclose”</p>
+        <p class="prev-next-title">Reshaping 4D images to 2D arrays</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

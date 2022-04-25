@@ -204,23 +204,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -236,11 +226,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="allclose.html">
    Testing for near equality with “allclose”
   </a>
@@ -251,6 +236,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
@@ -258,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -283,13 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -642,8 +647,8 @@ make sure you are running a <strong>Powershell</strong> shell, not the much olde
 </div>
 <p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c32c79e8-f939-442c-b346-f571ad33ba0d" name="7480bd14-83de-4eda-8c89-cd33e3873dbf" type="radio">
-</input><label class="tabbed-label" for="c32c79e8-f939-442c-b346-f571ad33ba0d">
+<input checked="checked" id="7778e719-e079-41f8-bdc0-6833e05db636" name="44508ff0-265b-449c-9615-3d1ef2a5c764" type="radio">
+</input><label class="tabbed-label" for="7778e719-e079-41f8-bdc0-6833e05db636">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
 <span class="o">----</span>
@@ -651,15 +656,15 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c3f07a08-7dbc-41ec-b972-4632a8ebb6ca" name="7480bd14-83de-4eda-8c89-cd33e3873dbf" type="radio">
-</input><label class="tabbed-label" for="c3f07a08-7dbc-41ec-b972-4632a8ebb6ca">
+<input id="68a6e926-4587-4df6-8c32-1f632178fc98" name="44508ff0-265b-449c-9615-3d1ef2a5c764" type="radio">
+</input><label class="tabbed-label" for="68a6e926-4587-4df6-8c32-1f632178fc98">
 Mac</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
 </div>
 </div>
-<input id="925b25a3-6816-48b3-8ed8-23cac80b3df1" name="7480bd14-83de-4eda-8c89-cd33e3873dbf" type="radio">
-</input><label class="tabbed-label" for="925b25a3-6816-48b3-8ed8-23cac80b3df1">
+<input id="510a520a-f734-4a7d-a14b-17c806beffe5" name="44508ff0-265b-449c-9615-3d1ef2a5c764" type="radio">
+</input><label class="tabbed-label" for="510a520a-f734-4a7d-a14b-17c806beffe5">
 Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
@@ -706,8 +711,8 @@ computer.   Note where the file went.  For example, you might have downloaded th
 </div>
 <p>from your terminal.  You should see something like:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4a98a2cd-bf38-4896-a2a8-24a60fd7c3b3" name="4e2cd2a9-bb69-45a1-b1bb-1d05c205ceb9" type="radio">
-</input><label class="tabbed-label" for="4a98a2cd-bf38-4896-a2a8-24a60fd7c3b3">
+<input checked="checked" id="d75e6814-318a-4c4f-87ef-1965b4371869" name="cb293a6f-e8ab-4644-97ed-c3cbabe5ab20" type="radio">
+</input><label class="tabbed-label" for="d75e6814-318a-4c4f-87ef-1965b4371869">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 
@@ -718,8 +723,8 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="dbb39c38-8c5a-4c72-9cd1-08704f3eb19b" name="4e2cd2a9-bb69-45a1-b1bb-1d05c205ceb9" type="radio">
-</input><label class="tabbed-label" for="dbb39c38-8c5a-4c72-9cd1-08704f3eb19b">
+<input id="ccc7992d-f556-4dc9-9ca1-b937859a9788" name="cb293a6f-e8ab-4644-97ed-c3cbabe5ab20" type="radio">
+</input><label class="tabbed-label" for="ccc7992d-f556-4dc9-9ca1-b937859a9788">
 Mac or Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
 </pre></div>

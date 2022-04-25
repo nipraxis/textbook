@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Methods vs functions in NumPy" href="methods_vs_functions.html" />
-    <link rel="prev" title="Otsu’s method for binarizing images" href="otsu_threshold.html" />
+    <link rel="next" title="Subtracting the mean from columns or rows" href="subtract_means.html" />
+    <link rel="prev" title="Array reduction operations" href="array_reductions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
   Images and code and images
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is_an_image.html">
    What is an image?
@@ -204,23 +204,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -229,15 +219,10 @@ const thebe_selector_output = ".output, .cell_output"
   Arrays and plots
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="methods_vs_functions.html">
    Methods vs functions in NumPy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
@@ -251,6 +236,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
@@ -258,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -283,13 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -663,7 +668,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.244906247935103
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.601459057770301
 </pre></div>
 </div>
 </div>
@@ -677,7 +682,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.635815845075648
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.21601093502969
 </pre></div>
 </div>
 </div>
@@ -690,14 +695,14 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[14.0061, 13.8319, 14.0887, 14.9516, 13.9412],
-       [13.5833, 12.6682, 13.5077, 14.4614, 14.0903],
-       [14.9388, 10.8161, 16.4398, 14.7711, 16.0406],
-       [14.5653, 17.7144, 15.3657, 12.3165, 13.0177],
-       [15.8924, 15.8744, 16.8191, 13.3934, 15.8043],
-       [10.6716, 15.047 , 18.0428, 16.1587, 11.7275],
-       [14.3032, 15.6615, 15.1526, 12.4148, 18.0384],
-       [16.4028, 15.4996, 16.9379, 14.6718, 13.8802]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[16.2798, 15.4632, 17.0133, 14.05  , 15.9532],
+       [14.9571, 11.5036, 18.3386, 17.7397, 16.7146],
+       [13.99  , 17.0032, 20.1476, 12.2455, 12.8525],
+       [16.6387, 15.3144, 11.8646, 11.6545, 14.3181],
+       [15.4307, 15.2152, 17.5082, 13.1575, 16.8161],
+       [17.7821, 13.3828, 15.668 , 15.024 , 15.8072],
+       [14.9038, 14.516 , 13.2502, 17.0952, 14.7077],
+       [16.9443, 15.2863, 15.1383, 16.8873, 15.956 ]])
 </pre></div>
 </div>
 </div>
@@ -711,14 +716,14 @@ mean 1 and variance 1:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.0114, -0.0863,  0.9402, -0.5823, -0.4614],
-       [ 0.7812, -2.6366, -0.3826,  1.4041,  1.1794],
-       [-0.3267, -0.1084,  0.4224, -0.4741, -2.0498],
-       [-0.5913,  0.9774,  0.4391,  0.4446, -0.648 ],
-       [-1.0919, -1.0063,  1.5414,  0.7838, -0.469 ],
-       [-0.833 ,  0.4939,  0.7452,  0.3989,  1.895 ],
-       [ 0.6275, -0.2734,  1.5735, -1.8358, -0.9055],
-       [-0.1965, -0.087 ,  0.2331, -0.1527,  0.0218]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.1943, -0.5508, -0.9455, -0.8482,  1.0791],
+       [ 1.5448,  1.9221,  0.2741,  0.6336, -0.0814],
+       [ 0.6908, -0.7644, -0.0764,  0.925 , -0.3473],
+       [-0.301 , -1.9979,  0.4071,  0.1984, -0.1132],
+       [-0.0358,  2.3871,  0.0536, -0.7644,  0.7338],
+       [ 1.4971,  0.5371, -0.7931, -0.2514, -0.4862],
+       [ 0.3605, -0.5756, -2.5211, -0.9365, -0.2329],
+       [ 0.0951,  0.6206,  0.1102,  0.5116,  0.0812]])
 </pre></div>
 </div>
 </div>
@@ -829,17 +834,17 @@ random numbers from this point:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="otsu_threshold.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="array_reductions.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Otsu’s method for binarizing images</p>
+            <p class="prev-next-title">Array reduction operations</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="methods_vs_functions.html" title="next page">
+    <a class='right-next' id="next-link" href="subtract_means.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Methods vs functions in NumPy</p>
+        <p class="prev-next-title">Subtracting the mean from columns or rows</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

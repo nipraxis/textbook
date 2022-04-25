@@ -12,12 +12,12 @@ jupyter:
     name: python3
 ---
 
-# Logical operations on boolean arrays
+# Logical operations on Boolean arrays
 
 `np.logical_and`, `np.logical_or`:
 
-Sometimes we want to combine boolean values using logical operators like AND,
-OR, NOT.  This is straightforward for Python booleans:
+Sometimes we want to combine Boolean values using logical operators like AND,
+OR, NOT.  This is straightforward for Python Booleans:
 
 ```{python}
 # Logical AND - True only if both are True
@@ -38,8 +38,8 @@ print(not True)
 print(not False)
 ```
 
-We have to do a little more work for *arrays* of booleans, because the Python
-`and`, `or`, `not` operators only return a single boolean values, and so
+We have to do a little more work for *arrays* of Booleans, because the Python
+`and`, `or`, `not` operators only return a single Boolean values, and so
 do not operate as we expect on arrays:
 
 ```{python}
@@ -77,7 +77,15 @@ np.logical_or(bool1, bool2)
 np.logical_not(bool1)
 ```
 
-Equivalently, the `&`, `|` and `~` operators are applied elementwise:
+## Using the bitwise operators
+
+Equivalently, the `&`, `|` and `~` operators are applied elementwise.
+
+These are called *bitwise* operators, for reasons we do not need to go into here.  *Iff applied to Boolean values* then:
+
+* `&` gives the same result as `np.logical_and`
+* `|` gives the same result as `np.logical_or`
+* `~` gives the same result as `np.logical_not`
 
 ```{python}
 bool1 & bool2
@@ -90,3 +98,7 @@ bool1 | bool2
 ```{python}
 ~bool1
 ```
+
+**Be careful when using the bitwise operators**.  The bitwise operators have
+relatively low operator precedence, meaning that Python will prefer to apply
+many other operators *before* bitwise operators.

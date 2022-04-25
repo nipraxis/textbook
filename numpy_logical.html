@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Logical operations on boolean arrays &#8212; Practice and theory of brain imaging</title>
+    <title>Logical operations on Boolean arrays &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Otsu’s method for binarizing images" href="otsu_threshold.html" />
-    <link rel="prev" title="Working with four dimensional images, masks and functions" href="intro_to_4d.html" />
+    <link rel="next" title="Vector and matrix dot products, “np.outer”" href="dot_outer.html" />
+    <link rel="prev" title="NumPy arange" href="arange.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
   Images and code and images
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is_an_image.html">
    What is an image?
@@ -203,24 +203,14 @@ const thebe_selector_output = ".output, .cell_output"
    Working with four dimensional images, masks and functions
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Logical operations on boolean arrays
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -229,15 +219,10 @@ const thebe_selector_output = ".output, .cell_output"
   Arrays and plots
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="methods_vs_functions.html">
    Methods vs functions in NumPy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
@@ -250,6 +235,11 @@ const thebe_selector_output = ".output, .cell_output"
    NumPy arange
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
@@ -258,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -283,13 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -563,6 +568,19 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-the-bitwise-operators">
+   Using the bitwise operators
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -570,11 +588,24 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Logical operations on boolean arrays</h1>
+                <h1>Logical operations on Boolean arrays</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-the-bitwise-operators">
+   Using the bitwise operators
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -582,10 +613,10 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="logical-operations-on-boolean-arrays">
-<h1>Logical operations on boolean arrays<a class="headerlink" href="#logical-operations-on-boolean-arrays" title="Permalink to this headline">¶</a></h1>
+<h1>Logical operations on Boolean arrays<a class="headerlink" href="#logical-operations-on-boolean-arrays" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">np.logical_and</span></code>, <code class="docutils literal notranslate"><span class="pre">np.logical_or</span></code>:</p>
-<p>Sometimes we want to combine boolean values using logical operators like AND,
-OR, NOT.  This is straightforward for Python booleans:</p>
+<p>Sometimes we want to combine Boolean values using logical operators like AND,
+OR, NOT.  This is straightforward for Python Booleans:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Logical AND - True only if both are True</span>
@@ -633,8 +664,8 @@ True
 </div>
 </div>
 </div>
-<p>We have to do a little more work for <em>arrays</em> of booleans, because the Python
-<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code> operators only return a single boolean values, and so
+<p>We have to do a little more work for <em>arrays</em> of Booleans, because the Python
+<code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code> operators only return a single Boolean values, and so
 do not operate as we expect on arrays:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -725,7 +756,15 @@ do not operate as we expect on arrays:</p>
 </div>
 </div>
 </div>
-<p>Equivalently, the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> operators are applied elementwise:</p>
+<div class="section" id="using-the-bitwise-operators">
+<h2>Using the bitwise operators<a class="headerlink" href="#using-the-bitwise-operators" title="Permalink to this headline">¶</a></h2>
+<p>Equivalently, the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> operators are applied elementwise.</p>
+<p>These are called <em>bitwise</em> operators, for reasons we do not need to go into here.  <em>Iff applied to Boolean values</em> then:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> gives the same result as <code class="docutils literal notranslate"><span class="pre">np.logical_and</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span></code> gives the same result as <code class="docutils literal notranslate"><span class="pre">np.logical_or</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code> gives the same result as <code class="docutils literal notranslate"><span class="pre">np.logical_not</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool1</span> <span class="o">&amp;</span> <span class="n">bool2</span>
@@ -762,6 +801,10 @@ do not operate as we expect on arrays:</p>
 </div>
 </div>
 </div>
+<p><strong>Be careful when using the bitwise operators</strong>.  The bitwise operators have
+relatively low operator precedence, meaning that Python will prefer to apply
+many other operators <em>before</em> bitwise operators.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -789,17 +832,17 @@ do not operate as we expect on arrays:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="intro_to_4d.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="arange.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Working with four dimensional images, masks and functions</p>
+            <p class="prev-next-title">NumPy arange</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="otsu_threshold.html" title="next page">
+    <a class='right-next' id="next-link" href="dot_outer.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Otsu’s method for binarizing images</p>
+        <p class="prev-next-title">Vector and matrix dot products, “np.outer”</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

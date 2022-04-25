@@ -97,9 +97,9 @@ plt.plot(voxel_time_course)
 
 This is a “voxel time course”.
 
-We might want to do ordinary statistical type things with this time course.
-For example, we might want to correlate this time course with a measure of
-whether the subject was doing the task or not.
+We might want to do ordinary statistical type things with this time course. For
+example, we might want to correlate this time course with a measure of whether
+the subject was doing the task or not.
 
 This measure will have 1 for each volume (time point) where the subject was
 doing the task, and 0 for each volume where the subject was at rest.

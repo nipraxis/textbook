@@ -252,10 +252,13 @@ Notice too that Numpy has filled in the 3D array in the order:
 * column, then
 * row.
 
+That is, it fills in the *last* axis first, then the *second* to last, then the
+*first* axis.
+
 This is the same way Numpy works for 2D arrays, when it fills in by:
 
-* column, then
-* row.
+* column (last axis), then
+* row (first axis).
 
 This means, as in the diagram above, that the first *plane* will get every 4th value from the original 1D array, because:
 

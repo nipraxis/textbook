@@ -204,23 +204,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on boolean arrays
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+  <a class="reference internal" href="voxels_by_time.html">
+   Reshaping 4D images to 2D arrays
   </a>
  </li>
 </ul>
@@ -236,11 +226,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="allclose.html">
    Testing for near equality with “allclose”
   </a>
@@ -251,6 +236,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
@@ -258,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="newaxis.html">
    Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -283,13 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Reshaping 4D images to 2D arrays
+  <a class="reference internal" href="voxel_time_courses.html">
+   Voxel time courses
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
+  <a class="reference internal" href="otsu_threshold.html">
+   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -572,28 +577,30 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#">
    Modules and scripts
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-name-main-trick">
-   The
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     __name___
-    </span>
-    <span class="pre">
-     ==
-    </span>
-    <span class="pre">
-     "__main__"
-    </span>
-   </code>
-   trick
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#command-line-arguments">
-   Command line arguments
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-name-main-trick">
+     The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __name___
+      </span>
+      <span class="pre">
+       ==
+      </span>
+      <span class="pre">
+       "__main__"
+      </span>
+     </code>
+     trick
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#command-line-arguments">
+     Command line arguments
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-files">
@@ -624,28 +631,30 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#">
    Modules and scripts
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-name-main-trick">
-   The
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     __name___
-    </span>
-    <span class="pre">
-     ==
-    </span>
-    <span class="pre">
-     "__main__"
-    </span>
-   </code>
-   trick
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#command-line-arguments">
-   Command line arguments
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-name-main-trick">
+     The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __name___
+      </span>
+      <span class="pre">
+       ==
+      </span>
+      <span class="pre">
+       "__main__"
+      </span>
+     </code>
+     trick
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#command-line-arguments">
+     Command line arguments
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-files">
@@ -710,7 +719,9 @@ mean values across all voxels in each volume:</p>
 </div>
 </div>
 </div>
-<p>First we check that works:</p>
+<p><strong>For extra points</strong>: can you work out a better way to do the same thing
+without a loop?</p>
+<p>First we check the <code class="docutils literal notranslate"><span class="pre">vol_means</span></code> function works:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_means</span> <span class="o">=</span> <span class="n">vol_means</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
@@ -719,20 +730,21 @@ mean values across all voxels in each volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe0843fe0d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f888cbf07f0&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_modules_7_1.png" src="_images/on_modules_7_1.png" />
 </div>
 </div>
-<p>That seems like a useful function to me. I want to make a module called
-<code class="docutils literal notranslate"><span class="pre">mymodule</span></code> so I can do this in some Python script or at the IPython prompt:</p>
+<p>That seems like a useful function.  We want to make a module called <code class="docutils literal notranslate"><span class="pre">mymodule</span></code>
+so we can do this in some Python script or at the Jupyter / IPython prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mymodule</span>
 <span class="n">means</span> <span class="o">=</span> <span class="n">mymodule</span><span class="o">.</span><span class="n">vol_means</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In fact, what I would really like to do, is to be able to have a script called
-<code class="docutils literal notranslate"><span class="pre">my_script.py</span></code> that prints the scan means out to the terminal window like this:</p>
+<code class="docutils literal notranslate"><span class="pre">my_script.py</span></code> that prints the scan means out to the terminal window like
+this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mymodule</span>
 
 <span class="n">means</span> <span class="o">=</span> <span class="n">mymodule</span><span class="o">.</span><span class="n">vol_means</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
@@ -745,8 +757,8 @@ mean values across all voxels in each volume:</p>
 </pre></div>
 </div>
 <p>A Python <em>module</em> is a Python file with functions (and variables and other
-things) that other modules and scripts may use. These other modules and scripts
-will <code class="docutils literal notranslate"><span class="pre">import</span></code> the module.</p>
+things) that other modules and scripts may use. These other modules and
+scripts will <code class="docutils literal notranslate"><span class="pre">import</span></code> the module.</p>
 <p>A script is a file that you can run with <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>. The script
 will usually do some processing, and may print something to the terminal, put
 up a plot or save some data to the filesystem.</p>
@@ -755,18 +767,16 @@ up a plot or save some data to the filesystem.</p>
 <p>A module needs to <code class="docutils literal notranslate"><span class="pre">import</span></code> everything it uses.</p>
 <p>You can store scripts with any extension, but it is common to use <code class="docutils literal notranslate"><span class="pre">.py</span></code>
 extensions for Python scripts as well.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-name-main-trick">
-<h1>The <code class="docutils literal notranslate"><span class="pre">__name___</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> trick<a class="headerlink" href="#the-name-main-trick" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-name-main-trick">
+<h2>The <code class="docutils literal notranslate"><span class="pre">__name___</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> trick<a class="headerlink" href="#the-name-main-trick" title="Permalink to this headline">¶</a></h2>
 <p>You can execute a module in two different contexts:</p>
 <ul class="simple">
-<li><p>execute as a script (<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>);</p></li>
-<li><p>import as a module (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">import</span> <span class="pre">my_script</span></code>).</p></li>
+<li><p>As a script, from the terminal (<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>);</p></li>
+<li><p>Import as a module, from within Python (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">import</span> <span class="pre">my_script</span></code>).</p></li>
 </ul>
-<p>It is reasonably common to want to use your <code class="docutils literal notranslate"><span class="pre">.py</span></code> file in either of these
-two ways.  For example, you may want to use and debug the functions in your
-code after <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">import</span> <span class="pre">my_script</span></code>, and then run the code as a script with
-<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>.</p>
+<p>It is reasonably common to want to use your <code class="docutils literal notranslate"><span class="pre">.py</span></code> file in either of these two
+ways.  For example, you may want to use and debug the functions in your code
+after <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">my_script</span></code>, and then run the code as a script with <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>.</p>
 <p>How does a Python file know whether it is being executed as a script or
 imported as a module?</p>
 <p>To help with this problem, Python sets a variable that tells you whether you
@@ -796,8 +806,8 @@ often see this pattern at the bottom of the <code class="docutils literal notran
 <p>See <a class="reference external" href="https://docs.python.org/3/library/__main__.html"><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code></a> in the Python
 documentation.</p>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="command-line-arguments">
-<h1>Command line arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="command-line-arguments">
+<h2>Command line arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h2>
 <p>When you run a script, you can also pass command line arguments, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span> <span class="n">a_string</span>
 </pre></div>
@@ -820,6 +830,7 @@ the command line.  For example, in our case:</p>
 you would get:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;my_script.py&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
 </pre></div>
+</div>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="example-files">

@@ -66,7 +66,7 @@ plt.imshow(X, cmap='gray', aspect=0.2)
 Reshape data to time by voxels:
 
 ```{python}
-Y = data.reshape((-1, n))
+Y = np.reshape(data, (-1, n))
 Y = Y.T
 Y.shape
 ```
@@ -176,7 +176,7 @@ Reshape the 1D t statistic vector back into three dimensions to put the t
 statistic back into the correct voxel position:
 
 ```{python}
-t_3d = t.reshape(data.shape[:3])
+t_3d = np.reshape(t, data.shape[:3])
 print(t_3d.shape)
 plt.imshow(t_3d[:, :, 15], cmap='gray')
 ```
@@ -199,7 +199,7 @@ np.all(data[0, 0, 15] == 0)
 ```
 
 ```{python}
-sigma_2_3d = sigma_2.reshape(data.shape[:3])
+sigma_2_3d = np.reshape(sigma_2, data.shape[:3])
 sigma_2_3d[0, 0, 15]
 ```
 

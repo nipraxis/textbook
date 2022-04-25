@@ -48,15 +48,18 @@ def vol_means(image_fname):
     return means
 ```
 
-First we check that works:
+**For extra points**: can you work out a better way to do the same thing
+without a loop?
+
+First we check the `vol_means` function works:
 
 ```{python}
 my_means = vol_means(data_fname)
 plt.plot(my_means)
 ```
 
-That seems like a useful function to me. I want to make a module called
-`mymodule` so I can do this in some Python script or at the IPython prompt:
+That seems like a useful function.  We want to make a module called `mymodule`
+so we can do this in some Python script or at the Jupyter / IPython prompt:
 
 ```
 import mymodule
@@ -64,7 +67,8 @@ means = mymodule.vol_means('ds107_sub012_t1r2.nii')
 ```
 
 In fact, what I would really like to do, is to be able to have a script called
-`my_script.py` that prints the scan means out to the terminal window like this:
+`my_script.py` that prints the scan means out to the terminal window like
+this:
 
 ```
 import mymodule
@@ -81,8 +85,8 @@ python my_script.py
 ```
 
 A Python *module* is a Python file with functions (and variables and other
-things) that other modules and scripts may use. These other modules and scripts
-will `import` the module.
+things) that other modules and scripts may use. These other modules and
+scripts will `import` the module.
 
 A script is a file that you can run with `python3 my_script.py`. The script
 will usually do some processing, and may print something to the terminal, put
@@ -96,18 +100,17 @@ A module needs to `import` everything it uses.
 You can store scripts with any extension, but it is common to use `.py`
 extensions for Python scripts as well.
 
-# The `__name___ == "__main__"` trick
+## The `__name___ == "__main__"` trick
 
 You can execute a module in two different contexts:
 
-* execute as a script (`python3 my_script.py`);
+* As a script, from the terminal (`python3 my_script.py`);
+* Import as a module, from within Python (`>>> import my_script`).
 
-* import as a module (`>>> import my_script`).
-
-It is reasonably common to want to use your `.py` file in either of these
-two ways.  For example, you may want to use and debug the functions in your
-code after `>>> import my_script`, and then run the code as a script with
-`python3 my_script.py`.
+It is reasonably common to want to use your `.py` file in either of these two
+ways.  For example, you may want to use and debug the functions in your code
+after `import my_script`, and then run the code as a script with `python3
+my_script.py`.
 
 How does a Python file know whether it is being executed as a script or
 imported as a module?
@@ -141,10 +144,11 @@ if __name__ == '__main__':
     main()
 ```
 
-See [`if __name__ == '__main__'`](https://docs.python.org/3/library/__main__.html) in the Python
+See [`if __name__ ==
+'__main__'`](https://docs.python.org/3/library/__main__.html) in the Python
 documentation.
 
-# Command line arguments
+## Command line arguments
 
 When you run a script, you can also pass command line arguments, e.g.:
 

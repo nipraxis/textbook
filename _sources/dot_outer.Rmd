@@ -181,7 +181,7 @@ your intention explicit, and preserve the 2D shape of the output:
 
 ```{python}
 # Turn 1D vector into explicit row vector
-row_v = v.reshape((1, 2))
+row_v = np.reshape(v, (1, 2))
 # Dot new returns a row vector rather than a 1D vector
 row_v.dot(X)
 ```
