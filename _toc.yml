@@ -37,6 +37,7 @@ parts:
   - file: methods_vs_functions
   - file: allclose
   - file: arange
+  - file: numpy_logical
   - file: dot_outer
   - file: newaxis
   - file: array_reductions

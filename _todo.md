@@ -10,10 +10,6 @@ Introduce in early numpy lesson, and replace `dot()` throughout when there is no
 
 Move to the [RandomGenerator](https://numpy.org/doc/stable/reference/random/generator.html) API.
 
-## Replace arr.reshape with np.reshape
-
-EOM
-
 ## Refactor reshape_and_3d
 
 Merge parts with reshaping section of Numpy intro

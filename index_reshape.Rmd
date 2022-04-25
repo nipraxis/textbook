@@ -8,9 +8,7 @@ jupyter:
       jupytext_version: 1.11.5
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
-
-## Index ordering and reshape in NumPy and MATLAB
+# Index ordering and reshape in NumPy and MATLAB
 
 Let’s make a 3D array by taking a 1D array from 0 through 23, and filling the
 3D array by depth (the last axis), and then by column (the second axis) and
@@ -84,7 +82,7 @@ the same order as the loop above:
 
 ```{python}
 numbers = np.arange(24)
-reshaped = numbers.reshape((2, 3, 4))
+reshaped = np.reshape(numbers, (2, 3, 4))
 # This is exactly the same as the original ``py_arr``
 np.all(reshaped == py_arr)
 ```
@@ -115,35 +113,7 @@ If you prefer this ordering, you can ask NumPy to do the same, by using the
 
 ```{python}
 # First axis first fetching, like MATLAB
-first_1_reshaped = numbers.reshape((2, 3, 4), order='F')
+first_1_reshaped = np.reshape(numbers, (2, 3, 4), order='F')
 print(first_1_reshaped[:, :, 0])
 print(first_1_reshaped[:, :, 1])
 ```
-
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
