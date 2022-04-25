@@ -80,7 +80,8 @@ camera_fname
 import numpy as np
 import matplotlib.pyplot as plt
 
-cameraman = np.loadtxt(camera_fname).reshape((512, 512))
+cameraman_data = np.loadtxt(camera_fname)
+camerman = np.reshape(cameraman_data, (512, 512))
 plt.imshow(cameraman.T, cmap='gray')
 ```
 

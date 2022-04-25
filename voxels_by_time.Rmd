@@ -65,13 +65,13 @@ plt.plot(std_devs)
 ```
 
 We could also flatten the three voxel axes out into one long voxel axis, using
-reshape – see: Reshaping, 4D to 2D.  Then we can use the `axis`
-parameter to the `np.std` function to calculate the standard deviation
-across voxels, in one shot.  This is “vectorizing”, where we take an operation
-that needed a loop, and use array operations to do the work instead:
+reshape – see: Reshaping, 4D to 2D.  Then we can use the `axis` parameter to
+the `np.std` function to calculate the standard deviation across voxels, in one
+shot.  This is “vectorizing”, where we take an operation that needed a loop,
+and use array operations to do the work instead:
 
 ```{python}
-voxels_by_time = data.reshape((n_voxels, n_trs))
+voxels_by_time = np.reshape(data, (n_voxels, n_trs))
 std_devs_vectorized = np.std(voxels_by_time, axis=0)
 assert np.allclose(std_devs_vectorized, std_devs)
 ```

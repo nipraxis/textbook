@@ -39,6 +39,8 @@ parts:
   - file: arange
   - file: dot_outer
   - file: newaxis
+  - file: array_reductions
+  - file: numpy_random
   - file: subtract_means
   - file: plot_lines
   - file: subplots
@@ -47,7 +49,6 @@ parts:
   chapters:
   - file: voxel_time_courses
   - file: otsu_threshold
-  - file: numpy_random
 
 - caption: Coordinate systems and spatial transforms
   chapters:

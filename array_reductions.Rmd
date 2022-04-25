@@ -1,0 +1,144 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Array reduction operations
+
+Operations like `sum` and `mean` are array *reduction operations*.
+
+We call these "reduction operations" because operations like sum have the
+effect of slicing out 1D arrays from the input array, and reducing these 1D
+arrays to scalars.
+
+For example, if we have a 2D array, we might take the sum over the first axis:
+
+```{python}
+import numpy as np
+a = np.reshape(np.arange(6), (2, 3))
+a
+```
+
+```{python}
+np.sum(a, axis=0)
+```
+
+What has happened here is that numpy takes each column (slice over the first
+axis), then reduces the column to a scalar (that is the sum of the column):
+
+```{python}
+print('Sum over column 0:', np.sum(a[:, 0]))
+print('Sum over column 1:', np.sum(a[:, 1]))
+print('Sum over column 2:', np.sum(a[:, 2]))
+```
+
+Notice that the new summed array has one fewer dimension than the input array.  The dimension over which we have done the sum has gone (numpy "reduced" it):
+
+```{python}
+np.sum(a, axis=0).shape
+```
+
+Similarly, when we sum across the second axis, we reduce that second axis:
+
+```{python}
+# Sum over second axis
+np.sum(a, axis=1)
+```
+
+```{python}
+print('Sum over row 0:', np.sum(a[0, :]))
+print('Sum over row 1:', np.sum(a[1, :]))
+```
+
+Now imagine a 3D array:
+
+```{python}
+b = np.reshape(np.arange(24), (2, 3, 4))
+b
+```
+
+Let's say we want to sum across axis 0 (the first axis).  How do we get 1D
+arrays from this first axis?
+
+```{python}
+b[:, 0, 0]
+```
+
+```{python}
+b[:, 0, 1]
+```
+
+So, we can think of this 3D array as a 2D array shape (3, 4) where each element
+is a 1D array of length 2.
+
+Sum then operates over this array of 1D arrays to reduce the first axis:
+
+```{python}
+np.sum(b, axis=0)
+```
+
+```{python}
+print('Sum over column 0, plane 0:', np.sum(b[:, 0, 0]))
+print('Sum over column 0, plane 1:', np.sum(b[:, 0, 1]))
+```
+
+You could imagine doing what Numpy does with something like this:
+
+```{python}
+sum_over_axis_0 = np.zeros((b.shape[1:]))
+for j in range(b.shape[1]):
+    for k in range(b.shape[2]):
+        arr_1d = b[:, j, k]
+        sum_over_axis_0[j, k] = np.sum(arr_1d)
+sum_over_axis_0
+```
+
+It is the same for reducing over the second axis. Now the 1D arrays are slices
+over the second axis.
+
+```{python}
+b[0, :, 0]
+```
+
+```{python}
+b[0, :, 1]
+```
+
+```{python}
+np.sum(b, axis=1)
+```
+
+```{python}
+print('Sum over row 0, plane 0:', np.sum(b[0, :, 0]))
+print('Sum over row 0, plane 1:', np.sum(b[0, :, 1]))
+```
+
+It is the same idea over the third axis (axis=2):
+
+```{python}
+b[0, 0, :]
+```
+
+```{python}
+b[0, 1, :]
+```
+
+```{python}
+np.sum(b, axis=2)
+```
+
+```{python}
+print('Sum over row 0, column 0:', np.sum(b[0, 0, :]))
+print('Sum over row 0, column 1:', np.sum(b[0, 1, :]))
+```

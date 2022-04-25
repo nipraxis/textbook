@@ -226,7 +226,7 @@ y = psychopathy
 # Covariate vector
 x = clammy
 # Contrast vector as column vector
-c = np.array([0, 1]).reshape((2, 1))
+c = np.array([[0, 1]]).T
 n = len(y)
 # Design matrix
 X = np.ones((n, 2))
