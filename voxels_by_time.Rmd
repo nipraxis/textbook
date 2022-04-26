@@ -1,30 +1,32 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
 
-# Reshaping 4D images to 2D arrays
+# Voxels and time
 
-See also: Reshaping, 4D to 2D.
+See also: [Reshaping, 4D to 2D](reshape_and_4d.Rmd).
 
 ```{python}
-#: import common modules
+# Import common modules
 import numpy as np  # the Python array package
 import matplotlib.pyplot as plt  # the Python plotting package
 # Display array values to 6 digits of precision
 np.set_printoptions(precision=4, suppress=True)
 ```
 
-In this example, we calculate the standard deviation across voxels at each
+In this example, we calculate the mean across all voxels at each
 time point.
 
 We’re working on `ds114_sub009_t2r1.nii`.  This is a 4D FMRI image.
@@ -41,7 +43,7 @@ img = nib.load(bold_fname)
 img.shape
 ```
 
-We want to calculate the standard deviation across all voxels.  Remember that a
+We want to calculate the mean across all voxels.  Remember that a
 voxel is a pixel with volume, and refers to a position in space. Therefore we
 have this number of voxels in each volume:
 
@@ -50,28 +52,36 @@ n_voxels = np.prod(img.shape[:-1])
 n_voxels
 ```
 
-To calculate the standard deviation across voxels, we could loop across all
-volumes, and calculate the standard deviation for each volume:
+To calculate the mean across all voxels, for a single volume, we can do this:
+
+```{python}
+data = img.get_fdata()
+first_vol = data[..., 0]
+np.mean(first_vol)
+```
+
+To calculate the mean across voxels, we could loop across all
+volumes, and calculate the mean for each volume:
 
 ```{python}
 n_trs = img.shape[-1]
-data = img.get_fdata()
-std_devs = []
+means = []
 for vol_no in range(n_trs):
     vol = data[..., vol_no]
-    std_devs.append(np.std(vol))
+    means.append(np.mean(vol))
 
-plt.plot(std_devs)
+plt.plot(means)
 ```
 
 We could also flatten the three voxel axes out into one long voxel axis, using
-reshape – see: Reshaping, 4D to 2D.  Then we can use the `axis` parameter to
-the `np.std` function to calculate the standard deviation across voxels, in one
+reshape – see: [Reshaping, 4D to 2D](reshape_and_4d.Rmd).  Then we can use the `axis` parameter to
+the `np.mean` function to calculate the mean across voxels, in one
 shot.  This is “vectorizing”, where we take an operation that needed a loop,
 and use array operations to do the work instead:
 
 ```{python}
 voxels_by_time = np.reshape(data, (n_voxels, n_trs))
-std_devs_vectorized = np.std(voxels_by_time, axis=0)
-assert np.allclose(std_devs_vectorized, std_devs)
+means_vectorized = np.mean(voxels_by_time, axis=0)
+# The answer is the same, allowing for tiny variations.
+assert np.allclose(means_vectorized, means)
 ```
