@@ -35,6 +35,10 @@ arr_3d = np.reshape(np.arange(24), (2, 3, 4))
 arr_3d
 ```
 
+As ever, Numpy shows us the array by *row*, where each row is a 3 by 4 slab of
+columns by plane.  Here is a picture of the same array represented as planes
+of 2D row by column arrays:
+
 ![](images/two_by_three_by_4_array.png)
 
 Notice that Numpy has filled in the 3D array in the order *last* axis to *first* axis, therefore:
