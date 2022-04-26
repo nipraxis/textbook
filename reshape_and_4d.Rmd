@@ -118,5 +118,9 @@ voxel_by_time = np.reshape(data, (n_voxels, data.shape[-1]))
 voxel_by_time.shape
 ```
 
+![](image/voxels_by_time.png)
+
 This is a useful operation when we want to apply some processing on all
 voxels, without regard to their relative spatial position.
+
+
