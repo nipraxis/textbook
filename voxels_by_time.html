@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reshaping 4D images to 2D arrays &#8212; Practice and theory of brain imaging</title>
+    <title>Voxels and time &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -210,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Reshaping 4D images to 2D arrays
+   Voxels and time
   </a>
  </li>
 </ul>
@@ -575,7 +575,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Reshaping 4D images to 2D arrays</h1>
+                <h1>Voxels and time</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -586,12 +586,12 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="reshaping-4d-images-to-2d-arrays">
-<h1>Reshaping 4D images to 2D arrays<a class="headerlink" href="#reshaping-4d-images-to-2d-arrays" title="Permalink to this headline">¶</a></h1>
-<p>See also: Reshaping, 4D to 2D.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="voxels-and-time">
+<h1>Voxels and time<a class="headerlink" href="#voxels-and-time" title="Permalink to this headline">¶</a></h1>
+<p>See also: <a class="reference internal" href="reshape_and_4d.html"><span class="doc std std-doc">Reshaping, 4D to 2D</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#: import common modules</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import common modules</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># the Python array package</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># the Python plotting package</span>
 <span class="c1"># Display array values to 6 digits of precision</span>
@@ -600,7 +600,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>In this example, we calculate the standard deviation across voxels at each
+<p>In this example, we calculate the mean across all voxels at each
 time point.</p>
 <p>We’re working on <code class="docutils literal notranslate"><span class="pre">ds114_sub009_t2r1.nii</span></code>.  This is a 4D FMRI image.</p>
 <div class="cell docutils container">
@@ -631,7 +631,7 @@ time point.</p>
 </div>
 </div>
 </div>
-<p>We want to calculate the standard deviation across all voxels.  Remember that a
+<p>We want to calculate the mean across all voxels.  Remember that a
 voxel is a pixel with volume, and refers to a position in space. Therefore we
 have this number of voxels in each volume:</p>
 <div class="cell docutils container">
@@ -647,38 +647,53 @@ have this number of voxels in each volume:</p>
 </div>
 </div>
 </div>
-<p>To calculate the standard deviation across voxels, we could loop across all
-volumes, and calculate the standard deviation for each volume:</p>
+<p>To calculate the mean across all voxels, for a single volume, we can do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_trs</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
-<span class="n">std_devs</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">vol_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trs</span><span class="p">):</span>
-    <span class="n">vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">vol_no</span><span class="p">]</span>
-    <span class="n">std_devs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">vol</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">std_devs</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">first_vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">first_vol</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fce5b635f70&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>414.40107421875
 </pre></div>
 </div>
-<img alt="_images/voxels_by_time_8_1.png" src="_images/voxels_by_time_8_1.png" />
+</div>
+</div>
+<p>To calculate the mean across voxels, we could loop across all
+volumes, and calculate the mean for each volume:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_trs</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">means</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">vol_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trs</span><span class="p">):</span>
+    <span class="n">vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">vol_no</span><span class="p">]</span>
+    <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vol</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f003afb8cd0&gt;]
+</pre></div>
+</div>
+<img alt="_images/voxels_by_time_10_1.png" src="_images/voxels_by_time_10_1.png" />
 </div>
 </div>
 <p>We could also flatten the three voxel axes out into one long voxel axis, using
-reshape – see: Reshaping, 4D to 2D.  Then we can use the <code class="docutils literal notranslate"><span class="pre">axis</span></code> parameter to
-the <code class="docutils literal notranslate"><span class="pre">np.std</span></code> function to calculate the standard deviation across voxels, in one
+reshape – see: <a class="reference internal" href="reshape_and_4d.html"><span class="doc std std-doc">Reshaping, 4D to 2D</span></a>.  Then we can use the <code class="docutils literal notranslate"><span class="pre">axis</span></code> parameter to
+the <code class="docutils literal notranslate"><span class="pre">np.mean</span></code> function to calculate the mean across voxels, in one
 shot.  This is “vectorizing”, where we take an operation that needed a loop,
 and use array operations to do the work instead:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxels_by_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">n_voxels</span><span class="p">,</span> <span class="n">n_trs</span><span class="p">))</span>
-<span class="n">std_devs_vectorized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">voxels_by_time</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">std_devs_vectorized</span><span class="p">,</span> <span class="n">std_devs</span><span class="p">)</span>
+<span class="n">means_vectorized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">voxels_by_time</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># The answer is the same, allowing for tiny variations.</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">means_vectorized</span><span class="p">,</span> <span class="n">means</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
