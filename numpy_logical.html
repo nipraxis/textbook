@@ -578,6 +578,11 @@ const thebe_selector_output = ".output, .cell_output"
    Using the bitwise operators
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bitwise-brackets">
+   Bitwise, brackets
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -601,6 +606,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-the-bitwise-operators">
    Using the bitwise operators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bitwise-brackets">
+   Bitwise, brackets
   </a>
  </li>
 </ul>
@@ -801,9 +811,136 @@ do not operate as we expect on arrays:</p>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="bitwise-brackets">
+<h2>Bitwise, brackets<a class="headerlink" href="#bitwise-brackets" title="Permalink to this headline">¶</a></h2>
 <p><strong>Be careful when using the bitwise operators</strong>.  The bitwise operators have
-relatively low operator precedence, meaning that Python will prefer to apply
-many other operators <em>before</em> bitwise operators.</p>
+relatively high operator precedence, meaning that Python will prefer to apply
+the bitwise operator <em>before</em> other operators, such as comparison operators.</p>
+<p>For example, consider these arrays, and the Boolean arrays from their comparison:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">first</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True, False,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">second</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">second</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False,  True,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will give an error.  Why?</span>
+<span class="n">first</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">second</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [16],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># This will give an error.  Why?</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">first</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">second</span> <span class="o">==</span> <span class="mi">1</span>
+
+<span class="ne">ValueError</span>: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+</pre></div>
+</div>
+</div>
+</div>
+<p>The problem is that Numpy registers <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> as having <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#operator-precedence">higher operator
+preference</a>
+than <code class="docutils literal notranslate"><span class="pre">==</span></code>, so it does the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operation before the <code class="docutils literal notranslate"><span class="pre">==</span></code>, meaning that the code
+above is equivalent to:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="n">second</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [17],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">first</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="n">second</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
+<span class="ne">ValueError</span>: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore, you get the error like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python is doing this under the hood in the statement above.</span>
+<span class="n">res</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="n">second</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python next does this, generating the error.</span>
+<span class="n">first</span> <span class="o">==</span> <span class="n">res</span> <span class="o">==</span> <span class="n">second</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [19],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Python next does this, generating the error.</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">first</span> <span class="o">==</span> <span class="n">res</span> <span class="o">==</span> <span class="n">second</span>
+
+<span class="ne">ValueError</span>: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+</pre></div>
+</div>
+</div>
+</div>
+<p>The fix is to specify that you want the <code class="docutils literal notranslate"><span class="pre">==</span></code> operation done before the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
+operation, using parentheses:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Guarantee the order of operations with parentheses.</span>
+<span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">second</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To avoid this problem, you might prefer to use <code class="docutils literal notranslate"><span class="pre">np.logical_and</span></code> etc:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The same operation using logical_and</span>
+<span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">second</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False,  True])
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 

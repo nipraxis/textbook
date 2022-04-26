@@ -1,13 +1,15 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -99,6 +101,62 @@ bool1 | bool2
 ~bool1
 ```
 
+## Bitwise, brackets
+
 **Be careful when using the bitwise operators**.  The bitwise operators have
-relatively low operator precedence, meaning that Python will prefer to apply
-many other operators *before* bitwise operators.
+relatively high operator precedence, meaning that Python will prefer to apply
+the bitwise operator *before* other operators, such as comparison operators.
+
+
+For example, consider these arrays, and the Boolean arrays from their comparison:
+
+```{python}
+first = np.array([1, 0, 1])
+first == 1
+```
+
+```{python}
+second = np.array([0, 1, 1])
+second == 1
+```
+
+```{python tags=c("raises-exception")}
+# This will give an error.  Why?
+first == 1 & second == 1
+```
+
+The problem is that Numpy registers `&` as having [higher operator
+preference](https://docs.python.org/3/reference/expressions.html#operator-precedence)
+than `==`, so it does the `&` operation before the `==`, meaning that the code
+above is equivalent to:
+
+```{python tags=c("raises-exception")}
+first == (1 & second) == 1
+```
+
+Therefore, you get the error like this:
+
+```{python}
+# Python is doing this under the hood in the statement above.
+res = 1 & second
+```
+
+```{python tags=c("raises-exception")}
+# Python next does this, generating the error.
+first == res == second
+```
+
+The fix is to specify that you want the `==` operation done before the `&`
+operation, using parentheses:
+
+```{python}
+# Guarantee the order of operations with parentheses.
+(first == 1) & (second == 1)
+```
+
+To avoid this problem, you might prefer to use `np.logical_and` etc:
+
+```{python}
+# The same operation using logical_and
+np.logical_and(first == 1, second == 1)
+```
