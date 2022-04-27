@@ -1,0 +1,161 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+  orphan: true
+---
+
+# Sequence unpacking
+
+Python has a very nice trick for separating out items from a sequence, called *unpacking*.
+
+You unpack a sequence when you separate elements out into separate variables.  It is easiest to explain by example.
+
+For example, consider this tuple:
+
+```{python}
+a = (1, 2)
+a
+```
+
+We do *unpacking* when we write a tuple on the *left hand side* of an
+assignment.
+
+Here's an example.  We are unpacking the two values in `a` by writing a tuple of variables on the left hand side:
+
+```{python}
+(d, e) = a
+```
+
+This sets the value of `d` to be the first element in `a`:
+
+```{python}
+d
+```
+
+The value of `e` is the second element in `a`:
+
+```{python}
+e
+```
+
+You may by now have noticed that we can often write tuples *without the parentheses*:
+
+```{python}
+# In this context, Python assumes you mean the right hand side to be tuple.
+my_tuple = 10, 12
+my_tuple
+```
+
+In fact, you can do the same trick when writing your tuple on the left hand
+side, for unpacking.  You can omit the parentheses.
+
+```{python}
+first_val, second_val = my_tuple
+```
+
+The expression on the right hand side can be anything that Python can get a sequence of values from.  For example, it can be a tuple, as we have seen, or a list, or an array, or any abstract *iterable* thing.
+
+```{python}
+# List
+f, g = [100, 112]
+print('f is', f)
+print('g is', g)
+```
+
+```{python}
+# Array
+import numpy as np
+
+f, g = np.array([100, 112])
+print('f is', f)
+print('g is', g)
+```
+
+Your tuple on the left hand side can be any length.  For example, here we unpack four values from an array:
+
+```{python}
+h, i, j, k = np.arange(4)
+print('h is', h)
+print('i is', i)
+print('j is', j)
+print('k is', k)
+```
+
+If the length of your left hand side tuple does not match the right hand side, Python will error:
+
+```{python tags=c("raises-exception")}
+# Four elements on the right, three on the left.
+m, n, p = np.arange(4)
+```
+
+Tuple unpacking is particularly useful for returning more than one thing from a function.
+
+Notice that this function returns a tuple with two elements.
+
+```{python}
+def first_func():
+    return 7, 8
+```
+
+```{python}
+# The result is a tuple.
+result = first_func()
+result
+```
+
+We can immediately separate these two things into two variables, using tuple unpacking:
+
+```{python}
+q, r = first_func()
+print('q is', q)
+print('r is', r)
+```
+
+Of course, from the logic you have already seen, the cell above is the same
+as:
+
+```{python}
+results = first_func()
+q = results[0]  # Get the first element of the returned tuple.
+r = results[1]  # Get the second element of the returned tuple.
+print('q is', q)
+print('r is', r)
+```
+
+There is also a nice syntax to separate the first few elements into variables, but leave the remainder in a tuple.
+
+For example, imagine we are returning 10 things:
+
+```{python}
+def ten_func():
+    return np.arange(10)
+```
+
+We could always separate these 10 things into 10 variables, like this:
+
+```{python}
+a, b, c, d, e, f, g, h, i, j = ten_func()
+print('a is', a)
+print('j is', j)
+```
+
+Perhaps we only need the first two elements as their own variables, we are happy to pass the rest into a tuple for later use.  We can do that with:
+
+
+```{python}
+k, m, *rest = ten_func()
+print('k is', k)
+print('m is', m)
+print('rest is', rest)
+```
