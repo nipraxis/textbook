@@ -912,7 +912,50 @@ above is equivalent to:</p>
 </div>
 </div>
 </div>
-<p>The fix is to specify that you want the <code class="docutils literal notranslate"><span class="pre">==</span></code> operation done before the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
+<p>The exact reason this last statement gives an error is <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#comparisons">a little
+advanced</a>. It
+is because Python <em>internally</em> translates the statement above to:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python internally translates &quot;first == res == second) to:</span>
+<span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="n">res</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">second</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [20],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Python internally translates &quot;first == res == second) to:</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="n">res</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">second</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+</pre></div>
+</div>
+</div>
+</div>
+<p>The problem with this internal translation is that <code class="docutils literal notranslate"><span class="pre">and</span></code> does not work when
+comparing arrays:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;and&quot; does not work on arrays.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [21],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># &quot;and&quot; does not work on arrays.</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+
+<span class="ne">ValueError</span>: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+</pre></div>
+</div>
+</div>
+</div>
+<p>The fix is to specify that you want the <code class="docutils literal notranslate"><span class="pre">==</span></code> operation done <em>before</em> the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
 operation, using parentheses:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -927,7 +970,8 @@ operation, using parentheses:</p>
 </div>
 </div>
 </div>
-<p>To avoid this problem, you might prefer to use <code class="docutils literal notranslate"><span class="pre">np.logical_and</span></code> etc:</p>
+<p>To avoid worrying about this problem, you might prefer to use <code class="docutils literal notranslate"><span class="pre">np.logical_and</span></code>
+etc:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The same operation using logical_and</span>

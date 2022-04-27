@@ -146,7 +146,24 @@ res = 1 & second
 first == res == second
 ```
 
-The fix is to specify that you want the `==` operation done before the `&`
+The exact reason this last statement gives an error is [a little
+advanced](https://docs.python.org/3/reference/expressions.html#comparisons). It
+is because Python *internally* translates the statement above to:
+
+```{python tags=c("raises-exception")}
+# Python internally translates "first == res == second) to:
+(first == res) and (res == second)
+```
+
+The problem with this internal translation is that `and` does not work when
+comparing arrays:
+
+```{python tags=c("raises-exception")}
+# "and" does not work on arrays.
+np.array([True, False]) and np.array([True, False])
+```
+
+The fix is to specify that you want the `==` operation done *before* the `&`
 operation, using parentheses:
 
 ```{python}
@@ -154,7 +171,8 @@ operation, using parentheses:
 (first == 1) & (second == 1)
 ```
 
-To avoid this problem, you might prefer to use `np.logical_and` etc:
+To avoid worrying about this problem, you might prefer to use `np.logical_and`
+etc:
 
 ```{python}
 # The same operation using logical_and
