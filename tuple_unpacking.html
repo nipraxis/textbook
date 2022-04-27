@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sequence unpacking &#8212; Practice and theory of brain imaging</title>
+    <title>Tuple unpacking &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -573,7 +573,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Sequence unpacking</h1>
+                <h1>Tuple unpacking</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -584,8 +584,8 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="sequence-unpacking">
-<h1>Sequence unpacking<a class="headerlink" href="#sequence-unpacking" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="tuple-unpacking">
+<h1>Tuple unpacking<a class="headerlink" href="#tuple-unpacking" title="Permalink to this headline">¶</a></h1>
 <p>Python has a very nice trick for separating out items from a sequence, called <em>unpacking</em>.</p>
 <p>You unpack a sequence when you separate elements out into separate variables.  It is easiest to explain by example.</p>
 <p>For example, consider this tuple:</p>
@@ -638,7 +638,8 @@ assignment.</p>
 </div>
 </div>
 </div>
-<p>You may by now have noticed that we can often write tuples <em>without the parentheses</em>:</p>
+<p>You may by now have noticed that we can often write tuples <em>without the
+parentheses</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In this context, Python assumes you mean the right hand side to be tuple.</span>
@@ -657,7 +658,8 @@ assignment.</p>
 side, for unpacking.  You can omit the parentheses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_val</span><span class="p">,</span> <span class="n">second_val</span> <span class="o">=</span> <span class="n">my_tuple</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Omit parentheses in tuple unpacking.</span>
+<span class="n">first_val</span><span class="p">,</span> <span class="n">second_val</span> <span class="o">=</span> <span class="n">my_tuple</span>
 </pre></div>
 </div>
 </div>
