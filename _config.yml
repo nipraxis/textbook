@@ -89,7 +89,6 @@ exclude_patterns:
   - project_grading.md
   - projects.md
   - topics.md
-  - tuple_unpacking.Rmd
   # Drop?
   - using_pythonpath.Rmd
 
