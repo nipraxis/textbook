@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Voxel time courses &#8212; Practice and theory of brain imaging</title>
+    <title>Sequence unpacking &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Otsu’s method for binarizing images" href="otsu_threshold.html" />
-    <link rel="prev" title="Subplots and axes in matplotlib" href="subplots.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -286,9 +284,9 @@ const thebe_selector_output = ".output, .cell_output"
   Into the fourth dimension
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
    Voxel time courses
   </a>
  </li>
@@ -501,7 +499,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/voxel_time_courses.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/tuple_unpacking.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
@@ -521,7 +519,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fvoxel_time_courses.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Ftuple_unpacking.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -542,14 +540,14 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/voxel_time_courses.Rmd"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/tuple_unpacking.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/voxel_time_courses.Rmd&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/tuple_unpacking.Rmd&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="_static/images/logo_jupyterhub.svg"
@@ -575,7 +573,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Voxel time courses</h1>
+                <h1>Sequence unpacking</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -586,213 +584,258 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="voxel-time-courses">
-<h1>Voxel time courses<a class="headerlink" href="#voxel-time-courses" title="Permalink to this headline">¶</a></h1>
-<p>When we have a 4D image, we can think of the data in several ways.  For
-example the data could be:</p>
-<ul class="simple">
-<li><p>A series of 3D volumes (slicing over the last axis);</p></li>
-<li><p>A collection of 1D voxel time courses (slicing over the first three axes).</p></li>
-</ul>
+  <div class="tex2jax_ignore mathjax_ignore section" id="sequence-unpacking">
+<h1>Sequence unpacking<a class="headerlink" href="#sequence-unpacking" title="Permalink to this headline">¶</a></h1>
+<p>Python has a very nice trick for separating out items from a sequence, called <em>unpacking</em>.</p>
+<p>You unpack a sequence when you separate elements out into separate variables.  It is easiest to explain by example.</p>
+<p>For example, consider this tuple:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Our usual set-up</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We do <em>unpacking</em> when we write a tuple on the <em>left hand side</em> of an
+assignment.</p>
+<p>Here’s an example.  We are unpacking the two values in <code class="docutils literal notranslate"><span class="pre">a</span></code> by writing a tuple of variables on the left hand side:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This sets the value of <code class="docutils literal notranslate"><span class="pre">d</span></code> to be the first element in <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>The value of <code class="docutils literal notranslate"><span class="pre">e</span></code> is the second element in <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>You may by now have noticed that we can often write tuples <em>without the parentheses</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In this context, Python assumes you mean the right hand side to be tuple.</span>
+<span class="n">my_tuple</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span>
+<span class="n">my_tuple</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In fact, you can do the same trick when writing your tuple on the left hand
+side, for unpacking.  You can omit the parentheses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_val</span><span class="p">,</span> <span class="n">second_val</span> <span class="o">=</span> <span class="n">my_tuple</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The expression on the right hand side can be anything that Python can get a sequence of values from.  For example, it can be a tuple, as we have seen, or a list, or an array, or any abstract <em>iterable</em> thing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f is&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;g is&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f is 100
+g is 112
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Array</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1"># Display array values to 4 digits of precision</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the function to fetch the data file we need.</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-<span class="c1"># Fetch the data file.</span>
-<span class="n">data_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
-<span class="c1"># Show the file name of the fetched data.</span>
-<span class="n">data_fname</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.3/ds114_sub009_t2r1.nii&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>We load a 4D file:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
-<span class="n">img</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30, 173)
-</pre></div>
-</div>
-</div>
-</div>
-<p>We drop the first volume; as you remember, the first volume is very different
-from the rest of the volumes in the series:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop the first volume</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
-<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30, 172)
-</pre></div>
-</div>
-</div>
-</div>
-<p>As you have seen in <a class="reference internal" href="intro_to_4d.html"><span class="doc std std-doc">the 4D introduction</span></a>, we can think of
-this 4D data as a series of 3D volumes.  That is the way we have been thinking
-of the 4D data so far:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is slicing over the last (time) axis</span>
-<span class="n">vol0</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">vol0</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30)
-</pre></div>
-</div>
-</div>
-</div>
-<p>In that page, we found a 3D <em>coordinate</em> for an interesting voxel. The 3D coordinate is just the indices in the first three dimensions — the dimensions representing space.  We can write the coordinate as indices in a tuple like
-this: <code class="docutils literal notranslate"><span class="pre">(42,</span> <span class="pre">32,</span> <span class="pre">19)</span></code>.  As you saw in the 4D page, the first index of 42 refers
-to a position towards the left of the brain (&gt; 31).  The second index of 32
-refers to a position almost in the center front to back.  The last index of 19
-refers to a position a little further towards the top of the brain – in this
-image.</p>
-<p>Here is the position of that coordinate displayed on a plane of the 3D volume (in fact, the mean volume).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Where is this in the brain?</span>
-<span class="n">mean_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="c1"># Make a nice bright dot in the right place</span>
-<span class="n">mean_data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mean_data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mean_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">19</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff180b3ea30&gt;
-</pre></div>
-</div>
-<img alt="_images/voxel_time_courses_10_1.png" src="_images/voxel_time_courses_10_1.png" />
-</div>
-</div>
-<p>If I slice into the data array with these coordinates, I will get a vector,
-with the image value at that position (43, 32, 19), for every point in time:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is slicing over all three of the space axes</span>
-<span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(172,)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff17ea40700&gt;]
-</pre></div>
-</div>
-<img alt="_images/voxel_time_courses_12_2.png" src="_images/voxel_time_courses_12_2.png" />
-</div>
-</div>
-<p>This is a “voxel time course”.</p>
-<p>We might want to do ordinary statistical type things with this time course. For
-example, we might want to correlate this time course with a measure of whether
-the subject was doing the task or not.</p>
-<p>This measure will have 1 for each volume (time point) where the subject was
-doing the task, and 0 for each volume where the subject was at rest.</p>
-<p>We call this a “neural” time course, because we believe that the nerves in the
-relevant brain area will switch on when the task starts (value = 1) and then
-switch off when the task stops (value = 0).</p>
-<p>To get this on-off measure, we will use our pre-packaged function for OpenFMRI
-data:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the condition file</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
 
-<span class="n">cond_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1_cond.txt&#39;</span><span class="p">)</span>
-<span class="n">cond_fname</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f is&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;g is&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.3/ds114_sub009_t2r1_cond.txt&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f is 100
+g is 112
+</pre></div>
+</div>
+</div>
+</div>
+<p>Your tuple on the left hand side can be any length.  For example, here we unpack four values from an array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;h is&#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;i is&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;j is&#39;</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;k is&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>h is 0
+i is 1
+j is 2
+k is 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the length of your left hand side tuple does not match the right hand side, Python will error:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Four elements on the right, three on the left.</span>
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Four elements on the right, three on the left.</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: too many values to unpack (expected 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tuple unpacking is particularly useful for returning more than one thing from a function.</p>
+<p>Notice that this function returns a tuple with two elements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">first_func</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the neural time course using pre-packaged function</span>
-<span class="kn">from</span> <span class="nn">nipraxis.stimuli</span> <span class="kn">import</span> <span class="n">events2neural</span>
-<span class="n">TR</span> <span class="o">=</span> <span class="mf">2.5</span>  <span class="c1"># time between volumes</span>
-<span class="n">n_trs</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># The original number of TRs</span>
-<span class="n">neural</span> <span class="o">=</span> <span class="n">events2neural</span><span class="p">(</span><span class="n">cond_fname</span><span class="p">,</span> <span class="n">TR</span><span class="p">,</span> <span class="n">n_trs</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neural</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The result is a tuple.</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">first_func</span><span class="p">()</span>
+<span class="n">result</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff17ea37910&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 8)
 </pre></div>
 </div>
-<img alt="_images/voxel_time_courses_15_1.png" src="_images/voxel_time_courses_15_1.png" />
 </div>
 </div>
-<p>Here we plot the voxel time course against this neural prediction:</p>
+<p>We can immediately separate these two things into two variables, using tuple unpacking:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the neural prediction against the data</span>
-<span class="n">neural</span> <span class="o">=</span> <span class="n">neural</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-<span class="c1"># Notice the &#39;o&#39; to specify the &quot;line marker&quot;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neural</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="c1"># Set the axis limits to give space on left and right</span>
-<span class="n">axis</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">axis</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">first_func</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;q is&#39;</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r is&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.1, 1.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q is 7
+r is 8
 </pre></div>
 </div>
-<img alt="_images/voxel_time_courses_17_1.png" src="_images/voxel_time_courses_17_1.png" />
 </div>
 </div>
-<p>We can look at the correlation between the on-off prediction and the voxel
-time course:</p>
+<p>Of course, from the logic you have already seen, the cell above is the same
+as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlate the neural time course with the voxel time course</span>
-<span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">neural</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">first_func</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Get the first element of the returned tuple.</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Get the second element of the returned tuple.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;q is&#39;</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r is&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.    , 0.5429],
-       [0.5429, 1.    ]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q is 7
+r is 8
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is also a nice syntax to separate the first few elements into variables, but leave the remainder in a tuple.</p>
+<p>For example, imagine we are returning 10 things:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ten_func</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could always separate these 10 things into 10 variables, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">ten_func</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a is&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;j is&#39;</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a is 0
+j is 9
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perhaps we only need the first two elements as their own variables, we are happy to pass the rest into a tuple for later use.  We can do that with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="n">ten_func</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;k is&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;m is&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rest is&#39;</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k is 0
+m is 1
+rest is [2, 3, 4, 5, 6, 7, 8, 9]
 </pre></div>
 </div>
 </div>
@@ -823,21 +866,7 @@ time course:</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="subplots.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Subplots and axes in matplotlib</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="otsu_threshold.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Otsu’s method for binarizing images</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
