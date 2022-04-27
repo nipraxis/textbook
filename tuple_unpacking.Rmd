@@ -15,7 +15,7 @@ jupyter:
   orphan: true
 ---
 
-# Sequence unpacking
+# Tuple unpacking
 
 Python has a very nice trick for separating out items from a sequence, called *unpacking*.
 
@@ -49,7 +49,8 @@ The value of `e` is the second element in `a`:
 e
 ```
 
-You may by now have noticed that we can often write tuples *without the parentheses*:
+You may by now have noticed that we can often write tuples *without the
+parentheses*:
 
 ```{python}
 # In this context, Python assumes you mean the right hand side to be tuple.
@@ -61,6 +62,7 @@ In fact, you can do the same trick when writing your tuple on the left hand
 side, for unpacking.  You can omit the parentheses.
 
 ```{python}
+# Omit parentheses in tuple unpacking.
 first_val, second_val = my_tuple
 ```
 
