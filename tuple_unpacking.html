@@ -588,10 +588,11 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Tuple unpacking<a class="headerlink" href="#tuple-unpacking" title="Permalink to this headline">¶</a></h1>
 <p>Python has a very nice trick for separating out items from a sequence, called <em>unpacking</em>.</p>
 <p>You unpack a sequence when you separate elements out into separate variables.  It is easiest to explain by example.</p>
-<p>For example, consider this tuple:</p>
+<p>Consider this tuple, on the <em>right hand side</em> of an assignment:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a gets the value (1, 2)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">a</span>
 </pre></div>
 </div>
@@ -604,18 +605,19 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>We do <em>unpacking</em> when we write a tuple on the <em>left hand side</em> of an
 assignment.</p>
-<p>Here’s an example.  We are unpacking the two values in <code class="docutils literal notranslate"><span class="pre">a</span></code> by writing a tuple of variables on the left hand side:</p>
+<p>In the cell below, we are unpacking the two values in <code class="docutils literal notranslate"><span class="pre">a</span></code> by writing a tuple
+of variables on the left hand side:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>This sets the value of <code class="docutils literal notranslate"><span class="pre">d</span></code> to be the first element in <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
+<p>This sets the value of <code class="docutils literal notranslate"><span class="pre">b</span></code> to be the first element in <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span>
 </pre></div>
 </div>
 </div>
@@ -625,10 +627,10 @@ assignment.</p>
 </div>
 </div>
 </div>
-<p>The value of <code class="docutils literal notranslate"><span class="pre">e</span></code> is the second element in <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
+<p>The value of <code class="docutils literal notranslate"><span class="pre">c</span></code> is the second element in <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>
 </pre></div>
 </div>
 </div>
@@ -638,8 +640,8 @@ assignment.</p>
 </div>
 </div>
 </div>
-<p>You may by now have noticed that we can often write tuples <em>without the
-parentheses</em>:</p>
+<p>You may by now have noticed that, in Python, we can often write tuples
+<em>without the parentheses</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In this context, Python assumes you mean the right hand side to be tuple.</span>
@@ -654,8 +656,8 @@ parentheses</em>:</p>
 </div>
 </div>
 </div>
-<p>In fact, you can do the same trick when writing your tuple on the left hand
-side, for unpacking.  You can omit the parentheses.</p>
+<p>In fact, you can do the same trick when writing your tuple on the <em>left hand
+side</em>, for unpacking.  You can omit the parentheses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Omit parentheses in tuple unpacking.</span>
@@ -664,19 +666,21 @@ side, for unpacking.  You can omit the parentheses.</p>
 </div>
 </div>
 </div>
-<p>The expression on the right hand side can be anything that Python can get a sequence of values from.  For example, it can be a tuple, as we have seen, or a list, or an array, or any abstract <em>iterable</em> thing.</p>
+<p>The expression on the right hand side can be anything that Python can get a
+sequence of values from.  For example, it can be a tuple, as we have seen, or
+a list, or an array, or any abstract <em>iterable</em> thing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f is&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;g is&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">d</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d is&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;e is&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f is 100
-g is 112
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d is 100
+e is 112
 </pre></div>
 </div>
 </div>
@@ -739,7 +743,8 @@ k is 3
 </div>
 </div>
 </div>
-<p>Tuple unpacking is particularly useful for returning more than one thing from a function.</p>
+<p>Tuple unpacking is particularly useful for returning more than one thing from
+a function.</p>
 <p>Notice that this function returns a tuple with two elements.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -763,7 +768,8 @@ k is 3
 </div>
 </div>
 </div>
-<p>We can immediately separate these two things into two variables, using tuple unpacking:</p>
+<p>We can immediately separate these two things into two variables, using tuple
+unpacking:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">first_func</span><span class="p">()</span>
@@ -798,7 +804,8 @@ r is 8
 </div>
 </div>
 </div>
-<p>There is also a nice syntax to separate the first few elements into variables, but leave the remainder in a tuple.</p>
+<p>There is also a nice syntax to separate the first few elements into variables,
+but leave the remainder in a tuple.</p>
 <p>For example, imagine we are returning 10 things:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
