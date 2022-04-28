@@ -21,9 +21,10 @@ Python has a very nice trick for separating out items from a sequence, called *u
 
 You unpack a sequence when you separate elements out into separate variables.  It is easiest to explain by example.
 
-For example, consider this tuple:
+Consider this tuple, on the *right hand side* of an assignment:
 
 ```{python}
+# a gets the value (1, 2)
 a = (1, 2)
 a
 ```
@@ -31,26 +32,27 @@ a
 We do *unpacking* when we write a tuple on the *left hand side* of an
 assignment.
 
-Here's an example.  We are unpacking the two values in `a` by writing a tuple of variables on the left hand side:
+In the cell below, we are unpacking the two values in `a` by writing a tuple
+of variables on the left hand side:
 
 ```{python}
-(d, e) = a
+(b, c) = a
 ```
 
-This sets the value of `d` to be the first element in `a`:
+This sets the value of `b` to be the first element in `a`:
 
 ```{python}
-d
+b
 ```
 
-The value of `e` is the second element in `a`:
+The value of `c` is the second element in `a`:
 
 ```{python}
-e
+c
 ```
 
-You may by now have noticed that we can often write tuples *without the
-parentheses*:
+You may by now have noticed that, in Python, we can often write tuples
+*without the parentheses*:
 
 ```{python}
 # In this context, Python assumes you mean the right hand side to be tuple.
@@ -58,21 +60,23 @@ my_tuple = 10, 12
 my_tuple
 ```
 
-In fact, you can do the same trick when writing your tuple on the left hand
-side, for unpacking.  You can omit the parentheses.
+In fact, you can do the same trick when writing your tuple on the *left hand
+side*, for unpacking.  You can omit the parentheses.
 
 ```{python}
 # Omit parentheses in tuple unpacking.
 first_val, second_val = my_tuple
 ```
 
-The expression on the right hand side can be anything that Python can get a sequence of values from.  For example, it can be a tuple, as we have seen, or a list, or an array, or any abstract *iterable* thing.
+The expression on the right hand side can be anything that Python can get a
+sequence of values from.  For example, it can be a tuple, as we have seen, or
+a list, or an array, or any abstract *iterable* thing.
 
 ```{python}
 # List
-f, g = [100, 112]
-print('f is', f)
-print('g is', g)
+d, e = [100, 112]
+print('d is', d)
+print('e is', e)
 ```
 
 ```{python}
@@ -101,7 +105,8 @@ If the length of your left hand side tuple does not match the right hand side, P
 m, n, p = np.arange(4)
 ```
 
-Tuple unpacking is particularly useful for returning more than one thing from a function.
+Tuple unpacking is particularly useful for returning more than one thing from
+a function.
 
 Notice that this function returns a tuple with two elements.
 
@@ -116,7 +121,8 @@ result = first_func()
 result
 ```
 
-We can immediately separate these two things into two variables, using tuple unpacking:
+We can immediately separate these two things into two variables, using tuple
+unpacking:
 
 ```{python}
 q, r = first_func()
@@ -135,7 +141,8 @@ print('q is', q)
 print('r is', r)
 ```
 
-There is also a nice syntax to separate the first few elements into variables, but leave the remainder in a tuple.
+There is also a nice syntax to separate the first few elements into variables,
+but leave the remainder in a tuple.
 
 For example, imagine we are returning 10 things:
 
