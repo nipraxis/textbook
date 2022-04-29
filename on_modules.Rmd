@@ -182,7 +182,7 @@ I can do this very simply, by adding some stuff to the end of the module.  I'll 
 """
 
 import numpy as np
-
+import nipraxis
 import nibabel as nib
 
 def vol_means(image_fname):
@@ -205,7 +205,8 @@ def detect_outliers_fixed(some_values, n_stds=2):
     return np.where(is_outlier)[0]
 
 
-means = vol_means('ds107_sub012_t1r2.nii')
+fname = nipraxis.fetch_file('ds107_sub012_t1r2.nii')
+means = vol_means(fname)
 print(detect_outliers_fixed(means))
 ```
 
