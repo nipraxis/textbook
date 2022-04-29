@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.10.3
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3
     language: python
@@ -17,7 +17,10 @@ jupyter:
 # Modules and scripts
 
 ```{python}
-#: Usual imports
+# Operating system utilities
+import os
+
+# Usual imports
 import numpy as np
 import matplotlib.pyplot as plt
 import nibabel as nib
@@ -45,7 +48,7 @@ def vol_means(image_fname):
     for i in range(data.shape[-1]):
         vol = data[..., i]
         means.append(np.mean(vol))
-    return means
+    return np.array(means)
 ```
 
 **For extra points**: can you work out a better way to do the same thing
@@ -58,35 +61,165 @@ my_means = vol_means(data_fname)
 plt.plot(my_means)
 ```
 
-That seems like a useful function.  We want to make a module called `mymodule`
-so we can do this in some Python script or at the Jupyter / IPython prompt:
+We are interested in outlier detection.  Let's make a routine to detect outliers:
 
-```
-import mymodule
-means = mymodule.vol_means('ds107_sub012_t1r2.nii')
-```
-
-In fact, what I would really like to do, is to be able to have a script called
-`my_script.py` that prints the scan means out to the terminal window like
-this:
-
-```
-import mymodule
-
-means = mymodule.vol_means('ds107_sub012_t1r2.nii')
-for mean in means:
-    print(mean)
+```{python}
+def detect_outliers(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = (some_values - overall_mean) < -thresh
+    return np.where(is_outlier)[0]
 ```
 
-And I want to be able to run it like this from the command line:
+```{python}
+outlier_inds = detect_outliers(my_means)
+outlier_inds
+```
 
+```{python}
+my_means[outlier_inds]
 ```
-python my_script.py
-```
+
+These seem like useful functions.
+
+We decide we'd like to use these in another notebook.
+
+Of we go and copy / paste these functions into [another
+notebook](using_module.Rmd)
+
+Go there, and have a look at how it does on some more data
+
+
+## Back from trying some more data
+
+
+We found that the there is a mistake in the copy/pasted code.
+
+Well, of course we could fix it here, and then go and fix it in the other
+notebook.
+
+But, a better way, is:
+
+* Put the code in one place, for both notebooks to use
+* Fix it in one place, and later
+* Test the code!  (More later).
 
 A Python *module* is a Python file with functions (and variables and other
 things) that other modules and scripts may use. These other modules and
 scripts will `import` the module.
+
+The simplest possible *module* is just a file with a `.py` extension, with
+Python code.
+
+Here I'm using the notebook machinery to write out a file to the current working directory.
+
+Usually we would write the file with our text editor.
+
+```{python}
+# %%file volmeans.py
+""" File to calculate volume means, detect outliers
+"""
+
+import numpy as np
+
+import nibabel as nib
+
+def vol_means(image_fname):
+    """ Calculate volume means from 4D image `image_fname`
+    """
+    img = nib.load(image_fname)
+    data = img.get_fdata()
+    means = []
+    for i in range(data.shape[-1]):
+        vol = data[..., i]
+        means.append(np.mean(vol))
+    return np.array(means)
+
+
+def detect_outliers_fixed(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = np.abs(some_values - overall_mean) > thresh
+    return np.where(is_outlier)[0]
+```
+
+We now have a file in the current directory called `volmeans.py`:
+
+```{python}
+'volmeans.py' in os.listdir()
+```
+
+We can use this module very simply - by `import`ing it, as we have imported
+other modules and libraries:
+
+```{python}
+import volmeans
+```
+
+```{python}
+means_again = volmeans.vol_means(data_fname)
+volmeans.detect_outliers_fixed(means_again)
+```
+
+## On scripts
+
+In fact, what I would really like to do, is to be able to run this file as a *command*, like this:
+
+```
+python3 volmeans.py
+```
+
+In my ideal world, this would print out the outliers for the scan
+`ds107_sub012_t1r2.nii`.
+
+I can do this very simply, by adding some stuff to the end of the module.  I'll rename the module to avoid overwriting the old one, for now:
+
+```{python}
+# %%file volmeans_script.py
+""" File to calculate volume means, detect outliers
+"""
+
+import numpy as np
+
+import nibabel as nib
+
+def vol_means(image_fname):
+    """ Calculate volume means from 4D image `image_fname`
+    """
+    img = nib.load(image_fname)
+    data = img.get_fdata()
+    means = []
+    for i in range(data.shape[-1]):
+        vol = data[..., i]
+        means.append(np.mean(vol))
+    return np.array(means)
+
+
+def detect_outliers_fixed(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = np.abs(some_values - overall_mean) > thresh
+    return np.where(is_outlier)[0]
+
+
+means = vol_means('ds107_sub012_t1r2.nii')
+print(detect_outliers_fixed(means))
+```
+
+We import run the `.py` file as we want:
+
+```
+!python3 volmeans_script.py
+```
+
+We can also run it from Jupyter itself:
+
+```{python}
+run volmeans_script.py
+```
 
 A script is a file that you can run with `python3 my_script.py`. The script
 will usually do some processing, and may print something to the terminal, put
