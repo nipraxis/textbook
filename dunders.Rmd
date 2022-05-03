@@ -1,0 +1,83 @@
+---
+jupyter:
+  orphan: true
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Two double underscore variables
+
+Python often uses variable and function and method names with double
+underscores on each end.
+
+For example, as Python sets up to import a module, it defines a variable for
+itself called `__file__`.
+
+Experienced Python people often call these variables "dunder" variables,
+because they have Double UNDERscores on each side.
+
+When you see a *dunder* variable or function or method, it is almost invariably
+a variable or function or method that Python has defined, or that Python is
+using in a special way.
+
+
+## The `__file__` variable
+
+The `__file__` variable contains the path to the file that Python is currently
+importing.  You can use this variable inside a module to find the path of the
+module.  For example, let's say you have a module like this:
+
+```{python}
+# %%file example_module.py
+
+# An example Python module
+print("Type of __file__ variable is:", type(__file__))
+print("__file__ is:", __file__)
+```
+
+If you run this module as a script, `__file__` is set:
+
+```{python}
+# Execute as script
+%run example_module.py
+```
+
+If you `import` the module, `__file__` is also set:
+
+```{python}
+import example_module
+```
+
+## The `__name__` variable
+
+When Python `import`s a module, it sets the `__name__` variable to be a string
+containing the name of the module it is importing:
+
+```{python}
+# %%file another_example.py
+
+# Another example Python module
+print("Type of __name__ variable is:", type(__name__))
+print("__name__ is:", __name__)
+```
+
+```{python}
+import another_example
+```
+
+If you run the same module as a script, Python is not `import`ing when it runs
+the code, and `__name__` contains the string `"__main__"`:
+
+```{python}
+%run another_example.py
+```

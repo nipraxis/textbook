@@ -46,7 +46,6 @@ exclude_patterns:
   - packages_namespaces.Rmd
   - printing_floating.Rmd
   - subtract_mean_math.md
-  - two_dunders.md
   # Images and code and images
   - saving_images.Rmd
   # Coordinate systems and spatial transforms

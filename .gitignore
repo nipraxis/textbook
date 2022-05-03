@@ -10,3 +10,6 @@ some_numbers.txt
 ds114_sub009_t2r1_conv.txt
 voxel_time_course.txt
 clipped_image.nii
+simplemod.py
+example_module.py
+another_example.py
