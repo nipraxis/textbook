@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random numbers with np.random &#8212; Practice and theory of brain imaging</title>
+    <title>Two double underscore variables &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Subtracting the mean from columns or rows" href="subtract_means.html" />
-    <link rel="prev" title="Array reduction operations" href="array_reductions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -219,7 +217,7 @@ const thebe_selector_output = ".output, .cell_output"
   Arrays and plots
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="methods_vs_functions.html">
    Methods vs functions in NumPy
@@ -255,8 +253,8 @@ const thebe_selector_output = ".output, .cell_output"
    Array reduction operations
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
    Random numbers with
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -501,7 +499,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/numpy_random.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/dunders.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
@@ -521,7 +519,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fnumpy_random.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fdunders.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -542,14 +540,14 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/numpy_random.Rmd"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/dunders.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/numpy_random.Rmd&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/dunders.Rmd&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="_static/images/logo_jupyterhub.svg"
@@ -573,19 +571,26 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Random numbers with
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-file-variable">
+   The
    <code class="docutils literal notranslate">
     <span class="pre">
-     np.random
+     __file__
     </span>
    </code>
+   variable
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-random-numbers-predictable">
-   Making random numbers predictable
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-name-variable">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     __name__
+    </span>
+   </code>
+   variable
   </a>
  </li>
 </ul>
@@ -598,7 +603,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Random numbers with np.random</h1>
+                <h1>Two double underscore variables</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -608,19 +613,26 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Random numbers with
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-file-variable">
+   The
    <code class="docutils literal notranslate">
     <span class="pre">
-     np.random
+     __file__
     </span>
    </code>
+   variable
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-random-numbers-predictable">
-   Making random numbers predictable
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-name-variable">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     __name__
+    </span>
+   </code>
+   variable
   </a>
  </li>
 </ul>
@@ -632,178 +644,114 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="random-numbers-with-np-random">
-<h1>Random numbers with <code class="docutils literal notranslate"><span class="pre">np.random</span></code><a class="headerlink" href="#random-numbers-with-np-random" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="two-double-underscore-variables">
+<h1>Two double underscore variables<a class="headerlink" href="#two-double-underscore-variables" title="Permalink to this headline">¶</a></h1>
+<p>Python often uses variable and function and method names with double
+underscores on each end.</p>
+<p>For example, as Python sets up to import a module, it defines a variable for
+itself called <code class="docutils literal notranslate"><span class="pre">__file__</span></code>.</p>
+<p>Experienced Python people often call these variables “dunder” variables,
+because they have Double UNDERscores on each side.</p>
+<p>When you see a <em>dunder</em> variable or function or method, it is almost invariably
+a variable or function or method that Python has defined, or that Python is
+using in a special way.</p>
+<div class="section" id="the-file-variable">
+<h2>The <code class="docutils literal notranslate"><span class="pre">__file__</span></code> variable<a class="headerlink" href="#the-file-variable" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">__file__</span></code> variable contains the path to the file that Python is currently
+importing.  You can use this variable inside a module to find the path of the
+module.  For example, let’s say you have a module like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#: standard imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="c1"># print arrays to 4 decimal places</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We often need random numbers, for tests and for taking random samples, and for
-other things. <code class="docutils literal notranslate"><span class="pre">np.random</span></code> is a submodule within numpy:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> example_module.py
+
+<span class="c1"># An example Python module</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of __file__ variable is:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;__file__ is:&quot;</span><span class="p">,</span> <span class="vm">__file__</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>module
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing example_module.py
 </pre></div>
 </div>
 </div>
 </div>
-<p>It has a set of functions for returning random numbers of various sorts.  For
-example, to return a single random number from the default normal distribution
-(mean 0, variance 1):</p>
+<p>If you run this module as a script, <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is set:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute as script</span>
+<span class="o">%</span><span class="k">run</span> example_module.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6710986819661642
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of __file__ variable is: &lt;class &#39;str&#39;&gt;
+__file__ is: /home/runner/work/textbook/textbook/example_module.py
 </pre></div>
 </div>
 </div>
 </div>
-<p>You can set the mean and variance with the first two input parameters:</p>
+<p>If you <code class="docutils literal notranslate"><span class="pre">import</span></code> the module, <code class="docutils literal notranslate"><span class="pre">__file__</span></code> is also set:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random number from distribution with mean 15, variance 2</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">example_module</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17.116848228858032
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of __file__ variable is: &lt;class &#39;str&#39;&gt;
+__file__ is: /home/runner/work/textbook/textbook/example_module.py
 </pre></div>
 </div>
 </div>
 </div>
-<p>To return a 8 by 5 array of random numbers from the same distribution:</p>
+</div>
+<div class="section" id="the-name-variable">
+<h2>The <code class="docutils literal notranslate"><span class="pre">__name__</span></code> variable<a class="headerlink" href="#the-name-variable" title="Permalink to this headline">¶</a></h2>
+<p>When Python <code class="docutils literal notranslate"><span class="pre">import</span></code>s a module, it sets the <code class="docutils literal notranslate"><span class="pre">__name__</span></code> variable to be a string
+containing the name of the module it is importing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> another_example.py
+
+<span class="c1"># Another example Python module</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of __name__ variable is:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="vm">__name__</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;__name__ is:&quot;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[14.0949, 20.1698, 15.6703, 13.6166, 14.1476],
-       [14.4235, 14.3266, 12.7668, 13.5684, 13.8605],
-       [15.8441, 13.179 , 14.5188, 19.3208, 13.0978],
-       [18.053 , 17.5447, 15.6984, 15.8656, 13.9767],
-       [15.7481, 15.7102, 17.8092, 14.8628, 15.2708],
-       [14.9298, 17.9203, 13.7157, 14.1282, 14.7108],
-       [11.8858,  9.5703, 14.2707, 13.094 , 16.0813],
-       [14.2807,  9.6749, 13.5069, 14.4417, 15.1436]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>A 5 by 3 array of random numbers from the standard normal distribution with
-mean 1 and variance 1:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.3679,  0.7502,  0.9493, -0.0772,  0.3985],
-       [-0.5715,  0.1583,  0.3337,  0.1909,  1.4184],
-       [ 0.2632, -0.6468, -1.2132, -0.3147,  0.1974],
-       [ 1.0983, -0.157 , -0.2271, -1.4165, -0.1835],
-       [-0.6108, -0.7201,  0.0933,  1.7186, -1.7186],
-       [-0.7874, -1.319 ,  0.1137,  0.6094, -0.313 ],
-       [ 0.9016,  0.7822, -0.3115, -1.1346,  0.1738],
-       [-0.6204, -0.2575,  1.2009, -1.0572, -0.4154]])
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="making-random-numbers-predictable">
-<h1>Making random numbers predictable<a class="headerlink" href="#making-random-numbers-predictable" title="Permalink to this headline">¶</a></h1>
-<p>Sometimes you want to make sure that the random numbers are predictable, in
-that you will always get the same set of random numbers from a series of calls
-to the <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> functions.  You can achieve this by giving the random
-numbers a <em>seed</em>.  This is an integer that sets the random number generator
-into a predictable state, such that it will always return the same sequence of
-random numbers from this point:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the state of the random number generator</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="c1"># One set of random numbers</span>
-<span class="n">first_random_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">first_random_arr</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.4967, -0.1383],
-       [ 0.6477,  1.523 ],
-       [-0.2342, -0.2341],
-       [ 1.5792,  0.7674]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing another_example.py
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Another set</span>
-<span class="n">second_random_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">second_random_arr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">another_example</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.4695,  0.5426],
-       [-0.4634, -0.4657],
-       [ 0.242 , -1.9133],
-       [-1.7249, -0.5623]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of __name__ variable is: &lt;class &#39;str&#39;&gt;
+__name__ is: another_example
 </pre></div>
 </div>
 </div>
 </div>
+<p>If you run the same module as a script, Python is not <code class="docutils literal notranslate"><span class="pre">import</span></code>ing when it runs
+the code, and <code class="docutils literal notranslate"><span class="pre">__name__</span></code> contains the string <code class="docutils literal notranslate"><span class="pre">&quot;__main__&quot;</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reset the state of the random number generator</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="c1"># The same as &quot;first_random_arr&quot; above.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> another_example.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.4967, -0.1383],
-       [ 0.6477,  1.523 ],
-       [-0.2342, -0.2341],
-       [ 1.5792,  0.7674]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of __name__ variable is: &lt;class &#39;str&#39;&gt;
+__name__ is: __main__
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The same as &quot;second_random_arr&quot; above.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.4695,  0.5426],
-       [-0.4634, -0.4657],
-       [ 0.242 , -1.9133],
-       [-1.7249, -0.5623]])
-</pre></div>
 </div>
 </div>
 </div>
@@ -833,21 +781,7 @@ random numbers from this point:</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="array_reductions.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Array reduction operations</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="subtract_means.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Subtracting the mean from columns or rows</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

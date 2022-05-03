@@ -573,38 +573,58 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Modules and scripts
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#back-from-trying-some-more-data">
+   Back from trying some more data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-name-main-trick">
-     The
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       __name___
-      </span>
-      <span class="pre">
-       ==
-      </span>
-      <span class="pre">
-       "__main__"
-      </span>
-     </code>
-     trick
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#command-line-arguments">
-     Command line arguments
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-files">
-   Example files
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-the-module-reloading">
+   Changing the module, reloading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#on-scripts">
+   On scripts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-name-main-trick">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     __name___
+    </span>
+    <span class="pre">
+     ==
+    </span>
+    <span class="pre">
+     "__main__"
+    </span>
+   </code>
+   trick
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     __name___
+    </span>
+    <span class="pre">
+     ==
+    </span>
+    <span class="pre">
+     "__main__"
+    </span>
+   </code>
+   trick
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
+   Command line arguments
   </a>
  </li>
 </ul>
@@ -627,38 +647,58 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Modules and scripts
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#back-from-trying-some-more-data">
+   Back from trying some more data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-name-main-trick">
-     The
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       __name___
-      </span>
-      <span class="pre">
-       ==
-      </span>
-      <span class="pre">
-       "__main__"
-      </span>
-     </code>
-     trick
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#command-line-arguments">
-     Command line arguments
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-files">
-   Example files
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-the-module-reloading">
+   Changing the module, reloading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#on-scripts">
+   On scripts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-name-main-trick">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     __name___
+    </span>
+    <span class="pre">
+     ==
+    </span>
+    <span class="pre">
+     "__main__"
+    </span>
+   </code>
+   trick
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     __name___
+    </span>
+    <span class="pre">
+     ==
+    </span>
+    <span class="pre">
+     "__main__"
+    </span>
+   </code>
+   trick
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
+   Command line arguments
   </a>
  </li>
 </ul>
@@ -674,7 +714,10 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Modules and scripts<a class="headerlink" href="#modules-and-scripts" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#: Usual imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Operating system utilities</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Usual imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
@@ -714,7 +757,7 @@ mean values across all voxels in each volume:</p>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
         <span class="n">vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
         <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vol</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">means</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -730,81 +773,474 @@ without a loop?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3ef32e0640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f2e0f273460&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_modules_7_1.png" src="_images/on_modules_7_1.png" />
 </div>
 </div>
-<p>That seems like a useful function.  We want to make a module called <code class="docutils literal notranslate"><span class="pre">mymodule</span></code>
-so we can do this in some Python script or at the Jupyter / IPython prompt:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mymodule</span>
-<span class="n">means</span> <span class="o">=</span> <span class="n">mymodule</span><span class="o">.</span><span class="n">vol_means</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
+<p>We are interested in outlier detection.  Let’s make a routine to detect
+outliers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">detect_outliers</span><span class="p">(</span><span class="n">some_values</span><span class="p">,</span> <span class="n">n_stds</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">overall_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">overall_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">overall_std</span> <span class="o">*</span> <span class="n">n_stds</span>
+    <span class="n">is_outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">some_values</span> <span class="o">-</span> <span class="n">overall_mean</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_outlier</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>In fact, what I would really like to do, is to be able to have a script called
-<code class="docutils literal notranslate"><span class="pre">my_script.py</span></code> that prints the scan means out to the terminal window like
-this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mymodule</span>
-
-<span class="n">means</span> <span class="o">=</span> <span class="n">mymodule</span><span class="o">.</span><span class="n">vol_means</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">mean</span> <span class="ow">in</span> <span class="n">means</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier_inds</span> <span class="o">=</span> <span class="n">detect_outliers</span><span class="p">(</span><span class="n">my_means</span><span class="p">)</span>
+<span class="n">outlier_inds</span>
 </pre></div>
 </div>
-<p>And I want to be able to run it like this from the command line:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  6,  12,  49,  50,  69, 165])
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_means</span><span class="p">[</span><span class="n">outlier_inds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([363.11401367, 362.87746233, 355.6257952 , 357.68177316,
+       362.3819894 , 370.37314453])
+</pre></div>
+</div>
+</div>
+</div>
+<p>These seem like useful functions.</p>
+<p>We decide we’d like to use these in another notebook.</p>
+<p>Off we go and copy / paste these functions into <a class="reference internal" href="using_module.html"><span class="doc std std-doc">another
+notebook</span></a></p>
+<p>Go there, and have a look at how it does on some more data.</p>
+<div class="section" id="back-from-trying-some-more-data">
+<h2>Back from trying some more data<a class="headerlink" href="#back-from-trying-some-more-data" title="Permalink to this headline">¶</a></h2>
+<p>We found that the there is a mistake in the copy/pasted code.</p>
+<p>Of course we could fix it here, and then go and fix it in the other notebook.</p>
+<p>But, a better way, is:</p>
+<ul class="simple">
+<li><p>Put the code in one place, for both notebooks to use</p></li>
+<li><p>Fix it in one place, and</p></li>
+<li><p>Test the code!  (More on this later).</p></li>
+</ul>
 <p>A Python <em>module</em> is a Python file with functions (and variables and other
-things) that other modules and scripts may use. These other modules and
-scripts will <code class="docutils literal notranslate"><span class="pre">import</span></code> the module.</p>
-<p>A script is a file that you can run with <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>. The script
-will usually do some processing, and may print something to the terminal, put
-up a plot or save some data to the filesystem.</p>
-<p>You store modules in text files ending in <code class="docutils literal notranslate"><span class="pre">.py</span></code>. For example, the module
-<code class="docutils literal notranslate"><span class="pre">mymodule</span></code> would be in a file called <code class="docutils literal notranslate"><span class="pre">mymodule.py</span></code>.</p>
-<p>A module needs to <code class="docutils literal notranslate"><span class="pre">import</span></code> everything it uses.</p>
-<p>You can store scripts with any extension, but it is common to use <code class="docutils literal notranslate"><span class="pre">.py</span></code>
-extensions for Python scripts as well.</p>
+things) that other modules and scripts may use. These other modules and scripts
+will <code class="docutils literal notranslate"><span class="pre">import</span></code> the module.</p>
+<p>The simplest possible <em>module</em> is just a file with a <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension, with
+Python code.</p>
+<p>In the cell below, I’m using the notebook machinery to write some context to a
+text file called <code class="docutils literal notranslate"><span class="pre">vol_means.py</span></code> in the current working directory, with a
+<code class="docutils literal notranslate"><span class="pre">%%file</span></code> Jupyter <em>magic</em> command at the top of the cell.</p>
+<p>Usually we would write the file with our text editor.  You will very rarely need or use the <code class="docutils literal notranslate"><span class="pre">%%file</span></code> magic; it is really only useful for demonstration notebooks like this one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> volmeans.py
+<span class="sd">&quot;&quot;&quot; File to calculate volume means, detect outliers</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+
+<span class="k">def</span> <span class="nf">vol_means</span><span class="p">(</span><span class="n">image_fname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculate volume means from 4D image `image_fname`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image_fname</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vol</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">detect_outliers_fixed</span><span class="p">(</span><span class="n">some_values</span><span class="p">,</span> <span class="n">n_stds</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">overall_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">overall_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">overall_std</span> <span class="o">*</span> <span class="n">n_stds</span>
+    <span class="n">is_outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">some_values</span> <span class="o">-</span> <span class="n">overall_mean</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_outlier</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting volmeans.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have a file in the current directory called <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;volmeans.py&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use this new <em>module</em> very simply - by <code class="docutils literal notranslate"><span class="pre">import</span></code>ing it, as we have
+imported other modules and libraries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">volmeans</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As with other modules, you can explore the functions and data available in this module by making a new cell, and typing <code class="docutils literal notranslate"><span class="pre">volmean.</span></code> followed by the tab key.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to try exploring the volmeans module.</span>
+<span class="c1"># volmeans.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we find that the functions defined in the module are attached to the imported module, <code class="docutils literal notranslate"><span class="pre">volmeans</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">means_again</span> <span class="o">=</span> <span class="n">volmeans</span><span class="o">.</span><span class="n">vol_means</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
+<span class="n">volmeans</span><span class="o">.</span><span class="n">detect_outliers_fixed</span><span class="p">(</span><span class="n">means_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  6,  12,  49,  50,  69, 165])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="changing-the-module-reloading">
+<h2>Changing the module, reloading<a class="headerlink" href="#changing-the-module-reloading" title="Permalink to this headline">¶</a></h2>
+<p>Usually, when we write a module, we import it into the notebook and use it, without need to change the module.</p>
+<p>But sometimes, if you are developing interactively, you find you want to edit the module file and rerun the code in the module.</p>
+<p>Let us simulate that process now, by writing a new, very simple module file,
+with a <code class="docutils literal notranslate"><span class="pre">print</span></code> at the end of the module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> simplemod.py
+
+<span class="k">def</span> <span class="nf">double_me</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result of double_me on 2&#39;</span><span class="p">,</span> <span class="n">double_me</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing simplemod.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, when we <code class="docutils literal notranslate"><span class="pre">import</span></code> the module, Python executes the code in the module, which first, <em>defines</em> the <code class="docutils literal notranslate"><span class="pre">double_me</span></code> function and then <code class="docutils literal notranslate"><span class="pre">print</span></code>s the result.  So, when we <code class="docutils literal notranslate"><span class="pre">import</span></code>, we see the printed result, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">simplemod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result of double_me on 2 4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s imagine we are still in the same Python session. For example, imagine, as is the case for us now, we are using the same Jupyter kernel.  But we want to rewrite the module to print out the result for a more interesting number.  We would do that in our text editor, but here we’re using <code class="docutils literal notranslate"><span class="pre">%%file</span></code> again to simulated that process of editing and writing the file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> simplemod.py
+
+<span class="k">def</span> <span class="nf">double_me</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result of double_me on 13&#39;</span><span class="p">,</span> <span class="n">double_me</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting simplemod.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we run the <code class="docutils literal notranslate"><span class="pre">import</span></code> again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">simplemod</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oh dear - Python hasn’t picked up the new version of the file, and so, it isn’t printing the new value.  And in fact, it isn’t printing anything - it isn’t running the print statement at all.</p>
+<p>This is due to mechanism Python uses to <code class="docutils literal notranslate"><span class="pre">import</span></code> the file.  When Python does an <code class="docutils literal notranslate"><span class="pre">import</span></code> it first tries a shortcut, and only if that fails, does it load and run the code from the file.  The process is:</p>
+<ol class="simple">
+<li><p>Shortcut: Python first checks if it already has the defined module, and
+returns that if so, otherwise;</p></li>
+<li><p>Long way round: Python reads the text file and runs the code inside.</p></li>
+</ol>
+<p>In the case above, our second <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code> triggers the shortcut, where Python already has the module, so it returns the code from that module.  That is the code that existed the first time we did <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code>, so we get the result of the long way round load of the original code.</p>
+<p>Usually Python’s process is what we want, because we usually don’t find ourselves editing Python modules after we have imported them, in the same Python session.  In that common case, the shortcut saves a lot of time, when we import the same module several times.</p>
+<p>For the rare case where we do edit the module while the Python process is running we can force the long way round, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library to execute the importing logic.</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Trigger long-way-round import of module.</span>
+<span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">simplemod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result of double_me on 13 26
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;simplemod&#39; from &#39;/home/runner/work/textbook/textbook/simplemod.py&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="on-scripts">
+<h2>On scripts<a class="headerlink" href="#on-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Let us return to the diagnostics problem, and <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code>.</p>
+<p>It is good that we can <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">volmeans</span></code> and use in Python, but we would really like to be able to use this file as a program that we can run from the terminal command line.  We would like to be able to run this command, from the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">volmeans</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>In our ideal world, this would print out the outliers for the scan
+<code class="docutils literal notranslate"><span class="pre">ds107_sub012_t1r2.nii</span></code>.</p>
+<p>We can do this very simply, by adding some stuff to the end of the module.  I’ll rename the module to avoid overwriting the old one.  The addition is the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement at the end of the module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> volmeans.py
+<span class="sd">&quot;&quot;&quot; File to calculate volume means, detect outliers</span>
+
+<span class="sd">Also, print out mean values.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+
+
+<span class="k">def</span> <span class="nf">vol_means</span><span class="p">(</span><span class="n">image_fname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculate volume means from 4D image `image_fname`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image_fname</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vol</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">detect_outliers_fixed</span><span class="p">(</span><span class="n">some_values</span><span class="p">,</span> <span class="n">n_stds</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">overall_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">overall_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">overall_std</span> <span class="o">*</span> <span class="n">n_stds</span>
+    <span class="n">is_outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">some_values</span> <span class="o">-</span> <span class="n">overall_mean</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_outlier</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="c1"># The new stuff:</span>
+<span class="n">data_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
+<span class="n">means</span> <span class="o">=</span> <span class="n">vol_means</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">detect_outliers_fixed</span><span class="p">(</span><span class="n">means</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting volmeans.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can <em>execute</em> the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file from the command line, to give the effect we want.</p>
+<p>Normally, to show this, you would open a terminal and type <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code>.  Here though, we will use the notebook <code class="docutils literal notranslate"><span class="pre">!</span></code> prefix to ask the notebook to execute code <em>in the terminal</em>.  So, the notebook code below has exactly the same effect as typing <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code> at the terminal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice the ! at the beginning of the line below.</span>
+<span class="c1"># This tells the notebook to execute the command in a terminal.</span>
+<span class="o">!</span>python3 volmeans.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  6  12  49  50  69 165]
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is another way to <em>execute</em> a Python file like this in a notebook,
+which is to use the Jupyter <code class="docutils literal notranslate"><span class="pre">%run</span></code> command.  This is particularly useful,
+because we do not need to specify, for example, <code class="docutils literal notranslate"><span class="pre">python3</span></code>, because we are using
+the Python session running inside the notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> volmeans.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  6  12  49  50  69 165]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is what we wanted, but…</p>
+</div>
 <div class="section" id="the-name-main-trick">
 <h2>The <code class="docutils literal notranslate"><span class="pre">__name___</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> trick<a class="headerlink" href="#the-name-main-trick" title="Permalink to this headline">¶</a></h2>
-<p>You can execute a module in two different contexts:</p>
-<ul class="simple">
-<li><p>As a script, from the terminal (<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>);</p></li>
-<li><p>Import as a module, from within Python (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">import</span> <span class="pre">my_script</span></code>).</p></li>
-</ul>
-<p>It is reasonably common to want to use your <code class="docutils literal notranslate"><span class="pre">.py</span></code> file in either of these two
-ways.  For example, you may want to use and debug the functions in your code
-after <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">my_script</span></code>, and then run the code as a script with <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">my_script.py</span></code>.</p>
-<p>How does a Python file know whether it is being executed as a script or
-imported as a module?</p>
-<p>To help with this problem, Python sets a variable that tells you whether you
-are currently being <code class="docutils literal notranslate"><span class="pre">import</span></code>-ed or not.   This is the <code class="docutils literal notranslate"><span class="pre">__name__</span></code> variable.</p>
-<p>Notice the double underscores on either side of the variable name.  Variables
-with double underscores on either side are often referred to as “dunder”
-variables (for Double UNDERscore).  When Python is going to set or use a
-variable or method name for its own purposes, it usually uses a dunder name,
-as here.</p>
-<p>For our purposes <code class="docutils literal notranslate"><span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> if our Python file is running as a
-script and <code class="docutils literal notranslate"><span class="pre">__name__</span></code> is set to the module name if the module is being
-imported.  For example, if we did <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">my_script</span></code>, then, when
-<code class="docutils literal notranslate"><span class="pre">my_script.py</span></code> gets run, <code class="docutils literal notranslate"><span class="pre">__name__</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">my_script</span></code>.</p>
-<p>When you do want to use your <code class="docutils literal notranslate"><span class="pre">.py</span></code> file as a script, or for importing, you
-often see this pattern at the bottom of the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># Only run this function when used as a script</span>
-    <span class="c1"># The name &quot;main&quot; is only a common convention, the function could have</span>
-    <span class="c1"># any name.</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="c1"># We only get here if running the file as a script</span>
-    <span class="n">main</span><span class="p">()</span>
+<p>With the <code class="docutils literal notranslate"><span class="pre">print</span></code> at the end of our module, we have an annoying problem when we
+<code class="docutils literal notranslate"><span class="pre">import</span></code>.  As you remember, we have to <code class="docutils literal notranslate"><span class="pre">reload</span></code> the module to see the new
+changes on import, but when we do…:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">volmeans</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>See <a class="reference external" href="https://docs.python.org/3/library/__main__.html"><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code></a> in the Python
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  6  12  49  50  69 165]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;volmeans&#39; from &#39;/home/runner/work/textbook/textbook/volmeans.py&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oh dear, we were doing the <code class="docutils literal notranslate"><span class="pre">import</span></code> to get access to the code, and it’s an annoying waste now, to calculate and print out the mean values when we do the import.</p>
+<p>What we would really like to be able to do, is to calculate and print out the
+values, <em>only</em> when we are <em>executing</em> the module as a script, and <em>not</em> when
+we are <code class="docutils literal notranslate"><span class="pre">import</span></code>ing the module to use the code.</p>
+<p>Luckily Python gives us a way to tell whether the code is being run as part of a script or an <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
+<p>Before Python starts executing the code in the file, it sets a special variable, called <code class="docutils literal notranslate"><span class="pre">__name__</span></code>, that differs in the case of the executed script and the imported module.</p>
+<p>Specifically:</p>
+<ul class="simple">
+<li><p>When <em>importing</em> the code, the <code class="docutils literal notranslate"><span class="pre">__name__</span></code> variable has a value that is a
+string containing the name of the module.  In our case, when running <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">volmeans</span></code>, <code class="docutils literal notranslate"><span class="pre">__name__</span></code> is the string <code class="docutils literal notranslate"><span class="pre">'volmeans'</span></code>.</p></li>
+<li><p>When <em>executing</em> the code, the <code class="docutils literal notranslate"><span class="pre">__name__</span></code> variable has the value
+<code class="docutils literal notranslate"><span class="pre">'__main__'</span></code>.</p></li>
+</ul>
+<p>See <a class="reference internal" href="dunders.html"><span class="doc std std-doc">two underscores</span></a> for more.</p>
+</div>
+<div class="section" id="id1">
+<h2>The <code class="docutils literal notranslate"><span class="pre">__name___</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> trick<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>When you do want to use your <code class="docutils literal notranslate"><span class="pre">.py</span></code> file <em>both</em> as a script, <em>and</em> for
+importing, you often see this pattern at the bottom of the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># We only get here if running the file as a script</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I am running as a script&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://docs.python.org/3/library/__main__.html">if <strong>name</strong> ==
+‘<strong>main</strong>’</a> in the Python
 documentation.</p>
+<p>Now we can solve our problem using the <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code> for importing and as a script, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> volmeans.py
+<span class="sd">&quot;&quot;&quot; File to calculate volume means, detect outliers</span>
+
+<span class="sd">Also, print out mean values (only if running as a script).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+
+
+<span class="k">def</span> <span class="nf">vol_means</span><span class="p">(</span><span class="n">image_fname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculate volume means from 4D image `image_fname`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image_fname</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vol</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">detect_outliers_fixed</span><span class="p">(</span><span class="n">some_values</span><span class="p">,</span> <span class="n">n_stds</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">overall_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">overall_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">overall_std</span> <span class="o">*</span> <span class="n">n_stds</span>
+    <span class="n">is_outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">some_values</span> <span class="o">-</span> <span class="n">overall_mean</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_outlier</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="c1"># The new stuff:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># The code is running as a script.</span>
+    <span class="n">data_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">vol_means</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">detect_outliers_fixed</span><span class="p">(</span><span class="n">means</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting volmeans.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We do print out the values when running as a script:</span>
+<span class="o">%</span><span class="k">run</span> volmeans.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  6  12  49  50  69 165]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We don&#39;t print the values when (re)importing:</span>
+<span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">volmeans</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;volmeans&#39; from &#39;/home/runner/work/textbook/textbook/volmeans.py&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="command-line-arguments">
 <h2>Command line arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h2>
@@ -814,8 +1250,8 @@ documentation.</p>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">my_script.py</span></code> is the script, and <code class="docutils literal notranslate"><span class="pre">a_string</span></code> is the command line
 argument.</p>
-<p>You can do the same thing from within IPython:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span> <span class="n">a_string</span>
+<p>You can do the same thing from within Jupyter / IPython:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span> <span class="n">a_string</span>
 </pre></div>
 </div>
 <p>In your script, you can get the command line arguments from the <code class="docutils literal notranslate"><span class="pre">argv</span></code>
@@ -831,15 +1267,88 @@ you would get:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;my_script.py&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>For example, to make <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code> more useful, we might want to pass a Nipraxis filename to the script, to get it to print out the means for any Nipraxis file, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> volmeans.py
+<span class="sd">&quot;&quot;&quot; File to calculate volume means, detect outliers</span>
+
+<span class="sd">When run as a script, print out values for given Nipraxis file.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># New import of sys.</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+
+<span class="k">def</span> <span class="nf">vol_means</span><span class="p">(</span><span class="n">image_fname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculate volume means from 4D image `image_fname`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">image_fname</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vol</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">detect_outliers_fixed</span><span class="p">(</span><span class="n">some_values</span><span class="p">,</span> <span class="n">n_stds</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">overall_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">overall_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">some_values</span><span class="p">)</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">overall_std</span> <span class="o">*</span> <span class="n">n_stds</span>
+    <span class="n">is_outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">some_values</span> <span class="o">-</span> <span class="n">overall_mean</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">thresh</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_outlier</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># New: using sys to get first argument.</span>
+    <span class="n">nipraxis_fname</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">data_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="n">nipraxis_fname</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">vol_means</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">detect_outliers_fixed</span><span class="p">(</span><span class="n">means</span><span class="p">))</span>
+</pre></div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="example-files">
-<h1>Example files<a class="headerlink" href="#example-files" title="Permalink to this headline">¶</a></h1>
-<p>Example files at:</p>
-<ul class="simple">
-<li><p><a class="reference download internal" download="" href="_downloads/c6b0ed8163c29221203a6a5ebc1a6e87/mymodule.py"><code class="xref download docutils literal notranslate"><span class="pre">mymodule.py</span></code></a></p></li>
-<li><p><a class="reference download internal" download="" href="_downloads/7e1fd896bd6f9703ab45af5795fc5f56/my_script.py"><code class="xref download docutils literal notranslate"><span class="pre">my_script.py</span></code></a></p></li>
-</ul>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting volmeans.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can run the script like this to print out the original set of means:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the values for ds107_sub012_t1r2.nii</span>
+<span class="o">%</span><span class="k">run</span> volmeans.py ds107_sub012_t1r2.nii
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  6  12  49  50  69 165]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also print out the mean values for any other Nipraxis file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the values for ds114_sub009_t2r1.nii</span>
+<span class="o">%</span><span class="k">run</span> volmeans.py ds114_sub009_t2r1.nii
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

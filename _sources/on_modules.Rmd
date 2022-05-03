@@ -17,7 +17,10 @@ jupyter:
 # Modules and scripts
 
 ```{python}
-#: Usual imports
+# Operating system utilities
+import os
+
+# Usual imports
 import numpy as np
 import matplotlib.pyplot as plt
 import nibabel as nib
@@ -45,7 +48,7 @@ def vol_means(image_fname):
     for i in range(data.shape[-1]):
         vol = data[..., i]
         means.append(np.mean(vol))
-    return means
+    return np.array(means)
 ```
 
 **For extra points**: can you work out a better way to do the same thing
@@ -58,95 +61,364 @@ my_means = vol_means(data_fname)
 plt.plot(my_means)
 ```
 
-That seems like a useful function.  We want to make a module called `mymodule`
-so we can do this in some Python script or at the Jupyter / IPython prompt:
+We are interested in outlier detection.  Let's make a routine to detect
+outliers:
 
-```
-import mymodule
-means = mymodule.vol_means('ds107_sub012_t1r2.nii')
-```
-
-In fact, what I would really like to do, is to be able to have a script called
-`my_script.py` that prints the scan means out to the terminal window like
-this:
-
-```
-import mymodule
-
-means = mymodule.vol_means('ds107_sub012_t1r2.nii')
-for mean in means:
-    print(mean)
+```{python}
+def detect_outliers(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = np.abs(some_values - overall_mean) > thresh
+    return np.where(is_outlier)[0]
 ```
 
-And I want to be able to run it like this from the command line:
+```{python}
+outlier_inds = detect_outliers(my_means)
+outlier_inds
+```
 
+```{python}
+my_means[outlier_inds]
 ```
-python my_script.py
-```
+
+These seem like useful functions.
+
+We decide we'd like to use these in another notebook.
+
+Off we go and copy / paste these functions into [another
+notebook](using_module.Rmd)
+
+Go there, and have a look at how it does on some more data.
+
+
+## Back from trying some more data
+
+
+We found that the there is a mistake in the copy/pasted code.
+
+Of course we could fix it here, and then go and fix it in the other notebook.
+
+But, a better way, is:
+
+* Put the code in one place, for both notebooks to use
+* Fix it in one place, and
+* Test the code!  (More on this later).
 
 A Python *module* is a Python file with functions (and variables and other
-things) that other modules and scripts may use. These other modules and
-scripts will `import` the module.
+things) that other modules and scripts may use. These other modules and scripts
+will `import` the module.
 
-A script is a file that you can run with `python3 my_script.py`. The script
-will usually do some processing, and may print something to the terminal, put
-up a plot or save some data to the filesystem.
+The simplest possible *module* is just a file with a `.py` extension, with
+Python code.
 
-You store modules in text files ending in `.py`. For example, the module
-`mymodule` would be in a file called `mymodule.py`.
+In the cell below, I'm using the notebook machinery to write some context to a
+text file called `vol_means.py` in the current working directory, with a
+``%%file`` Jupyter *magic* command at the top of the cell.
 
-A module needs to `import` everything it uses.
+Usually we would write the file with our text editor.  You will very rarely need or use the `%%file` magic; it is really only useful for demonstration notebooks like this one.
 
-You can store scripts with any extension, but it is common to use `.py`
-extensions for Python scripts as well.
+```{python}
+# %%file volmeans.py
+""" File to calculate volume means, detect outliers
+"""
+
+import numpy as np
+
+import nibabel as nib
+
+def vol_means(image_fname):
+    """ Calculate volume means from 4D image `image_fname`
+    """
+    img = nib.load(image_fname)
+    data = img.get_fdata()
+    means = []
+    for i in range(data.shape[-1]):
+        vol = data[..., i]
+        means.append(np.mean(vol))
+    return np.array(means)
+
+
+def detect_outliers_fixed(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = np.abs(some_values - overall_mean) > thresh
+    return np.where(is_outlier)[0]
+```
+
+We now have a file in the current directory called `volmeans.py`:
+
+```{python}
+'volmeans.py' in os.listdir()
+```
+
+We can use this new *module* very simply - by `import`ing it, as we have
+imported other modules and libraries:
+
+```{python}
+import volmeans
+```
+
+As with other modules, you can explore the functions and data available in this module by making a new cell, and typing `volmean.` followed by the tab key.
+
+
+```{python}
+# Uncomment to try exploring the volmeans module.
+# volmeans.
+```
+
+Now we find that the functions defined in the module are attached to the imported module, `volmeans`.
+
+```{python}
+means_again = volmeans.vol_means(data_fname)
+volmeans.detect_outliers_fixed(means_again)
+```
+
+## Changing the module, reloading
+
+Usually, when we write a module, we import it into the notebook and use it, without need to change the module.
+
+But sometimes, if you are developing interactively, you find you want to edit the module file and rerun the code in the module.
+
+Let us simulate that process now, by writing a new, very simple module file,
+with a `print` at the end of the module.
+
+```{python}
+# %%file simplemod.py
+
+def double_me(a):
+    return a * 2
+
+
+print('Result of double_me on 2', double_me(2))
+```
+
+Now, when we `import` the module, Python executes the code in the module, which first, *defines* the `double_me` function and then `print`s the result.  So, when we `import`, we see the printed result, like this:
+
+```{python}
+import simplemod
+```
+
+Now let's imagine we are still in the same Python session. For example, imagine, as is the case for us now, we are using the same Jupyter kernel.  But we want to rewrite the module to print out the result for a more interesting number.  We would do that in our text editor, but here we're using `%%file` again to simulated that process of editing and writing the file:
+
+```{python}
+# %%file simplemod.py
+
+def double_me(a):
+    return a * 2
+
+
+print('Result of double_me on 13', double_me(13))
+```
+
+Then we run the `import` again.
+
+```{python}
+import simplemod
+```
+
+Oh dear - Python hasn't picked up the new version of the file, and so, it isn't printing the new value.  And in fact, it isn't printing anything - it isn't running the print statement at all.
+
+This is due to mechanism Python uses to `import` the file.  When Python does an `import` it first tries a shortcut, and only if that fails, does it load and run the code from the file.  The process is:
+
+1. Shortcut: Python first checks if it already has the defined module, and
+   returns that if so, otherwise;
+2. Long way round: Python reads the text file and runs the code inside.
+
+In the case above, our second `import simplemod` triggers the shortcut, where Python already has the module, so it returns the code from that module.  That is the code that existed the first time we did `import simplemod`, so we get the result of the long way round load of the original code.
+
+Usually Python's process is what we want, because we usually don't find ourselves editing Python modules after we have imported them, in the same Python session.  In that common case, the shortcut saves a lot of time, when we import the same module several times.
+
+For the rare case where we do edit the module while the Python process is running we can force the long way round, like this:
+
+```{python}
+# Library to execute the importing logic.
+import importlib
+```
+
+```{python}
+# Trigger long-way-round import of module.
+importlib.reload(simplemod)
+```
+
+## On scripts
+
+Let us return to the diagnostics problem, and `volmeans.py`.
+
+It is good that we can `import volmeans` and use in Python, but we would really like to be able to use this file as a program that we can run from the terminal command line.  We would like to be able to run this command, from the command line:
+
+```
+python3 volmeans.py
+```
+
+In our ideal world, this would print out the outliers for the scan
+`ds107_sub012_t1r2.nii`.
+
+We can do this very simply, by adding some stuff to the end of the module.  I'll rename the module to avoid overwriting the old one.  The addition is the `print` statement at the end of the module.
+
+```{python}
+# %%file volmeans.py
+""" File to calculate volume means, detect outliers
+
+Also, print out mean values.
+"""
+
+import numpy as np
+import nipraxis
+import nibabel as nib
+
+import nipraxis
+
+
+def vol_means(image_fname):
+    """ Calculate volume means from 4D image `image_fname`
+    """
+    img = nib.load(image_fname)
+    data = img.get_fdata()
+    means = []
+    for i in range(data.shape[-1]):
+        vol = data[..., i]
+        means.append(np.mean(vol))
+    return np.array(means)
+
+
+def detect_outliers_fixed(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = np.abs(some_values - overall_mean) > thresh
+    return np.where(is_outlier)[0]
+
+
+# The new stuff:
+data_fname = nipraxis.fetch_file('ds107_sub012_t1r2.nii')
+means = vol_means(data_fname)
+print(detect_outliers_fixed(means))
+```
+
+Now we can *execute* the `.py` file from the command line, to give the effect we want.
+
+Normally, to show this, you would open a terminal and type `python3
+volmeans.py`.  Here though, we will use the notebook `!` prefix to ask the notebook to execute code *in the terminal*.  So, the notebook code below has exactly the same effect as typing `python3 volmeans.py` at the terminal.
+
+```{python}
+# Notice the ! at the beginning of the line below.
+# This tells the notebook to execute the command in a terminal.
+# !python3 volmeans.py
+```
+
+There is another way to *execute* a Python file like this in a notebook,
+which is to use the Jupyter `%run` command.  This is particularly useful,
+because we do not need to specify, for example, `python3`, because we are using
+the Python session running inside the notebook.
+
+```{python}
+# %run volmeans.py
+```
+
+This is what we wanted, but...
+
 
 ## The `__name___ == "__main__"` trick
 
-You can execute a module in two different contexts:
 
-* As a script, from the terminal (`python3 my_script.py`);
-* Import as a module, from within Python (`>>> import my_script`).
+With the `print` at the end of our module, we have an annoying problem when we
+`import`.  As you remember, we have to `reload` the module to see the new
+changes on import, but when we do...:
 
-It is reasonably common to want to use your `.py` file in either of these two
-ways.  For example, you may want to use and debug the functions in your code
-after `import my_script`, and then run the code as a script with `python3
-my_script.py`.
-
-How does a Python file know whether it is being executed as a script or
-imported as a module?
-
-To help with this problem, Python sets a variable that tells you whether you
-are currently being `import`-ed or not.   This is the `__name__` variable.
-
-Notice the double underscores on either side of the variable name.  Variables
-with double underscores on either side are often referred to as “dunder”
-variables (for Double UNDERscore).  When Python is going to set or use a
-variable or method name for its own purposes, it usually uses a dunder name,
-as here.
-
-For our purposes `__name__ == "__main__"` if our Python file is running as a
-script and `__name__` is set to the module name if the module is being
-imported.  For example, if we did `import my_script`, then, when
-`my_script.py` gets run, `__name__` will be set to `my_script`.
-
-When you do want to use your `.py` file as a script, or for importing, you
-often see this pattern at the bottom of the `.py` file:
-
+```{python}
+importlib.reload(volmeans)
 ```
-def main():
-    # Only run this function when used as a script
-    # The name "main" is only a common convention, the function could have
-    # any name.
 
+Oh dear, we were doing the `import` to get access to the code, and it's an annoying waste now, to calculate and print out the mean values when we do the import.
 
+What we would really like to be able to do, is to calculate and print out the
+values, *only* when we are *executing* the module as a script, and *not* when
+we are `import`ing the module to use the code.
+
+Luckily Python gives us a way to tell whether the code is being run as part of a script or an `import`.
+
+Before Python starts executing the code in the file, it sets a special variable, called `__name__`, that differs in the case of the executed script and the imported module.
+
+Specifically:
+
+* When *importing* the code, the `__name__` variable has a value that is a
+  string containing the name of the module.  In our case, when running `import
+  volmeans`, `__name__` is the string `'volmeans'`.
+* When *executing* the code, the `__name__` variable has the value
+  `'__main__'`.
+
+See [two underscores](dunders.Rmd) for more.
+
+## The `__name___ == "__main__"` trick
+
+When you do want to use your `.py` file *both* as a script, *and* for
+importing, you often see this pattern at the bottom of the `.py` file:
+
+```python
 if __name__ == '__main__':
     # We only get here if running the file as a script
-    main()
+    print('I am running as a script')
 ```
 
-See [`if __name__ ==
-'__main__'`](https://docs.python.org/3/library/__main__.html) in the Python
+See [if __name__ ==
+'__main__'](https://docs.python.org/3/library/__main__.html) in the Python
 documentation.
+
+Now we can solve our problem using the `volmeans.py` for importing and as a script, like this:
+
+```{python}
+# %%file volmeans.py
+""" File to calculate volume means, detect outliers
+
+Also, print out mean values (only if running as a script).
+"""
+
+import numpy as np
+
+import nibabel as nib
+
+import nipraxis
+
+
+def vol_means(image_fname):
+    """ Calculate volume means from 4D image `image_fname`
+    """
+    img = nib.load(image_fname)
+    data = img.get_fdata()
+    means = []
+    for i in range(data.shape[-1]):
+        vol = data[..., i]
+        means.append(np.mean(vol))
+    return np.array(means)
+
+
+def detect_outliers_fixed(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = np.abs(some_values - overall_mean) > thresh
+    return np.where(is_outlier)[0]
+
+
+# The new stuff:
+if __name__ == '__main__':
+    # The code is running as a script.
+    data_fname = nipraxis.fetch_file('ds107_sub012_t1r2.nii')
+    means = vol_means(data_fname)
+    print(detect_outliers_fixed(means))
+```
+
+```{python}
+# We do print out the values when running as a script:
+# %run volmeans.py
+```
+
+```{python}
+# We don't print the values when (re)importing:
+importlib.reload(volmeans)
+```
 
 ## Command line arguments
 
@@ -159,9 +431,9 @@ python3 my_script.py a_string
 Here `my_script.py` is the script, and `a_string` is the command line
 argument.
 
-You can do the same thing from within IPython:
+You can do the same thing from within Jupyter / IPython:
 
-```
+```python
 run my_script.py a_string
 ```
 
@@ -182,9 +454,63 @@ you would get:
 sys.argv == ['my_script.py', '1']
 ```
 
-# Example files
+For example, to make `volmeans.py` more useful, we might want to pass a Nipraxis filename to the script, to get it to print out the means for any Nipraxis file, like this:
 
-Example files at:
+```{python}
+# %%file volmeans.py
+""" File to calculate volume means, detect outliers
 
-* {download}`mymodule.py`
-* {download}`my_script.py`
+When run as a script, print out values for given Nipraxis file.
+"""
+
+# New import of sys.
+import sys
+
+import numpy as np
+
+import nibabel as nib
+
+import nipraxis
+
+def vol_means(image_fname):
+    """ Calculate volume means from 4D image `image_fname`
+    """
+    img = nib.load(image_fname)
+    data = img.get_fdata()
+    means = []
+    for i in range(data.shape[-1]):
+        vol = data[..., i]
+        means.append(np.mean(vol))
+    return np.array(means)
+
+
+def detect_outliers_fixed(some_values, n_stds=2):
+    overall_mean = np.mean(some_values)
+    overall_std = np.std(some_values)
+    thresh = overall_std * n_stds
+    is_outlier = np.abs(some_values - overall_mean) > thresh
+    return np.where(is_outlier)[0]
+
+
+if __name__ == '__main__':
+    # New: using sys to get first argument.
+    nipraxis_fname = sys.argv[1]
+    data_fname = nipraxis.fetch_file(nipraxis_fname)
+    means = vol_means(data_fname)
+    print(detect_outliers_fixed(means))
+```
+
+Now we can run the script like this to print out the original set of means:
+
+
+```{python}
+# Print out the values for ds107_sub012_t1r2.nii
+# %run volmeans.py ds107_sub012_t1r2.nii
+```
+
+We can also print out the mean values for any other Nipraxis file:
+
+```{python}
+# Print out the values for ds114_sub009_t2r1.nii
+# %run volmeans.py ds114_sub009_t2r1.nii
+```
