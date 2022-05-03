@@ -61,7 +61,8 @@ my_means = vol_means(data_fname)
 plt.plot(my_means)
 ```
 
-We are interested in outlier detection.  Let's make a routine to detect outliers:
+We are interested in outlier detection.  Let's make a routine to detect
+outliers:
 
 ```{python}
 def detect_outliers(some_values, n_stds=2):
@@ -85,7 +86,7 @@ These seem like useful functions.
 
 We decide we'd like to use these in another notebook.
 
-Of we go and copy / paste these functions into [another
+Off we go and copy / paste these functions into [another
 notebook](using_module.Rmd)
 
 Go there, and have a look at how it does on some more data.
@@ -96,25 +97,26 @@ Go there, and have a look at how it does on some more data.
 
 We found that the there is a mistake in the copy/pasted code.
 
-Well, of course we could fix it here, and then go and fix it in the other
-notebook.
+Of course we could fix it here, and then go and fix it in the other notebook.
 
 But, a better way, is:
 
 * Put the code in one place, for both notebooks to use
-* Fix it in one place, and later
-* Test the code!  (More later).
+* Fix it in one place, and
+* Test the code!  (More on this later).
 
 A Python *module* is a Python file with functions (and variables and other
-things) that other modules and scripts may use. These other modules and
-scripts will `import` the module.
+things) that other modules and scripts may use. These other modules and scripts
+will `import` the module.
 
 The simplest possible *module* is just a file with a `.py` extension, with
 Python code.
 
-Here I'm using the notebook machinery to write out a file to the current working directory.
+In the cell below, I'm using the notebook machinery to write some context to a
+text file called `vol_means.py` in the current working directory, with a
+``%%file`` Jupyter *magic* command at the top of the cell.
 
-Usually we would write the file with our text editor.
+Usually we would write the file with our text editor.  You will very rarely need or use the `%%file` magic; it is really only useful for demonstration notebooks like this one.
 
 ```{python}
 # %%file volmeans.py
@@ -148,49 +150,112 @@ def detect_outliers_fixed(some_values, n_stds=2):
 We now have a file in the current directory called `volmeans.py`:
 
 ```{python}
-sorted(os.listdir())
-```
-
-```{python}
 'volmeans.py' in os.listdir()
 ```
 
-We can use this module very simply - by `import`ing it, as we have imported
-other modules and libraries:
-
-```{python}
-import importlib
-```
-
-```{python}
-importlib.reload(volmeans)
-```
+We can use this new *module* very simply - by `import`ing it, as we have
+imported other modules and libraries:
 
 ```{python}
 import volmeans
 ```
 
+As with other modules, you can explore the functions and data available in this module by making a new cell, and typing `volmean.` followed by the tab key.
+
+
 ```{python}
-# volmeans.vol_means?
+# Uncomment to try exploring the volmeans module.
+# volmeans.
 ```
+
+Now we find that the functions defined in the module are attached to the imported module, `volmeans`.
 
 ```{python}
 means_again = volmeans.vol_means(data_fname)
 volmeans.detect_outliers_fixed(means_again)
 ```
 
+## Changing the module, reloading
+
+Usually, when we write a module, we import it into the notebook and use it, without need to change the module.
+
+But sometimes, if you are developing interactively, you find you want to edit the module file and rerun the code in the module.
+
+Let us simulate that process now, by writing a new, very simple module file,
+with a `print` at the end of the module.
+
+```{python}
+# %%file simplemod.py
+
+def double_me(a):
+    print(a * 2)
+
+
+print('Result of double_me on 2', doubleme(2))
+```
+
+Now, when we `import` the module, Python executes the code in the module, which first, *defines* the `double_me` function and then `print`s the result.  So, when we `import`, we see the printed result, like this:
+
+```{python}
+import simplemod
+```
+
+Now let's imagine we are still in the same Python session. For example, imagine, as is the case for us now, we are using the same Jupyter kernel.  But we want to rewrite the module to print out the result for a more interesting number.  We would do that in our text editor, but here we're using `%%file` again to simulated that process of editing and writing the file:
+
+```{python}
+# %%file simplemod.py
+
+def double_me(a):
+    print(a * 2)
+
+
+print('Result of double_me on 13', doubleme(13))
+```
+
+Then we run the `import` again.
+
+```{python}
+import simplemod
+```
+
+Oh dear - Python hasn't picked up the new version of the file.
+
+This is due to mechanism Python uses to `import` the file.  When Python does an `import` it first tries a shortcut, and only if that fails, does it load the code from the file.  The process is:
+
+1. Shortcut: Python first checks if it already has the defined module, and
+   returns that if so, otherwise;
+2. Long way round: Python reads the text file and runs the code inside.
+
+In the case above, our second `import simplemod` triggers the shortcut, where Python already has the module, so it returns the code from that module.  That is the code that existed the first time we did `import simplemod`, so we get the result of the long way round load of the original code.
+
+Usually Python's process is what we want, because we usually don't find ourselves editing Python modules after we have imported them, in the same Python session.  In that common case, the shortcut saves a lot of time, when we import the same module several times.
+
+For the rare case where we do edit the module while the Python process is running we can force the long way round, like this:
+
+```{python}
+# Library to execute the importing logic.
+import importlib
+```
+
+```{python}
+# Trigger long-way-round import of module.
+importlib.reload(volmeans)
+```
+
 ## On scripts
 
-In fact, what I would really like to do, is to be able to run this file as a *command*, like this:
+Let us return to the diagnostics problem, and `volmeans.py`.
+
+It is good that we can `import volmeans` and use in Python, but we would really like to be able to use this file as a program that we can run from the terminal command line.  We would like to be able to run this command, from the command line:
 
 ```
 python3 volmeans.py
 ```
 
-In my ideal world, this would print out the outliers for the scan
+In our ideal world, this would print out the outliers for the scan
 `ds107_sub012_t1r2.nii`.
 
-I can do this very simply, by adding some stuff to the end of the module.  I'll rename the module to avoid overwriting the old one, for now:
+We can do this very simply, by adding some stuff to the end of the module.  I'll rename the module to avoid overwriting the old one.  The addition is the `print` statement at the end of the module.  We 
 
 ```{python}
 # %%file volmeans_script.py
@@ -226,7 +291,7 @@ means = vol_means(fname)
 print(detect_outliers_fixed(means))
 ```
 
-We import run the `.py` file as we want:
+Now we can import and run the `.py` file from the command line, as we want:
 
 ```
 !python3 volmeans_script.py
