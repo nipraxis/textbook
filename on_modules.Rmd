@@ -351,8 +351,6 @@ Specifically:
 
 See [two underscores](dunders.Rmd) for more.
 
-## The `__name___ == "__main__"` trick
-
 When you do want to use your `.py` file *both* as a script, *and* for
 importing, you often see this pattern at the bottom of the `.py` file:
 
