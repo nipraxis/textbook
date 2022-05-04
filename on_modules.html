@@ -606,23 +606,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   The
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     __name___
-    </span>
-    <span class="pre">
-     ==
-    </span>
-    <span class="pre">
-     "__main__"
-    </span>
-   </code>
-   trick
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#command-line-arguments">
    Command line arguments
   </a>
@@ -664,23 +647,6 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-name-main-trick">
-   The
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     __name___
-    </span>
-    <span class="pre">
-     ==
-    </span>
-    <span class="pre">
-     "__main__"
-    </span>
-   </code>
-   trick
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
    The
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -773,7 +739,7 @@ without a loop?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f2e0f273460&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f789c99e460&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_modules_7_1.png" src="_images/on_modules_7_1.png" />
@@ -1151,9 +1117,6 @@ string containing the name of the module.  In our case, when running <code class
 <code class="docutils literal notranslate"><span class="pre">'__main__'</span></code>.</p></li>
 </ul>
 <p>See <a class="reference internal" href="dunders.html"><span class="doc std std-doc">two underscores</span></a> for more.</p>
-</div>
-<div class="section" id="id1">
-<h2>The <code class="docutils literal notranslate"><span class="pre">__name___</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> trick<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>When you do want to use your <code class="docutils literal notranslate"><span class="pre">.py</span></code> file <em>both</em> as a script, <em>and</em> for
 importing, you often see this pattern at the bottom of the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
