@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Where does Python look for modules?" href="sys_path.html" />
-    <link rel="prev" title="Modules and scripts" href="on_modules.html" />
+    <link rel="next" title="Python coding style" href="coding_style.html" />
+    <link rel="prev" title="Using assert for testing" href="assert.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -211,6 +211,49 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="voxels_by_time.html">
    Voxels and time
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Working reproducibly
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="docstrings.html">
+   Docstrings
   </a>
  </li>
 </ul>
@@ -423,44 +466,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Code organization and collaboration
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="on_modules.html">
-   Modules and scripts
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Making and breaking file paths in Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sys_path.html">
-   Where does Python look for modules?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="assert.html">
-   Using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     assert
-    </span>
-   </code>
-   for testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="coding_style.html">
-   Python coding style
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -568,6 +573,29 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pathnames">
+   Pathnames
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-ways-of-manipulating-pathnames">
+   Two ways of manipulating pathnames
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#os-path">
+   os.path
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -580,6 +608,29 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pathnames">
+   Pathnames
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-ways-of-manipulating-pathnames">
+   Two ways of manipulating pathnames
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#os-path">
+   os.path
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -588,7 +639,44 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="making-and-breaking-file-paths-in-python">
 <h1>Making and breaking file paths in Python<a class="headerlink" href="#making-and-breaking-file-paths-in-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pathnames">
+<h2>Pathnames<a class="headerlink" href="#pathnames" title="Permalink to this headline">¶</a></h2>
+<p>A pathname is a string that identifies a particular file or directory on a
+computer filesystem.</p>
+<p>For example, we can ask the pathname of the directory containing this notebook, using the <code class="docutils literal notranslate"><span class="pre">getcwd</span></code> function from the <code class="docutils literal notranslate"><span class="pre">os</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/textbook/textbook&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="two-ways-of-manipulating-pathnames">
+<h2>Two ways of manipulating pathnames<a class="headerlink" href="#two-ways-of-manipulating-pathnames" title="Permalink to this headline">¶</a></h2>
+<p>There are two standard ways of manipulating pathnames in Python.</p>
+<ul class="simple">
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">os.path</span></code> module, covered in this page.</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module.</p></li>
+</ul>
+<p>Of the two techniques, the <code class="docutils literal notranslate"><span class="pre">os.path</span></code> way is rather simpler, but it covers a
+smaller range of tasks.  It can also be more verbose. <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> does more, and
+can give you nice-looking, concise code, but it does rely on a particularly
+Python way of thinking.   You will see examples of both in lots of modern
+code, but we concentrate on <code class="docutils literal notranslate"><span class="pre">os.path</span></code> here, because we think it is easier when
+you are getting started.</p>
+</div>
+<div class="section" id="os-path">
+<h2>os.path<a class="headerlink" href="#os-path" title="Permalink to this headline">¶</a></h2>
 <p>See: <a class="reference external" href="https://docs.python.org/3.5/library/os.path.html">https://docs.python.org/3.5/library/os.path.html</a></p>
+<p>Here we will cover:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">os.path</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dirname,</span> <span class="pre">basename,</span> <span class="pre">join,</span> <span class="pre">splitext,</span> <span class="pre">abspath</span></code></p></li>
@@ -603,32 +691,17 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In IPython, you can tab complete on <code class="docutils literal notranslate"><span class="pre">os.path</span></code> to list the functions and
 attributes there.</p>
 <p>The first function we will use from <code class="docutils literal notranslate"><span class="pre">os.path</span></code> is <code class="docutils literal notranslate"><span class="pre">dirname</span></code>.  To avoid
-typing <code class="docutils literal notranslate"><span class="pre">os.path.dirname</span></code> all the time, import the <code class="docutils literal notranslate"><span class="pre">dirname</span></code> function
-directly into the current name-space, by using the <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module</span> <span class="pre">import</span> <span class="pre">...</span></code>
-version of the <code class="docutils literal notranslate"><span class="pre">import</span></code> command:</p>
+typing <code class="docutils literal notranslate"><span class="pre">os.path</span></code> all the time, we import <code class="docutils literal notranslate"><span class="pre">os.path</span></code> with the shortened name
+<code class="docutils literal notranslate"><span class="pre">op</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span>
-<span class="n">dirname</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="n">op</span><span class="o">.</span><span class="n">dirname</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function posixpath.dirname(p)&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This gives &quot;os.path.dirname&quot; the name &quot;dirname&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span>
-<span class="n">dirname</span> <span class="ow">is</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -639,7 +712,7 @@ machines:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -649,18 +722,22 @@ machines:</p>
 </div>
 </div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># On Windows</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">a</span><span class="se">\\</span><span class="s1">full</span><span class="se">\\</span><span class="s1">path</span><span class="se">\\</span><span class="s1">then_filename.txt&#39;</span><span class="p">)</span> 
-<span class="go">&#39;c:\\a\\full\\path&#39;</span>
+<p>You’ll see something like this as output if you run something similar on
+Windows.  So <code class="docutils literal notranslate"><span class="pre">op.dirname('c:\\a\\full\\path\\then_filename.txt')</span> </code> will give:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">a</span><span class="se">\\</span><span class="s1">full</span><span class="se">\\</span><span class="s1">path&#39;</span>
 </pre></div>
 </div>
+<p>Notice that, on Windows, you need to use double backslashes, because the
+backslash in a Python string is a way of <em>escaping</em> a character — meaning, to
+specify you mean exactly that character.  Double backslash has the meaning
+“Yes, I do mean exactly backslash for the next character”.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dirname</span></code> also works for relative paths,  A relative path where the starting
 directory is relative to the current directory, rather than absolute, in terms
 of the root of the file system:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -673,9 +750,8 @@ of the root of the file system:</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">basename</span></code> to get the filename rather than the directory name:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">basename</span>
-<span class="c1"># On Unix</span>
-<span class="n">basename</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
+<span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -687,15 +763,14 @@ of the root of the file system:</p>
 </div>
 <p>Sometimes you want to join one or more directory names with a filename to get
 a path.   Windows and Unix have different characters to separate directories
-in a path.  Windows uses the backslash: <code class="docutils literal notranslate"><span class="pre">\\</span></code>, Unix uses a forward slash:
-<code class="docutils literal notranslate"><span class="pre">/</span></code>.  If your code will run on Windows and Unix, you need to take care that
+in a path.  Windows uses the backslash: <code class="docutils literal notranslate"><span class="pre">\</span></code>, Unix uses a forward slash:
+<code class="docutils literal notranslate"><span class="pre">/</span></code>. If your code will run on Windows and Unix, you need to take care that
 you get the right character joining your paths.  This is what <code class="docutils literal notranslate"><span class="pre">os.path.join</span></code>
 does:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
-<span class="c1"># On Unix</span>
-<span class="n">join</span><span class="p">(</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
+<span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -705,19 +780,13 @@ does:</p>
 </div>
 </div>
 </div>
-<p>This also works on Windows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># On Windows</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;then_filename.txt&#39;</span><span class="p">)</span>  
-<span class="go">&#39;relative\\path\\then_filename.txt&#39;</span>
-</pre></div>
-</div>
+<p>This also works on Windows.  <code class="docutils literal notranslate"><span class="pre">op.join('relative',</span> <span class="pre">'path',</span> <span class="pre">'then_filename.txt')</span></code> gives output <code class="docutils literal notranslate"><span class="pre">'relative\\path\\then_filename.txt'</span></code>.</p>
 <p>To convert a relative to an absolute path, use <code class="docutils literal notranslate"><span class="pre">abspath</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">abspath</span>
-<span class="c1"># Show the current working directory</span>
-<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>  
-<span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>  
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the current working directory</span>
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -731,14 +800,14 @@ does:</p>
 extension:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">splitext</span>
-<span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;relative/path/then_filename&#39;, &#39;.txt&#39;)
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -769,17 +838,17 @@ extension:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="on_modules.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="assert.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Modules and scripts</p>
+            <p class="prev-next-title">Using <code class="docutils literal notranslate"><span class="pre">assert</span></code> for testing</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="sys_path.html" title="next page">
+    <a class='right-next' id="next-link" href="coding_style.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Where does Python look for modules?</p>
+        <p class="prev-next-title">Python coding style</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

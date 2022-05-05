@@ -55,19 +55,11 @@ function:
 print(func.__doc__)
 ```
 
-One of the most useful features of [IPython] is its ability to return
-docstrings when you add a question mark and press return after the name of the
-function you are interested in:
+One of the most useful features of Jupyter and IPython is its ability to
+return docstrings when you add a question mark and press return after the name
+of the function you are interested in:
 
-```ipython
-In [1]: def func(arg1):
-   ...:     "This is the function docstring"
-   ...:     return arg1 * 4
-   ...:
-
-In [2]: func?
-Signature: func(arg1)
-Docstring: This is the function docstring
-File:      ~/<ipython-input-2-0233609cddfb>
-Type:      function
+```{python}
+# Uncomment and execute the cell to see help on `func`
+# func?
 ```

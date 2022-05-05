@@ -53,7 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Using assert for testing" href="assert.html" />
+    <link rel="next" title="Docstrings" href="docstrings.html" />
+    <link rel="prev" title="Making and breaking file paths in Python" href="path_manipulation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -210,6 +211,49 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="voxels_by_time.html">
    Voxels and time
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Working reproducibly
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Python coding style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="docstrings.html">
+   Docstrings
   </a>
  </li>
 </ul>
@@ -422,44 +466,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Code organization and collaboration
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="on_modules.html">
-   Modules and scripts
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="path_manipulation.html">
-   Making and breaking file paths in Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sys_path.html">
-   Where does Python look for modules?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="assert.html">
-   Using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     assert
-    </span>
-   </code>
-   for testing
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Python coding style
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -598,24 +604,24 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="python-coding-style">
 <h1>Python coding style<a class="headerlink" href="#python-coding-style" title="Permalink to this headline">¶</a></h1>
 <p>As you become more experienced in coding in general and Python coding in
-particular, you will find that your code improves in various ways if you use a
-consistent coding style.</p>
+particular, you will find that your code improves in various ways if you use
+a consistent coding style.</p>
 <div class="section" id="code-style-guidelines">
 <h2>Code style guidelines<a class="headerlink" href="#code-style-guidelines" title="Permalink to this headline">¶</a></h2>
 <p>Using a consistent style makes your code easier to read.  Once you have
 learned the guidelines, you will spend less time thinking about formatting and
 more time thinking about the algorithm and code structure.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#intermezzo-coding-style">https://docs.python.org/3/tutorial/controlflow.html#intermezzo-coding-style</a></p></li>
+<li><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#intermezzo-coding-style">More style
+guidelines</a>.</p></li>
 </ul>
 <p>The first link above is the official “Style Guide for Python Code”, usually
-referred to as [PEP8]. PEP is an acronym for Python Enhancement Proposal.
-There are a couple of potentially helpful tools for helping you conform to the
-standard. The <a class="reference external" href="https://pypi.python.org/pypi/pep8">pep8</a> package that
-provides a commandline tool to check your code against some of the PEP8
-standard conventions. Similarly, <a class="reference external" href="https://pypi.python.org/pypi/autopep8">autopep8</a> provides a tool to automatically
-format your code so that it conforms to the PEP8 standards.</p>
+referred to as PEP8. PEP is an acronym for Python Enhancement Proposal. There
+are a couple of potentially helpful tools for helping you conform to the
+standard. The <a class="reference external" href="https://pylint.pycqa.org">Pylint</a> Python <em>package</em> provides
+a command line tool to check your code against some of the PEP8 standard
+conventions.</p>
 </div>
 <div class="section" id="documentation-guidelines">
 <span id="id1"></span><h2>Documentation guidelines<a class="headerlink" href="#documentation-guidelines" title="Permalink to this headline">¶</a></h2>
@@ -660,12 +666,19 @@ for short snippets of code.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="assert.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="path_manipulation.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Using <code class="docutils literal notranslate"><span class="pre">assert</span></code> for testing</p>
+            <p class="prev-next-title">Making and breaking file paths in Python</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="docstrings.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Docstrings</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

@@ -1,8 +1,8 @@
 # Python coding style
 
 As you become more experienced in coding in general and Python coding in
-particular, you will find that your code improves in various ways if you use a
-consistent coding style.
+particular, you will find that your code improves in various ways if you use
+a consistent coding style.
 
 ## Code style guidelines
 
@@ -10,16 +10,16 @@ Using a consistent style makes your code easier to read.  Once you have
 learned the guidelines, you will spend less time thinking about formatting and
 more time thinking about the algorithm and code structure.
 
-- <https://www.python.org/dev/peps/pep-0008/>
-- <https://docs.python.org/3/tutorial/controlflow.html#intermezzo-coding-style>
+- [PEP8](https://www.python.org/dev/peps/pep-0008/)
+- [More style
+  guidelines](https://docs.python.org/3/tutorial/controlflow.html#intermezzo-coding-style).
 
 The first link above is the official "Style Guide for Python Code", usually
-referred to as [PEP8]. PEP is an acronym for Python Enhancement Proposal.
-There are a couple of potentially helpful tools for helping you conform to the
-standard. The [pep8](https://pypi.python.org/pypi/pep8) package that
-provides a commandline tool to check your code against some of the PEP8
-standard conventions. Similarly, [autopep8](https://pypi.python.org/pypi/autopep8) provides a tool to automatically
-format your code so that it conforms to the PEP8 standards.
+referred to as PEP8. PEP is an acronym for Python Enhancement Proposal. There
+are a couple of potentially helpful tools for helping you conform to the
+standard. The [Pylint](https://pylint.pycqa.org) Python *package* provides
+a command line tool to check your code against some of the PEP8 standard
+conventions.
 
 (documentation-guidelines)=
 

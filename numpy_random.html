@@ -216,6 +216,49 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Working reproducibly
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="docstrings.html">
+   Docstrings
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Arrays and plots
  </span>
 </p>
@@ -420,44 +463,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="whole_image_statistics.html">
    Whole-brain t tests and p values
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Code organization and collaboration
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="on_modules.html">
-   Modules and scripts
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="path_manipulation.html">
-   Making and breaking file paths in Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sys_path.html">
-   Where does Python look for modules?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="assert.html">
-   Using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     assert
-    </span>
-   </code>
-   for testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="coding_style.html">
-   Python coding style
   </a>
  </li>
 </ul>
@@ -668,7 +673,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3796330322641899
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.7642634021674068
 </pre></div>
 </div>
 </div>
@@ -682,7 +687,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14.232043049782542
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.37284707344901
 </pre></div>
 </div>
 </div>
@@ -695,14 +700,14 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[15.5383, 11.5416, 15.8772, 17.7378, 14.2448],
-       [15.7349, 13.8645, 17.8059, 15.2893, 10.8608],
-       [12.8179, 14.1127, 16.4465, 10.1572, 14.5388],
-       [14.1173, 13.9637, 15.8857, 15.286 , 14.175 ],
-       [17.8189, 17.7483, 16.3875, 17.3906, 15.2856],
-       [16.7174, 18.2073, 18.1699, 14.9211, 12.9654],
-       [11.9449, 12.5839, 15.4595, 18.3695, 12.3474],
-       [15.4968, 14.1413, 12.0003, 13.1237, 12.6595]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[15.2945, 15.1195, 11.8484, 19.1227, 13.0822],
+       [14.8568, 15.1974, 17.6722, 13.8471, 13.6482],
+       [14.1798, 17.8312, 14.3001, 15.0217, 17.1862],
+       [17.891 , 16.0095, 16.0822, 14.599 , 14.7577],
+       [15.4971, 15.7123, 15.7928, 13.3053, 11.7386],
+       [14.4603, 14.5447, 14.1056, 11.6463, 14.4083],
+       [15.1829, 15.9165, 15.1772, 12.7504, 17.9509],
+       [15.0797, 14.3951, 13.1786, 21.1707, 16.7536]])
 </pre></div>
 </div>
 </div>
@@ -716,14 +721,14 @@ mean 1 and variance 1:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.3216, -0.9687, -1.3512,  0.3573, -0.333 ],
-       [-0.6015, -1.1079,  2.0309, -1.4088,  0.7399],
-       [-0.1977,  0.6696,  0.9685, -0.6321, -2.0412],
-       [ 1.2356, -1.1742,  0.8135,  0.0749,  0.3128],
-       [-0.6972, -0.1286, -0.6875,  0.825 ,  0.3704],
-       [ 1.2934, -1.2019, -2.392 ,  0.549 ,  2.2567],
-       [ 1.3242,  1.3015,  1.5926,  0.0663, -1.8818],
-       [ 0.2146,  1.5322,  0.2154,  0.4838, -1.1015]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.4789,  2.629 , -1.8178, -2.109 ,  1.6205],
+       [-2.0917, -1.1322, -0.3556,  1.2419, -0.018 ],
+       [ 0.5741,  0.2167,  0.8485, -1.1333,  0.6264],
+       [-0.2904,  0.2021, -0.9955,  1.2194,  0.4622],
+       [ 0.523 , -0.1647, -1.7004, -1.6979,  0.1814],
+       [-0.5378, -0.924 ,  0.4044,  0.4463,  1.8903],
+       [-1.3162,  1.3886,  0.2565, -0.6466,  0.0656],
+       [-0.2304,  0.686 , -0.3844,  0.3142,  0.0183]])
 </pre></div>
 </div>
 </div>
