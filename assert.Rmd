@@ -13,12 +13,11 @@ jupyter:
 The Python `assert` statement means - "raise an error unless
 the following expression is equivalent to True".
 
-By "equivalent to True", I mean the expression returns True
-from Python {doc}`truth value testing <truthiness>`.
+By "equivalent to True", we mean the expression returns True
+from Python [truth value testing](truthiness.Rmd).
 
-`assert` raises an `AssertionError` if the statement is
-equivalent to False.  It does nothing if the statement is
-equivalent to True.
+`assert` raises an `AssertionError` if the statement is equivalent to False.
+It does nothing if the statement is equivalent to True.
 
 So, if you `assert an_expression` and there is no error, then
 the result of `an_expression` was equivalent to True.  The

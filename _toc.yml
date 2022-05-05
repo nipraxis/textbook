@@ -32,6 +32,15 @@ parts:
   - file: reshape_and_4d
   - file: voxels_by_time
 
+- caption: Working reproducibly
+  chapters:
+  - file: on_modules
+  - file: sys_path
+  - file: assert
+  - file: path_manipulation
+  - file: coding_style
+  - file: docstrings
+
 - caption: Arrays and plots
   chapters:
   - file: methods_vs_functions
@@ -74,12 +83,3 @@ parts:
   - file: multi_multiply
   - file: non_tr_onsets
   - file: whole_image_statistics
-
-- caption: Code organization and collaboration
-  chapters:
-  # - file: git_walk_through
-  - file: on_modules
-  - file: path_manipulation
-  - file: sys_path
-  - file: assert
-  - file: coding_style
