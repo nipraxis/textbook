@@ -176,7 +176,7 @@ and therefore Python looks for the `code` directory in the current working
 directory.
 
 To make the hack work when running the code from any directory, you could use
-some [path manipulation](path_manipulation.Rmd) on the [__file__ variable](dunder.Rmd):
+some [path manipulation](path_manipulation.Rmd) on the [__file__ variable](dunders.Rmd):
 
 ```{python}
 # %%file scripts/a_script.py
