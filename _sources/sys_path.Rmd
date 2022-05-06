@@ -1,13 +1,15 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -16,121 +18,156 @@ jupyter:
 
 See:
 
-* [Python docs on sys.path](https://docs.python.org/3.5/library/sys.html#sys.path);
-
-* [Python Module of the Week on: Import Path](https://pymotw.com/3/sys/imports.html#import-path).
+* [Python docs on
+  sys.path](https://docs.python.org/3/library/sys.html#sys.path);
+* [Python Module of the Week on: Import
+  Path](https://pymotw.com/3/sys/imports.html#import-path).
 
 Let’s say we have written a Python module and saved it as `a_module.py`, in
 a directory called `code`.
 
-We also have a script called `a_script.py` in a directory called
-`scripts`.
+We would normally do this with a text editor, but, for illustration, here we write out the module file using the Jupyter / IPython ``%%file`` magic command:
 
-We want to be able to `import` the code in `a_module.py` to use in
-`a_script.py`.  So, we want to be able to put his line in
-`a_script.py`:
+```{python}
+# %%file code/a_module.py
+""" This is a_module
+"""
 
+def a_func():
+    return 99
+
+print('Finished importing a_module.py')
 ```
+
+
+We also have a script called `a_script.py` in a directory called `scripts`:
+
+
+```{python}
+# %%file scripts/a_script.py
+""" This is a_script
+"""
+
 import a_module
+
+print('Result of a_func is:', a_module.a_func())
 ```
 
-The module and script might look like this:
-
-<!-- $ rm -rf code scripts another_dir
-$ mkdir code scripts
- -->
 At the moment, `a_script.py` will fail with:
 
+```{python tags=c("raises-exception")}
+run scripts/a_script.py
 ```
-$ python3 scripts/a_script.py
-Traceback (most recent call last):
-  File "scripts/a_script.py", line 1, in <module>
-    import a_module
-ModuleNotFoundError: No module named 'a_module'
+
+Above we ran the script within the Python process of the notebook, but we can also run the script in the terminal.  Here we are using the `%%bash` command at the top of the cell to run a terminal on Linux or Mac.  This may not work on Windows.
+
+Notice that running the script this way gives the same error, for the same reason:
+
+```{bash tags=c("raises-exception")}
+python3 scripts/a_script.py
 ```
 
 When Python hits the line `import a_module`, it tries to find a package or a
-module called `a_module`.  A package is a directory containing modules, but
-we will only consider modules for now.  A module is a file with a matching
-extension, such as `.py`.  So, Python is looking for a file `a_module.py`,
-and not finding it.
+module called `a_module`.  A package is a directory containing modules, but we
+will only consider modules for now.  A module is a file with a matching
+extension, such as `.py`.  So, Python is looking for a file `a_module.py`, and
+not finding it.
 
-You will see the same effect at the interactive Python console, or in
-IPython:
+We will see the same effect at the interactive Python console, or in
+Jupyter or IPython:
 
+```{python tags=c("raises-exception")}
+import a_module
 ```
 
->>> import a_module
-Traceback (most recent call last):
-  File "<input>", line 1, in <module>
-ModuleNotFoundError: No module named 'a_module'
-```
-
-## Python looks for modules in “sys.path”
+## Python looks for modules in 'sys.path'
 
 Python has a simple algorithm for finding a module with a given name, such as
 `a_module`.  It looks for a file called `a_module.py` in the directories
 listed in the variable `sys.path`.
 
+```{python}
+import sys
+
+# Show sys.path
+sys.path
 ```
 
->>> import sys
->>> type(sys.path)
-<class 'list'>
->>> for path in sys.path:
-...     print(path)
-... 
-/Volumes/zorg/mb312/dev_trees/psych-214-fall-2016/sphinxext
-/usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/python38.zip
-/usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/python3.8
-/usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/python3.8/lib-dynload
-/Volumes/zorg/mb312/.virtualenvs/spring-2022/lib/python3.8/site-packages
-```
 
 The `a_module.py` file is in the `code` directory, and this directory is
 not in the `sys.path` list.
 
-Because `sys.path` is just a Python list, like any other, we can make the
-import work by appending the `code` directory to the list.
+`sys.path` is just a Python list, like any other:
 
+```{python}
+type(sys.path)
 ```
 
->>> import sys
->>> sys.path.append('code')
->>> # Now the import will work
->>> import a_module
+That means we can make the import work in our notebook, by appending the
+`code` directory to the `sys.path` list:
+
+```{python}
+sys.path.append('code')
+
+# Now the import will work
+import a_module
 ```
 
-There are various ways of making sure a directory is always on the Python
-`sys.path` list when you run Python, including:
+There are various ways of making sure a directory is *always* on the Python
+`sys.path` list when you run Python, including.
 
-* put the directory into the contents of the `PYTHONPATH` environment
-  variable – Using PYTHONPATH
+One of them is making the module part of an installable package, and install
+it — see: [making a Python package](https://packaging.python.org/distributing)
+— but we don't cover that here.
 
-* make the module part of an installable package, and install it – see:
-  [making a Python package](https://packaging.python.org/distributing).
 
-As a crude hack, you can also put your `code` directory on the Python
-`sys.path` at the top of the files that need it:
+Now we have imported the module into this Python process, the import will work correctly in the script, executed within this Python process:
+
+```{python}
+run scripts/a_script.py
+```
+
+However, if we run the script in its own new terminal, we still get the error, because we aren't using the notebook Python process, and we therefore haven't successfully imported `a_module.py`:
+
+```{bash tags=c("raises-exception")}
+python3 scripts/a_script.py
+```
+
+As a crude solution to the problem above, you can do what we've done here, and
+put the directory containing the module into the Python `sys.path` list, at
+the top of the files that need it:
+
+```{python}
+# %%file scripts/a_script.py
+""" This is a_script
+
+We've made sure a_module is on the Python path this time.
+"""
+
+import sys
+sys.path.append('code')
+
+import a_module
+
+print('Result of a_func is:', a_module.a_func())
+```
 
 Then:
 
-```
-$ python3 scripts/a_script_with_hack.py
-Running useful function
+```{bash}
+python3 scripts/a_script.py
 ```
 
 The simple `append` above will only work when running the script from a
-directory containing the `code` subdirectory.  For example:
+directory containing the `code` subdirectory.  For example, here we are
+running a few commands in the terminal, to show that the script fails if we
+run it from another directory:
 
-```
-$ mkdir another_dir
-$ cd another_dir
-$ python3 ../scripts/a_script_with_hack.py
-Traceback (most recent call last):
-  File "../scripts/a_script_with_hack.py", line 4, in <module>
-    import a_module
-ModuleNotFoundError: No module named 'a_module'
+```{bash tags=c("raises-exception")}
+mkdir another_dir
+cd another_dir
+# Run the script, but from the new directory.
+python3 ../scripts/a_script.py
 ```
 
 This is because the directory `code` that we specified is a relative path,
@@ -138,11 +175,42 @@ and therefore Python looks for the `code` directory in the current working
 directory.
 
 To make the hack work when running the code from any directory, you could use
-some path manipulation on the The “__file__” variable:
+some [path manipulation](path_manipulation.Rmd) on the [__file__ variable](dunders.Rmd):
 
-Now the module import does work from `another_dir`:
+```{python}
+# %%file scripts/a_script.py
+""" This is a_script
 
+Another more general way of making sure the code directory is on the Python
+path.
+"""
+
+import os.path as op
+
+# Directory containing this script.
+MY_DIRECTORY = op.dirname(__file__)
+# Code directory is in the directory above the one containing the script.
+CODE_DIRECTORY = op.join(MY_DIRECTORY, '..', 'code')
+print('code directory is', CODE_DIRECTORY)
+
+# Put this directory on the path.
+import sys
+sys.path.append(CODE_DIRECTORY)
+
+import a_module
+
+print('Result of a_func is:', a_module.a_func())
 ```
-$ python3 ../scripts/a_script_with_better_hack.py
-Running useful function
+
+Now the module import does work from this directory, or from `another_dir`
+
+```{bash}
+# Running from this directory
+python3 scripts/a_script.py
+```
+
+```{bash}
+# From another_directory
+cd another_dir
+python3 ../scripts/a_script.py
 ```

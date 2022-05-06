@@ -580,7 +580,7 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python-looks-for-modules-in-sys-path">
-   Python looks for modules in “sys.path”
+   Python looks for modules in ‘sys.path’
   </a>
  </li>
 </ul>
@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python-looks-for-modules-in-sys-path">
-   Python looks for modules in “sys.path”
+   Python looks for modules in ‘sys.path’
   </a>
  </li>
 </ul>
@@ -621,110 +621,451 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Where does Python look for modules?<a class="headerlink" href="#where-does-python-look-for-modules" title="Permalink to this headline">¶</a></h1>
 <p>See:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3.5/library/sys.html#sys.path">Python docs on sys.path</a>;</p></li>
-<li><p><a class="reference external" href="https://pymotw.com/3/sys/imports.html#import-path">Python Module of the Week on: Import Path</a>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.path">Python docs on
+sys.path</a>;</p></li>
+<li><p><a class="reference external" href="https://pymotw.com/3/sys/imports.html#import-path">Python Module of the Week on: Import
+Path</a>.</p></li>
 </ul>
 <p>Let’s say we have written a Python module and saved it as <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code>, in
 a directory called <code class="docutils literal notranslate"><span class="pre">code</span></code>.</p>
-<p>We also have a script called <code class="docutils literal notranslate"><span class="pre">a_script.py</span></code> in a directory called
-<code class="docutils literal notranslate"><span class="pre">scripts</span></code>.</p>
-<p>We want to be able to <code class="docutils literal notranslate"><span class="pre">import</span></code> the code in <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code> to use in
-<code class="docutils literal notranslate"><span class="pre">a_script.py</span></code>.  So, we want to be able to put his line in
-<code class="docutils literal notranslate"><span class="pre">a_script.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">a_module</span>
+<p>We would normally do this with a text editor, but, for illustration, here we write out the module file using the Jupyter / IPython <code class="docutils literal notranslate"><span class="pre">%%file</span></code> magic command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> code/a_module.py
+<span class="sd">&quot;&quot;&quot; This is a_module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">a_func</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">99</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finished importing a_module.py&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The module and script might look like this:</p>
-<!-- $ rm -rf code scripts another_dir
-$ mkdir code scripts
- -->
-<p>At the moment, <code class="docutils literal notranslate"><span class="pre">a_script.py</span></code> will fail with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 scripts/a_script.py
-Traceback (most recent call last):
-  File &quot;scripts/a_script.py&quot;, line 1, in &lt;module&gt;
-    import a_module
-ModuleNotFoundError: No module named &#39;a_module&#39;
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing code/a_module.py
 </pre></div>
+</div>
+</div>
+</div>
+<p>We also have a script called <code class="docutils literal notranslate"><span class="pre">a_script.py</span></code> in a directory called <code class="docutils literal notranslate"><span class="pre">scripts</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> scripts/a_script.py
+<span class="sd">&quot;&quot;&quot; This is a_script</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">a_module</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result of a_func is:&#39;</span><span class="p">,</span> <span class="n">a_module</span><span class="o">.</span><span class="n">a_func</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing scripts/a_script.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>At the moment, <code class="docutils literal notranslate"><span class="pre">a_script.py</span></code> will fail with:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="n">scripts</span><span class="o">/</span><span class="n">a_script</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">File</span> <span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">textbook</span><span class="o">/</span><span class="n">textbook</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">a_script</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="sd">&quot;&quot;&quot; This is a_script</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">a_module</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result of a_func is:&#39;</span><span class="p">,</span> <span class="n">a_module</span><span class="o">.</span><span class="n">a_func</span><span class="p">())</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;a_module&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Above we ran the script within the Python process of the notebook, but we can also run the script in the terminal.  Here we are using the <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> command at the top of the cell to run a terminal on Linux or Mac.  This may not work on Windows.</p>
+<p>Notice that running the script this way gives the same error, for the same reason:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+python3 scripts/a_script.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;/home/runner/work/textbook/textbook/scripts/a_script.py&quot;, line 4, in &lt;module&gt;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    import a_module
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModuleNotFoundError: No module named &#39;a_module&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;python3 scripts/a_script.py</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2357,</span> in <span class="ni">InteractiveShell.run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2355</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2356</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2357</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2358</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/magics/script.py:153,</span> in <span class="ni">ScriptMagics._make_script_magic.&lt;locals&gt;.named_script_magic</span><span class="nt">(line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
+<span class="ne">--&gt; </span><span class="mi">153</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/magics/script.py:305,</span> in <span class="ni">ScriptMagics.shebang</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="c1"># If we get here and p.returncode is still None, we must have</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="c1"># killed it but not yet seen its return code. We don&#39;t wait for it,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="c1"># in case it&#39;s stuck in uninterruptible sleep. -9 = SIGKILL</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">rc</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">9</span>
+<span class="ne">--&gt; </span><span class="mi">305</span>     <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="ne">CalledProcessError</span>: Command &#39;b&#39;python3 scripts/a_script.py\n&#39;&#39; returned non-zero exit status 1.
+</pre></div>
+</div>
+</div>
 </div>
 <p>When Python hits the line <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">a_module</span></code>, it tries to find a package or a
-module called <code class="docutils literal notranslate"><span class="pre">a_module</span></code>.  A package is a directory containing modules, but
-we will only consider modules for now.  A module is a file with a matching
-extension, such as <code class="docutils literal notranslate"><span class="pre">.py</span></code>.  So, Python is looking for a file <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code>,
-and not finding it.</p>
-<p>You will see the same effect at the interactive Python console, or in
-IPython:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">a_module</span>
-<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">&quot;&lt;input&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;a_module&#39;</span>
+module called <code class="docutils literal notranslate"><span class="pre">a_module</span></code>.  A package is a directory containing modules, but we
+will only consider modules for now.  A module is a file with a matching
+extension, such as <code class="docutils literal notranslate"><span class="pre">.py</span></code>.  So, Python is looking for a file <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code>, and
+not finding it.</p>
+<p>We will see the same effect at the interactive Python console, or in
+Jupyter or IPython:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">a_module</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">a_module</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;a_module&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="python-looks-for-modules-in-sys-path">
-<h2>Python looks for modules in “sys.path”<a class="headerlink" href="#python-looks-for-modules-in-sys-path" title="Permalink to this headline">¶</a></h2>
+<h2>Python looks for modules in ‘sys.path’<a class="headerlink" href="#python-looks-for-modules-in-sys-path" title="Permalink to this headline">¶</a></h2>
 <p>Python has a simple algorithm for finding a module with a given name, such as
 <code class="docutils literal notranslate"><span class="pre">a_module</span></code>.  It looks for a file called <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code> in the directories
 listed in the variable <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-&gt;&gt;&gt; import sys
-&gt;&gt;&gt; type(sys.path)
-&lt;class &#39;list&#39;&gt;
-&gt;&gt;&gt; for path in sys.path:
-...     print(path)
-... 
-/Volumes/zorg/mb312/dev_trees/psych-214-fall-2016/sphinxext
-/usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/python38.zip
-/usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/python3.8
-/usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/python3.8/lib-dynload
-/Volumes/zorg/mb312/.virtualenvs/spring-2022/lib/python3.8/site-packages
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Show sys.path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/runner/work/textbook/textbook&#39;,
+ &#39;/opt/hostedtoolcache/Python/3.9.12/x64/lib/python39.zip&#39;,
+ &#39;/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9&#39;,
+ &#39;/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/lib-dynload&#39;,
+ &#39;&#39;,
+ &#39;/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code> file is in the <code class="docutils literal notranslate"><span class="pre">code</span></code> directory, and this directory is
 not in the <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> list.</p>
-<p>Because <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> is just a Python list, like any other, we can make the
-import work by appending the <code class="docutils literal notranslate"><span class="pre">code</span></code> directory to the list.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Now the import will work</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">a_module</span>
+<p><code class="docutils literal notranslate"><span class="pre">sys.path</span></code> is just a Python list, like any other:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>There are various ways of making sure a directory is always on the Python
-<code class="docutils literal notranslate"><span class="pre">sys.path</span></code> list when you run Python, including:</p>
-<ul class="simple">
-<li><p>put the directory into the contents of the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> environment
-variable – Using PYTHONPATH</p></li>
-<li><p>make the module part of an installable package, and install it – see:
-<a class="reference external" href="https://packaging.python.org/distributing">making a Python package</a>.</p></li>
-</ul>
-<p>As a crude hack, you can also put your <code class="docutils literal notranslate"><span class="pre">code</span></code> directory on the Python
-<code class="docutils literal notranslate"><span class="pre">sys.path</span></code> at the top of the files that need it:</p>
-<p>Then:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 scripts/a_script_with_hack.py
-Running useful function
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
 </pre></div>
+</div>
+</div>
+</div>
+<p>That means we can make the import work in our notebook, by appending the
+<code class="docutils literal notranslate"><span class="pre">code</span></code> directory to the <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+
+<span class="c1"># Now the import will work</span>
+<span class="kn">import</span> <span class="nn">a_module</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished importing a_module.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are various ways of making sure a directory is <em>always</em> on the Python
+<code class="docutils literal notranslate"><span class="pre">sys.path</span></code> list when you run Python, including.</p>
+<p>One of them is making the module part of an installable package, and install
+it — see: <a class="reference external" href="https://packaging.python.org/distributing">making a Python package</a>
+— but we don’t cover that here.</p>
+<p>Now we have imported the module into this Python process, the import will work correctly in the script, executed within this Python process:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="n">scripts</span><span class="o">/</span><span class="n">a_script</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result of a_func is: 99
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, if we run the script in its own new terminal, we still get the error, because we aren’t using the notebook Python process, and we therefore haven’t successfully imported <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code>:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+python3 scripts/a_script.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;/home/runner/work/textbook/textbook/scripts/a_script.py&quot;, line 4, in &lt;module&gt;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    import a_module
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModuleNotFoundError: No module named &#39;a_module&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;python3 scripts/a_script.py</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2357,</span> in <span class="ni">InteractiveShell.run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2355</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2356</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2357</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2358</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/magics/script.py:153,</span> in <span class="ni">ScriptMagics._make_script_magic.&lt;locals&gt;.named_script_magic</span><span class="nt">(line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
+<span class="ne">--&gt; </span><span class="mi">153</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/magics/script.py:305,</span> in <span class="ni">ScriptMagics.shebang</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="c1"># If we get here and p.returncode is still None, we must have</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="c1"># killed it but not yet seen its return code. We don&#39;t wait for it,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="c1"># in case it&#39;s stuck in uninterruptible sleep. -9 = SIGKILL</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">rc</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">9</span>
+<span class="ne">--&gt; </span><span class="mi">305</span>     <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="ne">CalledProcessError</span>: Command &#39;b&#39;python3 scripts/a_script.py\n&#39;&#39; returned non-zero exit status 1.
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a crude solution to the problem above, you can do what we’ve done here, and
+put the directory containing the module into the Python <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> list, at
+the top of the files that need it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> scripts/a_script.py
+<span class="sd">&quot;&quot;&quot; This is a_script</span>
+
+<span class="sd">We&#39;ve made sure a_module is on the Python path this time.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">a_module</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result of a_func is:&#39;</span><span class="p">,</span> <span class="n">a_module</span><span class="o">.</span><span class="n">a_func</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting scripts/a_script.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+python3 scripts/a_script.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished importing a_module.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result of a_func is: 99
+</pre></div>
+</div>
+</div>
 </div>
 <p>The simple <code class="docutils literal notranslate"><span class="pre">append</span></code> above will only work when running the script from a
-directory containing the <code class="docutils literal notranslate"><span class="pre">code</span></code> subdirectory.  For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir another_dir
-$ cd another_dir
-$ python3 ../scripts/a_script_with_hack.py
-Traceback (most recent call last):
-  File &quot;../scripts/a_script_with_hack.py&quot;, line 4, in &lt;module&gt;
-    import a_module
-ModuleNotFoundError: No module named &#39;a_module&#39;
+directory containing the <code class="docutils literal notranslate"><span class="pre">code</span></code> subdirectory.  For example, here we are
+running a few commands in the terminal, to show that the script fails if we
+run it from another directory:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+mkdir another_dir
+cd another_dir
+# Run the script, but from the new directory.
+python3 ../scripts/a_script.py
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  File &quot;/home/runner/work/textbook/textbook/another_dir/../scripts/a_script.py&quot;, line 9, in &lt;module&gt;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    import a_module
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModuleNotFoundError: No module named &#39;a_module&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">Input In [13],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mkdir another_dir</span><span class="se">\n</span><span class="s1">cd another_dir</span><span class="se">\n</span><span class="s1"># Run the script, but from the new directory.</span><span class="se">\n</span><span class="s1">python3 ../scripts/a_script.py</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2357,</span> in <span class="ni">InteractiveShell.run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2355</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2356</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2357</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2358</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/magics/script.py:153,</span> in <span class="ni">ScriptMagics._make_script_magic.&lt;locals&gt;.named_script_magic</span><span class="nt">(line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
+<span class="ne">--&gt; </span><span class="mi">153</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/IPython/core/magics/script.py:305,</span> in <span class="ni">ScriptMagics.shebang</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="c1"># If we get here and p.returncode is still None, we must have</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="c1"># killed it but not yet seen its return code. We don&#39;t wait for it,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="c1"># in case it&#39;s stuck in uninterruptible sleep. -9 = SIGKILL</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">rc</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">9</span>
+<span class="ne">--&gt; </span><span class="mi">305</span>     <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+
+<span class="ne">CalledProcessError</span>: Command &#39;b&#39;mkdir another_dir\ncd another_dir\n# Run the script, but from the new directory.\npython3 ../scripts/a_script.py\n&#39;&#39; returned non-zero exit status 1.
+</pre></div>
+</div>
+</div>
 </div>
 <p>This is because the directory <code class="docutils literal notranslate"><span class="pre">code</span></code> that we specified is a relative path,
 and therefore Python looks for the <code class="docutils literal notranslate"><span class="pre">code</span></code> directory in the current working
 directory.</p>
 <p>To make the hack work when running the code from any directory, you could use
-some path manipulation on the The “<strong>file</strong>” variable:</p>
-<p>Now the module import does work from <code class="docutils literal notranslate"><span class="pre">another_dir</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 ../scripts/a_script_with_better_hack.py
-Running useful function
+some <a class="reference internal" href="path_manipulation.html"><span class="doc std std-doc">path manipulation</span></a> on the <a class="reference internal" href="dunders.html"><span class="doc std std-doc"><strong>file</strong> variable</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> scripts/a_script.py
+<span class="sd">&quot;&quot;&quot; This is a_script</span>
+
+<span class="sd">Another more general way of making sure the code directory is on the Python</span>
+<span class="sd">path.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="c1"># Directory containing this script.</span>
+<span class="n">MY_DIRECTORY</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="c1"># Code directory is in the directory above the one containing the script.</span>
+<span class="n">CODE_DIRECTORY</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MY_DIRECTORY</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;code directory is&#39;</span><span class="p">,</span> <span class="n">CODE_DIRECTORY</span><span class="p">)</span>
+
+<span class="c1"># Put this directory on the path.</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CODE_DIRECTORY</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">a_module</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result of a_func is:&#39;</span><span class="p">,</span> <span class="n">a_module</span><span class="o">.</span><span class="n">a_func</span><span class="p">())</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting scripts/a_script.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the module import does work from this directory, or from <code class="docutils literal notranslate"><span class="pre">another_dir</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+# Running from this directory
+python3 scripts/a_script.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>code directory is /home/runner/work/textbook/textbook/scripts/../code
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished importing a_module.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result of a_func is: 99
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+# From another_directory
+cd another_dir
+python3 ../scripts/a_script.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>code directory is /home/runner/work/textbook/textbook/another_dir/../scripts/../code
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished importing a_module.py
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result of a_func is: 99
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
