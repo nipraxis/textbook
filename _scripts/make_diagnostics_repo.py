@@ -52,6 +52,7 @@ def make_repo(repo_suffix, repo_admin, data_no, out_dir=None):
          '--silent',
         ],
         cwd=repo_path)
+    print(f'{BASE_URL}/{out_org_repo}')
 
 
 def get_parser():
