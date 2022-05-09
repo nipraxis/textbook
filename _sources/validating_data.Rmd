@@ -1,0 +1,141 @@
+---
+jupyter:
+  orphan: true
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Validating data
+
+(diagnostics-preparation)=
+
+## Getting your diagnostics data
+
+Go to your fork of your diagnostics repository, and follow the instructions in the `README.md` file *Get the data section*.
+
+- Your `data` directory should now a directory called `group-0?` where `?` ia a
+  number from 0 through 2.  This directory in turn contains 10 subdirectories
+  of form `sub-0?`, where `?` is a number between 1 and 10. Each of these
+  directories contain a `func` directory, which each contain two `.nii.gz`
+  files.  These are the FMRI data files.  There are matching `.tsv` files that contain the event onset data for the task during each scanning run.  You will also see a file of form `group-0?/hash_list.txt`.
+- Now do `git status`.  You will see that note of the files you have just
+  unpackaged show up in Git's listing of untracked files. This is because we
+  put a clever `.gitignore` file in the `data` directory, to tell git to ignore
+  all files.
+- You can see the file by opening it in your text editor, or with `more
+  data/group-0?/.gitignore` at the terminal (where `?` is the number that matches your data, from 0 through 2).
+- In fact, you do want to put the `data/group-0?/hash_list.txt` file into Git
+  version control.  To do this, make a new branch, checkout that branch, and
+  then run `git add -f data/group-0?/hash_list.txt`  The `-f` tells Git to add
+  the file, even though the `.gitignore` file says to ignore it.  Run `git
+  status` to check that you did add the file to the staging area.  Commit your
+  change, push up your branch and make a PR to the main repo.  Someone should
+  merge this.
+- Now have a look at `data/group-0?/hash_list.txt`. For each of the files,
+  `hash_list.txt` has a line with the SHA1 hash for that file, and the
+  filename, separated by a space;
+- You want to be able to confirm that your data has not been overwritten or
+  corrupted since you downloaded it.  To do this, you need to calculate the
+  current hash for each of the unpacked `.nii.gz` and `.tsv` files and compare
+  it to the hash value in `hash_list.txt`;
+- Now run `python3 scripts/validate_data.py data`.  When you first run this
+  file, it will fail;
+- In due course, you will edit `scripts/validate_data.py` in your text editor
+  to fix.  See below.
+
+## Some code you will need
+
+### Reading bytes from a file
+
+```{python}
+def read_file_as_bytes(fname):
+    fobj = open(fname, 'rb')  # 'rb' means Read Bytes.
+    byte_contents = fobj.read()
+    fobj.close()
+    return byte_contents
+```
+
+See [os.path](path_manipulation.Rmd)
+
+```{python}
+import os.path as op
+
+# A picture (in fact, the logo for the textbook)
+fname = op.join('images', 'reggie.png')
+```
+
+```{python}
+reggie_bytes = read_file_as_bytes(fname)
+reggie_bytes[:10]
+```
+
+Even better, we can use the `with` construct with `open`, to close the file automatically:
+
+```{python}
+def read_file_as_bytes(fname):
+    with open(fname, 'rb') as fobj:  # 'rb' means Read Bytes.
+        byte_contents = fobj.read()
+    return byte_contents
+```
+
+```{python}
+reggie_bytes = read_file_as_bytes(fname)
+reggie_bytes[:10]
+```
+
+### Calculating a hash from the bytes
+
+You have seen hashes in [Curious
+Git](https://matthew-brett.github.io/curious-git).
+
+A *hash* is a signature for a file.   Every unique sequence of bytes has a (near-as-dammit) *unique* hash signature.
+
+We are going to use the [SHA1 hash](https://en.wikipedia.org/wiki/SHA-1).  Hash algorithms are in the `hashlib` standard Python module:
+
+```{python}
+import hashlib
+```
+
+Here's the SHA1 hash for the `reggie.png` file:
+
+```{python}
+hashlib.sha1(reggie_bytes).hexdigest()
+```
+
+If you are on Mac, or have the command installed on Linux, you can see whether
+the command line version of this calculation agrees with your Python
+calculation:
+
+```{bash}
+sha1sum images/reggie.png
+```
+
+### Crashing out with an error
+
+
+Sometimes your code will discover unexpected and horrible things, and you will
+want to crash out of the code with an informative error.  You can crash out
+with an error using `raise`, and some type of error, and a message.  For
+example:
+
+```{python tags=c("raises-exception")}
+even_no = 3
+if (even_no % 2) != 0:   # Oh no, it's not an even number
+    raise ValueError(f'Oh no, {even_no} is not an even number')
+```
+
+## On to the exercise
+
+Now run `python3 scripts/validate_data.py data`.  It will fail.  Use the code
+suggestions above to edit the `validate_data.py` script and fix it, so it
+correctly checks all the hashes of the listed data files.

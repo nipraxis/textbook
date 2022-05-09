@@ -1,0 +1,212 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# On testing
+
+When we write code, most of the time, we make mistakes. These mistakes can be
+hard to see.
+
+Most untrained programmers write code, try it a few times at the interactive
+prompt, get the answers they expect, and then assume the code is OK.
+
+Long experience shows that this is [rarely
+true](https://dev.to/stellacrowhurst/if-it-s-not-tested-it-s-broken-how-we-test-infrastructure-code-80d):
+
+> If it's not tested, it's broken
+
+- The code may give the right answer for some inputs and the wrong answer
+  for others that you did not test;
+- The code may not work on another system or configuration.
+
+The main way to reduce these problems is to write tests.
+
+## Writing tests
+
+
+For example, let's say we had a module called `rdmodule`, like this:
+
+```{python}
+# %%file rdmodule.py
+def rem_div(arg1, arg2):
+    """ Take `arg1` modulo 2, divide by `arg2`
+    """
+    arg1 == arg1 % 2  # Remainder of dividing by 2.
+    return arg1 / arg2
+```
+
+We call it `rdmodule` because it contains the `rem_div` function.
+
+Interactively, we might try a few numbers:
+
+```{python}
+import rdmodule
+
+# Expecting (1 % 2) / 4 = 0.25
+rdmodule.rem_div(1, 4)
+```
+
+```{python}
+# Expecting (0 % 2) / 3 = 0
+rdmodule.rem_div(0, 3)
+```
+
+That looks right so far. But, if we had explored further, we would have found
+there's a problem:
+
+```{python}
+# Expecting (3 % 2) / 3 = 0.3333
+rdmodule.rem_div(3, 2)
+```
+
+Oops, that was not what we wanted.  Can you see the problem?
+
+
+## Keep looking for problems
+
+
+What we should have done, was write a range of tests for this function, to check it was working as we expect it too. We could make a test using [assert](assert.Rmd).  One way of doing that is to put some tests into a function called — say — `test_rem_div`, like this:
+
+```{python}
+# %%file rdmodule.py
+def rem_div(arg1, arg2):
+    """ Take `arg1` modulo 2, divide by `arg2`
+    """
+    arg1 == arg1 % 2  # Remainder of dividing by 2.
+    return arg1 / arg2
+
+
+def test_rem_div():
+    # Expecting (1 % 2) / 4 = 0.25
+    assert rem_div(1, 4) == 1 / 4
+    # Expecting (0 % 2) / 3 = 0
+    assert rem_div(0, 3) == 0
+    # Expecting (3 % 2 / 3 = 0.3333
+    assert rem_div(3, 3) == 1 / 3
+```
+
+Of course we will have to {ref}`reload` to get the new version of the module:
+
+```{python}
+import importlib
+
+importlib.reload(rdmodule)
+```
+
+Then we can run the tests like this:
+
+```{python tags=c("raises-exception")}
+rdmodule.test_rem_div()
+```
+
+Indeed this reveals we have a problem we need to fix.  We will do that soon.
+
+Before we fix the problem, let us save ourselves the reload step, and the step of running the `test_rem_div` function by hand, by using Pytest.
+
+Pytest has a command line script, `pytest` which will look for functions that start with the name `test_` in `.py` files, and then run them.
+
+Here we are using the Bash shell terminal available in Linux and macOS to run the command as if from the command line:
+
+```{bash tags=c("raises-exception")}
+python3 -m pytest rdmodule.py
+```
+
+If you get `No module named pytest`, you may need to install it.  Check the Pytest web pages for instructions.
+
+Notice that Pytest has found the `test_rem_div` function and run it,
+finding our error.  Notice too that Pytest gives us lots of information about
+the test that failed, and the tests that it has run.
+
+Finally, we fix the function:
+
+```{python}
+# %%file rdmodule.py
+def rem_div(arg1, arg2):
+    """ Take `arg1` modulo 2, divide by `arg2`
+    """
+    # Notice the single =
+    arg1 = arg1 % 2  # Remainder of dividing by 2.
+    return arg1 / arg2
+
+
+def test_rem_div():
+    # Expecting (1 % 2) / 4 = 0.25
+    assert rem_div(1, 4) == 1 / 4
+    # Expecting (0 % 2) / 3 = 0
+    assert rem_div(0, 3) == 0
+    # Expecting (3 % 2) / 3 = 0.3333
+    assert rem_div(3, 3) == 1 / 3
+```
+
+We confirm that the tests pass.
+
+```{bash tags=c("raises-exception")}
+python3 -m pytest rdmodule.py
+```
+
+## Test modules
+
+It can get cluttered to have the `test_` functions in the same module as the
+code.  To reduce clutter, we often write the tests out as a separate file
+module, named after the module it is testing. In this case the file would be
+`test_rdmodule.py`, like this:
+
+
+```{python}
+# %%file rdmodule.py
+def rem_div(arg1, arg2):
+    """ Take `arg1` modulo 2, divide by `arg2`
+    """
+    # Notice the single =
+    arg1 = arg1 % 2  # Remainder of dividing by 2.
+    return arg1 / arg2
+```
+
+
+```{python}
+# %%file test_rdmodule.py
+
+# Import the function we are testing.
+from rdmodule import rem_div
+
+
+def test_rem_div():
+    # Expecting (1 % 2) / 4 = 0.25
+    assert rem_div(1, 4) == 1 / 4
+    # Expecting (0 % 2) / 3 = 0
+    assert rem_div(0, 3) == 0
+    # Expecting (3 % 2) / 3 = 0.3333
+    assert rem_div(3, 3) == 1 / 3
+```
+
+```{bash}
+python3 -m pytest test_rdmodule.py
+```
+
+Luckily we thought to test this case. Now we have tested it, we have fixed
+it.  We can keep testing it every time we edit the code, to make sure we
+haven't broken anything. This turns out to be very important in assuring
+yourself that your code still does what you think it does.
+
+
+## The testing habit
+
+
+Testing is a habit.  Once you have got into that habit, you will find it hard
+to break, because you will find lots of problems in your code that you did not
+suspect.  With time, you will start to feel uncomfortable if you are using
+code without tests, because you know that there's a big risk that it is wrong.
+Once that discomfort sets in, you are well on your way to become a programmer
+who can keep learning.

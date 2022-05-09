@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The image header and affine &#8212; Practice and theory of brain imaging</title>
+    <title>Module directories &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Images and affines" href="images_and_affines.html" />
-    <link rel="prev" title="General resampling between images with scipy.ndimage.map_coordinates" href="map_coordinates.html" />
+    <link rel="next" title="On testing" href="on_testing.html" />
+    <link rel="prev" title="Docstrings" href="docstrings.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -219,7 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
   Working reproducibly
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="on_modules.html">
    Modules and scripts
@@ -256,8 +256,8 @@ const thebe_selector_output = ".output, .cell_output"
    Docstrings
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="module_directories.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Module directories
   </a>
  </li>
@@ -356,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
   Coordinate systems and spatial transforms
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="diagonal_zooms.html">
    Encoding zooms (scaling) with a diagonal matrix
@@ -393,8 +393,8 @@ const thebe_selector_output = ".output, .cell_output"
    </code>
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
    The image header and affine
   </a>
  </li>
@@ -516,7 +516,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/image_header_and_affine.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/module_directories.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
@@ -536,7 +536,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fimage_header_and_affine.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fmodule_directories.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -557,14 +557,14 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/image_header_and_affine.Rmd"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/module_directories.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/image_header_and_affine.Rmd&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/module_directories.Rmd&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="_static/images/logo_jupyterhub.svg"
@@ -588,30 +588,25 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   The image header and affine
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-directory">
+   Creating the directory
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-image-affine">
-     The image affine
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nifti-images-can-also-be-img-hdr-pairs">
-   Nifti images can also be
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-mydirmod-into-a-module">
+   Making
    <code class="docutils literal notranslate">
     <span class="pre">
-     .img,
-    </span>
-    <span class="pre">
-     .hdr
+     mydirmod
     </span>
    </code>
-   pairs
+   into a module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#see-also">
+   See also
   </a>
  </li>
 </ul>
@@ -624,7 +619,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The image header and affine</h1>
+                <h1>Module directories</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -634,30 +629,25 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   The image header and affine
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-directory">
+   Creating the directory
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-image-affine">
-     The image affine
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nifti-images-can-also-be-img-hdr-pairs">
-   Nifti images can also be
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-mydirmod-into-a-module">
+   Making
    <code class="docutils literal notranslate">
     <span class="pre">
-     .img,
-    </span>
-    <span class="pre">
-     .hdr
+     mydirmod
     </span>
    </code>
-   pairs
+   into a module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#see-also">
+   See also
   </a>
  </li>
 </ul>
@@ -669,193 +659,225 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-image-header-and-affine">
-<h1>The image header and affine<a class="headerlink" href="#the-image-header-and-affine" title="Permalink to this headline">¶</a></h1>
-<p>See: <a class="reference external" href="http://nipy.org/nibabel/coordinate_systems.html">coordinate systems and affine
-transforms</a> for an
-introduction.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="module-directories">
+<h1>Module directories<a class="headerlink" href="#module-directories" title="Permalink to this headline">¶</a></h1>
+<p>In the <a class="reference internal" href="on_modules.html"><span class="doc std std-doc">modules introduction</span></a>, we found that we could make a
+Python module with a single file that has a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file extension.  The <code class="docutils literal notranslate"><span class="pre">.py</span></code>
+file has to be in directory on the <a class="reference internal" href="sys_path.html"><span class="doc std std-doc">Python path</span></a>.</p>
+<p>This is the simplest form of a Python module — a single <code class="docutils literal notranslate"><span class="pre">.py</span></code> file.</p>
+<p>These can be useful, but we often want to add many functions and attributes to our module.  This would make the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file very large.</p>
+<p>Python gives us another way of creating a module that we will call <em>module
+directories</em>.  This allows us to define a module with a <em>directory</em> that can have many <code class="docutils literal notranslate"><span class="pre">.py</span></code> files.</p>
+<p>It is easiest to see this by example.</p>
+<p><strong>Note</strong>: Here we use Python and the notebook commands to create the module.
+This is just to show the process.  Normally you would use your terminal and
+text editor to create the directories and files.</p>
+<p>We will call our new module <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> (for My Directory Module).</p>
+<div class="section" id="creating-the-directory">
+<h2>Creating the directory<a class="headerlink" href="#creating-the-directory" title="Permalink to this headline">¶</a></h2>
+<p>It’s a directory, so we first create the directory.</p>
+<p>The directory may already exist from a prior run through of this notebook, so we start by deleting the directory, if it exists.</p>
+<p>We use the <a class="reference internal" href="path_manipulation.html"><span class="doc std std-doc">os.path</span></a> routines to check if the directory
+exists, and the <code class="docutils literal notranslate"><span class="pre">rmtree</span></code> function from the <code class="docutils literal notranslate"><span class="pre">shutil</span></code> module to remove it, if it
+does:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import common modules</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># print arrays to 4DP</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="the-image-affine">
-<h2>The image affine<a class="headerlink" href="#the-image-affine" title="Permalink to this headline">¶</a></h2>
-<p>So far we have not paid much attention to the image <em>header</em>.  We first saw
-the image header in What is an image?.</p>
-<p>From that exploration, we found that image consists of:</p>
-<ul class="simple">
-<li><p>the array data;</p></li>
-<li><p>metadata (data about the array data).</p></li>
-</ul>
-<p>The header contains the metadata for the image.</p>
-<p>One piece of metadata, is the image affine.</p>
-<p>Here we fetch the image file, and load the image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the function to fetch the data file we need.</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-<span class="c1"># Fetch structural image</span>
-<span class="n">structural_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_highres.nii&#39;</span><span class="p">)</span>
-<span class="c1"># Show the file names</span>
-<span class="n">structural_fname</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove mydirmod directory if it exists.</span>
+<span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s1">&#39;mydirmod&#39;</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s1">&#39;mydirmod&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With that out of the way, we create the directory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;mydirmod&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we put a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file into that directory, using the <code class="docutils literal notranslate"><span class="pre">%%file</span></code> notebook command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mydirmod/some_module.py
+<span class="sd">&quot;&quot;&quot; A sub-module in mydirmod</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds107_sub012_highres.nii&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.3/ds107_sub012_highres.nii&#39; to &#39;/home/runner/.cache/nipraxis/0.3&#39;.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.3/ds107_sub012_highres.nii&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mydirmod/some_module.py
 </pre></div>
 </div>
 </div>
 </div>
-<p>Load the image:</p>
+<p>Just to confirm, we show the files in <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">structural_fname</span><span class="p">)</span>
-<span class="n">img</span><span class="o">.</span><span class="n">affine</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;mydirmod&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[   1.    ,    0.    ,    0.    , -127.    ],
-       [   0.    ,    1.    ,    0.    ,  -83.3253],
-       [   0.    ,    0.    ,    1.    ,  -90.0533],
-       [   0.    ,    0.    ,    0.    ,    1.    ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;some_module.py&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-<p>As you can imagine, nibabel is getting the affine from the header:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> is a directory module, let’s try importing <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code>:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mydirmod</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oh dear — <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> isn’t a module yet.  We have to do one more step.</p>
+</div>
+<div class="section" id="making-mydirmod-into-a-module">
+<h2>Making <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> into a module<a class="headerlink" href="#making-mydirmod-into-a-module" title="Permalink to this headline">¶</a></h2>
+<p>The key step to tell Python that <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> is a module, is to create an
+<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file inside the directory.  Notice the <a class="reference internal" href="dunders.html"><span class="doc std std-doc">double
+underscores</span></a>, indicating that this filename is special for
+Python.  For the moment, let’s create a file that has (virtually) nothing in
+it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mydirmod/__init__.py
+<span class="sd">&quot;&quot;&quot; An __init__.py file that only has a docstring</span>
+<span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Header&#39;&gt; object, endian=&#39;&lt;&#39;
-sizeof_hdr      : 348
-data_type       : b&#39;&#39;
-db_name         : b&#39;&#39;
-extents         : 0
-session_error   : 0
-regular         : b&#39;r&#39;
-dim_info        : 0
-dim             : [  3 256 208 192   1   1   1   1]
-intent_p1       : 0.0
-intent_p2       : 0.0
-intent_p3       : 0.0
-intent_code     : none
-datatype        : int16
-bitpix          : 16
-slice_start     : 0
-pixdim          : [1. 1. 1. 1. 0. 0. 0. 0.]
-vox_offset      : 0.0
-scl_slope       : nan
-scl_inter       : nan
-slice_end       : 0
-slice_code      : unknown
-xyzt_units      : 10
-cal_max         : 0.0
-cal_min         : 0.0
-slice_duration  : 0.0
-toffset         : 0.0
-glmax           : 0
-glmin           : 0
-descrip         : b&#39;FSL4.0&#39;
-aux_file        : b&#39;&#39;
-qform_code      : scanner
-sform_code      : scanner
-quatern_b       : 0.0
-quatern_c       : 0.0
-quatern_d       : 0.0
-qoffset_x       : -127.0
-qoffset_y       : -83.3253
-qoffset_z       : -90.05328
-srow_x          : [   1.    0.    0. -127.]
-srow_y          : [  0.       1.       0.     -83.3253]
-srow_z          : [  0.       0.       1.     -90.0533]
-intent_name     : b&#39;&#39;
-magic           : b&#39;n+1&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mydirmod/__init__.py
 </pre></div>
 </div>
 </div>
 </div>
-<p>Notice the <code class="docutils literal notranslate"><span class="pre">srow_x,</span> <span class="pre">srow_y,</span> <span class="pre">srow_z</span></code> fields in the header, that contain the
-affine for this image. It is not always this simple though – see
-<a class="reference external" href="http://nifti.nimh.nih.gov/nifti-1">http://nifti.nimh.nih.gov/nifti-1</a> for more
-details. In general, nibabel will take care of this for you, by extracting the
-affine from the header, and returning it via <code class="docutils literal notranslate"><span class="pre">img.affine</span></code>.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="nifti-images-can-also-be-img-hdr-pairs">
-<h1>Nifti images can also be <code class="docutils literal notranslate"><span class="pre">.img,</span> <span class="pre">.hdr</span></code> pairs<a class="headerlink" href="#nifti-images-can-also-be-img-hdr-pairs" title="Permalink to this headline">¶</a></h1>
-<p>So far, all the images we have seen have been NIfTI format images, stored in a
-single file with a <code class="docutils literal notranslate"><span class="pre">.nii</span></code> extension. The single file contains the header
-information, and the image array data.</p>
-<p>The NIfTI format also allows the image to be stored as two files, one with
-extension <code class="docutils literal notranslate"><span class="pre">.img</span></code> storing the image array data, and another with extension
-<code class="docutils literal notranslate"><span class="pre">.hdr</span></code> storing the header. These are called <em>NIfTI pair</em> images.</p>
-<p>For example, consider this pair of files:</p>
+<p>Hey presto, we can import the module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># File containing image data.</span>
-<span class="n">struct_img_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_highres_moved.img&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">struct_img_fname</span><span class="p">)</span>
-<span class="c1"># File containing image header.</span>
-<span class="n">struct_hdr_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_highres_moved.hdr&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">struct_hdr_fname</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mydirmod</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, tab-completion reveals that <code class="docutils literal notranslate"><span class="pre">mymod</span></code> has nothing inside it.  In particular, it does not have the <code class="docutils literal notranslate"><span class="pre">some_module.py</span></code> file sub-module, nor does it have the <code class="docutils literal notranslate"><span class="pre">myfunc</span></code> function from that sub-module.</p>
+<p>To import the sub-module, we need to do it explicitly, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mydirmod.some_module</span>
+
+<span class="c1"># Use myfunc from the sub-module.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mydirmod</span><span class="o">.</span><span class="n">some_module</span><span class="o">.</span><span class="n">myfunc</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds114_sub009_highres_moved.img&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.3/ds114_sub009_highres_moved.img&#39; to &#39;/home/runner/.cache/nipraxis/0.3&#39;.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds114_sub009_highres_moved.hdr&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.3/ds114_sub009_highres_moved.hdr&#39; to &#39;/home/runner/.cache/nipraxis/0.3&#39;.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/nipraxis/0.3/ds114_sub009_highres_moved.img
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/nipraxis/0.3/ds114_sub009_highres_moved.hdr
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>90
 </pre></div>
 </div>
 </div>
 </div>
-<p>We now have <code class="docutils literal notranslate"><span class="pre">ds114_sub009_highres_moved.img</span></code> and
-<code class="docutils literal notranslate"><span class="pre">ds114_sub009_highres_moved.hdr</span></code>. These two files together form one NIfTI
-image. You can load these with nibabel in the usual way:</p>
+<p>Actually, there is another way to get to functions in sub-modules, and that is to import the sub-module in the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file.  Let’s do that:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pair_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">struct_img_fname</span><span class="p">)</span>
-<span class="n">pair_img</span><span class="o">.</span><span class="n">affine</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mydirmod/__init__.py
+<span class="sd">&quot;&quot;&quot; An __init__.py file that only has a docstring</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Notice the . at the beginning of .some_module.</span>
+<span class="kn">from</span> <span class="nn">.some_module</span> <span class="kn">import</span> <span class="n">myfunc</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[   0.9416,   -0.4311,   -0.0586,  -98.8336],
-       [   0.336 ,    1.1887,    0.2264, -164.1377],
-       [  -0.0215,   -0.3028,    0.9723, -158.4178],
-       [   0.    ,    0.    ,    0.    ,    1.    ]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mydirmod/__init__.py
 </pre></div>
 </div>
 </div>
 </div>
-<p>This form of the NIfTI image is getting less common, because it is inconvenient
-to have to keep the <code class="docutils literal notranslate"><span class="pre">.img</span></code> and <code class="docutils literal notranslate"><span class="pre">.hdr</span></code> files together, but you may still find
-them used. They have only one advantage, which is that, if some software wants
-to change only the header information, it only has to rewrite a small <code class="docutils literal notranslate"><span class="pre">.hdr</span></code>
-file, rather than the whole <code class="docutils literal notranslate"><span class="pre">.nii</span></code> file containing the image data and the
-header.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> at the beginning of <code class="docutils literal notranslate"><span class="pre">.some_module</span></code> refers to the current directory,
+meaning, the directory containing the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file.  It tells
+<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> to import the <code class="docutils literal notranslate"><span class="pre">some_module.py</span></code> file in its directory.  <strong>Note</strong>:
+This is called a <a class="reference external" href="https://docs.python.org/3/reference/import.html#package-relative-imports">relative
+import</a>,
+because <code class="docutils literal notranslate"><span class="pre">some_module.py</span></code> is in the directory <code class="docutils literal notranslate"><span class="pre">.</span></code> <em>relative to</em> the
+<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file.  These kinds of imports only work in module directories.</p>
+<p>OK, let’s try that:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mydirmod</span>
+
+<span class="c1"># Use myfunc from the sub-module.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mydirmod</span><span class="o">.</span><span class="n">myfunc</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [11],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">mydirmod</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Use myfunc from the sub-module.</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">mydirmod</span><span class="o">.</span><span class="n">myfunc</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
+
+<span class="ne">AttributeError</span>: module &#39;mydirmod&#39; has no attribute &#39;myfunc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oh dear - it didn’t work.  Why not?  Because we need to <a class="reference internal" href="on_modules.html#reload"><span class="std std-ref">Changing the module, reloading</span></a> the
+module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
+
+<span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">mydirmod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;mydirmod&#39; from &#39;/home/runner/work/textbook/textbook/mydirmod/__init__.py&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use myfunc from the sub-module.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mydirmod</span><span class="o">.</span><span class="n">myfunc</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>90
+</pre></div>
+</div>
+</div>
+</div>
+<p>As your modules become more than slightly complicated, you will want to switch
+from using single <code class="docutils literal notranslate"><span class="pre">.py</span></code> file module, to directory modules like this one.</p>
+</div>
+<div class="section" id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.python.org/3/tutorial/modules.html">Modules</a> in the standard
+Python tutorial.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -883,17 +905,17 @@ header.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="map_coordinates.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="docstrings.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">General resampling between images with <code class="docutils literal notranslate"><span class="pre">scipy.ndimage.map_coordinates</span></code></p>
+            <p class="prev-next-title">Docstrings</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="images_and_affines.html" title="next page">
+    <a class='right-next' id="next-link" href="on_testing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Images and affines</p>
+        <p class="prev-next-title">On testing</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
