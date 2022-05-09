@@ -10,3 +10,4 @@ dipy==1.4.1
 fury==0.7.1  # pacify dipy imports
 scikit-image
 nipraxis
+pytest
