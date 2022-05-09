@@ -175,6 +175,8 @@ means_again = volmeans.vol_means(data_fname)
 volmeans.detect_outliers_fixed(means_again)
 ```
 
+(reloading)=
+
 ## Changing the module, reloading
 
 Usually, when we write a module, we import it into the notebook and use it, without need to change the module.
@@ -512,3 +514,8 @@ We can also print out the mean values for any other Nipraxis file:
 # Print out the values for ds114_sub009_t2r1.nii
 # %run volmeans.py ds114_sub009_t2r1.nii
 ```
+
+## See also
+
+[Modules](https://docs.python.org/3/tutorial/modules.html) in the standard
+Python tutorial.

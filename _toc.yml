@@ -40,6 +40,7 @@ parts:
   - file: path_manipulation
   - file: coding_style
   - file: docstrings
+  - file: module_directories
 
 - caption: Arrays and plots
   chapters:
