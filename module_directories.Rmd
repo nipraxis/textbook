@@ -42,17 +42,19 @@ It's a directory, so we first create the directory.
 The directory may already exist from a prior run through of this notebook, so we start by deleting the directory, if it exists.
 
 We use the [os.path](path_manipulation.Rmd) routines to check if the directory
-exists, and the `os.removedirs` function to remove it, if it does:
+exists, and the `rmtree` function from the `shutil` module to remove it, if it
+does:
 
 ```{python}
 import os
 import os.path as op
+import shutil
 ```
 
 ```{python}
 # Remove mydirmod directory if it exists.
 if op.isdir('mydirmod'):
-    os.removedirs('mydirmod')
+    shutil.rmtree('mydirmod')
 ```
 
 With that out of the way, we create the directory.
