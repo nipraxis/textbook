@@ -175,7 +175,7 @@ means_again = volmeans.vol_means(data_fname)
 volmeans.detect_outliers_fixed(means_again)
 ```
 
-(reloading)=
+(reload)=
 
 ## Changing the module, reloading
 

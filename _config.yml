@@ -89,6 +89,7 @@ exclude_patterns:
   - topics.md
   # Drop?
   - using_pythonpath.Rmd
+  - .pytest_cache/README.md
 
 # Define the name of the latex output file for PDF builds
 latex:
