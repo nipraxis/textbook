@@ -42,7 +42,6 @@ parts:
   - file: docstrings
   - file: module_directories
   - file: on_testing
-  # - file: data_validation
 
 - caption: Arrays and plots
   chapters:

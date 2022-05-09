@@ -73,7 +73,6 @@ exclude_patterns:
   - bibliography.md
   - classes.md
   - classes_and_labs.md
-  - diagnostics_project.md
   - ds114_sub009_highres.nii
   - example_data.md
   - exercises.md
