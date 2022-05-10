@@ -683,7 +683,8 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Validating data<a class="headerlink" href="#validating-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="getting-your-diagnostics-data">
 <span id="diagnostics-preparation"></span><h2>Getting your diagnostics data<a class="headerlink" href="#getting-your-diagnostics-data" title="Permalink to this headline">¶</a></h2>
-<p>Go to your fork of your diagnostics repository, and follow the instructions in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file <em>Get the data section</em>.</p>
+<p>Go to your fork of your diagnostics repository, and follow the instructions in
+the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file <em>Get the data section</em>.</p>
 <ul class="simple">
 <li><p>Your <code class="docutils literal notranslate"><span class="pre">data</span></code> directory should now a directory called <code class="docutils literal notranslate"><span class="pre">group-0?</span></code> where <code class="docutils literal notranslate"><span class="pre">?</span></code> ia a
 number from 0 through 2.  This directory in turn contains 10 subdirectories
@@ -718,31 +719,36 @@ to fix.  See below.</p></li>
 <h2>Some code you will need<a class="headerlink" href="#some-code-you-will-need" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="reading-bytes-from-a-file">
 <h3>Reading bytes from a file<a class="headerlink" href="#reading-bytes-from-a-file" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_file_as_bytes</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-    <span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>  <span class="c1"># &#39;rb&#39; means Read Bytes.</span>
-    <span class="n">byte_contents</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">fobj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">byte_contents</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>See <a class="reference internal" href="path_manipulation.html"><span class="doc std std-doc">os.path</span></a></p>
+<p>Imagine we wanted to read in the byte-by-byte contents of a file.</p>
+<p>We start with the filename — see <a class="reference internal" href="path_manipulation.html"><span class="doc std std-doc">os.path</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
 
 <span class="c1"># A picture (in fact, the logo for the textbook)</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;reggie.png&#39;</span><span class="p">)</span>
+<span class="n">fname</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;images/reggie.png&#39;
 </pre></div>
 </div>
 </div>
 </div>
+<p>Here we read a sequence of bytes from the file, using the <code class="docutils literal notranslate"><span class="pre">rb</span></code> argument to the
+<code class="docutils literal notranslate"><span class="pre">open</span></code> function. <code class="docutils literal notranslate"><span class="pre">r</span></code> stands for Read, <code class="docutils literal notranslate"><span class="pre">b</span></code> stands for Bytes.  We could instead
+have used <code class="docutils literal notranslate"><span class="pre">rt</span></code> to read text characters from the file.   In that case Python
+interprets the file contents as text.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reggie_bytes</span> <span class="o">=</span> <span class="n">read_file_as_bytes</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The obvious way.</span>
+<span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">reggie_bytes</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">fobj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Show the first 10 bytes of the file.</span>
 <span class="n">reggie_bytes</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -753,20 +759,14 @@ to fix.  See below.</p></li>
 </div>
 </div>
 </div>
-<p>Even better, we can use the <code class="docutils literal notranslate"><span class="pre">with</span></code> construct with <code class="docutils literal notranslate"><span class="pre">open</span></code>, to close the file automatically:</p>
+<p>Even better, we can use the <a class="reference external" href="https://python.plainenglish.io/with-statement-in-python-3bfc1984b0bf"><code class="docutils literal notranslate"><span class="pre">with</span></code>
+statement</a>
+with <code class="docutils literal notranslate"><span class="pre">open</span></code>, to close the file automatically:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_file_as_bytes</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fobj</span><span class="p">:</span>  <span class="c1"># &#39;rb&#39; means Read Bytes.</span>
-        <span class="n">byte_contents</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">byte_contents</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reggie_bytes</span> <span class="o">=</span> <span class="n">read_file_as_bytes</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fobj</span><span class="p">:</span>  <span class="c1"># &#39;rb&#39; means Read Bytes.</span>
+    <span class="n">reggie_bytes</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
 <span class="n">reggie_bytes</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -782,7 +782,8 @@ to fix.  See below.</p></li>
 <h3>Calculating a hash from the bytes<a class="headerlink" href="#calculating-a-hash-from-the-bytes" title="Permalink to this headline">¶</a></h3>
 <p>You have seen hashes in <a class="reference external" href="https://matthew-brett.github.io/curious-git">Curious
 Git</a>.</p>
-<p>A <em>hash</em> is a signature for a file.   Every unique sequence of bytes has a (near-as-dammit) <em>unique</em> hash signature.</p>
+<p>A <em>hash</em> is a signature for a file.   Every unique sequence of bytes has a
+(near-as-dammit) <em>unique</em> hash signature.</p>
 <p>We are going to use the <a class="reference external" href="https://en.wikipedia.org/wiki/SHA-1">SHA1 hash</a>.  Hash algorithms are in the <code class="docutils literal notranslate"><span class="pre">hashlib</span></code> standard Python module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -838,7 +839,7 @@ example:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="nn">Input In [7],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">even_no</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">if</span> <span class="p">(</span><span class="n">even_no</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>   <span class="c1"># Oh no, it&#39;s not an even number</span>
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Oh no, </span><span class="si">{</span><span class="n">even_no</span><span class="si">}</span><span class="s1"> is not an even number&#39;</span><span class="p">)</span>

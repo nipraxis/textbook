@@ -21,7 +21,8 @@ jupyter:
 
 ## Getting your diagnostics data
 
-Go to your fork of your diagnostics repository, and follow the instructions in the `README.md` file *Get the data section*.
+Go to your fork of your diagnostics repository, and follow the instructions in
+the `README.md` file *Get the data section*.
 
 - Your `data` directory should now a directory called `group-0?` where `?` ia a
   number from 0 through 2.  This directory in turn contains 10 subdirectories
@@ -57,39 +58,41 @@ Go to your fork of your diagnostics repository, and follow the instructions in t
 
 ### Reading bytes from a file
 
-```{python}
-def read_file_as_bytes(fname):
-    fobj = open(fname, 'rb')  # 'rb' means Read Bytes.
-    byte_contents = fobj.read()
-    fobj.close()
-    return byte_contents
-```
+Imagine we wanted to read in the byte-by-byte contents of a file.
 
-See [os.path](path_manipulation.Rmd)
+We start with the filename — see [os.path](path_manipulation.Rmd).
 
 ```{python}
 import os.path as op
 
 # A picture (in fact, the logo for the textbook)
 fname = op.join('images', 'reggie.png')
+fname
 ```
 
+Here we read a sequence of bytes from the file, using the `rb` argument to the
+`open` function. `r` stands for Read, `b` stands for Bytes.  We could instead
+have used `rt` to read text characters from the file.   In that case Python
+interprets the file contents as text.
+
 ```{python}
-reggie_bytes = read_file_as_bytes(fname)
+# The obvious way.
+fobj = open(fname, 'rb')
+reggie_bytes = fobj.read()
+fobj.close()
+
+# Show the first 10 bytes of the file.
 reggie_bytes[:10]
 ```
 
-Even better, we can use the `with` construct with `open`, to close the file automatically:
+Even better, we can use the [`with`
+statement](https://python.plainenglish.io/with-statement-in-python-3bfc1984b0bf)
+with `open`, to close the file automatically:
 
 ```{python}
-def read_file_as_bytes(fname):
-    with open(fname, 'rb') as fobj:  # 'rb' means Read Bytes.
-        byte_contents = fobj.read()
-    return byte_contents
-```
+with open(fname, 'rb') as fobj:  # 'rb' means Read Bytes.
+    reggie_bytes = fobj.read()
 
-```{python}
-reggie_bytes = read_file_as_bytes(fname)
 reggie_bytes[:10]
 ```
 
@@ -98,7 +101,8 @@ reggie_bytes[:10]
 You have seen hashes in [Curious
 Git](https://matthew-brett.github.io/curious-git).
 
-A *hash* is a signature for a file.   Every unique sequence of bytes has a (near-as-dammit) *unique* hash signature.
+A *hash* is a signature for a file.   Every unique sequence of bytes has a
+(near-as-dammit) *unique* hash signature.
 
 We are going to use the [SHA1 hash](https://en.wikipedia.org/wiki/SHA-1).  Hash algorithms are in the `hashlib` standard Python module:
 
