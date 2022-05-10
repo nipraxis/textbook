@@ -764,7 +764,7 @@ without a loop?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4495290760&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fae936a6820&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_modules_7_1.png" src="_images/on_modules_7_1.png" />
@@ -954,7 +954,9 @@ with a <code class="docutils literal notranslate"><span class="pre">print</span>
 </div>
 </div>
 </div>
-<p>Now let’s imagine we are still in the same Python session. For example, imagine, as is the case for us now, we are using the same Jupyter kernel.  But we want to rewrite the module to print out the result for a more interesting number.  We would do that in our text editor, but here we’re using <code class="docutils literal notranslate"><span class="pre">%%file</span></code> again to simulated that process of editing and writing the file:</p>
+<p>Now let’s imagine we are still in the same Python session. For example, imagine, as is the case for us now, we are using the same Jupyter kernel.  But we want to rewrite the module to print out the result for a more interesting number.</p>
+<p><strong>Note</strong> We would normally edit the module in our text editor, but here we’re
+using <code class="docutils literal notranslate"><span class="pre">%%file</span></code> again to simulate that process of editing and writing the file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> simplemod.py
@@ -981,16 +983,27 @@ with a <code class="docutils literal notranslate"><span class="pre">print</span>
 </div>
 </div>
 </div>
-<p>Oh dear - Python hasn’t picked up the new version of the file, and so, it isn’t printing the new value.  And in fact, it isn’t printing anything - it isn’t running the print statement at all.</p>
-<p>This is due to mechanism Python uses to <code class="docutils literal notranslate"><span class="pre">import</span></code> the file.  When Python does an <code class="docutils literal notranslate"><span class="pre">import</span></code> it first tries a shortcut, and only if that fails, does it load and run the code from the file.  The process is:</p>
+<p>Oh dear - Python hasn’t picked up the new version of the file.  In fact, it
+isn’t printing anything - it isn’t running the print statement at all — from
+the previous version or from the new version.</p>
+<p>This is due to the mechanism Python uses to <code class="docutils literal notranslate"><span class="pre">import</span></code> the file.  When Python
+does an <code class="docutils literal notranslate"><span class="pre">import</span></code> it first tries a <em>shortcut</em>, and only if that fails, does it
+load and run the code from the file.  The process is:</p>
 <ol class="simple">
-<li><p>Shortcut: Python first checks if it already has the defined module, and
+<li><p><strong>Shortcut</strong>: Python first checks if it already has the defined module, and
 returns that if so, otherwise;</p></li>
-<li><p>Long way round: Python reads the text file and runs the code inside.</p></li>
+<li><p><strong>Long way round</strong>: Python reads the text file and runs the code inside.</p></li>
 </ol>
-<p>In the case above, our second <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code> triggers the shortcut, where Python already has the module, so it returns the code from that module.  That is the code that existed the first time we did <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code>, so we get the result of the long way round load of the original code.</p>
-<p>Usually Python’s process is what we want, because we usually don’t find ourselves editing Python modules after we have imported them, in the same Python session.  In that common case, the shortcut saves a lot of time, when we import the same module several times.</p>
-<p>For the rare case where we do edit the module while the Python process is running we can force the long way round, like this:</p>
+<p>In the case above, our second <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code> triggers the shortcut, where
+Python already has the module, so it returns the code from that module.  That
+is the code that existed the first time we did <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code>, so we get
+the result of the long way round load of the original code.</p>
+<p>Usually Python’s mechanism is what we want, because we usually don’t find
+ourselves editing Python modules after we have imported them, in the same
+Python session.  In the common case, where we haven’t edited the module, but
+we are importing it again, the shortcut saves a lot of time.</p>
+<p>For the rare case where we do edit the module while the Python process is
+running, we can force the long way round, using a <code class="docutils literal notranslate"><span class="pre">reload</span></code>, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library to execute the importing logic.</span>
@@ -1019,13 +1032,17 @@ returns that if so, otherwise;</p></li>
 <div class="section" id="on-scripts">
 <h2>On scripts<a class="headerlink" href="#on-scripts" title="Permalink to this headline">¶</a></h2>
 <p>Let us return to the diagnostics problem, and <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code>.</p>
-<p>It is good that we can <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">volmeans</span></code> and use in Python, but we would really like to be able to use this file as a program that we can run from the terminal command line.  We would like to be able to run this command, from the command line:</p>
+<p>It is good that we can <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">volmeans</span></code> and use it in Python, but we would
+really like to be able to use this file as a <em>script</em> that we can run from
+the terminal command line.  We would like to be able to run the following
+command, from the command line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">volmeans</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>In our ideal world, this would print out the outliers for the scan
 <code class="docutils literal notranslate"><span class="pre">ds107_sub012_t1r2.nii</span></code>.</p>
-<p>We can do this very simply, by adding some stuff to the end of the module.  I’ll rename the module to avoid overwriting the old one.  The addition is the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement at the end of the module.</p>
+<p>We can do this very simply, by adding some stuff to the end of the module.
+The addition is the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement at the end of the module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> volmeans.py
@@ -1074,7 +1091,8 @@ returns that if so, otherwise;</p></li>
 </div>
 </div>
 </div>
-<p>Now we can <em>execute</em> the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file from the command line, to give the effect we want.</p>
+<p>Now we can <em>execute</em> the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file from the command line, to give the effect
+we want.</p>
 <p>Normally, to show this, you would open a terminal and type <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code>.  Here though, we will use the notebook <code class="docutils literal notranslate"><span class="pre">!</span></code> prefix to ask the notebook to execute code <em>in the terminal</em>.  So, the notebook code below has exactly the same effect as typing <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code> at the terminal.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1318,6 +1336,9 @@ you would get:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  6  12  49  50  69 165]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
