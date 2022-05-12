@@ -80,22 +80,16 @@ Just to confirm, we show the files in `mydirmod`:
 os.listdir('mydirmod')
 ```
 
-If `mydirmod` is a directory module, let's try importing `mydirmod`:
-
-```{python tags=c("raises-exception")}
-import mydirmod
-```
-
-Oh dear — `mydirmod` isn't a module yet.  We have to do one more step.
+But, our work here is not yet done.  To make the `mydirmod` into a directory
+module, we have to do one more step.
 
 
 ## Making `mydirmod` into a module
 
-The key step to tell Python that `mydirmod` is a module, is to create an
-`__init__.py` file inside the directory.  Notice the [double
-underscores](dunders.Rmd), indicating that this filename is special for
-Python.  For the moment, let's create a file that has (virtually) nothing in
-it:
+The key step to tell Python that `mydirmod` is a directory module, is to create
+an `__init__.py` file inside the directory.  Notice the [double
+underscores](dunders.Rmd), indicating that this filename is special for Python.
+For the moment, let's create a file that has (virtually) nothing in it:
 
 ```{python}
 # %%file mydirmod/__init__.py

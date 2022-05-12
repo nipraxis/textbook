@@ -737,23 +737,15 @@ does:</p>
 </div>
 </div>
 </div>
-<p>If <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> is a directory module, let’s try importing <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code>:</p>
-<div class="cell tag_raises-exception docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mydirmod</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Oh dear — <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> isn’t a module yet.  We have to do one more step.</p>
+<p>But, our work here is not yet done.  To make the <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> into a directory
+module, we have to do one more step.</p>
 </div>
 <div class="section" id="making-mydirmod-into-a-module">
 <h2>Making <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> into a module<a class="headerlink" href="#making-mydirmod-into-a-module" title="Permalink to this headline">¶</a></h2>
-<p>The key step to tell Python that <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> is a module, is to create an
-<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file inside the directory.  Notice the <a class="reference internal" href="dunders.html"><span class="doc std std-doc">double
-underscores</span></a>, indicating that this filename is special for
-Python.  For the moment, let’s create a file that has (virtually) nothing in
-it:</p>
+<p>The key step to tell Python that <code class="docutils literal notranslate"><span class="pre">mydirmod</span></code> is a directory module, is to create
+an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file inside the directory.  Notice the <a class="reference internal" href="dunders.html"><span class="doc std std-doc">double
+underscores</span></a>, indicating that this filename is special for Python.
+For the moment, let’s create a file that has (virtually) nothing in it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mydirmod/__init__.py
@@ -831,7 +823,7 @@ because <code class="docutils literal notranslate"><span class="pre">some_module
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">Input In [11],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">mydirmod</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Use myfunc from the sub-module.</span>
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">mydirmod</span><span class="o">.</span><span class="n">myfunc</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
