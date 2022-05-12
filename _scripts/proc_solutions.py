@@ -66,8 +66,6 @@ from subprocess import check_call
 from copy import deepcopy
 import argparse
 
-STRING_TYPE = str if sys.version_info[0] > 2 else basestring
-
 import pytoml as toml
 
 TOML_FNAMES = ('solution.toml', 'solutions.toml', '.solution.toml',
@@ -94,7 +92,7 @@ def format_values(value, namespace):
                      for k, v in value.items()])
     if isinstance(value, list):
         return [format_values(v, namespace) for v in value]
-    if isinstance(value, STRING_TYPE):
+    if isinstance(value, str):
         return value.format(**namespace)
     return value
 
