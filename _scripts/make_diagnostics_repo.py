@@ -12,9 +12,9 @@ from argparse import ArgumentParser, RawDescriptionHelpFormatter
 BASE_URL = 'https://github.com'
 TEMPLATE_REPO = f'{BASE_URL}/nipraxis/diagnostics-template'
 CLONE_ORG = 'nipraxis-spring-2022'
-DATA_LOOKUP = {0: '34951602',
-               1: '34951650',
-               2: '34951740'}
+DATA_LOOKUP = {0: '35098309',
+               1: '35098504',
+               2: '35098696'}
 
 
 def replace_data_id(repo_path, data_id):
