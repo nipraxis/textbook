@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Practice and theory of brain imaging &#8212; Practice and theory of brain imaging</title>
+    <title>On correlation &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The problem and the plan" href="the_problem.html" />
+    <link rel="next" title="Otsu’s method for binarizing images" href="otsu_threshold.html" />
+    <link rel="prev" title="Voxel time courses" href="voxel_time_courses.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -91,8 +92,8 @@ const thebe_selector_output = ".output, .cell_output"
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
    Practice and theory of brain imaging
   </a>
  </li>
@@ -338,14 +339,14 @@ const thebe_selector_output = ".output, .cell_output"
   Into the fourth dimension
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="voxel_time_courses.html">
    Voxel time courses
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="on_correlation.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    On correlation
   </a>
  </li>
@@ -520,9 +521,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/on_correlation.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -540,7 +541,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fon_correlation.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -556,6 +557,32 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/on_correlation.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/on_correlation.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -568,7 +595,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Practice and theory of brain imaging</h1>
+                <h1>On correlation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -579,35 +606,170 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="practice-and-theory-of-brain-imaging">
-<h1>Practice and theory of brain imaging<a class="headerlink" href="#practice-and-theory-of-brain-imaging" title="Permalink to this headline">¶</a></h1>
-<p>This is a hands-on course teaching the principles of functional MRI (fMRI)
-data analysis. We will teach you how to work with data and code to get a
-deeper understanding of how fMRI methods work, how they can fail, how to fix
-them, and how to develop new methods. We will cover the basic concepts in
-neuroimaging analysis, and how they relate to the wider world of statistics,
-engineering and computer science. At the same time we will teach you
-techniques of data analysis that will make your work easier to organize,
-understand, explain and share. Using this techniques will give you great benefits for collaborating with others, and for making your work reproducible.</p>
-<p>At the end of the course we expect you to be able to analyze fMRI data using
-Python and to track and share your work with version control using git.</p>
-<p>Please see the <a class="reference internal" href="syllabus.html"><span class="doc std std-doc">syllabus</span></a> for a more detailed list of
-subjects we will cover.</p>
-<div class="toctree-wrapper compound">
+  <div class="tex2jax_ignore mathjax_ignore section" id="on-correlation">
+<h1>On correlation<a class="headerlink" href="#on-correlation" title="Permalink to this headline">¶</a></h1>
+<p>In <a class="reference internal" href="voxel_time_courses.html"><span class="doc std std-doc">voxel time courses</span></a>, we ran a correlation between a <em>prediction</em> of a signal we would see from a task, and an <em>actual</em> voxel time-course.</p>
+<p>This is just a reminder about what correlation is, and how to calculate it.</p>
+<p>First, let us go back to where we were at the end of the <a class="reference internal" href="voxel_time_courses.html"><span class="doc std std-doc">voxel time courses</span></a> page.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Our usual set-up</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Display array values to 4 digits of precision</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
 </div>
-<div class="toctree-wrapper compound">
 </div>
-<div class="toctree-wrapper compound">
+<p>We get the files we need:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the image data file.</span>
+<span class="n">data_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
+<span class="c1"># Fetch the condition file.</span>
+<span class="n">cond_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1_cond.txt&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
 </div>
-<div class="toctree-wrapper compound">
 </div>
-<div class="toctree-wrapper compound">
+<p>Then we load the files to give our image data, and prediction of the neural signal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data, drop first volume (it was an outlier).</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the neural time course using pre-packaged function</span>
+<span class="kn">from</span> <span class="nn">nipraxis.stimuli</span> <span class="kn">import</span> <span class="n">events2neural</span>
+
+<span class="n">neural</span> <span class="o">=</span> <span class="n">events2neural</span><span class="p">(</span><span class="n">cond_fname</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># Drop the first value (it was an outlier)</span>
+<span class="n">neural</span> <span class="o">=</span> <span class="n">neural</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neural</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f193a711760&gt;]
+</pre></div>
+</div>
+<img alt="_images/on_correlation_6_1.png" src="_images/on_correlation_6_1.png" />
+</div>
+</div>
+<p>Our voxel of interest was that at position 42, 32, 19 in the 3D volume.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+
+<span class="c1"># Plot the neural prediction against the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neural</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the axis limits to give space on left and right</span>
+<span class="n">axis</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">axis</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.1, 1.1)
+</pre></div>
+</div>
+<img alt="_images/on_correlation_8_1.png" src="_images/on_correlation_8_1.png" />
+</div>
+</div>
+<p>The correlation was:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlate the neural time course with the voxel time course</span>
+<span class="n">correlation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">neural</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">correlation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5428503395516837
+</pre></div>
+</div>
+</div>
+</div>
+<p>But — what is correlation?</p>
+<p>There are several answers to that question, but we will answer it like this:</p>
+<blockquote>
+<div><p>Correlation is what you get when you turn two sequences into z-scores,
+multiply them together, and take the mean.</p>
+</div></blockquote>
+<p>Turning a sequence into a z-score is:</p>
+<ul class="simple">
+<li><p>Subtracting the mean of the sequence then</p></li>
+<li><p>Dividing by the standard deviation.</p></li>
+</ul>
+<p>Let’s do that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vtc_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">vtc_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">vtc_z_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">voxel_time_course</span> <span class="o">-</span> <span class="n">vtc_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">vtc_std</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neural_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">neural</span><span class="p">)</span>
+<span class="n">neural_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">neural</span><span class="p">)</span>
+<span class="n">neural_z_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">neural</span> <span class="o">-</span> <span class="n">neural_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">neural_std</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we multiply them together:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiplied</span> <span class="o">=</span> <span class="n">vtc_z_scores</span> <span class="o">*</span> <span class="n">neural_z_scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and take the mean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correlation_again</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">multiplied</span><span class="p">)</span>
+<span class="n">correlation_again</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5428503395516836
+</pre></div>
+</div>
+</div>
+</div>
+<p>This recalculation is very very close to the original.  And the difference is
+so tiny we can put it down to <a class="reference external" href="https://matthew-brett.github.io/teaching/floating_error.html">floating point
+error</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">correlation</span><span class="p">,</span> <span class="n">correlation_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -635,11 +797,18 @@ subjects we will cover.</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="the_problem.html" title="next page">
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="voxel_time_courses.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Voxel time courses</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="otsu_threshold.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The problem and the plan</p>
+        <p class="prev-next-title">Otsu’s method for binarizing images</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
