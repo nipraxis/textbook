@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="On correlation" href="on_correlation.html" />
+    <link rel="next" title="Otsu’s method for binarizing images" href="otsu_threshold.html" />
     <link rel="prev" title="Subplots and axes in matplotlib" href="subplots.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -346,11 +346,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="on_correlation.html">
-   On correlation
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="otsu_threshold.html">
    Otsu’s method for binarizing images
   </a>
@@ -588,6 +583,19 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-reminder-on-correlation">
+   A reminder on correlation
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -600,6 +608,19 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-reminder-on-correlation">
+   A reminder on correlation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -709,7 +730,7 @@ image.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f45cad87910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7460685910&gt;
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_10_1.png" src="_images/voxel_time_courses_10_1.png" />
@@ -730,7 +751,7 @@ with the image value at that position (43, 32, 19), for every point in time:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(172,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f45c8c9d370&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f746059a370&gt;]
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_12_2.png" src="_images/voxel_time_courses_12_2.png" />
@@ -775,7 +796,7 @@ data:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f45c8c10910&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f746050d910&gt;]
 </pre></div>
 </div>
 <img alt="_images/voxel_time_courses_15_1.png" src="_images/voxel_time_courses_15_1.png" />
@@ -806,7 +827,8 @@ time course:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlate the neural time course with the voxel time course</span>
-<span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">neural</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">corr_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">neural</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">corr_array</span>
 </pre></div>
 </div>
 </div>
@@ -814,6 +836,117 @@ time course:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.    , 0.5429],
        [0.5429, 1.    ]])
 </pre></div>
+</div>
+</div>
+</div>
+<p>Notice that Numpy has correlated <code class="docutils literal notranslate"><span class="pre">neural</span></code> with <code class="docutils literal notranslate"><span class="pre">neural</span></code> — to give 1 — and <code class="docutils literal notranslate"><span class="pre">voxel_time_course</span></code>, to give:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlation of neural (row 0) with voxel_time_course (column 1)</span>
+<span class="n">correlation</span> <span class="o">=</span> <span class="n">corr_array</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">correlation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5428503395516837
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the same way it has correlated <code class="docutils literal notranslate"><span class="pre">voxel_time_course</span></code> with <code class="docutils literal notranslate"><span class="pre">neural</span></code> and <code class="docutils literal notranslate"><span class="pre">voxel_time_course</span></code>, to give a 2 by 2 array.</p>
+<div class="section" id="a-reminder-on-correlation">
+<span id="on-correlation"></span><h2>A reminder on correlation<a class="headerlink" href="#a-reminder-on-correlation" title="Permalink to this headline">¶</a></h2>
+<p>We are sure that correlation is familiar to you, but here we define it, as a reminder.</p>
+<blockquote>
+<div><p>Correlation between two 1D arrays is the result of converting each array to
+z-scores, element-wise multiplying the z-score arrays, and taking the mean of
+the result.</p>
+</div></blockquote>
+<p>Turning an array into a z-score (AKA <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_score">standard
+score</a>) is the operation of:</p>
+<ul class="simple">
+<li><p>Subtracting the mean of the array then</p></li>
+<li><p>Dividing by the standard deviation.</p></li>
+</ul>
+<p>Let’s do that for the two arrays above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># z-scores for voxel_time_course.</span>
+<span class="n">vtc_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">vtc_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">vtc_z_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">voxel_time_course</span> <span class="o">-</span> <span class="n">vtc_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">vtc_std</span>
+<span class="c1"># Show the first 10 values.</span>
+<span class="n">vtc_z_scores</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.0652, -0.0194, -0.1109, -1.163 ,  0.4837,  1.6273,  1.673 ,
+        0.621 ,  0.4837,  0.621 ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># z-scores for neural time course</span>
+<span class="n">neural_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">neural</span><span class="p">)</span>
+<span class="n">neural_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">neural</span><span class="p">)</span>
+<span class="n">neural_z_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">neural</span> <span class="o">-</span> <span class="n">neural_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">neural_std</span>
+<span class="n">neural_z_scores</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.977 , -0.977 , -0.977 ,  1.0235,  1.0235,  1.0235,  1.0235,
+        1.0235,  1.0235,  1.0235])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we multiply them together, using the usual element by element Numpy multiplication rules for arrays:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiplied</span> <span class="o">=</span> <span class="n">vtc_z_scores</span> <span class="o">*</span> <span class="n">neural_z_scores</span>
+<span class="n">multiplied</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.0637,  0.019 ,  0.1083, -1.1903,  0.4951,  1.6656,  1.7124,
+        0.6356,  0.4951,  0.6356])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To calculate the correlation, we take the mean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correlation_again</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">multiplied</span><span class="p">)</span>
+<span class="n">correlation_again</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5428503395516836
+</pre></div>
+</div>
+</div>
+</div>
+<p>This recalculation is very very close to the original.  The difference is so
+tiny we can put it down to <a class="reference external" href="https://matthew-brett.github.io/teaching/floating_error.html">floating point
+error</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">correlation</span><span class="p">,</span> <span class="n">correlation_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -851,10 +984,10 @@ time course:</p>
             <p class="prev-next-title">Subplots and axes in matplotlib</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="on_correlation.html" title="next page">
+    <a class='right-next' id="next-link" href="otsu_threshold.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">On correlation</p>
+        <p class="prev-next-title">Otsu’s method for binarizing images</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
