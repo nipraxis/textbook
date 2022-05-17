@@ -159,6 +159,7 @@ correlation
 
 In the same way it has correlated `voxel_time_course` with `neural` and `voxel_time_course`, to give a 2 by 2 array.
 
+(on-correlation)=
 
 ## A reminder on correlation
 
