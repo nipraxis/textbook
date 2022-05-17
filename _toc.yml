@@ -60,7 +60,6 @@ parts:
 - caption: Into the fourth dimension
   chapters:
   - file: voxel_time_courses
-  - file: on_correlation
   - file: otsu_threshold
 
 - caption: Coordinate systems and spatial transforms

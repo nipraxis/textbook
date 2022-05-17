@@ -145,5 +145,73 @@ time course:
 
 ```{python}
 # Correlate the neural time course with the voxel time course
-np.corrcoef(neural, voxel_time_course)
+corr_array = np.corrcoef(neural, voxel_time_course)
+corr_array
+```
+
+Notice that Numpy has correlated `neural` with `neural` — to give 1 — and `voxel_time_course`, to give:
+
+```{python}
+# Correlation of neural (row 0) with voxel_time_course (column 1)
+correlation = corr_array[0, 1]
+correlation
+```
+
+In the same way it has correlated `voxel_time_course` with `neural` and `voxel_time_course`, to give a 2 by 2 array.
+
+
+## A reminder on correlation
+
+
+We are sure that correlation is familiar to you, but here we define it, as a reminder.
+
+> Correlation between two 1D arrays is the result of converting each array to
+> z-scores, element-wise multiplying the z-score arrays, and taking the mean of
+> the result.
+
+Turning an array into a z-score (AKA [standard
+score](https://en.wikipedia.org/wiki/Standard_score)) is the operation of:
+
+* Subtracting the mean of the array then
+* Dividing by the standard deviation.
+
+Let's do that for the two arrays above:
+
+```{python}
+# z-scores for voxel_time_course.
+vtc_mean = np.mean(voxel_time_course)
+vtc_std = np.std(voxel_time_course)
+vtc_z_scores = (voxel_time_course - vtc_mean) / vtc_std
+# Show the first 10 values.
+vtc_z_scores[:10]
+```
+
+```{python}
+# z-scores for neural time course
+neural_mean = np.mean(neural)
+neural_std = np.std(neural)
+neural_z_scores = (neural - neural_mean) / neural_std
+neural_z_scores[:10]
+```
+
+Now we multiply them together, using the usual element by element Numpy multiplication rules for arrays:
+
+```{python}
+multiplied = vtc_z_scores * neural_z_scores
+multiplied[:10]
+```
+
+To calculate the correlation, we take the mean:
+
+```{python}
+correlation_again = np.mean(multiplied)
+correlation_again
+```
+
+This recalculation is very very close to the original.  The difference is so
+tiny we can put it down to [floating point
+error](https://matthew-brett.github.io/teaching/floating_error.html).
+
+```{python}
+np.isclose(correlation, correlation_again)
 ```
