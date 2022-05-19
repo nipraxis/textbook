@@ -29,12 +29,12 @@ regression. By adding some specially formed regressors, we can also
 express group membership, and therefore do analysis of variance. This
 last step is where multiple regression becomes the general linear model.
 
-### About this page
+## About this page
 
 We go through regression and the general linear model slowly, showing
 how it works in symbols, and in code, with actual numbers.
 
-### The example regression problem
+## The example regression problem
 
 Let’s imagine that we have measured scores for a “psychopathy”
 personality trait in 12 students. We also have some other information
@@ -146,7 +146,7 @@ above) plus some error for each observation:
 
 $y_i = c + bx_i + e_i$
 
-# Simple regression in matrix form
+## Simple regression in matrix form
 
 It turns out it will be useful to rephrase the simple regression model
 in matrix form. Let’s make the data and predictor and errors into
@@ -270,7 +270,7 @@ $$
 \yvec = \Xmat \bvec + \evec
 $$
 
-## Population, sample, estimate
+### Population, sample, estimate
 
 
 $\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}$
@@ -283,7 +283,7 @@ we cannot get the true population $\bvec$ vector, we can only
 estimate as $\bhat$ to distinguish it from the true population
 parameters $\bvec$.
 
-## Solving the model with matrix algebra
+### Solving the model with matrix algebra
 
 
 The reason to formulate our problem with matrices is so we can use some
@@ -418,7 +418,7 @@ errors = psychopathy - fitted
 print(np.sum(errors ** 2))
 ```
 
-# Contrasts
+## Contrasts
 
 $\newcommand{cvec}{\mathbf{c}}$ We can combine the values in the
 $\bhat$ vector in different ways by using a *contrast* vector. A
@@ -528,7 +528,7 @@ t, p
 ```
 
 <!-- dummy-coding: -->
-# Dummy coding and the general linear model
+## Dummy coding and the general linear model
 
 So far we have been doing *multiple regression*. That is, all the
 columns (except the column of ones) are continuous vectors of numbers
@@ -621,7 +621,7 @@ The model above expresses the effect of group membership. It is the
 expression of a one-way analysis of variance (ANOVA) model using
 $\yvec = \Xmat \bvec + \evec$.
 
-# ANCOVA in the General Linear Model
+## ANCOVA in the General Linear Model
 
 Our formulation $\yvec = \Xmat \bvec + \evec$ makes it very easy
 to add extra regressors to models with group membership. For example, we
@@ -653,7 +653,7 @@ It looks like there’s not much independent effect of clamminess. The MIT
 students seem to have clammy hands, and once we know that the student is
 from MIT, the clammy score is not as useful.
 
-# Displaying the design matrix as an image
+## Displaying the design matrix as an image
 
 We can show the design as an image, by scaling the values with columns.
 
