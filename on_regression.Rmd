@@ -289,6 +289,13 @@ x_z = (x - np.mean(x)) / np.std(x)
 y_z = (y - np.mean(y)) / np.std(y)
 ```
 
+While we are here, let's calculate the correlation:
+
+```{python}
+correlation = np.mean(x_z * y_z)
+correlation
+```
+
 When we plot these z-score versions, we see that an intercept of 0 looks about
 right:
 
@@ -312,3 +319,202 @@ errors = y_z - pred_y_z
 mse_for_guess = np.mean(errors ** 2)
 mse_for_guess
 ```
+
+Our life will be easier with a function to calculate the MSE for a given slope and intercept.
+
+```{python}
+def calc_mse(x, y, slope, inter):
+    predicted = inter + slope * x
+    errors = y - predicted
+    return np.mean(errors ** 2)
+```
+
+```{python}
+calc_mse(x_z, y_z, 0.6, 0)
+```
+
+We assumed that 0 was the *best* intercept in the sense of giving the smallest MSE, but is that true?
+
+Let's try lots of intercepts, with a given slope of 0.6, and see what MSE values we get.
+
+```{python}
+# -1 to 1 in steps of 0.001
+intercepts_to_try = np.arange(2000) / 1000 - 1
+n_intercepts = len(intercepts_to_try)
+# Corresponding MSE values
+mses_for_intercepts = np.zeros(n_intercepts)
+for i in np.arange(n_intercepts):
+    inter = intercepts_to_try[i]
+    mses_for_intercepts[i] = calc_mse(x_z, y_z, 0.6, inter)
+mses_for_intercepts[:10]
+```
+
+```{python}
+plt.plot(intercepts_to_try, mses_for_intercepts)
+plt.xlabel('intercept')
+plt.ylabel('MSE for intercept')
+plt.title('MSE values for intercepts, slope=0.6')
+```
+
+```{python}
+np.min(mses_for_intercepts)
+```
+
+```{python}
+min_index = np.argmin(mses_for_intercepts)
+min_index
+```
+
+```{python}
+mses_for_intercepts[min_index]
+```
+
+```{python}
+intercepts_to_try[min_index]
+```
+
+Try a different slope - say 0.2
+
+```{python}
+# Corresponding MSE values
+mses_for_intercepts_0p2 = np.zeros(n_intercepts)
+for i in np.arange(n_intercepts):
+    inter = intercepts_to_try[i]
+    mses_for_intercepts_0p2[i] = calc_mse(x_z, y_z, 0.2, inter)
+mses_for_intercepts[:10]
+```
+
+```{python}
+plt.plot(intercepts_to_try, mses_for_intercepts_0p2)
+plt.xlabel('intercept')
+plt.ylabel('MSE for intercept')
+plt.title('MSE values for intercepts, slope=0.2')
+```
+
+```{python}
+min_index_0p2 = np.argmin(mses_for_intercepts_0p2)
+mses_for_intercepts_0p2[min_index_0p2]
+```
+
+```{python}
+intercepts_to_try[min_index_0p2]
+```
+
+Now let's find the best slope.
+
+```{python}
+# -1 to 1 in steps of 0.001
+slopes_to_try = np.arange(2000) / 1000 - 1
+n_slopes = len(slopes_to_try)
+mses_for_slopes = np.zeros(n_slopes)
+for i in np.arange(n_slopes):
+    slope = slopes_to_try[i]
+    mses_for_slopes[i] = calc_mse(x_z, y_z, slope, 0)
+mses_for_slopes[:10]
+```
+
+```{python}
+plt.plot(slopes_to_try, mses_for_slopes)
+plt.xlabel('slope')
+plt.ylabel('MSE for slope')
+plt.title('MSE values for slopes, intercept=0')
+```
+
+```{python}
+min_index_slope = np.argmin(mses_for_slopes)
+print('Min MSE for slopes', mses_for_slopes[min_index_slope])
+best_slope = slopes_to_try[min_index_slope]
+print('Slope giving min MSE', best_slope)
+```
+
+Wait - but `best_slope` is almost exactly the same as the correlation!.  And in fact, it is not exactly the same only because we are not trying every value for `slope`, but only in steps 0.001 apart.  With the `correlation` value for `slope`, we get value for MSE that is even a tiny bit *lower* than the best value we found by searching.
+
+```{python}
+calc_mse(x_z, y_z, correlation, 0)
+```
+
+The *correlation* is also the slope of the best-fit (MSE) line for the z-scored x and y values.
+
+## Regression
+
+
+For fairly simple reasons, but reasons we won't go into here, we can use the best fit line for the z-scores to give the best fit line for the original values.   First we get the best-fit slope by scaling the correlation by the standard deviations:
+
+```{python}
+best_original_slope = correlation * np.std(y) / np.std(x)
+best_original_slope
+```
+
+In fact, given we know the z-score best-fit intercept was 0, the slope tells us what the best-fit intecept must be for the original data:
+
+```{python}
+best_original_intercept = np.mean(y) - best_original_slope * np.mean(x)
+best_original_intercept
+```
+
+```{python}
+calc_mse(x, y, best_original_slope, best_original_intercept)
+```
+
+```{python}
+best_predicted_y = best_original_intercept + best_original_slope * x
+```
+
+```{python}
+# Plot the data with the new line
+plt.plot(x, y, '+', label='Actual values')
+# Plot the predicted values
+plt.plot(x, best_predicted_y, 'ro', label='Values predicted from line')
+# Plot the distance between predicted and actual, for all points.
+for i in range(n):
+    plt.plot([x[i], x[i]], [best_predicted_y[i], y[i]], 'k:')
+```
+
+```{python}
+orig_slopes_to_try = np.arange(2000) / 1000
+n_orig_slopes = len(orig_slopes_to_try)
+mses_for_orig_slopes = np.zeros(n_orig_slopes)
+for i in np.arange(n_orig_slopes):
+    slope = orig_slopes_to_try[i]
+    mses_for_orig_slopes[i] = calc_mse(x, y, slope, best_original_intercept)
+mses_for_orig_slopes[:10]
+```
+
+```{python}
+plt.plot(orig_slopes_to_try, mses_for_orig_slopes)
+```
+
+```{python}
+orig_slopes_to_try[np.argmin(mses_for_orig_slopes)]
+```
+
+```{python}
+orig_inters_to_try = np.arange(2000) / 100
+n_orig_inters = len(orig_inters_to_try)
+mses_for_orig_inters = np.zeros(n_orig_inters)
+for i in np.arange(n_orig_inters):
+    inter = orig_inters_to_try[i]
+    mses_for_orig_inters[i] = calc_mse(x, y, best_original_slope, inter)
+mses_for_orig_inters[:10]
+```
+
+```{python}
+plt.plot(orig_inters_to_try, mses_for_orig_inters)
+```
+
+```{python}
+orig_inters_to_try[np.argmin(mses_for_orig_inters)]
+```
+
+We can ask Scipy to use a calculation that is based on the correlation calculation above, to get this best slope and intercept automatically:
+
+```{python}
+import scipy.stats
+```
+
+```{python}
+results = scipy.stats.linregress(x, y)
+results
+```
+
+Notice the slope, intercept and correlation values are (almost precisely) the same as we found using our correlation calculations above.
