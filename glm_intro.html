@@ -1,0 +1,1616 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to the general linear model &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modeling a single voxel" href="model_one_voxel.html" />
+    <link rel="prev" title="Introducing regression" href="on_regression.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_problem.html">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="to_code.html">
+   Ode to code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surviving_computers.html">
+   Surviving the computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_software.html">
+   Our tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="using_jupyter.html">
+   Using Jupyter notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_on_jupyter.html">
+   More on the Jupyter notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installing on your computer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="what_is_an_image.html">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_intro.html">
+   Introduction to Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_3d.html">
+   Three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_3d.html">
+   Three-dimensional images, NIfTI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing.html">
+   Indexing with Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing_nd.html">
+   Boolean indexing with more than one dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Voxels and time
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Working reproducibly
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="docstrings.html">
+   Docstrings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="module_directories.html">
+   Module directories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_testing.html">
+   On testing
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Detecting activation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Correlating with voxel time courses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_convolution.html">
+   Convolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_regression.html">
+   Introducing regression
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   NumPy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Coordinate systems and spatial transforms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/glm_intro.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.Rmd</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fglm_intro.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/glm_intro.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/glm_intro.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-this-page">
+   About this page
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-example-regression-problem">
+   The example regression problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-linear-regression">
+     Simple linear regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-regression-in-matrix-form">
+   Simple regression in matrix form
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-regression">
+   Multiple regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-sample-estimate">
+     Population, sample, estimate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-the-model-with-matrix-algebra">
+     Solving the model with matrix algebra
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contrasts">
+   Contrasts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dummy-coding-and-the-general-linear-model">
+   Dummy coding and the general linear model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ancova-in-the-general-linear-model">
+   ANCOVA in the General Linear Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-the-design-matrix-as-an-image">
+   Displaying the design matrix as an image
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to the general linear model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-this-page">
+   About this page
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-example-regression-problem">
+   The example regression problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-linear-regression">
+     Simple linear regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-regression-in-matrix-form">
+   Simple regression in matrix form
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-regression">
+   Multiple regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-sample-estimate">
+     Population, sample, estimate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-the-model-with-matrix-algebra">
+     Solving the model with matrix algebra
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contrasts">
+   Contrasts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dummy-coding-and-the-general-linear-model">
+   Dummy coding and the general linear model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ancova-in-the-general-linear-model">
+   ANCOVA in the General Linear Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-the-design-matrix-as-an-image">
+   Displaying the design matrix as an image
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-the-general-linear-model">
+<h1>Introduction to the general linear model<a class="headerlink" href="#introduction-to-the-general-linear-model" title="Permalink to this headline">¶</a></h1>
+<p>These are some notes on simple regression, multiple regression, and the general
+linear model.</p>
+<p>For more detail, see <a class="reference external" href="http://matthew.dynevor.org/_downloads/does_glm_love.pdf">The general linear model and fMRI: Does love last
+forever?</a>.</p>
+<p>This page starts by setting up a simple regression. Then I will try to
+show how the simple regression gets expressed in a <em>design matrix</em>. Once
+we have that, it’s easy to extend simple regression to multiple
+regression. By adding some specially formed regressors, we can also
+express group membership, and therefore do analysis of variance. This
+last step is where multiple regression becomes the general linear model.</p>
+<div class="section" id="about-this-page">
+<h2>About this page<a class="headerlink" href="#about-this-page" title="Permalink to this headline">¶</a></h2>
+<p>We go through regression and the general linear model slowly, showing
+how it works in symbols, and in code, with actual numbers.</p>
+</div>
+<div class="section" id="the-example-regression-problem">
+<h2>The example regression problem<a class="headerlink" href="#the-example-regression-problem" title="Permalink to this headline">¶</a></h2>
+<p>Let’s imagine that we have measured scores for a “psychopathy”
+personality trait in 12 students. We also have some other information
+about these students. For example, we measured how much sweat each
+student had on their palms, and we call this a “clammy” score. We first
+try and work out whether the “clammy” score predicts the “psychopathy”
+score. We’ll do this with simple linear regression.</p>
+<div class="section" id="simple-linear-regression">
+<h3>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this headline">¶</a></h3>
+<p>We first need to get our environment set up to run the code and plots we
+need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import numerical and plotting libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Only show 6 decimals when printing</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here are our scores of “psychopathy” from the 12 students:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psychopathy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">11.416</span><span class="p">,</span>   <span class="mf">4.514</span><span class="p">,</span>  <span class="mf">12.204</span><span class="p">,</span>  <span class="mf">14.835</span><span class="p">,</span>
+               <span class="mf">8.416</span><span class="p">,</span>   <span class="mf">6.563</span><span class="p">,</span>  <span class="mf">17.343</span><span class="p">,</span> <span class="mf">13.02</span><span class="p">,</span>
+               <span class="mf">15.19</span> <span class="p">,</span>  <span class="mf">11.902</span><span class="p">,</span>  <span class="mf">22.721</span><span class="p">,</span>  <span class="mf">22.324</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These are the skin-conductance scores to get a measure of clamminess for
+the handshakes of each student:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clammy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.389</span><span class="p">,</span>  <span class="mf">0.2</span>  <span class="p">,</span>  <span class="mf">0.241</span><span class="p">,</span>  <span class="mf">0.463</span><span class="p">,</span>
+          <span class="mf">4.585</span><span class="p">,</span>  <span class="mf">1.097</span><span class="p">,</span>  <span class="mf">1.642</span><span class="p">,</span>  <span class="mf">4.972</span><span class="p">,</span>
+          <span class="mf">7.957</span><span class="p">,</span>  <span class="mf">5.585</span><span class="p">,</span>  <span class="mf">5.527</span><span class="p">,</span>  <span class="mf">6.964</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We happen to believe that there is some relationship between <code class="docutils literal notranslate"><span class="pre">clammy</span></code>
+and <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>. Plotting them together we get:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clammy</span><span class="p">,</span> <span class="n">psychopathy</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Clamminess of handshake&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Psychopathy score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Psychopathy score&#39;)
+</pre></div>
+</div>
+<img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
+</div>
+</div>
+<p>It looks like there may be some sort of straight line relationship. We
+could try guessing at a line to fit the data. Let’s try an intercept of
+<span class="math notranslate nohighlight">\(10\)</span> and slope <span class="math notranslate nohighlight">\(0.9\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clammy</span><span class="p">,</span> <span class="n">psychopathy</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0fc1a18520&gt;]
+</pre></div>
+</div>
+<img alt="_images/glm_intro_13_1.png" src="_images/glm_intro_13_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_line</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># My prediction for psychopathy given clamminess</span>
+    <span class="k">return</span> <span class="mi">10</span> <span class="o">+</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the prediction</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">clammy</span><span class="p">)]</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">my_line</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">my_line</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">clammy</span><span class="p">))]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Clamminess of handshake&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Psychopathy score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Clammy vs psychopathy with guessed line&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Clammy vs psychopathy with guessed line&#39;)
+</pre></div>
+</div>
+<img alt="_images/glm_intro_15_1.png" src="_images/glm_intro_15_1.png" />
+</div>
+</div>
+<p>What does our straight line relationship mean?</p>
+<p>We are saying that the values of <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> can be partly predicted by
+a straight line of formula <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">+</span> <span class="pre">clammy</span> <span class="pre">\*</span> <span class="pre">0.9</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}\)</span></p>
+<p>To make this more general, let’s call our <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> data
+<span class="math notranslate nohighlight">\(\yvec\)</span> - a vector with 12 values, one for each student.
+<span class="math notranslate nohighlight">\(y_1\)</span> is the value for the first student (= 11.416) and
+<span class="math notranslate nohighlight">\(y_i\)</span> is the value for student <span class="math notranslate nohighlight">\(i\)</span> where
+<span class="math notranslate nohighlight">\(i \in 1 .. 12\)</span>.</p>
+<p>Our <code class="docutils literal notranslate"><span class="pre">clammy</span></code> score is a predictor. Lets call the clammy scores <span class="math notranslate nohighlight">\(\xvec\)</span>
+— another vector with 12 values. <span class="math notranslate nohighlight">\(x_1\)</span> is the value for the first
+student (= 0.389) and <span class="math notranslate nohighlight">\(x_i\)</span> is the value for student <span class="math notranslate nohighlight">\(i\)</span> where
+<span class="math notranslate nohighlight">\(i \in 1 .. 12\)</span>.</p>
+<p>Our straight line model says:</p>
+<p><span class="math notranslate nohighlight">\(y_i \approx c + bx_i\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is the intercept and <span class="math notranslate nohighlight">\(b\)</span> is the slope. For the guessed
+line above:</p>
+<p><span class="math notranslate nohighlight">\(y_i \approx 10 + 0.9 x_i\)</span></p>
+<p>With the <span class="math notranslate nohighlight">\(\approx\)</span> above, we are accepting that we will not succeed in
+explaining all the variation in our psychopathy data. We can rephrase this by
+saying that each observation is equal to the predicted value (from the formula
+above) plus some error for each observation:</p>
+<p><span class="math notranslate nohighlight">\(y_i = c + bx_i + e_i\)</span></p>
+</div>
+</div>
+<div class="section" id="simple-regression-in-matrix-form">
+<h2>Simple regression in matrix form<a class="headerlink" href="#simple-regression-in-matrix-form" title="Permalink to this headline">¶</a></h2>
+<p>It turns out it will be useful to rephrase the simple regression model
+in matrix form. Let’s make the data and predictor and errors into
+vectors.</p>
+<p><span class="math notranslate nohighlight">\(\yvec\)</span> is the vector of values <span class="math notranslate nohighlight">\(y_1 ... y_{12}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right]
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\xvec\)</span> is the vector of values <span class="math notranslate nohighlight">\(x_1 ... x_{12}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right]
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\evec\)</span> is the vector of errors <span class="math notranslate nohighlight">\(e_1 ... e_{12}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[\begin{matrix}e_{1}\\e_{2}\\e_{3}\\e_{4}\\e_{5}\\e_{6}\\e_{7}\\e_{8}\\e_{9}\\e_{10}\\e_{11}\\e_{12}\end{matrix}\right]
+\end{split}\]</div>
+<p>Now we can rephrase our model as:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = c + b \xvec + \evec
+\]</div>
+<p>Bear with with us for a little trick. If <span class="math notranslate nohighlight">\(\mathbf{o}\)</span> is a vector
+of ones, then we can rewrite the formula as:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = c\mathbf{o} + b\xvec + \evec
+\]</div>
+<p>because <span class="math notranslate nohighlight">\(o_i = 1\)</span> and so <span class="math notranslate nohighlight">\(co_i = c\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right] = c \left[\begin{matrix}1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\end{matrix}\right] + b \left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right] + \left[\begin{matrix}e_{1}\\e_{2}\\e_{3}\\e_{4}\\e_{5}\\e_{6}\\e_{7}\\e_{8}\\e_{9}\\e_{10}\\e_{11}\\e_{12}\end{matrix}\right]
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}\)</span></p>
+<p>We can now rephrase the calculation in terms of matrix multiplication.</p>
+<p>Call <span class="math notranslate nohighlight">\(\Xmat\)</span> the matrix of two columns, where the first column is
+the column of ones (<span class="math notranslate nohighlight">\(\mathbf{o}\)</span> above) and the second column is
+<span class="math notranslate nohighlight">\(\xvec\)</span>. Call <span class="math notranslate nohighlight">\(\bvec\)</span> the column vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{\bvec}
+c \\
+b \\
+\end{array}
+\right]
+\end{split}\]</div>
+<p>This gives us the same formula as <a class="reference external" href="https://matthew-brett.github.io/teaching/glm_intro.html#equation-matrix-addition">(1)</a> but in terms of matrix
+multiplication:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right] = \left[\begin{matrix}1 &amp; 0.389\\1 &amp; 0.2\\1 &amp; 0.241\\1 &amp; 0.463\\1 &amp; 4.585\\1 &amp; 1.097\\1 &amp; 1.642\\1 &amp; 4.972\\1 &amp; 7.957\\1 &amp; 5.585\\1 &amp; 5.527\\1 &amp; 6.964\end{matrix}\right] \left[\begin{matrix}c\\b\end{matrix}\right] + \left[\begin{matrix}e_{1}\\e_{2}\\e_{3}\\e_{4}\\e_{5}\\e_{6}\\e_{7}\\e_{8}\\e_{9}\\e_{10}\\e_{11}\\e_{12}\end{matrix}\right]
+\end{split}\]</div>
+<p>In symbols:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = \Xmat \bvec + \evec
+\]</div>
+<p>We still haven’t found our best fitting line. But before we go further,
+it might be obvious that we can easily add a new predictor here.</p>
+</div>
+<div class="section" id="multiple-regression">
+<h2>Multiple regression<a class="headerlink" href="#multiple-regression" title="Permalink to this headline">¶</a></h2>
+<p>Let’s say we think that psychopathy increases with age. We add the
+student’s age as another predictor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="p">[</span><span class="mf">22.5</span><span class="p">,</span>  <span class="mf">25.3</span><span class="p">,</span>  <span class="mf">24.6</span><span class="p">,</span>  <span class="mf">21.4</span><span class="p">,</span>
+       <span class="mf">20.7</span><span class="p">,</span>  <span class="mf">23.3</span><span class="p">,</span>  <span class="mf">23.8</span><span class="p">,</span>  <span class="mf">21.7</span><span class="p">,</span>
+       <span class="mf">21.3</span><span class="p">,</span> <span class="mf">25.2</span><span class="p">,</span>  <span class="mf">24.6</span><span class="p">,</span>  <span class="mf">21.8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[\begin{matrix}22.5\\25.3\\24.6\\21.4\\20.7\\23.3\\23.8\\21.7\\21.3\\25.2\\24.6\\21.8\end{matrix}\right]
+\end{split}\]</div>
+<p>Now rename the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> predictor vector from <span class="math notranslate nohighlight">\(\xvec\)</span> to
+<span class="math notranslate nohighlight">\(\xvec_1\)</span>. Of course <span class="math notranslate nohighlight">\(\xvec_1\)</span> has 12 values <span class="math notranslate nohighlight">\(x_{1, 1}..x_{1,
+12}\)</span>. Call the <code class="docutils literal notranslate"><span class="pre">age</span></code> predictor vector <span class="math notranslate nohighlight">\(\xvec_2\)</span>. Call the slope for
+<code class="docutils literal notranslate"><span class="pre">clammy</span></code> <span class="math notranslate nohighlight">\(b_1\)</span> (slope for <span class="math notranslate nohighlight">\(\xvec_1\)</span>). Call the slope for age
+<span class="math notranslate nohighlight">\(b_2\)</span> (slope for <span class="math notranslate nohighlight">\(\xvec_2\)</span>). Our model is:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = c + b_1 x_{1, i} + b_2 x_{2, i} + e_i
+\]</div>
+<p>In this model <span class="math notranslate nohighlight">\(\Xmat\)</span> has three columns (ones, <span class="math notranslate nohighlight">\(\xvec_1\)</span>, and
+<span class="math notranslate nohighlight">\(\xvec_2\)</span>), and the <span class="math notranslate nohighlight">\(\bvec\)</span> vector has three values <span class="math notranslate nohighlight">\(c, b_1,
+b_2\)</span>. This gives the same matrix formulation, with our new <span class="math notranslate nohighlight">\(\Xmat\)</span> and
+<span class="math notranslate nohighlight">\(\bvec\)</span>: <span class="math notranslate nohighlight">\(\yvec = \Xmat \bvec + \evec\)</span>.</p>
+<p>This is a <em>linear</em> model because our model says that the data <span class="math notranslate nohighlight">\(y_i\)</span> comes
+from the <em>sum</em> of some components (<span class="math notranslate nohighlight">\(c, b_1 x_{1, i}, b_2 x_{2, i}, e_i\)</span>).</p>
+<p>We can keep doing this by adding more and more regressors. In general, a linear model with <span class="math notranslate nohighlight">\(p\)</span> predictors looks like this:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = b_1 x_{1, i} + b_2 x_{2, i} + ... b_p x_{p, i} + e_i
+\]</div>
+<p>In the case of the models above, the first predictor <span class="math notranslate nohighlight">\(\xvec_1\)</span>
+would be a column of ones, to express the intercept in the model.</p>
+<p>Any model of the form above can still be phrased in the matrix form:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = \Xmat \bvec + \evec
+\]</div>
+<div class="section" id="population-sample-estimate">
+<h3>Population, sample, estimate<a class="headerlink" href="#population-sample-estimate" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}\)</span>
+Our students and their psychopathy scores are a <em>sample</em> from the
+population of all students’ psychopathy scores. The parameters
+<span class="math notranslate nohighlight">\(\bvec\)</span> are the parameters that fit the design <span class="math notranslate nohighlight">\(\Xmat\)</span> to
+the <em>population</em> scores. We only have a sample from this population, so
+we cannot get the true population <span class="math notranslate nohighlight">\(\bvec\)</span> vector, we can only
+<em>estimate</em> <span class="math notranslate nohighlight">\(\bvec\)</span> from our sample. We will write this sample
+estimate as <span class="math notranslate nohighlight">\(\bhat\)</span> to distinguish it from the true population
+parameters <span class="math notranslate nohighlight">\(\bvec\)</span>.</p>
+</div>
+<div class="section" id="solving-the-model-with-matrix-algebra">
+<h3>Solving the model with matrix algebra<a class="headerlink" href="#solving-the-model-with-matrix-algebra" title="Permalink to this headline">¶</a></h3>
+<p>The reason to formulate our problem with matrices is so we can use some
+basic matrix algebra to estimate the “best” line.</p>
+<p>Let’s assume that we want an estimate for the line parameters (intercept
+and slope) that gives the smallest “distance” between the estimated
+values (predicted from the line), and the actual values (the data).</p>
+<p>We’ll define ‘distance’ as the squared difference of the predicted value
+from the actual value. These are the squared error terms
+<span class="math notranslate nohighlight">\(e_1^2, e_2^2 ... e_{n}^2\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of
+observations - 12 in our case.</p>
+<p>Revising: our model is:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = \Xmat \bvec + \evec
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\yvec\)</span> is the data vector <span class="math notranslate nohighlight">\(y_1, y_2, ... y_n\)</span>,
+<span class="math notranslate nohighlight">\(\Xmat\)</span> is the design matrix of shape <span class="math notranslate nohighlight">\(n, p\)</span>, <span class="math notranslate nohighlight">\(\bvec\)</span>
+is the parameter vector, <span class="math notranslate nohighlight">\(b_1, b_2 ... b_p\)</span>, and <span class="math notranslate nohighlight">\(\evec\)</span> is
+the error vector giving errors for each observation
+<span class="math notranslate nohighlight">\(\epsilon_1, \epsilon_2 ... \epsilon_n\)</span>.</p>
+<p>Each column of <span class="math notranslate nohighlight">\(\Xmat\)</span> is a regressor vector, so <span class="math notranslate nohighlight">\(\Xmat\)</span> can
+be thought of as the column concatenation of <span class="math notranslate nohighlight">\(p\)</span> vectors
+<span class="math notranslate nohighlight">\(\xvec_1, \xvec_2 ... \xvec_p\)</span>, where <span class="math notranslate nohighlight">\(\xvec_1\)</span> is the first
+regressor <em>vector</em>, and so on.</p>
+<p>In our case, we want an estimate <span class="math notranslate nohighlight">\(\bhat\)</span> for the vector
+<span class="math notranslate nohighlight">\(\bvec\)</span> such that the errors <span class="math notranslate nohighlight">\(\evec = \yvec - \Xmat \bhat\)</span>
+have the smallest sum of squares <span class="math notranslate nohighlight">\(\sum_{i=1}^n{e_i^2}\)</span>.
+<span class="math notranslate nohighlight">\(\sum_{i=1}^n{e_i^2}\)</span> is called the <em>residual sum of squares</em>.</p>
+<p>When we have our <span class="math notranslate nohighlight">\(\bhat\)</span> estimate, then the prediction of the data
+from the estimate is given by <span class="math notranslate nohighlight">\(\Xmat \bhat\)</span>.</p>
+<p>We call this the predicted or estimated data, and write it as
+<span class="math notranslate nohighlight">\(\yhat\)</span>. The errors are then given by <span class="math notranslate nohighlight">\(\yvec - \yhat\)</span>.</p>
+<p>We might expect that, when we have found the right <span class="math notranslate nohighlight">\(\bhat\)</span> then
+the errors will have nothing in them that can still be explained by the
+design matrix <span class="math notranslate nohighlight">\(\Xmat\)</span>. This is the same as saying that, when we
+have best prediction of the data (<span class="math notranslate nohighlight">\(\yhat = \Xmat \bhat\)</span>), the
+design matrix <span class="math notranslate nohighlight">\(\Xmat\)</span> should be orthogonal to the remaining error
+(<span class="math notranslate nohighlight">\(\yvec - \yhat\)</span>). If the design is orthogonal to the errors, then
+<span class="math notranslate nohighlight">\(\Xmat^T \evec\)</span> should be a vector of zeros.</p>
+<p>If that is the case then we can multiply
+<span class="math notranslate nohighlight">\(\yvec = \Xmat \bhat + \evec\)</span> through by <span class="math notranslate nohighlight">\(\Xmat^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\Xmat^T \yvec = \Xmat^T \Xmat \bhat + \Xmat^T \evec
+\]</div>
+<p>The last term now disappears because it is zero and:</p>
+<div class="math notranslate nohighlight">
+\[
+\Xmat^T \yvec = \Xmat^T \Xmat \bhat
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is invertible (has a matrix inverse
+<span class="math notranslate nohighlight">\((\Xmat^T \Xmat)^{-1}\)</span>) then there is a unique solution:</p>
+<div class="math notranslate nohighlight">
+\[
+\bhat = (\Xmat^T \Xmat)^{-1} \Xmat^T \yvec
+\]</div>
+<p>It turns out that, if <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is not invertible, there are
+an infinite number of solutions, and we have to choose one solution,
+taking into account that the parameters <span class="math notranslate nohighlight">\(\bhat\)</span> will depend on
+which solution we chose. The <em>pseudoinverse</em> operator gives us one
+particular solution. If <span class="math notranslate nohighlight">\(\bf{A}^+\)</span> is the pseudoinverse of matrix
+<span class="math notranslate nohighlight">\(\bf{A}\)</span> then the general solution for <span class="math notranslate nohighlight">\(\bhat\)</span>, even when
+<span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is not invertible, is:</p>
+<div class="math notranslate nohighlight">
+\[
+\bhat = \Xmat^+ \yvec
+\]</div>
+<p>Using this matrix algebra, what line do we estimate for <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>
+and <code class="docutils literal notranslate"><span class="pre">clammy</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">clammy</span><span class="p">))</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.   , 0.389],
+       [1.   , 0.2  ],
+       [1.   , 0.241],
+       [1.   , 0.463],
+       [1.   , 4.585],
+       [1.   , 1.097],
+       [1.   , 1.642],
+       [1.   , 4.972],
+       [1.   , 7.957],
+       [1.   , 5.585],
+       [1.   , 5.527],
+       [1.   , 6.964]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the pseudoinverse to get estimated B</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.071286,  0.999257])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clammy</span><span class="p">,</span> <span class="n">psychopathy</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0fc1905490&gt;]
+</pre></div>
+</div>
+<img alt="_images/glm_intro_27_1.png" src="_images/glm_intro_27_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_best_line</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># Best prediction for psychopathy given clamminess</span>
+    <span class="k">return</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the new prediction</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">clammy</span><span class="p">)]</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">my_best_line</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">my_best_line</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">clammy</span><span class="p">))]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Clamminess of handshake&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Psychopathy score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Psychopathy score&#39;)
+</pre></div>
+</div>
+<img alt="_images/glm_intro_29_1.png" src="_images/glm_intro_29_1.png" />
+</div>
+</div>
+<p>Our claim was that this estimate for slope and intercept minimize the sum of
+squared error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">fitted</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">errors</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.9256064499382
+</pre></div>
+</div>
+</div>
+</div>
+<p>Is this sum of squared errors smaller than our earlier guess of an
+intercept of 10 and a slope of 0.9?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">fitted</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">errors</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>255.75076072
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="contrasts">
+<h2>Contrasts<a class="headerlink" href="#contrasts" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\newcommand{cvec}{\mathbf{c}}\)</span> We can combine the values in the
+<span class="math notranslate nohighlight">\(\bhat\)</span> vector in different ways by using a <em>contrast</em> vector. A
+contrast vector <span class="math notranslate nohighlight">\(\cvec\)</span> is a vector of weights
+<span class="math notranslate nohighlight">\(c_1, c_2 ... c_p\)</span> for each value in the <span class="math notranslate nohighlight">\(\bhat\)</span> vector.
+Assume that all vectors we’ve defined up until now are column vectors.
+Then a scalar value that is a linear combination of the <span class="math notranslate nohighlight">\(\bhat\)</span>
+values can be written:</p>
+<div class="math notranslate nohighlight">
+\[
+\cvec^T \bhat
+\]</div>
+<p>We now return to our original question, whether clamminess of handshake
+predicts psychopathy score.</p>
+<p>If clamminess does predict psychopathy, then we would expect the slope
+of the best fit line between <code class="docutils literal notranslate"><span class="pre">clammy</span></code> and <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> would be
+different from zero.</p>
+<p>In our model, we have two predictors, the column of ones and <code class="docutils literal notranslate"><span class="pre">clammy</span></code>.
+<span class="math notranslate nohighlight">\(p = 2\)</span> and <span class="math notranslate nohighlight">\(\bhat\)</span> is length 2. We could choose just the second of
+the values in <span class="math notranslate nohighlight">\(\bhat\)</span> (therefore <span class="math notranslate nohighlight">\(b_1\)</span> if <span class="math notranslate nohighlight">\(b_0\)</span> is the first
+value) with a contrast:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{\cvec}
+0 \\
+1 \\
+\end{array}
+\right]
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\cvec^T \bhat\)</span> with this contrast gives our <em>estimate</em> of the
+slope relating <code class="docutils literal notranslate"><span class="pre">clammy</span></code> to <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>. Now we might be interested
+if our estimate is further from zero than expected by chance.</p>
+<p>To test whether the estimate is different from zero, we can divide the estimate
+by the variability of the estimate. This gives us an idea of how far the
+estimate is from zero, in terms of the variability of the estimate. We won’t go
+into the estimate of the variability here though, we’ll just assume it (the
+formula is in the code below). The estimate divided by the variability of the
+estimate gives us a t statistic.</p>
+<p>With that introduction, here’s how to do the estimation and a t statistic given
+the data <span class="math notranslate nohighlight">\(\yvec\)</span>, the design <span class="math notranslate nohighlight">\(\Xmat\)</span>, and a contrast vector
+<span class="math notranslate nohighlight">\(\cvec\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get t distribution code from scipy library</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span> <span class="k">as</span> <span class="n">t_dist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">t_stat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; betas, t statistic and significance test given data, design matrix, contrast</span>
+
+<span class="sd">    This is OLS estimation; we assume the errors to have independent</span>
+<span class="sd">    and identical normal distributions around zero for each $i$ in</span>
+<span class="sd">    $\e_i$ (i.i.d).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Make sure y, X, c are all arrays</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># As column vector</span>
+    <span class="c1"># Calculate the parameters - b hat</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="c1"># The fitted values - y hat</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="c1"># Residual error</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span>
+    <span class="c1"># Residual sum of squares</span>
+    <span class="n">RSS</span> <span class="o">=</span> <span class="p">(</span><span class="n">errors</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Degrees of freedom is the number of observations n minus the number</span>
+    <span class="c1"># of independent regressors we have used.  If all the regressor</span>
+    <span class="c1"># columns in X are independent then the (matrix rank of X) == p</span>
+    <span class="c1"># (where p the number of columns in X). If there is one column that</span>
+    <span class="c1"># can be expressed as a linear sum of the other columns then</span>
+    <span class="c1"># (matrix rank of X) will be p - 1 - and so on.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="c1"># Mean residual sum of squares</span>
+    <span class="n">MRSS</span> <span class="o">=</span> <span class="n">RSS</span> <span class="o">/</span> <span class="n">df</span>
+    <span class="c1"># calculate bottom half of t statistic</span>
+    <span class="n">SE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">MRSS</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">/</span> <span class="n">SE</span>
+    <span class="c1"># Get p value for t value using cumulative density dunction</span>
+    <span class="c1"># (CDF) of t distribution</span>
+    <span class="n">ltp</span> <span class="o">=</span> <span class="n">t_dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span> <span class="c1"># lower tail p</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ltp</span> <span class="c1"># upper tail p</span>
+    <span class="k">return</span> <span class="n">beta</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See <a class="reference external" href="https://matthew-brett.github.io/teaching/on_cdfs.html">p values from cumulative distribution functions</a> for background on the probability values.</p>
+<p>So, does <code class="docutils literal notranslate"><span class="pre">clammy</span></code> predict <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>? If it does not, then our
+estimate of the slope will not be convincingly different from 0. The t
+test divides our estimate of the slope by the error in the estimate;
+large values mean that the slope is large compared to the error in the
+estimate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">clammy</span><span class="p">))</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">B</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">t_stat</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[1.914389]]), array([[0.042295]]))
+</pre></div>
+</div>
+</div>
+</div>
+<!-- dummy-coding: -->
+</div>
+<div class="section" id="dummy-coding-and-the-general-linear-model">
+<h2>Dummy coding and the general linear model<a class="headerlink" href="#dummy-coding-and-the-general-linear-model" title="Permalink to this headline">¶</a></h2>
+<p>So far we have been doing <em>multiple regression</em>. That is, all the
+columns (except the column of ones) are continuous vectors of numbers
+predicting our outcome data <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>. These type of predictors
+are often called <em>covariates</em>.</p>
+<p>It turns out we can use this same framework to express the fact that
+different observations come from different groups.</p>
+<p>Expressing group membership in this way allows us to express <em>analysis
+of variance</em> designs using this same notation.</p>
+<p>To do this, we use columns of <em>dummy variables</em>.</p>
+<p>Let’s say we get some new and interesting information. The first 4
+students come from Berkeley, the second set of 4 come from Stanford, and
+the last set of 4 come from MIT. Maybe the student’s college predicts if
+they are a psychopath?</p>
+<p>How do we express this information? Let’s forget about the clamminess
+score for now and just use the school information. Our model might be
+that we can best predict the psychopathy scores by approximating the
+individual student psychopathy scores with a mean score for the relevant
+school:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_i = \mu_{Berkeley} + e_i  \space\mbox{if}\space 1 \le i \le 4 \\
+y_i = \mu_{Stanford} + e_i \space\mbox{if}\space 5 \le i \le 8 \\
+y_i = \mu_{MIT} + e_i \space\mbox{if}\space 9 \le i \le 12
+\end{split}\]</div>
+<p>We can code this with predictors in our design using <em>indicator
+variables</em>. The “Berkeley” indicator variable vector is 1 when the
+student is from Berkeley and zero otherwise. Similarly for the other two
+schools:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berkeley_indicator</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">stanford_indicator</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">mit_indicator</span>      <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">berkeley_indicator</span><span class="p">,</span>
+                    <span class="n">stanford_indicator</span><span class="p">,</span>
+                    <span class="n">mit_indicator</span><span class="p">))</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0],
+       [1, 0, 0],
+       [1, 0, 0],
+       [1, 0, 0],
+       [0, 1, 0],
+       [0, 1, 0],
+       [0, 1, 0],
+       [0, 1, 0],
+       [0, 0, 1],
+       [0, 0, 1],
+       [0, 0, 1],
+       [0, 0, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>These indicator columns are <em>dummy variables</em> where the values code for
+the group membership.</p>
+<p>Now the <span class="math notranslate nohighlight">\(\bvec\)</span> vector will be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{\bvec}
+\mu_{Berkeley} \\
+\mu_{Stanford} \\
+\mu_{MIT} \\
+\end{array}
+\right]
+\end{split}\]</div>
+<p>When we estimate these using the least squares method, what estimates
+will we get for <span class="math notranslate nohighlight">\(\bhat\)</span>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.74225, 11.3355 , 18.03425])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">8</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18.03425
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like the MIT students are a bit more psychopathic. Are they more
+psychopathic than Berkeley and Stanford?</p>
+<p>We can use a contrast to test whether the mean for the MIT students is greater
+than the mean of (mean for Berkeley, mean for Stanford):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">t_stat</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[2.340356]]), array([[0.021997]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ah — yes — just as we suspected.</p>
+<p>The model above expresses the effect of group membership. It is the
+expression of a one-way analysis of variance (ANOVA) model using
+<span class="math notranslate nohighlight">\(\yvec = \Xmat \bvec + \evec\)</span>.</p>
+</div>
+<div class="section" id="ancova-in-the-general-linear-model">
+<h2>ANCOVA in the General Linear Model<a class="headerlink" href="#ancova-in-the-general-linear-model" title="Permalink to this headline">¶</a></h2>
+<p>Our formulation <span class="math notranslate nohighlight">\(\yvec = \Xmat \bvec + \evec\)</span> makes it very easy
+to add extra regressors to models with group membership. For example, we
+can easily make a simple ANCOVA model (analysis of covariance).</p>
+<p>ANCOVA is a specific term for the case where we have a model with both
+group membership (ANOVA model) and one or more continuous covariates.</p>
+<p>For example, we can add back our clamminess score to the mix. Does it
+explain anything once we know which school the student is at?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">berkeley_indicator</span><span class="p">,</span>
+                     <span class="n">stanford_indicator</span><span class="p">,</span>
+                     <span class="n">mit_indicator</span><span class="p">,</span>
+                     <span class="n">clammy</span><span class="p">))</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.   , 0.   , 0.   , 0.389],
+       [1.   , 0.   , 0.   , 0.2  ],
+       [1.   , 0.   , 0.   , 0.241],
+       [1.   , 0.   , 0.   , 0.463],
+       [0.   , 1.   , 0.   , 4.585],
+       [0.   , 1.   , 0.   , 1.097],
+       [0.   , 1.   , 0.   , 1.642],
+       [0.   , 1.   , 0.   , 4.972],
+       [0.   , 0.   , 1.   , 7.957],
+       [0.   , 0.   , 1.   , 5.585],
+       [0.   , 0.   , 1.   , 5.527],
+       [0.   , 0.   , 1.   , 6.964]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We test the independent effect of the clamminess score with a contrast
+on the clammy slope parameter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">t_stat</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[-0.010661]]), array([[0.504122]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like there’s not much independent effect of clamminess. The MIT
+students seem to have clammy hands, and once we know that the student is
+from MIT, the clammy score is not as useful.</p>
+</div>
+<div class="section" id="displaying-the-design-matrix-as-an-image">
+<h2>Displaying the design matrix as an image<a class="headerlink" href="#displaying-the-design-matrix-as-an-image" title="Permalink to this headline">¶</a></h2>
+<p>We can show the design as an image, by scaling the values with columns.</p>
+<p>We scale within columns because we care more about seeing variation
+within the regressor than between regressors. For example, if we have a
+regressor varying between 0 and 1, and another between 0 and 1000,
+without scaling, the column with the larger numbers will swamp the
+variation in the column with the smaller numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale_design_mtx</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;utility to scale the design matrix for display</span>
+
+<span class="sd">    This scales the columns to their own range so we can see the variations</span>
+<span class="sd">    across the column for all the columns, regardless of the scaling of the</span>
+<span class="sd">    column.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mi</span><span class="p">,</span> <span class="n">ma</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Vector that is True for columns where values are not</span>
+    <span class="c1"># all almost equal to each other</span>
+    <span class="n">col_neq</span> <span class="o">=</span> <span class="p">(</span><span class="n">ma</span> <span class="o">-</span> <span class="n">mi</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.e-8</span>
+    <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="c1"># Leave columns with same value throughout with 1s</span>
+    <span class="c1"># Scale other columns to min, max in column</span>
+    <span class="n">mi</span> <span class="o">=</span> <span class="n">mi</span><span class="p">[</span><span class="n">col_neq</span><span class="p">]</span>
+    <span class="n">ma</span> <span class="o">=</span> <span class="n">ma</span><span class="p">[</span><span class="n">col_neq</span><span class="p">]</span>
+    <span class="n">Xs</span><span class="p">[:,</span><span class="n">col_neq</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="n">col_neq</span><span class="p">]</span> <span class="o">-</span> <span class="n">mi</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">ma</span> <span class="o">-</span> <span class="n">mi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Xs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can display this scaled design with a title and some default
+image display parameters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_design</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">design_title</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Show the design matrix nicely &quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">scale_design_mtx</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+               <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+               <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span> <span class="c1"># Gray colormap</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">design_title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then see our ANCOVA design above at a glance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_design</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s1">&#39;ANCOVA&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/glm_intro_57_0.png" src="_images/glm_intro_57_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="on_regression.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introducing regression</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="model_one_voxel.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Modeling a single voxel</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

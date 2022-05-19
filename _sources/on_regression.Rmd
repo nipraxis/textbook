@@ -1,0 +1,314 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Introducing regression
+
+These are some notes on simple regression, multiple regression, and the general
+linear model.
+
+## The example regression problem
+
+[So far](voxels_by_time.Rmd) we have been looking at the relationship between a neural predictor and a voxel time course.  We have thus far used *correlation* to look for a relationship.
+
+To make things simpler, for illustration, lets look the relationship between
+two short example arrays.  We will get back to the voxel and predictor problem
+later.
+
+Let’s imagine that we have measured scores for a “psychopathy” personality
+trait in 12 students. We also have some other information about these students.
+For example, we measured how much sweat each student had on their palms, and we
+call this a “clammy” score. We first try and work out whether the “clammy”
+score predicts the “psychopathy” score. We’ll do this with simple linear
+regression.
+
+## Simple linear regression
+
+We first need to get our environment set up to run the code and plots we
+need.
+
+```{python}
+# Import numerical and plotting libraries
+import numpy as np
+import numpy.linalg as npl
+import matplotlib.pyplot as plt
+# Only show 6 decimals when printing
+np.set_printoptions(precision=6)
+```
+
+Here are our scores of “psychopathy” from the 12 students:
+
+```{python}
+psychopathy = np.array([11.416, 4.514, 12.204, 14.835,
+                        8.416,  6.563, 17.343, 13.02,
+                        15.19, 11.902, 22.721, 22.324])
+```
+
+These are the skin-conductance scores to get a measure of clamminess for
+the handshakes of each student:
+
+```{python}
+clammy = np.array([0.389,  0.2,    0.241,  0.463,
+                   4.585,  1.097,  1.642,  4.972,
+                   7.957,  5.585,  5.527,  6.964])
+```
+
+We have `n` values, where the value of `n` is:
+
+```{python}
+n = len(clammy)
+n
+```
+
+We happen to believe that there is some relationship between `clammy`
+and `psychopathy`. Plotting them together we get:
+
+```{python}
+plt.plot(clammy, psychopathy, '+')
+plt.xlabel('Clamminess of handshake')
+plt.ylabel('Psychopathy score')
+```
+
+It looks like there may be some sort of straight line relationship.  We can define any line by specifying the:
+
+* Intercept and the
+* Slope
+
+The intercept is the y-axis value where the line crosses the y-axis.  Put another way, it is the value for y when x==0.
+
+
+Let's give `clammy` the name `x` and `psychopathy` the name `y`, to match the terminology.
+
+```{python}
+x = clammy
+y = psychopathy
+```
+
+The slope is change in the number of units in y, for every one unit change in
+x.  We can check this anywhere on the line, but one easy way to get the slope
+is to subtract the y value at x == 0 from the y value at x == 1.  This is, by definition, the number of units increase in y, for a one unit increase in x.
+
+We could try guessing at a line to fit the data. Let’s try an intercept of $10$
+and slope $0.9$.
+
+The line gives a *predicted y value* for every x value, like this:
+
+```{python}
+guessed_inter = 10
+guessed_slope = 0.9
+predicted_y = guessed_inter + guessed_slope * x
+predicted_y
+```
+
+```{python}
+# Plot the data
+plt.plot(x, y, '+', label='Actual values')
+# Plot the predicted values
+plt.plot(x, predicted_y, 'ro', label='Values predicted from line')
+plt.xlabel('Clamminess of handshake')
+plt.ylabel('Psychopathy score')
+plt.title('Clammy vs psychopathy with guessed values from line')
+plt.legend()
+```
+
+That's the guess for the line, but is it a good guess?
+
+How would we decide?
+
+
+## A good guess
+
+
+Our job is to look for a number to evaluate the line, compared to other lines.
+We want a number that is *low* when the line is good, and *high* when the line
+is bad.
+
+If the line is good, then it makes good *predictions*.  A good prediction is close to the value is it trying to predict.
+
+In this case the line is trying to predict 12 y values.
+
+For each point, we can draw the distance between the predicted y value and the
+actual y value, like this:
+
+```{python}
+# Plot the data
+plt.plot(x, y, '+', label='Actual values')
+# Plot the predicted values
+plt.plot(x, predicted_y, 'ro', label='Values predicted from line')
+# Plot the distance between predicted and actual, for all points.
+for i in range(n):
+    plt.plot([x[i], x[i]], [predicted_y[i], y[i]], 'k:')
+```
+
+Here are all 12 differences between the actual and predicted values.  We will call these the prediction *errors*:
+
+```{python}
+errors = y - predicted_y
+errors
+```
+
+If the line was perfect, then all these errors would be zero.   But, given these errors are not zero, how should we use them to give a *single* number to evaluate the line, where a low number means it is a good line.
+
+
+## A bad measure
+
+
+It might seem good to add up all the errors, like this:
+
+```{python}
+sum(errors)
+```
+
+That is not a good idea, because we are just as concerned about the negative and the positive errors.  If we add them up, then big negative errors cancel big positive errors.   The result is that I can make a line that is obviously crazy, and so should have a bad score, but in fact it has just the same score.
+
+```{python}
+# A very bad line
+rotten_inter = 10 + np.mean(x) * 1.8  # Don't worry about this calculation
+rotten_slope = -0.9  # The opposite slope from our previous guess!
+rotten_pred_y = rotten_inter + rotten_slope * x
+rotten_pred_y
+```
+
+Notice that there are more big positive and big negative errors now:
+
+```{python}
+rotten_errors = y - rotten_pred_y
+rotten_errors
+```
+
+```{python}
+# Plot the data
+plt.plot(x, y, '+', label='Actual values')
+# Plot the predicted values
+plt.plot(x, rotten_pred_y, 'ro', label='Values predicted from line')
+# Plot the distance between predicted and actual, for all points.
+for i in range(n):
+    plt.plot([x[i], x[i]], [rotten_pred_y[i], y[i]], 'k:')
+```
+
+But the sum is nearly the same, because the positive and negative errors are canceling:
+
+```{python}
+np.sum(rotten_errors)
+```
+
+So — what would be a better measure?
+
+
+## A better measure
+
+
+We care just as much about negative errors as positive, and we do not want to allow negative errors to cancel out with positive ones.
+
+There are two obvious ways to fix that.
+
+One is to throw away the negative signs of the errors before we add them.   We use the `np.abs` function (`abs` for *absolute*) to throw away the negative signs, like this:
+
+```{python}
+np.abs(errors)
+```
+
+So, a better score would be the sum of the absolute error (SAE).  Notice that,
+this time, the bad line gets a much larger (worse) score than the good line.
+
+```{python}
+good_line_sae = np.sum(np.abs(errors))
+print('Good line sum abs error', good_line_sae)
+rotten_line_sae = np.sum(np.abs(rotten_errors))
+print('Rotten line sum abs error', rotten_line_sae)
+```
+
+Another option is to remove the negative signs by squaring all the errors.
+This will also have the effect of making big errors more influential in giving
+the score to the line.   This is called the sum of squared error (SSE).  Again, the bad line gets a bad (large) score:
+
+```{python}
+good_line_sse = np.sum(errors ** 2)
+print('Good line sum squared error', good_line_sse)
+rotten_line_sse = np.sum(rotten_errors ** 2)
+print('Rotten line sum squared error', rotten_line_sse)
+```
+
+We can also take the mean of the squared (or absolute) error, instead of the
+sum.  In the squared case, this is the Mean Squared Error (MSE).  This is just
+the sum value divided by the number of values.
+
+```{python}
+good_line_mse = np.mean(errors ** 2)
+print('Good line mean squared error', good_line_mse)
+print('The same as SSE divided by n', good_line_sse / n)
+```
+
+The MSE can be easier to think about, because it is the average error per
+point.
+
+```{python}
+good_line_mse = np.mean(errors ** 2)
+print('Good line mean squared error', good_line_mse)
+rotten_line_mse = np.mean(rotten_errors ** 2)
+print('Rotten line mean squared error', rotten_line_mse)
+```
+
+In fact, we will prefer MSE (or, equivalently, SSE) to the sum or mean of the absolute error, because it has some nice mathematical properties, that we will not go into now.
+
+
+## Intercept?  Slope?  Intercept?
+
+We now have a problem, because we want to find the *best* (slope and
+intercept).  By *best* we will say we mean the (slope, intercept) pair that
+gives the lowest MSE, of all possible (slope, intercept) pairs.
+
+But — where to start?  I can set the intercept, and try lots of slopes, and
+find the one that gives the lowest MSE, but then I need to try another intercept, and another.
+
+One way of removing this problem is working on x and y values in the form of
+z-scores.  When we do this, it turns out, for reasons we don't go into here,
+that the best (MSE) intercept is always 0.  That simplifies our problem,
+because we can assume the intercept is 0, and just look at the slopes.
+
+## To z-scores
+
+As you remember from {ref}`on-correlation`, we generate z-scores by subtracting the mean, and dividing by the standard deviation.
+
+Let's do that for our x and y:
+
+```{python}
+x_z = (x - np.mean(x)) / np.std(x)
+y_z = (y - np.mean(y)) / np.std(y)
+```
+
+When we plot these z-score versions, we see that an intercept of 0 looks about
+right:
+
+```{python}
+plt.plot(x_z, y_z, '+')
+plt.title('x, y in z-score form')
+```
+
+Let's try a slope of about 0.6, and an intercept of 0.
+
+```{python}
+pred_y_z = 0 + 0.6 * x_z
+plt.plot(x_z, y_z, '+')
+plt.plot(x_z, pred_y_z, 'ro')
+plt.title('x, y in z-score form, with predictions')
+```
+The MSE is:
+
+```{python}
+errors = y_z - pred_y_z
+mse_for_guess = np.mean(errors ** 2)
+mse_for_guess
+```
