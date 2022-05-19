@@ -48,6 +48,8 @@ parts:
   - file: voxel_time_courses
   - file: on_convolution
   - file: convolution_background
+  - file: on_regression
+  - file: glm_intro
   - file: model_one_voxel
   - file: mean_test_example
   - file: hypothesis_tests
