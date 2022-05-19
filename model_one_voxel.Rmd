@@ -16,8 +16,12 @@ jupyter:
 
 # Modeling a single voxel
 
-Earlier – Voxel time courses – we were looking at a single voxel
-time course.
+Earlier – [Voxel time courses](voxel_time_courses.Rmd) – we were looking
+at a single voxel time course.
+
+Here we use the [General Linear
+Model](https://matthew-brett.github.io/teaching/glm_intro.html) formulation to
+do a test on a single voxel.
 
 Let’s get that same voxel time course back again:
 
@@ -29,8 +33,8 @@ import nibabel as nib
 np.set_printoptions(precision=6)
 ```
 
-We load the data, and knock off the first four volumes to remove the artefact
-we discovered in First go at brain activation exercise:
+We load the data, and knock off the first four volumes to remove the
+artefact we discovered in First go at brain activation exercise:
 
 ```{python}
 # Load the function to fetch the data file we need.

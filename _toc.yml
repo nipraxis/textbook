@@ -43,6 +43,18 @@ parts:
   - file: module_directories
   - file: on_testing
 
+- caption: Detecting activation
+  - file: voxel_time_courses
+  - file: on_convolution
+  - file: convolution_background
+  - file: model_one_voxel
+  - file: mean_test_example
+  - file: hypothesis_tests
+  - file: test_one_voxel
+  - file: multi_multiply
+  - file: non_tr_onsets
+  - file: whole_image_statistics
+
 - caption: Arrays and plots
   chapters:
   - file: methods_vs_functions
@@ -57,11 +69,6 @@ parts:
   - file: plot_lines
   - file: subplots
 
-- caption: Into the fourth dimension
-  chapters:
-  - file: voxel_time_courses
-  - file: otsu_threshold
-
 - caption: Coordinate systems and spatial transforms
   chapters:
   - file: diagonal_zooms
@@ -74,14 +81,3 @@ parts:
   - file: resampling_with_ndimage
   - file: dipy_registration
   - file: anterior_cingulate
-
-- caption: Statistics and the general linear model
-  chapters:
-  - file: mean_test_example
-  - file: hypothesis_tests
-  - file: convolution_background
-  - file: model_one_voxel
-  - file: test_one_voxel
-  - file: multi_multiply
-  - file: non_tr_onsets
-  - file: whole_image_statistics

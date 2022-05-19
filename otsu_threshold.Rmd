@@ -1,5 +1,6 @@
 ---
 jupyter:
+  orphan: true
   jupytext:
     notebook_metadata_filter: all,-language_info
     split_at_heading: true
@@ -16,11 +17,13 @@ jupyter:
 
 # Otsu’s method for binarizing images
 
-This page has some notes explaining [Otsu’s method](https://en.wikipedia.org/wiki/Otsu%27s_method) for binarizing grayscale
+This page has some notes explaining [Otsu’s
+method](https://en.wikipedia.org/wiki/Otsu%27s_method) for binarizing grayscale
 images.
 
-The best source on the method is the [original paper](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4310076).  At the time
-I wrote this page, the Wikipedia article is too messy to be useful.
+The best source on the method is the [original
+paper](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4310076).  At the
+time I wrote this page, the Wikipedia article is too messy to be useful.
 
 Conceptually, Otsu’s method proceeds like this:
 
