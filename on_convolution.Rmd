@@ -118,10 +118,11 @@ plt.title('Estimated BOLD signal for event at time 0')
 ```
 
 This is the hemodynamic response to a neural impulse.  In signal processing
-terms this is the hemodynamic [impulse response function](impulseresponse).
-It is usually called the hemodynamic response function (HRF), because it is a
-function that gives the predicted hemodynamic response at any given time
-following an impulse at time 0.
+terms this is the hemodynamic [impulse response
+function](https://en.wikipedia.org/wiki/Impulse_response). It is usually called
+the hemodynamic response function (HRF), because it is a function that gives
+the predicted hemodynamic response at any given time following an impulse at
+time 0.
 
 ## Building the hemodynamic output from the neural input
 
