@@ -439,7 +439,7 @@ def as_row_vector(v):
 ```{python}
 neural_vector = as_row_vector(neural_signal)
 # The scaling and summing by the magic of matrix multiplication
-bold_signal_again = neural_vector.dot(shifted_hrfs)
+bold_signal_again = neural_vector @ shifted_hrfs
 # This gives the same result as previously, yet one more time
 npt.assert_almost_equal(as_row_vector(bold_signal), bold_signal_again)
 ```
@@ -450,7 +450,7 @@ multiply of the transpose of `shifted_hrfs` onto the `neural_signal` as a
 column vector:
 
 ```{python}
-bold_signal_again = shifted_hrfs.T.dot(neural_vector.T)
+bold_signal_again = shifted_hrfs.T @ neural_vector.T
 # Exactly the same, but transposed
 npt.assert_almost_equal(as_row_vector(bold_signal), bold_signal_again.T)
 ```
@@ -502,7 +502,7 @@ this piece of code:
 
 ```{python}
 i = 25
-bold_i = neural_vector.dot(shifted_hrfs[:, i])
+bold_i = neural_vector @ shifted_hrfs[:, i]
 ```
 
 ```{python}
