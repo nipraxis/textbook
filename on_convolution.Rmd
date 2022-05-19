@@ -354,6 +354,18 @@ import numpy.testing as npt
 npt.assert_almost_equal(bold_signal, bold_signal_again)
 ```
 
+To visualize this, let's look at the `shifted_scaled_hrfs` matrix as an image where darker colors indicate higher values. We can then look at it as a collection of time series, and see how it adds to produce our expected BOLD signal:
+
+```{python}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+axes[0].imshow(shifted_scaled_hrfs, cmap='Purples')
+axes[0].set_title('Convolved events, from "above"')
+axes[1].plot(times_and_tail, shifted_scaled_hrfs.T)
+axes[1].set_title('Convolved events, as time series')
+axes[2].plot(times_and_tail, bold_signal_again)
+axes[2].set_title('Predicted BOLD signal from convolution, 1 second resolution')
+```
+
 We can also do exactly the same operation by first making an array with the
 *shifted* HRFs, without scaling, and then multiplying each row by the
 corresponding input value, before doing the sum.  Here we are doing the shifting
@@ -381,7 +393,7 @@ npt.assert_almost_equal(bold_signal, bold_signal_again)
 The `shifted_hrfs` array looks like this as an image:
 
 ```{python}
-plt.imshow(shifted_hrfs, cmap='gray', interpolation='nearest')
+plt.imshow(shifted_hrfs, cmap='Purples')
 ```
 
 Each new row of `shifted_hrfs` corresponds to the HRF, shifted by one more
