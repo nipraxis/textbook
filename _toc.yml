@@ -44,6 +44,7 @@ parts:
   - file: on_testing
 
 - caption: Detecting activation
+  chapters:
   - file: voxel_time_courses
   - file: on_convolution
   - file: convolution_background
