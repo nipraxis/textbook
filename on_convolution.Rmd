@@ -246,13 +246,11 @@ our input neural signal:
 
 1. For each index $i$ in the *input vector* (the neural signal):
 
-   > 1. Prepare a shifted copy of the HRF vector, starting at $i$. Call this the
-   >    *shifted HRF vector*;
-
-   > 1. Multiply the shifted HRF vector by the value in the input at index $i$,
-   >    to give the *shifted, scaled HRF vector*;
-
-   > 1. Add the shifted scaled HRF vector to the output.
+   1. Prepare a shifted copy of the HRF vector, starting at $i$. Call this the
+      *shifted HRF vector*;
+   1. Multiply the shifted HRF vector by the value in the input at index $i$,
+      to give the *shifted, scaled HRF vector*;
+   1. Add the shifted scaled HRF vector to the output.
 
 There is a little problem with our algorithm — the length of the output
 vector.
@@ -309,14 +307,19 @@ event last 3 seconds:
 times = np.arange(0, 40)  # One time point per second
 n_time_points = len(times)
 neural_signal = np.zeros(n_time_points)
+
 neural_signal[4:7] = 1  # A 3 second event
 neural_signal[10] = 1
 neural_signal[20] = 3
+
 hrf_times = np.arange(20)
 hrf_signal = hrf(hrf_times)  # The HRF at one second time resolution
 n_hrf_points = len(hrf_signal)
+
 bold_signal = np.convolve(neural_signal, hrf_signal)
+
 times_and_tail = np.arange(n_time_points + n_hrf_points - 1)
+
 fig, axes = plt.subplots(3, 1, figsize=(8, 15))
 axes[0].plot(times, neural_signal)
 axes[0].set_title('Neural signal, 1 second resolution')
@@ -510,12 +513,12 @@ Can we simplify the formula without using the `shifted_hrfs` $\mathbf{S}$
 matrix?  We saw above that column $i$ in `shifted_hrfs` contains a reversed
 HRF, starting at index $i$ and going backwards towards index 0.
 
-The 1-second resolution HRF is our array `hrf_signal`.  So `shifted_hrfs[i,
-i]` contains `hrf_signal[0]`, `shifted_hrfs[i-1, i]` contains
+The 1-second resolution HRF is our array `hrf_signal`.
+So `shifted_hrfs[i, i]` contains `hrf_signal[0]`, `shifted_hrfs[i-1, i]` contains
 `hrf_signal[1]` and so on.  In general, for any index $j$ into
 `shifted_hrfs[:, i]`, `shifted_hrfs[j, i] == hrf_signal[i-j]` (assuming
 we return zero for any `hrf_signal[i-j]` where `i-j` is outside the
-bounds of the vector, with `i-j` < 0 or >= M).
+bounds of the vector, with `i-j` < 0 or $\geq$ M).
 
 Realizing this, we can replace $\mathbf{S}_{:,i}$ in our equation above.  Call
 our `hrf_signal` vector $\mathbf{h}$ with values $h_0, h_1, ... h_{M-1}$.
