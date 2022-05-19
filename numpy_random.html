@@ -269,6 +269,63 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Detecting activation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Correlating with voxel time courses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_convolution.html">
+   Convolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Arrays and plots
  </span>
 </p>
@@ -331,23 +388,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="subplots.html">
    Subplots and axes in matplotlib
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Into the fourth dimension
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -426,53 +466,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="anterior_cingulate.html">
    Anterior cingulate
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Statistics and the general linear model
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hypothesis_tests.html">
-   Hypothesis testing with the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convolution_background.html">
-   Convolving with the hemodyamic response function
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_one_voxel.html">
-   Modeling a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="test_one_voxel.html">
-   Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="non_tr_onsets.html">
-   Using onsets that do not start on a TR
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="whole_image_statistics.html">
-   Whole-brain t tests and p values
   </a>
  </li>
 </ul>
@@ -683,7 +676,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.3700924963464325
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.23233010878971935
 </pre></div>
 </div>
 </div>
@@ -697,7 +690,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.32790324782313
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.82915344597091
 </pre></div>
 </div>
 </div>
@@ -710,14 +703,14 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[14.7269, 16.8266, 15.4547, 16.0027, 14.2126],
-       [15.0134, 16.8266, 12.0471, 16.0465, 15.3608],
-       [13.9401, 11.7764, 12.2029, 16.3118, 17.9177],
-       [16.2707, 19.5562, 16.5187, 16.7677, 14.2069],
-       [15.0445, 19.8858, 14.5054, 15.3872, 16.4648],
-       [14.5699, 11.8034, 12.2795, 16.4215, 20.9501],
-       [20.4282, 17.3751, 13.6958, 17.5785, 20.7331],
-       [13.8249, 12.3832, 15.965 , 14.0927, 17.4617]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[17.1545, 18.8641, 17.8225, 21.6715, 14.4058],
+       [14.4119, 14.8787, 10.1523, 13.0583, 13.8617],
+       [13.7363,  9.1885, 15.3366, 17.6525, 13.0094],
+       [18.4786, 14.9381, 14.397 , 18.2083, 15.7122],
+       [16.2583, 14.0829, 14.0069, 14.148 , 12.6221],
+       [10.3566, 13.3289, 14.7486, 14.237 , 17.8038],
+       [14.2018, 11.9036, 14.1655, 13.4738, 12.5749],
+       [17.1052, 19.1762, 16.5211, 16.4554, 15.9399]])
 </pre></div>
 </div>
 </div>
@@ -731,14 +724,14 @@ mean 1 and variance 1:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2.2476, -1.7124,  1.1494,  0.4935, -0.7096],
-       [ 0.3415,  1.4289,  0.6306, -1.419 , -0.1128],
-       [ 0.0666, -0.9073, -1.1044, -0.6806, -0.0118],
-       [ 0.6318, -1.7533, -0.9446,  0.1917, -1.4348],
-       [-2.0772, -1.2831,  1.1253, -0.3036, -0.7813],
-       [ 0.584 ,  0.5459, -0.3163, -1.086 ,  0.718 ],
-       [-1.0949, -0.547 , -1.5869,  1.2537,  1.643 ],
-       [ 1.6842,  1.6943, -0.8892,  1.5161,  0.1412]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.7797, -0.8969, -0.5434, -0.4564,  0.8939],
+       [-0.9234,  1.2803, -2.3121,  1.6337,  1.0662],
+       [ 0.6822, -2.7155, -0.2342, -0.2318,  1.0955],
+       [ 0.3028,  0.5802, -1.7028,  0.4662, -2.2502],
+       [ 0.1617, -0.1749,  1.2822,  1.6834,  0.149 ],
+       [-1.5449,  0.7325,  1.1984, -1.0101,  1.0873],
+       [-0.3123, -0.407 , -2.0461, -0.7078,  0.1832],
+       [ 1.381 , -0.8176,  0.3698, -0.4922,  0.3455]])
 </pre></div>
 </div>
 </div>

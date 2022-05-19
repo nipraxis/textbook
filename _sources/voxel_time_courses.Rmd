@@ -14,7 +14,7 @@ jupyter:
     name: python3
 ---
 
-# Voxel time courses
+# Correlating with voxel time courses
 
 When we have a 4D image, we can think of the data in several ways.  For
 example the data could be:

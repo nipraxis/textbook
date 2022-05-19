@@ -23,7 +23,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-# Using scipy
+## Using scipy
 
 *Scipy* is a large library of scientific routines that builds on top of numpy.
 
@@ -74,7 +74,7 @@ plt.plot(x, gamma.pdf(x, 12), label='k=12')
 plt.legend()
 ```
 
-# Constructing a hemodynamic response function
+## Constructing a hemodynamic response function
 
 We can use these gamma functions to construct a continuous function that is
 close to the hemodynamic response we observe for a single brief event in the

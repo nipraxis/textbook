@@ -269,6 +269,63 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Detecting activation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Correlating with voxel time courses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_convolution.html">
+   Convolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Arrays and plots
  </span>
 </p>
@@ -331,23 +388,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="subplots.html">
    Subplots and axes in matplotlib
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Into the fourth dimension
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -426,53 +466,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="anterior_cingulate.html">
    Anterior cingulate
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Statistics and the general linear model
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hypothesis_tests.html">
-   Hypothesis testing with the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convolution_background.html">
-   Convolving with the hemodyamic response function
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_one_voxel.html">
-   Modeling a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="test_one_voxel.html">
-   Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="non_tr_onsets.html">
-   Using onsets that do not start on a TR
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="whole_image_statistics.html">
-   Whole-brain t tests and p values
   </a>
  </li>
 </ul>
@@ -662,8 +655,8 @@ make sure you are running a <strong>Powershell</strong> shell, not the much olde
 </div>
 <p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="af509f2d-b39d-4779-9397-74ecc8788e88" name="f6f5ba3b-c824-43b8-bb85-9718beef7b83" type="radio">
-</input><label class="tabbed-label" for="af509f2d-b39d-4779-9397-74ecc8788e88">
+<input checked="checked" id="b40b960b-66c2-4250-93c3-2d232e2d5218" name="67ad6b53-ba9d-4df8-99d6-19784422898a" type="radio">
+</input><label class="tabbed-label" for="b40b960b-66c2-4250-93c3-2d232e2d5218">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
 <span class="o">----</span>
@@ -671,15 +664,15 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2b521341-5cc0-4623-84f0-98807897651a" name="f6f5ba3b-c824-43b8-bb85-9718beef7b83" type="radio">
-</input><label class="tabbed-label" for="2b521341-5cc0-4623-84f0-98807897651a">
+<input id="1580663d-20f9-4a16-8d7e-df3290c7be41" name="67ad6b53-ba9d-4df8-99d6-19784422898a" type="radio">
+</input><label class="tabbed-label" for="1580663d-20f9-4a16-8d7e-df3290c7be41">
 Mac</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
 </div>
 </div>
-<input id="d2347cd9-bb21-43ab-b43f-841519b73cd7" name="f6f5ba3b-c824-43b8-bb85-9718beef7b83" type="radio">
-</input><label class="tabbed-label" for="d2347cd9-bb21-43ab-b43f-841519b73cd7">
+<input id="0e4250c4-b7d7-43de-a6ff-e6f347c7b6c5" name="67ad6b53-ba9d-4df8-99d6-19784422898a" type="radio">
+</input><label class="tabbed-label" for="0e4250c4-b7d7-43de-a6ff-e6f347c7b6c5">
 Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
@@ -726,8 +719,8 @@ computer.   Note where the file went.  For example, you might have downloaded th
 </div>
 <p>from your terminal.  You should see something like:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c9b63995-ef00-431a-8dd8-a23c82f6507b" name="5f934888-e6ad-4fe0-8597-15854af3deb8" type="radio">
-</input><label class="tabbed-label" for="c9b63995-ef00-431a-8dd8-a23c82f6507b">
+<input checked="checked" id="fbc76b76-c087-4a37-9a6f-776232ba7c6f" name="632c8f8f-8e58-4f0f-a769-8efc51bc9ce5" type="radio">
+</input><label class="tabbed-label" for="fbc76b76-c087-4a37-9a6f-776232ba7c6f">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 
@@ -738,8 +731,8 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2ba9a220-1aaa-468e-80c3-4bee15f7b24c" name="5f934888-e6ad-4fe0-8597-15854af3deb8" type="radio">
-</input><label class="tabbed-label" for="2ba9a220-1aaa-468e-80c3-4bee15f7b24c">
+<input id="c657dbd6-435a-4cd1-9bc3-01a564d3ef32" name="632c8f8f-8e58-4f0f-a769-8efc51bc9ce5" type="radio">
+</input><label class="tabbed-label" for="c657dbd6-435a-4cd1-9bc3-01a564d3ef32">
 Mac or Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
 </pre></div>

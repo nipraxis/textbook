@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Testing a single voxel" href="test_one_voxel.html" />
+    <link rel="next" title="A worked example of the general linear model" href="mean_test_example.html" />
     <link rel="prev" title="Convolving with the hemodyamic response function" href="convolution_background.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -271,6 +271,63 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Detecting activation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Correlating with voxel time courses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_convolution.html">
+   Convolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Arrays and plots
  </span>
 </p>
@@ -333,23 +390,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="subplots.html">
    Subplots and axes in matplotlib
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Into the fourth dimension
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Voxel time courses
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="otsu_threshold.html">
-   Otsu’s method for binarizing images
   </a>
  </li>
 </ul>
@@ -428,53 +468,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="anterior_cingulate.html">
    Anterior cingulate
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Statistics and the general linear model
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hypothesis_tests.html">
-   Hypothesis testing with the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convolution_background.html">
-   Convolving with the hemodyamic response function
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Modeling a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="test_one_voxel.html">
-   Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="non_tr_onsets.html">
-   Using onsets that do not start on a TR
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="whole_image_statistics.html">
-   Whole-brain t tests and p values
   </a>
  </li>
 </ul>
@@ -605,8 +598,11 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="modeling-a-single-voxel">
 <h1>Modeling a single voxel<a class="headerlink" href="#modeling-a-single-voxel" title="Permalink to this headline">¶</a></h1>
-<p>Earlier – Voxel time courses – we were looking at a single voxel
-time course.</p>
+<p>Earlier – <a class="reference internal" href="voxel_time_courses.html"><span class="doc std std-doc">Voxel time courses</span></a> – we were looking
+at a single voxel time course.</p>
+<p>Here we use the <a class="reference external" href="https://matthew-brett.github.io/teaching/glm_intro.html">General Linear
+Model</a> formulation to
+do a test on a single voxel.</p>
 <p>Let’s get that same voxel time course back again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -619,8 +615,8 @@ time course.</p>
 </div>
 </div>
 </div>
-<p>We load the data, and knock off the first four volumes to remove the artefact
-we discovered in First go at brain activation exercise:</p>
+<p>We load the data, and knock off the first four volumes to remove the
+artefact we discovered in First go at brain activation exercise:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the function to fetch the data file we need.</span>
@@ -657,7 +653,7 @@ Voxel time courses was at (42, 32, 19):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5454942520&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8cda4ec730&gt;]
 </pre></div>
 </div>
 <img alt="_images/model_one_voxel_6_1.png" src="_images/model_one_voxel_6_1.png" />
@@ -694,7 +690,7 @@ regression on this voxel time course.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5454743430&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8cd82486d0&gt;]
 </pre></div>
 </div>
 <img alt="_images/model_one_voxel_9_1.png" src="_images/model_one_voxel_9_1.png" />
@@ -712,7 +708,7 @@ regressor, and a column of ones:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f54546b25e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f8cd81bb880&gt;
 </pre></div>
 </div>
 <img alt="_images/model_one_voxel_11_1.png" src="_images/model_one_voxel_11_1.png" />
@@ -784,7 +780,7 @@ invertible, the pseudoinverse is given by:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41405.57435090359
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5454629e50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8cd81b1f40&gt;]
 </pre></div>
 </div>
 <img alt="_images/model_one_voxel_17_2.png" src="_images/model_one_voxel_17_2.png" />
@@ -824,10 +820,10 @@ invertible, the pseudoinverse is given by:</p>
             <p class="prev-next-title">Convolving with the hemodyamic response function</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="test_one_voxel.html" title="next page">
+    <a class='right-next' id="next-link" href="mean_test_example.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Testing a single voxel</p>
+        <p class="prev-next-title">A worked example of the general linear model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
