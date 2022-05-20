@@ -23,6 +23,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
+## Making a hemodynamic response function
+
+We will start by making a *function* that returns an estimate of the blood
+flow signal at any time $t$ after the onset of a neural impulse.
+
+We could use measured data to do this, from data like [this
+paper](https://www.sciencedirect.com/science/article/pii/S0960982208004429#fig3),
+with the problem that the data has some noise that we do not want to preserve.
+Another way, that we follow here, is to construct a function from some useful
+mathematical curves that gives values that are of a very similar shape to the
+measured response over time.
+
 ## Using scipy
 
 *Scipy* is a large library of scientific routines that builds on top of numpy.
