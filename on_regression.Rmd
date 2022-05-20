@@ -289,11 +289,17 @@ x_z = (x - np.mean(x)) / np.std(x)
 y_z = (y - np.mean(y)) / np.std(y)
 ```
 
-While we are here, let's calculate the correlation:
+While we are here, let's calculate the correlation.  We will all the correlation value `r`, because that's the standard letter for the [Pearson correlation](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) that we are using here.  In fact, it is often called "Pearson's r" - see the Wikipedia page.
 
 ```{python}
-correlation = np.mean(x_z * y_z)
-correlation
+# Calculate the correlation
+r = np.mean(x_z * y_z)
+r
+```
+
+```{python}
+# Or course this is (within tiny floating-point error) the same as:
+np.corrcoef(x, y)[0, 1]
 ```
 
 When we plot these z-score versions, we see that an intercept of 0 looks about
@@ -308,10 +314,38 @@ Let's try a slope of about 0.6, and an intercept of 0.
 
 ```{python}
 pred_y_z = 0 + 0.6 * x_z
-plt.plot(x_z, y_z, '+')
-plt.plot(x_z, pred_y_z, 'ro')
-plt.title('x, y in z-score form, with predictions')
+plt.plot(x_z, y_z, '+', label='Actual')
+plt.plot(x_z, pred_y_z, 'ro', label='Predicted')
+# Draw the predicting line
+x_lims = np.array([-2, 2])
+plt.plot(x_lims, 0 + x_lims * 0.6, ':')
+# Draw the errors
+for i in np.arange(len(x_z)):
+    plt.plot([x_z[i], x_z[i]], [y_z[i], pred_y_z[i]], 'k:')
+plt.title('x, y in z-score form, with guessed line and predictions')
+plt.legend()
 ```
+In fact, let's make that into a function to do some plots later:
+
+```{python}
+def plot_line_data(x, y, slope, inter, x_lims):
+    pred_y = inter + slope * x
+    plt.plot(x, y, '+', label='Actual')
+    plt.plot(x, pred_y, 'ro', label='Predicted')
+    # Draw the predicting line
+    plt.plot(x_lims, inter + slope * np.array(x_lims), ':')
+    # Draw the errors
+    for i in np.arange(len(x)):
+        plt.plot([x[i], x[i]], [y[i], pred_y[i]], 'k:')
+    plt.legend()
+    return pred_y
+```
+
+```{python}
+plot_line_data(x_z, y_z, 0.6, 0, np.array([-2, 2]))
+plt.title('Same graph using function')
+```
+
 The MSE is:
 
 ```{python}
@@ -356,24 +390,35 @@ plt.ylabel('MSE for intercept')
 plt.title('MSE values for intercepts, slope=0.6')
 ```
 
+This is the minimum (best) value we found for MSE, for all the intercepts we tried.
+
 ```{python}
 np.min(mses_for_intercepts)
 ```
+
+The `np.argmin` function tells us the *index* (position) of this minimum value.
 
 ```{python}
 min_index = np.argmin(mses_for_intercepts)
 min_index
 ```
 
+By the definition of the `np.argmin` function, the value of `mses_for_intercepts` at this index, is the minimum.
+
 ```{python}
 mses_for_intercepts[min_index]
 ```
+
+Now we know the index of the minimum value, we can find the intercept value that corresponds to this MSE value:
 
 ```{python}
 intercepts_to_try[min_index]
 ```
 
-Try a different slope - say 0.2
+Sure enough, as we asserted before, 0 was the intercept value giving the lowest (best) MSE, for all the intercepts we tried.
+
+
+But - maybe that is only true for our particular slope: 0.6.  We will try a different slope - say 0.2
 
 ```{python}
 # Corresponding MSE values
@@ -400,7 +445,10 @@ mses_for_intercepts_0p2[min_index_0p2]
 intercepts_to_try[min_index_0p2]
 ```
 
-Now let's find the best slope.
+Our preliminary guess - that turns out to be right when we analyze this mathematically - is that 0 is *always* the best intercept for z-scored x and y, regardless of slope, and regardless of the x and y that we z-scored.
+
+
+Now let's find the best slope, assuming an intercept of 0.
 
 ```{python}
 # -1 to 1 in steps of 0.001
@@ -427,48 +475,88 @@ best_slope = slopes_to_try[min_index_slope]
 print('Slope giving min MSE', best_slope)
 ```
 
-Wait - but `best_slope` is almost exactly the same as the correlation!.  And in fact, it is not exactly the same only because we are not trying every value for `slope`, but only in steps 0.001 apart.  With the `correlation` value for `slope`, we get value for MSE that is even a tiny bit *lower* than the best value we found by searching.
+Wait - but `best_slope` is almost exactly the same as the correlation!.  And in fact, it is not exactly the same only because we are not trying every value for `slope`, but only in steps 0.001 apart.  With the `r` (correlation) value for `slope`, we get value for MSE that is even a tiny bit *lower* than the best value we found by searching.
 
 ```{python}
-calc_mse(x_z, y_z, correlation, 0)
+calc_mse(x_z, y_z, r, 0)
 ```
 
-The *correlation* is also the slope of the best-fit (MSE) line for the z-scored x and y values.
-
-## Regression
+We have discovered that the r value (correlation) is also the slope of the best-fit (MSE) line for the z-scored x and y values.
 
 
-For fairly simple reasons, but reasons we won't go into here, we can use the best fit line for the z-scores to give the best fit line for the original values.   First we get the best-fit slope by scaling the correlation by the standard deviations:
+Here's the best-fit line, using, using `r`:
 
 ```{python}
-best_original_slope = correlation * np.std(y) / np.std(x)
-best_original_slope
+plot_line_data(x_z, y_z, r, 0, np.array([-2, 2]))
+plt.title('Best-fit (MSE) line to z-scored data')
 ```
 
-In fact, given we know the z-score best-fit intercept was 0, the slope tells us what the best-fit intecept must be for the original data:
+## Best fit line for the original data
+
+
+We now have the best-fit line for the z-score data.  What does this line look like for the original data, before the z-score transformation?
+
+To answer this question, we gradually undo the z-score transformations, while keeping track on the effect on the best-bit line.  First let's multiply the `y_z` values by the standard deviation of the original `y`s to undo that part of the z-transformation.  The result is the `y` values that just have the mean subtracted.
 
 ```{python}
+y_minus_mean = y_z * np.std(y)  # Undo division by standard deviation
+plot_line_data(x_z, y_minus_mean, r * np.std(y), 0, np.array([-2, 2]))
+plt.title('Best-fit (MSE) line to z-scored data')
+```
+
+Notice that, when we do this, the `y` values all stretch on the `y` axis by a factor of `np.std(y)` How about slope of the best-fit line?
+
+Remember, the slope is the number of units that y increases for a one-unit increase in x.  Because the y values scale by a factor of `np.std(y)`, the number of units of y for a one-unit increase in x also scales by a factor of `np.std(y)`, and the equivalent best-fit line has slope `r * np.std(y)`.
+
+
+Next we undo the `np.std(x)` transformation the `x_z` values.
+
+```{python}
+x_minus_mean = x_z * np.std(x)  # Undo division by standard deviation on x.
+pred_y_minus_mean = plot_line_data(x_minus_mean, y_minus_mean, r * np.std(y) / np.std(x), 0, np.array([-5, 5]))
+plt.title('Best-fit (MSE) line to z-scored data')
+```
+
+Now the `x_z` values stretch by a factor of `np.std(x)` along the x-axis.  The previous y increase for one unit in x (the slope) becomes the y increase for a `1 * np.std(x)` increase on x, so, to get the new slope, we divide the previous slope by `np.std(x)`.
+
+
+The last thing we need to do is undo the subtraction of `np.mean(y)` and `np.mean(x)`.   When we do this, we shift all the points `np.mean(y)` up on the y-axis, and `np.mean(x)` right on the x-axis, like this:
+
+```{python}
+y_back_again = y_minus_mean + np.mean(y)  # Obviously also == y
+x_back_again = x_minus_mean + np.mean(x)  # Obviously also == x
+pred_y_back_again = pred_y_minus_mean + np.mean(y)
+plt.plot(x_back_again, y_back_again, '+')
+plt.plot(x_back_again, pred_y_back_again, 'ro')
+```
+
+It might seem intuitive, and it is in fact correct, that when we shift the points on the graph like this, we can shift the line with them.  That is, the line just moves with the points, as you can see from the updated predictions above.  So, the slope does not change, but the point that the line hits the y axis does - and that is the intercept.
+
+The intercept for the graph before the shift was 0, 0.  After the shift, that point has moved to `np.mean(x), np.mean(y)`.  To track back along the line to the y-axis, we move `-np.mean(x)` units along the line.   So, in terms of y, we start at `np.mean(y)` then move `slope * -np.mean(y)` units as we move along the x-axis.  The new intercept is therefore:
+
+```{python}
+new_slope = r * np.std(y) / np.std(x)
+new_intercept = np.mean(y) - new_slope * np.mean(x)
+new_intercept
+```
+
+```{python}
+plot_line_data(x, y, new_slope, new_intercept, np.array([0, 9]))
+plt.title('Best-fit (MSE) line to orinal data, reconstructed from r')
+```
+
+Thus, the best slope and intercept for the original data are the values we've just calculated:
+
+```{python}
+best_original_slope = r * np.std(y) / np.std(x)
 best_original_intercept = np.mean(y) - best_original_slope * np.mean(x)
-best_original_intercept
 ```
 
 ```{python}
 calc_mse(x, y, best_original_slope, best_original_intercept)
 ```
 
-```{python}
-best_predicted_y = best_original_intercept + best_original_slope * x
-```
-
-```{python}
-# Plot the data with the new line
-plt.plot(x, y, '+', label='Actual values')
-# Plot the predicted values
-plt.plot(x, best_predicted_y, 'ro', label='Values predicted from line')
-# Plot the distance between predicted and actual, for all points.
-for i in range(n):
-    plt.plot([x[i], x[i]], [best_predicted_y[i], y[i]], 'k:')
-```
+To confirm that is the case, we would have to calculate the MSE for all possible intercept and slope pairs, but here we just confirm that if we assume the intercept is correct, we have the best slope:
 
 ```{python}
 orig_slopes_to_try = np.arange(2000) / 1000
@@ -488,6 +576,8 @@ plt.plot(orig_slopes_to_try, mses_for_orig_slopes)
 orig_slopes_to_try[np.argmin(mses_for_orig_slopes)]
 ```
 
+And, if we assume the slope is correct, we have the best intercept:
+
 ```{python}
 orig_inters_to_try = np.arange(2000) / 100
 n_orig_inters = len(orig_inters_to_try)
@@ -505,6 +595,11 @@ plt.plot(orig_inters_to_try, mses_for_orig_inters)
 ```{python}
 orig_inters_to_try[np.argmin(mses_for_orig_inters)]
 ```
+
+**Question**: How would you try a large number of slope, intercept pairs to see which is the best?  **Hint**: You might consider using a 2D array somewhere.
+
+## Automating the best-slope calculation with Scipy
+
 
 We can ask Scipy to use a calculation that is based on the correlation calculation above, to get this best slope and intercept automatically:
 
