@@ -592,8 +592,8 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#back-from-trying-some-more-data">
-   Back from trying some more data
+  <a class="reference internal nav-link" href="#introducing-modules">
+   Introducing modules
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -654,8 +654,8 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#back-from-trying-some-more-data">
-   Back from trying some more data
+  <a class="reference internal nav-link" href="#introducing-modules">
+   Introducing modules
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -767,7 +767,7 @@ without a loop?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82c2328640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdf367de700&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_modules_7_1.png" src="_images/on_modules_7_1.png" />
@@ -818,9 +818,10 @@ outliers:</p>
 <p>Off we go and copy / paste these functions into <a class="reference internal" href="using_module.html"><span class="doc std std-doc">another
 notebook</span></a></p>
 <p>Go there, and have a look at how it does on some more data.</p>
-<div class="section" id="back-from-trying-some-more-data">
-<h2>Back from trying some more data<a class="headerlink" href="#back-from-trying-some-more-data" title="Permalink to this headline">¶</a></h2>
-<p>We found that the there is a mistake in the copy/pasted code.</p>
+<div class="section" id="introducing-modules">
+<h2>Introducing modules<a class="headerlink" href="#introducing-modules" title="Permalink to this headline">¶</a></h2>
+<p>Over in <a class="reference internal" href="using_module.html"><span class="doc std std-doc">another notebook</span></a>, we found that the there is a
+mistake in the copy/pasted code.</p>
 <p>Of course we could fix it here, and then go and fix it in the other notebook.</p>
 <p>But, a better way, is:</p>
 <ul class="simple">
@@ -981,7 +982,8 @@ using <code class="docutils literal notranslate"><span class="pre">%%file</span>
 <p>Then we run the <code class="docutils literal notranslate"><span class="pre">import</span></code> again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">simplemod</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second time we import the module.</span>
+<span class="kn">import</span> <span class="nn">simplemod</span>
 </pre></div>
 </div>
 </div>
@@ -990,23 +992,25 @@ using <code class="docutils literal notranslate"><span class="pre">%%file</span>
 isn’t printing anything - it isn’t running the print statement at all — from
 the previous version or from the new version.</p>
 <p>This is due to the mechanism Python uses to <code class="docutils literal notranslate"><span class="pre">import</span></code> the file.  When Python
-does an <code class="docutils literal notranslate"><span class="pre">import</span></code> it first tries a <em>shortcut</em>, and only if that fails, does it
+does an <code class="docutils literal notranslate"><span class="pre">import</span></code>, it first tries a shortcut, and only if that fails, does it
 load and run the code from the file.  The process is:</p>
 <ol class="simple">
 <li><p><strong>Shortcut</strong>: Python first checks if it already has the defined module, and
 returns that if so, otherwise;</p></li>
-<li><p><strong>Long way round</strong>: Python reads the text file and runs the code inside.</p></li>
+<li><p>Long way round: Python reads the text file, runs the code inside, and
+returns the resulting module.</p></li>
 </ol>
-<p>In the case above, our second <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code> triggers the shortcut, where
-Python already has the module, so it returns the code from that module.  That
-is the code that existed the first time we did <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code>, so we get
-the result of the long way round load of the original code.</p>
-<p>Usually Python’s mechanism is what we want, because we usually don’t find
+<p>In the case above, our second-time-round <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code> triggers the
+<em>shortcut</em>, where Python already has the module, so it returns the code from
+that module, without running it again.  That is the code that existed the
+first time we did <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">simplemod</span></code>, so we get the result from the initial
+long way round load of the original code.</p>
+<p>Usually Python’s process is what we want, because we usually don’t find
 ourselves editing Python modules after we have imported them, in the same
-Python session.  In the common case, where we haven’t edited the module, but
-we are importing it again, the shortcut saves a lot of time.</p>
+Python session.  When we haven’t edited the module, the shortcut saves a lot
+of time, when we import the same module several times.</p>
 <p>For the rare case where we do edit the module while the Python process is
-running, we can force the long way round, using a <code class="docutils literal notranslate"><span class="pre">reload</span></code>, like this:</p>
+running we can force Python to go the long way round, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library to execute the importing logic.</span>
@@ -1096,7 +1100,9 @@ The addition is the <code class="docutils literal notranslate"><span class="pre"
 </div>
 <p>Now we can <em>execute</em> the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file from the command line, to give the effect
 we want.</p>
-<p>Normally, to show this, you would open a terminal and type <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code>.  Here though, we will use the notebook <code class="docutils literal notranslate"><span class="pre">!</span></code> prefix to ask the notebook to execute code <em>in the terminal</em>.  So, the notebook code below has exactly the same effect as typing <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code> at the terminal.</p>
+<p>Normally, to show this, you would open a terminal and type <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code>.  Here though, we will use the notebook <code class="docutils literal notranslate"><span class="pre">!</span></code> prefix to ask the
+<em>notebook</em> to execute code <em>in the terminal</em>.  So, the notebook code below has
+exactly the same effect as typing <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">volmeans.py</span></code> at the terminal.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice the ! at the beginning of the line below.</span>

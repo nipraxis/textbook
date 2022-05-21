@@ -92,10 +92,10 @@ notebook](using_module.Rmd)
 Go there, and have a look at how it does on some more data.
 
 
-## Back from trying some more data
+## Introducing modules
 
-
-We found that the there is a mistake in the copy/pasted code.
+Over in [another notebook](using_module.Rmd), we found that the there is a
+mistake in the copy/pasted code.
 
 Of course we could fix it here, and then go and fix it in the other notebook.
 
@@ -220,6 +220,7 @@ print('Result of double_me on 13', double_me(13))
 Then we run the `import` again.
 
 ```{python}
+# Second time we import the module.
 import simplemod
 ```
 
@@ -228,25 +229,27 @@ isn't printing anything - it isn't running the print statement at all — from
 the previous version or from the new version.
 
 This is due to the mechanism Python uses to `import` the file.  When Python
-does an `import` it first tries a *shortcut*, and only if that fails, does it
+does an `import`, it first tries a shortcut, and only if that fails, does it
 load and run the code from the file.  The process is:
 
 1. **Shortcut**: Python first checks if it already has the defined module, and
    returns that if so, otherwise;
-2. **Long way round**: Python reads the text file and runs the code inside.
+2. Long way round: Python reads the text file, runs the code inside, and
+   returns the resulting module.
 
-In the case above, our second `import simplemod` triggers the shortcut, where
-Python already has the module, so it returns the code from that module.  That
-is the code that existed the first time we did `import simplemod`, so we get
-the result of the long way round load of the original code.
+In the case above, our second-time-round `import simplemod` triggers the
+*shortcut*, where Python already has the module, so it returns the code from
+that module, without running it again.  That is the code that existed the
+first time we did `import simplemod`, so we get the result from the initial
+long way round load of the original code.
 
-Usually Python's mechanism is what we want, because we usually don't find
+Usually Python's process is what we want, because we usually don't find
 ourselves editing Python modules after we have imported them, in the same
-Python session.  In the common case, where we haven't edited the module, but
-we are importing it again, the shortcut saves a lot of time.
+Python session.  When we haven't edited the module, the shortcut saves a lot
+of time, when we import the same module several times.
 
 For the rare case where we do edit the module while the Python process is
-running, we can force the long way round, using a `reload`, like this:
+running we can force Python to go the long way round, like this:
 
 ```{python}
 # Library to execute the importing logic.
@@ -321,7 +324,9 @@ Now we can *execute* the `.py` file from the command line, to give the effect
 we want.
 
 Normally, to show this, you would open a terminal and type `python3
-volmeans.py`.  Here though, we will use the notebook `!` prefix to ask the notebook to execute code *in the terminal*.  So, the notebook code below has exactly the same effect as typing `python3 volmeans.py` at the terminal.
+volmeans.py`.  Here though, we will use the notebook `!` prefix to ask the
+*notebook* to execute code *in the terminal*.  So, the notebook code below has
+exactly the same effect as typing `python3 volmeans.py` at the terminal.
 
 ```{python}
 # Notice the ! at the beginning of the line below.
