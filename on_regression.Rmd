@@ -7,9 +7,9 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.11.5
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
@@ -323,6 +323,9 @@ plt.plot(x_lims, 0 + x_lims * 0.6, ':')
 for i in np.arange(len(x_z)):
     plt.plot([x_z[i], x_z[i]], [y_z[i], pred_y_z[i]], 'k:')
 plt.title('x, y in z-score form, with guessed line and predictions')
+# Make the axes scale x and y to equal lengths per unit.
+plt.gca().set_aspect('equal')
+# Put legend for points.
 plt.legend()
 ```
 In fact, let's make that into a function to do some plots later:
@@ -337,13 +340,14 @@ def plot_line_data(x, y, slope, inter, x_lims):
     # Draw the errors
     for i in np.arange(len(x)):
         plt.plot([x[i], x[i]], [y[i], pred_y[i]], 'k:')
-    plt.legend()
+    plt.gca().set_aspect('equal')
     return pred_y
 ```
 
 ```{python}
 plot_line_data(x_z, y_z, 0.6, 0, np.array([-2, 2]))
 plt.title('Same graph using function')
+plt.legend()
 ```
 
 The MSE is:
@@ -489,6 +493,7 @@ Here's the best-fit line, using, using `r`:
 ```{python}
 plot_line_data(x_z, y_z, r, 0, np.array([-2, 2]))
 plt.title('Best-fit (MSE) line to z-scored data')
+plt.legend()
 ```
 
 ## Best fit line for the original data
@@ -500,8 +505,8 @@ To answer this question, we gradually undo the z-score transformations, while ke
 
 ```{python}
 y_minus_mean = y_z * np.std(y)  # Undo division by standard deviation
-plot_line_data(x_z, y_minus_mean, r * np.std(y), 0, np.array([-2, 2]))
-plt.title('Best-fit (MSE) line to z-scored data')
+plot_line_data(x_z, y_minus_mean, r * np.std(y), 0, np.array([-6, 6]))
+plt.title('Best-fit (MSE) line to z-scored x, de-meaned y')
 ```
 
 Notice that, when we do this, the `y` values all stretch on the `y` axis by a factor of `np.std(y)` How about slope of the best-fit line?
@@ -514,7 +519,7 @@ Next we undo the `np.std(x)` transformation the `x_z` values.
 ```{python}
 x_minus_mean = x_z * np.std(x)  # Undo division by standard deviation on x.
 pred_y_minus_mean = plot_line_data(x_minus_mean, y_minus_mean, r * np.std(y) / np.std(x), 0, np.array([-5, 5]))
-plt.title('Best-fit (MSE) line to z-scored data')
+plt.title('Best-fit (MSE) line to de-meaned x and y')
 ```
 
 Now the `x_z` values stretch by a factor of `np.std(x)` along the x-axis.  The previous y increase for one unit in x (the slope) becomes the y increase for a `1 * np.std(x)` increase on x, so, to get the new slope, we divide the previous slope by `np.std(x)`.
@@ -528,37 +533,43 @@ x_back_again = x_minus_mean + np.mean(x)  # Obviously also == x
 pred_y_back_again = pred_y_minus_mean + np.mean(y)
 plt.plot(x_back_again, y_back_again, '+')
 plt.plot(x_back_again, pred_y_back_again, 'ro')
+# Set axis limits for comparison with plot below.
+plt.axis([-1, 9.5, 3.5, 24])
+plt.gca().set_aspect('equal')
+plt.title('Original data, and transformed predictions');
 ```
 
-It might seem intuitive, and it is in fact correct, that when we shift the points on the graph like this, we can shift the line with them.  That is, the line just moves with the points, as you can see from the updated predictions above.  So, the slope does not change, but the point that the line hits the y axis does - and that is the intercept.
-
-The intercept for the graph before the shift was 0, 0.  After the shift, that point has moved to `np.mean(x), np.mean(y)`.  To track back along the line to the y-axis, we move `-np.mean(x)` units along the line.   So, in terms of y, we start at `np.mean(y)` then move `slope * -np.mean(y)` units as we move along the x-axis.  The new intercept is therefore:
-
-```{python}
-new_slope = r * np.std(y) / np.std(x)
-new_intercept = np.mean(y) - new_slope * np.mean(x)
-new_intercept
-```
-
-```{python}
-plot_line_data(x, y, new_slope, new_intercept, np.array([0, 9]))
-plt.title('Best-fit (MSE) line to orinal data, reconstructed from r')
-```
-
-Thus, the best slope and intercept for the original data are the values we've just calculated:
+It might seem intuitive, and it is in fact correct, that when we shift the points on the graph like this, we can shift the line with them.  That is, the line just moves with the points, as you can see from the updated predictions above.  So, the slope does not change, and we already know the slope.
 
 ```{python}
 best_original_slope = r * np.std(y) / np.std(x)
+best_original_slope
+```
+
+Although the slope has not changed, the point that the line hits the y axis has - and that is the intercept.
+
+To find the new intercept, we can track back from any point we know is on the new line.   One convenient point is the shifted origin.  Before we added back the means, the origin, at 0, 0, was on the line.  After we add back the means, that point has moved to position `np.mean(x), np.mean(y)`, so we know that point is on the line.  To track back from that point along the line to the y-axis, we move `-np.mean(x)` units along the line.   So, in terms of y, we start at `np.mean(y)` then move `best_original_slope * -np.mean(y)` units as we move along the x-axis.  The new intercept is therefore:
+
+```{python}
 best_original_intercept = np.mean(y) - best_original_slope * np.mean(x)
+best_original_intercept
+```
+
+```{python}
+plot_line_data(x, y,
+               best_original_slope, best_original_intercept,
+               np.array([0, 9]))
+plt.title('Best-fit (MSE) line to orinal data, reconstructed from r');
 ```
 
 ```{python}
 calc_mse(x, y, best_original_slope, best_original_intercept)
 ```
 
-To confirm that is the case, we would have to calculate the MSE for all possible intercept and slope pairs, but here we just confirm that if we assume the intercept is correct, we have the best slope:
+To confirm that is these are in fact the best (MSE) slope and intercept, we would have to calculate the MSE for all possible intercept and slope pairs, but here we just confirm that if we assume the intercept is correct, we have the best slope:
 
 ```{python}
+# Try slopes between 0 and 2 in steps of 1/1000
 orig_slopes_to_try = np.arange(2000) / 1000
 n_orig_slopes = len(orig_slopes_to_try)
 mses_for_orig_slopes = np.zeros(n_orig_slopes)
@@ -573,13 +584,15 @@ plt.plot(orig_slopes_to_try, mses_for_orig_slopes)
 ```
 
 ```{python}
+# The slope giving the lowest MSE in the search.
 orig_slopes_to_try[np.argmin(mses_for_orig_slopes)]
 ```
 
 And, if we assume the slope is correct, we have the best intercept:
 
 ```{python}
-orig_inters_to_try = np.arange(2000) / 100
+# Try intercepts between 0 and 20 in steps of 1/1000
+orig_inters_to_try = np.arange(20000) / 1000
 n_orig_inters = len(orig_inters_to_try)
 mses_for_orig_inters = np.zeros(n_orig_inters)
 for i in np.arange(n_orig_inters):
@@ -593,6 +606,7 @@ plt.plot(orig_inters_to_try, mses_for_orig_inters)
 ```
 
 ```{python}
+# The intercept giving the lowest MSE in the search.
 orig_inters_to_try[np.argmin(mses_for_orig_inters)]
 ```
 
