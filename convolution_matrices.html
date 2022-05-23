@@ -1,0 +1,1042 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convolution with matrices &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_problem.html">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="to_code.html">
+   Ode to code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surviving_computers.html">
+   Surviving the computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_software.html">
+   Our tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="using_jupyter.html">
+   Using Jupyter notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_on_jupyter.html">
+   More on the Jupyter notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installing on your computer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="what_is_an_image.html">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_intro.html">
+   Introduction to Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_3d.html">
+   Three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_3d.html">
+   Three-dimensional images, NIfTI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing.html">
+   Indexing with Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing_nd.html">
+   Boolean indexing with more than one dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Voxels and time
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Working reproducibly
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="docstrings.html">
+   Docstrings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="module_directories.html">
+   Module directories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_testing.html">
+   On testing
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Detecting activation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Correlating with voxel time courses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_convolution.html">
+   Convolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_regression.html">
+   Introducing regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glm_intro.html">
+   Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   NumPy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Random numbers with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.random
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Coordinate systems and spatial transforms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/convolution_matrices.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.Rmd</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fconvolution_matrices.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/convolution_matrices.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/convolution_matrices.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-and-hemodynamic-prediction">
+   Neural and hemodynamic prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convolution-is-like-cross-correlation-with-the-reversed-hrf">
+   Convolution is like cross-correlation with the reversed HRF
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mathematical-definition-for-convolution">
+   The mathematical definition for convolution
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Convolution with matrices</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-and-hemodynamic-prediction">
+   Neural and hemodynamic prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convolution-is-like-cross-correlation-with-the-reversed-hrf">
+   Convolution is like cross-correlation with the reversed HRF
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mathematical-definition-for-convolution">
+   The mathematical definition for convolution
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="convolution-with-matrices">
+<h1>Convolution with matrices<a class="headerlink" href="#convolution-with-matrices" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This page follows on directly from the <a class="reference internal" href="on_convolution.html"><span class="doc std std-doc">convolution page</span></a>.  It builds on some simple 2D arrays (matrices) to the formal mathematical definition of convolution.  This page may be useful to you as more background and deeper understanding.   We often do implement convolution with matrices, so the matrix formulation here will be useful for when you see this in code, or you are implementing convolution yourself.</p>
+<div class="section" id="neural-and-hemodynamic-prediction">
+<h2>Neural and hemodynamic prediction<a class="headerlink" href="#neural-and-hemodynamic-prediction" title="Permalink to this headline">¶</a></h2>
+<p>You will remember, from that page, that we were looking at <em>neural prediction</em>
+models, with spikes or blocks of “on” activity, and plateaus of “off”
+activity.</p>
+<p>We were then convolving the neural activity with our estimate of the effect on blood flow of a instantaneous spike or “impulse” of neural activity.  This estimate is the Hemodynamic Response Function (HRF).</p>
+<p>From that page, we recover our example HRF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hrf</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="s2">&quot;A hemodynamic response function&quot;</span>
+    <span class="k">return</span> <span class="n">t</span> <span class="o">**</span> <span class="mf">8.6</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span> <span class="o">/</span> <span class="mf">0.547</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the main convolution page, we used very short time bins of 0.1 seconds to define whether the neural response was “on” or not.  Thus, the shortest impulse we allow for is 0.1 seconds.</p>
+<p>For what follows, it is a bit easier to see what is going on with a lower time
+resolution — say one time point per second.  We will make the first event last
+3 seconds:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>  <span class="c1"># One time point per second</span>
+<span class="n">n_time_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+<span class="n">neural_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_time_points</span><span class="p">)</span>
+
+<span class="n">neural_signal</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># A 3 second event</span>
+<span class="n">neural_signal</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">neural_signal</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">hrf_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">hrf_signal</span> <span class="o">=</span> <span class="n">hrf</span><span class="p">(</span><span class="n">hrf_times</span><span class="p">)</span>  <span class="c1"># The HRF at one second time resolution</span>
+<span class="n">n_hrf_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hrf_signal</span><span class="p">)</span>
+
+<span class="n">bold_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">neural_signal</span><span class="p">,</span> <span class="n">hrf_signal</span><span class="p">)</span>
+
+<span class="n">times_and_tail</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_time_points</span> <span class="o">+</span> <span class="n">n_hrf_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">neural_signal</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Neural signal, 1 second resolution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hrf_times</span><span class="p">,</span> <span class="n">hrf_signal</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Hemodynamic impulse response, 1 second resolution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_and_tail</span><span class="p">,</span> <span class="n">bold_signal</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Predicted BOLD signal from convolution, 1 second resolution&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Predicted BOLD signal from convolution, 1 second resolution&#39;)
+</pre></div>
+</div>
+<img alt="_images/convolution_matrices_6_1.png" src="_images/convolution_matrices_6_1.png" />
+</div>
+</div>
+<p>Our algorithm, which turned out to give convolution, had us add a shifted,
+scaled version of the HRF to the output, for every index.  Here is the algorithm from the <a class="reference internal" href="on_convolution.html"><span class="doc std std-doc">convolution page</span></a>:</p>
+<ol class="simple">
+<li><p>Start with an output vector that is a vector of zeros;</p></li>
+<li><p>For each index <span class="math notranslate nohighlight">\(i\)</span> in the <em>input vector</em> (the neural signal):</p>
+<ol class="simple">
+<li><p>Prepare a shifted copy of the HRF vector, starting at <span class="math notranslate nohighlight">\(i\)</span>. Call this the
+<em>shifted HRF vector</em>;</p></li>
+<li><p>Multiply the shifted HRF vector by the value in the input at index <span class="math notranslate nohighlight">\(i\)</span>,
+to give the <em>shifted, scaled HRF vector</em>;</p></li>
+<li><p>Add the shifted scaled HRF vector to the output.</p></li>
+</ol>
+</li>
+</ol>
+<p>Now imagine that, instead of adding the shifted scaled HRF to the output
+vector, we store each shifted scaled HRF as a row in an array, that has one
+row for each index in the input vector. Then we can get the same output vector
+as before by taking the sum across the columns of this array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">n_time_points</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">n_hrf_points</span>
+<span class="n">shifted_scaled_hrfs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">input_value</span> <span class="o">=</span> <span class="n">neural_signal</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="c1"># Storing the shifted, scaled HRF</span>
+    <span class="n">shifted_scaled_hrfs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n_hrf_points</span><span class="p">]</span> <span class="o">=</span> <span class="n">hrf_signal</span> <span class="o">*</span> <span class="n">input_value</span>
+<span class="n">bold_signal_again</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">shifted_scaled_hrfs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We check that the result is almost exactly the same</span>
+<span class="c1"># (allowing for tiny differences due to the order of +, * operations)</span>
+<span class="kn">import</span> <span class="nn">numpy.testing</span> <span class="k">as</span> <span class="nn">npt</span>
+<span class="n">npt</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">bold_signal</span><span class="p">,</span> <span class="n">bold_signal_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To visualize this, let’s look at the <code class="docutils literal notranslate"><span class="pre">shifted_scaled_hrfs</span></code> matrix as an image
+where darker colors indicate higher values. We can then look at it as a
+collection of time series, and see how it adds to produce our expected BOLD
+signal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">shifted_scaled_hrfs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Purples&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Convolved events, from &quot;above&quot;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_and_tail</span><span class="p">,</span> <span class="n">shifted_scaled_hrfs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Convolved events, as time series&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times_and_tail</span><span class="p">,</span> <span class="n">bold_signal_again</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Predicted BOLD signal from convolution, 1 second resolution&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Predicted BOLD signal from convolution, 1 second resolution&#39;)
+</pre></div>
+</div>
+<img alt="_images/convolution_matrices_11_1.png" src="_images/convolution_matrices_11_1.png" />
+</div>
+</div>
+<p>We can also do exactly the same operation by first making an array with the
+<em>shifted</em> HRFs, without scaling, and then multiplying each row by the
+corresponding input value, before doing the sum.  Here we are doing the
+shifting first, and then the scaling, and then the sum.  It all adds up to the
+same operation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we make the shifted HRFs</span>
+<span class="n">shifted_hrfs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="c1"># Storing the shifted HRF without scaling</span>
+    <span class="n">shifted_hrfs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n_hrf_points</span><span class="p">]</span> <span class="o">=</span> <span class="n">hrf_signal</span>
+<span class="c1"># Then do the scaling</span>
+<span class="n">shifted_scaled_hrfs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">input_value</span> <span class="o">=</span> <span class="n">neural_signal</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="c1"># Scaling the stored HRF by the input value</span>
+    <span class="n">shifted_scaled_hrfs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">shifted_hrfs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">input_value</span>
+<span class="c1"># Then the sum</span>
+<span class="n">bold_signal_again</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">shifted_scaled_hrfs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># This gives the same result, once again</span>
+<span class="n">npt</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">bold_signal</span><span class="p">,</span> <span class="n">bold_signal_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> array looks like this as an image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">shifted_hrfs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Purples&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f16fdb6d280&gt;
+</pre></div>
+</div>
+<img alt="_images/convolution_matrices_15_1.png" src="_images/convolution_matrices_15_1.png" />
+</div>
+</div>
+<p>Each new row of <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> corresponds to the HRF, shifted by one more
+column to the right:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">row_no</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">shifted_hrfs</span><span class="p">[</span><span class="n">row_no</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/convolution_matrices_17_0.png" src="_images/convolution_matrices_17_0.png" />
+</div>
+</div>
+<p>Now remember how matrix multiplication works:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    xa + yb + zc   \\
+    xd + ye + zf
+\end{pmatrix}
+=
+\begin{pmatrix}
+    x &amp; y &amp; z
+\end{pmatrix}
+\begin{pmatrix}
+    a &amp; d \\
+    b &amp; e \\
+    c &amp; f
+\end{pmatrix}
+\end{split}\]</div>
+<p>Now let us make our input neural vector into a 1 by N row vector.  If we <em>matrix
+multiply</em> this vector onto the <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> array (matrix), then we do the
+scaling of the HRFs and the sum operation, all in one go.  Like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">as_row_vector</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="s2">&quot; Convert 1D vector to row vector &quot;</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neural_vector</span> <span class="o">=</span> <span class="n">as_row_vector</span><span class="p">(</span><span class="n">neural_signal</span><span class="p">)</span>
+<span class="c1"># The scaling and summing by the magic of matrix multiplication</span>
+<span class="n">bold_signal_again</span> <span class="o">=</span> <span class="n">neural_vector</span> <span class="o">@</span> <span class="n">shifted_hrfs</span>
+<span class="c1"># This gives the same result as previously, yet one more time</span>
+<span class="n">npt</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">as_row_vector</span><span class="p">(</span><span class="n">bold_signal</span><span class="p">),</span> <span class="n">bold_signal_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The matrix transpose rule says <span class="math notranslate nohighlight">\((A B)^T = B^T A^T\)</span> where <span class="math notranslate nohighlight">\(A^T\)</span> is the transpose
+of matrix <span class="math notranslate nohighlight">\(A\)</span>.  So we could also do this exact same operation by doing a matrix
+multiply of the transpose of <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> onto the <code class="docutils literal notranslate"><span class="pre">neural_signal</span></code> as a
+column vector:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bold_signal_again</span> <span class="o">=</span> <span class="n">shifted_hrfs</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">neural_vector</span><span class="o">.</span><span class="n">T</span>
+<span class="c1"># Exactly the same, but transposed</span>
+<span class="n">npt</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">as_row_vector</span><span class="p">(</span><span class="n">bold_signal</span><span class="p">),</span> <span class="n">bold_signal_again</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this last formulation, the <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> matrix is the <em>convolution</em>
+matrix, in that (as we have just shown) you can apply the convolution of the
+HRF by matrix multiplying onto an input vector.</p>
+</div>
+<div class="section" id="convolution-is-like-cross-correlation-with-the-reversed-hrf">
+<h2>Convolution is like cross-correlation with the reversed HRF<a class="headerlink" href="#convolution-is-like-cross-correlation-with-the-reversed-hrf" title="Permalink to this headline">¶</a></h2>
+<p>We are now ready to show something slightly odd that arises from the way that
+convolution works.</p>
+<p>Consider index <span class="math notranslate nohighlight">\(i\)</span> in the input (neural) vector.  Let’s say <span class="math notranslate nohighlight">\(i = 25\)</span>.  We want to get
+value index <span class="math notranslate nohighlight">\(i\)</span> in the output (hemodynamic vector). What do we need to do?</p>
+<p>Looking at our non-transposed matrix formulation, we see that value <span class="math notranslate nohighlight">\(i\)</span> in the
+output is the matrix multiplication of the neural signal (row vector) by
+column <span class="math notranslate nohighlight">\(i\)</span> in <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code>.  Here is a plot of column 25 in
+<code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">shifted_hrfs</span><span class="p">[:,</span> <span class="mi">25</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f16fd6efe50&gt;]
+</pre></div>
+</div>
+<img alt="_images/convolution_matrices_25_1.png" src="_images/convolution_matrices_25_1.png" />
+</div>
+</div>
+<p>The column contains a <em>reversed</em> copy of the HRF signal, where the first value
+from the original HRF signal is at index 25 (<span class="math notranslate nohighlight">\(i\)</span>), the second value is at
+index 24 (<span class="math notranslate nohighlight">\(i - 1\)</span>) and so on back to index 25 - 20 = 5.  The reversed HRF
+follows from the way we constructed the rows of the original matrix.  Each new
+HRF row was shifted across by one column, therefore, reading up the columns
+from the diagonals, will also give you the HRF shape.</p>
+<p>Let us rephrase the matrix multiplication that gives us the value at index <span class="math notranslate nohighlight">\(i\)</span>
+in the output vector.  Call the neural input vector <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> with values
+<span class="math notranslate nohighlight">\(n_0, n_1 ... n_{N-1}\)</span>.  Call the <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> array <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> with <span class="math notranslate nohighlight">\(N\)</span>
+rows and <span class="math notranslate nohighlight">\(N + M - 1\)</span> columns.  <span class="math notranslate nohighlight">\(\mathbf{S}_{:,i}\)</span> is column <span class="math notranslate nohighlight">\(i\)</span> in
+<span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.</p>
+<p>So, the output value <span class="math notranslate nohighlight">\(o_i\)</span> is given by the matrix multiplication of row
+<span class="math notranslate nohighlight">\(\mathbf{n}\)</span> onto column <span class="math notranslate nohighlight">\(\mathbf{S}_{:,i}\)</span>.  The matrix multiplication (dot
+product) gives us the usual sum of products as the output:</p>
+<div class="math notranslate nohighlight">
+\[
+o_i = \sum_{j=0}^{N-1}{n_j S_{j,i}}
+\]</div>
+<p>The formula above describes what is happening in the matrix multiplication in
+this piece of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">bold_i</span> <span class="o">=</span> <span class="n">neural_vector</span> <span class="o">@</span> <span class="n">shifted_hrfs</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npt</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">bold_i</span><span class="p">,</span> <span class="n">bold_signal</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can we simplify the formula without using the <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>
+matrix?  We saw above that column <span class="math notranslate nohighlight">\(i\)</span> in <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> contains a reversed
+HRF, starting at index <span class="math notranslate nohighlight">\(i\)</span> and going backwards towards index 0.</p>
+<p>The 1-second resolution HRF is our array <code class="docutils literal notranslate"><span class="pre">hrf_signal</span></code>.
+So <code class="docutils literal notranslate"><span class="pre">shifted_hrfs[i,</span> <span class="pre">i]</span></code> contains <code class="docutils literal notranslate"><span class="pre">hrf_signal[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">shifted_hrfs[i-1,</span> <span class="pre">i]</span></code> contains
+<code class="docutils literal notranslate"><span class="pre">hrf_signal[1]</span></code> and so on.  In general, for any index <span class="math notranslate nohighlight">\(j\)</span> into
+<code class="docutils literal notranslate"><span class="pre">shifted_hrfs[:,</span> <span class="pre">i]</span></code>, <code class="docutils literal notranslate"><span class="pre">shifted_hrfs[j,</span> <span class="pre">i]</span> <span class="pre">==</span> <span class="pre">hrf_signal[i-j]</span></code> (assuming
+we return zero for any <code class="docutils literal notranslate"><span class="pre">hrf_signal[i-j]</span></code> where <code class="docutils literal notranslate"><span class="pre">i-j</span></code> is outside the
+bounds of the vector, with <code class="docutils literal notranslate"><span class="pre">i-j</span></code> &lt; 0 or <span class="math notranslate nohighlight">\(\geq\)</span> M).</p>
+<p>Realizing this, we can replace <span class="math notranslate nohighlight">\(\mathbf{S}_{:,i}\)</span> in our equation above.  Call
+our <code class="docutils literal notranslate"><span class="pre">hrf_signal</span></code> vector <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> with values <span class="math notranslate nohighlight">\(h_0, h_1, ... h_{M-1}\)</span>.
+Then:</p>
+<div class="math notranslate nohighlight">
+\[
+o_i = \sum_{j=0}^{N-1}{n_j h_{i-j}}
+\]</div>
+<p>This is the sum of the {products of the elements of <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> with the
+matching elements from the [reversed HRF vector <span class="math notranslate nohighlight">\(\mathbf{h}\)</span>, shifted by <span class="math notranslate nohighlight">\(i\)</span>
+elements]}.</p>
+</div>
+<div class="section" id="the-mathematical-definition-for-convolution">
+<h2>The mathematical definition for convolution<a class="headerlink" href="#the-mathematical-definition-for-convolution" title="Permalink to this headline">¶</a></h2>
+<p>This brings us to the abstract definition of convolution for continuous
+functions.</p>
+<p>In general, call the continuous input a function <span class="math notranslate nohighlight">\(f\)</span>.  In our case the input
+signal is the neuronal model, that is a function of time.  This is the
+continuous generalization of the vector <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> in our discrete model.
+The continuous function to convolve with is <span class="math notranslate nohighlight">\(g\)</span>.  In our case <span class="math notranslate nohighlight">\(g\)</span> is the HRF,
+also a function of time.  <span class="math notranslate nohighlight">\(g\)</span> is the generalized continuous version of the
+vector <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> in the previous section.  The convolution of <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>
+is often written <span class="math notranslate nohighlight">\((f * g)\)</span> and for any given <span class="math notranslate nohighlight">\(t\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+(f * g )(t) \stackrel{\mathrm{def}}{=}\ \int_{-\infty}^\infty f(\tau)\,
+g(t - \tau)\, d\tau
+\]</div>
+<p>As you can see, and as we have already discovered in the discrete case, the
+convolution is the integral of the product of the two functions as the second
+function <span class="math notranslate nohighlight">\(g\)</span> is reversed and shifted.</p>
+<p>See : the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution#Definition">wikipedia convolution definition section</a> for more discussion.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
