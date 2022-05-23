@@ -117,7 +117,7 @@ pip 22.0.4 from <some-directory/site-packages/pip (python 3.10)
 Now finish the install with:
 
 ```
-pip3 install --user scipy matplotlib pandas scikit-image nibabel jupyter ipython jupytext nipraxis okpy
+pip3 install --user scipy matplotlib pandas scikit-image sympy nibabel jupyter ipython jupytext nipraxis okpy
 ```
 
 :::{note}
