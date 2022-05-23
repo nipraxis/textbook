@@ -594,6 +594,11 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-a-hemodynamic-response-function">
+   Making a hemodynamic response function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-scipy">
    Using scipy
   </a>
@@ -624,6 +629,11 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-a-hemodynamic-response-function">
+   Making a hemodynamic response function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-scipy">
    Using scipy
   </a>
@@ -652,6 +662,17 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="making-a-hemodynamic-response-function">
+<h2>Making a hemodynamic response function<a class="headerlink" href="#making-a-hemodynamic-response-function" title="Permalink to this headline">¶</a></h2>
+<p>We will start by making a <em>function</em> that returns an estimate of the blood
+flow signal at any time <span class="math notranslate nohighlight">\(t\)</span> after the onset of a neural impulse.</p>
+<p>We could use measured data to do this, from data like <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0960982208004429#fig3">this
+paper</a>,
+with the problem that the data has some noise that we do not want to preserve.
+Another way, that we follow here, is to construct a function from some useful
+mathematical curves that gives values that are of a very similar shape to the
+measured response over time.</p>
 </div>
 <div class="section" id="using-scipy">
 <h2>Using scipy<a class="headerlink" href="#using-scipy" title="Permalink to this headline">¶</a></h2>
@@ -707,10 +728,10 @@ array) known as the <a class="reference external" href="https://en.wikipedia.org
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0621e66be0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f76fa2fbbb0&gt;
 </pre></div>
 </div>
-<img alt="_images/convolution_background_9_1.png" src="_images/convolution_background_9_1.png" />
+<img alt="_images/convolution_background_10_1.png" src="_images/convolution_background_10_1.png" />
 </div>
 </div>
 </div>
@@ -754,7 +775,7 @@ functions.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;HRF model of signal&#39;)
 </pre></div>
 </div>
-<img alt="_images/convolution_background_12_1.png" src="_images/convolution_background_12_1.png" />
+<img alt="_images/convolution_background_13_1.png" src="_images/convolution_background_13_1.png" />
 </div>
 </div>
 <p>We can sample from the function, to get the estimates at the times of our TRs.
@@ -779,7 +800,7 @@ seconds apart.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;HRF sampled every 2.5 seconds&#39;)
 </pre></div>
 </div>
-<img alt="_images/convolution_background_14_2.png" src="_images/convolution_background_14_2.png" />
+<img alt="_images/convolution_background_15_2.png" src="_images/convolution_background_15_2.png" />
 </div>
 </div>
 <p>We can use this to convolve our neural (on-off) prediction.  This will give us
@@ -819,10 +840,10 @@ convert the onsets in the file, to neural time-courses.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f061f977fd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f76f7e0bf70&gt;]
 </pre></div>
 </div>
-<img alt="_images/convolution_background_18_1.png" src="_images/convolution_background_18_1.png" />
+<img alt="_images/convolution_background_19_1.png" src="_images/convolution_background_19_1.png" />
 </div>
 </div>
 <p>When we convolve, the output is length N + M-1, where N is the number of
@@ -866,10 +887,10 @@ drop the last <code class="docutils literal notranslate"><span class="pre">len(h
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f061f8e0bb0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f76f7d75940&gt;]
 </pre></div>
 </div>
-<img alt="_images/convolution_background_23_1.png" src="_images/convolution_background_23_1.png" />
+<img alt="_images/convolution_background_24_1.png" src="_images/convolution_background_24_1.png" />
 </div>
 </div>
 <p>For our future use, might want to save our convolved time course to a numpy
