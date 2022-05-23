@@ -82,11 +82,11 @@ We use this line to *predict* the `psychopathy` scores from the `clammy` scores.
 What does our straight line relationship mean?
 
 We are saying that the values of `psychopathy` can be partly predicted by
-a straight line of formula `10 + 0.9 * clammy`.
+a straight line of formula `0.9 * clammy + 10`.
 
 
 ```{python}
-predicted_psychopathy = guessed_intercept + guessed_slope * clammy
+predicted_psychopathy = guessed_slope * clammy + guessed_intercept
 predicted_psychopathy
 ```
 
@@ -120,19 +120,19 @@ student (= 0.389) and $x_i$ is the value for student $i$ where $i \in 1 ..
 
 Our straight line model says:
 
-$y_i \approx c + bx_i$
+$y_i \approx bx_i + c$
 
-where $\approx$ means *approximately equal to*, $c$ is the intercept and $b$
-is the slope. For the guessed line above:
+where $\approx$ means *approximately equal to*, $b$ is the slope and $c$
+is the intercept. For the guessed line above:
 
-$y_i \approx 10 + 0.9 x_i$
+$y_i \approx 0.9 x_i + 10$
 
 With the $\approx$, we are accepting that we will not succeed in explaining
 our psychopathy values exactly. We can rephrase this by saying that each
 observation is equal to the predicted value (from the formula above) plus some
 error for each observation:
 
-$y_i = c + bx_i + e_i$
+$y_i = bx_i + c + e_i$
 
 
 ## Simple regression in matrix form
@@ -144,31 +144,80 @@ vectors.
 
 $\yvec$ is the vector of values $y_1 ... y_{12}$.
 
+```{python tags=c("hide-cell")}
+# Ignore this cell - it is to give a better display to the mathematics.
+from sympy import (Eq, Matrix, IndexedBase, symbols)
+from sympy.matrices import MatAdd, MatMul
+
+sy_y = symbols(r'\vec{y}')
+sy_y_val = Matrix(psychopathy)
+Eq(sy_y, sy_y_val, evaluate=False)
+```
+
 $\xvec$ is the vector of values $x_1 ... x_{12}$:
 
-$\evec$ is the vector of errors $e_1 ... e_{12}$:
+```{python tags=c("hide-cell")}
+# Ignore this cell.
+sy_x = symbols(r'\vec{x}')
+sy_x_val = Matrix(clammy)
+Eq(sy_x, sy_x_val, evaluate=False)
+```
+
+$\evec$ is the vector of as-yet-unknown errors $e_1 ... e_{12}$:
+
+```{python tags=c("hide-cell")}
+# Ignore this cell.
+sy_e = symbols(r'\vec{\varepsilon}')
+sy_e_ind = IndexedBase("e")
+sy_e_val = Matrix([sy_e_ind[i] for i in range(1, 13)])
+Eq(sy_e, sy_e_val, evaluate=False)
+```
 
 Now we can rephrase our model as:
 
 $$
-\yvec = c + b \xvec + \evec
+\yvec = b \xvec + c + \evec
 $$
 
-Bear with with us for a little trick. If $\mathbf{o}$ is a vector of ones,
-then we can rewrite the formula as:
+
+Bear with with us for a little trick. We define $\vec{o}$ as a vector of ones,
+like this:
+
+```{python tags=c("hide-cell")}
+# Ignore this cell.
+sy_o = symbols(r'\vec{o}')
+sy_o_val = Matrix([1 for i in range(1, 13)])
+Eq(sy_o, sy_o_val, evaluate=False)
+```
+
+Now we can rewrite the formula as:
 
 $$
-\yvec = c\mathbf{o} + b\xvec + \evec
+\yvec = b\xvec + c\vec{o} + \evec
 $$
 
 because $o_i = 1$ and so $co_i = c$.
+
+```{python tags=c("hide-cell")}
+# Ignore this cell.
+sy_b, sy_c = symbols('b, c')
+rhs = MatAdd(MatMul(sy_b, sy_x_val), MatMul(sy_c, sy_o_val), sy_e_val)
+Eq(sy_y, rhs, evaluate=False)
+```
+
+This evaluates to the result we intend:
+
+```{python tags=c("hide-cell")}
+# Ignore this cell.
+Eq(sy_y, sy_c * sy_o_val + sy_b * sy_x_val + sy_e_val, evaluate=False)
+```
 
 $\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
 
 We can now rephrase the calculation in terms of matrix multiplication.
 
 Call $\Xmat$ the matrix of two columns, where the first column is the column
-of ones ($\mathbf{o}$ above) and the second column is $\xvec$. Call $\bvec$
+of ones ($\vec{o}$ above) and the second column is $\xvec$. Call $\bvec$
 the column vector:
 
 $$
@@ -182,11 +231,25 @@ $$
 
 This gives us exactly the same calculation as $\yvec = c + b \xvec + \evec$ above, but in terms of matrix multiplication:
 
+```{python tags=c("hide-cell")}
+sy_beta_val = Matrix([[sy_b], [sy_c]])
+sy_xmat_val = Matrix.hstack(sy_x_val, sy_o_val)
+eq = Eq(sy_y_val, MatAdd(MatMul(sy_xmat_val, sy_beta_val), sy_e_val), evaluate=False)
+eq
+```
+
 In symbols:
 
 $$
 \yvec = \Xmat \bvec + \evec
 $$
+
+
+Because of the way that matrix multiplication works, this again gives us the intended result:
+
+```{python tags=c("hide-cell")}
+Eq(sy_y_val, sy_xmat_val @ sy_beta_val + sy_e_val, evaluate=False)
+```
 
 We still haven’t found our best fitting line. But before we go further,
 it might be obvious that we can easily add a new predictor here.
@@ -212,7 +275,7 @@ $\xvec_1$. Of course $\xvec_1$ has 12 values $x_{1, 1}..x_{1,
 $b_2$ (slope for $\xvec_2$). Our model is:
 
 $$
-y_i = c + b_1 x_{1, i} + b_2 x_{2, i} + e_i
+y_i = b_1 x_{1, i} + b_2 x_{2, i} + c + e_i
 $$
 
 In this model $\Xmat$ has three columns (ones, $\xvec_1$, and
@@ -229,8 +292,8 @@ $$
 y_i = b_1 x_{1, i} + b_2 x_{2, i} + ... b_p x_{p, i} + e_i
 $$
 
-In the case of the models above, the first predictor $\xvec_1$
-would be a column of ones, to express the intercept in the model.
+In the case of the models above, the final predictor $\xvec_p$ would be a
+column of ones, to express the intercept in the model.
 
 Any model of the form above can still be phrased in the matrix form:
 
