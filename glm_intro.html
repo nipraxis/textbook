@@ -828,7 +828,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa9846eac70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f78a5719f10&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -862,9 +862,10 @@ error for each observation:</p>
 in <em>matrix form</em>. Let’s make the data and predictor and errors into
 vectors.</p>
 <p><span class="math notranslate nohighlight">\(\yvec\)</span> is the vector of values <span class="math notranslate nohighlight">\(y_1 ... y_{12}\)</span>.</p>
-<div class="cell tag_hide-cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell - it is to give a better display to the mathematics.</span>
+<span class="c1"># Inport Symbolic mathematics routines.</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Eq</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">MatAdd</span><span class="p">,</span> <span class="n">MatMul</span>
 
@@ -880,7 +881,7 @@ vectors.</p>
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\xvec\)</span> is the vector of values <span class="math notranslate nohighlight">\(x_1 ... x_{12}\)</span>:</p>
-<div class="cell tag_hide-cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">sy_x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -895,7 +896,7 @@ vectors.</p>
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\evec\)</span> is the vector of as-yet-unknown errors <span class="math notranslate nohighlight">\(e_1 ... e_{12}\)</span>:</p>
-<div class="cell tag_hide-cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">sy_e</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec{\varepsilon}&#39;</span><span class="p">)</span>
@@ -917,7 +918,7 @@ vectors.</p>
 \]</div>
 <p>Bear with with us for a little trick. We define <span class="math notranslate nohighlight">\(\vec{o}\)</span> as a vector of ones,
 like this:</p>
-<div class="cell tag_hide-cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">sy_o</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{o}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -937,7 +938,7 @@ like this:</p>
 \yvec = b\xvec + c\vec{o} + \evec
 \]</div>
 <p>because <span class="math notranslate nohighlight">\(o_i = 1\)</span> and so <span class="math notranslate nohighlight">\(co_i = c\)</span>.</p>
-<div class="cell tag_hide-cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">sy_b</span><span class="p">,</span> <span class="n">sy_c</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;b, c&#39;</span><span class="p">)</span>
@@ -952,7 +953,7 @@ like this:</p>
 </div>
 </div>
 <p>This evaluates to the result we intend:</p>
-<div class="cell tag_hide-cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y</span><span class="p">,</span> <span class="n">sy_c</span> <span class="o">*</span> <span class="n">sy_o_val</span> <span class="o">+</span> <span class="n">sy_b</span> <span class="o">*</span> <span class="n">sy_x_val</span> <span class="o">+</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -966,25 +967,26 @@ like this:</p>
 </div>
 <p><span class="math notranslate nohighlight">\(\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}\)</span></p>
 <p>We can now rephrase the calculation in terms of matrix multiplication.</p>
-<p>Call <span class="math notranslate nohighlight">\(\Xmat\)</span> the matrix of two columns, where the first column is the column
-of ones (<span class="math notranslate nohighlight">\(\vec{o}\)</span> above) and the second column is <span class="math notranslate nohighlight">\(\xvec\)</span>. Call <span class="math notranslate nohighlight">\(\bvec\)</span>
-the column vector:</p>
+<p>Call <span class="math notranslate nohighlight">\(\Xmat\)</span> the matrix of two columns, where the first column is <span class="math notranslate nohighlight">\(\xvec\)</span> and
+the second column is the column of ones (<span class="math notranslate nohighlight">\(\vec{o}\)</span> above). Call <span class="math notranslate nohighlight">\(\bvec\)</span> the
+column vector:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left[
 \begin{array}{\bvec}
-c \\
 b \\
+c \\
 \end{array}
 \right]
 \end{split}\]</div>
-<p>This gives us exactly the same calculation as <span class="math notranslate nohighlight">\(\yvec = c + b \xvec + \evec\)</span> above, but in terms of matrix multiplication:</p>
-<div class="cell tag_hide-cell docutils container">
+<p>This gives us exactly the same calculation as <span class="math notranslate nohighlight">\(\yvec = b \xvec + c + \evec\)</span>
+above, but in terms of matrix multiplication:</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sy_beta_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="n">sy_b</span><span class="p">],</span> <span class="p">[</span><span class="n">sy_c</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">sy_beta_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="n">sy_b</span><span class="p">],</span> <span class="p">[</span><span class="n">sy_c</span><span class="p">]])</span>
 <span class="n">sy_xmat_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">sy_x_val</span><span class="p">,</span> <span class="n">sy_o_val</span><span class="p">)</span>
-<span class="n">eq</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_xmat_val</span><span class="p">,</span> <span class="n">sy_beta_val</span><span class="p">),</span> <span class="n">sy_e_val</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">eq</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_xmat_val</span><span class="p">,</span> <span class="n">sy_beta_val</span><span class="p">),</span> <span class="n">sy_e_val</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -998,10 +1000,12 @@ b \\
 \[
 \yvec = \Xmat \bvec + \evec
 \]</div>
-<p>Because of the way that matrix multiplication works, this again gives us the intended result:</p>
-<div class="cell tag_hide-cell docutils container">
+<p>Because of the way that matrix multiplication works, this again gives us the
+intended result:</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">sy_xmat_val</span> <span class="o">@</span> <span class="n">sy_beta_val</span> <span class="o">+</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">sy_xmat_val</span> <span class="o">@</span> <span class="n">sy_beta_val</span> <span class="o">+</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1036,13 +1040,13 @@ student’s age as another predictor:</p>
 \[
 y_i = b_1 x_{1, i} + b_2 x_{2, i} + c + e_i
 \]</div>
-<p>In this model <span class="math notranslate nohighlight">\(\Xmat\)</span> has three columns (ones, <span class="math notranslate nohighlight">\(\xvec_1\)</span>, and
-<span class="math notranslate nohighlight">\(\xvec_2\)</span>), and the <span class="math notranslate nohighlight">\(\bvec\)</span> vector has three values <span class="math notranslate nohighlight">\(c, b_1,
-b_2\)</span>. This gives the same matrix formulation, with our new <span class="math notranslate nohighlight">\(\Xmat\)</span> and
-<span class="math notranslate nohighlight">\(\bvec\)</span>: <span class="math notranslate nohighlight">\(\yvec = \Xmat \bvec + \evec\)</span>.</p>
+<p>In this model <span class="math notranslate nohighlight">\(\Xmat\)</span> has three columns (<span class="math notranslate nohighlight">\(\xvec_1\)</span>, <span class="math notranslate nohighlight">\(\xvec_2\)</span> and ones), and
+the <span class="math notranslate nohighlight">\(\bvec\)</span> vector has three values <span class="math notranslate nohighlight">\(b_1, b_2, c\)</span>. This gives the same matrix
+formulation, with our new <span class="math notranslate nohighlight">\(\Xmat\)</span> and <span class="math notranslate nohighlight">\(\bvec\)</span>: <span class="math notranslate nohighlight">\(\yvec = \Xmat \bvec + \evec\)</span>.</p>
 <p>This is a <em>linear</em> model because our model says that the data <span class="math notranslate nohighlight">\(y_i\)</span> comes
-from the <em>sum</em> of some components (<span class="math notranslate nohighlight">\(c, b_1 x_{1, i}, b_2 x_{2, i}, e_i\)</span>).</p>
-<p>We can keep doing this by adding more and more regressors. In general, a linear model with <span class="math notranslate nohighlight">\(p\)</span> predictors looks like this:</p>
+from the <em>sum</em> of some components (<span class="math notranslate nohighlight">\(b_1 x_{1, i}, b_2 x_{2, i}, c, e_i\)</span>).</p>
+<p>We can keep doing this by adding more and more regressors. In general, a linear
+model with <span class="math notranslate nohighlight">\(p\)</span> predictors looks like this:</p>
 <div class="math notranslate nohighlight">
 \[
 y_i = b_1 x_{1, i} + b_2 x_{2, i} + ... b_p x_{p, i} + e_i
@@ -1074,10 +1078,9 @@ basic matrix algebra to estimate the “best” line.</p>
 <p>Let’s assume that we want an estimate for the line parameters (intercept
 and slope) that gives the smallest “distance” between the estimated
 values (predicted from the line), and the actual values (the data).</p>
-<p>We’ll define ‘distance’ as the squared difference of the predicted value
-from the actual value. These are the squared error terms
-<span class="math notranslate nohighlight">\(e_1^2, e_2^2 ... e_{n}^2\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of
-observations - 12 in our case.</p>
+<p>We’ll define ‘distance’ as the squared difference of the predicted value from
+the actual value. These are the squared error terms <span class="math notranslate nohighlight">\(e_1^2, e_2^2 ... e_{n}^2\)</span>,
+where <span class="math notranslate nohighlight">\(n\)</span> is the number of observations; 12 in our case.</p>
 <p>As a reminder: our model is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1138,24 +1141,24 @@ particular solution. If <span class="math notranslate nohighlight">\(\bf{A}^+\)<
 and <code class="docutils literal notranslate"><span class="pre">clammy</span></code>?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">clammy</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">clammy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span>
 <span class="n">X</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.   , 0.389],
-       [1.   , 0.2  ],
-       [1.   , 0.241],
-       [1.   , 0.463],
-       [1.   , 4.585],
-       [1.   , 1.097],
-       [1.   , 1.642],
-       [1.   , 4.972],
-       [1.   , 7.957],
-       [1.   , 5.585],
-       [1.   , 5.527],
-       [1.   , 6.964]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.389, 1.   ],
+       [0.2  , 1.   ],
+       [0.241, 1.   ],
+       [0.463, 1.   ],
+       [4.585, 1.   ],
+       [1.097, 1.   ],
+       [1.642, 1.   ],
+       [4.972, 1.   ],
+       [7.957, 1.   ],
+       [5.585, 1.   ],
+       [5.527, 1.   ],
+       [6.964, 1.   ]])
 </pre></div>
 </div>
 </div>
@@ -1163,13 +1166,13 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the pseudoinverse to get estimated B</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">psychopathy</span>
 <span class="n">B</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.071286,  0.999257])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.999257, 10.071286])
 </pre></div>
 </div>
 </div>
@@ -1182,7 +1185,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa952e7f2e0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f78a41a1760&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_43_1.png" src="_images/glm_intro_43_1.png" />
@@ -1213,27 +1216,27 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 <img alt="_images/glm_intro_45_0.png" src="_images/glm_intro_45_0.png" />
 </div>
 </div>
-<p>Our claim was that this estimate for slope and intercept minimize the mean (and therefore sum) of
-squared error:</p>
+<p>Our claim was that this estimate for slope and intercept minimize the sum (and
+therefore mean) of squared error:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span>
 <span class="n">errors</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">fitted</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">errors</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.92560644993827
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.92560644993824
 </pre></div>
 </div>
 </div>
 </div>
-<p>Is this sum of squared errors smaller than our earlier guess of an intercept
-of 10 and a slope of 0.9?</p>
+<p>Is this sum of squared errors smaller than our earlier guess of an intercept of
+10 and a slope of 0.9?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 <span class="n">errors</span> <span class="o">=</span> <span class="n">psychopathy</span> <span class="o">-</span> <span class="n">fitted</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">errors</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
@@ -1265,15 +1268,14 @@ predicts psychopathy score.</p>
 of the best fit line between <code class="docutils literal notranslate"><span class="pre">clammy</span></code> and <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> would be
 different from zero.</p>
 <p>In our model, we have two predictors, the column of ones and <code class="docutils literal notranslate"><span class="pre">clammy</span></code>.
-<span class="math notranslate nohighlight">\(p = 2\)</span> and <span class="math notranslate nohighlight">\(\bhat\)</span> is length 2. We could choose just the second of
-the values in <span class="math notranslate nohighlight">\(\bhat\)</span> (therefore <span class="math notranslate nohighlight">\(b_1\)</span> if <span class="math notranslate nohighlight">\(b_0\)</span> is the first
-value) with a contrast:</p>
+<span class="math notranslate nohighlight">\(p = 2\)</span> and <span class="math notranslate nohighlight">\(\bhat\)</span> is length 2. We could choose just the first of
+the values in <span class="math notranslate nohighlight">\(\bhat\)</span> with a contrast:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left[
 \begin{array}{\cvec}
-0 \\
 1 \\
+0 \\
 \end{array}
 \right]
 \end{split}\]</div>
@@ -1302,8 +1304,8 @@ the data <span class="math notranslate nohighlight">\(\yvec\)</span>, the design
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">t_stat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; betas, t statistic and significance test given data, design matrix, contrast</span>
 
-<span class="sd">    This is OLS estimation; we assume the errors to have independent</span>
-<span class="sd">    and identical normal distributions around zero for each $i$ in</span>
+<span class="sd">    This is Ordinary Least Square estimation; we assume the errors to have</span>
+<span class="sd">    independent and identical normal distributions around zero for each $i$ in</span>
 <span class="sd">    $\e_i$ (i.i.d).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Make sure y, X, c are all arrays</span>
@@ -1311,13 +1313,13 @@ the data <span class="math notranslate nohighlight">\(\yvec\)</span>, the design
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># As column vector</span>
     <span class="c1"># Calculate the parameters - b hat</span>
-    <span class="n">beta</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">y</span>
     <span class="c1"># The fitted values - y hat</span>
-    <span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta</span>
     <span class="c1"># Residual error</span>
     <span class="n">errors</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span>
     <span class="c1"># Residual sum of squares</span>
-    <span class="n">RSS</span> <span class="o">=</span> <span class="p">(</span><span class="n">errors</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">RSS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">errors</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="c1"># Degrees of freedom is the number of observations n minus the number</span>
     <span class="c1"># of independent regressors we have used.  If all the regressor</span>
     <span class="c1"># columns in X are independent then the (matrix rank of X) == p</span>
@@ -1328,10 +1330,10 @@ the data <span class="math notranslate nohighlight">\(\yvec\)</span>, the design
     <span class="c1"># Mean residual sum of squares</span>
     <span class="n">MRSS</span> <span class="o">=</span> <span class="n">RSS</span> <span class="o">/</span> <span class="n">df</span>
     <span class="c1"># calculate bottom half of t statistic</span>
-    <span class="n">SE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">MRSS</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">/</span> <span class="n">SE</span>
-    <span class="c1"># Get p value for t value using cumulative density dunction</span>
-    <span class="c1"># (CDF) of t distribution</span>
+    <span class="n">SE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">MRSS</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">beta</span> <span class="o">/</span> <span class="n">SE</span>
+    <span class="c1"># Get p value for t value using cumulative density function</span>
+    <span class="c1"># (CDF) of the t distribution.</span>
     <span class="n">ltp</span> <span class="o">=</span> <span class="n">t_dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span> <span class="c1"># lower tail p</span>
     <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ltp</span> <span class="c1"># upper tail p</span>
     <span class="k">return</span> <span class="n">beta</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span>
@@ -1339,7 +1341,9 @@ the data <span class="math notranslate nohighlight">\(\yvec\)</span>, the design
 </div>
 </div>
 </div>
-<p>See <a class="reference external" href="https://matthew-brett.github.io/teaching/on_cdfs.html">p values from cumulative distribution functions</a> for background on the probability values.</p>
+<p>See <a class="reference external" href="https://matthew-brett.github.io/teaching/on_cdfs.html">p values from cumulative distribution
+functions</a> for
+background on the probability values.</p>
 <p>So, does <code class="docutils literal notranslate"><span class="pre">clammy</span></code> predict <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>? If it does not, then our
 estimate of the slope will not be convincingly different from 0. The t
 test divides our estimate of the slope by the error in the estimate;
@@ -1347,9 +1351,9 @@ large values mean that the slope is large compared to the error in the
 estimate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">clammy</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">clammy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">12</span><span class="p">)))</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
-<span class="n">B</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">t_stat</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">B</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">t_stat</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">t</span><span class="p">,</span> <span class="n">p</span>
 </pre></div>
 </div>
@@ -1437,7 +1441,7 @@ the group membership.</p>
 will we get for <span class="math notranslate nohighlight">\(\bhat\)</span>?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">psychopathy</span>
 <span class="n">B</span>
 </pre></div>
 </div>
@@ -1450,14 +1454,16 @@ will we get for <span class="math notranslate nohighlight">\(\bhat\)</span>?</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
-<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">])</span>
-<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">8</span><span class="p">:])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Berkeley mean:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[:</span><span class="mi">4</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stanford mean:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MIT mean:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">[</span><span class="mi">8</span><span class="p">:]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18.03425
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Berkeley mean: 10.74225
+Stanford mean: 11.3355
+MIT mean: 18.03425
 </pre></div>
 </div>
 </div>
@@ -1593,7 +1599,7 @@ image display parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/glm_intro_75_0.png" src="_images/glm_intro_75_0.png" />
+<img alt="_images/glm_intro_76_0.png" src="_images/glm_intro_76_0.png" />
 </div>
 </div>
 </div>

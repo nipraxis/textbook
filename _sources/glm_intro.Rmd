@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.10.3
   kernelspec:
     display_name: Python 3
     language: python
@@ -144,8 +144,9 @@ vectors.
 
 $\yvec$ is the vector of values $y_1 ... y_{12}$.
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
 # Ignore this cell - it is to give a better display to the mathematics.
+# Inport Symbolic mathematics routines.
 from sympy import (Eq, Matrix, IndexedBase, symbols)
 from sympy.matrices import MatAdd, MatMul
 
@@ -156,7 +157,7 @@ Eq(sy_y, sy_y_val, evaluate=False)
 
 $\xvec$ is the vector of values $x_1 ... x_{12}$:
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
 # Ignore this cell.
 sy_x = symbols(r'\vec{x}')
 sy_x_val = Matrix(clammy)
@@ -165,7 +166,7 @@ Eq(sy_x, sy_x_val, evaluate=False)
 
 $\evec$ is the vector of as-yet-unknown errors $e_1 ... e_{12}$:
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
 # Ignore this cell.
 sy_e = symbols(r'\vec{\varepsilon}')
 sy_e_ind = IndexedBase("e")
@@ -183,7 +184,7 @@ $$
 Bear with with us for a little trick. We define $\vec{o}$ as a vector of ones,
 like this:
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
 # Ignore this cell.
 sy_o = symbols(r'\vec{o}')
 sy_o_val = Matrix([1 for i in range(1, 13)])
@@ -198,7 +199,7 @@ $$
 
 because $o_i = 1$ and so $co_i = c$.
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
 # Ignore this cell.
 sy_b, sy_c = symbols('b, c')
 rhs = MatAdd(MatMul(sy_b, sy_x_val), MatMul(sy_c, sy_o_val), sy_e_val)
@@ -207,7 +208,7 @@ Eq(sy_y, rhs, evaluate=False)
 
 This evaluates to the result we intend:
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
 # Ignore this cell.
 Eq(sy_y, sy_c * sy_o_val + sy_b * sy_x_val + sy_e_val, evaluate=False)
 ```
@@ -216,26 +217,27 @@ $\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
 
 We can now rephrase the calculation in terms of matrix multiplication.
 
-Call $\Xmat$ the matrix of two columns, where the first column is the column
-of ones ($\vec{o}$ above) and the second column is $\xvec$. Call $\bvec$
-the column vector:
+Call $\Xmat$ the matrix of two columns, where the first column is $\xvec$ and 
+the second column is the column of ones ($\vec{o}$ above). Call $\bvec$ the
+column vector:
 
 $$
 \left[
 \begin{array}{\bvec}
-c \\
 b \\
+c \\
 \end{array}
 \right]
 $$
 
-This gives us exactly the same calculation as $\yvec = c + b \xvec + \evec$ above, but in terms of matrix multiplication:
+This gives us exactly the same calculation as $\yvec = b \xvec + c + \evec$
+above, but in terms of matrix multiplication:
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
+# Ignore this cell.
 sy_beta_val = Matrix([[sy_b], [sy_c]])
 sy_xmat_val = Matrix.hstack(sy_x_val, sy_o_val)
-eq = Eq(sy_y_val, MatAdd(MatMul(sy_xmat_val, sy_beta_val), sy_e_val), evaluate=False)
-eq
+Eq(sy_y_val, MatAdd(MatMul(sy_xmat_val, sy_beta_val), sy_e_val), evaluate=False)
 ```
 
 In symbols:
@@ -245,9 +247,11 @@ $$
 $$
 
 
-Because of the way that matrix multiplication works, this again gives us the intended result:
+Because of the way that matrix multiplication works, this again gives us the
+intended result:
 
-```{python tags=c("hide-cell")}
+```{python tags=c("hide-input")}
+# Ignore this cell.
 Eq(sy_y_val, sy_xmat_val @ sy_beta_val + sy_e_val, evaluate=False)
 ```
 
@@ -278,15 +282,15 @@ $$
 y_i = b_1 x_{1, i} + b_2 x_{2, i} + c + e_i
 $$
 
-In this model $\Xmat$ has three columns (ones, $\xvec_1$, and
-$\xvec_2$), and the $\bvec$ vector has three values $c, b_1,
-b_2$. This gives the same matrix formulation, with our new $\Xmat$ and
-$\bvec$: $\yvec = \Xmat \bvec + \evec$.
+In this model $\Xmat$ has three columns ($\xvec_1$, $\xvec_2$ and ones), and
+the $\bvec$ vector has three values $b_1, b_2, c$. This gives the same matrix
+formulation, with our new $\Xmat$ and $\bvec$: $\yvec = \Xmat \bvec + \evec$.
 
 This is a *linear* model because our model says that the data $y_i$ comes
-from the *sum* of some components ($c, b_1 x_{1, i}, b_2 x_{2, i}, e_i$).
+from the *sum* of some components ($b_1 x_{1, i}, b_2 x_{2, i}, c, e_i$).
 
-We can keep doing this by adding more and more regressors. In general, a linear model with $p$ predictors looks like this:
+We can keep doing this by adding more and more regressors. In general, a linear
+model with $p$ predictors looks like this:
 
 $$
 y_i = b_1 x_{1, i} + b_2 x_{2, i} + ... b_p x_{p, i} + e_i
@@ -326,10 +330,9 @@ Let’s assume that we want an estimate for the line parameters (intercept
 and slope) that gives the smallest “distance” between the estimated
 values (predicted from the line), and the actual values (the data).
 
-We’ll define ‘distance’ as the squared difference of the predicted value
-from the actual value. These are the squared error terms
-$e_1^2, e_2^2 ... e_{n}^2$, where $n$ is the number of
-observations - 12 in our case.
+We’ll define ‘distance’ as the squared difference of the predicted value from
+the actual value. These are the squared error terms $e_1^2, e_2^2 ... e_{n}^2$,
+where $n$ is the number of observations; 12 in our case.
 
 As a reminder: our model is:
 
@@ -402,13 +405,13 @@ Using this matrix algebra, what line do we estimate for `psychopathy`
 and `clammy`?
 
 ```{python}
-X = np.column_stack((np.ones(12), clammy))
+X = np.column_stack((clammy, np.ones(12)))
 X
 ```
 
 ```{python}
 # Use the pseudoinverse to get estimated B
-B = npl.pinv(X).dot(psychopathy)
+B = npl.pinv(X) @ psychopathy
 B
 ```
 
@@ -433,20 +436,20 @@ plt.title('Clammy vs psychopathy with best line')
 plt.legend();
 ```
 
-Our claim was that this estimate for slope and intercept minimize the mean (and therefore sum) of
-squared error:
+Our claim was that this estimate for slope and intercept minimize the sum (and
+therefore mean) of squared error:
 
 ```{python}
-fitted = X.dot(B)
+fitted = X @ B
 errors = psychopathy - fitted
 print(np.sum(errors ** 2))
 ```
 
-Is this sum of squared errors smaller than our earlier guess of an intercept
-of 10 and a slope of 0.9?
+Is this sum of squared errors smaller than our earlier guess of an intercept of
+10 and a slope of 0.9?
 
 ```{python}
-fitted = X.dot([10, 0.9])
+fitted = X @ [0.9, 10]
 errors = psychopathy - fitted
 print(np.sum(errors ** 2))
 ```
@@ -473,15 +476,14 @@ of the best fit line between `clammy` and `psychopathy` would be
 different from zero.
 
 In our model, we have two predictors, the column of ones and `clammy`.
-$p = 2$ and $\bhat$ is length 2. We could choose just the second of
-the values in $\bhat$ (therefore $b_1$ if $b_0$ is the first
-value) with a contrast:
+$p = 2$ and $\bhat$ is length 2. We could choose just the first of
+the values in $\bhat$ with a contrast:
 
 $$
 \left[
 \begin{array}{\cvec}
-0 \\
 1 \\
+0 \\
 \end{array}
 \right]
 $$
@@ -510,8 +512,8 @@ from scipy.stats import t as t_dist
 def t_stat(y, X, c):
     """ betas, t statistic and significance test given data, design matrix, contrast
 
-    This is OLS estimation; we assume the errors to have independent
-    and identical normal distributions around zero for each $i$ in
+    This is Ordinary Least Square estimation; we assume the errors to have
+    independent and identical normal distributions around zero for each $i$ in
     $\e_i$ (i.i.d).
     """
     # Make sure y, X, c are all arrays
@@ -519,13 +521,13 @@ def t_stat(y, X, c):
     X = np.asarray(X)
     c = np.atleast_2d(c).T  # As column vector
     # Calculate the parameters - b hat
-    beta = npl.pinv(X).dot(y)
+    beta = npl.pinv(X) @ y
     # The fitted values - y hat
-    fitted = X.dot(beta)
+    fitted = X @ beta
     # Residual error
     errors = y - fitted
     # Residual sum of squares
-    RSS = (errors**2).sum(axis=0)
+    RSS = np.sum(errors**2, axis=0)
     # Degrees of freedom is the number of observations n minus the number
     # of independent regressors we have used.  If all the regressor
     # columns in X are independent then the (matrix rank of X) == p
@@ -536,16 +538,18 @@ def t_stat(y, X, c):
     # Mean residual sum of squares
     MRSS = RSS / df
     # calculate bottom half of t statistic
-    SE = np.sqrt(MRSS * c.T.dot(npl.pinv(X.T.dot(X)).dot(c)))
-    t = c.T.dot(beta) / SE
-    # Get p value for t value using cumulative density dunction
-    # (CDF) of t distribution
+    SE = np.sqrt(MRSS * c.T @ npl.pinv(X.T @ X) @ c)
+    t = c.T @ beta / SE
+    # Get p value for t value using cumulative density function
+    # (CDF) of the t distribution.
     ltp = t_dist.cdf(t, df) # lower tail p
     p = 1 - ltp # upper tail p
     return beta, t, df, p
 ```
 
-See [p values from cumulative distribution functions](https://matthew-brett.github.io/teaching/on_cdfs.html) for background on the probability values.
+See [p values from cumulative distribution
+functions](https://matthew-brett.github.io/teaching/on_cdfs.html) for
+background on the probability values.
 
 So, does `clammy` predict `psychopathy`? If it does not, then our
 estimate of the slope will not be convincingly different from 0. The t
@@ -554,15 +558,16 @@ large values mean that the slope is large compared to the error in the
 estimate.
 
 ```{python}
-X = np.column_stack((np.ones(12), clammy))
+X = np.column_stack((clammy, np.ones(12)))
 Y = np.asarray(psychopathy)
-B, t, df, p = t_stat(Y, X, [0, 1])
+B, t, df, p = t_stat(Y, X, [1, 0])
 t, p
 ```
 
 (dummy-coding)=
 
 ## Dummy coding and the general linear model
+
 
 So far we have been doing *multiple regression*. That is, all the columns
 (except the column of ones) are continuous vectors of numbers predicting our
@@ -628,14 +633,14 @@ When we estimate these using the least squares method, what estimates
 will we get for $\bhat$?
 
 ```{python}
-B = npl.pinv(X).dot(psychopathy)
+B = npl.pinv(X) @ psychopathy
 B
 ```
 
 ```{python}
-np.mean(psychopathy[:4])
-np.mean(psychopathy[4:8])
-np.mean(psychopathy[8:])
+print('Berkeley mean:', np.mean(psychopathy[:4]))
+print('Stanford mean:', np.mean(psychopathy[4:8]))
+print('MIT mean:', np.mean(psychopathy[8:]))
 ```
 
 It looks like the MIT students are a bit more psychopathic. Are they more
