@@ -1,0 +1,171 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Regression for a single voxel
+
+Earlier – [Voxel time courses](voxel_time_courses.Rmd) – we were looking
+at a single voxel time course.
+
+Here we use the [General Linear
+Model](https://textbook.nipraxis.org/glm_intro.html) formulation to
+do a test on a single voxel.
+
+Let’s get that same voxel time course back again:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import nibabel as nib
+# Only show 6 decimals when printing
+np.set_printoptions(precision=6)
+```
+
+We load the data, and knock off the first four volumes to remove the
+artefact we discovered in First go at brain activation exercise:
+
+```{python}
+# Load the function to fetch the data file we need.
+import nipraxis
+# Fetch the data file.
+data_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
+# Show the file name of the fetched data.
+data_fname
+```
+
+```{python}
+img = nib.load(data_fname)
+data = img.get_fdata()
+data = data[..., 4:]
+```
+
+The voxel coordinate (3D coordinate) that we were looking at in
+Voxel time courses was at (42, 32, 19):
+
+```{python}
+voxel_time_course = data[42, 32, 19]
+plt.plot(voxel_time_course)
+```
+
+Now we are going to use the convolved regressor from [Convolving with the
+hemodyamic response function](convolution_background) to do a simple
+regression on this voxel time course.
+
+First fetch the text file with the convolved time course:
+
+```{python}
+tc_fname = nipraxis.fetch_file('ds114_sub009_t2r1_conv.txt')
+# Show the file name of the fetched data.
+tc_fname
+```
+
+```{python}
+convolved = np.loadtxt(tc_fname)
+# Knock off first 4 elements to match data
+convolved = convolved[4:]
+plt.plot(convolved)
+```
+
+Finally, we plot the convolved prediction and the time-course together:
+
+```{python}
+plt.scatter(convolved, voxel_time_course)
+plt.xlabel('Convolved prediction')
+plt.ylabel('Voxel values')
+```
+
+## Using correlation-like calculations
+
+We can get the best-fitting line using the calculations from the [regression page](on_regression.Rmd):
+
+```{python}
+def calc_z_scores(arr):
+    """ Calculate z-scores for array `arr`
+    """
+    return (arr - np.mean(arr)) / np.std(arr)
+```
+
+```{python}
+# Correlation
+r = np.mean(calc_z_scores(convolved) * calc_z_scores(voxel_time_course))
+r
+```
+
+The best fit line is:
+
+```{python}
+best_slope = r * np.std(voxel_time_course) / np.std(convolved)
+print('Best slope:', best_slope)
+best_intercept = np.mean(voxel_time_course) - best_slope * np.mean(convolved)
+print('Best intercept:', best_intercept)
+```
+
+```{python}
+plt.scatter(convolved, voxel_time_course)
+x_vals = np.array([np.min(convolved), np.max(convolved)])
+plt.plot(x_vals, best_intercept + best_slope * x_vals, 'r:')
+plt.xlabel('Convolved prediction')
+plt.ylabel('Voxel values')
+```
+
+Using Scipy:
+
+```{python}
+import scipy.stats as sps
+sps.linregress(convolved, voxel_time_course)
+```
+
+## Using the General Linear Model
+
+This is a leap ahead, past the page about the [General Linear Model](glm_intro.Rmd) (GLM).  To give you a taster, the General Linear Model is just a generalization of the correlation and similar calculations above.
+
+The GLM generalizes the regression calculation so that we can add as many
+regressors as we want.  We do this by forming a *design* matrix, that contains
+the regressors, and then doing some *matrix calculations* that generalize the
+calculations above.   Don't worry about the details of those calculations for
+now.  The rest of this page shows how the calculation works out.
+
+
+First we make our *design matrix*.  It has a column for the convolved
+regressor, and a column of ones:
+
+```{python}
+N = len(convolved)
+X = np.ones((N, 2))
+X[:, 0] = convolved
+plt.imshow(X, cmap='gray', aspect=0.1)
+```
+
+Our regression model has two *parameters* that we want to *estimate*.  These are the *slope* for the convolved regressor, and the intercept - as they were in the calculations above.
+
+You will find in the [introduction to the General Linear
+Model](https://textbook.nipraxis.org/glm_intro.html), that we can calculate
+the best-fit (least mean-squared-error) parameters using the following matrix
+calculation:
+
+```{python}
+import numpy.linalg as npl
+
+# We call the parameters *beta*
+beta = npl.pinv(X) @ voxel_time_course
+beta
+```
+
+You will notice that the GLM, as we would hope, has found the same parameters
+as we found in the correlation and `scipy.stats.linregress` calculations:
+
+```{python}
+assert np.allclose(beta, [best_slope, best_intercept])
+```
