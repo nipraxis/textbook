@@ -49,12 +49,13 @@ parts:
   - file: on_convolution
   - file: convolution_background
   - file: on_regression
+  - file: regress_one_voxel
   - file: glm_intro
-  - file: model_one_voxel
   - file: mean_test_example
+  - file: model_one_voxel
+  - file: multi_multiply
   - file: hypothesis_tests
   - file: test_one_voxel
-  - file: multi_multiply
   - file: non_tr_onsets
   - file: whole_image_statistics
 

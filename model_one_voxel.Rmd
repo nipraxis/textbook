@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.10.3
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3
     language: python
@@ -16,12 +16,12 @@ jupyter:
 
 # Modeling a single voxel
 
-Earlier – [Voxel time courses](voxel_time_courses.Rmd) – we were looking
-at a single voxel time course.
+The end of the [voxel regression page](regress_one_voxel.Rmd) has a worked
+example of applying [General Linear
+Model](https://textbook.nipraxis.org/glm_intro.html) (GLM) to do regression
+for a single voxel.
 
-Here we use the [General Linear
-Model](https://matthew-brett.github.io/teaching/glm_intro.html) formulation to
-do a test on a single voxel.
+This page runs the same calculations, but also unpacks the GLM notation that we are using in the calculation.
 
 Let’s get that same voxel time course back again:
 
@@ -33,50 +33,37 @@ import nibabel as nib
 np.set_printoptions(precision=6)
 ```
 
-We load the data, and knock off the first four volumes to remove the
-artefact we discovered in First go at brain activation exercise:
-
 ```{python}
 # Load the function to fetch the data file we need.
 import nipraxis
 # Fetch the data file.
 data_fname = nipraxis.fetch_file('ds114_sub009_t2r1.nii')
-# Show the file name of the fetched data.
-data_fname
-```
-
-```{python}
 img = nib.load(data_fname)
 data = img.get_fdata()
+# Knock off the first four volumes (to avoid artefact).
 data = data[..., 4:]
-```
-
-The voxel coordinate (3D coordinate) that we were looking at in
-Voxel time courses was at (42, 32, 19):
-
-```{python}
+# Get the voxel time course of interest.
 voxel_time_course = data[42, 32, 19]
 plt.plot(voxel_time_course)
 ```
 
-Now we are going to use the convolved regressor from [Convolving with the
-hemodyamic response function](convolution_background) to do a simple
-regression on this voxel time course.
-
-First fetch the text file with the convolved time course:
+Load the convolved time course, and plot the voxel values against the convolved regressor:
 
 ```{python}
 tc_fname = nipraxis.fetch_file('ds114_sub009_t2r1_conv.txt')
 # Show the file name of the fetched data.
-tc_fname
+convolved = np.loadtxt(tc_fname)
+# Knock off first 4 elements to match data.
+convolved = convolved[4:]
+# Plot.
+plt.scatter(convolved, voxel_time_course)
+plt.xlabel('Convolved prediction')
+plt.ylabel('Voxel values')
 ```
 
-```{python}
-convolved = np.loadtxt(tc_fname)
-# Knock off first 4 elements to match data
-convolved = convolved[4:]
-plt.plot(convolved)
-```
+As you remember, we apply the GLM by first preparing a design matrix, that has one column corresponding for each *parameter* in the *model*.
+
+In our case we have two parameters, the *slope* and the *intercept*.
 
 First we make our *design matrix*.  It has a column for the convolved
 regressor, and a column of ones:
@@ -85,7 +72,7 @@ regressor, and a column of ones:
 N = len(convolved)
 X = np.ones((N, 2))
 X[:, 0] = convolved
-plt.imshow(X, interpolation='nearest', cmap='gray', aspect=0.1)
+plt.imshow(X, cmap='gray', aspect=0.1)
 ```
 
 $\newcommand{\yvec}{\vec{y}}$
@@ -94,14 +81,14 @@ $\newcommand{\evec}{\vec{\varepsilon}}$
 $\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
 $\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}$
 
-As you will remember from the [introduction to the General Linear Model](https://matthew-brett.github.io/teaching/glm_intro.html), our
-model is:
+Our model is:
 
 $$
 \yvec = \Xmat \bvec + \evec
 $$
 
-We can get our least squares parameter *estimates* for $\bvec$ with:
+We can get our least mean squared error (MSE) parameter *estimates* for
+$\bvec$ with:
 
 $$
 \bhat = \Xmat^+y
@@ -125,16 +112,21 @@ Xp.shape
 We calculate $\bhat$:
 
 ```{python}
-beta_hat = Xp.dot(voxel_time_course)
+beta_hat = Xp @ voxel_time_course
 beta_hat
 ```
 
 We can then calculate $\yhat$ (also called the *fitted data*):
 
 ```{python}
-y_hat = X.dot(beta_hat)
+y_hat = X @ beta_hat
+```
+
+Finally, we may be interested to calculate the MSE of this model:
+
+```{python}
+# Residuals are actual minus fitted.
 e_vec = voxel_time_course - y_hat
-print(np.sum(e_vec ** 2))
-plt.plot(voxel_time_course)
-plt.plot(y_hat)
+mse = np.mean(e_vec ** 2)
+mse
 ```
