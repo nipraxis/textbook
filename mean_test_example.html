@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Hypothesis testing with the general linear model" href="hypothesis_tests.html" />
-    <link rel="prev" title="Modeling a single voxel" href="model_one_voxel.html" />
+    <link rel="next" title="Modeling a single voxel" href="model_one_voxel.html" />
+    <link rel="prev" title="Introduction to the general linear model" href="glm_intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -296,8 +296,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regress_one_voxel.html">
+   Regression for a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="glm_intro.html">
    Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -305,9 +315,9 @@ const thebe_selector_output = ".output, .cell_output"
    Modeling a single voxel
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   A worked example of the general linear model
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -318,11 +328,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="test_one_voxel.html">
    Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -818,8 +823,8 @@ numpy.random to draw samples from this distribution:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.042 , 3.9833, 4.5427, 5.2102, 5.5877, 5.0308, 5.8027, 5.4246,
-       4.4993, 3.2251])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.1201, 5.5553, 8.4763, 5.833 , 6.6172, 1.8957, 5.6993, 7.1594,
+       4.7801, 4.4216])
 </pre></div>
 </div>
 </div>
@@ -858,7 +863,7 @@ number of means from samples size 10:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4760236266498751
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.47543998019273515
 </pre></div>
 </div>
 </div>
@@ -887,7 +892,7 @@ standard deviation (<span class="math notranslate nohighlight">\(\sigma = 1.5\)<
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.338626876597033
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3691556389456199
 </pre></div>
 </div>
 </div>
@@ -906,7 +911,7 @@ standard deviation of means from many samples of size <span class="math notransl
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4743416490252569
-0.4233109867163771
+0.43296502903312967
 </pre></div>
 </div>
 </div>
@@ -1006,17 +1011,17 @@ t = \frac{\bar{y}}{s_x \sqrt{\frac{1}{n}}} \\
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="model_one_voxel.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="glm_intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Modeling a single voxel</p>
+            <p class="prev-next-title">Introduction to the general linear model</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="hypothesis_tests.html" title="next page">
+    <a class='right-next' id="next-link" href="model_one_voxel.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Hypothesis testing with the general linear model</p>
+        <p class="prev-next-title">Modeling a single voxel</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

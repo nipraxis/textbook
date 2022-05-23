@@ -294,8 +294,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regress_one_voxel.html">
+   Regression for a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="glm_intro.html">
    Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -304,8 +314,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -316,11 +326,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="test_one_voxel.html">
    Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -686,7 +691,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.7080644480552692
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.5366551495239781
 </pre></div>
 </div>
 </div>
@@ -700,7 +705,7 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.39088301310759
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.79788557632347
 </pre></div>
 </div>
 </div>
@@ -713,14 +718,14 @@ example, to return a single random number from the default normal distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[13.0866, 13.3442, 16.0229, 18.6551, 17.1326],
-       [16.8647, 16.2461, 13.4764, 14.8038, 14.4463],
-       [16.7781, 14.5879, 13.6935, 16.0698, 13.9283],
-       [13.9439, 15.0802, 16.2305, 11.1869, 14.4247],
-       [17.1128, 12.0825,  9.0599, 15.9977, 17.1773],
-       [14.5433, 15.9721, 13.6805, 16.1393, 14.7615],
-       [14.5221, 12.8329, 16.5406, 15.7745,  7.4761],
-       [16.0952, 14.3019, 15.9247, 17.2589, 19.8358]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[16.1437, 12.8058, 15.1478, 11.1127, 14.0225],
+       [13.2055, 18.3191, 17.0088, 16.8181, 14.6044],
+       [13.7642, 19.125 , 13.7272, 10.4031, 18.5087],
+       [13.0337, 16.6324, 15.2093, 16.344 , 18.3829],
+       [13.6541, 14.9535, 18.3047, 15.7141, 15.9039],
+       [11.8703, 16.0688, 13.3687, 15.0359, 14.9613],
+       [14.7132, 14.3055, 11.2504, 14.5363, 17.7987],
+       [15.9284, 14.6274, 17.14  , 14.336 , 17.2021]])
 </pre></div>
 </div>
 </div>
@@ -734,14 +739,14 @@ mean 1 and variance 1:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.4051, -2.168 , -0.9751, -0.1194,  1.6828],
-       [ 0.7053, -0.8706,  0.8522, -0.7478,  1.0636],
-       [ 0.7127,  2.0639, -1.3947, -0.0063, -0.9165],
-       [-1.037 ,  1.6263,  1.2938,  0.9832,  1.2998],
-       [-1.9231, -0.8403, -0.5288,  2.0327, -0.3566],
-       [ 0.1361, -0.9004,  0.8574, -0.8821, -1.8473],
-       [-0.7932,  0.0182,  0.7113,  0.9974,  1.2159],
-       [ 1.3575,  0.0359, -1.196 ,  2.1766,  0.5467]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.3746,  2.1863,  0.3266, -0.0373, -1.1447],
+       [-0.8675, -0.0357, -1.3891, -1.2107, -0.6366],
+       [ 1.3547, -0.2238, -0.2995,  0.9135, -0.0651],
+       [ 0.6164, -0.5784, -0.0739, -0.8507, -0.4744],
+       [ 0.445 , -1.0747,  0.0739, -0.1672, -1.3527],
+       [ 1.0033, -0.3978,  1.1169, -1.4578,  0.3574],
+       [-1.3468,  0.0834,  2.1358,  0.7446,  0.5769],
+       [-0.3754,  1.2875,  0.7625, -0.312 , -0.4603]])
 </pre></div>
 </div>
 </div>

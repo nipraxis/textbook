@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A worked example of the general linear model" href="mean_test_example.html" />
-    <link rel="prev" title="Introduction to the general linear model" href="glm_intro.html" />
+    <link rel="next" title="Estimation for many voxels at the same time" href="multi_multiply.html" />
+    <link rel="prev" title="A worked example of the general linear model" href="mean_test_example.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -296,8 +296,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regress_one_voxel.html">
+   Regression for a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="glm_intro.html">
    Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -306,8 +316,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -318,11 +328,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="test_one_voxel.html">
    Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -608,11 +613,11 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="modeling-a-single-voxel">
 <h1>Modeling a single voxel<a class="headerlink" href="#modeling-a-single-voxel" title="Permalink to this headline">¶</a></h1>
-<p>Earlier – <a class="reference internal" href="voxel_time_courses.html"><span class="doc std std-doc">Voxel time courses</span></a> – we were looking
-at a single voxel time course.</p>
-<p>Here we use the <a class="reference external" href="https://matthew-brett.github.io/teaching/glm_intro.html">General Linear
-Model</a> formulation to
-do a test on a single voxel.</p>
+<p>The end of the <a class="reference internal" href="regress_one_voxel.html"><span class="doc std std-doc">voxel regression page</span></a> has a worked
+example of applying <a class="reference external" href="https://textbook.nipraxis.org/glm_intro.html">General Linear
+Model</a> (GLM) to do regression
+for a single voxel.</p>
+<p>This page runs the same calculations, but also unpacks the GLM notation that we are using in the calculation.</p>
 <p>Let’s get that same voxel time course back again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -625,59 +630,41 @@ do a test on a single voxel.</p>
 </div>
 </div>
 </div>
-<p>We load the data, and knock off the first four volumes to remove the
-artefact we discovered in First go at brain activation exercise:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the function to fetch the data file we need.</span>
 <span class="kn">import</span> <span class="nn">nipraxis</span>
 <span class="c1"># Fetch the data file.</span>
 <span class="n">data_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
-<span class="c1"># Show the file name of the fetched data.</span>
-<span class="n">data_fname</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.3/ds114_sub009_t2r1.nii&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="c1"># Knock off the first four volumes (to avoid artefact).</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">4</span><span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The voxel coordinate (3D coordinate) that we were looking at in
-Voxel time courses was at (42, 32, 19):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="c1"># Get the voxel time course of interest.</span>
+<span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcdc3a9970&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9f82ae7d30&gt;]
 </pre></div>
 </div>
-<img alt="_images/model_one_voxel_6_1.png" src="_images/model_one_voxel_6_1.png" />
+<img alt="_images/model_one_voxel_2_1.png" src="_images/model_one_voxel_2_1.png" />
 </div>
 </div>
-<p>Now we are going to use the convolved regressor from <a class="reference internal" href="convolution_background.html"><span class="doc std std-doc">Convolving with the
-hemodyamic response function</span></a> to do a simple
-regression on this voxel time course.</p>
-<p>First fetch the text file with the convolved time course:</p>
+<p>Load the convolved time course, and plot the voxel values against the convolved regressor:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tc_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1_conv.txt&#39;</span><span class="p">)</span>
 <span class="c1"># Show the file name of the fetched data.</span>
-<span class="n">tc_fname</span>
+<span class="n">convolved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">tc_fname</span><span class="p">)</span>
+<span class="c1"># Knock off first 4 elements to match data.</span>
+<span class="n">convolved</span> <span class="o">=</span> <span class="n">convolved</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="c1"># Plot.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Convolved prediction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Voxel values&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -685,27 +672,14 @@ regression on this voxel time course.</p>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds114_sub009_t2r1_conv.txt&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.3/ds114_sub009_t2r1_conv.txt&#39; to &#39;/home/runner/.cache/nipraxis/0.3&#39;.
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.3/ds114_sub009_t2r1_conv.txt&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Voxel values&#39;)
 </pre></div>
 </div>
+<img alt="_images/model_one_voxel_4_2.png" src="_images/model_one_voxel_4_2.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">tc_fname</span><span class="p">)</span>
-<span class="c1"># Knock off first 4 elements to match data</span>
-<span class="n">convolved</span> <span class="o">=</span> <span class="n">convolved</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcdc11b220&gt;]
-</pre></div>
-</div>
-<img alt="_images/model_one_voxel_9_1.png" src="_images/model_one_voxel_9_1.png" />
-</div>
-</div>
+<p>As you remember, we apply the GLM by first preparing a design matrix, that has one column corresponding for each <em>parameter</em> in the <em>model</em>.</p>
+<p>In our case we have two parameters, the <em>slope</em> and the <em>intercept</em>.</p>
 <p>First we make our <em>design matrix</em>.  It has a column for the convolved
 regressor, and a column of ones:</p>
 <div class="cell docutils container">
@@ -713,15 +687,15 @@ regressor, and a column of ones:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">convolved</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fdcdc091070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f9f807e5130&gt;
 </pre></div>
 </div>
-<img alt="_images/model_one_voxel_11_1.png" src="_images/model_one_voxel_11_1.png" />
+<img alt="_images/model_one_voxel_6_1.png" src="_images/model_one_voxel_6_1.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}}\)</span>
@@ -729,13 +703,13 @@ regressor, and a column of ones:</p>
 <span class="math notranslate nohighlight">\(\newcommand{\evec}{\vec{\varepsilon}}\)</span>
 <span class="math notranslate nohighlight">\(\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}\)</span>
 <span class="math notranslate nohighlight">\(\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}\)</span></p>
-<p>As you will remember from the <a class="reference external" href="https://matthew-brett.github.io/teaching/glm_intro.html">introduction to the General Linear Model</a>, our
-model is:</p>
+<p>Our model is:</p>
 <div class="math notranslate nohighlight">
 \[
 \yvec = \Xmat \bvec + \evec
 \]</div>
-<p>We can get our least squares parameter <em>estimates</em> for <span class="math notranslate nohighlight">\(\bvec\)</span> with:</p>
+<p>We can get our least mean squared error (MSE) parameter <em>estimates</em> for
+<span class="math notranslate nohighlight">\(\bvec\)</span> with:</p>
 <div class="math notranslate nohighlight">
 \[
 \bhat = \Xmat^+y
@@ -764,7 +738,7 @@ invertible, the pseudoinverse is given by:</p>
 <p>We calculate <span class="math notranslate nohighlight">\(\bhat\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_hat</span> <span class="o">=</span> <span class="n">Xp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_hat</span> <span class="o">=</span> <span class="n">Xp</span> <span class="o">@</span> <span class="n">voxel_time_course</span>
 <span class="n">beta_hat</span>
 </pre></div>
 </div>
@@ -778,22 +752,25 @@ invertible, the pseudoinverse is given by:</p>
 <p>We can then calculate <span class="math notranslate nohighlight">\(\yhat\)</span> (also called the <em>fitted data</em>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta_hat</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta_hat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we may be interested to calculate the MSE of this model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Residuals are actual minus fitted.</span>
 <span class="n">e_vec</span> <span class="o">=</span> <span class="n">voxel_time_course</span> <span class="o">-</span> <span class="n">y_hat</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">e_vec</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">e_vec</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mse</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41405.57435090359
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>245.00339852605674
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcdc0066a0&gt;]
-</pre></div>
-</div>
-<img alt="_images/model_one_voxel_17_2.png" src="_images/model_one_voxel_17_2.png" />
 </div>
 </div>
 </div>
@@ -823,17 +800,17 @@ invertible, the pseudoinverse is given by:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="glm_intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="mean_test_example.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to the general linear model</p>
+            <p class="prev-next-title">A worked example of the general linear model</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="mean_test_example.html" title="next page">
+    <a class='right-next' id="next-link" href="multi_multiply.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">A worked example of the general linear model</p>
+        <p class="prev-next-title">Estimation for many voxels at the same time</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

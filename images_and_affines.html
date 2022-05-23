@@ -296,8 +296,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regress_one_voxel.html">
+   Regression for a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="glm_intro.html">
    Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -306,8 +316,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -318,11 +328,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="test_one_voxel.html">
    Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -869,9 +874,9 @@ affine, given we know the <code class="docutils literal notranslate"><span class
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.    , -0.    ,  0.    , -0.    ],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.    ,  0.    , -0.    ,  0.    ],
        [ 0.    ,  0.9801,  0.1987,  0.    ],
-       [ 0.    , -0.1987,  0.9801,  0.    ],
+       [-0.    , -0.1987,  0.9801,  0.    ],
        [ 0.    ,  0.    ,  0.    ,  1.    ]])
 </pre></div>
 </div>
@@ -942,7 +947,7 @@ first affine, we can do this:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.9211, -0.    ,  0.3894, 10.    ],
-       [ 0.    ,  1.    ,  0.    , 20.    ],
+       [ 0.    ,  1.    , -0.    , 20.    ],
        [-0.3894, -0.    ,  0.9211, 30.    ],
        [ 0.    ,  0.    ,  0.    ,  1.    ]])
 </pre></div>

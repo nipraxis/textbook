@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Modeling a single voxel" href="model_one_voxel.html" />
-    <link rel="prev" title="Introducing regression" href="on_regression.html" />
+    <link rel="next" title="A worked example of the general linear model" href="mean_test_example.html" />
+    <link rel="prev" title="Regression for a single voxel" href="regress_one_voxel.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -295,9 +295,19 @@ const thebe_selector_output = ".output, .cell_output"
    Introducing regression
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regress_one_voxel.html">
+   Regression for a single voxel
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -306,8 +316,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -318,11 +328,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="test_one_voxel.html">
    Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -837,7 +842,7 @@ could try guessing at a line to fit the data. Let’s try an intercept of
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f85f88a2460&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f2d708aee80&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_13_1.png" src="_images/glm_intro_13_1.png" />
@@ -1132,7 +1137,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f85f878e6a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f2d7079dc10&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_27_1.png" src="_images/glm_intro_27_1.png" />
@@ -1176,7 +1181,7 @@ squared error:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.9256064499382
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.92560644993827
 </pre></div>
 </div>
 </div>
@@ -1578,17 +1583,17 @@ image display parameters:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="on_regression.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="regress_one_voxel.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introducing regression</p>
+            <p class="prev-next-title">Regression for a single voxel</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="model_one_voxel.html" title="next page">
+    <a class='right-next' id="next-link" href="mean_test_example.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modeling a single voxel</p>
+        <p class="prev-next-title">A worked example of the general linear model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

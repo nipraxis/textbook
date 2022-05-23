@@ -294,8 +294,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regress_one_voxel.html">
+   Regression for a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="glm_intro.html">
    Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -304,8 +314,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -316,11 +326,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="test_one_voxel.html">
    Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
   </a>
  </li>
  <li class="toctree-l1">
@@ -665,8 +670,8 @@ make sure you are running a <strong>Powershell</strong> shell, not the much olde
 </div>
 <p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="dc7ed322-4714-4a1d-850c-6a9e2b0873e8" name="203b3a12-9790-454e-b18b-9a97faf44460" type="radio">
-</input><label class="tabbed-label" for="dc7ed322-4714-4a1d-850c-6a9e2b0873e8">
+<input checked="checked" id="2f8b2374-b983-4216-b3d7-3d307ca5761f" name="aac0b218-6df0-46fb-8281-e35772f3ebb7" type="radio">
+</input><label class="tabbed-label" for="2f8b2374-b983-4216-b3d7-3d307ca5761f">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
 <span class="o">----</span>
@@ -674,15 +679,15 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f8d6130d-5e71-4cee-959b-97442ea9b784" name="203b3a12-9790-454e-b18b-9a97faf44460" type="radio">
-</input><label class="tabbed-label" for="f8d6130d-5e71-4cee-959b-97442ea9b784">
+<input id="d435af26-2459-4891-b87d-39b4c72d96c1" name="aac0b218-6df0-46fb-8281-e35772f3ebb7" type="radio">
+</input><label class="tabbed-label" for="d435af26-2459-4891-b87d-39b4c72d96c1">
 Mac</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
 </div>
 </div>
-<input id="9f844dda-e889-4e1b-8fb7-6d58d845b3ca" name="203b3a12-9790-454e-b18b-9a97faf44460" type="radio">
-</input><label class="tabbed-label" for="9f844dda-e889-4e1b-8fb7-6d58d845b3ca">
+<input id="ef3c373a-1277-4a2b-bd5c-e1b5b57f4afa" name="aac0b218-6df0-46fb-8281-e35772f3ebb7" type="radio">
+</input><label class="tabbed-label" for="ef3c373a-1277-4a2b-bd5c-e1b5b57f4afa">
 Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
@@ -729,8 +734,8 @@ computer.   Note where the file went.  For example, you might have downloaded th
 </div>
 <p>from your terminal.  You should see something like:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2c29011d-b9be-46a9-a014-ad98af76a87e" name="5851555d-9d06-45b1-b855-68f2eed6afcf" type="radio">
-</input><label class="tabbed-label" for="2c29011d-b9be-46a9-a014-ad98af76a87e">
+<input checked="checked" id="134144bf-cfc4-4d64-b5fe-9a3c053db7d6" name="a115397a-5db6-4f19-8650-18cccbe97828" type="radio">
+</input><label class="tabbed-label" for="134144bf-cfc4-4d64-b5fe-9a3c053db7d6">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 
@@ -741,8 +746,8 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="bdf89154-ad82-4732-b875-40269a995019" name="5851555d-9d06-45b1-b855-68f2eed6afcf" type="radio">
-</input><label class="tabbed-label" for="bdf89154-ad82-4732-b875-40269a995019">
+<input id="41da0242-88da-4716-883f-b69c71da1797" name="a115397a-5db6-4f19-8650-18cccbe97828" type="radio">
+</input><label class="tabbed-label" for="41da0242-88da-4716-883f-b69c71da1797">
 Mac or Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
