@@ -16,37 +16,9 @@ jupyter:
 
 # Introduction to the general linear model
 
-These are some notes on simple regression, multiple regression, and the general
-linear model.
-
-For more detail, see [The general linear model and fMRI: Does love last
+For more detail on the General Linear Model, see [The general linear model and
+fMRI: Does love last
 forever?](http://matthew.dynevor.org/_downloads/does_glm_love.pdf).
-
-This page starts by setting up a simple regression. Then I will try to
-show how the simple regression gets expressed in a *design matrix*. Once
-we have that, it’s easy to extend simple regression to multiple
-regression. By adding some specially formed regressors, we can also
-express group membership, and therefore do analysis of variance. This
-last step is where multiple regression becomes the general linear model.
-
-## About this page
-
-We go through regression and the general linear model slowly, showing
-how it works in symbols, and in code, with actual numbers.
-
-## The example regression problem
-
-Let’s imagine that we have measured scores for a “psychopathy”
-personality trait in 12 students. We also have some other information
-about these students. For example, we measured how much sweat each
-student had on their palms, and we call this a “clammy” score. We first
-try and work out whether the “clammy” score predicts the “psychopathy”
-score. We’ll do this with simple linear regression.
-
-### Simple linear regression
-
-We first need to get our environment set up to run the code and plots we
-need.
 
 ```{python}
 # Import numerical and plotting libraries
@@ -57,29 +29,40 @@ import matplotlib.pyplot as plt
 np.set_printoptions(precision=6)
 ```
 
+This page starts with the model for simple regression, that you have already see in the [regression page](on_regression.Rmd).
+We then show how the simple regression gets expressed in a *design matrix*.
+Once we have that, it’s easy to extend simple regression to multiple
+regression. By adding some specially formed regressors, we can also express
+group membership, and therefore do ANalysis Of VAriance (ANOVA). This last
+step is where multiple regression becomes the General Linear Model (GLM).
+
+## Simple regression
+
+You have already seen this problem in the [regression
+page](on_regression.Rmd).
+
+Image we have measured scores for a “psychopathy” personality trait in 12
+students. We also have some other information about these students. For
+example, we measured how much sweat each student had on their palms, and we
+call this a “clammy” score.  We will look for a straight-line (linear)
+relationship between the “clammy” score (our predictor or regressor or
+covariate or independent variable) and the “psychopathy” score (our dependent
+variable).
+
+
 ```{python}
-# %matplotlib inline
+# The values we are trying to predict.
+psychopathy = np.array(
+    [11.416,   4.514,  12.204,  14.835,
+      8.416,   6.563,  17.343,  13.02,
+     15.19 ,  11.902,  22.721,  22.324])
+
+# The values we will predict with.
+clammy = np.array(
+    [0.389,  0.2  ,  0.241,  0.463,
+     4.585,  1.097,  1.642,  4.972,
+     7.957,  5.585,  5.527,  6.964])
 ```
-
-Here are our scores of “psychopathy” from the 12 students:
-
-```{python}
-psychopathy = [11.416,   4.514,  12.204,  14.835,
-               8.416,   6.563,  17.343, 13.02,
-               15.19 ,  11.902,  22.721,  22.324]
-```
-
-These are the skin-conductance scores to get a measure of clamminess for
-the handshakes of each student:
-
-```{python}
-clammy = [0.389,  0.2  ,  0.241,  0.463,
-          4.585,  1.097,  1.642,  4.972,
-          7.957,  5.585,  5.527,  6.964]
-```
-
-We happen to believe that there is some relationship between `clammy`
-and `psychopathy`. Plotting them together we get:
 
 ```{python}
 plt.plot(clammy, psychopathy, '+')
@@ -87,88 +70,83 @@ plt.xlabel('Clamminess of handshake')
 plt.ylabel('Psychopathy score')
 ```
 
-It looks like there may be some sort of straight line relationship. We
-could try guessing at a line to fit the data. Let’s try an intercept of
-$10$ and slope $0.9$:
+You have already seen a preliminary guess we made at a straight line that links the `clammy` scores to the `psychopathy` scores.  Our guess was:
 
 ```{python}
-# Plot the data
-plt.plot(clammy, psychopathy, '+')
+guessed_slope = 0.9
+guessed_intercept = 10
 ```
 
-```{python}
-def my_line(x):
-    # My prediction for psychopathy given clamminess
-    return 10 + 0.9 * x
-```
-
-```{python}
-# Plot the prediction
-x_vals = [0, max(clammy)]
-y_vals = [my_line(0), my_line(max(clammy))]
-plt.plot(x_vals, y_vals)
-plt.xlabel('Clamminess of handshake')
-plt.ylabel('Psychopathy score')
-plt.title('Clammy vs psychopathy with guessed line')
-```
+We use this line to *predict* the `psychopathy` scores from the `clammy` scores.
 
 What does our straight line relationship mean?
 
 We are saying that the values of `psychopathy` can be partly predicted by
-a straight line of formula `10 + clammy \* 0.9`.
+a straight line of formula `10 + 0.9 * clammy`.
+
+
+```{python}
+predicted_psychopathy = guessed_intercept + guessed_slope * clammy
+predicted_psychopathy
+```
+
+Here are the data and our predictions from the guessed line.
+
+```{python}
+# Plot the data and the predictions
+plt.plot(clammy, psychopathy, '+', label='Actual data')
+plt.plot(clammy, predicted_psychopathy, 'ro', label='Predictions')
+plt.xlabel('Clamminess of handshake')
+plt.ylabel('Psychopathy score')
+plt.title('Clammy vs psychopathy with guessed line')
+plt.legend()
+```
+
+Our next step is to write out this model more formally in mathematical
+symbols.
 
 $\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}$
 
 To make this more general, let’s call our `psychopathy` data
-$\yvec$ - a vector with 12 values, one for each student.
-$y_1$ is the value for the first student (= 11.416) and
-$y_i$ is the value for student $i$ where
-$i \in 1 .. 12$.
+$\yvec$ - a *vector* with 12 values, one for each student.   A *vector* is just a sequence of values.
 
-Our `clammy` score is a predictor. Lets call the clammy scores $\xvec$
-— another vector with 12 values. $x_1$ is the value for the first
-student (= 0.389) and $x_i$ is the value for student $i$ where
-$i \in 1 .. 12$.
+$y_1$ is the value for the first student (= 11.416) and $y_i$ is the value for
+student $i$ where $i \in 1 .. 12$.
+
+Our `clammy` score is a *predictor*. Lets call the clammy scores $\xvec$.
+$\xvec$ is another vector with 12 values. $x_1$ is the value for the first
+student (= 0.389) and $x_i$ is the value for student $i$ where $i \in 1 ..
+12$.
 
 Our straight line model says:
 
 $y_i \approx c + bx_i$
 
-where $c$ is the intercept and $b$ is the slope. For the guessed
-line above:
+where $\approx$ means *approximately equal to*, $c$ is the intercept and $b$
+is the slope. For the guessed line above:
 
 $y_i \approx 10 + 0.9 x_i$
 
-With the $\approx$ above, we are accepting that we will not succeed in
-explaining all the variation in our psychopathy data. We can rephrase this by
-saying that each observation is equal to the predicted value (from the formula
-above) plus some error for each observation:
+With the $\approx$, we are accepting that we will not succeed in explaining
+our psychopathy values exactly. We can rephrase this by saying that each
+observation is equal to the predicted value (from the formula above) plus some
+error for each observation:
 
 $y_i = c + bx_i + e_i$
 
+
 ## Simple regression in matrix form
 
+
 It turns out it will be useful to rephrase the simple regression model
-in matrix form. Let’s make the data and predictor and errors into
+in *matrix form*. Let’s make the data and predictor and errors into
 vectors.
 
 $\yvec$ is the vector of values $y_1 ... y_{12}$.
 
-$$
-\left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right]
-$$
-
 $\xvec$ is the vector of values $x_1 ... x_{12}$:
 
-$$
-\left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right]
-$$
-
 $\evec$ is the vector of errors $e_1 ... e_{12}$:
-
-$$
-\left[\begin{matrix}e_{1}\\e_{2}\\e_{3}\\e_{4}\\e_{5}\\e_{6}\\e_{7}\\e_{8}\\e_{9}\\e_{10}\\e_{11}\\e_{12}\end{matrix}\right]
-$$
 
 Now we can rephrase our model as:
 
@@ -176,8 +154,8 @@ $$
 \yvec = c + b \xvec + \evec
 $$
 
-Bear with with us for a little trick. If $\mathbf{o}$ is a vector
-of ones, then we can rewrite the formula as:
+Bear with with us for a little trick. If $\mathbf{o}$ is a vector of ones,
+then we can rewrite the formula as:
 
 $$
 \yvec = c\mathbf{o} + b\xvec + \evec
@@ -185,17 +163,13 @@ $$
 
 because $o_i = 1$ and so $co_i = c$.
 
-$$
-\left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right] = c \left[\begin{matrix}1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\end{matrix}\right] + b \left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right] + \left[\begin{matrix}e_{1}\\e_{2}\\e_{3}\\e_{4}\\e_{5}\\e_{6}\\e_{7}\\e_{8}\\e_{9}\\e_{10}\\e_{11}\\e_{12}\end{matrix}\right]
-$$
-
 $\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
 
 We can now rephrase the calculation in terms of matrix multiplication.
 
-Call $\Xmat$ the matrix of two columns, where the first column is
-the column of ones ($\mathbf{o}$ above) and the second column is
-$\xvec$. Call $\bvec$ the column vector:
+Call $\Xmat$ the matrix of two columns, where the first column is the column
+of ones ($\mathbf{o}$ above) and the second column is $\xvec$. Call $\bvec$
+the column vector:
 
 $$
 \left[
@@ -206,12 +180,7 @@ b \\
 \right]
 $$
 
-This gives us the same formula as [(1)](https://matthew-brett.github.io/teaching/glm_intro.html#equation-matrix-addition) but in terms of matrix
-multiplication:
-
-$$
-\left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right] = \left[\begin{matrix}1 & 0.389\\1 & 0.2\\1 & 0.241\\1 & 0.463\\1 & 4.585\\1 & 1.097\\1 & 1.642\\1 & 4.972\\1 & 7.957\\1 & 5.585\\1 & 5.527\\1 & 6.964\end{matrix}\right] \left[\begin{matrix}c\\b\end{matrix}\right] + \left[\begin{matrix}e_{1}\\e_{2}\\e_{3}\\e_{4}\\e_{5}\\e_{6}\\e_{7}\\e_{8}\\e_{9}\\e_{10}\\e_{11}\\e_{12}\end{matrix}\right]
-$$
+This gives us exactly the same calculation as $\yvec = c + b \xvec + \evec$ above, but in terms of matrix multiplication:
 
 In symbols:
 
@@ -222,20 +191,19 @@ $$
 We still haven’t found our best fitting line. But before we go further,
 it might be obvious that we can easily add a new predictor here.
 
+
 ## Multiple regression
+
 
 Let’s say we think that psychopathy increases with age. We add the
 student’s age as another predictor:
 
 ```{python}
-age = [22.5,  25.3,  24.6,  21.4,
-       20.7,  23.3,  23.8,  21.7,
-       21.3, 25.2,  24.6,  21.8]
+age = np.array(
+    [22.5,  25.3,  24.6,  21.4,
+     20.7,  23.3,  23.8,  21.7,
+     21.3,  25.2,  24.6,  21.8])
 ```
-
-$$
-\left[\begin{matrix}22.5\\25.3\\24.6\\21.4\\20.7\\23.3\\23.8\\21.7\\21.3\\25.2\\24.6\\21.8\end{matrix}\right]
-$$
 
 Now rename the `clammy` predictor vector from $\xvec$ to
 $\xvec_1$. Of course $\xvec_1$ has 12 values $x_{1, 1}..x_{1,
@@ -270,6 +238,7 @@ $$
 \yvec = \Xmat \bvec + \evec
 $$
 
+
 ### Population, sample, estimate
 
 
@@ -283,7 +252,8 @@ we cannot get the true population $\bvec$ vector, we can only
 estimate as $\bhat$ to distinguish it from the true population
 parameters $\bvec$.
 
-### Solving the model with matrix algebra
+
+## Solving the model with matrix algebra
 
 
 The reason to formulate our problem with matrices is so we can use some
@@ -298,7 +268,7 @@ from the actual value. These are the squared error terms
 $e_1^2, e_2^2 ... e_{n}^2$, where $n$ is the number of
 observations - 12 in our case.
 
-Revising: our model is:
+As a reminder: our model is:
 
 $$
 \yvec = \Xmat \bvec + \evec
@@ -326,13 +296,12 @@ from the estimate is given by $\Xmat \bhat$.
 We call this the predicted or estimated data, and write it as
 $\yhat$. The errors are then given by $\yvec - \yhat$.
 
-We might expect that, when we have found the right $\bhat$ then
-the errors will have nothing in them that can still be explained by the
-design matrix $\Xmat$. This is the same as saying that, when we
-have best prediction of the data ($\yhat = \Xmat \bhat$), the
-design matrix $\Xmat$ should be orthogonal to the remaining error
-($\yvec - \yhat$). If the design is orthogonal to the errors, then
-$\Xmat^T \evec$ should be a vector of zeros.
+We might expect that, when we have found the right $\bhat$ then the errors
+will have nothing in them that can still be explained by the design matrix
+$\Xmat$. This is the same as saying that, when we have best prediction of the
+data ($\yhat = \Xmat \bhat$), the design matrix $\Xmat$ should be orthogonal
+to the remaining error ($\yvec - \yhat$). If the design is orthogonal to the
+errors, then $\Xmat^T \evec$ should be a vector of zeros.
 
 If that is the case then we can multiply
 $\yvec = \Xmat \bhat + \evec$ through by $\Xmat^T$:
@@ -386,21 +355,22 @@ plt.plot(clammy, psychopathy, '+')
 ```
 
 ```{python}
-def my_best_line(x):
-    # Best prediction for psychopathy given clamminess
-    return B[0] + B[1] * x
+best_slope = B[0]
+best_intercept = B[1]
+best_predictions = best_intercept + best_slope * clammy
 ```
 
 ```{python}
 # Plot the new prediction
-x_vals = [0, max(clammy)]
-y_vals = [my_best_line(0), my_best_line(max(clammy))]
-plt.plot(x_vals, y_vals)
+plt.plot(clammy, psychopathy, '+', label='Actual data')
+plt.plot(clammy, best_predictions, 'ro', label='Best predictions')
 plt.xlabel('Clamminess of handshake')
 plt.ylabel('Psychopathy score')
+plt.title('Clammy vs psychopathy with best line')
+plt.legend();
 ```
 
-Our claim was that this estimate for slope and intercept minimize the sum of
+Our claim was that this estimate for slope and intercept minimize the mean (and therefore sum) of
 squared error:
 
 ```{python}
@@ -409,8 +379,8 @@ errors = psychopathy - fitted
 print(np.sum(errors ** 2))
 ```
 
-Is this sum of squared errors smaller than our earlier guess of an
-intercept of 10 and a slope of 0.9?
+Is this sum of squared errors smaller than our earlier guess of an intercept
+of 10 and a slope of 0.9?
 
 ```{python}
 fitted = X.dot([10, 0.9])
@@ -424,9 +394,9 @@ $\newcommand{cvec}{\mathbf{c}}$ We can combine the values in the
 $\bhat$ vector in different ways by using a *contrast* vector. A
 contrast vector $\cvec$ is a vector of weights
 $c_1, c_2 ... c_p$ for each value in the $\bhat$ vector.
-Assume that all vectors we’ve defined up until now are column vectors.
-Then a scalar value that is a linear combination of the $\bhat$
-values can be written:
+Assume that all vectors we have defined up until now are column vectors. Then
+a scalar value that is a linear combination of the $\bhat$ values can be
+written:
 
 $$
 \cvec^T \bhat
@@ -527,16 +497,17 @@ B, t, df, p = t_stat(Y, X, [0, 1])
 t, p
 ```
 
-<!-- dummy-coding: -->
+(dummy-coding)=
+
 ## Dummy coding and the general linear model
 
-So far we have been doing *multiple regression*. That is, all the
-columns (except the column of ones) are continuous vectors of numbers
-predicting our outcome data `psychopathy`. These type of predictors
-are often called *covariates*.
+So far we have been doing *multiple regression*. That is, all the columns
+(except the column of ones) are continuous vectors of numbers predicting our
+outcome data `psychopathy`. These type of predictors are often called
+*covariates*.
 
-It turns out we can use this same framework to express the fact that
-different observations come from different groups.
+It turns out we can use this same framework to express the fact that different
+observations come from different groups.
 
 Expressing group membership in this way allows us to express *analysis
 of variance* designs using this same notation.
@@ -621,7 +592,9 @@ The model above expresses the effect of group membership. It is the
 expression of a one-way analysis of variance (ANOVA) model using
 $\yvec = \Xmat \bvec + \evec$.
 
+
 ## ANCOVA in the General Linear Model
+
 
 Our formulation $\yvec = \Xmat \bvec + \evec$ makes it very easy
 to add extra regressors to models with group membership. For example, we
