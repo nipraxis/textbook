@@ -799,10 +799,10 @@ variable).</p>
 <p>We use this line to <em>predict</em> the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> scores from the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> scores.</p>
 <p>What does our straight line relationship mean?</p>
 <p>We are saying that the values of <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> can be partly predicted by
-a straight line of formula <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">+</span> <span class="pre">0.9</span> <span class="pre">*</span> <span class="pre">clammy</span></code>.</p>
+a straight line of formula <code class="docutils literal notranslate"><span class="pre">0.9</span> <span class="pre">*</span> <span class="pre">clammy</span> <span class="pre">+</span> <span class="pre">10</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_psychopathy</span> <span class="o">=</span> <span class="n">guessed_intercept</span> <span class="o">+</span> <span class="n">guessed_slope</span> <span class="o">*</span> <span class="n">clammy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_psychopathy</span> <span class="o">=</span> <span class="n">guessed_slope</span> <span class="o">*</span> <span class="n">clammy</span> <span class="o">+</span> <span class="n">guessed_intercept</span>
 <span class="n">predicted_psychopathy</span>
 </pre></div>
 </div>
@@ -828,7 +828,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f94f81878e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa9846eac70&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -846,15 +846,15 @@ student <span class="math notranslate nohighlight">\(i\)</span> where <span clas
 student (= 0.389) and <span class="math notranslate nohighlight">\(x_i\)</span> is the value for student <span class="math notranslate nohighlight">\(i\)</span> where <span class="math notranslate nohighlight">\(i \in 1 ..
 12\)</span>.</p>
 <p>Our straight line model says:</p>
-<p><span class="math notranslate nohighlight">\(y_i \approx c + bx_i\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(\approx\)</span> means <em>approximately equal to</em>, <span class="math notranslate nohighlight">\(c\)</span> is the intercept and <span class="math notranslate nohighlight">\(b\)</span>
-is the slope. For the guessed line above:</p>
-<p><span class="math notranslate nohighlight">\(y_i \approx 10 + 0.9 x_i\)</span></p>
+<p><span class="math notranslate nohighlight">\(y_i \approx bx_i + c\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\approx\)</span> means <em>approximately equal to</em>, <span class="math notranslate nohighlight">\(b\)</span> is the slope and <span class="math notranslate nohighlight">\(c\)</span>
+is the intercept. For the guessed line above:</p>
+<p><span class="math notranslate nohighlight">\(y_i \approx 0.9 x_i + 10\)</span></p>
 <p>With the <span class="math notranslate nohighlight">\(\approx\)</span>, we are accepting that we will not succeed in explaining
 our psychopathy values exactly. We can rephrase this by saying that each
 observation is equal to the predicted value (from the formula above) plus some
 error for each observation:</p>
-<p><span class="math notranslate nohighlight">\(y_i = c + bx_i + e_i\)</span></p>
+<p><span class="math notranslate nohighlight">\(y_i = bx_i + c + e_i\)</span></p>
 </div>
 <div class="section" id="simple-regression-in-matrix-form">
 <h2>Simple regression in matrix form<a class="headerlink" href="#simple-regression-in-matrix-form" title="Permalink to this headline">¶</a></h2>
@@ -862,24 +862,112 @@ error for each observation:</p>
 in <em>matrix form</em>. Let’s make the data and predictor and errors into
 vectors.</p>
 <p><span class="math notranslate nohighlight">\(\yvec\)</span> is the vector of values <span class="math notranslate nohighlight">\(y_1 ... y_{12}\)</span>.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell - it is to give a better display to the mathematics.</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Eq</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">MatAdd</span><span class="p">,</span> <span class="n">MatMul</span>
+
+<span class="n">sy_y</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{y}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">sy_y_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y</span><span class="p">,</span> <span class="n">sy_y_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{y} = \left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
 <p><span class="math notranslate nohighlight">\(\xvec\)</span> is the vector of values <span class="math notranslate nohighlight">\(x_1 ... x_{12}\)</span>:</p>
-<p><span class="math notranslate nohighlight">\(\evec\)</span> is the vector of errors <span class="math notranslate nohighlight">\(e_1 ... e_{12}\)</span>:</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">sy_x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">sy_x_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">clammy</span><span class="p">)</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_x</span><span class="p">,</span> <span class="n">sy_x_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{x} = \left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\evec\)</span> is the vector of as-yet-unknown errors <span class="math notranslate nohighlight">\(e_1 ... e_{12}\)</span>:</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">sy_e</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec{\varepsilon}&#39;</span><span class="p">)</span>
+<span class="n">sy_e_ind</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">)</span>
+<span class="n">sy_e_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sy_e_ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)])</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_e</span><span class="p">,</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{\varepsilon} = \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
 <p>Now we can rephrase our model as:</p>
 <div class="math notranslate nohighlight">
 \[
-\yvec = c + b \xvec + \evec
+\yvec = b \xvec + c + \evec
 \]</div>
-<p>Bear with with us for a little trick. If <span class="math notranslate nohighlight">\(\mathbf{o}\)</span> is a vector of ones,
-then we can rewrite the formula as:</p>
+<p>Bear with with us for a little trick. We define <span class="math notranslate nohighlight">\(\vec{o}\)</span> as a vector of ones,
+like this:</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">sy_o</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{o}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">sy_o_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)])</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_o</span><span class="p">,</span> <span class="n">sy_o_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{o} = \left[\begin{matrix}1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>Now we can rewrite the formula as:</p>
 <div class="math notranslate nohighlight">
 \[
-\yvec = c\mathbf{o} + b\xvec + \evec
+\yvec = b\xvec + c\vec{o} + \evec
 \]</div>
 <p>because <span class="math notranslate nohighlight">\(o_i = 1\)</span> and so <span class="math notranslate nohighlight">\(co_i = c\)</span>.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">sy_b</span><span class="p">,</span> <span class="n">sy_c</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;b, c&#39;</span><span class="p">)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_b</span><span class="p">,</span> <span class="n">sy_x_val</span><span class="p">),</span> <span class="n">MatMul</span><span class="p">(</span><span class="n">sy_c</span><span class="p">,</span> <span class="n">sy_o_val</span><span class="p">),</span> <span class="n">sy_e_val</span><span class="p">)</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{y} = b \left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right] + c \left[\begin{matrix}1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\end{matrix}\right] + \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>This evaluates to the result we intend:</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y</span><span class="p">,</span> <span class="n">sy_c</span> <span class="o">*</span> <span class="n">sy_o_val</span> <span class="o">+</span> <span class="n">sy_b</span> <span class="o">*</span> <span class="n">sy_x_val</span> <span class="o">+</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{y} = \left[\begin{matrix}0.389 b + c + {e}_{1}\\0.2 b + c + {e}_{2}\\0.241 b + c + {e}_{3}\\0.463 b + c + {e}_{4}\\4.585 b + c + {e}_{5}\\1.097 b + c + {e}_{6}\\1.642 b + c + {e}_{7}\\4.972 b + c + {e}_{8}\\7.957 b + c + {e}_{9}\\5.585 b + c + {e}_{10}\\5.527 b + c + {e}_{11}\\6.964 b + c + {e}_{12}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
 <p><span class="math notranslate nohighlight">\(\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}\)</span></p>
 <p>We can now rephrase the calculation in terms of matrix multiplication.</p>
 <p>Call <span class="math notranslate nohighlight">\(\Xmat\)</span> the matrix of two columns, where the first column is the column
-of ones (<span class="math notranslate nohighlight">\(\mathbf{o}\)</span> above) and the second column is <span class="math notranslate nohighlight">\(\xvec\)</span>. Call <span class="math notranslate nohighlight">\(\bvec\)</span>
+of ones (<span class="math notranslate nohighlight">\(\vec{o}\)</span> above) and the second column is <span class="math notranslate nohighlight">\(\xvec\)</span>. Call <span class="math notranslate nohighlight">\(\bvec\)</span>
 the column vector:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -891,11 +979,37 @@ b \\
 \right]
 \end{split}\]</div>
 <p>This gives us exactly the same calculation as <span class="math notranslate nohighlight">\(\yvec = c + b \xvec + \evec\)</span> above, but in terms of matrix multiplication:</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sy_beta_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="n">sy_b</span><span class="p">],</span> <span class="p">[</span><span class="n">sy_c</span><span class="p">]])</span>
+<span class="n">sy_xmat_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">sy_x_val</span><span class="p">,</span> <span class="n">sy_o_val</span><span class="p">)</span>
+<span class="n">eq</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_xmat_val</span><span class="p">,</span> <span class="n">sy_beta_val</span><span class="p">),</span> <span class="n">sy_e_val</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right] = \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right] + \left[\begin{matrix}0.389 &amp; 1\\0.2 &amp; 1\\0.241 &amp; 1\\0.463 &amp; 1\\4.585 &amp; 1\\1.097 &amp; 1\\1.642 &amp; 1\\4.972 &amp; 1\\7.957 &amp; 1\\5.585 &amp; 1\\5.527 &amp; 1\\6.964 &amp; 1\end{matrix}\right] \left[\begin{matrix}b\\c\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
 <p>In symbols:</p>
 <div class="math notranslate nohighlight">
 \[
 \yvec = \Xmat \bvec + \evec
 \]</div>
+<p>Because of the way that matrix multiplication works, this again gives us the intended result:</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">sy_xmat_val</span> <span class="o">@</span> <span class="n">sy_beta_val</span> <span class="o">+</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right] = \left[\begin{matrix}0.389 b + c + {e}_{1}\\0.2 b + c + {e}_{2}\\0.241 b + c + {e}_{3}\\0.463 b + c + {e}_{4}\\4.585 b + c + {e}_{5}\\1.097 b + c + {e}_{6}\\1.642 b + c + {e}_{7}\\4.972 b + c + {e}_{8}\\7.957 b + c + {e}_{9}\\5.585 b + c + {e}_{10}\\5.527 b + c + {e}_{11}\\6.964 b + c + {e}_{12}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
 <p>We still haven’t found our best fitting line. But before we go further,
 it might be obvious that we can easily add a new predictor here.</p>
 </div>
@@ -920,7 +1034,7 @@ student’s age as another predictor:</p>
 <span class="math notranslate nohighlight">\(b_2\)</span> (slope for <span class="math notranslate nohighlight">\(\xvec_2\)</span>). Our model is:</p>
 <div class="math notranslate nohighlight">
 \[
-y_i = c + b_1 x_{1, i} + b_2 x_{2, i} + e_i
+y_i = b_1 x_{1, i} + b_2 x_{2, i} + c + e_i
 \]</div>
 <p>In this model <span class="math notranslate nohighlight">\(\Xmat\)</span> has three columns (ones, <span class="math notranslate nohighlight">\(\xvec_1\)</span>, and
 <span class="math notranslate nohighlight">\(\xvec_2\)</span>), and the <span class="math notranslate nohighlight">\(\bvec\)</span> vector has three values <span class="math notranslate nohighlight">\(c, b_1,
@@ -933,8 +1047,8 @@ from the <em>sum</em> of some components (<span class="math notranslate nohighli
 \[
 y_i = b_1 x_{1, i} + b_2 x_{2, i} + ... b_p x_{p, i} + e_i
 \]</div>
-<p>In the case of the models above, the first predictor <span class="math notranslate nohighlight">\(\xvec_1\)</span>
-would be a column of ones, to express the intercept in the model.</p>
+<p>In the case of the models above, the final predictor <span class="math notranslate nohighlight">\(\xvec_p\)</span> would be a
+column of ones, to express the intercept in the model.</p>
 <p>Any model of the form above can still be phrased in the matrix form:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1068,10 +1182,10 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f94f8130c10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa952e7f2e0&gt;]
 </pre></div>
 </div>
-<img alt="_images/glm_intro_25_1.png" src="_images/glm_intro_25_1.png" />
+<img alt="_images/glm_intro_43_1.png" src="_images/glm_intro_43_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1096,7 +1210,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/glm_intro_27_0.png" src="_images/glm_intro_27_0.png" />
+<img alt="_images/glm_intro_45_0.png" src="_images/glm_intro_45_0.png" />
 </div>
 </div>
 <p>Our claim was that this estimate for slope and intercept minimize the mean (and therefore sum) of
@@ -1110,7 +1224,7 @@ squared error:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.9256064499382
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.92560644993827
 </pre></div>
 </div>
 </div>
@@ -1479,7 +1593,7 @@ image display parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/glm_intro_57_0.png" src="_images/glm_intro_57_0.png" />
+<img alt="_images/glm_intro_75_0.png" src="_images/glm_intro_75_0.png" />
 </div>
 </div>
 </div>
