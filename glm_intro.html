@@ -831,7 +831,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0545305910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd828d2b910&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -875,13 +875,13 @@ student (= 0.389) and <span class="math notranslate nohighlight">\(x_i\)</span> 
 <span class="n">sy_x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">sy_x_ind</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">sy_x_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sy_x_ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vector_indices</span><span class="p">])</span>
-<span class="n">Eq</span><span class="p">(</span><span class="n">sy_x</span><span class="p">,</span> <span class="n">Eq</span><span class="p">(</span><span class="n">Matrix</span><span class="p">(</span><span class="n">clammy</span><span class="p">),</span> <span class="n">sy_x_val</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_x</span><span class="p">,</span> <span class="n">Eq</span><span class="p">(</span><span class="n">sy_x_val</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">clammy</span><span class="p">)),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \vec{x} = \left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right] = \left[\begin{matrix}{x}_{1}\\{x}_{2}\\{x}_{3}\\{x}_{4}\\{x}_{5}\\{x}_{6}\\{x}_{7}\\{x}_{8}\\{x}_{9}\\{x}_{10}\\{x}_{11}\\{x}_{12}\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \vec{x} = \left[\begin{matrix}{x}_{1}\\{x}_{2}\\{x}_{3}\\{x}_{4}\\{x}_{5}\\{x}_{6}\\{x}_{7}\\{x}_{8}\\{x}_{9}\\{x}_{10}\\{x}_{11}\\{x}_{12}\end{matrix}\right] = \left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>Our straight line model says:</p>
@@ -1253,7 +1253,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0543d651f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd827768700&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_49_1.png" src="_images/glm_intro_49_1.png" />
