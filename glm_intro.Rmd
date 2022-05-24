@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.10.3
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3
     language: python
@@ -62,6 +62,9 @@ clammy = np.array(
     [0.389,  0.2  ,  0.241,  0.463,
      4.585,  1.097,  1.642,  4.972,
      7.957,  5.585,  5.527,  6.964])
+
+# The number of values
+n = len(clammy)
 ```
 
 ```{python}
@@ -111,19 +114,41 @@ To make this more general, let’s call our `psychopathy` data
 $\yvec$ - a *vector* with 12 values, one for each student.   A *vector* is just a sequence of values.
 
 $y_1$ is the value for the first student (= 11.416) and $y_i$ is the value for
-student $i$ where $i \in 1 .. 12$.
+student $i$ where $i \in 1 .. 12$:
+
+```{python tags=c("hide-input")}
+# Ignore this cell - it is to give a better display to the mathematics.
+# Import Symbolic mathematics routines.
+from sympy import Eq, Matrix, IndexedBase, symbols
+from sympy.matrices import MatAdd, MatMul
+
+sy_y = symbols(r'\vec{y}')
+sy_y_ind = IndexedBase("y")
+vector_indices = range(1, n + 1)
+sy_y_val = Matrix([sy_y_ind[i] for i in vector_indices])
+
+Eq(sy_y, Eq(sy_y_val, Matrix(psychopathy)), evaluate=False)
+```
 
 Our `clammy` score is a *predictor*. Lets call the clammy scores $\xvec$.
 $\xvec$ is another vector with 12 values. $x_1$ is the value for the first
 student (= 0.389) and $x_i$ is the value for student $i$ where $i \in 1 ..
 12$.
 
+```{python tags=c("hide-input")}
+# Ignore this cell - it is to give a better display to the mathematics.
+sy_x = symbols(r'\vec{x}')
+sy_x_ind = IndexedBase("x")
+sy_x_val = Matrix([sy_x_ind[i] for i in vector_indices])
+Eq(sy_x, Eq(Matrix(clammy), sy_x_val), evaluate=False)
+```
+
 Our straight line model says:
 
 $y_i \approx bx_i + c$
 
-where $\approx$ means *approximately equal to*, $b$ is the slope and $c$
-is the intercept. For the guessed line above:
+$\approx$ above means *approximately equal to*, $b$ is the slope and $c$ is
+the intercept. For the guessed line above:
 
 $y_i \approx 0.9 x_i + 10$
 
@@ -142,35 +167,17 @@ It turns out it will be useful to rephrase the simple regression model
 in *matrix form*. Let’s make the data and predictor and errors into
 vectors.
 
-$\yvec$ is the vector of values $y_1 ... y_{12}$.
+We already the $y$ values in our $\yvec$ vector above, and the $x$ values in the $\xvec$ vector.
 
-```{python tags=c("hide-input")}
-# Ignore this cell - it is to give a better display to the mathematics.
-# Inport Symbolic mathematics routines.
-from sympy import (Eq, Matrix, IndexedBase, symbols)
-from sympy.matrices import MatAdd, MatMul
-
-sy_y = symbols(r'\vec{y}')
-sy_y_val = Matrix(psychopathy)
-Eq(sy_y, sy_y_val, evaluate=False)
-```
-
-$\xvec$ is the vector of values $x_1 ... x_{12}$:
-
-```{python tags=c("hide-input")}
-# Ignore this cell.
-sy_x = symbols(r'\vec{x}')
-sy_x_val = Matrix(clammy)
-Eq(sy_x, sy_x_val, evaluate=False)
-```
-
-$\evec$ is the vector of as-yet-unknown errors $e_1 ... e_{12}$:
+$\evec$ is the vector of as-yet-unknown errors $e_1, e_2,  ... e_{12}$.  The
+values of the errors depend on the predicted values, and therefore, on our
+slope $b$ and intercept $c$.
 
 ```{python tags=c("hide-input")}
 # Ignore this cell.
 sy_e = symbols(r'\vec{\varepsilon}')
 sy_e_ind = IndexedBase("e")
-sy_e_val = Matrix([sy_e_ind[i] for i in range(1, 13)])
+sy_e_val = Matrix([sy_e_ind[i] for i in vector_indices])
 Eq(sy_e, sy_e_val, evaluate=False)
 ```
 
@@ -180,6 +187,12 @@ $$
 \yvec = b \xvec + c + \evec
 $$
 
+```{python tags=c("hide-input")}
+# Ignore this cell.
+sy_b, sy_c = symbols('b, c')
+rhs = MatAdd(MatMul(sy_b, sy_x_val), sy_c, sy_e_val)
+Eq(sy_y_val, rhs, evaluate=False)
+```
 
 Bear with with us for a little trick. We define $\vec{o}$ as a vector of ones,
 like this:
@@ -187,7 +200,7 @@ like this:
 ```{python tags=c("hide-input")}
 # Ignore this cell.
 sy_o = symbols(r'\vec{o}')
-sy_o_val = Matrix([1 for i in range(1, 13)])
+sy_o_val = Matrix([1 for i in vector_indices])
 Eq(sy_o, sy_o_val, evaluate=False)
 ```
 
@@ -201,16 +214,15 @@ because $o_i = 1$ and so $co_i = c$.
 
 ```{python tags=c("hide-input")}
 # Ignore this cell.
-sy_b, sy_c = symbols('b, c')
 rhs = MatAdd(MatMul(sy_b, sy_x_val), MatMul(sy_c, sy_o_val), sy_e_val)
-Eq(sy_y, rhs, evaluate=False)
+Eq(sy_y_val, rhs, evaluate=False)
 ```
 
 This evaluates to the result we intend:
 
 ```{python tags=c("hide-input")}
 # Ignore this cell.
-Eq(sy_y, sy_c * sy_o_val + sy_b * sy_x_val + sy_e_val, evaluate=False)
+Eq(sy_y_val, sy_c * sy_o_val + sy_b * sy_x_val + sy_e_val, evaluate=False)
 ```
 
 $\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
@@ -281,6 +293,16 @@ $b_2$ (slope for $\xvec_2$). Our model is:
 $$
 y_i = b_1 x_{1, i} + b_2 x_{2, i} + c + e_i
 $$
+
+```{python tags=c("hide-input")}
+# Ignore this cell.
+sy_b_1, sy_b_2 = symbols('b_1, b_2')
+sy_x_1_ind = IndexedBase("x_1,")
+sy_x_1_val = Matrix([sy_x_1_ind[i] for i in vector_indices])
+sy_x_2_ind = IndexedBase("x_2,")
+sy_x_2_val = Matrix([sy_x_2_ind[i] for i in vector_indices])
+Eq(sy_y_val, MatAdd(MatMul(sy_b_1, sy_x_1_val), MatMul(sy_b_2, sy_x_2_val), sy_c, sy_e_val), evaluate=False)
+```
 
 In this model $\Xmat$ has three columns ($\xvec_1$, $\xvec_2$ and ones), and
 the $\bvec$ vector has three values $b_1, b_2, c$. This gives the same matrix
@@ -454,7 +476,9 @@ errors = psychopathy - fitted
 print(np.sum(errors ** 2))
 ```
 
+
 ## Contrasts
+
 
 $\newcommand{cvec}{\mathbf{c}}$ We can combine the values in the
 $\bhat$ vector in different ways by using a *contrast* vector. A
