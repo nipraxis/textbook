@@ -327,6 +327,23 @@ $$
 \yvec = \Xmat \bvec + \evec
 $$
 
+where:
+
+```{python}
+# Ignore this cell.
+sy_xmat3_val = Matrix.hstack(sy_x_1_val, sy_x_2_val, sy_o_val)
+sy_Xmat = symbols(r'\boldsymbol{X}')
+Eq(sy_Xmat, sy_xmat3_val, evaluate=False)
+```
+
+and therefore:
+
+```{python tags=c("hide-input")}
+# Ignore this cell.
+sy_xmat3_val = Matrix.hstack(sy_x_1_val, sy_x_2_val, sy_o_val)
+sy_beta2_val = Matrix([sy_b_1, sy_b_2, sy_c])
+Eq(sy_y_val, MatAdd(MatMul(sy_xmat3_val, sy_beta2_val), sy_e_val), evaluate=False)
+```
 
 ### Population, sample, estimate
 
