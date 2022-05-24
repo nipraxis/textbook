@@ -140,7 +140,7 @@ student (= 0.389) and $x_i$ is the value for student $i$ where $i \in 1 ..
 sy_x = symbols(r'\vec{x}')
 sy_x_ind = IndexedBase("x")
 sy_x_val = Matrix([sy_x_ind[i] for i in vector_indices])
-Eq(sy_x, Eq(Matrix(clammy), sy_x_val), evaluate=False)
+Eq(sy_x, Eq(sy_x_val, Matrix(clammy)), evaluate=False)
 ```
 
 Our straight line model says:
