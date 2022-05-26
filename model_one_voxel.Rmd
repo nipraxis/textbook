@@ -16,12 +16,11 @@ jupyter:
 
 # Modeling a single voxel
 
-The end of the [voxel regression page](regress_one_voxel.Rmd) has a worked
-example of applying [General Linear
-Model](https://textbook.nipraxis.org/glm_intro.html) (GLM) to do regression
-for a single voxel.
+The [voxel regression page](regress_one_voxel.Rmd) has a worked
+example of applying [simple regression](on_regression.Rmd)) on a single voxel.
 
-This page runs the same calculations, but also unpacks the GLM notation that we are using in the calculation.
+This page runs the same calculations, but using the [General Linear
+Model](glm_intro.Rmd) notation and matrix calculations.
 
 Let’s get that same voxel time course back again:
 
@@ -129,4 +128,11 @@ Finally, we may be interested to calculate the MSE of this model:
 e_vec = voxel_time_course - y_hat
 mse = np.mean(e_vec ** 2)
 mse
+```
+
+Notice that the $\bhat$ parameters are the same as the slope and intercept from the Scipy calculation using `linregress`:
+
+```{python}
+import scipy.stats as sps
+sps.linregress(convolved, voxel_time_course)
 ```

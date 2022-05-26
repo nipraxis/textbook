@@ -16,7 +16,7 @@ jupyter:
 
 ## General linear model reprise
 
-This page starts at the same place as [introduction to the general linear model](https://matthew-brett.github.io/teaching/glm_intro.html).
+This page starts at the same place as [introduction to the general linear model](glm_intro.Rmd).
 
 ```{python}
 # Import numerical and plotting libraries
@@ -176,18 +176,19 @@ into, this is a *biased estimate of the population variance*.
 
 To get an unbiased estimate of the variance, we need to allow for the number
 of independent columns in the design $\Xmat$.  The number of independent
-columns in the design is given by the [matrix rank](http://matthew-brett.github.io/teaching/matrix_rank.html) of $\Xmat$. Specifically,
-if $\rank(\Xmat)$ is the matrix rank of $\Xmat$, an unbiased estimate of
-population variance is given by:
+columns in the design is given by the [matrix rank](matrix_rank.Rmd) of
+$\Xmat$. Specifically, if $\rank(\Xmat)$ is the matrix rank of $\Xmat$, an
+unbiased estimate of population variance is given by:
 
 $$
 \hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2
 $$
 
-For example, we saw in the [worked example of GLM](https://github.com/bic-berkeley/psych-214-fall-2014/mean_test_example.html), that when we have a
-single regressor, and $\rank(\Xmat) = 1$, we divide the sum of squares of the
-residuals by $n - 1$ where $n$ is the number of rows in the design.  This
-$n-1$ divisor is [Bessel’s correction](https://en.wikipedia.org/wiki/Bessel%27s_correction).
+For example, we saw in the [worked example of GLM](mean_test_example.Rmd),
+that when we have a single regressor, and $\rank(\Xmat) = 1$, we divide the
+sum of squares of the residuals by $n - 1$ where $n$ is the number of rows in
+the design.  This $n-1$ divisor is [Bessel’s
+correction](https://en.wikipedia.org/wiki/Bessel%27s_correction).
 
 We will also use these terms below:
 
