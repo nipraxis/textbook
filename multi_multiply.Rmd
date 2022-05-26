@@ -1,13 +1,15 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -28,7 +30,7 @@ np.set_printoptions(precision=4)
 ```{python}
 X = np.ones((12, 2))
 X[:, 0] = np.linspace(-1, 1, 12)
-plt.imshow(X, interpolation='nearest', cmap='gray')
+plt.imshow(X, cmap='gray')
 ```
 
 To fit this design to any data, we take the pseudoinverse:
@@ -39,13 +41,14 @@ piX = npl.pinv(X)
 piX.shape
 ```
 
-Now let’s make some data to fit to. We will draw some somples from the standar
-normal distribution using numpy.random.  We use
-`numpy.random.seed` to make sure the random numbers are predictable:
+Now let’s make some data to fit to. We will draw some samples from the standard
+normal distribution.
 
 ```{python}
-np.random.seed(42)
-y_0 = np.random.normal(size=12)
+# Random number generator.
+rng = np.random.default_rng()
+# 12 random numbers from normal distribution, mean 0, std 1.
+y_0 = rng.normal(size=12)
 beta_0 = piX @ y_0
 beta_0
 ```
@@ -53,7 +56,7 @@ beta_0
 We can fit this same design to another set of data:
 
 ```{python}
-y_1 = np.random.normal(size=12)
+y_1 = rng.normal(size=12)
 beta_1 = piX @ y_1
 beta_1
 ```
