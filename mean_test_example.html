@@ -602,16 +602,25 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#">
    A worked example of the general linear model
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-standard-error-of-the-mean">
-   The standard error of the mean
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-standard-error-as-an-estimator">
-   The standard error as an estimator
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-standard-error-of-the-mean">
+     The standard error of the mean
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-the-standard-error-of-the-mean">
+       What is the standard error of the mean?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t-statistic-sem">
+     t statistic, SEM
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#testing-using-the-general-linear-model">
@@ -642,16 +651,25 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#">
    A worked example of the general linear model
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-standard-error-of-the-mean">
-   The standard error of the mean
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-standard-error-as-an-estimator">
-   The standard error as an estimator
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-standard-error-of-the-mean">
+     The standard error of the mean
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-the-standard-error-of-the-mean">
+       What is the standard error of the mean?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t-statistic-sem">
+     t statistic, SEM
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#testing-using-the-general-linear-model">
@@ -685,6 +703,8 @@ subtract the woman’s score from the man’s score, to get a difference score.<
 <span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
 <span class="c1"># Only show 4 decimals when printing arrays</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -693,6 +713,15 @@ subtract the woman’s score from the man’s score, to get a difference score.<
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">1.5993</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13</span>  <span class="p">,</span>  <span class="mf">2.3806</span><span class="p">,</span>  <span class="mf">1.3761</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3595</span><span class="p">,</span>
                          <span class="mf">1.0286</span><span class="p">,</span>  <span class="mf">0.8466</span><span class="p">,</span>  <span class="mf">1.6669</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8241</span><span class="p">,</span>  <span class="mf">0.4469</span><span class="p">])</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;STD&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">differences</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean 0.7031400000000001
+STD 1.116777294898137
 </pre></div>
 </div>
 </div>
@@ -703,10 +732,37 @@ couples, the difference measure will, on average, be positive (men have higher
 scores than women).</p>
 <p>We teat this hypothesis by testing whether the sample mean is far enough from
 zero to make it unlikely that the population mean is actually zero.</p>
+<p>To rush ahead, the t-value is always a parameter of interest, in our case, the mean difference, divided by an estimate of the expected variation of that parameter.   Specifically, in our case, the value we are expecting for the t-statistic is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expected_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">differences</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">expected_t</span>
+</pre></div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-standard-error-of-the-mean">
-<h1>The standard error of the mean<a class="headerlink" href="#the-standard-error-of-the-mean" title="Permalink to this headline">¶</a></h1>
-<p>One way to test this, is to compare the mean value, to the <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_mean_2">standard error of
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.888845707767012
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we confirm with the Scipy <code class="docutils literal notranslate"><span class="pre">ttest_1samp</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">sps</span>
+<span class="n">sps</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">differences</span><span class="p">,</span> <span class="n">popmean</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_1sampResult(statistic=1.888845707767012, pvalue=0.09150479659216247)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-standard-error-of-the-mean">
+<h2>The standard error of the mean<a class="headerlink" href="#the-standard-error-of-the-mean" title="Permalink to this headline">¶</a></h2>
+<p>As you have seen above, the t-statistic requires that we divide the mean value by expected standard deviation of the parameter.  The expected standard deviation of the mean is the <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_mean_2">standard error of
 the mean</a>.</p>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_error">standard error</a> of a statistic (such as a mean) is the standard
 deviation of the sampling distribution of the statistic.  The sampling
@@ -714,27 +770,286 @@ distribution is the distribution of the statistic that we expect when taking a
 very large number of samples of the statistic.  For example, the sampling
 distribution of the mean, is the expected distribution of the sample means
 generated by taking a very large number of samples.</p>
+<div class="section" id="what-is-the-standard-error-of-the-mean">
+<h3>What is the standard error of the mean?<a class="headerlink" href="#what-is-the-standard-error-of-the-mean" title="Permalink to this headline">¶</a></h3>
+<p>To be more concrete, let’s generate a <em>population</em> with a mean of 0 and a standard deviation of 5.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The default random number generator in Numpy.</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+
+<span class="n">population</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/mean_test_example_10_0.png" src="_images/mean_test_example_10_0.png" />
+</div>
+</div>
 <p>As usual, define the <em>mean</em> of a vector of values <span class="math notranslate nohighlight">\(\vec{x}\)</span> as:</p>
 <div class="math notranslate nohighlight">
 \[
 \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
 \]</div>
-<p>Define the <em>unbiased estimate of the standard deviation</em> of <span class="math notranslate nohighlight">\(\vec{x}\)</span> as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The population mean is near-enough that we&#39;ll call it 0</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">population</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.003507789897404671
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The population standard deviation is near-enough that we&#39;ll call it 5</span>
+<span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.9995034316266045
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_mean</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">pop_std</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now imagine we took a sample size <code class="docutils literal notranslate"><span class="pre">n</span></code> from this population:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sample</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.6474, -3.067 ,  7.176 , -1.0835,  1.6619,  0.3138, -4.7729,
+        6.9019, -4.2513, -8.8193])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The sample has a <em>sample mean</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>   <span class="c1"># or np.sum(sample) / n</span>
+<span class="n">sample_mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.5292966248757492
+</pre></div>
+</div>
+</div>
+</div>
+<p>If I draw a new sample, it will have a different meean.  The <em>mean</em> of the sample is itself, somewhat random:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.10059682564622197
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us do that many times, to get an idea of the <em>distribution</em> of the means from samples of size <code class="docutils literal notranslate"><span class="pre">n</span></code>.  This is called the <em>sampling distribution</em> of the mean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">sample_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">sample_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="n">sample_means</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.9958, -0.6892, -1.7847,  0.4761,  1.7619, -2.0689,  2.2022,
+       -1.6751, -0.0443,  0.8758])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have the <em>sampling distribution</em> of the mean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample_means</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/mean_test_example_25_0.png" src="_images/mean_test_example_25_0.png" />
+</div>
+</div>
+<p>The <em>standard error</em> of the mean is nothing but the estimate, using some assumptions of the standard deviation of this distribution.  For example, for our particular <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> samples, we got a sampling distribution standard deviation of:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard deviation of sampling distribution of mean.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sample_means</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.583107300922734
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <em>standard error of the mean</em> (SEM) is an estimate of this value using some assumptions, but without having to draw multiple samples from the population.  It is given by the population standard deviation divided by the square root of <code class="docutils literal notranslate"><span class="pre">n</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_sem</span> <span class="o">=</span> <span class="n">pop_std</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">pop_sem</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5811388300841895
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the SEM is very close to our estimate by drawing lots of samples.  Our estimate will, of course, be a little random, because it depends on the exact random samples we drew from the population.</p>
+<p>But wait!, I hear you cry, we usually don’t know the standard deviation of the population.  Often, even usually, all we have to go on is the sample.  We need an <em>estimate</em> of the standard deviation, to give an <em>estimate</em> for the standard error of the mean.</p>
+<p>One estimate could be the standard deviation of the sample we have, as in:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.9186800135140714
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you may remember, the Numpy calculation for the standard deviation is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+v = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \\
+\sigma = \sqrt{v}
+\end{split}\]</div>
+<p>In code, this is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numpy calculation</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">sample</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+<span class="n">sigma</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.9186800135140714
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unfortunately, this is not the best number to use, because it turns out this calculation of the standard deviation tends to be <em>lower</em> than the population standard deviation, for reasons related to the fact that we used the <em>sample mean</em> to calculate the standard deviation. In technical terms, this calculation is <em>biased</em> to be too low, on average, compared to the population standard deviation.</p>
+<p>We have to do a small correction for this effect, by dividing the variance by <span class="math notranslate nohighlight">\(n - 1\)</span> rather than <span class="math notranslate nohighlight">\(n\)</span>.  This version of the calculation produces an <em>unbiased</em> estimate of population standard deviation:</p>
+<p>So, the <em>unbiased estimate of the standard deviation</em> of <span class="math notranslate nohighlight">\(\vec{x}\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+v_u = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \\
+s_u = \sqrt{v_u}
+\end{split}\]</div>
+<p>In code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">sample</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">s_u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v_u</span><span class="p">)</span>
+<span class="n">s_u</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0765588679718303
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numpy does this calculation if we pass <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code> to the <code class="docutils literal notranslate"><span class="pre">std</span></code> function.  <code class="docutils literal notranslate"><span class="pre">ddof</span></code> stands for Delta Degrees of Freedom, and refers to the number of parameters we had to estimate to calculate the standard deviation.  In our current case, this is 1, for the mean.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0765588679718303
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <em>unbiased</em> Standard Error of the Mean (SEM) from the <em>sample</em> uses the <em>unbiased</em> standard deviation from the sample, and is:</p>
 <div class="math notranslate nohighlight">
 \[
-s_x = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2}
+SE_{\bar{x}} = \frac{s_y}{\sqrt{n}}
 \]</div>
-<p>Notice the <span class="math notranslate nohighlight">\(\frac{1}{n-1}\)</span>.   We have previously used <span class="math notranslate nohighlight">\(n\)</span> rather than <span class="math notranslate nohighlight">\(n-1\)</span> as
-the divisor for the <em>sample standard deviation</em>.  Using <span class="math notranslate nohighlight">\(n\)</span>, our <em>sample
-standard deviation</em> is a biased estimate of the population standard deviation.
-Using <span class="math notranslate nohighlight">\(n-1\)</span> as the divisor gives an unbiased estimate for population standard
-deviation.</p>
-<p>The standard error of the mean is:</p>
-<div class="math notranslate nohighlight">
-\[
-SE_{\bar{x}} = \frac{s_x}{\sqrt{n}}
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of samples, 10 in our case.</p>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of samples, in our case:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SEM_u</span> <span class="o">=</span> <span class="n">s_u</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">SEM_u</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9728933378380237
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that this isn’t far from the SEM calculated from the population standard deviation, or from the standard deviation of the sampling distribution that we calculated by taking many samples, but this estimate of the SEM will vary from sample to sample, as the mean and unbiased standard deviation will vary.</p>
+</div>
+</div>
+<div class="section" id="t-statistic-sem">
+<h2>t statistic, SEM<a class="headerlink" href="#t-statistic-sem" title="Permalink to this headline">¶</a></h2>
 <p>A t statistic is given by a value divided by the <em>standard error</em> of that
 value.  The t statistic for <span class="math notranslate nohighlight">\(\bar{x}\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -759,8 +1074,8 @@ t = \frac{\bar{x}}{SE_{\bar{x}}}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unviased_var_x</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_bar</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">s_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">unviased_var_x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unbiased_var_x</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_bar</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">s_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">unbiased_var_x</span><span class="p">)</span>
 <span class="n">s_x</span>
 </pre></div>
 </div>
@@ -773,7 +1088,8 @@ t = \frac{\bar{x}}{SE_{\bar{x}}}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SEM</span> <span class="o">=</span> <span class="n">s_x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unbiased SEM uses the unbiased standard deviation</span>
+<span class="n">SEM</span> <span class="o">=</span> <span class="n">s_x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">SEM</span>
 </pre></div>
 </div>
@@ -795,124 +1111,6 @@ t = \frac{\bar{x}}{SE_{\bar{x}}}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.888845707767012
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-standard-error-as-an-estimator">
-<h1>The standard error as an estimator<a class="headerlink" href="#the-standard-error-as-an-estimator" title="Permalink to this headline">¶</a></h1>
-<p>Imagine that we repeat the following procedure many times, collecting each
-value into a vector <span class="math notranslate nohighlight">\(\vec{m}\)</span>:</p>
-<ul class="simple">
-<li><p>take <span class="math notranslate nohighlight">\(n\)</span> samples from some distribution;</p></li>
-<li><p>take the mean of these <span class="math notranslate nohighlight">\(n\)</span> samples.</p></li>
-</ul>
-<p>The standard error of the mean is an estimate of the standard deviation of the
-values in <span class="math notranslate nohighlight">\(\vec{m}\)</span>.</p>
-<p>We can simulate this process when we know the exact distribution of the values
-in the population.  For example, let us imagine that we know that the
-population distribution is a normal distribution with population mean 10 (<span class="math notranslate nohighlight">\(\mu
-= 10\)</span>) and population standard deviation 1.5 (<span class="math notranslate nohighlight">\(\sigma = 1.5\)</span>).  We can use
-numpy.random to draw samples from this distribution:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 10 samples from normal distribution with mean 5 and sd 1.5</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-<span class="n">sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">sample</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.3424, 6.1375, 4.4128, 4.0867, 4.1715, 5.8709, 3.433 , 5.9999,
-       5.2765, 6.2351])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We know the exact mean (<span class="math notranslate nohighlight">\(\mu\)</span>) and standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>).  If we draw
-a near-infinite number of samples like this, then the standard deviation of
-the mean of these samples will be <span class="math notranslate nohighlight">\(\frac{\sigma}{\sqrt{n}}\)</span>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4743416490252569
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can compare this number to an estimate of the same thing from a very large
-number of means from samples size 10:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100000</span>
-<span class="n">pop_mean</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">pop_sd</span> <span class="o">=</span> <span class="mf">1.5</span>
-<span class="n">means_of_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
-    <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">pop_mean</span><span class="p">,</span> <span class="n">pop_sd</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">means_of_samples</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">sq_deviations</span> <span class="o">=</span> <span class="p">(</span><span class="n">means_of_samples</span> <span class="o">-</span> <span class="n">pop_mean</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="c1"># With lots of samples, this value is close to the exact number</span>
-<span class="n">means_std_dev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">n_samples</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sq_deviations</span><span class="p">))</span>
-<span class="n">means_std_dev</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.47201847715853207
-</pre></div>
-</div>
-</div>
-</div>
-<p>Normally we do not know the exact standard deviation of the population.  The
-standard error of the mean is for that situation.  First we use the sample
-that we have to get an <em>unbiased estimate</em> of the population standard
-deviation:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">sample</span>
-<span class="n">y_bar</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">unbiased_var_estimate</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">unbiased_sd_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">unbiased_var_estimate</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Of course, this estimate will not be exactly the same as the population
-standard deviation (<span class="math notranslate nohighlight">\(\sigma = 1.5\)</span>):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unbiased_sd_est</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2111265368635225
-</pre></div>
-</div>
-</div>
-</div>
-<p>We use the unbiased standard deviation estimate to give an unbiased estimate
-for the standard error of the mean. This estimate will be close to the
-standard deviation of means from many samples of size <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard deviation of means from population</span>
-<span class="nb">print</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-<span class="c1"># Our estimate for the standard error of mean</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unbiased_sd_est</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4743416490252569
-0.3829918391160612
-</pre></div>
 </div>
 </div>
 </div>
@@ -967,6 +1165,27 @@ show how the machinery works in the simplest case.</p>
 = \frac{1}{n} \sum_i{y_i} \\
 = \bar{y}
 \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pX</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">pX</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">pX</span> <span class="o">@</span> <span class="n">differences</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">differences</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>The student’s t statistic from the general linear model is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -977,13 +1196,36 @@ contrast vector to select some combination of the design columns, and
 <span class="math notranslate nohighlight">\((\Xmat^T \Xmat)^+\)</span> is the <em>pseudoinverse</em> of <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span>.</p>
 <p>In our case we have only one design column, so <span class="math notranslate nohighlight">\(c = [1]\)</span> and we can omit it.
 <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = s_x^2\)</span> for <span class="math notranslate nohighlight">\(s_x\)</span> defined above.  <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is
-invertible, and we know the inverse already: <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>.  Therefore:</p>
+invertible, and we know the inverse already: <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iXtX</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">iXtX</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 t = \frac{\bar{y}}{s_x \sqrt{\frac{1}{n}}} \\
 = \bar{y} \Big/ \frac{s_x}{\sqrt{n}} \\
 = \frac{\bar{y}}{SE_{\bar{y}}}
 \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">differences</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">differences</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">B</span> <span class="o">/</span> <span class="p">(</span><span class="n">s_x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">iXtX</span><span class="p">))</span>
+<span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.8888]])
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

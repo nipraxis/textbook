@@ -598,19 +598,12 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Images and affines
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#affines-inverses">
+   Affines, inverses
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#affines-inverses">
-     Affines, inverses
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#manipulating-affines-with-inverses">
    Manipulating affines with inverses
   </a>
@@ -635,19 +628,12 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Images and affines
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#affines-inverses">
+   Affines, inverses
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#affines-inverses">
-     Affines, inverses
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#manipulating-affines-with-inverses">
    Manipulating affines with inverses
   </a>
@@ -798,10 +784,10 @@ into the top left of a 4 x 4 identity matrix:</p>
 <p>We compose these three affine matrices to give an affine implementing <em>first</em>
 a rotation of -0.2 around the x axis, <em>then</em> a rotation of 0.4 around the y
 axis, and <em>finally</em> a translation [10, 20, 30] in [x, y, z]. Note the order
-– matrix multiplication goes from right to left:</p>
+— matrix multiplication goes from right to left:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combined</span> <span class="o">=</span> <span class="n">third_affine</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">second_affine</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">first_affine</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combined</span> <span class="o">=</span> <span class="n">third_affine</span> <span class="o">@</span> <span class="n">second_affine</span> <span class="o">@</span> <span class="n">first_affine</span>
 <span class="n">combined</span>
 </pre></div>
 </div>
@@ -815,12 +801,11 @@ axis, and <em>finally</em> a translation [10, 20, 30] in [x, y, z]. Note the ord
 </div>
 </div>
 </div>
-<p>See The nibabel.affines module for a module with useful functions for working with
-affine matrices.</p>
+<p>See The nibabel.affines module for a module with useful functions for working
+with affine matrices.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="manipulating-affines-with-inverses">
-<h1>Manipulating affines with inverses<a class="headerlink" href="#manipulating-affines-with-inverses" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="manipulating-affines-with-inverses">
+<h2>Manipulating affines with inverses<a class="headerlink" href="#manipulating-affines-with-inverses" title="Permalink to this headline">¶</a></h2>
 <p>Let us say we have an affine, like the one we just made:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -867,16 +852,16 @@ invariably invertible.</p>
 affine, given we know the <code class="docutils literal notranslate"><span class="pre">third_affine</span></code> and <code class="docutils literal notranslate"><span class="pre">second_affine</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">third_affine</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">second_affine</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">third_affine</span> <span class="o">@</span> <span class="n">second_affine</span>
 <span class="n">E_inv</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-<span class="n">E_inv</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>  
+<span class="n">E_inv</span> <span class="o">@</span> <span class="n">combined</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.    ,  0.    , -0.    ,  0.    ],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.    , -0.    ,  0.    , -0.    ],
        [ 0.    ,  0.9801,  0.1987,  0.    ],
-       [-0.    , -0.1987,  0.9801,  0.    ],
+       [ 0.    , -0.1987,  0.9801,  0.    ],
        [ 0.    ,  0.    ,  0.    ,  1.    ]])
 </pre></div>
 </div>
@@ -886,12 +871,21 @@ affine, given we know the <code class="docutils literal notranslate"><span class
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_affine</span>
-<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">E_inv</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">combined</span><span class="p">),</span> <span class="n">first_affine</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.    ,  0.    ,  0.    ,  0.    ],
+       [ 0.    ,  0.9801,  0.1987,  0.    ],
+       [ 0.    , -0.1987,  0.9801,  0.    ],
+       [ 0.    ,  0.    ,  0.    ,  1.    ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">E_inv</span> <span class="o">@</span> <span class="n">combined</span><span class="p">,</span> <span class="n">first_affine</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -940,14 +934,14 @@ first affine, we can do this:</p>
 <p>For our actual affines:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">third_with_second</span> <span class="o">=</span> <span class="n">combined</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">first_affine</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">third_with_second</span> <span class="o">=</span> <span class="n">combined</span> <span class="o">@</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">first_affine</span><span class="p">)</span>
 <span class="n">third_with_second</span>  
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.9211, -0.    ,  0.3894, 10.    ],
-       [ 0.    ,  1.    , -0.    , 20.    ],
+       [ 0.    ,  1.    ,  0.    , 20.    ],
        [-0.3894, -0.    ,  0.9211, 30.    ],
        [ 0.    ,  0.    ,  0.    ,  1.    ]])
 </pre></div>
@@ -957,15 +951,25 @@ first affine, we can do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the same as</span>
-<span class="n">F</span> <span class="o">=</span> <span class="n">third_affine</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">second_affine</span><span class="p">)</span>
-<span class="n">F</span>  
-<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">third_with_second</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">third_affine</span> <span class="o">@</span> <span class="n">second_affine</span>
+<span class="n">F</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.9211,  0.    ,  0.3894, 10.    ],
+       [ 0.    ,  1.    ,  0.    , 20.    ],
+       [-0.3894,  0.    ,  0.9211, 30.    ],
+       [ 0.    ,  0.    ,  0.    ,  1.    ]])
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">third_with_second</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

@@ -614,17 +614,17 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#the-residual-error">
    The residual error
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unbiased-estimate-of-population-variance">
-   Unbiased estimate of population variance
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hypothesis-testing">
-   Hypothesis testing
-  </a>
   <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unbiased-estimate-of-population-variance">
+     Unbiased estimate of population variance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypothesis-testing">
+     Hypothesis testing
+    </a>
+   </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#t-tests-using-contrast-vectors">
      t tests using contrast vectors
@@ -673,17 +673,17 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#the-residual-error">
    The residual error
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unbiased-estimate-of-population-variance">
-   Unbiased estimate of population variance
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hypothesis-testing">
-   Hypothesis testing
-  </a>
   <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unbiased-estimate-of-population-variance">
+     Unbiased estimate of population variance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypothesis-testing">
+     Hypothesis testing
+    </a>
+   </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#t-tests-using-contrast-vectors">
      t tests using contrast vectors
@@ -749,7 +749,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 [y_1, y_2, .... , y_n]\)</span>. The 12 values for <code class="docutils literal notranslate"><span class="pre">clammy</span></code> are <span class="math notranslate nohighlight">\(\vec{x} = [x_1,
 x_2, ... , x_n]\)</span>.  Our straight line model is:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
+\[
 \newcommand{\yvec}{\vec{y}}
 \newcommand{\xvec}{\vec{x}}
 \newcommand{\evec}{\vec{\varepsilon}}
@@ -759,8 +759,12 @@ x_2, ... , x_n]\)</span>.  Our straight line model is:</p>
 \newcommand{\yhat}{\hat{\yvec}}
 \newcommand{\ehat}{\hat{\evec}}
 \newcommand{\cvec}{\vec{c}}
-\newcommand{\rank}{\textrm{rank}}\\y_i = c + b x_i + e_i
-\end{aligned}\end{align} \]</div>
+\newcommand{\rank}{\textrm{rank}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+y_i = c + b x_i + e_i
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(c\)</span> is the intercept, <span class="math notranslate nohighlight">\(b\)</span> is the slope, and <span class="math notranslate nohighlight">\(e_i\)</span> is the remainder of
 <span class="math notranslate nohighlight">\(y_i\)</span> after subtracting <span class="math notranslate nohighlight">\(c + b x_i\)</span>.</p>
 <p>We then defined a new vector <span class="math notranslate nohighlight">\(\evec = [e_1, e_2, ... e_n]\)</span> for remaining
@@ -844,9 +848,8 @@ operations, we can write that formulation as:</p>
 \[
 \sum e_i^2 \equiv \ehat^T \ehat
 \]</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="unbiased-estimate-of-population-variance">
-<h1>Unbiased estimate of population variance<a class="headerlink" href="#unbiased-estimate-of-population-variance" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="unbiased-estimate-of-population-variance">
+<h2>Unbiased estimate of population variance<a class="headerlink" href="#unbiased-estimate-of-population-variance" title="Permalink to this headline">¶</a></h2>
 <p>We will soon need an unbiased estimate of the population variance.  The
 population variance is <span class="math notranslate nohighlight">\(\frac{1}{N} \sum e_i^2\)</span> where the population has <span class="math notranslate nohighlight">\(N\)</span>
 elements, and <span class="math notranslate nohighlight">\(e_1, e_2, ... e_N\)</span> are the remaining errors for all <span class="math notranslate nohighlight">\(N\)</span>
@@ -876,8 +879,8 @@ correction</a>.</p>
 <li><p><span class="math notranslate nohighlight">\(n - \rank(\Xmat)\)</span>: <em>degrees of freedom of the error</em>.</p></li>
 </ul>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="hypothesis-testing">
-<h1>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hypothesis-testing">
+<h2>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h2>
 <p>We used contrast vectors to form particular linear combinations of the
 parameter estimates in <span class="math notranslate nohighlight">\(\bhat\)</span>.  For example, we used the contrast vector
 <span class="math notranslate nohighlight">\(\cvec = [0, 1]\)</span> to select the estimate for <span class="math notranslate nohighlight">\(b\)</span> – the slope of the line:</p>
@@ -885,6 +888,7 @@ parameter estimates in <span class="math notranslate nohighlight">\(\bhat\)</spa
 \[
 b = [0, 1] \bhat
 \]</div>
+</div>
 <div class="section" id="t-tests-using-contrast-vectors">
 <h2>t tests using contrast vectors<a class="headerlink" href="#t-tests-using-contrast-vectors" title="Permalink to this headline">¶</a></h2>
 <p>The formula for a t statistic test on any linear combination of the parameters
@@ -910,10 +914,10 @@ t = \frac{\cvec^T \bhat}
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
 <span class="c1"># X.T X is invertible</span>
-<span class="n">iXtX</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="n">iXtX</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span>
 <span class="c1"># Least-squares estimate of B</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">iXtX</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">iXtX</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span>
 <span class="c1"># Degrees of freedom of design</span>
 <span class="n">rank_x</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="c1"># The two columns are not colinear, so rank is 2</span>
@@ -931,8 +935,8 @@ t = \frac{\cvec^T \bhat}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unbiased estimate of population variance</span>
 <span class="n">df_error</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">rank_x</span>
-<span class="n">s2_hat</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_error</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s2_hat</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">iXtX</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="n">s2_hat</span> <span class="o">=</span> <span class="n">e</span> <span class="o">@</span> <span class="n">e</span> <span class="o">/</span> <span class="n">df_error</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">B</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s2_hat</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">iXtX</span> <span class="o">@</span> <span class="n">c</span><span class="p">)</span>
 <span class="n">t</span>
 </pre></div>
 </div>
@@ -967,13 +971,17 @@ residuals as a result of adding the new regressors.</p>
 <p>Now we define the <span class="math notranslate nohighlight">\(SSR(\Xmat_r)\)</span> and <span class="math notranslate nohighlight">\(SSR(\Xmat_f)\)</span>.  These are the Sums of
 Squares of the Residuals of the reduced and full model respectively.</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}
+\[\begin{split}
 \bhat_r = \Xmat_r^+ \yvec \\
 \hat\evec_r = \yvec - \Xmat_r \bhat_r \\
-SSR(\Xmat_r) = \hat\evec_r^T \hat\evec_r \\\end{split}\\\begin{split}\bhat_f = \Xmat_f^+ \yvec \\
+SSR(\Xmat_r) = \hat\evec_r^T \hat\evec_r \\
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bhat_f = \Xmat_f^+ \yvec \\
 \hat\evec_f = \yvec - \Xmat_f \bhat_f \\
 SSR(\Xmat_f) = \hat\evec_f^T \hat\evec_f
-\end{split}\end{aligned}\end{align} \]</div>
+\end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(ESS = SSR(\Xmat_r) - SSR(\Xmat_f)\)</span> is the Extra Sum of Squared residuals
 explained by the full compared to the reduced model.  The top half of the
 ratio that forms the F statistic is <span class="math notranslate nohighlight">\(ESS / \nu_1\)</span>, where <span class="math notranslate nohighlight">\(\nu_1\)</span> is the number
@@ -1008,9 +1016,9 @@ F_{\nu_1, \nu_2} &amp; = &amp;
 <span class="n">X_f</span><span class="p">,</span> <span class="n">e_f</span><span class="p">,</span> <span class="n">rank_f</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">rank_x</span>
 <span class="c1"># Now calculate the same for the reduced model</span>
 <span class="n">X_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">iXtX_r</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_r</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_r</span><span class="p">))</span>
-<span class="n">B_r</span> <span class="o">=</span> <span class="n">iXtX_r</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_r</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">e_r</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X_r</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B_r</span><span class="p">)</span>
+<span class="n">iXtX_r</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_r</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_r</span><span class="p">)</span>
+<span class="n">B_r</span> <span class="o">=</span> <span class="n">iXtX_r</span> <span class="o">@</span> <span class="n">X_r</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">e_r</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X_r</span> <span class="o">@</span> <span class="n">B_r</span>
 <span class="n">rank_r</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X_r</span><span class="p">)</span>  <span class="c1"># One column, rank 1</span>
 <span class="n">rank_r</span>
 </pre></div>
@@ -1025,8 +1033,8 @@ F_{\nu_1, \nu_2} &amp; = &amp;
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the F statistic</span>
-<span class="n">SSR_f</span> <span class="o">=</span> <span class="n">e_f</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_f</span><span class="p">)</span>
-<span class="n">SSR_r</span> <span class="o">=</span> <span class="n">e_r</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_r</span><span class="p">)</span>
+<span class="n">SSR_f</span> <span class="o">=</span> <span class="n">e_f</span> <span class="o">@</span> <span class="n">e_f</span>
+<span class="n">SSR_r</span> <span class="o">=</span> <span class="n">e_r</span> <span class="o">@</span> <span class="n">e_r</span>
 <span class="n">nu_1</span> <span class="o">=</span> <span class="n">rank_f</span> <span class="o">-</span> <span class="n">rank_r</span>
 <span class="n">F</span> <span class="o">=</span> <span class="p">((</span><span class="n">SSR_r</span> <span class="o">-</span> <span class="n">SSR_f</span><span class="p">)</span> <span class="o">/</span> <span class="n">nu_1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">SSR_f</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">rank_f</span><span class="p">))</span>
 <span class="n">F</span>
@@ -1034,7 +1042,7 @@ F_{\nu_1, \nu_2} &amp; = &amp;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.664886189966519
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.664886189966517
 </pre></div>
 </div>
 </div>

@@ -105,7 +105,7 @@ the (mean) functional:
 
 ```{python}
 mean_mm2vox = npl.inv(bold_img.affine)
-struct_vox2mean_vox = mean_mm2vox.dot(structural_img.affine)
+struct_vox2mean_vox = mean_mm2vox @ structural_img.affine
 struct_vox2mean_vox
 ```
 

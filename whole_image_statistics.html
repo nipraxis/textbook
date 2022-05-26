@@ -684,7 +684,7 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7feaff4d95b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f98ead1f670&gt;]
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_3_1.png" src="_images/whole_image_statistics_3_1.png" />
@@ -727,7 +727,7 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7feafd3782e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f98e8c3a3a0&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_9_1.png" src="_images/whole_image_statistics_9_1.png" />
@@ -768,7 +768,7 @@ single voxel</span></a>.</p>
 Estimation for many voxels at the same time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">Y</span>
 <span class="n">B</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -796,7 +796,7 @@ Estimation for many voxels at the same time:</p>
 \end{aligned}\end{align} \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_of_t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_of_t</span> <span class="o">=</span> <span class="n">c</span> <span class="o">@</span> <span class="n">B</span>
 <span class="n">top_of_t</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -836,7 +836,7 @@ Estimation for many voxels at the same time:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">fitted</span>
 <span class="n">E</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
@@ -851,13 +851,13 @@ Estimation for many voxels at the same time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">E</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_error</span>
-<span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span> <span class="o">@</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">c</span>
 <span class="n">c_b_cov</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.023841202851645128
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.023841202851645125
 </pre></div>
 </div>
 </div>
@@ -896,7 +896,7 @@ the t statistic above.  See Adding length 1 dimensions with newaxis:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">c</span>
 <span class="n">c_b_cov</span>
 </pre></div>
 </div>
@@ -917,7 +917,7 @@ the t statistic, one for each voxel:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5319/4169539846.py:1: RuntimeWarning: invalid value encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5574/4169539846.py:1: RuntimeWarning: invalid value encountered in true_divide
   t = top_of_t / np.sqrt(sigma_2 * c_b_cov)
 </pre></div>
 </div>
@@ -940,7 +940,7 @@ statistic back into the correct voxel position:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7feafd3709d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f98e8bb2ac0&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_32_2.png" src="_images/whole_image_statistics_32_2.png" />
@@ -957,7 +957,7 @@ the numerator and denominator of the t statistic are both 0.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5319/2135315712.py:1: RuntimeWarning: invalid value encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5574/2135315712.py:1: RuntimeWarning: invalid value encountered in true_divide
   np.array(0) / 0
 </pre></div>
 </div>
@@ -1104,14 +1104,14 @@ the result above:</p>
 <p>Now we can run our GLM on the voxels inside the brain:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-<span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">Y</span>
+<span class="n">fitted</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">fitted</span>
 <span class="n">sigma_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">E</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_error</span>
 <span class="c1"># c and c_b_cov are the same as before, but recalculate anyway</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_2</span> <span class="o">*</span> <span class="n">c_b_cov</span><span class="p">)</span>
+<span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span> <span class="o">@</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">c</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">B</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_2</span> <span class="o">*</span> <span class="n">c_b_cov</span><span class="p">)</span>
 <span class="n">t</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -1133,7 +1133,7 @@ mask as an index on the left hand side:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7feafd300e80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f98e8b4e040&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_52_1.png" src="_images/whole_image_statistics_52_1.png" />
@@ -1156,7 +1156,7 @@ mask as an index on the left hand side:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21604,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7feafd2f52e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f98e8b35340&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_54_2.png" src="_images/whole_image_statistics_54_2.png" />
@@ -1194,7 +1194,7 @@ surviving correction have True, other voxels have False:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7feacb1383d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f98e8972fa0&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_58_1.png" src="_images/whole_image_statistics_58_1.png" />
@@ -1216,7 +1216,7 @@ tests are independent:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.31438622477319e-06
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7feafd250df0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f98e8a94ac0&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_60_2.png" src="_images/whole_image_statistics_60_2.png" />

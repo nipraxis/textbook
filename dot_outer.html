@@ -598,27 +598,22 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Vector and matrix dot products, “np.outer”
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-dot-products">
    Vector dot products
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matrix-dot-products">
    Matrix dot products
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-outer-product">
    The outer product
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dot-vectors-and-matrices">
    Dot, vectors and matrices
   </a>
@@ -643,27 +638,22 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Vector and matrix dot products, “np.outer”
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-dot-products">
    Vector dot products
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matrix-dot-products">
    Matrix dot products
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-outer-product">
    The outer product
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dot-vectors-and-matrices">
    Dot, vectors and matrices
   </a>
@@ -690,9 +680,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="vector-dot-products">
-<h1>Vector dot products<a class="headerlink" href="#vector-dot-products" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="vector-dot-products">
+<h2>Vector dot products<a class="headerlink" href="#vector-dot-products" title="Permalink to this headline">¶</a></h2>
 <p>If I have two vectors <span class="math notranslate nohighlight">\(\vec{a}\)</span> with elements <span class="math notranslate nohighlight">\(a_0, a_1, ...
 a_{n-1}\)</span>, and <span class="math notranslate nohighlight">\(\vec{b}\)</span> with elements <span class="math notranslate nohighlight">\(b_0, b_1, ... b_{n-1}\)</span>
 then the <a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">dot product</a> is
@@ -743,9 +732,22 @@ be neater and easier to read:</p>
 </div>
 </div>
 </div>
+<p>Better still, the matrix multiplication operator <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> implies a dot product between two vectors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">@</span> <span class="n">b</span>
+</pre></div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="matrix-dot-products">
-<h1>Matrix dot products<a class="headerlink" href="#matrix-dot-products" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="matrix-dot-products">
+<h2>Matrix dot products<a class="headerlink" href="#matrix-dot-products" title="Permalink to this headline">¶</a></h2>
 <p>Matrix multiplication operates by taking dot products of the rows of the first
 array (matrix) with the columns of the second.</p>
 <p>Let’s say I have a matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, and <span class="math notranslate nohighlight">\(\vec{X_{i,:}}\)</span> is row
@@ -784,7 +786,7 @@ matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} \mat
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">@</span> <span class="n">Y</span>
 </pre></div>
 </div>
 </div>
@@ -797,7 +799,7 @@ matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} \mat
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">Y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -809,7 +811,7 @@ matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} \mat
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">Y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -820,8 +822,8 @@ matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} \mat
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-outer-product">
-<h1>The outer product<a class="headerlink" href="#the-outer-product" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-outer-product">
+<h2>The outer product<a class="headerlink" href="#the-outer-product" title="Permalink to this headline">¶</a></h2>
 <p>We can use the rules of matrix multiplication for row vectors and column
 vectors.</p>
 <p>A row vector is a 2D vector where the first dimension is length 1.</p>
@@ -866,7 +868,7 @@ vectors.</p>
 vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_vector</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">col_vector</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_vector</span> <span class="o">@</span> <span class="n">col_vector</span>
 </pre></div>
 </div>
 </div>
@@ -876,12 +878,12 @@ vector:</p>
 </div>
 </div>
 </div>
-<p>What happens with we matrix multiply the column vector by the row vector? We
+<p>What happens when we matrix multiply the column vector by the row vector? We
 know this will work because we are multiplying a 3 by 1 array by a 1 by 3
 array, so this should generate a 3 by 3 array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_vector</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">row_vector</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_vector</span> <span class="o">@</span> <span class="n">row_vector</span>
 </pre></div>
 </div>
 </div>
@@ -894,7 +896,7 @@ array, so this should generate a 3 by 3 array:</p>
 </div>
 </div>
 <p>This arises from the rules of matrix multiplication, except there is only one
-row * column pair  making up each of the output elements:</p>
+row * column pair making up each of the output elements:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">col_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">row_vector</span><span class="p">)</span>
@@ -929,8 +931,8 @@ vectors, by using the numpy <code class="docutils literal notranslate"><span cla
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dot-vectors-and-matrices">
-<h1>Dot, vectors and matrices<a class="headerlink" href="#dot-vectors-and-matrices" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dot-vectors-and-matrices">
+<h2>Dot, vectors and matrices<a class="headerlink" href="#dot-vectors-and-matrices" title="Permalink to this headline">¶</a></h2>
 <p>Unlike MATLAB, Python has one-dimensional vectors. For example, if I slice a
 column out of a 2D array of shape (M, N), I do not get a column vector, shape
 (M, 1), I get a 1D vector, shape (M,):</p>
@@ -939,28 +941,28 @@ column out of a 2D array of shape (M, N), I do not get a column vector, shape
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">v</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">v</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2,)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3])
 </pre></div>
 </div>
 </div>
 </div>
 <p>Because the 1D vector has lost the idea of being a column rather than a row in
 a matrix, it is no longer unambiguous what <span class="math notranslate nohighlight">\(v \cdot \mathbf{X}\)</span> means.  It
-could be mean a dot product of a row vector shape (1, M) with a matrix shape
+could mean a dot product of a row vector shape (1, M) with a matrix shape
 (M, N), which is valid – or a dot product of a row vector (M, 1) with a
 matrix shape (M, N), which is not valid.</p>
-<p>If you pass a 1D vector into the <code class="docutils literal notranslate"><span class="pre">dot</span></code> function or method, NumPy assumes you
-mean it to be a row vector on the left, and a column vector on the right,
-which is nearly always what you intended:</p>
+<p>If you pass a 1D vector into the <code class="docutils literal notranslate"><span class="pre">dot</span></code> function or method, or use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>
+matrix multiplier, NumPy assumes you mean it to be a row vector on the left,
+and a column vector on the right, which is nearly always what you intended:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1D vector is row vector on the left hand side of dot</span>
-<span class="n">v</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1D vector is row vector on the left hand side of dot / matrix multiply.</span>
+<span class="n">v</span> <span class="o">@</span> <span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -972,9 +974,9 @@ which is nearly always what you intended:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1D vector is column vector on the right hand side of dot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1D vector is column vector on the right hand side of dot / matrix multiply.</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">@</span> <span class="n">w</span>
 </pre></div>
 </div>
 </div>
@@ -984,21 +986,22 @@ which is nearly always what you intended:</p>
 </div>
 </div>
 </div>
-<p>Notice that, in both cases, <code class="docutils literal notranslate"><span class="pre">dot</span></code> returns a 1D result.</p>
+<p>Notice that, in both cases, <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> returns a 1D result.</p>
 <p>It sometimes helps to make a 1D vector into a 2D row or column vector, to make
 your intention explicit, and preserve the 2D shape of the output:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Turn 1D vector into explicit row vector</span>
 <span class="n">row_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="c1"># Dot new returns a row vector rather than a 1D vector</span>
-<span class="n">row_v</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># @ now returns a row vector rather than a 1D vector</span>
+<span class="n">row_v</span> <span class="o">@</span> <span class="n">X</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 9, 12, 15]])
 </pre></div>
+</div>
 </div>
 </div>
 </div>

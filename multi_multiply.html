@@ -632,7 +632,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f28940d62e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fef1d68f3a0&gt;
 </pre></div>
 </div>
 <img alt="_images/multi_multiply_2_1.png" src="_images/multi_multiply_2_1.png" />
@@ -660,7 +660,7 @@ normal distribution using numpy.random.  We use
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">y_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">beta_0</span> <span class="o">=</span> <span class="n">piX</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y_0</span><span class="p">)</span>
+<span class="n">beta_0</span> <span class="o">=</span> <span class="n">piX</span> <span class="o">@</span> <span class="n">y_0</span>
 <span class="n">beta_0</span>
 </pre></div>
 </div>
@@ -675,7 +675,7 @@ normal distribution using numpy.random.  We use
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">beta_1</span> <span class="o">=</span> <span class="n">piX</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y_1</span><span class="p">)</span>
+<span class="n">beta_1</span> <span class="o">=</span> <span class="n">piX</span> <span class="o">@</span> <span class="n">y_1</span>
 <span class="n">beta_1</span>
 </pre></div>
 </div>
@@ -691,7 +691,7 @@ to these two sets of data with the same call to <code class="docutils literal no
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">y_0</span><span class="p">,</span> <span class="n">y_1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
-<span class="n">betas</span> <span class="o">=</span> <span class="n">piX</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">betas</span> <span class="o">=</span> <span class="n">piX</span> <span class="o">@</span> <span class="n">Y</span>
 <span class="n">betas</span>
 </pre></div>
 </div>

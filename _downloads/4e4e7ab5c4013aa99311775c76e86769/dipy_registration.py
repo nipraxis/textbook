@@ -59,7 +59,7 @@ def apply_mask(brain_img, mask_img):
     mask_data = mask_img.get_data()
     if not np.allclose(b_aff, mask_img.affine):
         # Mask and brain have different affines - we need to resample
-        brain2mask = npl.inv(mask_img.affine).dot(brain_img.affine)
+        brain2mask = npl.inv(mask_img.affine) @ brain_img.affine
         mat, vec = to_matvec(brain2mask)
         mask_data = affine_transform(mask_data, mat, vec,
                                      output_shape=brain_data.shape,

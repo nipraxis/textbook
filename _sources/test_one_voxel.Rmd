@@ -98,7 +98,7 @@ We find the $\bhat$ for our data and design:
 ```{python}
 import numpy.linalg as npl
 Xp = npl.pinv(X)
-beta_hat = Xp.dot(voxel_time_course)
+beta_hat = Xp @ voxel_time_course
 beta_hat
 ```
 
@@ -129,7 +129,7 @@ population variance):
 
 ```{python}
 y = voxel_time_course
-y_hat = X.dot(beta_hat)
+y_hat = X @ beta_hat
 residuals = y - y_hat
 # Residual sum of squares
 RSS = np.sum(residuals ** 2)
@@ -146,7 +146,7 @@ print(np.sqrt(s2_hat))
 We now have an standard estimate of the variance / covariance of the $\bhat$:
 
 ```{python}
-v_cov = s2_hat * npl.inv(X.T.dot(X))
+v_cov = s2_hat * npl.inv(X.T @ X)
 ```
 
 In particular, I can now divide my estimate for the first parameter, by the
