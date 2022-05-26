@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random numbers with np.random &#8212; Practice and theory of brain imaging</title>
+    <title>Numpy random number generators &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -382,12 +382,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
+   Numpy random number generators
   </a>
  </li>
  <li class="toctree-l1">
@@ -596,17 +591,7 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-random-numbers-predictable">
    Making random numbers predictable
   </a>
@@ -621,7 +606,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Random numbers with np.random</h1>
+                <h1>Numpy random number generators</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -631,17 +616,7 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Random numbers with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     np.random
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-random-numbers-predictable">
    Making random numbers predictable
   </a>
@@ -655,8 +630,8 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="random-numbers-with-np-random">
-<h1>Random numbers with <code class="docutils literal notranslate"><span class="pre">np.random</span></code><a class="headerlink" href="#random-numbers-with-np-random" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="numpy-random-number-generators">
+<h1>Numpy random number generators<a class="headerlink" href="#numpy-random-number-generators" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#: standard imports</span>
@@ -681,17 +656,32 @@ other things. <code class="docutils literal notranslate"><span class="pre">np.ra
 </div>
 </div>
 </div>
-<p>It has a set of functions for returning random numbers of various sorts.  For
-example, to return a single random number from the default normal distribution
-(mean 0, variance 1):</p>
+<p>It contains function that will create a <em>random number generator</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a random number generator.</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.3491501712601717
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.random._generator.Generator
+</pre></div>
+</div>
+</div>
+</div>
+<p>This generator is an object that has a set of methods for returning random
+numbers of various sorts.  For example, to return a single random number from
+the default normal distribution (mean 0, variance 1):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.9963815675721217
 </pre></div>
 </div>
 </div>
@@ -700,12 +690,12 @@ example, to return a single random number from the default normal distribution
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random number from distribution with mean 15, variance 2</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.028698826642582
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.05203464378364
 </pre></div>
 </div>
 </div>
@@ -713,19 +703,19 @@ example, to return a single random number from the default normal distribution
 <p>To return a 8 by 5 array of random numbers from the same distribution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[10.9155, 13.6043, 14.6277, 15.3885, 15.7477],
-       [15.825 , 15.8317, 14.0736, 15.3109, 14.5896],
-       [16.8086, 14.995 , 15.0028, 16.1235, 14.5614],
-       [16.4562, 16.7288, 12.1216, 13.6541, 12.3502],
-       [14.0717, 17.5313, 13.8446, 11.7913, 15.3991],
-       [14.5987, 13.0351, 14.6323, 13.1079, 16.2416],
-       [13.6548, 15.4957, 12.9618, 15.3722, 16.4076],
-       [17.6308, 18.3623, 13.9936, 14.9638, 11.8049]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[16.6426, 15.4125, 12.9939, 11.8035, 14.2849],
+       [14.4898, 14.9042, 16.4807, 13.8505, 14.9101],
+       [15.0779,  9.5287, 17.603 , 13.3613, 14.7804],
+       [13.5358, 14.6545, 13.8212, 13.6517,  9.3348],
+       [18.7348, 18.4996, 18.65  , 13.0856, 11.5876],
+       [15.7261, 12.1667, 17.3611, 14.5517, 15.2307],
+       [14.5095, 17.4867, 14.7353, 13.2081, 11.8848],
+       [16.1811, 15.6734, 16.4776, 17.1584, 18.2948]])
 </pre></div>
 </div>
 </div>
@@ -734,47 +724,43 @@ example, to return a single random number from the default normal distribution
 mean 1 and variance 1:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.2169, -0.636 ,  0.2905,  0.8823,  0.5232],
-       [-0.5882, -1.1635, -0.4301,  0.1002, -1.2052],
-       [-0.7278, -1.9186,  0.6654,  1.0395,  0.214 ],
-       [-0.8073, -1.9849,  0.6126, -0.6487,  0.3657],
-       [-0.0614,  0.2024, -0.2372, -0.0415, -1.617 ],
-       [-0.3883,  0.9407, -0.4972, -0.1378, -0.4136],
-       [ 0.8841, -0.655 , -2.051 ,  0.0083, -0.9646],
-       [-0.0784, -1.8246,  0.306 , -0.2575, -1.564 ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2.0587, -0.4792, -0.4463],
+       [-0.3871, -1.419 , -0.8528],
+       [-0.7112, -0.976 ,  1.5159],
+       [ 1.2547,  0.807 , -2.1806],
+       [-0.011 ,  0.1017, -1.1373]])
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="making-random-numbers-predictable">
-<h1>Making random numbers predictable<a class="headerlink" href="#making-random-numbers-predictable" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="making-random-numbers-predictable">
+<h2>Making random numbers predictable<a class="headerlink" href="#making-random-numbers-predictable" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes you want to make sure that the random numbers are predictable, in
 that you will always get the same set of random numbers from a series of calls
-to the <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> functions.  You can achieve this by giving the random
-numbers a <em>seed</em>.  This is an integer that sets the random number generator
-into a predictable state, such that it will always return the same sequence of
-random numbers from this point:</p>
+to the <code class="docutils literal notranslate"><span class="pre">rng</span></code> methods.  You can achieve this by giving the random number
+generator a <em>seed</em> when you create it.  This is an integer that sets the
+random number generator into a predictable state, such that it will always
+return the same sequence of random numbers from this point:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the state of the random number generator</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the state of the random number generator on creation.</span>
+<span class="n">new_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="c1"># One set of random numbers</span>
-<span class="n">first_random_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">first_random_arr</span> <span class="o">=</span> <span class="n">new_rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">first_random_arr</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.4967, -0.1383],
-       [ 0.6477,  1.523 ],
-       [-0.2342, -0.2341],
-       [ 1.5792,  0.7674]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.3047, -1.04  ],
+       [ 0.7505,  0.9406],
+       [-1.951 , -1.3022],
+       [ 0.1278, -0.3162]])
 </pre></div>
 </div>
 </div>
@@ -782,34 +768,34 @@ random numbers from this point:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Another set</span>
-<span class="n">second_random_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">second_random_arr</span> <span class="o">=</span> <span class="n">new_rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">second_random_arr</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.4695,  0.5426],
-       [-0.4634, -0.4657],
-       [ 0.242 , -1.9133],
-       [-1.7249, -0.5623]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.0168, -0.853 ],
+       [ 0.8794,  0.7778],
+       [ 0.066 ,  1.1272],
+       [ 0.4675, -0.8593]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reset the state of the random number generator</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make another random number generator with the same seed.</span>
+<span class="n">new_rng2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="c1"># The same as &quot;first_random_arr&quot; above.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">new_rng2</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.4967, -0.1383],
-       [ 0.6477,  1.523 ],
-       [-0.2342, -0.2341],
-       [ 1.5792,  0.7674]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.3047, -1.04  ],
+       [ 0.7505,  0.9406],
+       [-1.951 , -1.3022],
+       [ 0.1278, -0.3162]])
 </pre></div>
 </div>
 </div>
@@ -817,16 +803,17 @@ random numbers from this point:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The same as &quot;second_random_arr&quot; above.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">new_rng2</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.4695,  0.5426],
-       [-0.4634, -0.4657],
-       [ 0.242 , -1.9133],
-       [-1.7249, -0.5623]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.0168, -0.853 ],
+       [ 0.8794,  0.7778],
+       [ 0.066 ,  1.1272],
+       [ 0.4675, -0.8593]])
 </pre></div>
+</div>
 </div>
 </div>
 </div>

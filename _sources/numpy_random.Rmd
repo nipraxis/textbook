@@ -1,18 +1,20 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
 
-# Random numbers with `np.random`
+# Numpy random number generators
 
 ```{python}
 #: standard imports
@@ -28,65 +30,74 @@ other things. `np.random` is a submodule within numpy:
 type(np.random)
 ```
 
-It has a set of functions for returning random numbers of various sorts.  For
-example, to return a single random number from the default normal distribution
-(mean 0, variance 1):
+It contains function that will create a *random number generator*.
 
 ```{python}
-np.random.normal()
+# Make a random number generator.
+rng = np.random.default_rng()
+type(rng)
+```
+
+This generator is an object that has a set of methods for returning random
+numbers of various sorts.  For example, to return a single random number from
+the default normal distribution (mean 0, variance 1):
+
+```{python}
+rng.normal()
 ```
 
 You can set the mean and variance with the first two input parameters:
 
 ```{python}
 # Random number from distribution with mean 15, variance 2
-np.random.normal(15, 2)
+rng.normal(15, 2)
 ```
 
 To return a 8 by 5 array of random numbers from the same distribution:
 
 ```{python}
-np.random.normal(15, 2, size=(8, 5))
+rng.normal(15, 2, size=(8, 5))
 ```
 
 A 5 by 3 array of random numbers from the standard normal distribution with
 mean 1 and variance 1:
 
 ```{python}
-np.random.normal(size=(8, 5))
+rng.normal(size=(5, 3))
 ```
 
-# Making random numbers predictable
+## Making random numbers predictable
+
 
 Sometimes you want to make sure that the random numbers are predictable, in
 that you will always get the same set of random numbers from a series of calls
-to the `numpy.random` functions.  You can achieve this by giving the random
-numbers a *seed*.  This is an integer that sets the random number generator
-into a predictable state, such that it will always return the same sequence of
-random numbers from this point:
+to the `rng` methods.  You can achieve this by giving the random number
+generator a *seed* when you create it.  This is an integer that sets the
+random number generator into a predictable state, such that it will always
+return the same sequence of random numbers from this point:
 
 ```{python}
-# Set the state of the random number generator
-np.random.seed(42)
+# Set the state of the random number generator on creation.
+new_rng = np.random.default_rng(seed=42)
 # One set of random numbers
-first_random_arr = np.random.normal(size=(4, 2))
+first_random_arr = new_rng.normal(size=(4, 2))
 first_random_arr
 ```
 
 ```{python}
 # Another set
-second_random_arr = np.random.normal(size=(4, 2))
+second_random_arr = new_rng.normal(size=(4, 2))
 second_random_arr
 ```
 
 ```{python}
-# Reset the state of the random number generator
-np.random.seed(42)
+# Make another random number generator with the same seed.
+new_rng2 = np.random.default_rng(seed=42)
 # The same as "first_random_arr" above.
-np.random.normal(size=(4, 2))
+new_rng2.normal(size=(4, 2))
 ```
 
 ```{python}
 # The same as "second_random_arr" above.
-np.random.normal(size=(4, 2))
+new_rng2.normal(size=(4, 2))
 ```
