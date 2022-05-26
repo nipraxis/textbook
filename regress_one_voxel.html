@@ -304,13 +304,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model_one_voxel.html">
-   Modeling a single voxel
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -601,11 +601,6 @@ const thebe_selector_output = ".output, .cell_output"
    Using correlation-like calculations
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-the-general-linear-model">
-   Using the General Linear Model
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -631,11 +626,6 @@ const thebe_selector_output = ".output, .cell_output"
    Using correlation-like calculations
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-the-general-linear-model">
-   Using the General Linear Model
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -649,9 +639,8 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Regression for a single voxel<a class="headerlink" href="#regression-for-a-single-voxel" title="Permalink to this headline">¶</a></h1>
 <p>Earlier – <a class="reference internal" href="voxel_time_courses.html"><span class="doc std std-doc">Voxel time courses</span></a> – we were looking
 at a single voxel time course.</p>
-<p>Here we use the <a class="reference external" href="https://textbook.nipraxis.org/glm_intro.html">General Linear
-Model</a> formulation to
-do a test on a single voxel.</p>
+<p>Here we use <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">simple regression</span></a> to do a test on a single
+voxel.</p>
 <p>Let’s get that same voxel time course back again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -702,7 +691,7 @@ Voxel time courses was at (42, 32, 19):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3d4007e850&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1478af0850&gt;]
 </pre></div>
 </div>
 <img alt="_images/regress_one_voxel_6_1.png" src="_images/regress_one_voxel_6_1.png" />
@@ -736,7 +725,7 @@ regression on this voxel time course.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3d39d1e760&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f14769ef790&gt;]
 </pre></div>
 </div>
 <img alt="_images/regress_one_voxel_9_1.png" src="_images/regress_one_voxel_9_1.png" />
@@ -829,63 +818,6 @@ Best intercept: 2029.367689291584
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=31.18551366491453, intercept=2029.367689291584, rvalue=0.7044637722561978, pvalue=1.1832511547748845e-26, stderr=2.4312815394118448, intercept_stderr=1.634742742490283)
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="using-the-general-linear-model">
-<h2>Using the General Linear Model<a class="headerlink" href="#using-the-general-linear-model" title="Permalink to this headline">¶</a></h2>
-<p>This is a leap ahead, past the page about the <a class="reference internal" href="glm_intro.html"><span class="doc std std-doc">General Linear Model</span></a> (GLM).  To give you a taster, the General Linear Model is just a generalization of the correlation and similar calculations above.</p>
-<p>The GLM generalizes the regression calculation so that we can add as many
-regressors as we want.  We do this by forming a <em>design</em> matrix, that contains
-the regressors, and then doing some <em>matrix calculations</em> that generalize the
-calculations above.   Don’t worry about the details of those calculations for
-now.  The rest of this page shows how the calculation works out.</p>
-<p>First we make our <em>design matrix</em>.  It has a column for the convolved
-regressor, and a column of ones:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">convolved</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3d2809d9a0&gt;
-</pre></div>
-</div>
-<img alt="_images/regress_one_voxel_22_1.png" src="_images/regress_one_voxel_22_1.png" />
-</div>
-</div>
-<p>Our regression model has two <em>parameters</em> that we want to <em>estimate</em>.  These are the <em>slope</em> for the convolved regressor, and the intercept - as they were in the calculations above.</p>
-<p>You will find in the <a class="reference external" href="https://textbook.nipraxis.org/glm_intro.html">introduction to the General Linear
-Model</a>, that we can calculate
-the best-fit (least mean-squared-error) parameters using the following matrix
-calculation:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
-
-<span class="c1"># We call the parameters *beta*</span>
-<span class="n">beta</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">voxel_time_course</span>
-<span class="n">beta</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  31.185514, 2029.367689])
-</pre></div>
-</div>
-</div>
-</div>
-<p>You will notice that the GLM, as we would hope, has found the same parameters
-as we found in the correlation and <code class="docutils literal notranslate"><span class="pre">scipy.stats.linregress</span></code> calculations:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="p">[</span><span class="n">best_slope</span><span class="p">,</span> <span class="n">best_intercept</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>

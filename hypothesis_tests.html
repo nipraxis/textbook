@@ -306,13 +306,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model_one_voxel.html">
-   Modeling a single voxel
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -709,7 +709,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Hypothesis testing with the general linear model<a class="headerlink" href="#hypothesis-testing-with-the-general-linear-model" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="general-linear-model-reprise">
 <h2>General linear model reprise<a class="headerlink" href="#general-linear-model-reprise" title="Permalink to this headline">¶</a></h2>
-<p>This page starts at the same place as <a class="reference external" href="https://matthew-brett.github.io/teaching/glm_intro.html">introduction to the general linear model</a>.</p>
+<p>This page starts at the same place as <a class="reference internal" href="glm_intro.html"><span class="doc std std-doc">introduction to the general linear model</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import numerical and plotting libraries</span>
@@ -858,17 +858,18 @@ Unfortunately, for <a class="reference external" href="https://en.wikipedia.org/
 into, this is a <em>biased estimate of the population variance</em>.</p>
 <p>To get an unbiased estimate of the variance, we need to allow for the number
 of independent columns in the design <span class="math notranslate nohighlight">\(\Xmat\)</span>.  The number of independent
-columns in the design is given by the <a class="reference external" href="http://matthew-brett.github.io/teaching/matrix_rank.html">matrix rank</a> of <span class="math notranslate nohighlight">\(\Xmat\)</span>. Specifically,
-if <span class="math notranslate nohighlight">\(\rank(\Xmat)\)</span> is the matrix rank of <span class="math notranslate nohighlight">\(\Xmat\)</span>, an unbiased estimate of
-population variance is given by:</p>
+columns in the design is given by the <a class="reference internal" href="matrix_rank.html"><span class="doc std std-doc">matrix rank</span></a> of
+<span class="math notranslate nohighlight">\(\Xmat\)</span>. Specifically, if <span class="math notranslate nohighlight">\(\rank(\Xmat)\)</span> is the matrix rank of <span class="math notranslate nohighlight">\(\Xmat\)</span>, an
+unbiased estimate of population variance is given by:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2
 \]</div>
-<p>For example, we saw in the <a class="reference external" href="https://github.com/bic-berkeley/psych-214-fall-2014/mean_test_example.html">worked example of GLM</a>, that when we have a
-single regressor, and <span class="math notranslate nohighlight">\(\rank(\Xmat) = 1\)</span>, we divide the sum of squares of the
-residuals by <span class="math notranslate nohighlight">\(n - 1\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the number of rows in the design.  This
-<span class="math notranslate nohighlight">\(n-1\)</span> divisor is <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s correction</a>.</p>
+<p>For example, we saw in the <a class="reference internal" href="mean_test_example.html"><span class="doc std std-doc">worked example of GLM</span></a>,
+that when we have a single regressor, and <span class="math notranslate nohighlight">\(\rank(\Xmat) = 1\)</span>, we divide the
+sum of squares of the residuals by <span class="math notranslate nohighlight">\(n - 1\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the number of rows in
+the design.  This <span class="math notranslate nohighlight">\(n-1\)</span> divisor is <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s
+correction</a>.</p>
 <p>We will also use these terms below:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\rank(\Xmat)\)</span>: <em>degrees of freedom of the design</em>;</p></li>

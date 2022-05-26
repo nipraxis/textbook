@@ -19,9 +19,8 @@ jupyter:
 Earlier – [Voxel time courses](voxel_time_courses.Rmd) – we were looking
 at a single voxel time course.
 
-Here we use the [General Linear
-Model](https://textbook.nipraxis.org/glm_intro.html) formulation to
-do a test on a single voxel.
+Here we use [simple regression](on_regression.Rmd) to do a test on a single
+voxel.
 
 Let’s get that same voxel time course back again:
 
@@ -125,47 +124,4 @@ Using Scipy:
 ```{python}
 import scipy.stats as sps
 sps.linregress(convolved, voxel_time_course)
-```
-
-## Using the General Linear Model
-
-This is a leap ahead, past the page about the [General Linear Model](glm_intro.Rmd) (GLM).  To give you a taster, the General Linear Model is just a generalization of the correlation and similar calculations above.
-
-The GLM generalizes the regression calculation so that we can add as many
-regressors as we want.  We do this by forming a *design* matrix, that contains
-the regressors, and then doing some *matrix calculations* that generalize the
-calculations above.   Don't worry about the details of those calculations for
-now.  The rest of this page shows how the calculation works out.
-
-
-First we make our *design matrix*.  It has a column for the convolved
-regressor, and a column of ones:
-
-```{python}
-N = len(convolved)
-X = np.ones((N, 2))
-X[:, 0] = convolved
-plt.imshow(X, cmap='gray', aspect=0.1)
-```
-
-Our regression model has two *parameters* that we want to *estimate*.  These are the *slope* for the convolved regressor, and the intercept - as they were in the calculations above.
-
-You will find in the [introduction to the General Linear
-Model](https://textbook.nipraxis.org/glm_intro.html), that we can calculate
-the best-fit (least mean-squared-error) parameters using the following matrix
-calculation:
-
-```{python}
-import numpy.linalg as npl
-
-# We call the parameters *beta*
-beta = npl.pinv(X) @ voxel_time_course
-beta
-```
-
-You will notice that the GLM, as we would hope, has found the same parameters
-as we found in the correlation and `scipy.stats.linregress` calculations:
-
-```{python}
-assert np.allclose(beta, [best_slope, best_intercept])
 ```

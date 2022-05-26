@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Making and breaking file paths in Python &#8212; Practice and theory of brain imaging</title>
+    <title>Matrix rank &#8212; Practice and theory of brain imaging</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,10 +51,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Python coding style" href="coding_style.html" />
-    <link rel="prev" title="Using assert for testing" href="assert.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -219,7 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
   Working reproducibly
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="on_modules.html">
    Modules and scripts
@@ -241,8 +241,8 @@ const thebe_selector_output = ".output, .cell_output"
    for testing
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
    Making and breaking file paths in Python
   </a>
  </li>
@@ -524,7 +524,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/path_manipulation.Rmd"><button type="button"
+        <a class="dropdown-buttons" href="_sources/matrix_rank.Rmd"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.Rmd</button></a>
         <!-- Download PDF via print -->
@@ -544,7 +544,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fpath_manipulation.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fmatrix_rank.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -560,60 +560,11 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/path_manipulation.Rmd"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/path_manipulation.Rmd&branch=main"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pathnames">
-   Pathnames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#two-ways-of-manipulating-pathnames">
-   Two ways of manipulating pathnames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#os-path">
-   os.path
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -621,214 +572,209 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Making and breaking file paths in Python</h1>
+                <h1>Matrix rank</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pathnames">
-   Pathnames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#two-ways-of-manipulating-pathnames">
-   Two ways of manipulating pathnames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#os-path">
-   os.path
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="making-and-breaking-file-paths-in-python">
-<h1>Making and breaking file paths in Python<a class="headerlink" href="#making-and-breaking-file-paths-in-python" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pathnames">
-<h2>Pathnames<a class="headerlink" href="#pathnames" title="Permalink to this headline">¶</a></h2>
-<p>A pathname is a string that identifies a particular file or directory on a
-computer filesystem.</p>
-<p>For example, we can ask the pathname of the directory containing this notebook, using the <code class="docutils literal notranslate"><span class="pre">getcwd</span></code> function from the <code class="docutils literal notranslate"><span class="pre">os</span></code> module.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="matrix-rank">
+<h1>Matrix rank<a class="headerlink" href="#matrix-rank" title="Permalink to this headline">¶</a></h1>
+<p>The <em>rank</em> of a matrix is the number of independent rows and / or columns of a
+matrix.</p>
+<p>We will soon define what we mean by the word <em>independent</em>.</p>
+<p>For a matrix with more columns than rows, it is the number of independent
+rows.</p>
+<p>For a matrix with more rows than columns, like a design matrix, it is the
+number of independent columns.</p>
+<p>In fact, linear algebra tells us that it is impossible to have more
+independent columns than there are rows, or more independent rows than there
+are columns. Try it with some test matrices.</p>
+<p>A column is <em>dependent</em> on other columns if the values in the column can
+be generated by a weighted sum of one or more other columns.</p>
+<p>To put this more formally - let’s say we have a matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> with
+<span class="math notranslate nohighlight">\(M\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columns. Write column <span class="math notranslate nohighlight">\(i\)</span> of
+<span class="math notranslate nohighlight">\(\mathbf{X}\)</span> as <span class="math notranslate nohighlight">\(X_{:,i}\)</span>. Column <span class="math notranslate nohighlight">\(i\)</span> is <em>independent</em> of
+the rest of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> if there is no length <span class="math notranslate nohighlight">\(N\)</span> column vector
+of weights <span class="math notranslate nohighlight">\(\vec{c}\)</span>, where <span class="math notranslate nohighlight">\(c_i = 0\)</span>, such that <span class="math notranslate nohighlight">\(\mathbf{X}
+\cdot \vec{c} = X_{:,i}\)</span>.</p>
+<p>Let’s make a design with independent columns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#: Standard imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Make numpy print 4 significant digits for prettiness</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Default to gray colormap</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">trend</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/textbook/textbook&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc620ed54c0&gt;
 </pre></div>
 </div>
+<img alt="_images/matrix_rank_2_1.png" src="_images/matrix_rank_2_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="two-ways-of-manipulating-pathnames">
-<h2>Two ways of manipulating pathnames<a class="headerlink" href="#two-ways-of-manipulating-pathnames" title="Permalink to this headline">¶</a></h2>
-<p>There are two standard ways of manipulating pathnames in Python.</p>
-<ul class="simple">
-<li><p>Using the <code class="docutils literal notranslate"><span class="pre">os.path</span></code> module, covered in this page.</p></li>
-<li><p>Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module.</p></li>
-</ul>
-<p>Of the two techniques, the <code class="docutils literal notranslate"><span class="pre">os.path</span></code> way is rather simpler, but it covers a
-smaller range of tasks.  It can also be more verbose. <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> does more, and
-can give you nice-looking, concise code, but it does rely on a particularly
-Python way of thinking.   You will see examples of both in lots of modern
-code, but we concentrate on <code class="docutils literal notranslate"><span class="pre">os.path</span></code> here, because we think it is easier when
-you are getting started.</p>
-</div>
-<div class="section" id="os-path">
-<h2>os.path<a class="headerlink" href="#os-path" title="Permalink to this headline">¶</a></h2>
-<p>See: <a class="reference external" href="https://docs.python.org/3.5/library/os.path.html">https://docs.python.org/3.5/library/os.path.html</a></p>
-<p>Here we will cover:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">os.path</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dirname,</span> <span class="pre">basename,</span> <span class="pre">join,</span> <span class="pre">splitext,</span> <span class="pre">abspath</span></code></p></li>
-</ul>
+<p>In this case, no column can be generated by a weighted sum of the other two.
+We can test this with <code class="docutils literal notranslate"><span class="pre">np.linalg.matrix_rank</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In IPython, you can tab complete on <code class="docutils literal notranslate"><span class="pre">os.path</span></code> to list the functions and
-attributes there.</p>
-<p>The first function we will use from <code class="docutils literal notranslate"><span class="pre">os.path</span></code> is <code class="docutils literal notranslate"><span class="pre">dirname</span></code>.  To avoid
-typing <code class="docutils literal notranslate"><span class="pre">os.path</span></code> all the time, we import <code class="docutils literal notranslate"><span class="pre">os.path</span></code> with the shortened name
-<code class="docutils literal notranslate"><span class="pre">op</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
-<span class="n">op</span><span class="o">.</span><span class="n">dirname</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+<span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function posixpath.dirname(p)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">dirname</span></code> function gives the directory name from a full file path. It
-works correctly for Unix paths on Unix machines, and Windows paths on Windows
-machines:</p>
+<p>This does not mean the columns are orthogonal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Orthogonal columns have dot products of zero</span>
+<span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/a/full/path&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3.5185,  2.7778,  5.    ],
+       [ 2.7778,  2.337 ,  3.5185],
+       [ 5.    ,  3.5185, 10.    ]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>You’ll see something like this as output if you run something similar on
-Windows.  So <code class="docutils literal notranslate"><span class="pre">op.dirname('c:\\a\\full\\path\\then_filename.txt')</span> </code> will give:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">a</span><span class="se">\\</span><span class="s1">full</span><span class="se">\\</span><span class="s1">path&#39;</span>
-</pre></div>
-</div>
-<p>Notice that, on Windows, you need to use double backslashes, because the
-backslash in a Python string is a way of <em>escaping</em> a character — meaning, to
-specify you mean exactly that character.  Double backslash has the meaning
-“Yes, I do mean exactly backslash for the next character”.</p>
-<p><code class="docutils literal notranslate"><span class="pre">dirname</span></code> also works for relative paths,  A relative path where the starting
-directory is relative to the current directory, rather than absolute, in terms
-of the root of the file system:</p>
+<p>Nor does it mean that the columns have zero correlation (see
+<a class="reference external" href="https://matthew-brett.github.io/teaching/correlation_projection.html">Correlation and projection</a> for the relationship between correlation and the
+vector dot product):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;relative/path&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.    , 0.9627],
+       [0.9627, 1.    ]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Use <code class="docutils literal notranslate"><span class="pre">basename</span></code> to get the filename rather than the directory name:</p>
+<p>As long as each column cannot be <em>fully</em> predicted by the others, the column
+is independent.</p>
+<p>Now let’s add a fourth column that is a weighted sum of the first three:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_not_full_rank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">X_not_full_rank</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+<span class="n">X_not_full_rank</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_not_full_rank</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;then_filename.txt&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc61edd91c0&gt;
 </pre></div>
 </div>
+<img alt="_images/matrix_rank_10_1.png" src="_images/matrix_rank_10_1.png" />
 </div>
 </div>
-<p>Sometimes you want to join one or more directory names with a filename to get
-a path.   Windows and Unix have different characters to separate directories
-in a path.  Windows uses the backslash: <code class="docutils literal notranslate"><span class="pre">\</span></code>, Unix uses a forward slash:
-<code class="docutils literal notranslate"><span class="pre">/</span></code>. If your code will run on Windows and Unix, you need to take care that
-you get the right character joining your paths.  This is what <code class="docutils literal notranslate"><span class="pre">os.path.join</span></code>
-does:</p>
+<p><code class="docutils literal notranslate"><span class="pre">matrix_rank</span></code> is up to the job:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X_not_full_rank</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;relative/path/then_filename.txt&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
 </div>
-<p>This also works on Windows.  <code class="docutils literal notranslate"><span class="pre">op.join('relative',</span> <span class="pre">'path',</span> <span class="pre">'then_filename.txt')</span></code> gives output <code class="docutils literal notranslate"><span class="pre">'relative\\path\\then_filename.txt'</span></code>.</p>
-<p>To convert a relative to an absolute path, use <code class="docutils literal notranslate"><span class="pre">abspath</span></code>:</p>
+<p>A more typical situation with design matrices, is that we have some dummy
+variable columns coding for group membership, that sum up to a column of ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the current working directory</span>
-<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dummies</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/textbook/textbook/relative/path/then_filename.txt&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc61edb4e80&gt;
 </pre></div>
 </div>
+<img alt="_images/matrix_rank_14_1.png" src="_images/matrix_rank_14_1.png" />
 </div>
 </div>
-<p>Use <code class="docutils literal notranslate"><span class="pre">splitext</span></code> to split a path into: the path + filename; and the file
-extension:</p>
+<p>So far, so good:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">dummies</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;relative/path/then_filename&#39;, &#39;.txt&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
 </div>
+<p>If we add a column of ones to model the mean, we now have an extra column that
+is a linear combination of other columns in the model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummies_with_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">dummies</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">))))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dummies_with_mean</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc61ed1cac0&gt;
+</pre></div>
+</div>
+<img alt="_images/matrix_rank_18_1.png" src="_images/matrix_rank_18_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">dummies_with_mean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>A matrix is <em>full rank</em> if the matrix rank is the same as the number of
+columns / rows.  That is, a matrix is full rank if all the columns (or rows)
+are independent.</p>
+<p>If a matrix is not full rank then it is <em>rank deficient</em>.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -855,21 +801,7 @@ extension:</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="assert.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Using <code class="docutils literal notranslate"><span class="pre">assert</span></code> for testing</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="coding_style.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python coding style</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

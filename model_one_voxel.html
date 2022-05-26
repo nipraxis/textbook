@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Estimation for many voxels at the same time" href="multi_multiply.html" />
-    <link rel="prev" title="A worked example of the general linear model" href="mean_test_example.html" />
+    <link rel="next" title="A worked example of the general linear model" href="mean_test_example.html" />
+    <link rel="prev" title="Introduction to the general linear model" href="glm_intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -305,14 +305,14 @@ const thebe_selector_output = ".output, .cell_output"
    Introduction to the general linear model
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
@@ -613,11 +613,10 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="modeling-a-single-voxel">
 <h1>Modeling a single voxel<a class="headerlink" href="#modeling-a-single-voxel" title="Permalink to this headline">¶</a></h1>
-<p>The end of the <a class="reference internal" href="regress_one_voxel.html"><span class="doc std std-doc">voxel regression page</span></a> has a worked
-example of applying <a class="reference external" href="https://textbook.nipraxis.org/glm_intro.html">General Linear
-Model</a> (GLM) to do regression
-for a single voxel.</p>
-<p>This page runs the same calculations, but also unpacks the GLM notation that we are using in the calculation.</p>
+<p>The <a class="reference internal" href="regress_one_voxel.html"><span class="doc std std-doc">voxel regression page</span></a> has a worked
+example of applying <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">simple regression</span></a>) on a single voxel.</p>
+<p>This page runs the same calculations, but using the <a class="reference internal" href="glm_intro.html"><span class="doc std std-doc">General Linear
+Model</span></a> notation and matrix calculations.</p>
 <p>Let’s get that same voxel time course back again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -647,7 +646,7 @@ for a single voxel.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcefd14d90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8e7879ed90&gt;]
 </pre></div>
 </div>
 <img alt="_images/model_one_voxel_2_1.png" src="_images/model_one_voxel_2_1.png" />
@@ -692,7 +691,7 @@ regressor, and a column of ones:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fdceda0d1f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f8e784ad1f0&gt;
 </pre></div>
 </div>
 <img alt="_images/model_one_voxel_6_1.png" src="_images/model_one_voxel_6_1.png" />
@@ -773,6 +772,20 @@ invertible, the pseudoinverse is given by:</p>
 </div>
 </div>
 </div>
+<p>Notice that the <span class="math notranslate nohighlight">\(\bhat\)</span> parameters are the same as the slope and intercept from the Scipy calculation using <code class="docutils literal notranslate"><span class="pre">linregress</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">sps</span>
+<span class="n">sps</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=31.18551366491453, intercept=2029.367689291584, rvalue=0.7044637722561978, pvalue=1.1832511547748845e-26, stderr=2.4312815394118448, intercept_stderr=1.634742742490283)
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -800,17 +813,17 @@ invertible, the pseudoinverse is given by:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="mean_test_example.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="glm_intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">A worked example of the general linear model</p>
+            <p class="prev-next-title">Introduction to the general linear model</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="multi_multiply.html" title="next page">
+    <a class='right-next' id="next-link" href="mean_test_example.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Estimation for many voxels at the same time</p>
+        <p class="prev-next-title">A worked example of the general linear model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
