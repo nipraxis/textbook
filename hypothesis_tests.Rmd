@@ -1,13 +1,15 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -61,7 +63,9 @@ $$
 \newcommand{\ehat}{\hat{\evec}}
 \newcommand{\cvec}{\vec{c}}
 \newcommand{\rank}{\textrm{rank}}
+$$
 
+$$
 y_i = c + b x_i + e_i
 $$
 
@@ -160,7 +164,7 @@ $$
 \sum e_i^2 \equiv \ehat^T \ehat
 $$
 
-# Unbiased estimate of population variance
+## Unbiased estimate of population variance
 
 We will soon need an unbiased estimate of the population variance.  The
 population variance is $\frac{1}{N} \sum e_i^2$ where the population has $N$
@@ -196,7 +200,7 @@ We will also use these terms below:
 
 * $n - \rank(\Xmat)$: *degrees of freedom of the error*.
 
-# Hypothesis testing
+## Hypothesis testing
 
 We used contrast vectors to form particular linear combinations of the
 parameter estimates in $\bhat$.  For example, we used the contrast vector
@@ -233,10 +237,10 @@ n = len(y)
 X = np.ones((n, 2))
 X[:, 1] = x
 # X.T X is invertible
-iXtX = npl.inv(X.T.dot(X))
+iXtX = npl.inv(X.T @ X)
 # Least-squares estimate of B
-B = iXtX.dot(X.T).dot(y)
-e = y - X.dot(B)
+B = iXtX @ X.T @ y
+e = y - X @ B
 # Degrees of freedom of design
 rank_x = npl.matrix_rank(X)
 # The two columns are not colinear, so rank is 2
@@ -246,8 +250,8 @@ rank_x
 ```{python}
 # Unbiased estimate of population variance
 df_error = n - rank_x
-s2_hat = e.dot(e) / df_error
-t = c.T.dot(B) / np.sqrt(s2_hat * c.T.dot(iXtX).dot(c))
+s2_hat = e @ e / df_error
+t = c.T @ B / np.sqrt(s2_hat * c.T @ iXtX @ c)
 t
 ```
 
@@ -283,7 +287,9 @@ $$
 \bhat_r = \Xmat_r^+ \yvec \\
 \hat\evec_r = \yvec - \Xmat_r \bhat_r \\
 SSR(\Xmat_r) = \hat\evec_r^T \hat\evec_r \\
+$$
 
+$$
 \bhat_f = \Xmat_f^+ \yvec \\
 \hat\evec_f = \yvec - \Xmat_f \bhat_f \\
 SSR(\Xmat_f) = \hat\evec_f^T \hat\evec_f
@@ -325,17 +331,17 @@ Here is the F-statistic calculation in Python:
 X_f, e_f, rank_f = X, e, rank_x
 # Now calculate the same for the reduced model
 X_r = np.ones((n, 1))
-iXtX_r = npl.inv(X_r.T.dot(X_r))
-B_r = iXtX_r.dot(X_r.T).dot(y)
-e_r = y - X_r.dot(B_r)
+iXtX_r = npl.inv(X_r.T @ X_r)
+B_r = iXtX_r @ X_r.T @ y
+e_r = y - X_r @ B_r
 rank_r = npl.matrix_rank(X_r)  # One column, rank 1
 rank_r
 ```
 
 ```{python}
 # Calculate the F statistic
-SSR_f = e_f.dot(e_f)
-SSR_r = e_r.dot(e_r)
+SSR_f = e_f @ e_f
+SSR_r = e_r @ e_r
 nu_1 = rank_f - rank_r
 F = ((SSR_r - SSR_f) / nu_1) / (SSR_f / (n - rank_f))
 F

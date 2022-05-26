@@ -1,13 +1,15 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -23,7 +25,7 @@ import matplotlib.pyplot as plt
 np.set_printoptions(precision=6, suppress=True)
 ```
 
-# Vector dot products
+## Vector dot products
 
 If I have two vectors $\vec{a}$ with elements $a_0, a_1, ...
 a_{n-1}$, and $\vec{b}$ with elements $b_0, b_1, ... b_{n-1}$
@@ -54,7 +56,15 @@ be neater and easier to read:
 a.dot(b)
 ```
 
-# Matrix dot products
+Better still, the matrix multiplication operator `@` implies a dot product between two vectors:
+
+```{python}
+a @ b
+```
+
+
+## Matrix dot products
+
 
 Matrix multiplication operates by taking dot products of the rows of the first
 array (matrix) with the columns of the second.
@@ -76,18 +86,19 @@ Y
 ```
 
 ```{python}
-X.dot(Y)
+X @ Y
 ```
 
 ```{python}
-X[0, :].dot(Y[:, 0])
+X[0, :] @ Y[:, 0]
 ```
 
 ```{python}
-X[1, :].dot(Y[:, 0])
+X[1, :] @ Y[:, 0]
 ```
 
-# The outer product
+## The outer product
+
 
 We can use the rules of matrix multiplication for row vectors and column
 vectors.
@@ -112,19 +123,19 @@ We know what will happen if we matrix multiply the row vector and the column
 vector:
 
 ```{python}
-row_vector.dot(col_vector)
+row_vector @ col_vector
 ```
 
-What happens with we matrix multiply the column vector by the row vector? We
+What happens when we matrix multiply the column vector by the row vector? We
 know this will work because we are multiplying a 3 by 1 array by a 1 by 3
 array, so this should generate a 3 by 3 array:
 
 ```{python}
-col_vector.dot(row_vector)
+col_vector @ row_vector
 ```
 
 This arises from the rules of matrix multiplication, except there is only one
-row \* column pair  making up each of the output elements:
+row \* column pair making up each of the output elements:
 
 ```{python}
 print(col_vector[0] * row_vector)
@@ -140,7 +151,7 @@ vectors, by using the numpy `np.outer` function:
 np.outer(col_vector.ravel(), row_vector.ravel())
 ```
 
-# Dot, vectors and matrices
+## Dot, vectors and matrices
 
 Unlike MATLAB, Python has one-dimensional vectors. For example, if I slice a
 column out of a 2D array of shape (M, N), I do not get a column vector, shape
@@ -150,31 +161,31 @@ column out of a 2D array of shape (M, N), I do not get a column vector, shape
 X = np.array([[0, 1, 2],
               [3, 4, 5]])
 v = X[:, 0]
-v.shape
+v
 ```
 
 Because the 1D vector has lost the idea of being a column rather than a row in
 a matrix, it is no longer unambiguous what $v \cdot \mathbf{X}$ means.  It
-could be mean a dot product of a row vector shape (1, M) with a matrix shape
+could mean a dot product of a row vector shape (1, M) with a matrix shape
 (M, N), which is valid – or a dot product of a row vector (M, 1) with a
 matrix shape (M, N), which is not valid.
 
-If you pass a 1D vector into the `dot` function or method, NumPy assumes you
-mean it to be a row vector on the left, and a column vector on the right,
-which is nearly always what you intended:
+If you pass a 1D vector into the `dot` function or method, or use the `@`
+matrix multiplier, NumPy assumes you mean it to be a row vector on the left,
+and a column vector on the right, which is nearly always what you intended:
 
 ```{python}
-# 1D vector is row vector on the left hand side of dot
-v.dot(X)
+# 1D vector is row vector on the left hand side of dot / matrix multiply.
+v @ X
 ```
 
 ```{python}
-# 1D vector is column vector on the right hand side of dot
+# 1D vector is column vector on the right hand side of dot / matrix multiply.
 w = np.array([-1, 0, 1])
-X.dot(w)
+X @ w
 ```
 
-Notice that, in both cases, `dot` returns a 1D result.
+Notice that, in both cases, `@` returns a 1D result.
 
 It sometimes helps to make a 1D vector into a 2D row or column vector, to make
 your intention explicit, and preserve the 2D shape of the output:
@@ -182,6 +193,6 @@ your intention explicit, and preserve the 2D shape of the output:
 ```{python}
 # Turn 1D vector into explicit row vector
 row_v = np.reshape(v, (1, 2))
-# Dot new returns a row vector rather than a 1D vector
-row_v.dot(X)
+# @ now returns a row vector rather than a 1D vector
+row_v @ X
 ```

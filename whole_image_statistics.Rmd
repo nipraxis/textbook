@@ -92,7 +92,7 @@ Here we calculate the fit for all the columns in  in one shot - see
 Estimation for many voxels at the same time:
 
 ```{python}
-B = npl.pinv(X).dot(Y)
+B = npl.pinv(X) @ Y
 B.shape
 ```
 
@@ -113,7 +113,7 @@ t = \frac{\cvec^T \bhat}
 $$
 
 ```{python}
-top_of_t = c.dot(B)
+top_of_t = c @ B
 top_of_t.shape
 ```
 
@@ -131,14 +131,14 @@ df_error
 ```
 
 ```{python}
-fitted = X.dot(B)
+fitted = X @ B
 E = Y - fitted
 E.shape
 ```
 
 ```{python}
 sigma_2 = np.sum(E ** 2, axis=0) / df_error
-c_b_cov = c.dot(npl.pinv(X.T.dot(X))).dot(c)
+c_b_cov = c @ npl.pinv(X.T @ X) @ c
 c_b_cov
 ```
 
@@ -160,7 +160,7 @@ c.shape
 ```
 
 ```{python}
-c_b_cov = c.T.dot(npl.pinv(X.T.dot(X))).dot(c)
+c_b_cov = c.T @ npl.pinv(X.T @ X) @ c
 c_b_cov
 ```
 
@@ -260,14 +260,14 @@ Y.shape
 Now we can run our GLM on the voxels inside the brain:
 
 ```{python}
-B = npl.pinv(X).dot(Y)
-fitted = X.dot(B)
+B = npl.pinv(X) @ Y
+fitted = X @ B
 E = Y - fitted
 sigma_2 = np.sum(E ** 2, axis=0) / df_error
 # c and c_b_cov are the same as before, but recalculate anyway
 c = np.array([0, 1])
-c_b_cov = c.dot(npl.pinv(X.T.dot(X))).dot(c)
-t = c.T.dot(B) / np.sqrt(sigma_2 * c_b_cov)
+c_b_cov = c @ npl.pinv(X.T @ X) @ c
+t = c.T @ B / np.sqrt(sigma_2 * c_b_cov)
 t.shape
 ```
 

@@ -46,7 +46,7 @@ normal distribution using numpy.random.  We use
 ```{python}
 np.random.seed(42)
 y_0 = np.random.normal(size=12)
-beta_0 = piX.dot(y_0)
+beta_0 = piX @ y_0
 beta_0
 ```
 
@@ -54,7 +54,7 @@ We can fit this same design to another set of data:
 
 ```{python}
 y_1 = np.random.normal(size=12)
-beta_1 = piX.dot(y_1)
+beta_1 = piX @ y_1
 beta_1
 ```
 
@@ -63,7 +63,7 @@ to these two sets of data with the same call to `dot`:
 
 ```{python}
 Y = np.vstack((y_0, y_1)).T
-betas = piX.dot(Y)
+betas = piX @ Y
 betas
 ```
 

@@ -45,7 +45,7 @@ Of course, this is the same as:
 
 ```{python}
 mat, vec = to_matvec(zooms_plus_translations)
-mat.dot(points.T).T + np.reshape(vec, (1, 3))
+(mat @ points.T).T + np.reshape(vec, (1, 3))
 ```
 
 The advantage of `nib.affines.apply_affine` is that it can deal with arrays

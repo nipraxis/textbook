@@ -2,9 +2,7 @@
 
 ## Encourage `@` operator over `np.dot`/`ndarray.dot`
 
-This operator exists in all maintained versions of Python and numpy and produces more readable code.
-
-Introduce in early numpy lesson, and replace `dot()` throughout when there is no reason to keep `dot()`.
+Introduce in early numpy lesson.
 
 ## Replace numpy.random with `default_rng`
 

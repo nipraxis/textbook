@@ -69,7 +69,7 @@ This does not mean the columns are orthogonal:
 
 ```{python}
 # Orthogonal columns have dot products of zero
-X.T.dot(X)
+X.T @ X
 ```
 
 Nor does it mean that the columns have zero correlation (see
@@ -88,7 +88,7 @@ Now let’s add a fourth column that is a weighted sum of the first three:
 ```{python}
 X_not_full_rank = np.zeros((10, 4))
 X_not_full_rank[:, :3] = X
-X_not_full_rank[:, 3] = np.dot(X, [-1, 0.5, 0.5])
+X_not_full_rank[:, 3] = X @ [-1, 0.5, 0.5]
 plt.imshow(X_not_full_rank)
 ```
 
