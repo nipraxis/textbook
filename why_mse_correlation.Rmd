@@ -157,7 +157,7 @@ sigma = np.sqrt(sigma_2)  # Standard deviation
 sigma
 ```
 
-This is the calculation of `np.std`:
+Here is the calculation of `np.std`:
 
 ```{python}
 np.std(x)
@@ -210,7 +210,7 @@ $$
            (x_n - \xbar) / \sigma_x ]
 $$
 
-This is the same as saying:
+That is the same as saying:
 
 $$
 z_{x_i} = (x_i - \xbar) / \sigma_x
@@ -218,6 +218,7 @@ $$
 
 
 ## Some interesting characteristics of z-scores
+
 
 Z-score vectors have a couple of interesting and important mathematical properties.
 
@@ -250,7 +251,7 @@ $$
 \Sigma (x_i + y_i) = \\
 (x_1 + y_1) + (x_2 + y_2) + \cdots (x_n + y_n) = \\
 (x_1 + x_2 + \cdots x_n) + (y_1 + y_2 + \cdots y_n) = \\
-\Sigma x_i + \Sigma_{i=1}^n y_i
+\Sigma x_i + \Sigma y_i
 $$
 
 ### Multiplication by constant inside sum
@@ -282,7 +283,7 @@ $$
 = 0
 $$
 
-It is always true that the sum and mean of a z-score vector are 0.
+Therefore, it is always true that the sum and mean of a z-score vector are 0.
 
 $$
 \Sigma z_x = 0 \\
@@ -293,14 +294,14 @@ Next we show z-scores have a variance, and therefore, standard deviation, of 1.
 
 $$
 \sigma^2_{z_x} = \frac{1}{n} \Sigma (z_{x_i} - \bar{z_x})^2 \\
-\frac{1}{n} \Sigma (z_{x_i})^2 \\
-\frac{1}{n} \Sigma ((x_i - \xbar) / \sigma_x)^2 \\
-\frac{1}{\sigma_x^2} \frac{1}{n} \Sigma (x_i - \xbar)^2 \\
-\frac{1}{\sigma_x^2} \sigma^2_x \\
+= \frac{1}{n} \Sigma (z_{x_i})^2 \\
+= \frac{1}{n} \Sigma ((x_i - \xbar) / \sigma_x)^2 \\
+= \frac{1}{\sigma_x^2} \frac{1}{n} \Sigma (x_i - \xbar)^2 \\
+= \frac{1}{\sigma_x^2} \sigma^2_x \\
 = 1
 $$
 
-Therefore:
+Thus we have learned that:
 
 $$
 \sigma^2_{z_x} = 1 \\
