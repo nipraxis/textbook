@@ -890,7 +890,7 @@ definition of the mean is:</p>
 </div>
 </div>
 </div>
-<p>This is the calculation of <code class="docutils literal notranslate"><span class="pre">np.std</span></code>:</p>
+<p>Here is the calculation of <code class="docutils literal notranslate"><span class="pre">np.std</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -963,7 +963,7 @@ vector name as a subscript.  For example, if we mean the standard deviation for
 \zxvec = [ (x_1 - \xbar) / \sigma_x, (x_2 - \xbar) / \sigma_x, ...
            (x_n - \xbar) / \sigma_x ]
 \]</div>
-<p>This is the same as saying:</p>
+<p>That is the same as saying:</p>
 <div class="math notranslate nohighlight">
 \[
 z_{x_i} = (x_i - \xbar) / \sigma_x
@@ -1021,7 +1021,7 @@ sums</a>.  If you read that short page, you fill find that these general results
 \Sigma (x_i + y_i) = \\
 (x_1 + y_1) + (x_2 + y_2) + \cdots (x_n + y_n) = \\
 (x_1 + x_2 + \cdots x_n) + (y_1 + y_2 + \cdots y_n) = \\
-\Sigma x_i + \Sigma_{i=1}^n y_i
+\Sigma x_i + \Sigma y_i
 \end{split}\]</div>
 </div>
 <div class="section" id="multiplication-by-constant-inside-sum">
@@ -1054,7 +1054,7 @@ c \Sigma x_i
 = \sigma_x (n \xbar - n \xbar) \\
 = 0
 \end{split}\]</div>
-<p>It is always true that the sum and mean of a z-score vector are 0.</p>
+<p>Therefore, it is always true that the sum and mean of a z-score vector are 0.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \Sigma z_x = 0 \\
@@ -1064,13 +1064,13 @@ c \Sigma x_i
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \sigma^2_{z_x} = \frac{1}{n} \Sigma (z_{x_i} - \bar{z_x})^2 \\
-\frac{1}{n} \Sigma (z_{x_i})^2 \\
-\frac{1}{n} \Sigma ((x_i - \xbar) / \sigma_x)^2 \\
-\frac{1}{\sigma_x^2} \frac{1}{n} \Sigma (x_i - \xbar)^2 \\
-\frac{1}{\sigma_x^2} \sigma^2_x \\
+= \frac{1}{n} \Sigma (z_{x_i})^2 \\
+= \frac{1}{n} \Sigma ((x_i - \xbar) / \sigma_x)^2 \\
+= \frac{1}{\sigma_x^2} \frac{1}{n} \Sigma (x_i - \xbar)^2 \\
+= \frac{1}{\sigma_x^2} \sigma^2_x \\
 = 1
 \end{split}\]</div>
-<p>Therefore:</p>
+<p>Thus we have learned that:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \sigma^2_{z_x} = 1 \\
