@@ -1,0 +1,414 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.7
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+  orphan: true
+---
+
+# Why the correlation gives the best slope
+
+In which we return to the [simple regression](on_regression.Rmd) problem, and work through the mathematics to show why the correlation is the best least-squares slope for two z-scored arrays.
+
+## The example regression problem
+
+As you remember, we have (fake) measured scores for a “psychopathy” personality
+trait in 12 students. We also have a measure of how much sweat each student had on their palms, and we
+call this a “clammy” score.
+
+```{python}
+# Import numerical and plotting libraries
+import numpy as np
+import numpy.linalg as npl
+import matplotlib.pyplot as plt
+# Only show 6 decimals when printing
+np.set_printoptions(precision=6)
+```
+
+```{python}
+psychopathy = np.array([11.416, 4.514, 12.204, 14.835,
+                        8.416,  6.563, 17.343, 13.02,
+                        15.19, 11.902, 22.721, 22.324])
+clammy = np.array([0.389,  0.2,    0.241,  0.463,
+                   4.585,  1.097,  1.642,  4.972,
+                   7.957,  5.585,  5.527,  6.964])
+plt.plot(psychopathy, clammy, '+')
+plt.xlabel('Psychopathy')
+plt.xlabel('Clammy')
+```
+
+To get ourselves into a mathematical mood, we will rename our x-axis values to `x` and the y-axis values to `y`.  We will store the number of observations in both as `n`.
+
+```{python}
+x = psychopathy
+y = clammy
+n = len(x)
+n
+```
+
+`x` and `y` are Numpy *arrays*, but we can also call them *vectors*.  Vector is just a technical and mathematical term for a one-dimensional array.
+
+We are on a quest to find why it turned out that the correlation coefficient is
+always the best (least squared error) slope for the z-scored versions of these vectors (1D arrays).  To find out why, we need to be able to be able to express these `x` and `y` vectors in the most general way possible — independent of the numbers we have here.
+
+$\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}$
+
+First, in mathematical notation, we will call our `x` array $\xvec$, to remind us that `x` is a vector of numbers, not just a single number.
+
+Next we generalize $\xvec$ to refer to any set of $n$ numbers.  So, in our `x`
+we have `n` specific numbers, but we generalize $\xvec$ to mean a series of $n$ numbers, where $n$ can be any number.  We can therefore write $\xvec$ mathematically as:
+
+$$
+\xvec = [x_1, x_2, x_3, ..., x_n]
+$$
+
+By this we mean that we take $\xvec$ to be a vector (1D array) of any $n$
+numbers.
+
+By the same logic, we generalize the array `y` as the vector $\yvec$:
+
+$$
+\yvec = [y_1, y_2, y_3, ..., y_n]
+$$
+
+## Writing sums
+
+We are next going to do the z-score transform on $\xvec$ and $\yvec$.  As you remember, this involves subtracting the mean and dividing by the standard deviation.   We need to be able express these mathematically.
+
+To do this we will use [sum
+notation](https://matthew-brett.github.io/teaching/some_sums.html).  This uses
+the symbol $\Sigma$ to mean adding up the values in a vector.  $\Sigma$ is
+capital S in the Greek alphabet.   It is just a shorthand for the operation we
+are used to calling `sum` in code.   So:
+
+$$
+\Sigma_{i=1}^{n} x_i = x_1 + x_2 + x_3 ... + x_n
+$$
+
+The $i$ above is the *index* for the vector, so $x_i$ means the element from the vector at position $i$.  So, if $i = 3$ then $x_i$ is $x_3$ — the element at the third position in the vector.
+
+Therefore, in code we, can write $\Sigma_{i=1}^{n} x_i$ as:
+
+```{python}
+np.sum(x)
+```
+
+The $i=1$ and $n$ at the bottom and top of the $\Sigma$ mean that adding should
+start at position 1 ($x_1$) and go up to position $n$ ($x_n$).  Of course, this
+means all the numbers in the vector.   In this page, we will always sum across all the numbers in the vector, and we will miss off the $i=1$ and $n$ above and below the $\Sigma$, so we will write:
+
+$$
+\Sigma x_i
+$$
+
+when we mean:
+
+$$
+\Sigma_{i=1}^{n} x_i
+$$
+
+## Mean and standard deviation
+
+Now we have a notation for adding things up in a vector, we can write the mathematical notation for the mean and standard deviation.
+
+$$
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\ybar}{\bar{y}}
+$$
+
+We write the mean of a vector $\xvec$ as $\xbar$.  Say $\xbar$ as "x bar".  The
+definition of the mean is:
+
+$$
+\xbar = \frac{1}{n} \Sigma x_i
+$$
+
+Read this as *add up all the elements in $\xvec$ and divide by $n$*.  In code:
+
+```{python}
+# Calculation of the mean.
+x_bar = np.sum(x) / n
+x_bar
+```
+
+The mean of $\yvec$ is:
+
+$$
+\ybar = \frac{1}{n} \Sigma y_i
+$$
+
+The standard deviation is the square root of the variance.  The variance is the mean squared deviation.  The deviation for each element is the result of subtracting the mean from the element.  Call the variance $\sigma^2$.  Read this as "sigma squared".  Call the standard deviation $\sigma$.
+
+In code:
+
+```{python}
+deviations = x - x_bar
+sigma_2 = np.sum(deviations ** 2) / n  # Variance
+sigma = np.sqrt(sigma_2)  # Standard deviation
+sigma
+```
+
+This is the calculation of `np.std`:
+
+```{python}
+np.std(x)
+```
+
+This is how we write the variance in mathematical notation:
+
+$$
+\sigma^2 = \frac{1}{n} \Sigma (x_i - \xbar)^2
+$$
+
+Therefore:
+
+$$
+\sigma = \sqrt{\sigma^2}
+$$
+
+We can be more specific about which vector we are referring to, by adding the
+vector name as a subscript.  For example, if we mean the standard deviation for
+$\xvec$, we could write this as $\sigma_x$:
+
+$$
+\sigma_x^2 = \frac{1}{n} \Sigma (x_i - \xbar)^2 \\
+\sigma_x = \sqrt{\sigma_x^2}
+$$
+
+```{python}
+sigma_x = np.std(x)
+sigma_x
+```
+
+## The z-score transformation
+
+The z-score transformation is to subtract the mean and divide by the standard deviation:
+
+```{python}
+z_x = (x - x_bar) / sigma_x
+z_x
+```
+
+$$
+\newcommand{\zxvec}{\vec{z_x}}
+\newcommand{\zyvec}{\vec{z_y}}
+$$
+
+Write the z-scores corresponding to $\xvec$ as $\zxvec$:
+
+$$
+\zxvec = [ (x_1 - \xbar) / \sigma_x, (x_2 - \xbar) / \sigma_x, ...
+           (x_n - \xbar) / \sigma_x ]
+$$
+
+This is the same as saying:
+
+$$
+z_{x_i} = (x_i - \xbar) / \sigma_x
+$$
+
+
+## Some interesting characteristics of z-scores
+
+Z-score vectors have a couple of interesting and important mathematical properties.
+
+They have a sum of zero (within the calculation precision of the computer):
+
+```{python}
+np.sum(z_x)
+```
+
+Therefore they also have a mean of (near as dammit) zero.
+
+```{python}
+np.mean(z_x)
+```
+
+The z-scores have a standard deviation of (near-as-dammit) 1, and therefore, a variance of 1:
+
+```{python}
+np.std(z_x)
+```
+
+This is true for any vector $\xvec$ (or $\yvec$).  Why?
+
+To answer that question, we need the results from the [algebra of
+sums](https://matthew-brett.github.io/teaching/some_sums.html).  If you read that short page, you fill find that these general results hold:
+
+### Addition inside sum
+
+$$
+\Sigma (x_i + y_i) = \\
+(x_1 + y_1) + (x_2 + y_2) + \cdots (x_n + y_n) = \\
+(x_1 + x_2 + \cdots x_n) + (y_1 + y_2 + \cdots y_n) = \\
+\Sigma x_i + \Sigma_{i=1}^n y_i
+$$
+
+### Multiplication by constant inside sum
+
+$$
+\Sigma c x_i = \\
+c x_1 + c x_2 + \cdots c x_n = \\
+c (x_1 + x_2 + \cdots x_n) = \\
+c \Sigma x_i
+$$
+
+where $c$ is some constant (number).
+
+### Sum of constant value
+
+$$
+\Sigma_{i=1}^n c = c + c + ... + c = n c
+$$
+
+## Characteristics of z-scores
+
+With the results above, we can prove z-scores have a sum of 0:
+
+$$
+\Sigma z_x = \Sigma ((x_i - \xbar) / \sigma_x) \\
+= \sigma_x \Sigma (x_i - \xbar) \\
+= \sigma_x (\Sigma x_i - \Sigma \xbar) \\
+= \sigma_x (n \xbar - n \xbar) \\
+= 0
+$$
+
+It is always true that the sum and mean of a z-score vector are 0.
+
+$$
+\Sigma z_x = 0 \\
+\bar{z_x} = 0
+$$
+
+Next we show z-scores have a variance, and therefore, standard deviation, of 1.
+
+$$
+\sigma^2_{z_x} = \frac{1}{n} \Sigma (z_{x_i} - \bar{z_x})^2 \\
+\frac{1}{n} \Sigma (z_{x_i})^2 \\
+\frac{1}{n} \Sigma ((x_i - \xbar) / \sigma_x)^2 \\
+\frac{1}{\sigma_x^2} \frac{1}{n} \Sigma (x_i - \xbar)^2 \\
+\frac{1}{\sigma_x^2} \sigma^2_x \\
+= 1
+$$
+
+Therefore:
+
+$$
+\sigma^2_{z_x} = 1 \\
+\sigma_{z_x} = 1
+$$
+
+Because $\sigma^2_{z_x} = \frac{1}{n} \Sigma (z_{x_i})^2 = 1$:
+
+$$
+\Sigma (z_{x_i})^2 = n \sigma^2_{z_x} = n
+$$
+
+## The least-squares line for z-scores
+
+Let us say we have a data vector $\yvec$.  We have somehow calculated a fitted value $f_i$ for every corresponding value $y_i$ in $\yvec$.  Then the errors at each value $i$ are given by:
+
+$$
+e_i = y_i - f_i
+$$
+
+and the sum of squared errors are:
+
+$$
+SSE = \Sigma (y_i - f_i)^2
+$$
+
+Remembering that $(a + b)^2 = (a + b)(a + b) = a^2 + 2ab + b^2$ we get:
+
+$$
+SSE = \Sigma (y_i^2 - 2y_i f_i + f_i^2)
+$$
+
+Simplifying with rules of sums above:
+
+$$
+SSE = \Sigma y_i^2 - 2 \Sigma y_i f_i + \Sigma f_i^2
+$$
+
+Now we introduce our fitted value $f_i$, which we get from our straight line with slope $b$ and intercept $c$:
+
+$$
+f_i = b x_i + c
+$$
+
+Substituting, then simplifying:
+
+$$
+SSE = \Sigma y_i^2 - 2 \Sigma y_i (b x_i + c) + \Sigma (b x_i + c)^2 \\
+= \Sigma y_i^2 - 2 \Sigma (y_i b x_i + y_i c)  +
+\Sigma (b^2 x_i^2 + 2 b x_i c + c^2) \\
+= \Sigma y_i^2 - 2 b \Sigma y_i x_i - 2 c \Sigma y_i +
+b^2 \Sigma x_i^2 + 2 b c \Sigma x_i + n c^2
+$$
+
+Now, let us assume our $y_i$ and $x_i$ values are z-scores.  In that case:
+
+$$
+\Sigma y_i^2 = n \\
+\Sigma y_i = 0 \\
+\Sigma x_i^2 = n \\
+\Sigma x_i = 0
+$$
+
+and the equation above simplifies to:
+
+$$
+SSE_z = n - 2 b \Sigma y_i x_i + b^2 n + n c^2
+$$
+
+Now differentiate with respect to $c$:
+
+$$
+SSE_z' = 2 n c
+$$
+
+This is zero only when $c = 0$.   Differentiate again to give $2n$; the second
+derivative is always positive, so the zero point of the first derivative is a trough
+(minimum) rather than a peak (maximum).
+
+We have discovered that, regardless of the slope $b$, the intercept $c$ that
+minimizes the sum (and mean) squared error is 0.
+
+Now we have established the always-minimum value for $c$, substitute back into the equation above:
+
+$$
+SSE_z = n - 2 b \Sigma y_i x_i + b^2 n
+$$
+
+Differentiate with respect to $b$:
+
+$$
+SSE_z' = - 2 \Sigma y_i x_i + 2 b n
+$$
+
+This is zero when:
+
+$$
+\frac{1}{n} \Sigma y_i x_i = b
+$$
+
+Differentiate again to get 
+
+$$
+SSE_z'' = 2 n
+$$
+
+The second derivative is always positive, so the zero for the first derivative
+corresponds to a trough (minimum) rather than a peak (maximum).
+
+We have discovered that the slope of the line that minimizes $SSE_z$ is
+$\frac{1}{n} \Sigma z_{x_i} z_{y_i}$ — AKA the correlation.
