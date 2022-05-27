@@ -19,7 +19,6 @@ teaching day.
 - {doc}`keyword_arguments`;
 - {doc}`path_manipulation`.  See: {doc}`lab_04`;
 - {doc}`sys_path`.  See: {doc}`lab_04`;
-- {doc}`using_pythonpath`;
 - {doc}`coding_style`.
 
 ## Numpy, arrays and images
