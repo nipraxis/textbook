@@ -681,7 +681,7 @@ courses was at (42, 32, 19):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff247622880&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7faa211a0910&gt;]
 </pre></div>
 </div>
 <img alt="_images/test_one_voxel_4_1.png" src="_images/test_one_voxel_4_1.png" />
@@ -716,7 +716,7 @@ function</span></a> in a simple regression.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff2455278b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7faa1f0a78b0&gt;
 </pre></div>
 </div>
 <img alt="_images/test_one_voxel_7_1.png" src="_images/test_one_voxel_7_1.png" />
@@ -871,6 +871,26 @@ convolved = convolved[-(1:4)]
 # Fit linear model
 res = lm(voxels ~ convolved)
 print(summary(res))
+</pre></div>
+</div>
+<p>The result from the R script is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = voxels ~ convolved)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-53.368  -9.747   0.253   9.353  40.579
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 2029.368      1.635 1241.40   &lt;2e-16 ***
+convolved     31.186      2.431   12.83   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 15.75 on 167 degrees of freedom
+Multiple R-squared:  0.4963,    Adjusted R-squared:  0.4933
+F-statistic: 164.5 on 1 and 167 DF,  p-value: &lt; 2.2e-16
 </pre></div>
 </div>
 </div>

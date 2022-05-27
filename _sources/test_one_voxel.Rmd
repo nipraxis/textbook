@@ -7,9 +7,9 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.10.3
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -192,4 +192,27 @@ convolved = convolved[-(1:4)]
 # Fit linear model
 res = lm(voxels ~ convolved)
 print(summary(res))
+```
+
+
+The result from the R script is:
+
+```
+Call:
+lm(formula = voxels ~ convolved)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-53.368  -9.747   0.253   9.353  40.579
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 2029.368      1.635 1241.40   <2e-16 ***
+convolved     31.186      2.431   12.83   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 15.75 on 167 degrees of freedom
+Multiple R-squared:  0.4963,    Adjusted R-squared:  0.4933
+F-statistic: 164.5 on 1 and 167 DF,  p-value: < 2.2e-16
 ```
