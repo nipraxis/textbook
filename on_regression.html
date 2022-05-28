@@ -306,13 +306,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model_one_voxel.html">
-   Modeling a single voxel
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
   </a>
  </li>
  <li class="toctree-l1">
@@ -848,7 +848,7 @@ and slope <span class="math notranslate nohighlight">\(0.9\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f420c659910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe10425feb0&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_17_1.png" src="_images/on_regression_17_1.png" />
@@ -1079,9 +1079,10 @@ gives the lowest MSE, of all possible (slope, intercept) pairs.</p>
 <p>But — where to start?  I can set the intercept, and try lots of slopes, and
 find the one that gives the lowest MSE, but then I need to try another intercept, and another.</p>
 <p>One way of removing this problem is working on x and y values in the form of
-z-scores.  When we do this, it turns out, for reasons we don’t go into here,
-that the best (MSE) intercept is always 0.  That simplifies our problem,
-because we can assume the intercept is 0, and just look at the slopes.</p>
+z-scores.  When we do this, it turns out, for mathematical reasons we <a class="reference internal" href="why_mse_correlation.html"><span class="doc std std-doc">go into
+here</span></a>, that the best (MSE) intercept is always 0.
+That simplifies our problem, because we can assume the intercept is 0, and just
+look at the slopes.</p>
 </div>
 <div class="section" id="to-z-scores">
 <h2>To z-scores<a class="headerlink" href="#to-z-scores" title="Permalink to this headline">¶</a></h2>
@@ -1136,7 +1137,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;x, y in z-score form&#39;)
 </pre></div>
 </div>
-<img alt="_images/on_regression_55_1.png" src="_images/on_regression_55_1.png" />
+<img alt="_images/on_regression_56_1.png" src="_images/on_regression_56_1.png" />
 </div>
 </div>
 <p>Let’s try a slope of about 0.6, and an intercept of 0.</p>
@@ -1160,10 +1161,10 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f420c44c580&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe1040baa90&gt;
 </pre></div>
 </div>
-<img alt="_images/on_regression_57_1.png" src="_images/on_regression_57_1.png" />
+<img alt="_images/on_regression_58_1.png" src="_images/on_regression_58_1.png" />
 </div>
 </div>
 <p>In fact, let’s make that into a function to do some plots later:</p>
@@ -1193,10 +1194,10 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f420c54d9d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe1041409a0&gt;
 </pre></div>
 </div>
-<img alt="_images/on_regression_60_1.png" src="_images/on_regression_60_1.png" />
+<img alt="_images/on_regression_61_1.png" src="_images/on_regression_61_1.png" />
 </div>
 </div>
 <p>The MSE is:</p>
@@ -1273,7 +1274,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;MSE values for intercepts, slope=0.6&#39;)
 </pre></div>
 </div>
-<img alt="_images/on_regression_68_1.png" src="_images/on_regression_68_1.png" />
+<img alt="_images/on_regression_69_1.png" src="_images/on_regression_69_1.png" />
 </div>
 </div>
 <p>This is the minimum (best) value we found for MSE, for all the intercepts we tried.</p>
@@ -1362,7 +1363,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;MSE values for intercepts, slope=0.2&#39;)
 </pre></div>
 </div>
-<img alt="_images/on_regression_80_1.png" src="_images/on_regression_80_1.png" />
+<img alt="_images/on_regression_81_1.png" src="_images/on_regression_81_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1425,7 +1426,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;MSE values for slopes, intercept=0&#39;)
 </pre></div>
 </div>
-<img alt="_images/on_regression_86_1.png" src="_images/on_regression_86_1.png" />
+<img alt="_images/on_regression_87_1.png" src="_images/on_regression_87_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1457,7 +1458,9 @@ Slope giving min MSE 0.518
 </div>
 </div>
 </div>
-<p>We have discovered that the r value (correlation) is also the slope of the best-fit (MSE) line for the z-scored x and y values.</p>
+<p>We have discovered that the r value (correlation) is also the slope of the
+best-fit (MSE) line for the z-scored x and y values.</p>
+<p>If you are interested to see <em>why</em> the best MSE error line must have slope <span class="math notranslate nohighlight">\(r\)</span> and intercept 0, have a look at the <a class="reference internal" href="why_mse_correlation.html"><span class="doc std std-doc">mathematics of the correlation line</span></a>.</p>
 <p>Here’s the best-fit line, using, using <code class="docutils literal notranslate"><span class="pre">r</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1468,10 +1471,10 @@ Slope giving min MSE 0.518
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f420c2f34f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe0fdeac0d0&gt;
 </pre></div>
 </div>
-<img alt="_images/on_regression_92_1.png" src="_images/on_regression_92_1.png" />
+<img alt="_images/on_regression_93_1.png" src="_images/on_regression_93_1.png" />
 </div>
 </div>
 </div>
@@ -1491,7 +1494,7 @@ Slope giving min MSE 0.518
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Best-fit (MSE) line to z-scored x, de-meaned y&#39;)
 </pre></div>
 </div>
-<img alt="_images/on_regression_95_1.png" src="_images/on_regression_95_1.png" />
+<img alt="_images/on_regression_96_1.png" src="_images/on_regression_96_1.png" />
 </div>
 </div>
 <p>Notice that, when we do this, the <code class="docutils literal notranslate"><span class="pre">y</span></code> values all stretch on the <code class="docutils literal notranslate"><span class="pre">y</span></code> axis by a factor of <code class="docutils literal notranslate"><span class="pre">np.std(y)</span></code> How about slope of the best-fit line?</p>
@@ -1509,7 +1512,7 @@ Slope giving min MSE 0.518
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Best-fit (MSE) line to de-meaned x and y&#39;)
 </pre></div>
 </div>
-<img alt="_images/on_regression_98_1.png" src="_images/on_regression_98_1.png" />
+<img alt="_images/on_regression_99_1.png" src="_images/on_regression_99_1.png" />
 </div>
 </div>
 <p>Now the <code class="docutils literal notranslate"><span class="pre">x_z</span></code> values stretch by a factor of <code class="docutils literal notranslate"><span class="pre">np.std(x)</span></code> along the x-axis.  The previous y increase for one unit in x (the slope) becomes the y increase for a <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">*</span> <span class="pre">np.std(x)</span></code> increase on x, so, to get the new slope, we divide the previous slope by <code class="docutils literal notranslate"><span class="pre">np.std(x)</span></code>.</p>
@@ -1529,7 +1532,7 @@ Slope giving min MSE 0.518
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/on_regression_101_0.png" src="_images/on_regression_101_0.png" />
+<img alt="_images/on_regression_102_0.png" src="_images/on_regression_102_0.png" />
 </div>
 </div>
 <p>It might seem intuitive, and it is in fact correct, that when we shift the points on the graph like this, we can shift the line with them.  That is, the line just moves with the points, as you can see from the updated predictions above.  So, the slope does not change, and we already know the slope.</p>
@@ -1571,7 +1574,7 @@ Slope giving min MSE 0.518
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/on_regression_106_0.png" src="_images/on_regression_106_0.png" />
+<img alt="_images/on_regression_107_0.png" src="_images/on_regression_107_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1614,10 +1617,10 @@ Slope giving min MSE 0.518
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f420c0189d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe0fdbcbbb0&gt;]
 </pre></div>
 </div>
-<img alt="_images/on_regression_110_1.png" src="_images/on_regression_110_1.png" />
+<img alt="_images/on_regression_111_1.png" src="_images/on_regression_111_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1661,10 +1664,10 @@ Slope giving min MSE 0.518
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f420c0c2880&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe0fdcac100&gt;]
 </pre></div>
 </div>
-<img alt="_images/on_regression_114_1.png" src="_images/on_regression_114_1.png" />
+<img alt="_images/on_regression_115_1.png" src="_images/on_regression_115_1.png" />
 </div>
 </div>
 <div class="cell docutils container">

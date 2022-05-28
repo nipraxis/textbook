@@ -304,13 +304,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="model_one_voxel.html">
-   Modeling a single voxel
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
   </a>
  </li>
  <li class="toctree-l1">
@@ -612,6 +612,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation">
+   Correlation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sum-of-squared-error-for-z-scored-lines">
+   Sum of squared error for z-scored lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#some-interesting-characteristics-of-z-scores">
    Some interesting characteristics of z-scores
   </a>
@@ -641,6 +651,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-least-squares-line-for-z-scores">
    The least-squares line for z-scores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reality-check">
+   Reality check
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-the-trough-in-the-sse-function">
+   Finding the trough in the SSE function
   </a>
  </li>
 </ul>
@@ -684,6 +704,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation">
+   Correlation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sum-of-squared-error-for-z-scored-lines">
+   Sum of squared error for z-scored lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#some-interesting-characteristics-of-z-scores">
    Some interesting characteristics of z-scores
   </a>
@@ -713,6 +743,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-least-squares-line-for-z-scores">
    The least-squares line for z-scores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reality-check">
+   Reality check
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-the-trough-in-the-sse-function">
+   Finding the trough in the SSE function
   </a>
  </li>
 </ul>
@@ -952,6 +992,20 @@ vector name as a subscript.  For example, if we mean the standard deviation for
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z_y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.047266, -1.115218, -1.100477, -1.02066 ,  0.461343, -0.792715,
+       -0.596768,  0.600484,  1.673696,  0.820879,  0.800025,  1.316677])
+</pre></div>
+</div>
+</div>
+</div>
 <div class="math notranslate nohighlight">
 \[
 \newcommand{\zxvec}{\vec{z_x}}
@@ -968,6 +1022,95 @@ vector name as a subscript.  For example, if we mean the standard deviation for
 \[
 z_{x_i} = (x_i - \xbar) / \sigma_x
 \]</div>
+</div>
+<div class="section" id="correlation">
+<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h2>
+<p>You may remember that the correlation calculation is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">z_x</span> <span class="o">*</span> <span class="n">z_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">r</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5178777312914015
+</pre></div>
+</div>
+</div>
+</div>
+<p>In mathematical notation:</p>
+<div class="math notranslate nohighlight">
+\[
+r = \frac{1}{n} \Sigma z_{x_i} z_{y_i}
+\]</div>
+</div>
+<div class="section" id="sum-of-squared-error-for-z-scored-lines">
+<h2>Sum of squared error for z-scored lines<a class="headerlink" href="#sum-of-squared-error-for-z-scored-lines" title="Permalink to this headline">¶</a></h2>
+<p>We remind ourselves of the sum of squared error (SSE) for a given slope <code class="docutils literal notranslate"><span class="pre">b</span></code> and
+intercept <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+<p>Here is a function to calculate the sum of squared error for a given x and y
+vector, slope and intercept:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_sse</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Sum of squared error for slope `b`, intercept `c`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">predicted</span> <span class="o">=</span> <span class="n">x_vals</span> <span class="o">*</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">y_vals</span> <span class="o">-</span> <span class="n">predicted</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">errors</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us start by calculating the SSE values for 1000 intercepts between -1 and
+1, and slope of 0.6, using the z-scored x and y values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_intercepts</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">intercepts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_intercepts</span><span class="p">)</span>
+<span class="n">sse_inters_b0p6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_intercepts</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_intercepts</span><span class="p">):</span>
+    <span class="n">sse_inters_b0p6</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_sse</span><span class="p">(</span><span class="n">z_x</span><span class="p">,</span> <span class="n">z_y</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">intercepts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">intercepts</span><span class="p">,</span> <span class="n">sse_inters_b0p6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;intercept&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;SSE for intercept, b=0.6&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;SSE for intercept, b=0.6&#39;)
+</pre></div>
+</div>
+<img alt="_images/why_mse_correlation_29_1.png" src="_images/why_mse_correlation_29_1.png" />
+</div>
+</div>
+<p>As <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">before</span></a>, it looks as though <span class="math notranslate nohighlight">\(c=0\)</span> is the intercept that
+minimizes the SSE, for a slope of 0.6.</p>
+<p>Now let us try many slopes, for an intercept of 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_slopes</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">slopes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_slopes</span><span class="p">)</span>
+<span class="n">sse_slopes_c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">):</span>
+    <span class="n">sse_slopes_c0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_sse</span><span class="p">(</span><span class="n">z_x</span><span class="p">,</span> <span class="n">z_y</span><span class="p">,</span> <span class="n">slopes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">sse_slopes_c0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;slope&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SSE for slope, c=0&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/why_mse_correlation_31_0.png" src="_images/why_mse_correlation_31_0.png" />
+</div>
+</div>
+<p>This suggests that the slope minimizing the SSE is around 0.52, at least, for
+an intercept of 0.  It turns out that the correlation value <span class="math notranslate nohighlight">\(r\)</span> above is always
+the best SSE slope for the z-score line.  Our remaining task is to prove this
+with the mathematical notation we have built up.</p>
 </div>
 <div class="section" id="some-interesting-characteristics-of-z-scores">
 <h2>Some interesting characteristics of z-scores<a class="headerlink" href="#some-interesting-characteristics-of-z-scores" title="Permalink to this headline">¶</a></h2>
@@ -1089,7 +1232,7 @@ c \Sigma x_i
 \[
 e_i = y_i - f_i
 \]</div>
-<p>and the sum of squared errors are:</p>
+<p>The sum of squared errors are:</p>
 <div class="math notranslate nohighlight">
 \[
 SSE = \Sigma (y_i - f_i)^2
@@ -1104,7 +1247,8 @@ SSE = \Sigma (y_i^2 - 2y_i f_i + f_i^2)
 \[
 SSE = \Sigma y_i^2 - 2 \Sigma y_i f_i + \Sigma f_i^2
 \]</div>
-<p>Now we introduce our fitted value <span class="math notranslate nohighlight">\(f_i\)</span>, which we get from our straight line with slope <span class="math notranslate nohighlight">\(b\)</span> and intercept <span class="math notranslate nohighlight">\(c\)</span>:</p>
+<p>Now we introduce our fitted value <span class="math notranslate nohighlight">\(f_i\)</span>, which we get from our straight line
+with slope <span class="math notranslate nohighlight">\(b\)</span> and intercept <span class="math notranslate nohighlight">\(c\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 f_i = b x_i + c
@@ -1118,48 +1262,126 @@ SSE = \Sigma y_i^2 - 2 \Sigma y_i (b x_i + c) + \Sigma (b x_i + c)^2 \\
 = \Sigma y_i^2 - 2 b \Sigma y_i x_i - 2 c \Sigma y_i +
 b^2 \Sigma x_i^2 + 2 b c \Sigma x_i + n c^2
 \end{split}\]</div>
-<p>Now, let us assume our <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> values are z-scores.  In that case:</p>
+<p>Now, let us assume our <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> values are z-scores.  To indicate this,
+we will use <span class="math notranslate nohighlight">\(z_{y_i}\)</span> and <span class="math notranslate nohighlight">\(z_{x_i}\)</span> instead of <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>.  As you
+remember from the results above:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\Sigma y_i^2 = n \\
-\Sigma y_i = 0 \\
-\Sigma x_i^2 = n \\
-\Sigma x_i = 0
+\Sigma z_{y_i}^2 = n \\
+\Sigma z_{y_i} = 0 \\
+\Sigma z_{x_i}^2 = n \\
+\Sigma z_{x_i} = 0
 \end{split}\]</div>
-<p>and the equation above simplifies to:</p>
+<p>In that case, the equation above simplifies to:</p>
 <div class="math notranslate nohighlight">
 \[
-SSE_z = n - 2 b \Sigma y_i x_i + b^2 n + n c^2
+SSE_z = n - 2 b \Sigma z_{y_i} z_{x_i} + b^2 n + n c^2
 \]</div>
-<p>Now differentiate with respect to <span class="math notranslate nohighlight">\(c\)</span>:</p>
+</div>
+<div class="section" id="reality-check">
+<h2>Reality check<a class="headerlink" href="#reality-check" title="Permalink to this headline">¶</a></h2>
+<p>Let us pause at this point for a reality check.  If we have done our derivation
+correctly, then the formula above should give the same answer as the <code class="docutils literal notranslate"><span class="pre">calc_sse</span></code>
+function above.  Let’s check.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_sse_simplified</span><span class="p">(</span><span class="n">z_x</span><span class="p">,</span> <span class="n">z_y</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Implement simplified z-score SSE equation above</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">z_x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">z_x</span> <span class="o">*</span> <span class="n">z_y</span><span class="p">)</span> <span class="o">+</span>
+            <span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="n">n</span> <span class="o">*</span> <span class="n">c</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Does this give the same values as we saw before, for our example intercepts and
+slope of 0.6?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sse_simplified_b0p6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_intercepts</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_intercepts</span><span class="p">):</span>
+    <span class="n">sse_simplified_b0p6</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_sse_simplified</span><span class="p">(</span><span class="n">z_x</span><span class="p">,</span> <span class="n">z_y</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">intercepts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="c1"># Does it give the same results as we got from the original function?</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">sse_simplified_b0p6</span><span class="p">,</span> <span class="n">sse_inters_b0p6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How about the example slopes and intercept of 0?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sse_simplified_c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">):</span>
+    <span class="n">sse_simplified_c0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_sse_simplified</span><span class="p">(</span><span class="n">z_x</span><span class="p">,</span> <span class="n">z_y</span><span class="p">,</span> <span class="n">slopes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Does it give the same results as we got from the original function?</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">sse_simplified_c0</span><span class="p">,</span> <span class="n">sse_slopes_c0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>No errors — we appear to be on the right mathematical track.</p>
+</div>
+<div class="section" id="finding-the-trough-in-the-sse-function">
+<h2>Finding the trough in the SSE function<a class="headerlink" href="#finding-the-trough-in-the-sse-function" title="Permalink to this headline">¶</a></h2>
+<p>We want to find the slope, intercept pair <span class="math notranslate nohighlight">\(b, c\)</span> that gives us the lowest SSE
+value.</p>
+<p>To do this, we remind ourselves that the SSE equation above is a <em>function</em>
+that varies with respect to <span class="math notranslate nohighlight">\(b\)</span> and with respect to <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<p>Here we plot this function, again, for a variety of values of <span class="math notranslate nohighlight">\(b\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">sse_simplified_c0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SSE for given b, c=0&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/why_mse_correlation_58_0.png" src="_images/why_mse_correlation_58_0.png" />
+</div>
+</div>
+<p>We would like to find the slope <span class="math notranslate nohighlight">\(b\)</span> value corresponding to the minimum of the
+SSE function.  The standard mathematical way to do that is to first make a new
+function that gives the <em>gradient</em> of the SSE line, at every value for - in our
+case - <span class="math notranslate nohighlight">\(b\)</span>. This new gradient function is called the <em>derivative</em> of the SSE
+function.  Then we find the value of <span class="math notranslate nohighlight">\(b\)</span> for which the gradient (derivative
+function) is 0.  You can see from the graph that the gradient will go to 0 when
+the function has got to the minimum point, because the gradient is turning from
+negative to positive.  So, when we have found the gradient=0 point, and
+confirmed it is at the bottom of a trough, as we see in the graph, then we have
+found the value of <span class="math notranslate nohighlight">\(b\)</span> that minimizes the original SSE function.</p>
+<p>Let us first take the derivative with respect to <span class="math notranslate nohighlight">\(c\)</span>.  Taking the derivative is
+also called <em>differentiating</em> the function.</p>
 <div class="math notranslate nohighlight">
 \[
-SSE_z' = 2 n c
+\frac{\partial SSE_z}{\partial c} = 2 n c
 \]</div>
 <p>This is zero only when <span class="math notranslate nohighlight">\(c = 0\)</span>.   Differentiate again to give <span class="math notranslate nohighlight">\(2n\)</span>; the second
-derivative is always positive, so the zero point of the first derivative is a trough
-(minimum) rather than a peak (maximum).</p>
+derivative is always positive, so the zero point of the first derivative is a
+trough (minimum) rather than a peak (maximum).</p>
 <p>We have discovered that, regardless of the slope <span class="math notranslate nohighlight">\(b\)</span>, the intercept <span class="math notranslate nohighlight">\(c\)</span> that
 minimizes the sum (and mean) squared error is 0.</p>
-<p>Now we have established the always-minimum value for <span class="math notranslate nohighlight">\(c\)</span>, substitute back into the equation above:</p>
+<p>Now we have established the always-gives-SSE-minimum value for <span class="math notranslate nohighlight">\(c\)</span>, substitute
+back into the equation above:</p>
 <div class="math notranslate nohighlight">
 \[
-SSE_z = n - 2 b \Sigma y_i x_i + b^2 n
+SSE_z = n - 2 b \Sigma z_{y_i} z_{x_i} + b^2 n
 \]</div>
 <p>Differentiate with respect to <span class="math notranslate nohighlight">\(b\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-SSE_z' = - 2 \Sigma y_i x_i + 2 b n
+\frac{\partial SSE_z}{\partial b} = - 2 \Sigma z_{y_i} z_{x_i} + 2 b n
 \]</div>
 <p>This is zero when:</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{1}{n} \Sigma y_i x_i = b
+\frac{1}{n} \Sigma z_{y_i} z_{x_i} = b
 \]</div>
-<p>Differentiate again to get</p>
+<p>Differentiate again to get:</p>
 <div class="math notranslate nohighlight">
 \[
-SSE_z'' = 2 n
+\frac{\partial ^2SSE_z}{\partial b^2} = 2 n
 \]</div>
 <p>The second derivative is always positive, so the zero for the first derivative
 corresponds to a trough (minimum) rather than a peak (maximum).</p>
