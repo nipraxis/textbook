@@ -18,3 +18,4 @@ mydirmod/
 rdmodule.py
 test_rdmodule.py
 *.ipynb
+*.orig
