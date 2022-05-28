@@ -42,8 +42,8 @@ clammy = np.array([0.389,  0.2,    0.241,  0.463,
                    4.585,  1.097,  1.642,  4.972,
                    7.957,  5.585,  5.527,  6.964])
 plt.plot(psychopathy, clammy, '+')
-plt.xlabel('Psychopathy')
 plt.xlabel('Clammy')
+plt.ylabel('Psychopathy');
 ```
 
 To get ourselves into a mathematical mood, we will rename our x-axis values to `x` and the y-axis values to `y`.  We will store the number of observations in both as `n`.
@@ -267,7 +267,7 @@ for i in range(n_intercepts):
 
 plt.plot(intercepts, sse_inters_b0p6)
 plt.xlabel('intercept')
-plt.xlabel('SSE for intercept, b=0.6')
+plt.ylabel('SSE for intercept, b=0.6');
 ```
 
 As [before](on_regression.Rmd), it looks as though $c=0$ is the intercept that
