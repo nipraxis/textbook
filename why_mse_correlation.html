@@ -793,16 +793,13 @@ call this a “clammy” score.</p>
                    <span class="mf">4.585</span><span class="p">,</span>  <span class="mf">1.097</span><span class="p">,</span>  <span class="mf">1.642</span><span class="p">,</span>  <span class="mf">4.972</span><span class="p">,</span>
                    <span class="mf">7.957</span><span class="p">,</span>  <span class="mf">5.585</span><span class="p">,</span>  <span class="mf">5.527</span><span class="p">,</span>  <span class="mf">6.964</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">,</span> <span class="n">clammy</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Psychopathy&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Clammy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Psychopathy&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Clammy&#39;)
-</pre></div>
-</div>
-<img alt="_images/why_mse_correlation_3_1.png" src="_images/why_mse_correlation_3_1.png" />
+<img alt="_images/why_mse_correlation_3_0.png" src="_images/why_mse_correlation_3_0.png" />
 </div>
 </div>
 <p>To get ourselves into a mathematical mood, we will rename our x-axis values to <code class="docutils literal notranslate"><span class="pre">x</span></code> and the y-axis values to <code class="docutils literal notranslate"><span class="pre">y</span></code>.  We will store the number of observations in both as <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
@@ -1075,15 +1072,12 @@ vector, slope and intercept:</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">intercepts</span><span class="p">,</span> <span class="n">sse_inters_b0p6</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;intercept&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;SSE for intercept, b=0.6&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SSE for intercept, b=0.6&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;SSE for intercept, b=0.6&#39;)
-</pre></div>
-</div>
-<img alt="_images/why_mse_correlation_29_1.png" src="_images/why_mse_correlation_29_1.png" />
+<img alt="_images/why_mse_correlation_29_0.png" src="_images/why_mse_correlation_29_0.png" />
 </div>
 </div>
 <p>As <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">before</span></a>, it looks as though <span class="math notranslate nohighlight">\(c=0\)</span> is the intercept that
