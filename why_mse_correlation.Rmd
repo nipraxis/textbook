@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.10.3
   kernelspec:
     display_name: Python 3
     language: python
@@ -198,6 +198,11 @@ z_x = (x - x_bar) / sigma_x
 z_x
 ```
 
+```{python}
+z_y = (y - np.mean(y)) / np.std(y)
+z_y
+```
+
 $$
 \newcommand{\zxvec}{\vec{z_x}}
 \newcommand{\zyvec}{\vec{z_y}}
@@ -356,25 +361,67 @@ SSE = \Sigma y_i^2 - 2 \Sigma y_i (b x_i + c) + \Sigma (b x_i + c)^2 \\
 b^2 \Sigma x_i^2 + 2 b c \Sigma x_i + n c^2
 $$
 
-Now, let us assume our $y_i$ and $x_i$ values are z-scores.  In that case:
+
+Now, let us assume our $y_i$ and $x_i$ values are z-scores.  To indicate this,
+we will use $z_{y_i}$ and $z_{x_i}$ instead of $y_i$ and $x_i$.  As you
+remember from the results above:
 
 $$
-\Sigma y_i^2 = n \\
-\Sigma y_i = 0 \\
-\Sigma x_i^2 = n \\
-\Sigma x_i = 0
+\Sigma z_{y_i}^2 = n \\
+\Sigma z_{y_i} = 0 \\
+\Sigma z_{x_i}^2 = n \\
+\Sigma z_{x_i} = 0
 $$
 
-and the equation above simplifies to:
+In that case, the equation above simplifies to:
 
 $$
-SSE_z = n - 2 b \Sigma y_i x_i + b^2 n + n c^2
+SSE_z = n - 2 b \Sigma z_{y_i} z_{x_i} + b^2 n + n c^2
 $$
+
+
+Let us pause at this point for a reality check. Let us plot this function, for a series of slopes:
+
+```{python}
+def calc_sse_z(z_x, z_y, b, c):
+    """ Implement function above """
+    n = len(z_x)
+    z_x_y_sigma = np.sum(x)
+    return (n - 2 * b * np.sum(z_x * z_y) +
+            b ** 2 * n + n * c ** 2)
+```
+
+```{python}
+n_slopes = 10000
+slopes = np.linspace(-1, 1, n_slopes)
+sses = np.zeros(n_slopes)
+for i in range(n_slopes):
+    sses[i] = calc_sse_z(z_x, z_y, slopes[i], 0)
+plt.plot(slopes, sses)
+plt.xlabel('slope (b)')
+plt.ylabel('SSE');
+```
+
+We should also check that the new simplified function gives the expected result from the full calculation:
+
+```{python}
+def calc_sse_full(z_x, z_y, b, c):
+    fitted = b * z_x + c
+    errors = z_y - fitted
+    return np.sum(errors ** 2)
+```
+
+```{python}
+full_sses = np.zeros(n_slopes)
+for i in range(n_slopes):
+    full_sses[i] = calc_sse_full(z_x, z_y, slopes[i], 0)
+assert np.allclose(full_sses, sses)
+```
 
 Now differentiate with respect to $c$:
 
 $$
-SSE_z' = 2 n c
+\frac{\partial SSE_z}{\partial c} = 2 n c
 $$
 
 This is zero only when $c = 0$.   Differentiate again to give $2n$; the second
@@ -384,28 +431,29 @@ derivative is always positive, so the zero point of the first derivative is a tr
 We have discovered that, regardless of the slope $b$, the intercept $c$ that
 minimizes the sum (and mean) squared error is 0.
 
-Now we have established the always-minimum value for $c$, substitute back into the equation above:
+Now we have established the always-gives-SSE-minimum value for $c$, substitute
+back into the equation above:
 
 $$
-SSE_z = n - 2 b \Sigma y_i x_i + b^2 n
+SSE_z = n - 2 b \Sigma z_{y_i} z_{x_i} + b^2 n
 $$
 
 Differentiate with respect to $b$:
 
 $$
-SSE_z' = - 2 \Sigma y_i x_i + 2 b n
+\frac{\partial SSE_z}{\partial b} = - 2 \Sigma z_{y_i} z_{x_i} + 2 b n
 $$
 
 This is zero when:
 
 $$
-\frac{1}{n} \Sigma y_i x_i = b
+\frac{1}{n} \Sigma z_{y_i} z_{x_i} = b
 $$
 
-Differentiate again to get 
+Differentiate again to get:
 
 $$
-SSE_z'' = 2 n
+\frac{\partial ^2SSE_z}{\partial b^2} = 2 n
 $$
 
 The second derivative is always positive, so the zero for the first derivative
