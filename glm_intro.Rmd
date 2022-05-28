@@ -345,6 +345,13 @@ sy_beta2_val = Matrix([sy_b_1, sy_b_2, sy_c])
 Eq(sy_y_val, MatAdd(MatMul(sy_xmat3_val, sy_beta2_val), sy_e_val), evaluate=False)
 ```
 
+As we were hoping, this evaluates to:
+
+```{python}
+# Ignore this cell.
+Eq(sy_y_val, sy_xmat3_val @ sy_beta2_val + sy_e_val, evaluate=False)
+```
+
 ### Population, sample, estimate
 
 
