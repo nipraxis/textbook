@@ -51,8 +51,8 @@ parts:
   - file: on_regression
   - file: regress_one_voxel
   - file: glm_intro
-  - file: model_one_voxel
   - file: mean_test_example
+  - file: model_one_voxel
   - file: multi_multiply
   - file: hypothesis_tests
   - file: test_one_voxel

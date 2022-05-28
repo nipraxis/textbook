@@ -274,11 +274,14 @@ But — where to start?  I can set the intercept, and try lots of slopes, and
 find the one that gives the lowest MSE, but then I need to try another intercept, and another.
 
 One way of removing this problem is working on x and y values in the form of
-z-scores.  When we do this, it turns out, for reasons we don't go into here,
-that the best (MSE) intercept is always 0.  That simplifies our problem,
-because we can assume the intercept is 0, and just look at the slopes.
+z-scores.  When we do this, it turns out, for mathematical reasons we [go into
+here](why_mse_correlation.Rmd), that the best (MSE) intercept is always 0.
+That simplifies our problem, because we can assume the intercept is 0, and just
+look at the slopes.
+
 
 ## To z-scores
+
 
 As you remember from {ref}`on-correlation`, we generate z-scores by subtracting the mean, and dividing by the standard deviation.
 
@@ -485,7 +488,10 @@ Wait - but `best_slope` is almost exactly the same as the correlation!.  And in 
 calc_mse(x_z, y_z, r, 0)
 ```
 
-We have discovered that the r value (correlation) is also the slope of the best-fit (MSE) line for the z-scored x and y values.
+We have discovered that the r value (correlation) is also the slope of the
+best-fit (MSE) line for the z-scored x and y values.
+
+If you are interested to see *why* the best MSE error line must have slope $r$ and intercept 0, have a look at the [mathematics of the correlation line](why_mse_correlation.Rmd).
 
 
 Here's the best-fit line, using, using `r`:

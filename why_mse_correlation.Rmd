@@ -198,6 +198,11 @@ z_x = (x - x_bar) / sigma_x
 z_x
 ```
 
+```{python}
+z_y = (y - np.mean(y)) / np.std(y)
+z_y
+```
+
 $$
 \newcommand{\zxvec}{\vec{z_x}}
 \newcommand{\zyvec}{\vec{z_y}}
@@ -215,6 +220,77 @@ That is the same as saying:
 $$
 z_{x_i} = (x_i - \xbar) / \sigma_x
 $$
+
+
+## Correlation
+
+
+You may remember that the correlation calculation is:
+
+```{python}
+r = np.sum(z_x * z_y) / n
+r
+```
+
+In mathematical notation:
+
+$$
+r = \frac{1}{n} \Sigma z_{x_i} z_{y_i}
+$$
+
+## Sum of squared error for z-scored lines
+
+We remind ourselves of the sum of squared error (SSE) for a given slope `b` and
+intercept `c`.
+
+Here is a function to calculate the sum of squared error for a given x and y
+vector, slope and intercept:
+
+```{python}
+def calc_sse(x_vals, y_vals, b, c):
+    """ Sum of squared error for slope `b`, intercept `c`
+    """
+    predicted = x_vals * b + c
+    errors = y_vals - predicted
+    return np.sum(errors ** 2)
+```
+
+Let us start by calculating the SSE values for 1000 intercepts between -1 and
+1, and slope of 0.6, using the z-scored x and y values.
+
+```{python}
+n_intercepts = 1000
+intercepts = np.linspace(-1, 1, n_intercepts)
+sse_inters_b0p6 = np.zeros(n_intercepts)
+for i in range(n_intercepts):
+    sse_inters_b0p6[i] = calc_sse(z_x, z_y, 0.6, intercepts[i])
+
+plt.plot(intercepts, sse_inters_b0p6)
+plt.xlabel('intercept')
+plt.xlabel('SSE for intercept, b=0.6')
+```
+
+As [before](on_regression.Rmd), it looks as though $c=0$ is the intercept that
+minimizes the SSE, for a slope of 0.6.
+
+Now let us try many slopes, for an intercept of 0.
+
+```{python}
+n_slopes = 1000
+slopes = np.linspace(-1, 1, n_slopes)
+sse_slopes_c0 = np.zeros(n_slopes)
+for i in range(n_slopes):
+    sse_slopes_c0[i] = calc_sse(z_x, z_y, slopes[i], 0)
+
+plt.plot(slopes, sse_slopes_c0)
+plt.xlabel('slope')
+plt.ylabel('SSE for slope, c=0');
+```
+
+This suggests that the slope minimizing the SSE is around 0.52, at least, for
+an intercept of 0.  It turns out that the correlation value $r$ above is always
+the best SSE slope for the z-score line.  Our remaining task is to prove this
+with the mathematical notation we have built up.
 
 
 ## Some interesting characteristics of z-scores
@@ -271,7 +347,9 @@ $$
 \Sigma_{i=1}^n c = c + c + ... + c = n c
 $$
 
+
 ## Characteristics of z-scores
+
 
 With the results above, we can prove z-scores have a sum of 0:
 
@@ -322,7 +400,7 @@ $$
 e_i = y_i - f_i
 $$
 
-and the sum of squared errors are:
+The sum of squared errors are:
 
 $$
 SSE = \Sigma (y_i - f_i)^2
@@ -340,7 +418,8 @@ $$
 SSE = \Sigma y_i^2 - 2 \Sigma y_i f_i + \Sigma f_i^2
 $$
 
-Now we introduce our fitted value $f_i$, which we get from our straight line with slope $b$ and intercept $c$:
+Now we introduce our fitted value $f_i$, which we get from our straight line
+with slope $b$ and intercept $c$:
 
 $$
 f_i = b x_i + c
@@ -356,56 +435,130 @@ SSE = \Sigma y_i^2 - 2 \Sigma y_i (b x_i + c) + \Sigma (b x_i + c)^2 \\
 b^2 \Sigma x_i^2 + 2 b c \Sigma x_i + n c^2
 $$
 
-Now, let us assume our $y_i$ and $x_i$ values are z-scores.  In that case:
+
+Now, let us assume our $y_i$ and $x_i$ values are z-scores.  To indicate this,
+we will use $z_{y_i}$ and $z_{x_i}$ instead of $y_i$ and $x_i$.  As you
+remember from the results above:
 
 $$
-\Sigma y_i^2 = n \\
-\Sigma y_i = 0 \\
-\Sigma x_i^2 = n \\
-\Sigma x_i = 0
+\Sigma z_{y_i}^2 = n \\
+\Sigma z_{y_i} = 0 \\
+\Sigma z_{x_i}^2 = n \\
+\Sigma z_{x_i} = 0
 $$
 
-and the equation above simplifies to:
+In that case, the equation above simplifies to:
 
 $$
-SSE_z = n - 2 b \Sigma y_i x_i + b^2 n + n c^2
+SSE_z = n - 2 b \Sigma z_{y_i} z_{x_i} + b^2 n + n c^2
 $$
 
-Now differentiate with respect to $c$:
+## Reality check
+
+
+Let us pause at this point for a reality check.  If we have done our derivation
+correctly, then the formula above should give the same answer as the `calc_sse`
+function above.  Let's check.
+
+```{python}
+def calc_sse_simplified(z_x, z_y, b, c):
+    """ Implement simplified z-score SSE equation above
+    """
+    n = len(z_x)
+    return (n - 2 * b * np.sum(z_x * z_y) +
+            b ** 2 * n + n * c ** 2)
+```
+
+Does this give the same values as we saw before, for our example intercepts and
+slope of 0.6?
+
+```{python}
+sse_simplified_b0p6 = np.zeros(n_intercepts)
+for i in range(n_intercepts):
+    sse_simplified_b0p6[i] = calc_sse_simplified(z_x, z_y, 0.6, intercepts[i])
+# Does it give the same results as we got from the original function?
+assert np.allclose(sse_simplified_b0p6, sse_inters_b0p6)
+```
+
+How about the example slopes and intercept of 0?
+
+```{python}
+sse_simplified_c0 = np.zeros(n_slopes)
+for i in range(n_slopes):
+    sse_simplified_c0[i] = calc_sse_simplified(z_x, z_y, slopes[i], 0)
+# Does it give the same results as we got from the original function?
+assert np.allclose(sse_simplified_c0, sse_slopes_c0)
+```
+
+No errors — we appear to be on the right mathematical track.
+
+
+## Finding the trough in the SSE function
+
+
+We want to find the slope, intercept pair $b, c$ that gives us the lowest SSE
+value.
+
+To do this, we remind ourselves that the SSE equation above is a *function*
+that varies with respect to $b$ and with respect to $c$.
+
+Here we plot this function, again, for a variety of values of $b$:
+
+```{python}
+plt.plot(slopes, sse_simplified_c0)
+plt.xlabel('b')
+plt.ylabel('SSE for given b, c=0');
+```
+
+We would like to find the slope $b$ value corresponding to the minimum of the
+SSE function.  The standard mathematical way to do that is to first make a new
+function that gives the *gradient* of the SSE line, at every value for - in our
+case - $b$. This new gradient function is called the *derivative* of the SSE
+function.  Then we find the value of $b$ for which the gradient (derivative
+function) is 0.  You can see from the graph that the gradient will go to 0 when
+the function has got to the minimum point, because the gradient is turning from
+negative to positive.  So, when we have found the gradient=0 point, and
+confirmed it is at the bottom of a trough, as we see in the graph, then we have
+found the value of $b$ that minimizes the original SSE function.
+
+
+Let us first take the derivative with respect to $c$.  Taking the derivative is
+also called *differentiating* the function.
 
 $$
-SSE_z' = 2 n c
+\frac{\partial SSE_z}{\partial c} = 2 n c
 $$
 
 This is zero only when $c = 0$.   Differentiate again to give $2n$; the second
-derivative is always positive, so the zero point of the first derivative is a trough
-(minimum) rather than a peak (maximum).
+derivative is always positive, so the zero point of the first derivative is a
+trough (minimum) rather than a peak (maximum).
 
 We have discovered that, regardless of the slope $b$, the intercept $c$ that
 minimizes the sum (and mean) squared error is 0.
 
-Now we have established the always-minimum value for $c$, substitute back into the equation above:
+Now we have established the always-gives-SSE-minimum value for $c$, substitute
+back into the equation above:
 
 $$
-SSE_z = n - 2 b \Sigma y_i x_i + b^2 n
+SSE_z = n - 2 b \Sigma z_{y_i} z_{x_i} + b^2 n
 $$
 
 Differentiate with respect to $b$:
 
 $$
-SSE_z' = - 2 \Sigma y_i x_i + 2 b n
+\frac{\partial SSE_z}{\partial b} = - 2 \Sigma z_{y_i} z_{x_i} + 2 b n
 $$
 
 This is zero when:
 
 $$
-\frac{1}{n} \Sigma y_i x_i = b
+\frac{1}{n} \Sigma z_{y_i} z_{x_i} = b
 $$
 
-Differentiate again to get 
+Differentiate again to get:
 
 $$
-SSE_z'' = 2 n
+\frac{\partial ^2SSE_z}{\partial b^2} = 2 n
 $$
 
 The second derivative is always positive, so the zero for the first derivative
