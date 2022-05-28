@@ -17,3 +17,4 @@ code/a_module.py
 mydirmod/
 rdmodule.py
 test_rdmodule.py
+*.ipynb
