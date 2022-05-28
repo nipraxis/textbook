@@ -826,7 +826,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f75244847f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f793f803910&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -1121,6 +1121,19 @@ column of ones, to express the intercept in the model.</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right] + \left[\begin{matrix}{x_{1,}}_{1} &amp; {x_{2,}}_{1} &amp; 1\\{x_{1,}}_{2} &amp; {x_{2,}}_{2} &amp; 1\\{x_{1,}}_{3} &amp; {x_{2,}}_{3} &amp; 1\\{x_{1,}}_{4} &amp; {x_{2,}}_{4} &amp; 1\\{x_{1,}}_{5} &amp; {x_{2,}}_{5} &amp; 1\\{x_{1,}}_{6} &amp; {x_{2,}}_{6} &amp; 1\\{x_{1,}}_{7} &amp; {x_{2,}}_{7} &amp; 1\\{x_{1,}}_{8} &amp; {x_{2,}}_{8} &amp; 1\\{x_{1,}}_{9} &amp; {x_{2,}}_{9} &amp; 1\\{x_{1,}}_{10} &amp; {x_{2,}}_{10} &amp; 1\\{x_{1,}}_{11} &amp; {x_{2,}}_{11} &amp; 1\\{x_{1,}}_{12} &amp; {x_{2,}}_{12} &amp; 1\end{matrix}\right] \left[\begin{matrix}b_{1}\\b_{2}\\c\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
+<p>As we were hoping, this evaluates to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">sy_xmat3_val</span> <span class="o">@</span> <span class="n">sy_beta2_val</span> <span class="o">+</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}b_{1} {x_{1,}}_{1} + b_{2} {x_{2,}}_{1} + c + {e}_{1}\\b_{1} {x_{1,}}_{2} + b_{2} {x_{2,}}_{2} + c + {e}_{2}\\b_{1} {x_{1,}}_{3} + b_{2} {x_{2,}}_{3} + c + {e}_{3}\\b_{1} {x_{1,}}_{4} + b_{2} {x_{2,}}_{4} + c + {e}_{4}\\b_{1} {x_{1,}}_{5} + b_{2} {x_{2,}}_{5} + c + {e}_{5}\\b_{1} {x_{1,}}_{6} + b_{2} {x_{2,}}_{6} + c + {e}_{6}\\b_{1} {x_{1,}}_{7} + b_{2} {x_{2,}}_{7} + c + {e}_{7}\\b_{1} {x_{1,}}_{8} + b_{2} {x_{2,}}_{8} + c + {e}_{8}\\b_{1} {x_{1,}}_{9} + b_{2} {x_{2,}}_{9} + c + {e}_{9}\\b_{1} {x_{1,}}_{10} + b_{2} {x_{2,}}_{10} + c + {e}_{10}\\b_{1} {x_{1,}}_{11} + b_{2} {x_{2,}}_{11} + c + {e}_{11}\\b_{1} {x_{1,}}_{12} + b_{2} {x_{2,}}_{12} + c + {e}_{12}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
 <div class="section" id="population-sample-estimate">
 <h3>Population, sample, estimate<a class="headerlink" href="#population-sample-estimate" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}\)</span>
@@ -1248,10 +1261,10 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f751ce97e20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f793e26e730&gt;]
 </pre></div>
 </div>
-<img alt="_images/glm_intro_49_1.png" src="_images/glm_intro_49_1.png" />
+<img alt="_images/glm_intro_51_1.png" src="_images/glm_intro_51_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1276,7 +1289,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/glm_intro_51_0.png" src="_images/glm_intro_51_0.png" />
+<img alt="_images/glm_intro_53_0.png" src="_images/glm_intro_53_0.png" />
 </div>
 </div>
 <p>Our claim was that this estimate for slope and intercept minimize the sum (and
@@ -1662,7 +1675,7 @@ image display parameters:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/glm_intro_83_0.png" src="_images/glm_intro_83_0.png" />
+<img alt="_images/glm_intro_85_0.png" src="_images/glm_intro_85_0.png" />
 </div>
 </div>
 </div>
