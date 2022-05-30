@@ -9,7 +9,7 @@ clean:
 	rm -rf _build
 
 rm-ipynb:
-	rm -rf */*.ipynb
+	rm -rf *.ipynb
 
 github: html
 	cp CNAME $(BUILD_DIR)
