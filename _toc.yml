@@ -58,8 +58,24 @@ parts:
   - file: test_one_voxel
   - file: non_tr_onsets
   - file: whole_image_statistics
+  - file: bonferroni_correction
 
-- caption: Arrays and plots
+- caption: Spatial processing
+  chapters:
+  - file: slice_timing
+  - file: optimizing_space
+  - file: diagonal_zooms
+  - file: nibabel_affines
+  - file: nibabel_apply_affine
+  - file: map_coordinates
+  - file: image_header_and_affine
+  - file: images_and_affines
+  - file: rotation_2d_3d
+  - file: resampling_with_ndimage
+  - file: dipy_registration
+  - file: anterior_cingulate
+
+- caption: Notes on arrays and plots
   chapters:
   - file: methods_vs_functions
   - file: allclose
@@ -72,16 +88,3 @@ parts:
   - file: subtract_means
   - file: plot_lines
   - file: subplots
-
-- caption: Coordinate systems and spatial transforms
-  chapters:
-  - file: diagonal_zooms
-  - file: nibabel_affines
-  - file: nibabel_apply_affine
-  - file: map_coordinates
-  - file: image_header_and_affine
-  - file: images_and_affines
-  - file: rotation_2d_3d
-  - file: resampling_with_ndimage
-  - file: dipy_registration
-  - file: anterior_cingulate
