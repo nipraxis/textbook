@@ -211,7 +211,7 @@ brain?
 ## Analysis on voxels within the brain
 
 Here we make a mask of the voxels within the brain using [Otsu’s
-method](https://en.wikipedia.org/wiki/Otsu%27s_method).  You will need
+method](otsu_threshold.Rmd).  You will need
 [scikit-image](http://scikit-image.org/) installed for this to work:
 
 ```{python}

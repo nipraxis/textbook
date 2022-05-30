@@ -338,75 +338,28 @@ const thebe_selector_output = ".output, .cell_output"
    Whole-brain t tests and p values
   </a>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Arrays and plots
- </span>
-</p>
-<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="methods_vs_functions.html">
-   Methods vs functions in NumPy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="allclose.html">
-   Testing for near equality with “allclose”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arange.html">
-   NumPy arange
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on Boolean arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dot_outer.html">
-   Vector and matrix dot products, “np.outer”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="newaxis.html">
-   Adding length 1 dimensions with newaxis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="array_reductions.html">
-   Array reduction operations
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Numpy random number generators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subtract_means.html">
-   Subtracting the mean from columns or rows
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_lines.html">
-   Plotting lines in matplotlib
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subplots.html">
-   Subplots and axes in matplotlib
+  <a class="reference internal" href="bonferroni_correction.html">
+   Notes on the Bonferroni threshold
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Coordinate systems and spatial transforms
+  Spatial processing
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slice_timing.html">
+   Slice timing correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizing_space.html">
+   Calculating transformations between images
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="diagonal_zooms.html">
    Encoding zooms (scaling) with a diagonal matrix
@@ -476,6 +429,68 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="anterior_cingulate.html">
    Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes on arrays and plots
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   NumPy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Numpy random number generators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
   </a>
  </li>
 </ul>
@@ -681,7 +696,7 @@ the default normal distribution (mean 0, variance 1):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2883686760370834
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06667253063760056
 </pre></div>
 </div>
 </div>
@@ -695,7 +710,7 @@ the default normal distribution (mean 0, variance 1):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.515548559531466
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.206307040588417
 </pre></div>
 </div>
 </div>
@@ -708,14 +723,14 @@ the default normal distribution (mean 0, variance 1):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[15.2356, 15.8729, 18.487 , 16.647 , 17.5336],
-       [12.6237, 15.7079, 17.2017, 18.2412, 15.5266],
-       [13.7492, 15.1079, 13.1731, 17.919 , 18.4414],
-       [13.4236, 16.058 , 15.9755, 16.0535, 14.4529],
-       [18.1236, 11.254 , 15.1458, 18.9791, 16.4187],
-       [13.784 , 11.1512, 14.0063, 15.464 , 14.4751],
-       [19.4364, 13.4873, 12.0075, 14.733 , 14.8578],
-       [16.3068, 15.5519, 17.3036, 13.932 ,  9.1136]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[15.9778, 15.4733, 18.7399, 16.2114, 16.9342],
+       [14.3853, 15.8326, 17.9473, 13.694 , 13.246 ],
+       [16.0805, 14.5008, 13.6418, 17.6751, 17.2236],
+       [13.5741, 15.5978, 14.9317, 14.5383, 19.0499],
+       [20.0852, 15.2008, 13.1098, 13.3476, 16.1312],
+       [12.7871, 15.5192, 14.3097, 16.1382, 13.6645],
+       [13.1099, 17.5293, 13.8663, 17.0995, 17.4868],
+       [15.061 , 13.149 , 16.5442, 13.4893, 15.4699]])
 </pre></div>
 </div>
 </div>
@@ -729,11 +744,11 @@ mean 1 and variance 1:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.8832,  2.1851, -0.9792],
-       [ 0.7078, -0.1962,  2.2063],
-       [-0.4613,  0.9047,  1.8514],
-       [ 0.6018,  0.0242,  0.7143],
-       [ 0.4826, -1.472 ,  0.2054]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.8265, -0.4309, -1.5059],
+       [-1.5167,  0.5355, -1.2086],
+       [ 0.348 ,  1.0409, -0.8426],
+       [-0.0377, -1.7203, -1.2111],
+       [ 1.7827, -1.3605, -0.3204]])
 </pre></div>
 </div>
 </div>

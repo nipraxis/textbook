@@ -1,0 +1,1744 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculating transformations between images &#8212; Practice and theory of brain imaging</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Encoding zooms (scaling) with a diagonal matrix" href="diagonal_zooms.html" />
+    <link rel="prev" title="Slice timing correction" href="slice_timing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/reggie.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Practice and theory of brain imaging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The neuroimaging problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_problem.html">
+   The problem and the plan
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="to_code.html">
+   Ode to code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surviving_computers.html">
+   Surviving the computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_software.html">
+   Our tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="using_jupyter.html">
+   Using Jupyter notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_on_jupyter.html">
+   More on the Jupyter notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brisk_python.html">
+   Brisk introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installing on your computer
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Images and code and images
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="what_is_an_image.html">
+   What is an image?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_intro.html">
+   Introduction to Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_and_images.html">
+   Arrays as images, images as arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_3d.html">
+   Three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_3d.html">
+   Three-dimensional images, NIfTI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_3d.html">
+   Reshaping and three-dimensional arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing.html">
+   Indexing with Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_indexing_nd.html">
+   Boolean indexing with more than one dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_to_4d.html">
+   Working with four dimensional images, masks and functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshape_and_4d.html">
+   Reshaping, 4D to 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxels_by_time.html">
+   Voxels and time
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Working reproducibly
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_modules.html">
+   Modules and scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sys_path.html">
+   Where does Python look for modules?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assert.html">
+   Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     assert
+    </span>
+   </code>
+   for testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="path_manipulation.html">
+   Making and breaking file paths in Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coding_style.html">
+   Python coding style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="docstrings.html">
+   Docstrings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="module_directories.html">
+   Module directories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_testing.html">
+   On testing
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Detecting activation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="voxel_time_courses.html">
+   Correlating with voxel time courses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_convolution.html">
+   Convolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution_background.html">
+   Convolving with the hemodyamic response function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="on_regression.html">
+   Introducing regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="regress_one_voxel.html">
+   Regression for a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glm_intro.html">
+   Introduction to the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mean_test_example.html">
+   A worked example of the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
+   Modeling a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_multiply.html">
+   Estimation for many voxels at the same time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hypothesis_tests.html">
+   Hypothesis testing with the general linear model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_one_voxel.html">
+   Testing a single voxel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="non_tr_onsets.html">
+   Using onsets that do not start on a TR
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="whole_image_statistics.html">
+   Whole-brain t tests and p values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bonferroni_correction.html">
+   Notes on the Bonferroni threshold
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Spatial processing
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slice_timing.html">
+   Slice timing correction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Calculating transformations between images
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagonal_zooms.html">
+   Encoding zooms (scaling) with a diagonal matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_affines.html">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nibabel_apply_affine.html">
+   Applying coordinate transforms with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nibabel.affines.apply_affine
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
+   General resampling between images with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage.map_coordinates
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image_header_and_affine.html">
+   The image header and affine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="images_and_affines.html">
+   Images and affines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rotation_2d_3d.html">
+   Rotations and rotation matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
+   Resampling with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scipy.ndimage
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dipy_registration.html">
+   Registration with dipy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="anterior_cingulate.html">
+   Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes on arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   NumPy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Numpy random number generators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/optimizing_space.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.Rmd</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Foptimizing_space.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/optimizing_space.Rmd"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/optimizing_space.Rmd&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-the-data">
+   Get the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulating-the-matching-problem">
+   Formulating the matching problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choosing-a-metric-for-image-mismatch">
+   Choosing a metric for image mismatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resampling-in-2d">
+   Resampling in 2D
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization">
+   Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-than-one-parameter">
+   More than one parameter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-3d-estimate">
+   Full 3D estimate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-stuck-in-the-wrong-place">
+   Getting stuck in the wrong place
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Calculating transformations between images</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-the-data">
+   Get the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulating-the-matching-problem">
+   Formulating the matching problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choosing-a-metric-for-image-mismatch">
+   Choosing a metric for image mismatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resampling-in-2d">
+   Resampling in 2D
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization">
+   Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-than-one-parameter">
+   More than one parameter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-3d-estimate">
+   Full 3D estimate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-stuck-in-the-wrong-place">
+   Getting stuck in the wrong place
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="calculating-transformations-between-images">
+<h1>Calculating transformations between images<a class="headerlink" href="#calculating-transformations-between-images" title="Permalink to this headline">¶</a></h1>
+<p>In which we discover optimization, cost functions and how to use them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># - import common modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># the Python array package</span>
+<span class="c1"># Tell numpy to print numbers to 4 decimal places only</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># the Python plotting package</span>
+<span class="c1"># Set gray colormap by default.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>We often want to work out some set of spatial transformations that will make
+one image be a better match to another.</p>
+<p>One example is motion correction in FMRI. We know that the subject moves over
+the course of an FMRI run. To correct for this, we may want to take each
+volume in the run, and match this volume to the first volume in the run. To do
+this, we need to work out what the best set of transformations are to match -
+say - volume 1 to volume 0.</p>
+</div>
+<div class="section" id="get-the-data">
+<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We start with a single slice from the each of the first two volumes in
+the EPI (BOLD) data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the data file.</span>
+<span class="kn">import</span> <span class="nn">nipraxis</span>
+<span class="c1"># Fetch image file.</span>
+<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 35, 166)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get the first and second volumes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol0</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">vol1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">vol1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 35)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we get our slices. Here I am getting slice index 17 in z, from the
+first volume:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_vol0</span> <span class="o">=</span> <span class="n">vol0</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff5e7098910&gt;
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_9_1.png" src="_images/optimizing_space_9_1.png" />
+</div>
+</div>
+<p>Here is the corresponding slice from volume 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_vol1</span> <span class="o">=</span> <span class="n">vol1</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff5e4fac3a0&gt;
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_11_1.png" src="_images/optimizing_space_11_1.png" />
+</div>
+</div>
+<p>We might want to match these two slices so they are in the same position. We
+will try and match the slices by moving the voxel values in slice 1 so that
+they are a better match to the voxel values in slice 0. Our job is to find the
+best set of transformations to do this.</p>
+<p>We would like to have some automatic way to calculate these
+transformations.</p>
+<p>The rest of this page is about how this automated method could (and
+does) work.</p>
+<p>At the moment it is hard to see any difference between the two images.
+That is still true even if we put the slices side by side:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol0</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;slice 0&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;slice 1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;slice 1&#39;)
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_13_1.png" src="_images/optimizing_space_13_1.png" />
+</div>
+</div>
+<p>The slices are very similar, because the movement between the two
+volumes is very small - often the movements in an FMRI run are less than
+a single voxel.</p>
+<p>In order to show the automated matching procedure in action, let’s start
+with an image that is obviously badly matched with slice 0. We will do
+this by pushing slice 0 (<code class="docutils literal notranslate"><span class="pre">mid_vol1</span></code>) 8 voxels down.</p>
+<p>After that we will try to match the shifted version
+(<code class="docutils literal notranslate"><span class="pre">shifted_mid_vol1</span></code>) to <code class="docutils literal notranslate"><span class="pre">mid_vol0</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make slice full of zeros like mid_vol1 slice</span>
+<span class="n">shifted_mid_vol1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mid_vol1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># Fill the lower 54 (of 64) x lines with mid_vol1</span>
+<span class="n">shifted_mid_vol1</span><span class="p">[</span><span class="mi">8</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">mid_vol1</span><span class="p">[:</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="p">:]</span>
+<span class="c1"># Now we have something like mid_vol1 but translated</span>
+<span class="c1"># in the first dimension</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff5e4e57820&gt;
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_15_1.png" src="_images/optimizing_space_15_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="formulating-the-matching-problem">
+<h2>Formulating the matching problem<a class="headerlink" href="#formulating-the-matching-problem" title="Permalink to this headline">¶</a></h2>
+<p>Let’s say we did not know how many voxels the image had been translated. We
+want a good way to find out.</p>
+<p>Let’s put our problem in a more concrete form. We are going to try
+translating our <code class="docutils literal notranslate"><span class="pre">shifted_mid_vol1</span></code> over the first (<span class="math notranslate nohighlight">\(x\)</span>) axis.
+Call this translation <span class="math notranslate nohighlight">\(t\)</span>, so a movement of -5 voxels in <span class="math notranslate nohighlight">\(x\)</span>
+gives <span class="math notranslate nohighlight">\(t=-5\)</span>.</p>
+<p>Call the first image <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> (<code class="docutils literal notranslate"><span class="pre">mid_vol0</span></code> in our case). Call
+the second image <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> (<code class="docutils literal notranslate"><span class="pre">shifted_mid_vol1</span></code> in our case).
+<span class="math notranslate nohighlight">\(\mathbf{Y}_t\)</span> is <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> translated in <span class="math notranslate nohighlight">\(x\)</span> by
+<span class="math notranslate nohighlight">\(t\)</span> voxels.</p>
+<p><span class="math notranslate nohighlight">\(t\)</span> is a good translation if the image <span class="math notranslate nohighlight">\(\mathbf{Y}_t\)</span> is a
+good match for image <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>.</p>
+<p>We need to quantify what we mean by good match. That is, we need some measure
+of quality of match, given two images <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and
+<span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>. Call this measure <span class="math notranslate nohighlight">\(M(\mathbf{X}, \mathbf{Y})\)</span>, and
+let us specify that the value of <span class="math notranslate nohighlight">\(M(\mathbf{X}, \mathbf{Y})\)</span> should be
+lower when the images match well. We could therefore call <span class="math notranslate nohighlight">\(M(\mathbf{X},
+\mathbf{Y})\)</span> a <em>mismatch</em> function.</p>
+<p>Now we can formulate our problem - we want to find the translation <span class="math notranslate nohighlight">\(t\)</span>
+that gives the lowest value of <span class="math notranslate nohighlight">\(M(\mathbf{X}, \mathbf{Y_t})\)</span>. We can
+express this as:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{t} = \mathrm{argmin}_t M(\mathbf{X}, \mathbf{Y_t})
+\]</div>
+<p>Read this as “the desired translation value <span class="math notranslate nohighlight">\(\hat{t}\)</span> is the value of <span class="math notranslate nohighlight">\(t\)</span> such
+that <span class="math notranslate nohighlight">\(M(\mathbf{X}, \mathbf{Y_t})\)</span> is minimized”.</p>
+<p>Practically, we are going to need the following things:</p>
+<ul class="simple">
+<li><p>a function to generate <span class="math notranslate nohighlight">\(\mathbf{Y_t}\)</span> given <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> and <span class="math notranslate nohighlight">\(t\)</span>. Call this
+the <em>transformation function</em>;</p></li>
+<li><p>a function <span class="math notranslate nohighlight">\(M\)</span> to give the mismatch between two images.  Call this the
+<em>mismatch function</em>.</p></li>
+</ul>
+<p>Here’s the transformation function to generate <span class="math notranslate nohighlight">\(\mathbf{Y_t}\)</span> - the
+image <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> shifted by <span class="math notranslate nohighlight">\(t\)</span> voxels in <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">x_trans_slice</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="n">x_vox_trans</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return copy of `img_slice` translated by `x_vox_trans` voxels</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    img_slice : array shape (M, N)</span>
+<span class="sd">        2D image to transform with translation `x_vox_trans`</span>
+<span class="sd">    x_vox_trans : int</span>
+<span class="sd">        Number of pixels (voxels) to translate `img_slice`; can be</span>
+<span class="sd">        positive or negative.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    img_slice_transformed : array shape (M, N)</span>
+<span class="sd">        2D image translated by `x_vox_trans` pixels (voxels).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Make a 0-filled array of same shape as `img_slice`</span>
+    <span class="n">trans_slice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">img_slice</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># Use slicing to select voxels out of the image and move them</span>
+    <span class="c1"># up or down on the first (x) axis</span>
+    <span class="k">if</span> <span class="n">x_vox_trans</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">trans_slice</span><span class="p">[:</span><span class="n">x_vox_trans</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_slice</span><span class="p">[</span><span class="o">-</span><span class="n">x_vox_trans</span><span class="p">:,</span> <span class="p">:]</span>
+    <span class="k">elif</span> <span class="n">x_vox_trans</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">trans_slice</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_slice</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trans_slice</span><span class="p">[</span><span class="n">x_vox_trans</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_slice</span><span class="p">[:</span><span class="o">-</span><span class="n">x_vox_trans</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">trans_slice</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="choosing-a-metric-for-image-mismatch">
+<h2>Choosing a metric for image mismatch<a class="headerlink" href="#choosing-a-metric-for-image-mismatch" title="Permalink to this headline">¶</a></h2>
+<p>Next we need a mismatch function that accepts two images, and returns a scalar
+value that is low when the images are well matched.</p>
+<p>We could imagine a mismatch measure that used the values from subtracting the
+two images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_vol0</span> <span class="o">-</span> <span class="n">shifted_mid_vol1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff5e4e2fd90&gt;
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_19_1.png" src="_images/optimizing_space_19_1.png" />
+</div>
+</div>
+<p>Can we take the sum of this difference as our scalar measure of
+mismatch?</p>
+<p>No, because the negative numbers (black) will cancel out the positive numbers
+(white). We need something better:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean_abs_mismatch</span><span class="p">(</span><span class="n">slice0</span><span class="p">,</span> <span class="n">slice1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Mean absoute difference between images</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">slice0</span> <span class="o">-</span> <span class="n">slice1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can check different values of translation with our mismatch function.
+We move the image up and down for a range of values of <span class="math notranslate nohighlight">\(t\)</span> and
+recalculate the mismatch measure for every candidate translation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mismatches</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">translations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># Candidate values for t</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">translations</span><span class="p">:</span>
+    <span class="c1"># Make the translated image Y_t</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="c1"># Calculate the mismatch</span>
+    <span class="n">mismatch</span> <span class="o">=</span> <span class="n">mean_abs_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="c1"># Store it for later</span>
+    <span class="n">mismatches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mismatch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">translations</span><span class="p">,</span> <span class="n">mismatches</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;translation (t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean absolute difference&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;mean absolute difference&#39;)
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_24_1.png" src="_images/optimizing_space_24_1.png" />
+</div>
+</div>
+<p>We can try other measures of mismatch. Another measure of how well the images
+match might be the correlation of the voxel values at each voxel.  When the
+images are well matched, we expect black values in one image to be matched
+with black in the other, ditto for white.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of voxels in the image</span>
+<span class="n">n_voxels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">mid_vol1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># Reshape vol0 slice as 1D vector</span>
+<span class="n">mid_vol0_as_1d</span> <span class="o">=</span> <span class="n">mid_vol0</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_voxels</span><span class="p">)</span>
+<span class="c1"># Reshape vol1 slice as 1D vector</span>
+<span class="n">mid_vol1_as_1d</span> <span class="o">=</span> <span class="n">mid_vol1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_voxels</span><span class="p">)</span>
+<span class="c1"># These original slices should be very close to each other already</span>
+<span class="c1"># So - plotting one set of image values against the other should</span>
+<span class="c1"># be close to a straight line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mid_vol0_as_1d</span><span class="p">,</span> <span class="n">mid_vol1_as_1d</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;voxels in vol0 slice&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;voxels in original vol1 slice&#39;</span><span class="p">)</span>
+<span class="c1"># Correlation coefficient between them</span>
+<span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">mid_vol0_as_1d</span><span class="p">,</span> <span class="n">mid_vol1_as_1d</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9981194331127773
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_26_1.png" src="_images/optimizing_space_26_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The shifted slice will be less well matched</span>
+<span class="c1"># Therefore the line will be less straight and narrow</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mid_vol0_as_1d</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;voxels in vol0 slice&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;voxels in shifted vol1 slice&#39;</span><span class="p">)</span>
+<span class="c1"># Correlation coefficient between them will be nearer 0</span>
+<span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">mid_vol0_as_1d</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4462869363826718
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_27_1.png" src="_images/optimizing_space_27_1.png" />
+</div>
+</div>
+<p>We expect that the correlation will be high and positive when the images are
+well matched. Our <em>mismatch measure</em>, on the other hand, should be <em>low</em> when
+the images are well-matched. So, we can use the negative correlation as our
+mismatch measure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">correl_mismatch</span><span class="p">(</span><span class="n">slice0</span><span class="p">,</span> <span class="n">slice1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Negative correlation between the two images, flattened to 1D &quot;&quot;&quot;</span>
+    <span class="n">correl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">slice0</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">slice1</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">correl</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correl_mismatches</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">translations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># Candidate values for t</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">translations</span><span class="p">:</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">mismatch</span> <span class="o">=</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">correl_mismatches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mismatch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">translations</span><span class="p">,</span> <span class="n">correl_mismatches</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;translation (t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;correlation mismatch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;correlation mismatch&#39;)
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_31_1.png" src="_images/optimizing_space_31_1.png" />
+</div>
+</div>
+<p>So far we have only tried translations of integer numbers of voxels (0,
+1, 2, 3…).</p>
+<p>How about non-integer translations? Will these work?</p>
+<p>To do a non-integer translation, we have to think more generally about
+how to make an image that matches another image, after a transformation.</p>
+</div>
+<div class="section" id="resampling-in-2d">
+<h2>Resampling in 2D<a class="headerlink" href="#resampling-in-2d" title="Permalink to this headline">¶</a></h2>
+<p>We need a more general resampling algorithm. This is like the <a class="reference external" href="https://matthew-brett.github.io/teaching/linear_interpolation.html">1D
+interpolation</a>
+we do for <a class="reference external" href="https://matthew-brett.github.io/teaching/slice_timing.html">Slice timing
+correction</a>, but
+in two dimensions.</p>
+<p>Let’s say we want to do a voxel translation of 0.5 voxels in x. The way we
+might go about this is the following.</p>
+<p>To start, here are some names:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">img0</span></code> is the image we are trying to match to (in our case
+<code class="docutils literal notranslate"><span class="pre">mid_vol0</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">img1</span></code> is the image we are trying to match by moving (in our case
+<code class="docutils literal notranslate"><span class="pre">shifted_mid_vol1</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trans</span></code> is the transformation from pixel coordinates in <code class="docutils literal notranslate"><span class="pre">img1</span></code> to
+pixel coordinates in <code class="docutils literal notranslate"><span class="pre">img0</span></code> (in our case adding 0.5 to the first
+coordinate value, so that [0, 0] becomes [0.5, 0]);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itrans</span></code> is the inverse of <code class="docutils literal notranslate"><span class="pre">trans</span></code>, and gives the transformation
+to go from pixel coordinates in <code class="docutils literal notranslate"><span class="pre">img0</span></code> to pixel coordinates in
+<code class="docutils literal notranslate"><span class="pre">img1</span></code>. In our case this is <em>subtracting</em> 0.5 from the first
+coordinate value.</p></li>
+</ul>
+<p>The procedure for resampling is:</p>
+<ul class="simple">
+<li><p>Make a 2D image the same shape as the image we want to match to
+(<code class="docutils literal notranslate"><span class="pre">img0</span></code>) - call this <code class="docutils literal notranslate"><span class="pre">new_img0</span></code>;</p></li>
+<li><p>For each pixel in <code class="docutils literal notranslate"><span class="pre">new_img0</span></code>;</p>
+<ul>
+<li><p>call the pixel coordinate for this pixel: <code class="docutils literal notranslate"><span class="pre">coord_for_img0</span></code>;</p></li>
+<li><p>transform <code class="docutils literal notranslate"><span class="pre">coord_for_img0</span></code> using <code class="docutils literal notranslate"><span class="pre">itrans</span></code>. In our case this
+would be to subtract 0.5 from the first coordinate value ([0, 0]
+becomes [-0.5, 0]). Call the transformed coordinate
+<code class="docutils literal notranslate"><span class="pre">coord_for_img1</span></code>;</p></li>
+<li><p>Estimate the pixel value in <code class="docutils literal notranslate"><span class="pre">img1</span></code> at coordinate
+<code class="docutils literal notranslate"><span class="pre">coord_for_img1</span></code>. Call this value <code class="docutils literal notranslate"><span class="pre">img1_value_estimate</span></code>;</p></li>
+<li><p>Insert <code class="docutils literal notranslate"><span class="pre">img1_value</span></code> into <code class="docutils literal notranslate"><span class="pre">new_img0</span></code> at coordinate
+<code class="docutils literal notranslate"><span class="pre">coord_for_img0</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>The “Estimate pixel value” step is called <em>resampling</em>. As you can see this is
+the same general idea as <a class="reference external" href="https://matthew-brett.github.io/teaching/linear_interpolation.html">interpolating in one
+dimension</a>.
+We saw one dimensional interpolation for <a class="reference external" href="https://matthew-brett.github.io/teaching/slice_timing.html">Slice timing
+correction</a>.
+There are various ways of interpolating in two or three dimensions, but one of
+the most obvious is the simple extension of linear interpolation to two (or
+more) dimensions - <a class="reference external" href="http://en.wikipedia.org/wiki/Bilinear_interpolation">bilinear
+interpolation</a>.</p>
+<p>The <a class="reference internal" href="resampling_with_ndimage.html"><span class="doc std std-doc">scipy.ndimage</span></a> library has routines for
+resampling in 2 or 3 dimensions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">snd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In fact the <code class="docutils literal notranslate"><span class="pre">affine_transform</span></code> function from <code class="docutils literal notranslate"><span class="pre">scipy.ndimage</span></code> will do
+the whole process for us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fancy_x_trans_slice</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="n">x_vox_trans</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return copy of `img_slice` translated by `x_vox_trans` voxels</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    img_slice : array shape (M, N)</span>
+<span class="sd">        2D image to transform with translation `x_vox_trans`</span>
+<span class="sd">    x_vox_trans : float</span>
+<span class="sd">        Number of pixels (voxels) to translate `img_slice`; can be</span>
+<span class="sd">        positive or negative, and does not need to be integer value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Resample image using bilinear interpolation (order=1)</span>
+    <span class="n">trans_slice</span> <span class="o">=</span> <span class="n">snd</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">x_vox_trans</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trans_slice</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fine_mismatches</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">fine_translations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">fine_translations</span><span class="p">:</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">mismatch</span> <span class="o">=</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">fine_mismatches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mismatch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.12/x64/lib/python3.9/site-packages/scipy/ndimage/_interpolation.py:603: UserWarning: The behavior of affine_transform with a 1-D array supplied for the matrix parameter has changed in SciPy 0.18.0.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fine_translations</span><span class="p">,</span> <span class="n">fine_mismatches</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff5d38a2a00&gt;]
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_38_1.png" src="_images/optimizing_space_38_1.png" />
+</div>
+</div>
+<p>We are looking for the best x translation. At the moment we have to sample
+lots of x translations and then choose the best. Is there a better way?</p>
+</div>
+<div class="section" id="optimization">
+<h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Mathematical_optimization">Optimization</a> is a
+field of mathematics / computer science that solves this exact problem.</p>
+<p>There are many optimization routines in Python, MATLAB and other languages.
+These routines typically allow you to pass some function, called the
+<em>objective</em> function, or the <em>cost</em> function. The optimization routine returns
+the parameters of the cost function that give the lowest value.</p>
+<p>In our case, the cost function we need to minimize will accept one parameter
+(the translation), and return the mismatch value for that translation. So, it
+will need to create the image <span class="math notranslate nohighlight">\(\mathbf{X_t}\)</span> and return
+<span class="math notranslate nohighlight">\(M(\mathbf{X}, \mathbf{Y_t})\)</span>.</p>
+<p>What does it mean to “pass” a function in Python. Remember that, in Python,
+<a class="reference external" href="https://matthew-brett.github.io/teaching/functions_are_objects.html">Functions are
+objects</a>
+like any other.</p>
+<p>The optimization works by running the cost function at some starting value of
+the parameter (in our case, x translation), and using an algorithm to choose
+the next value of the parameter to try. It continues trying new values until
+it finds a parameter value for which very small changes of the parameter up or
+down only increase the cost function value. At this point the routine stops
+and returns the parameter value.</p>
+<p>To write the cost function, we use the fact that Python functions can access
+variables defined in the <a class="reference external" href="https://matthew-brett.github.io/teaching/global_scope.html">Global and local scope of Python
+variables</a>. In our
+case the function <code class="docutils literal notranslate"><span class="pre">cost_function</span></code> can access variables <code class="docutils literal notranslate"><span class="pre">shifted_mid_vol1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">mid_vol0</span></code> that we defined in the top level (global) scope of our interactive
+session:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x_trans</span><span class="p">):</span>
+    <span class="c1"># Function can use image slices defined in the global scope</span>
+    <span class="c1"># Calculate X_t - image translated by x_trans</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
+    <span class="c1"># Return mismatch measure for the translated image X_t</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Value of the negative correlation for no translation.</span>
+<span class="n">cost_function</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.44628693638267175
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Value of the negative correlation for translation of -8 voxels.</span>
+<span class="n">cost_function</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.9970308073523466
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we get a general optimizing routine from the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> Python
+library. <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> finds the minimum of a function using <a class="reference external" href="https://en.wikipedia.org/wiki/Powell%27s_method">Powell’s
+method</a> of numerical
+optimization:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin_powell</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We pass the <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> routine our Python cost function, and a
+starting value of zero for the translation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -0.997032
+         Iterations: 2
+         Function evaluations: 27
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-7.996])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function ran, and found that a translation value very close to -8 gave the
+smallest value for our cost function.</p>
+<p>What actually happened there? Let’s track the progress of <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code>
+using a callback function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_callback</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trying parameters &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> calls this <code class="docutils literal notranslate"><span class="pre">my_callback</span></code> function when it is testing a new
+set of parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+<span class="n">best_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trying parameters [-7.995]
+Trying parameters [-7.996]
+Optimization terminated successfully.
+         Current function value: -0.997032
+         Iterations: 2
+         Function evaluations: 27
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-7.996])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The optimization routine <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> is trying various different
+translations, finally coming to the optimum (minimum) translation close to -8.</p>
+</div>
+<div class="section" id="more-than-one-parameter">
+<h2>More than one parameter<a class="headerlink" href="#more-than-one-parameter" title="Permalink to this headline">¶</a></h2>
+<p>How about adding y translation as well?</p>
+<p>Our optimization routine could deal with this in a very simple way - by
+optimizing the x translation, then the y translation, like this:</p>
+<ul class="simple">
+<li><p>Adjust the x translation until it has reached a minimum, then;</p></li>
+<li><p>Adjust the y translation until it has reached a minimum, then;</p></li>
+<li><p>Repeat x, y minimization until the minimum for both is stable.</p></li>
+</ul>
+<p>Although we could do that, in fact <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> does something slightly
+more complicated when looking for the next best set of parameters to try. The
+details aren’t important to the general idea of searching over different
+parameter values to find the lowest value for the cost function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fancy_xy_trans_slice</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="n">x_y_trans</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Make a copy of `img_slice` translated by `x_y_trans` voxels</span>
+
+<span class="sd">    x_y_trans is a sequence or array length 2, containing</span>
+<span class="sd">    the (x, y) translations in voxels.</span>
+
+<span class="sd">    Values in `x_y_trans` can be positive or negative, and</span>
+<span class="sd">    can be floats.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_y_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_y_trans</span><span class="p">)</span>
+    <span class="c1"># Resample image using bilinear interpolation (order=1)</span>
+    <span class="n">trans_slice</span> <span class="o">=</span> <span class="n">snd</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">img_slice</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">x_y_trans</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trans_slice</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fancy_cost_at_xy</span><span class="p">(</span><span class="n">x_y_trans</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Give cost function at xy translation values `x_y_trans`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_xy_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">x_y_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do the optimization of <code class="docutils literal notranslate"><span class="pre">fancy_cost_at_xy</span></code> using <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">fancy_cost_at_xy</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+<span class="n">best_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trying parameters [-7.995  0.   ]
+Trying parameters [-7.996  0.   ]
+Optimization terminated successfully.
+         Current function value: -0.997032
+         Iterations: 2
+         Function evaluations: 133
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-7.996,  0.   ])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>: You probably noticed that <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> appears to be sticking to
+the right answer for y translation (0), without printing out any evidence that
+it is trying other y values. This is because of the way that the Powell
+optimization works - it is in effect doing separate 1-parameter minimizations
+in order to get the final 2-parameter minimization, and it is not reporting
+the intermediate steps in the 1-parameter minimizations.</p>
+</div>
+<div class="section" id="full-3d-estimate">
+<h2>Full 3D estimate<a class="headerlink" href="#full-3d-estimate" title="Permalink to this headline">¶</a></h2>
+<p>Now we know how to do two parameters, it is easy to extend this to six
+parameters.</p>
+<p>The six parameters are:</p>
+<ul class="simple">
+<li><p>x translation</p></li>
+<li><p>y translation</p></li>
+<li><p>z translation</p></li>
+<li><p>rotation around x axis (pitch)</p></li>
+<li><p>rotation around y axis (roll)</p></li>
+<li><p>rotation around z axis (yaw)</p></li>
+</ul>
+<p>Any transformation with these parameters is called a <em>rigid body</em>
+transformation because the transformation cannot make the object change shape
+(the object is <em>rigid</em>).</p>
+<p>Implementing the rotations is just slightly out of scope for this tutorial (we
+would have to convert between angles and <a class="reference external" href="https://en.wikipedia.org/wiki/Rotation_matrix">rotation
+matrices</a>), so here is the 3D
+optimization with the three translation parameters:</p>
+<p>To make it a bit more interesting, shift the second volume 8 voxels on
+the first axis, as we did for the 2D case. We will also push the image 5
+voxels forward on the second axis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shifted_vol1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">vol1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">shifted_vol1</span><span class="p">[</span><span class="mi">8</span><span class="p">:,</span> <span class="mi">5</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vol1</span><span class="p">[:</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">shifted_vol1</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff5d2cb7730&gt;
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_60_1.png" src="_images/optimizing_space_60_1.png" />
+</div>
+</div>
+<p>We define resampling for any given x, y, z translation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">xyz_trans_vol</span><span class="p">(</span><span class="n">vol</span><span class="p">,</span> <span class="n">x_y_z_trans</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Make a new copy of `vol` translated by `x_y_z_trans` voxels</span>
+
+<span class="sd">    x_y_z_trans is a sequence or array length 3, containing</span>
+<span class="sd">    the (x, y, z) translations in voxels.</span>
+
+<span class="sd">    Values in `x_y_z_trans` can be positive or negative,</span>
+<span class="sd">    and can be floats.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_y_z_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_y_z_trans</span><span class="p">)</span>
+    <span class="c1"># [1, 1, 1] says to do no zooming or rotation</span>
+    <span class="c1"># Resample image using trilinear interpolation (order=1)</span>
+    <span class="n">trans_vol</span> <span class="o">=</span> <span class="n">snd</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">vol</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">x_y_z_trans</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trans_vol</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our cost function (picking up <code class="docutils literal notranslate"><span class="pre">vol0</span></code>, <code class="docutils literal notranslate"><span class="pre">shifted_vol1</span></code> from the global
+scope):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_at_xyz</span><span class="p">(</span><span class="n">x_y_z_trans</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Give cost function value at xyz translation values `x_y_z_trans`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">xyz_trans_vol</span><span class="p">(</span><span class="n">shifted_vol1</span><span class="p">,</span> <span class="n">x_y_z_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">vol0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do the optimization of <code class="docutils literal notranslate"><span class="pre">cost_at_xyz</span></code> using <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_at_xyz</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+<span class="n">best_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trying parameters [-7.5722 -4.9661  0.    ]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trying parameters [-7.9968 -4.9997  0.    ]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trying parameters [-8. -5.  0.]
+Optimization terminated successfully.
+         Current function value: -0.995145
+         Iterations: 3
+         Function evaluations: 270
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-8., -5.,  0.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we make a new volume from <code class="docutils literal notranslate"><span class="pre">shifted_vol1</span></code> with these
+transformations applied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unshifted_vol1</span> <span class="o">=</span> <span class="n">snd</span><span class="o">.</span><span class="n">affine_transform</span><span class="p">(</span><span class="n">shifted_vol1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">best_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">vol0</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;vol0&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">unshifted_vol1</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;unshifted vol1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;unshifted vol1&#39;)
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_69_1.png" src="_images/optimizing_space_69_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="getting-stuck-in-the-wrong-place">
+<h2>Getting stuck in the wrong place<a class="headerlink" href="#getting-stuck-in-the-wrong-place" title="Permalink to this headline">¶</a></h2>
+<p>So far, all our cost function plots are simple, in the sense that they
+have one single obvious minimum. For example, here is a repeat of our
+earlier plot of the negative correlation value, as a function of
+translation in x, for the shifted single slice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correl_mismatches</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">translations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># Candidate values for t</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">translations</span><span class="p">:</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">mismatch</span> <span class="o">=</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">correl_mismatches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mismatch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">translations</span><span class="p">,</span> <span class="n">correl_mismatches</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cost as a function of $t$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Cost as a function of $t$&#39;)
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_72_1.png" src="_images/optimizing_space_72_1.png" />
+</div>
+</div>
+<p>Notice the nice single minimum at around <span class="math notranslate nohighlight">\(t=-8\)</span>.</p>
+<p>Unfortunately, many cost functions don’t have one single minimum, but
+several. In fact this is so even for our simple correlation measure, if
+we look at larger translations (values of <span class="math notranslate nohighlight">\(t\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correl_mismatches</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">translations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># Candidate values for t</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">translations</span><span class="p">:</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">mismatch</span> <span class="o">=</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">correl_mismatches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mismatch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">translations</span><span class="p">,</span> <span class="n">correl_mismatches</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cost as a function of more $t$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Cost as a function of more $t$&#39;)
+</pre></div>
+</div>
+<img alt="_images/optimizing_space_75_1.png" src="_images/optimizing_space_75_1.png" />
+</div>
+</div>
+<p>Remember that a minimum is a value for which the values to the left and
+right are higher. So, the -8 value of <span class="math notranslate nohighlight">\(t\)</span> is a minimum (with a negative
+correlation value of -1), but the value at around <span class="math notranslate nohighlight">\(t=44\)</span> is also a
+minimum, with a negative correlation value of around 0.2. The value at
+<span class="math notranslate nohighlight">\(t=-8\)</span> is a <em>global minimum</em> in the sense that it is the minimum with
+the lowest cost value across all values of <span class="math notranslate nohighlight">\(t\)</span>. The value at around
+<span class="math notranslate nohighlight">\(t=44\)</span> is a <em>local minimum</em>.</p>
+<p>In general, our optimization routines are only able to guarantee that they
+have found a local minimum. So, if we start our search in the wrong place,
+then the optimization routine may well find the wrong minimum.</p>
+<p>Here is our original 1 parameter cost function (it is the same as the version
+above):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x_trans</span><span class="p">):</span>
+    <span class="c1"># Function can use image slices defined in the</span>
+    <span class="c1"># global Python scope.</span>
+    <span class="c1"># Calculate X_t - image translated by x_trans</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
+    <span class="c1"># Return mismatch measure for the translated image X_t</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we minimize this cost function with <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code>, but starting
+nearer the local minimum:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">35</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.241603
+         Iterations: 2
+         Function evaluations: 55
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([43.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we took a very bad starting value, but we would run the same risk
+if the images started off much further apart and we gave a starting
+value of 0.</p>
+<p>One major part of using optimization, is being aware that it is possible
+for the optimization to find a “best” value that is a local rather than
+a global minimum. The art of optimization is finding a minimization
+algorithm and mismatch metric that are well-adapted to the particular
+problem.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "nipraxis/textbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="slice_timing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Slice timing correction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="diagonal_zooms.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Encoding zooms (scaling) with a diagonal matrix</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The nipraxis team<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

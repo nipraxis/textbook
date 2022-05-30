@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Methods vs functions in NumPy" href="methods_vs_functions.html" />
+    <link rel="next" title="Notes on the Bonferroni threshold" href="bonferroni_correction.html" />
     <link rel="prev" title="Using onsets that do not start on a TR" href="non_tr_onsets.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -340,75 +340,28 @@ const thebe_selector_output = ".output, .cell_output"
    Whole-brain t tests and p values
   </a>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Arrays and plots
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="methods_vs_functions.html">
-   Methods vs functions in NumPy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="allclose.html">
-   Testing for near equality with “allclose”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arange.html">
-   NumPy arange
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on Boolean arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dot_outer.html">
-   Vector and matrix dot products, “np.outer”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="newaxis.html">
-   Adding length 1 dimensions with newaxis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="array_reductions.html">
-   Array reduction operations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Numpy random number generators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subtract_means.html">
-   Subtracting the mean from columns or rows
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_lines.html">
-   Plotting lines in matplotlib
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subplots.html">
-   Subplots and axes in matplotlib
+  <a class="reference internal" href="bonferroni_correction.html">
+   Notes on the Bonferroni threshold
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Coordinate systems and spatial transforms
+  Spatial processing
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slice_timing.html">
+   Slice timing correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizing_space.html">
+   Calculating transformations between images
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="diagonal_zooms.html">
    Encoding zooms (scaling) with a diagonal matrix
@@ -478,6 +431,68 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="anterior_cingulate.html">
    Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes on arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   NumPy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Numpy random number generators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
   </a>
  </li>
 </ul>
@@ -679,7 +694,7 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f677a7e3640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff1d4299670&gt;]
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_3_1.png" src="_images/whole_image_statistics_3_1.png" />
@@ -722,7 +737,7 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f67787002b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff1d41b4490&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_9_1.png" src="_images/whole_image_statistics_9_1.png" />
@@ -912,7 +927,7 @@ the t statistic, one for each voxel:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5267/4169539846.py:1: RuntimeWarning: invalid value encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5451/4169539846.py:1: RuntimeWarning: invalid value encountered in true_divide
   t = top_of_t / np.sqrt(sigma_2 * c_b_cov)
 </pre></div>
 </div>
@@ -935,7 +950,7 @@ statistic back into the correct voxel position:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6778679dc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff1d412cd30&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_32_2.png" src="_images/whole_image_statistics_32_2.png" />
@@ -952,7 +967,7 @@ the numerator and denominator of the t statistic are both 0.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5267/2135315712.py:1: RuntimeWarning: invalid value encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5451/2135315712.py:1: RuntimeWarning: invalid value encountered in true_divide
   np.array(0) / 0
 </pre></div>
 </div>
@@ -994,8 +1009,8 @@ brain?</p>
 </div>
 <div class="section" id="analysis-on-voxels-within-the-brain">
 <h2>Analysis on voxels within the brain<a class="headerlink" href="#analysis-on-voxels-within-the-brain" title="Permalink to this headline">¶</a></h2>
-<p>Here we make a mask of the voxels within the brain using <a class="reference external" href="https://en.wikipedia.org/wiki/Otsu%27s_method">Otsu’s
-method</a>.  You will need
+<p>Here we make a mask of the voxels within the brain using <a class="reference internal" href="otsu_threshold.html"><span class="doc std std-doc">Otsu’s
+method</span></a>.  You will need
 <a class="reference external" href="http://scikit-image.org/">scikit-image</a> installed for this to work:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1128,7 +1143,7 @@ mask as an index on the left hand side:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6778607fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff1cdfd3040&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_53_1.png" src="_images/whole_image_statistics_53_1.png" />
@@ -1151,7 +1166,7 @@ mask as an index on the left hand side:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21604,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f67785ff310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff1cdfbb340&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_55_2.png" src="_images/whole_image_statistics_55_2.png" />
@@ -1189,7 +1204,7 @@ surviving correction have True, other voxels have False:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f67465396d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff19bf16d30&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_59_1.png" src="_images/whole_image_statistics_59_1.png" />
@@ -1211,7 +1226,7 @@ tests are independent:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.31438622477319e-06
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f677855c970&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ff1cdf1b9a0&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_61_2.png" src="_images/whole_image_statistics_61_2.png" />
@@ -1252,10 +1267,10 @@ tests are independent:</p>
             <p class="prev-next-title">Using onsets that do not start on a TR</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="methods_vs_functions.html" title="next page">
+    <a class='right-next' id="next-link" href="bonferroni_correction.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Methods vs functions in NumPy</p>
+        <p class="prev-next-title">Notes on the Bonferroni threshold</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

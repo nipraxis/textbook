@@ -338,75 +338,28 @@ const thebe_selector_output = ".output, .cell_output"
    Whole-brain t tests and p values
   </a>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Arrays and plots
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="methods_vs_functions.html">
-   Methods vs functions in NumPy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="allclose.html">
-   Testing for near equality with “allclose”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arange.html">
-   NumPy arange
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on Boolean arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dot_outer.html">
-   Vector and matrix dot products, “np.outer”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="newaxis.html">
-   Adding length 1 dimensions with newaxis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="array_reductions.html">
-   Array reduction operations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Numpy random number generators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subtract_means.html">
-   Subtracting the mean from columns or rows
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_lines.html">
-   Plotting lines in matplotlib
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subplots.html">
-   Subplots and axes in matplotlib
+  <a class="reference internal" href="bonferroni_correction.html">
+   Notes on the Bonferroni threshold
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Coordinate systems and spatial transforms
+  Spatial processing
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="slice_timing.html">
+   Slice timing correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizing_space.html">
+   Calculating transformations between images
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="diagonal_zooms.html">
    Encoding zooms (scaling) with a diagonal matrix
@@ -476,6 +429,68 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="anterior_cingulate.html">
    Anterior cingulate
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes on arrays and plots
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods_vs_functions.html">
+   Methods vs functions in NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="allclose.html">
+   Testing for near equality with “allclose”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arange.html">
+   NumPy arange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_logical.html">
+   Logical operations on Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
+   Vector and matrix dot products, “np.outer”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="newaxis.html">
+   Adding length 1 dimensions with newaxis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="array_reductions.html">
+   Array reduction operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_random.html">
+   Numpy random number generators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtract_means.html">
+   Subtracting the mean from columns or rows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_lines.html">
+   Plotting lines in matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subplots.html">
+   Subplots and axes in matplotlib
   </a>
  </li>
 </ul>
@@ -665,8 +680,8 @@ make sure you are running a <strong>Powershell</strong> shell, not the much olde
 </div>
 <p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c0d07892-b5fb-4db8-9777-0206054132ba" name="6f3144a2-f8a3-4543-a40f-1d525157219d" type="radio">
-</input><label class="tabbed-label" for="c0d07892-b5fb-4db8-9777-0206054132ba">
+<input checked="checked" id="b8c78987-426b-49c8-9c2b-632efdaac588" name="92e39357-d1e8-4bbe-a4a1-e5b22f9f22d1" type="radio">
+</input><label class="tabbed-label" for="b8c78987-426b-49c8-9c2b-632efdaac588">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
 <span class="o">----</span>
@@ -674,15 +689,15 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9d0897f7-4f1d-4a5f-938c-4e97b59aa168" name="6f3144a2-f8a3-4543-a40f-1d525157219d" type="radio">
-</input><label class="tabbed-label" for="9d0897f7-4f1d-4a5f-938c-4e97b59aa168">
+<input id="a3b046dc-2e16-469e-91d0-b5cff90e13fe" name="92e39357-d1e8-4bbe-a4a1-e5b22f9f22d1" type="radio">
+</input><label class="tabbed-label" for="a3b046dc-2e16-469e-91d0-b5cff90e13fe">
 Mac</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
 </div>
 </div>
-<input id="0b216bb5-c23f-468c-bb49-616303fe1670" name="6f3144a2-f8a3-4543-a40f-1d525157219d" type="radio">
-</input><label class="tabbed-label" for="0b216bb5-c23f-468c-bb49-616303fe1670">
+<input id="f3ed205e-e4b3-4bb6-bc00-92f9e440b6b1" name="92e39357-d1e8-4bbe-a4a1-e5b22f9f22d1" type="radio">
+</input><label class="tabbed-label" for="f3ed205e-e4b3-4bb6-bc00-92f9e440b6b1">
 Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
@@ -729,8 +744,8 @@ computer.   Note where the file went.  For example, you might have downloaded th
 </div>
 <p>from your terminal.  You should see something like:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="65ef2d74-c0da-403d-a584-a5957ec3a7ab" name="74833f55-3a0c-4df3-bb6d-c04ad9aade05" type="radio">
-</input><label class="tabbed-label" for="65ef2d74-c0da-403d-a584-a5957ec3a7ab">
+<input checked="checked" id="cb7364bf-f9a0-4d14-8890-f80337cfa900" name="134dac89-12bf-4cf4-90be-7cdfae505e72" type="radio">
+</input><label class="tabbed-label" for="cb7364bf-f9a0-4d14-8890-f80337cfa900">
 Windows Powershell</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 
@@ -741,8 +756,8 @@ Windows Powershell</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="166b0762-3633-4e50-b8ec-6030537c6730" name="74833f55-3a0c-4df3-bb6d-c04ad9aade05" type="radio">
-</input><label class="tabbed-label" for="166b0762-3633-4e50-b8ec-6030537c6730">
+<input id="d9c7f680-2f8f-405b-bf47-4a688660bc4d" name="134dac89-12bf-4cf4-90be-7cdfae505e72" type="radio">
+</input><label class="tabbed-label" for="d9c7f680-2f8f-405b-bf47-4a688660bc4d">
 Mac or Linux</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
 </pre></div>

@@ -16,6 +16,9 @@ jupyter:
 
 # Hypothesis testing with the general linear model
 
+**Note**: This page has some relatively advanced mathematics. You do not need
+to fully understand this mathematics to follow this course.
+
 ## General linear model reprise
 
 This page starts at the same place as [introduction to the general linear model](glm_intro.Rmd).
