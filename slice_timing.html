@@ -730,6 +730,7 @@ to the start of the TR.</p>
 <p>The scanner acquired the slices in interleaved order, first acquiring slice
 index 0, 2, 4, … 14 (where 0 is the bottom slice) then acquiring slices 1, 3,
 5, .. 15:</p>
+<p><img alt="" src="https://matthew-brett.github.io/teaching/_images/slice_timing-6.png" /></p>
 <p>So the scanner collected the bottom slice, at slice index 0, at the beginning
 of the TR, but it collected the next slice in space, at slice index 1, half
 way through the TR.  Let’s say the TR == 2.0.  The time that the scanner takes
@@ -812,13 +813,49 @@ the slice above it (slice 1):</p>
 </div>
 </div>
 </div>
-<p>The times of acquisition of the voxels for slice 0 are at the beginning of
-each TR:</p>
+<p>The times of acquisition of the voxels for slice 0 are at the beginning of each
+TR:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol_nos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">vol_onset_times</span> <span class="o">=</span> <span class="n">vol_nos</span> <span class="o">*</span> <span class="n">TR</span>
-<span class="n">times_slice_0</span> <span class="o">=</span> <span class="n">vol_onset_times</span>
+<span class="n">vol_onset_times</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   2.,   4.,   6.,   8.,  10.,  12.,  14.,  16.,  18.,  20.,
+        22.,  24.,  26.,  28.,  30.,  32.,  34.,  36.,  38.,  40.,  42.,
+        44.,  46.,  48.,  50.,  52.,  54.,  56.,  58.,  60.,  62.,  64.,
+        66.,  68.,  70.,  72.,  74.,  76.,  78.,  80.,  82.,  84.,  86.,
+        88.,  90.,  92.,  94.,  96.,  98., 100., 102., 104., 106., 108.,
+       110., 112., 114., 116., 118., 120., 122., 124., 126., 128., 130.,
+       132., 134., 136., 138., 140., 142., 144., 146., 148., 150., 152.,
+       154., 156., 158., 160., 162., 164., 166., 168., 170., 172., 174.,
+       176., 178., 180., 182., 184., 186., 188., 190., 192., 194., 196.,
+       198.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times_slice_0</span> <span class="o">=</span> <span class="n">vol_onset_times</span>
+<span class="n">times_slice_0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   2.,   4.,   6.,   8.,  10.,  12.,  14.,  16.,  18.,  20.,
+        22.,  24.,  26.,  28.,  30.,  32.,  34.,  36.,  38.,  40.,  42.,
+        44.,  46.,  48.,  50.,  52.,  54.,  56.,  58.,  60.,  62.,  64.,
+        66.,  68.,  70.,  72.,  74.,  76.,  78.,  80.,  82.,  84.,  86.,
+        88.,  90.,  92.,  94.,  96.,  98., 100., 102., 104., 106., 108.,
+       110., 112., 114., 116., 118., 120., 122., 124., 126., 128., 130.,
+       132., 134., 136., 138., 140., 142., 144., 146., 148., 150., 152.,
+       154., 156., 158., 160., 162., 164., 166., 168., 170., 172., 174.,
+       176., 178., 180., 182., 184., 186., 188., 190., 192., 194., 196.,
+       198.])
 </pre></div>
 </div>
 </div>
@@ -827,6 +864,21 @@ each TR:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times_slice_1</span> <span class="o">=</span> <span class="n">vol_onset_times</span> <span class="o">+</span> <span class="n">TR</span> <span class="o">/</span> <span class="mf">2.</span>
+<span class="n">times_slice_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  1.,   3.,   5.,   7.,   9.,  11.,  13.,  15.,  17.,  19.,  21.,
+        23.,  25.,  27.,  29.,  31.,  33.,  35.,  37.,  39.,  41.,  43.,
+        45.,  47.,  49.,  51.,  53.,  55.,  57.,  59.,  61.,  63.,  65.,
+        67.,  69.,  71.,  73.,  75.,  77.,  79.,  81.,  83.,  85.,  87.,
+        89.,  91.,  93.,  95.,  97.,  99., 101., 103., 105., 107., 109.,
+       111., 113., 115., 117., 119., 121., 123., 125., 127., 129., 131.,
+       133., 135., 137., 139., 141., 143., 145., 147., 149., 151., 153.,
+       155., 157., 159., 161., 163., 165., 167., 169., 171., 173., 175.,
+       177., 179., 181., 183., 185., 187., 189., 191., 193., 195., 197.,
+       199.])
 </pre></div>
 </div>
 </div>
@@ -846,7 +898,7 @@ with the slice 1 time course against slice 1 acquisition time:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_27_0.png" src="_images/slice_timing_27_0.png" />
+<img alt="_images/slice_timing_28_0.png" src="_images/slice_timing_28_0.png" />
 </div>
 </div>
 <p>We can’t see the time offset very well here, so let’s plot only the first 10
@@ -864,19 +916,19 @@ values (values for the first 10 volumes):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_29_0.png" src="_images/slice_timing_29_0.png" />
+<img alt="_images/slice_timing_30_0.png" src="_images/slice_timing_30_0.png" />
 </div>
 </div>
-<p>We want to work out a best guess for what the values in slice 1 would be, if
-we collected them at the beginning of the TR — at the same times as the
-values for slice 0.</p>
+<p>We want to work out a best guess for what the values in slice 1 would be, if we
+collected them at the beginning of the TR — at the same times as the values for
+slice 0.</p>
 <p>One easy way to do this, might be to do the following for each of our desired
 samples at times <span class="math notranslate nohighlight">\(t \in 0, 2, 4, ... 198\)</span>:</p>
 <ul class="simple">
-<li><p>draw a vertical line at <span class="math notranslate nohighlight">\(x = t\)</span>;</p></li>
-<li><p>at the point where the line crosses the slice 1 time course, draw a
-horizontal line across to the y axis;</p></li>
-<li><p>take this new y value as our <em>interpolation</em> of the slice 1 course, at time
+<li><p>Draw a vertical line at <span class="math notranslate nohighlight">\(x = t\)</span>.</p></li>
+<li><p>At the point where the line crosses the slice 1 time course, draw a
+horizontal line across to the y axis.</p></li>
+<li><p>Take this new y value as our <em>interpolation</em> of the slice 1 course, at time
 <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
 </ul>
 <p>Here are the vertical lines at the times of slice 0:</p>
@@ -894,7 +946,7 @@ horizontal line across to the y axis;</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_31_0.png" src="_images/slice_timing_31_0.png" />
+<img alt="_images/slice_timing_32_0.png" src="_images/slice_timing_32_0.png" />
 </div>
 </div>
 <p>Now we need to work out where these lines cross the slice 1 time course.</p>
@@ -939,7 +991,7 @@ interpolated values from the slice 1 time course:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_33_0.png" src="_images/slice_timing_33_0.png" />
+<img alt="_images/slice_timing_34_0.png" src="_images/slice_timing_34_0.png" />
 </div>
 </div>
 <p>It is inconvenient to have to do this calculation for every point. We also
@@ -992,7 +1044,7 @@ calculation above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_40_0.png" src="_images/slice_timing_40_0.png" />
+<img alt="_images/slice_timing_41_0.png" src="_images/slice_timing_41_0.png" />
 </div>
 </div>
 <p>So now we can just replace the original values from the red line (values for
@@ -1013,7 +1065,7 @@ series, that has been <em>interpolated</em> from the original:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_42_0.png" src="_images/slice_timing_42_0.png" />
+<img alt="_images/slice_timing_43_0.png" src="_images/slice_timing_43_0.png" />
 </div>
 </div>
 </div>

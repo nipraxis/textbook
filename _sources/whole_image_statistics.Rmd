@@ -86,7 +86,9 @@ $$
 \newcommand{\ehat}{\hat{\evec}}
 \newcommand{\cvec}{\vec{c}}
 \newcommand{\rank}{\textrm{rank}}
+$$
 
+$$
 \yvec = \Xmat \bvec + \evec
 $$
 
@@ -109,7 +111,9 @@ Numerator of t test:
 $$
 \newcommand{\cvec}{\vec{c}}
 \hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2 \\
+$$
 
+$$
 t = \frac{\cvec^T \bhat}
 {\sqrt{\hat{\sigma}^2 \cvec^T (\Xmat^T \Xmat)^+ \cvec}}
 $$
@@ -125,7 +129,12 @@ This selected the second row of the `B` array:
 np.all(top_of_t == B[1, :])
 ```
 
-The denominator of the t statistic:
+The denominator of the t statistic is given by the square root of two components:
+
+* The estimated variance (from the squared residual errors in the data), multplied by
+* The covariance of the design - that depends only on the contrast and the design.
+
+For the variance estimate, we need the *degrees of freedom*.
 
 ```{python}
 df_error = n - npl.matrix_rank(X)
@@ -138,8 +147,14 @@ E = Y - fitted
 E.shape
 ```
 
+The denominator of the t statistic is the square root of the estimated variance, here called `sigma_2`, and the design correction, here called `c_b_cov`:
+
 ```{python}
 sigma_2 = np.sum(E ** 2, axis=0) / df_error
+sigma_2
+```
+
+```{python}
 c_b_cov = c @ npl.pinv(X.T @ X) @ c
 c_b_cov
 ```

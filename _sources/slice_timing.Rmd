@@ -72,6 +72,8 @@ The scanner acquired the slices in interleaved order, first acquiring slice
 index 0, 2, 4, … 14 (where 0 is the bottom slice) then acquiring slices 1, 3,
 5, .. 15:
 
+![](https://matthew-brett.github.io/teaching/_images/slice_timing-6.png)
+
 So the scanner collected the bottom slice, at slice index 0, at the beginning
 of the TR, but it collected the next slice in space, at slice index 1, half
 way through the TR.  Let’s say the TR == 2.0.  The time that the scanner takes
@@ -139,19 +141,25 @@ time_course_slice_0 = data[vox_x, vox_y, 0, :]
 time_course_slice_1 = data[vox_x, vox_y, 1, :]
 ```
 
-The times of acquisition of the voxels for slice 0 are at the beginning of
-each TR:
+The times of acquisition of the voxels for slice 0 are at the beginning of each
+TR:
 
 ```{python}
 vol_nos = np.arange(data.shape[-1])
 vol_onset_times = vol_nos * TR
+vol_onset_times
+```
+
+```{python}
 times_slice_0 = vol_onset_times
+times_slice_0
 ```
 
 The times of acquisition of the voxels in slice 1 are half a TR later:
 
 ```{python}
 times_slice_1 = vol_onset_times + TR / 2.
+times_slice_1
 ```
 
 We can plot the slice 0 time course against slice 0 acquisition time, along
@@ -180,19 +188,17 @@ plt.title('First 10 values for slice 0, slice 1')
 plt.xlabel('time (seconds)');
 ```
 
-We want to work out a best guess for what the values in slice 1 would be, if
-we collected them at the beginning of the TR — at the same times as the
-values for slice 0.
+We want to work out a best guess for what the values in slice 1 would be, if we
+collected them at the beginning of the TR — at the same times as the values for
+slice 0.
 
 One easy way to do this, might be to do the following for each of our desired
 samples at times $t \in 0, 2, 4, ... 198$:
 
-* draw a vertical line at $x = t$;
-
-* at the point where the line crosses the slice 1 time course, draw a
-  horizontal line across to the y axis;
-
-* take this new y value as our *interpolation* of the slice 1 course, at time
+* Draw a vertical line at $x = t$.
+* At the point where the line crosses the slice 1 time course, draw a
+  horizontal line across to the y axis.
+* Take this new y value as our *interpolation* of the slice 1 course, at time
   $t$.
 
 Here are the vertical lines at the times of slice 0:

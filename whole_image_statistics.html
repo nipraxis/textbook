@@ -694,7 +694,7 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7efe7490d640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa5180d85b0&gt;]
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_3_1.png" src="_images/whole_image_statistics_3_1.png" />
@@ -737,7 +737,7 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efe7482a4c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa511fb5c40&gt;
 </pre></div>
 </div>
 <img alt="_images/whole_image_statistics_9_1.png" src="_images/whole_image_statistics_9_1.png" />
@@ -762,7 +762,7 @@ single voxel</span></a>.</p>
 </div>
 <p>Fit the design to the data:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
+\[
 \newcommand{\yvec}{\vec{y}}
 \newcommand{\xvec}{\vec{x}}
 \newcommand{\evec}{\vec{\varepsilon}}
@@ -772,8 +772,12 @@ single voxel</span></a>.</p>
 \newcommand{\yhat}{\hat{\yvec}}
 \newcommand{\ehat}{\hat{\evec}}
 \newcommand{\cvec}{\vec{c}}
-\newcommand{\rank}{\textrm{rank}}\\\yvec = \Xmat \bvec + \evec
-\end{aligned}\end{align} \]</div>
+\newcommand{\rank}{\textrm{rank}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\yvec = \Xmat \bvec + \evec
+\]</div>
 <p>Here we calculate the fit for all the columns in  in one shot - see
 Estimation for many voxels at the same time:</p>
 <div class="cell docutils container">
@@ -799,11 +803,15 @@ Estimation for many voxels at the same time:</p>
 </div>
 <p>Numerator of t test:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}
+\[\begin{split}
 \newcommand{\cvec}{\vec{c}}
-\hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2 \\\end{split}\\t = \frac{\cvec^T \bhat}
+\hat\sigma^2 = \frac{1}{n - \rank(\Xmat)} \sum e_i^2 \\
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+t = \frac{\cvec^T \bhat}
 {\sqrt{\hat{\sigma}^2 \cvec^T (\Xmat^T \Xmat)^+ \cvec}}
-\end{aligned}\end{align} \]</div>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_of_t</span> <span class="o">=</span> <span class="n">c</span> <span class="o">@</span> <span class="n">B</span>
@@ -830,7 +838,12 @@ Estimation for many voxels at the same time:</p>
 </div>
 </div>
 </div>
-<p>The denominator of the t statistic:</p>
+<p>The denominator of the t statistic is given by the square root of two components:</p>
+<ul class="simple">
+<li><p>The estimated variance (from the squared residual errors in the data), multplied by</p></li>
+<li><p>The covariance of the design - that depends only on the contrast and the design.</p></li>
+</ul>
+<p>For the variance estimate, we need the <em>degrees of freedom</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_error</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">npl</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -858,10 +871,23 @@ Estimation for many voxels at the same time:</p>
 </div>
 </div>
 </div>
+<p>The denominator of the t statistic is the square root of the estimated variance, here called <code class="docutils literal notranslate"><span class="pre">sigma_2</span></code>, and the design correction, here called <code class="docutils literal notranslate"><span class="pre">c_b_cov</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">E</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_error</span>
-<span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span> <span class="o">@</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">c</span>
+<span class="n">sigma_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0., ..., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_b_cov</span> <span class="o">=</span> <span class="n">c</span> <span class="o">@</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">c</span>
 <span class="n">c_b_cov</span>
 </pre></div>
 </div>
@@ -927,7 +953,7 @@ the t statistic, one for each voxel:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5411/4169539846.py:1: RuntimeWarning: invalid value encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5390/4169539846.py:1: RuntimeWarning: invalid value encountered in true_divide
   t = top_of_t / np.sqrt(sigma_2 * c_b_cov)
 </pre></div>
 </div>
@@ -950,10 +976,10 @@ statistic back into the correct voxel position:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efe747a2a90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa511ce20d0&gt;
 </pre></div>
 </div>
-<img alt="_images/whole_image_statistics_32_2.png" src="_images/whole_image_statistics_32_2.png" />
+<img alt="_images/whole_image_statistics_34_2.png" src="_images/whole_image_statistics_34_2.png" />
 </div>
 </div>
 <p>Notice the white areas at the edge of the image.  These are voxels where the t
@@ -967,7 +993,7 @@ the numerator and denominator of the t statistic are both 0.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5411/2135315712.py:1: RuntimeWarning: invalid value encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5390/2135315712.py:1: RuntimeWarning: invalid value encountered in true_divide
   np.array(0) / 0
 </pre></div>
 </div>
@@ -1064,7 +1090,7 @@ method</span></a>.  You will need
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30, 169)
 </pre></div>
 </div>
-<img alt="_images/whole_image_statistics_43_1.png" src="_images/whole_image_statistics_43_1.png" />
+<img alt="_images/whole_image_statistics_45_1.png" src="_images/whole_image_statistics_45_1.png" />
 </div>
 </div>
 <p>This is the number of voxels for which the mask value is True:</p>
@@ -1143,10 +1169,10 @@ mask as an index on the left hand side:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efe74732fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa511ecc610&gt;
 </pre></div>
 </div>
-<img alt="_images/whole_image_statistics_53_1.png" src="_images/whole_image_statistics_53_1.png" />
+<img alt="_images/whole_image_statistics_55_1.png" src="_images/whole_image_statistics_55_1.png" />
 </div>
 </div>
 <p>Now we calculate the p value for each t statistic:</p>
@@ -1166,10 +1192,10 @@ mask as an index on the left hand side:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21604,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efe74729310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa511eb5940&gt;
 </pre></div>
 </div>
-<img alt="_images/whole_image_statistics_55_2.png" src="_images/whole_image_statistics_55_2.png" />
+<img alt="_images/whole_image_statistics_57_2.png" src="_images/whole_image_statistics_57_2.png" />
 </div>
 </div>
 </div>
@@ -1204,10 +1230,10 @@ surviving correction have True, other voxels have False:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efe3c5a3070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa4dfd280a0&gt;
 </pre></div>
 </div>
-<img alt="_images/whole_image_statistics_59_1.png" src="_images/whole_image_statistics_59_1.png" />
+<img alt="_images/whole_image_statistics_61_1.png" src="_images/whole_image_statistics_61_1.png" />
 </div>
 </div>
 <p>The voxels outside the brain have p value 0 (see above), so these always
@@ -1226,10 +1252,10 @@ tests are independent:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.31438622477319e-06
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7efe74686df0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa511e18fd0&gt;
 </pre></div>
 </div>
-<img alt="_images/whole_image_statistics_61_2.png" src="_images/whole_image_statistics_61_2.png" />
+<img alt="_images/whole_image_statistics_63_2.png" src="_images/whole_image_statistics_63_2.png" />
 </div>
 </div>
 </div>
