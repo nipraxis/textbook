@@ -841,7 +841,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f4b345ddd60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faead346a60&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -858,8 +858,11 @@ student <span class="math notranslate nohighlight">\(i\)</span> where <span clas
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell - it is to give a better display to the mathematics.</span>
 <span class="c1"># Import Symbolic mathematics routines.</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">symbols</span>
-<span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">MatAdd</span><span class="p">,</span> <span class="n">MatMul</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">init_printing</span>
+<span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">MatAdd</span><span class="p">,</span> <span class="n">MatMul</span><span class="p">,</span> <span class="n">MatrixSymbol</span>
+
+<span class="c1"># Make equations print in definition order.</span>
+<span class="n">init_printing</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 
 <span class="n">sy_y</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{y}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">sy_y_ind</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
@@ -938,7 +941,8 @@ slope <span class="math notranslate nohighlight">\(b\)</span> and intercept <spa
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">sy_b</span><span class="p">,</span> <span class="n">sy_c</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;b, c&#39;</span><span class="p">)</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_b</span><span class="p">,</span> <span class="n">sy_x_val</span><span class="p">),</span> <span class="n">sy_c</span><span class="p">,</span> <span class="n">sy_e_val</span><span class="p">)</span>
+<span class="n">sy_c_mat</span> <span class="o">=</span> <span class="n">MatrixSymbol</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_b</span><span class="p">,</span> <span class="n">sy_x_val</span><span class="p">),</span> <span class="n">sy_c_mat</span><span class="p">,</span> <span class="n">sy_e_val</span><span class="p">)</span>
 <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -993,7 +997,7 @@ like this:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}b {x}_{1} + c + {e}_{1}\\b {x}_{2} + c + {e}_{2}\\b {x}_{3} + c + {e}_{3}\\b {x}_{4} + c + {e}_{4}\\b {x}_{5} + c + {e}_{5}\\b {x}_{6} + c + {e}_{6}\\b {x}_{7} + c + {e}_{7}\\b {x}_{8} + c + {e}_{8}\\b {x}_{9} + c + {e}_{9}\\b {x}_{10} + c + {e}_{10}\\b {x}_{11} + c + {e}_{11}\\b {x}_{12} + c + {e}_{12}\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}c + b {x}_{1} + {e}_{1}\\c + b {x}_{2} + {e}_{2}\\c + b {x}_{3} + {e}_{3}\\c + b {x}_{4} + {e}_{4}\\c + b {x}_{5} + {e}_{5}\\c + b {x}_{6} + {e}_{6}\\c + b {x}_{7} + {e}_{7}\\c + b {x}_{8} + {e}_{8}\\c + b {x}_{9} + {e}_{9}\\c + b {x}_{10} + {e}_{10}\\c + b {x}_{11} + {e}_{11}\\c + b {x}_{12} + {e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}\)</span></p>
@@ -1023,7 +1027,7 @@ above, but in terms of matrix multiplication:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right] + \left[\begin{matrix}{x}_{1} &amp; 1\\{x}_{2} &amp; 1\\{x}_{3} &amp; 1\\{x}_{4} &amp; 1\\{x}_{5} &amp; 1\\{x}_{6} &amp; 1\\{x}_{7} &amp; 1\\{x}_{8} &amp; 1\\{x}_{9} &amp; 1\\{x}_{10} &amp; 1\\{x}_{11} &amp; 1\\{x}_{12} &amp; 1\end{matrix}\right] \left[\begin{matrix}b\\c\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}{x}_{1} &amp; 1\\{x}_{2} &amp; 1\\{x}_{3} &amp; 1\\{x}_{4} &amp; 1\\{x}_{5} &amp; 1\\{x}_{6} &amp; 1\\{x}_{7} &amp; 1\\{x}_{8} &amp; 1\\{x}_{9} &amp; 1\\{x}_{10} &amp; 1\\{x}_{11} &amp; 1\\{x}_{12} &amp; 1\end{matrix}\right] \left[\begin{matrix}b\\c\end{matrix}\right] + \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>In symbols:</p>
@@ -1042,7 +1046,7 @@ intended result:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}b {x}_{1} + c + {e}_{1}\\b {x}_{2} + c + {e}_{2}\\b {x}_{3} + c + {e}_{3}\\b {x}_{4} + c + {e}_{4}\\b {x}_{5} + c + {e}_{5}\\b {x}_{6} + c + {e}_{6}\\b {x}_{7} + c + {e}_{7}\\b {x}_{8} + c + {e}_{8}\\b {x}_{9} + c + {e}_{9}\\b {x}_{10} + c + {e}_{10}\\b {x}_{11} + c + {e}_{11}\\b {x}_{12} + c + {e}_{12}\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}c + b {x}_{1} + {e}_{1}\\c + b {x}_{2} + {e}_{2}\\c + b {x}_{3} + {e}_{3}\\c + b {x}_{4} + {e}_{4}\\c + b {x}_{5} + {e}_{5}\\c + b {x}_{6} + {e}_{6}\\c + b {x}_{7} + {e}_{7}\\c + b {x}_{8} + {e}_{8}\\c + b {x}_{9} + {e}_{9}\\c + b {x}_{10} + {e}_{10}\\c + b {x}_{11} + {e}_{11}\\c + b {x}_{12} + {e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>We still haven’t found our best fitting line. But before we go further,
@@ -1079,7 +1083,7 @@ y_i = b_1 x_{1, i} + b_2 x_{2, i} + c + e_i
 <span class="n">sy_x_1_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sy_x_1_ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vector_indices</span><span class="p">])</span>
 <span class="n">sy_x_2_ind</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="s2">&quot;x_2,&quot;</span><span class="p">)</span>
 <span class="n">sy_x_2_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sy_x_2_ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vector_indices</span><span class="p">])</span>
-<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_b_1</span><span class="p">,</span> <span class="n">sy_x_1_val</span><span class="p">),</span> <span class="n">MatMul</span><span class="p">(</span><span class="n">sy_b_2</span><span class="p">,</span> <span class="n">sy_x_2_val</span><span class="p">),</span> <span class="n">sy_c</span><span class="p">,</span> <span class="n">sy_e_val</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_b_1</span><span class="p">,</span> <span class="n">sy_x_1_val</span><span class="p">),</span> <span class="n">MatMul</span><span class="p">(</span><span class="n">sy_b_2</span><span class="p">,</span> <span class="n">sy_x_2_val</span><span class="p">),</span> <span class="n">sy_c_mat</span><span class="p">,</span> <span class="n">sy_e_val</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1133,7 +1137,7 @@ column of ones, to express the intercept in the model.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right] + \left[\begin{matrix}{x_{1,}}_{1} &amp; {x_{2,}}_{1} &amp; 1\\{x_{1,}}_{2} &amp; {x_{2,}}_{2} &amp; 1\\{x_{1,}}_{3} &amp; {x_{2,}}_{3} &amp; 1\\{x_{1,}}_{4} &amp; {x_{2,}}_{4} &amp; 1\\{x_{1,}}_{5} &amp; {x_{2,}}_{5} &amp; 1\\{x_{1,}}_{6} &amp; {x_{2,}}_{6} &amp; 1\\{x_{1,}}_{7} &amp; {x_{2,}}_{7} &amp; 1\\{x_{1,}}_{8} &amp; {x_{2,}}_{8} &amp; 1\\{x_{1,}}_{9} &amp; {x_{2,}}_{9} &amp; 1\\{x_{1,}}_{10} &amp; {x_{2,}}_{10} &amp; 1\\{x_{1,}}_{11} &amp; {x_{2,}}_{11} &amp; 1\\{x_{1,}}_{12} &amp; {x_{2,}}_{12} &amp; 1\end{matrix}\right] \left[\begin{matrix}b_{1}\\b_{2}\\c\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}{x_{1,}}_{1} &amp; {x_{2,}}_{1} &amp; 1\\{x_{1,}}_{2} &amp; {x_{2,}}_{2} &amp; 1\\{x_{1,}}_{3} &amp; {x_{2,}}_{3} &amp; 1\\{x_{1,}}_{4} &amp; {x_{2,}}_{4} &amp; 1\\{x_{1,}}_{5} &amp; {x_{2,}}_{5} &amp; 1\\{x_{1,}}_{6} &amp; {x_{2,}}_{6} &amp; 1\\{x_{1,}}_{7} &amp; {x_{2,}}_{7} &amp; 1\\{x_{1,}}_{8} &amp; {x_{2,}}_{8} &amp; 1\\{x_{1,}}_{9} &amp; {x_{2,}}_{9} &amp; 1\\{x_{1,}}_{10} &amp; {x_{2,}}_{10} &amp; 1\\{x_{1,}}_{11} &amp; {x_{2,}}_{11} &amp; 1\\{x_{1,}}_{12} &amp; {x_{2,}}_{12} &amp; 1\end{matrix}\right] \left[\begin{matrix}b_{1}\\b_{2}\\c\end{matrix}\right] + \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>As we were hoping, this evaluates to:</p>
@@ -1146,7 +1150,7 @@ column of ones, to express the intercept in the model.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}b_{1} {x_{1,}}_{1} + b_{2} {x_{2,}}_{1} + c + {e}_{1}\\b_{1} {x_{1,}}_{2} + b_{2} {x_{2,}}_{2} + c + {e}_{2}\\b_{1} {x_{1,}}_{3} + b_{2} {x_{2,}}_{3} + c + {e}_{3}\\b_{1} {x_{1,}}_{4} + b_{2} {x_{2,}}_{4} + c + {e}_{4}\\b_{1} {x_{1,}}_{5} + b_{2} {x_{2,}}_{5} + c + {e}_{5}\\b_{1} {x_{1,}}_{6} + b_{2} {x_{2,}}_{6} + c + {e}_{6}\\b_{1} {x_{1,}}_{7} + b_{2} {x_{2,}}_{7} + c + {e}_{7}\\b_{1} {x_{1,}}_{8} + b_{2} {x_{2,}}_{8} + c + {e}_{8}\\b_{1} {x_{1,}}_{9} + b_{2} {x_{2,}}_{9} + c + {e}_{9}\\b_{1} {x_{1,}}_{10} + b_{2} {x_{2,}}_{10} + c + {e}_{10}\\b_{1} {x_{1,}}_{11} + b_{2} {x_{2,}}_{11} + c + {e}_{11}\\b_{1} {x_{1,}}_{12} + b_{2} {x_{2,}}_{12} + c + {e}_{12}\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}c + b_{1} {x_{1,}}_{1} + b_{2} {x_{2,}}_{1} + {e}_{1}\\c + b_{1} {x_{1,}}_{2} + b_{2} {x_{2,}}_{2} + {e}_{2}\\c + b_{1} {x_{1,}}_{3} + b_{2} {x_{2,}}_{3} + {e}_{3}\\c + b_{1} {x_{1,}}_{4} + b_{2} {x_{2,}}_{4} + {e}_{4}\\c + b_{1} {x_{1,}}_{5} + b_{2} {x_{2,}}_{5} + {e}_{5}\\c + b_{1} {x_{1,}}_{6} + b_{2} {x_{2,}}_{6} + {e}_{6}\\c + b_{1} {x_{1,}}_{7} + b_{2} {x_{2,}}_{7} + {e}_{7}\\c + b_{1} {x_{1,}}_{8} + b_{2} {x_{2,}}_{8} + {e}_{8}\\c + b_{1} {x_{1,}}_{9} + b_{2} {x_{2,}}_{9} + {e}_{9}\\c + b_{1} {x_{1,}}_{10} + b_{2} {x_{2,}}_{10} + {e}_{10}\\c + b_{1} {x_{1,}}_{11} + b_{2} {x_{2,}}_{11} + {e}_{11}\\c + b_{1} {x_{1,}}_{12} + b_{2} {x_{2,}}_{12} + {e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <div class="section" id="population-sample-estimate">
@@ -1276,7 +1280,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4b2cff7820&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7faeabd63700&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_51_1.png" src="_images/glm_intro_51_1.png" />
