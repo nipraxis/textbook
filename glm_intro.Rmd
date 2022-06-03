@@ -119,8 +119,11 @@ student $i$ where $i \in 1 .. 12$:
 ```{python tags=c("hide-input")}
 # Ignore this cell - it is to give a better display to the mathematics.
 # Import Symbolic mathematics routines.
-from sympy import Eq, Matrix, IndexedBase, symbols
-from sympy.matrices import MatAdd, MatMul
+from sympy import Eq, Matrix, IndexedBase, symbols, init_printing
+from sympy.matrices import MatAdd, MatMul, MatrixSymbol
+
+# Make equations print in definition order.
+init_printing(order='none')
 
 sy_y = symbols(r'\vec{y}')
 sy_y_ind = IndexedBase("y")
@@ -190,7 +193,8 @@ $$
 ```{python tags=c("hide-input")}
 # Ignore this cell.
 sy_b, sy_c = symbols('b, c')
-rhs = MatAdd(MatMul(sy_b, sy_x_val), sy_c, sy_e_val)
+sy_c_mat = MatrixSymbol('c', 1, 1)
+rhs = MatAdd(MatMul(sy_b, sy_x_val), sy_c_mat, sy_e_val)
 Eq(sy_y_val, rhs, evaluate=False)
 ```
 
@@ -301,7 +305,7 @@ sy_x_1_ind = IndexedBase("x_1,")
 sy_x_1_val = Matrix([sy_x_1_ind[i] for i in vector_indices])
 sy_x_2_ind = IndexedBase("x_2,")
 sy_x_2_val = Matrix([sy_x_2_ind[i] for i in vector_indices])
-Eq(sy_y_val, MatAdd(MatMul(sy_b_1, sy_x_1_val), MatMul(sy_b_2, sy_x_2_val), sy_c, sy_e_val), evaluate=False)
+Eq(sy_y_val, MatAdd(MatMul(sy_b_1, sy_x_1_val), MatMul(sy_b_2, sy_x_2_val), sy_c_mat, sy_e_val), evaluate=False)
 ```
 
 In this model $\Xmat$ has three columns ($\xvec_1$, $\xvec_2$ and ones), and

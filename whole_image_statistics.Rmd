@@ -314,7 +314,7 @@ plt.imshow(p_3d[:, :, 15], cmap='gray')
 We now have a very large number of t statistics and p values.  We want to find
 to control the family-wise error rate, where the “family” is the set of all of
 the voxel t tests / p values.  See: [Bonferroni
-correction](https://matthew-brett.github.io/teaching/bonferroni_correction.html).
+correction](bonferroni_correction.Rmd).
 
 We start with the Šidák correction, that gives the correct threshold when all
 the test are independent:
