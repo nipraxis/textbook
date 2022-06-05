@@ -77,19 +77,29 @@ index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices 1, 3,
 
 ```{python tags=c("hide-input")}
 # Ignore this cell.  It is not relevant to slice timing,
-# it just makes the picture
-n_x = n_z_slices * 1.5
-times = np.reshape(np.arange(n_z_slices), (2, -1)).T.ravel()
-picture = np.repeat(times[:, None], n_x, axis=1)
+# it just makes the picture.
+# Slice indices in space.
+space_orders = np.arange(n_z_slices)
+# Slice indices in time (acquisition) order.
+acq_orders = np.concatenate(
+    [space_orders[::2], space_orders[1::2]])
+# Acquisition position, ordered by space:
+# acq_by_pos[0] is acquisition order of first slice in space,
+# acq_by_pos[1] is acquisition order of second slice in space,
+# etc.
+acq_by_pos = np.argsort(acq_orders)
+n_x = n_z_slices * 1.5  # Determines width of picture.
+picture = np.repeat(acq_by_pos[:, None], n_x, axis=1)
 cm = matplotlib.colors.LinearSegmentedColormap.from_list(
     'light_gray', [[0.4] * 3, [1] * 3])
 plt.imshow(picture, cmap=cm, origin='lower')
+plt.box(on=False)
 plt.xticks([])
 plt.yticks(np.arange(n_z_slices))
-plt.xlabel('Bottom slice')
+plt.tick_params(axis='y', which='both', left=False)
 plt.ylabel('Position in space (0 = bottom)')
-for i, time in zip(range(n_z_slices), times):
-    plt.text(n_x / 2, i, str(time), va='center')
+for space_order, acq_order in zip(space_orders, acq_by_pos):
+    plt.text(n_x / 2, space_order, str(acq_order), va='center')
 plt.title('''\
 Slice acquisition order (center) by position (left)
 
