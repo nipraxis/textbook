@@ -1,6 +1,6 @@
 # Build requirements
 jupyter-book
-sphinx-panels
+sphinx-design
 # Notebook execution problem with older attrs?
 # attrs==21.4
 
