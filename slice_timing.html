@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Slice timing correction &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +107,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Practice and theory of brain imaging
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Practice and theory of brain imaging
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -498,116 +513,281 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/slice_timing.Rmd"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.Rmd</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fslice_timing.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/slice_timing.Rmd"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/slice_timing.Rmd&branch=main"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/slice_timing.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/slice_timing.Rmd&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/slice_timing.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fslice_timing.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Deepnote"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_deepnote.svg">
+  </span>
+<span class="headerbtn__text-container">Deepnote</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/nipraxis/textbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fslice_timing.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/slice_timing.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.Rmd</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#slice-timing-is-interpolation-in-time">
    Slice timing is interpolation in time
@@ -620,12 +800,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Slice timing correction</h1>
@@ -654,15 +833,17 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="slice-timing-correction">
-<h1>Slice timing correction<a class="headerlink" href="#slice-timing-correction" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="slice-timing-correction">
+<h1>Slice timing correction<a class="headerlink" href="#slice-timing-correction" title="Permalink to this headline">#</a></h1>
 <p>We load and configure libraries to start:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>  <span class="c1"># default gray colormap</span>
 
@@ -678,19 +859,21 @@ corresponds to a different time.</p>
 <p>For example, here is a 4D FMRI image, that we fetch from the web:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch example image from web.</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;https://matthew-brett.github.io/teaching/_downloads/213a1d2593327d0630ee5009ba4534f1/an_example_4d.nii&quot;</span>
-<span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="s2">&quot;an_example_4d.nii&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fobj</span><span class="p">:</span>
-    <span class="n">fobj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;an_example_4d.nii&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch example image</span>
+<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds108_sub001_t1r1.nii&#39;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds108_sub001_t1r1.nii&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.4/ds108_sub001_t1r1.nii&#39; to &#39;/home/runner/.cache/nipraxis/0.4&#39;.
+</pre></div>
 </div>
-<p>This 4D FMRI image has 16 slices on the third axis (slices in z) and 100
-volumes:</p>
+</div>
+</div>
+<p>This 4D FMRI image has 24 slices on the third axis (planes, slices in z) and
+192 volumes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
@@ -698,14 +881,27 @@ volumes:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 16, 100)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 24, 192)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The scanner acquired each of these 16 z slices at a different time, relative
-to the start of the TR.</p>
-<p>For the moment, let’s consider the first volume only.</p>
+<p>The scanner acquired each of these 24 z slices at a different time, relative to
+the start of the TR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_z_slices</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">n_z_slices</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the moment, let us consider the first volume only.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol0</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -724,28 +920,63 @@ to the start of the TR.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_9_0.png" src="_images/slice_timing_9_0.png" />
+<img alt="_images/slice_timing_11_0.png" src="_images/slice_timing_11_0.png" />
 </div>
 </div>
 <p>The scanner acquired the slices in interleaved order, first acquiring slice
-index 0, 2, 4, … 14 (where 0 is the bottom slice) then acquiring slices 1, 3,
-5, .. 15:</p>
-<p><img alt="" src="https://matthew-brett.github.io/teaching/_images/slice_timing-6.png" /></p>
-<p>So the scanner collected the bottom slice, at slice index 0, at the beginning
-of the TR, but it collected the next slice in space, at slice index 1, half
-way through the TR.  Let’s say the TR == 2.0.  The time that the scanner takes
-to acquire a single slice will be:</p>
+index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices 1, 3,
+5, .. 23:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.  It is not relevant to slice timing,</span>
+<span class="c1"># it just makes the picture.</span>
+<span class="c1"># Slice indices in space.</span>
+<span class="n">space_orders</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_z_slices</span><span class="p">)</span>
+<span class="c1"># Slice indices in time (acquisition) order.</span>
+<span class="n">acq_orders</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">space_orders</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="n">space_orders</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]])</span>
+<span class="c1"># Acquisition position, ordered by space:</span>
+<span class="c1"># acq_by_pos[0] is acquisition order of first slice in space,</span>
+<span class="c1"># acq_by_pos[1] is acquisition order of second slice in space,</span>
+<span class="c1"># etc.</span>
+<span class="n">acq_by_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">acq_orders</span><span class="p">)</span>
+<span class="n">n_x</span> <span class="o">=</span> <span class="n">n_z_slices</span> <span class="o">*</span> <span class="mf">1.5</span>  <span class="c1"># Determines width of picture.</span>
+<span class="n">picture</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">acq_by_pos</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">n_x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span>
+    <span class="s1">&#39;light_gray&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="mf">0.4</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">picture</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_z_slices</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Position in space (0 = bottom)&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">space_order</span><span class="p">,</span> <span class="n">acq_order</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">space_orders</span><span class="p">,</span> <span class="n">acq_by_pos</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">n_x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">space_order</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">acq_order</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="s1">Slice acquisition order (center) by position (left)</span>
+
+<span class="s1">Acquisition order&#39;&#39;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/slice_timing_13_0.png" src="_images/slice_timing_13_0.png" />
+</div>
+</div>
+<p>The scanner collected the bottom slice, at slice index 0, at the beginning of
+the TR, but it collected the next slice in space, at slice index 1, half way
+through the TR.  In this case the time to acquire the whole volume (the TR) was
+2.0.  The time that the scanner takes to acquire a single slice will be:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TR</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="n">n_z_slices</span> <span class="o">=</span> <span class="mi">16</span>
 <span class="n">time_for_single_slice</span> <span class="o">=</span> <span class="n">TR</span> <span class="o">/</span> <span class="n">n_z_slices</span>
 <span class="n">time_for_single_slice</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.125
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08333333333333333
 </pre></div>
 </div>
 </div>
@@ -755,7 +986,7 @@ be:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_for_slice_0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">time_for_slice_1</span> <span class="o">=</span> <span class="n">time_for_single_slice</span> <span class="o">*</span> <span class="mi">8</span>
+<span class="n">time_for_slice_1</span> <span class="o">=</span> <span class="n">time_for_single_slice</span> <span class="o">*</span> <span class="n">n_z_slices</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="n">time_for_slice_1</span>
 </pre></div>
 </div>
@@ -777,8 +1008,8 @@ for different slices in the z axis.</p>
 correspond to our best guess at what these slices would have looked like, if we
 had acquired them all at the same time?</p>
 <p>This is the job of the <em>slice timing correction</em>.</p>
-<div class="section" id="slice-timing-is-interpolation-in-time">
-<h2>Slice timing is interpolation in time<a class="headerlink" href="#slice-timing-is-interpolation-in-time" title="Permalink to this headline">¶</a></h2>
+<section id="slice-timing-is-interpolation-in-time">
+<h2>Slice timing is interpolation in time<a class="headerlink" href="#slice-timing-is-interpolation-in-time" title="Permalink to this headline">#</a></h2>
 <p>Let’s first get a time series from the bottom slice.  Here’s what the bottom
 slice looks like, for the first volume:</p>
 <div class="cell docutils container">
@@ -789,7 +1020,7 @@ slice looks like, for the first volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_17_0.png" src="_images/slice_timing_17_0.png" />
+<img alt="_images/slice_timing_21_0.png" src="_images/slice_timing_21_0.png" />
 </div>
 </div>
 <p>We are going to collect a time series from a sample voxel from this slice, and
@@ -797,13 +1028,29 @@ the slice above it (slice 1):</p>
 <p>Our sample voxel coordinates</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vox_x</span> <span class="o">=</span> <span class="mi">14</span>  <span class="c1"># voxel coordinate in first dimension</span>
-<span class="n">vox_y</span> <span class="o">=</span> <span class="mi">22</span>  <span class="c1"># voxel coordinate in second dimension</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vox_x</span> <span class="o">=</span> <span class="mi">28</span>  <span class="c1"># voxel coordinate in first dimension</span>
+<span class="n">vox_y</span> <span class="o">=</span> <span class="mi">18</span>  <span class="c1"># voxel coordinate in second dimension</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The coordinates displayed on the images:</p>
+<p>Here are the coordinates displayed on the images of the slices at position 0
+and position 1:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">vol0</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Vol 0, z slice </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># x and y reversed because imshow displays first axis on y.</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vox_y</span><span class="p">,</span> <span class="n">vox_x</span><span class="p">,</span> <span class="s1">&#39;rs&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/slice_timing_25_0.png" src="_images/slice_timing_25_0.png" />
+</div>
+</div>
 <p>We get the time courses from slice 0 and slice 1:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -819,21 +1066,25 @@ TR:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol_nos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">vol_onset_times</span> <span class="o">=</span> <span class="n">vol_nos</span> <span class="o">*</span> <span class="n">TR</span>
-<span class="n">vol_onset_times</span>
+<span class="n">vol_onset_times</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   2.,   4.,   6.,   8.,  10.,  12.,  14.,  16.,  18.,  20.,
-        22.,  24.,  26.,  28.,  30.,  32.,  34.,  36.,  38.,  40.,  42.,
-        44.,  46.,  48.,  50.,  52.,  54.,  56.,  58.,  60.,  62.,  64.,
-        66.,  68.,  70.,  72.,  74.,  76.,  78.,  80.,  82.,  84.,  86.,
-        88.,  90.,  92.,  94.,  96.,  98., 100., 102., 104., 106., 108.,
-       110., 112., 114., 116., 118., 120., 122., 124., 126., 128., 130.,
-       132., 134., 136., 138., 140., 142., 144., 146., 148., 150., 152.,
-       154., 156., 158., 160., 162., 164., 166., 168., 170., 172., 174.,
-       176., 178., 180., 182., 184., 186., 188., 190., 192., 194., 196.,
-       198.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.,  2.,  4.,  6.,  8., 10., 12., 14., 16., 18.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The onset time of the last scan is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol_onset_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>382.0
 </pre></div>
 </div>
 </div>
@@ -841,21 +1092,12 @@ TR:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times_slice_0</span> <span class="o">=</span> <span class="n">vol_onset_times</span>
-<span class="n">times_slice_0</span>
+<span class="n">times_slice_0</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   2.,   4.,   6.,   8.,  10.,  12.,  14.,  16.,  18.,  20.,
-        22.,  24.,  26.,  28.,  30.,  32.,  34.,  36.,  38.,  40.,  42.,
-        44.,  46.,  48.,  50.,  52.,  54.,  56.,  58.,  60.,  62.,  64.,
-        66.,  68.,  70.,  72.,  74.,  76.,  78.,  80.,  82.,  84.,  86.,
-        88.,  90.,  92.,  94.,  96.,  98., 100., 102., 104., 106., 108.,
-       110., 112., 114., 116., 118., 120., 122., 124., 126., 128., 130.,
-       132., 134., 136., 138., 140., 142., 144., 146., 148., 150., 152.,
-       154., 156., 158., 160., 162., 164., 166., 168., 170., 172., 174.,
-       176., 178., 180., 182., 184., 186., 188., 190., 192., 194., 196.,
-       198.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.,  2.,  4.,  6.,  8., 10., 12., 14., 16., 18.])
 </pre></div>
 </div>
 </div>
@@ -864,21 +1106,12 @@ TR:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">times_slice_1</span> <span class="o">=</span> <span class="n">vol_onset_times</span> <span class="o">+</span> <span class="n">TR</span> <span class="o">/</span> <span class="mf">2.</span>
-<span class="n">times_slice_1</span>
+<span class="n">times_slice_1</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  1.,   3.,   5.,   7.,   9.,  11.,  13.,  15.,  17.,  19.,  21.,
-        23.,  25.,  27.,  29.,  31.,  33.,  35.,  37.,  39.,  41.,  43.,
-        45.,  47.,  49.,  51.,  53.,  55.,  57.,  59.,  61.,  63.,  65.,
-        67.,  69.,  71.,  73.,  75.,  77.,  79.,  81.,  83.,  85.,  87.,
-        89.,  91.,  93.,  95.,  97.,  99., 101., 103., 105., 107., 109.,
-       111., 113., 115., 117., 119., 121., 123., 125., 127., 129., 131.,
-       133., 135., 137., 139., 141., 143., 145., 147., 149., 151., 153.,
-       155., 157., 159., 161., 163., 165., 167., 169., 171., 173., 175.,
-       177., 179., 181., 183., 185., 187., 189., 191., 193., 195., 197.,
-       199.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.,  3.,  5.,  7.,  9., 11., 13., 15., 17., 19.])
 </pre></div>
 </div>
 </div>
@@ -898,7 +1131,7 @@ with the slice 1 time course against slice 1 acquisition time:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_28_0.png" src="_images/slice_timing_28_0.png" />
+<img alt="_images/slice_timing_36_0.png" src="_images/slice_timing_36_0.png" />
 </div>
 </div>
 <p>We can’t see the time offset very well here, so let’s plot only the first 10
@@ -916,14 +1149,14 @@ values (values for the first 10 volumes):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_30_0.png" src="_images/slice_timing_30_0.png" />
+<img alt="_images/slice_timing_38_0.png" src="_images/slice_timing_38_0.png" />
 </div>
 </div>
 <p>We want to work out a best guess for what the values in slice 1 would be, if we
 collected them at the beginning of the TR — at the same times as the values for
 slice 0.</p>
 <p>One easy way to do this, might be to do the following for each of our desired
-samples at times <span class="math notranslate nohighlight">\(t \in 0, 2, 4, ... 198\)</span>:</p>
+samples at times <span class="math notranslate nohighlight">\(t \in 0, 2, 4, ... 382\)</span>:</p>
 <ul class="simple">
 <li><p>Draw a vertical line at <span class="math notranslate nohighlight">\(x = t\)</span>.</p></li>
 <li><p>At the point where the line crosses the slice 1 time course, draw a
@@ -946,7 +1179,7 @@ horizontal line across to the y axis.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_32_0.png" src="_images/slice_timing_32_0.png" />
+<img alt="_images/slice_timing_40_0.png" src="_images/slice_timing_40_0.png" />
 </div>
 </div>
 <p>Now we need to work out where these lines cross the slice 1 time course.</p>
@@ -991,7 +1224,7 @@ interpolated values from the slice 1 time course:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_34_0.png" src="_images/slice_timing_34_0.png" />
+<img alt="_images/slice_timing_42_0.png" src="_images/slice_timing_42_0.png" />
 </div>
 </div>
 <p>It is inconvenient to have to do this calculation for every point. We also
@@ -1044,7 +1277,7 @@ calculation above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_41_0.png" src="_images/slice_timing_41_0.png" />
+<img alt="_images/slice_timing_49_0.png" src="_images/slice_timing_49_0.png" />
 </div>
 </div>
 <p>So now we can just replace the original values from the red line (values for
@@ -1065,17 +1298,17 @@ series, that has been <em>interpolated</em> from the original:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/slice_timing_43_0.png" src="_images/slice_timing_43_0.png" />
+<img alt="_images/slice_timing_51_0.png" src="_images/slice_timing_51_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="slice-time-correction">
-<h2>Slice time correction<a class="headerlink" href="#slice-time-correction" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="slice-time-correction">
+<h2>Slice time correction<a class="headerlink" href="#slice-time-correction" title="Permalink to this headline">#</a></h2>
 <p>We can do this for each time course in each slice, and make a new 4D image,
 that has a copy of the values in slice 0, but the interpolated values for all
 the other slices.  This new 4D image has been <em>slice time corrected</em>.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1099,9 +1332,11 @@ the other slices.  This new 4D image has been <em>slice time corrected</em>.</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="bonferroni_correction.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1117,24 +1352,28 @@ the other slices.  This new 4D image has been <em>slice time corrected</em>.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By The nipraxis team<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.10.3
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,6 +20,7 @@ We load and configure libraries to start:
 
 ```{python}
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 plt.rcParams['image.cmap'] = 'gray'  # default gray colormap
 
@@ -34,26 +35,28 @@ corresponds to a different time.
 For example, here is a 4D FMRI image, that we fetch from the web:
 
 ```{python}
-# Fetch example image from web.
-import requests
-URL = "https://matthew-brett.github.io/teaching/_downloads/213a1d2593327d0630ee5009ba4534f1/an_example_4d.nii"
-with open ("an_example_4d.nii", "wb") as fobj:
-    fobj.write(requests.get(URL).content)
-img = nib.load('an_example_4d.nii')
+# Fetch example image
+bold_fname = nipraxis.fetch_file('ds108_sub001_t1r1.nii')
+img = nib.load(bold_fname)
 data = img.get_fdata()
 ```
 
-This 4D FMRI image has 16 slices on the third axis (slices in z) and 100
-volumes:
+This 4D FMRI image has 24 slices on the third axis (planes, slices in z) and
+192 volumes:
 
 ```{python}
 data.shape
 ```
 
-The scanner acquired each of these 16 z slices at a different time, relative
-to the start of the TR.
+The scanner acquired each of these 24 z slices at a different time, relative to
+the start of the TR.
 
-For the moment, let’s consider the first volume only.
+```{python}
+n_z_slices = data.shape[2]
+n_z_slices
+```
+
+For the moment, let us consider the first volume only.
 
 ```{python}
 vol0 = data[..., 0]
@@ -69,19 +72,47 @@ plt.ylabel('z axis');
 ```
 
 The scanner acquired the slices in interleaved order, first acquiring slice
-index 0, 2, 4, … 14 (where 0 is the bottom slice) then acquiring slices 1, 3,
-5, .. 15:
+index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices 1, 3,
+5, .. 23:
 
-![](https://matthew-brett.github.io/teaching/_images/slice_timing-6.png)
+```{python tags=c("hide-input")}
+# Ignore this cell.  It is not relevant to slice timing,
+# it just makes the picture.
+# Slice indices in space.
+space_orders = np.arange(n_z_slices)
+# Slice indices in time (acquisition) order.
+acq_orders = np.concatenate(
+    [space_orders[::2], space_orders[1::2]])
+# Acquisition position, ordered by space:
+# acq_by_pos[0] is acquisition order of first slice in space,
+# acq_by_pos[1] is acquisition order of second slice in space,
+# etc.
+acq_by_pos = np.argsort(acq_orders)
+n_x = n_z_slices * 1.5  # Determines width of picture.
+picture = np.repeat(acq_by_pos[:, None], n_x, axis=1)
+cm = matplotlib.colors.LinearSegmentedColormap.from_list(
+    'light_gray', [[0.4] * 3, [1] * 3])
+plt.imshow(picture, cmap=cm, origin='lower')
+plt.box(on=False)
+plt.xticks([])
+plt.yticks(np.arange(n_z_slices))
+plt.tick_params(axis='y', which='both', left=False)
+plt.ylabel('Position in space (0 = bottom)')
+for space_order, acq_order in zip(space_orders, acq_by_pos):
+    plt.text(n_x / 2, space_order, str(acq_order), va='center')
+plt.title('''\
+Slice acquisition order (center) by position (left)
 
-So the scanner collected the bottom slice, at slice index 0, at the beginning
-of the TR, but it collected the next slice in space, at slice index 1, half
-way through the TR.  Let’s say the TR == 2.0.  The time that the scanner takes
-to acquire a single slice will be:
+Acquisition order''');
+```
+
+The scanner collected the bottom slice, at slice index 0, at the beginning of
+the TR, but it collected the next slice in space, at slice index 1, half way
+through the TR.  In this case the time to acquire the whole volume (the TR) was
+2.0.  The time that the scanner takes to acquire a single slice will be:
 
 ```{python}
 TR = 2.0
-n_z_slices = 16
 time_for_single_slice = TR / n_z_slices
 time_for_single_slice
 ```
@@ -91,7 +122,7 @@ be:
 
 ```{python}
 time_for_slice_0 = 0
-time_for_slice_1 = time_for_single_slice * 8
+time_for_slice_1 = time_for_single_slice * n_z_slices / 2
 time_for_slice_1
 ```
 
@@ -128,11 +159,21 @@ the slice above it (slice 1):
 Our sample voxel coordinates
 
 ```{python}
-vox_x = 14  # voxel coordinate in first dimension
-vox_y = 22  # voxel coordinate in second dimension
+vox_x = 28  # voxel coordinate in first dimension
+vox_y = 18  # voxel coordinate in second dimension
 ```
 
-The coordinates displayed on the images:
+Here are the coordinates displayed on the images of the slices at position 0
+and position 1:
+
+```{python tags=c("hide-input")}
+fig, axes = plt.subplots(1, 2)
+for i in [0, 1]:
+    axes[i].imshow(vol0[:, :, i])
+    axes[i].set_title(f'Vol 0, z slice {i}')
+    # x and y reversed because imshow displays first axis on y.
+    axes[i].plot(vox_y, vox_x, 'rs', markersize=3)
+```
 
 We get the time courses from slice 0 and slice 1:
 
@@ -147,19 +188,25 @@ TR:
 ```{python}
 vol_nos = np.arange(data.shape[-1])
 vol_onset_times = vol_nos * TR
-vol_onset_times
+vol_onset_times[:10]
+```
+
+The onset time of the last scan is:
+
+```{python}
+vol_onset_times[-1]
 ```
 
 ```{python}
 times_slice_0 = vol_onset_times
-times_slice_0
+times_slice_0[:10]
 ```
 
 The times of acquisition of the voxels in slice 1 are half a TR later:
 
 ```{python}
 times_slice_1 = vol_onset_times + TR / 2.
-times_slice_1
+times_slice_1[:10]
 ```
 
 We can plot the slice 0 time course against slice 0 acquisition time, along
@@ -193,7 +240,7 @@ collected them at the beginning of the TR — at the same times as the values fo
 slice 0.
 
 One easy way to do this, might be to do the following for each of our desired
-samples at times $t \in 0, 2, 4, ... 198$:
+samples at times $t \in 0, 2, 4, ... 382$:
 
 * Draw a vertical line at $x = t$.
 * At the point where the line crosses the slice 1 time course, draw a

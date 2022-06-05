@@ -70,25 +70,29 @@ pwd
 
 This Prints the Working Directory (pwd).  You should see something like the following:
 
-````{tabbed} Windows Powershell
+::::{tab-set}
+
+:::{tab-item} Windows Powershell
 ```
 Path
 ----
 C:\Users\your-user\Documents\nipraxis-working
 ```
-````
+:::
 
-````{tabbed} Mac
+:::{tab-item} Mac
 ```
 /Users/your-user/Documents/nipraxis-working
 ```
-````
+:::
 
-````{tabbed} Linux
+:::{tab-item} Linux
 ```
 /home/your-user/Documents/nipraxis-working
 ```
-````
+:::
+
+::::
 
 Now, in the terminal, check you have Python installed:
 
@@ -149,7 +153,9 @@ ls check_install.py
 
 from your terminal.  You should see something like:
 
-````{tabbed} Windows Powershell
+::::{tab-set}
+
+:::{tab-item} Windows Poweshell
 ```
     Directory: C:\Users\your-user\Documents\nipraxis-work
 
@@ -158,13 +164,15 @@ Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 -a----          4/6/2022   5:04 AM           1937 check_install.py
 ```
-````
+:::
 
-````{tabbed} Mac or Linux
+:::{tab-item} Mac or Linux
 ```
 check_install.py
 ```
-````
+:::
+
+::::
 
 Now check your installation has succeeded with:
 

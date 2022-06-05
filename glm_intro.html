@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Introduction to the general linear model &#8212; Practice and theory of brain imaging</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +107,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Practice and theory of brain imaging
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Practice and theory of brain imaging
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   The neuroimaging problem
  </span>
@@ -498,116 +513,281 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/glm_intro.Rmd"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.Rmd</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/nipraxis/textbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fglm_intro.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/glm_intro.Rmd"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/glm_intro.Rmd&branch=main"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/glm_intro.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/glm_intro.Rmd&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/glm_intro.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fglm_intro.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Deepnote"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_deepnote.svg">
+  </span>
+<span class="headerbtn__text-container">Deepnote</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/nipraxis/textbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fglm_intro.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/glm_intro.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.Rmd</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simple-regression">
    Simple regression
@@ -657,12 +837,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Introduction to the general linear model</h1>
@@ -728,11 +907,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-the-general-linear-model">
-<h1>Introduction to the general linear model<a class="headerlink" href="#introduction-to-the-general-linear-model" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-the-general-linear-model">
+<h1>Introduction to the general linear model<a class="headerlink" href="#introduction-to-the-general-linear-model" title="Permalink to this headline">#</a></h1>
 <p>For more detail on the General Linear Model, see <a class="reference external" href="http://matthew.dynevor.org/_downloads/does_glm_love.pdf">The general linear model and
 fMRI: Does love last
 forever?</a>.</p>
@@ -754,8 +934,8 @@ Once we have that, it’s easy to extend simple regression to multiple
 regression. By adding some specially formed regressors, we can also express
 group membership, and therefore do ANalysis Of VAriance (ANOVA). This last
 step is where multiple regression becomes the General Linear Model (GLM).</p>
-<div class="section" id="simple-regression">
-<h2>Simple regression<a class="headerlink" href="#simple-regression" title="Permalink to this headline">¶</a></h2>
+<section id="simple-regression">
+<h2>Simple regression<a class="headerlink" href="#simple-regression" title="Permalink to this headline">#</a></h2>
 <p>You have already seen this problem in the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">regression
 page</span></a>.</p>
 <p>Image we have measured scores for a “psychopathy” personality trait in 12
@@ -841,7 +1021,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faead346a60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fce6da7cb20&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -907,9 +1087,9 @@ our psychopathy values exactly. We can rephrase this by saying that each
 observation is equal to the predicted value (from the formula above) plus some
 error for each observation:</p>
 <p><span class="math notranslate nohighlight">\(y_i = bx_i + c + e_i\)</span></p>
-</div>
-<div class="section" id="simple-regression-in-matrix-form">
-<h2>Simple regression in matrix form<a class="headerlink" href="#simple-regression-in-matrix-form" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="simple-regression-in-matrix-form">
+<h2>Simple regression in matrix form<a class="headerlink" href="#simple-regression-in-matrix-form" title="Permalink to this headline">#</a></h2>
 <p>It turns out it will be useful to rephrase the simple regression model
 in <em>matrix form</em>. Let’s make the data and predictor and errors into
 vectors.</p>
@@ -1051,9 +1231,9 @@ intended result:</p>
 </div>
 <p>We still haven’t found our best fitting line. But before we go further,
 it might be obvious that we can easily add a new predictor here.</p>
-</div>
-<div class="section" id="multiple-regression">
-<h2>Multiple regression<a class="headerlink" href="#multiple-regression" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="multiple-regression">
+<h2>Multiple regression<a class="headerlink" href="#multiple-regression" title="Permalink to this headline">#</a></h2>
 <p>Let’s say we think that psychopathy increases with age. We add the
 student’s age as another predictor:</p>
 <div class="cell docutils container">
@@ -1153,8 +1333,8 @@ column of ones, to express the intercept in the model.</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}c + b_{1} {x_{1,}}_{1} + b_{2} {x_{2,}}_{1} + {e}_{1}\\c + b_{1} {x_{1,}}_{2} + b_{2} {x_{2,}}_{2} + {e}_{2}\\c + b_{1} {x_{1,}}_{3} + b_{2} {x_{2,}}_{3} + {e}_{3}\\c + b_{1} {x_{1,}}_{4} + b_{2} {x_{2,}}_{4} + {e}_{4}\\c + b_{1} {x_{1,}}_{5} + b_{2} {x_{2,}}_{5} + {e}_{5}\\c + b_{1} {x_{1,}}_{6} + b_{2} {x_{2,}}_{6} + {e}_{6}\\c + b_{1} {x_{1,}}_{7} + b_{2} {x_{2,}}_{7} + {e}_{7}\\c + b_{1} {x_{1,}}_{8} + b_{2} {x_{2,}}_{8} + {e}_{8}\\c + b_{1} {x_{1,}}_{9} + b_{2} {x_{2,}}_{9} + {e}_{9}\\c + b_{1} {x_{1,}}_{10} + b_{2} {x_{2,}}_{10} + {e}_{10}\\c + b_{1} {x_{1,}}_{11} + b_{2} {x_{2,}}_{11} + {e}_{11}\\c + b_{1} {x_{1,}}_{12} + b_{2} {x_{2,}}_{12} + {e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<div class="section" id="population-sample-estimate">
-<h3>Population, sample, estimate<a class="headerlink" href="#population-sample-estimate" title="Permalink to this headline">¶</a></h3>
+<section id="population-sample-estimate">
+<h3>Population, sample, estimate<a class="headerlink" href="#population-sample-estimate" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}\)</span>
 Our students and their psychopathy scores are a <em>sample</em> from the
 population of all students’ psychopathy scores. The parameters
@@ -1164,10 +1344,10 @@ we cannot get the true population <span class="math notranslate nohighlight">\(\
 <em>estimate</em> <span class="math notranslate nohighlight">\(\bvec\)</span> from our sample. We will write this sample
 estimate as <span class="math notranslate nohighlight">\(\bhat\)</span> to distinguish it from the true population
 parameters <span class="math notranslate nohighlight">\(\bvec\)</span>.</p>
-</div>
-</div>
-<div class="section" id="solving-the-model-with-matrix-algebra">
-<h2>Solving the model with matrix algebra<a class="headerlink" href="#solving-the-model-with-matrix-algebra" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="solving-the-model-with-matrix-algebra">
+<h2>Solving the model with matrix algebra<a class="headerlink" href="#solving-the-model-with-matrix-algebra" title="Permalink to this headline">#</a></h2>
 <p>The reason to formulate our problem with matrices is so we can use some
 basic matrix algebra to estimate the “best” line.</p>
 <p>Let’s assume that we want an estimate for the line parameters (intercept
@@ -1280,7 +1460,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7faeabd63700&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fce6c3f1dc0&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_51_1.png" src="_images/glm_intro_51_1.png" />
@@ -1343,9 +1523,9 @@ therefore mean) of squared error:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="contrasts">
-<h2>Contrasts<a class="headerlink" href="#contrasts" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="contrasts">
+<h2>Contrasts<a class="headerlink" href="#contrasts" title="Permalink to this headline">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\newcommand{cvec}{\mathbf{c}}\)</span> We can combine the values in the
 <span class="math notranslate nohighlight">\(\bhat\)</span> vector in different ways by using a <em>contrast</em> vector. A
 contrast vector <span class="math notranslate nohighlight">\(\cvec\)</span> is a vector of weights
@@ -1459,9 +1639,9 @@ estimate.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="dummy-coding-and-the-general-linear-model">
-<span id="dummy-coding"></span><h2>Dummy coding and the general linear model<a class="headerlink" href="#dummy-coding-and-the-general-linear-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="dummy-coding-and-the-general-linear-model">
+<span id="dummy-coding"></span><h2>Dummy coding and the general linear model<a class="headerlink" href="#dummy-coding-and-the-general-linear-model" title="Permalink to this headline">#</a></h2>
 <p>So far we have been doing <em>multiple regression</em>. That is, all the columns
 (except the column of ones) are continuous vectors of numbers predicting our
 outcome data <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>. These type of predictors are often called
@@ -1584,9 +1764,9 @@ than the mean of (mean for Berkeley, mean for Stanford):</p>
 <p>The model above expresses the effect of group membership. It is the
 expression of a one-way analysis of variance (ANOVA) model using
 <span class="math notranslate nohighlight">\(\yvec = \Xmat \bvec + \evec\)</span>.</p>
-</div>
-<div class="section" id="ancova-in-the-general-linear-model">
-<h2>ANCOVA in the General Linear Model<a class="headerlink" href="#ancova-in-the-general-linear-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ancova-in-the-general-linear-model">
+<h2>ANCOVA in the General Linear Model<a class="headerlink" href="#ancova-in-the-general-linear-model" title="Permalink to this headline">#</a></h2>
 <p>Our formulation <span class="math notranslate nohighlight">\(\yvec = \Xmat \bvec + \evec\)</span> makes it very easy
 to add extra regressors to models with group membership. For example, we
 can easily make a simple ANCOVA model (analysis of covariance).</p>
@@ -1639,9 +1819,9 @@ on the clammy slope parameter:</p>
 <p>It looks like there’s not much independent effect of clamminess. The MIT
 students seem to have clammy hands, and once we know that the student is
 from MIT, the clammy score is not as useful.</p>
-</div>
-<div class="section" id="displaying-the-design-matrix-as-an-image">
-<h2>Displaying the design matrix as an image<a class="headerlink" href="#displaying-the-design-matrix-as-an-image" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="displaying-the-design-matrix-as-an-image">
+<h2>Displaying the design matrix as an image<a class="headerlink" href="#displaying-the-design-matrix-as-an-image" title="Permalink to this headline">#</a></h2>
 <p>We can show the design as an image, by scaling the values with columns.</p>
 <p>We scale within columns because we care more about seeing variation
 within the regressor than between regressors. For example, if we have a
@@ -1697,8 +1877,8 @@ image display parameters:</p>
 <img alt="_images/glm_intro_85_0.png" src="_images/glm_intro_85_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1722,9 +1902,11 @@ image display parameters:</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="regress_one_voxel.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1740,24 +1922,28 @@ image display parameters:</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By The nipraxis team<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By The nipraxis team<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
