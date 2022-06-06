@@ -76,9 +76,11 @@ index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices 1, 3,
 5, .. 23 [^how-we-know].
 
 [^how-we-know]: We could not find the slice acquisition order noted in the
-paper about the relevant study {cite}`wager2008prefrontal`, but the first
-author, [Tor Wager](https://en.wikipedia.org/wiki/Tor_Wager), kindly told us by
-email.  And this appears to match the [default for GE
+paper about the [relevant
+study](https://www.sciencedirect.com/science/article/pii/S0896627308007538),
+but the first author, [Tor Wager](https://en.wikipedia.org/wiki/Tor_Wager),
+kindly told us by email.  This "ascending-interleaved" order appears to be the
+[default for GE
 scanners](https://cni.stanford.edu/wiki/GE_Processing#Interleave).
 
 ```{python tags=c("hide-input")}
