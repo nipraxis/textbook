@@ -1021,7 +1021,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fbb44476c70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f132c91d850&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -1291,7 +1291,7 @@ column of ones, to express the intercept in the model.</p>
 \yvec = \Xmat \bvec + \evec
 \]</div>
 <p>where:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">sy_xmat3_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">sy_x_1_val</span><span class="p">,</span> <span class="n">sy_x_2_val</span><span class="p">,</span> <span class="n">sy_o_val</span><span class="p">)</span>
@@ -1309,7 +1309,6 @@ column of ones, to express the intercept in the model.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
-<span class="n">sy_xmat3_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">sy_x_1_val</span><span class="p">,</span> <span class="n">sy_x_2_val</span><span class="p">,</span> <span class="n">sy_o_val</span><span class="p">)</span>
 <span class="n">sy_beta2_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sy_b_1</span><span class="p">,</span> <span class="n">sy_b_2</span><span class="p">,</span> <span class="n">sy_c</span><span class="p">])</span>
 <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">MatAdd</span><span class="p">(</span><span class="n">MatMul</span><span class="p">(</span><span class="n">sy_xmat3_val</span><span class="p">,</span> <span class="n">sy_beta2_val</span><span class="p">),</span> <span class="n">sy_e_val</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -1321,7 +1320,7 @@ column of ones, to express the intercept in the model.</p>
 </div>
 </div>
 <p>As we were hoping, this evaluates to:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.</span>
 <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">sy_xmat3_val</span> <span class="o">@</span> <span class="n">sy_beta2_val</span> <span class="o">+</span> <span class="n">sy_e_val</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1460,7 +1459,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbb42dd3df0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f132b452400&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_51_1.png" src="_images/glm_intro_51_1.png" />
