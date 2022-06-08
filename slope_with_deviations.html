@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Modeling a single voxel &#8212; Practice and theory of brain imaging</title>
+    <title>&lt;no title&gt; &#8212; Practice and theory of brain imaging</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Estimation for many voxels at the same time" href="multi_multiply.html" />
-    <link rel="prev" title="A worked example of the general linear model" href="mean_test_example.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -289,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
   Detecting activation
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="voxel_time_courses.html">
    Correlating with voxel time courses
@@ -325,8 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
    A worked example of the general linear model
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model_one_voxel.html">
    Modeling a single voxel
   </a>
  </li>
@@ -569,7 +567,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/model_one_voxel.Rmd"
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/slope_with_deviations.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -587,7 +585,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/model_one_voxel.Rmd&branch=main"
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/slope_with_deviations.Rmd&branch=main"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -605,7 +603,7 @@ title="Launch on JupyterHub"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/model_one_voxel.Rmd"
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/slope_with_deviations.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -623,7 +621,7 @@ title="Launch on Colab"
       </li>
       
       <li>
-        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fmodel_one_voxel.Rmd"
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fslope_with_deviations.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -701,7 +699,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fmodel_one_voxel.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fslope_with_deviations.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -729,7 +727,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/model_one_voxel.Rmd"
+        <a href="_sources/slope_with_deviations.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -766,23 +764,50 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Modeling a single voxel</h1>
+                <h1><no title></h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -790,182 +815,220 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="modeling-a-single-voxel">
-<h1>Modeling a single voxel<a class="headerlink" href="#modeling-a-single-voxel" title="Permalink to this headline">#</a></h1>
-<p>The <a class="reference internal" href="regress_one_voxel.html"><span class="doc std std-doc">voxel regression page</span></a> has a worked
-example of applying <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">simple regression</span></a>) on a single voxel.</p>
-<p>This page runs the same calculations, but using the <a class="reference internal" href="glm_intro.html"><span class="doc std std-doc">General Linear
-Model</span></a> notation and matrix calculations.</p>
-<p>Let’s get that same voxel time course back again:</p>
-<div class="cell docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="c1"># Only show 6 decimals when printing</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">sps</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the function to fetch the data file we need.</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-<span class="c1"># Fetch the data file.</span>
-<span class="n">data_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_fname</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
-<span class="c1"># Knock off the first four volumes (to avoid artefact).</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">4</span><span class="p">:]</span>
-<span class="c1"># Get the voxel time course of interest.</span>
-<span class="n">voxel_time_course</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">voxel_time_course</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fab8aeb04f0&gt;]
-</pre></div>
 </div>
-<img alt="_images/model_one_voxel_2_1.png" src="_images/model_one_voxel_2_1.png" />
-</div>
-</div>
-<p>Load the convolved time course, and plot the voxel values against the convolved regressor:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tc_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1_conv.txt&#39;</span><span class="p">)</span>
-<span class="c1"># Show the file name of the fetched data.</span>
-<span class="n">convolved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">tc_fname</span><span class="p">)</span>
-<span class="c1"># Knock off first 4 elements to match data.</span>
-<span class="n">convolved</span> <span class="o">=</span> <span class="n">convolved</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
-<span class="c1"># Plot.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Convolved prediction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Voxel values&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds114_sub009_t2r1_conv.txt&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.4/ds114_sub009_t2r1_conv.txt&#39; to &#39;/home/runner/.cache/nipraxis/0.4&#39;.
-</pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Voxel values&#39;)
-</pre></div>
-</div>
-<img alt="_images/model_one_voxel_4_2.png" src="_images/model_one_voxel_4_2.png" />
-</div>
-</div>
-<p>As you remember, we apply the GLM by first preparing a design matrix, that has one column corresponding for each <em>parameter</em> in the <em>model</em>.</p>
-<p>In our case we have two parameters, the <em>slope</em> and the <em>intercept</em>.</p>
-<p>First we make our <em>design matrix</em>.  It has a column for the convolved
-regressor, and a column of ones:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">convolved</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">r</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fab88b8c670&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.09338368621002217
 </pre></div>
 </div>
-<img alt="_images/model_one_voxel_6_1.png" src="_images/model_one_voxel_6_1.png" />
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}}\)</span>
-<span class="math notranslate nohighlight">\(\newcommand{\xvec}{\vec{x}}\)</span>
-<span class="math notranslate nohighlight">\(\newcommand{\evec}{\vec{\varepsilon}}\)</span>
-<span class="math notranslate nohighlight">\(\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}\)</span>
-<span class="math notranslate nohighlight">\(\newcommand{\bhat}{\hat{\bvec}} \newcommand{\yhat}{\hat{\yvec}}\)</span></p>
-<p>Our model is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">x_bar</span><span class="p">,</span> <span class="n">y_bar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10.195514240137474, 10.401455018632552)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Write the <em>deviations</em> as e.g. <span class="math notranslate nohighlight">\(d_{x_i}\)</span>, so:</p>
 <div class="math notranslate nohighlight">
-\[
-\yvec = \Xmat \bvec + \evec
-\]</div>
-<p>We can get our least mean squared error (MSE) parameter <em>estimates</em> for
-<span class="math notranslate nohighlight">\(\bvec\)</span> with:</p>
+\[\begin{split}
+d_{x_i} = x_i - \bar{x} \\
+d_{y_i} = y_i - \bar{y}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x_bar</span>
+<span class="n">d_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_bar</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As before, the z-scores are:</p>
 <div class="math notranslate nohighlight">
-\[
-\bhat = \Xmat^+y
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(\Xmat^+\)</span> is the <em>pseudoinverse</em> of <span class="math notranslate nohighlight">\(\Xmat\)</span>.  When <span class="math notranslate nohighlight">\(\Xmat\)</span> is
-invertible, the pseudoinverse is given by:</p>
+\[\begin{split}
+z_{x_i} = \frac{d_{x_i}}{\sigma_x} \\
+z_{y_i} = \frac{d_{y_i}}{\sigma_y}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d_x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">s_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d_y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">s_x</span><span class="p">,</span> <span class="n">s_y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.091332491155015, 1.8589704191813505)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.091332491155015, 1.8589704191813505)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_x</span> <span class="o">=</span> <span class="n">d_x</span> <span class="o">/</span> <span class="n">s_x</span>
+<span class="n">z_y</span> <span class="o">=</span> <span class="n">d_y</span> <span class="o">/</span> <span class="n">s_y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># r (correlation) again.</span>
+<span class="n">r_again</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">z_x</span> <span class="o">*</span> <span class="n">z_y</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">fit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=-0.08300808744317316, intercept=11.247765156206, rvalue=-0.09338368621002217, pvalue=0.7728397976674917, stderr=0.27986426868969516, intercept_stderr=2.9127697406882413)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The slope, recalculated from r</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">s_y</span> <span class="o">/</span> <span class="n">s_x</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">slope</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intercept, recalculated from r</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">y_bar</span> <span class="o">-</span> <span class="n">x_bar</span> <span class="o">*</span> <span class="n">b</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">intercept</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, rewrite slope <span class="math notranslate nohighlight">\(b\)</span> in terms of <span class="math notranslate nohighlight">\(d_{x_i}, d_{y_i}\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[
-\Xmat^+ = (\Xmat^T \Xmat)^{-1} \Xmat^T
-\]</div>
-<p>Let’s calculate the pseudoinverse for our design:</p>
+\[\begin{split}
+b = \frac{r \sigma_y}{\sigma_x} \\
+= \frac{\frac{1}{n}\Sigma ( z_{x_i} z_{y_i} ) \sigma_y}{\sigma_x} \\
+= \frac{\frac{1}{n \sigma_y \sigma_x }\Sigma ( d_{x_i} d_{y_i} ) \sigma_y}{\sigma_x} \\
+= \frac{1}{n \sigma_x^2 }\Sigma ( d_{x_i} d_{y_i} ) \\
+= \frac{1}{\Sigma (d_x)^2 }\Sigma ( d_{x_i} d_{y_i} )
+\end{split}\]</div>
+<p>Therefore:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+b = \frac{1}{\Sigma (d_x)^2 }\Sigma ( d_{x_i} d_{y_i} ) \\
+= \frac{1}{\Sigma (d_x)^2 }\Sigma ( d_{x_i} (y_i - \bar{y}) ) \\
+= \frac{1}{\Sigma (d_x)^2 }(\Sigma ( d_{x_i} y_i ) - \bar{y} \Sigma d_{x_i}) )) \\
+= \frac{1}{\Sigma (d_x)^2 }\Sigma d_{x_i} y_i 
+\end{split}\]</div>
+<p>Really though?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
-<span class="n">Xp</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">Xp</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b_again</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">d_x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">d_x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b_again</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 169)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
-<p>We calculate <span class="math notranslate nohighlight">\(\bhat\)</span>:</p>
+<p>Finally, rewrite in terms of <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+b = \frac{1}{\Sigma (d_x)^2 }\Sigma d_{x_i} y_i \\
+= \frac{1}{\Sigma (x_i  - \bar{x})^2 } \Sigma (x_i - \bar{x}) y_i \\
+= \frac{1}{\Sigma x_i^2  - 2 \bar{x} \Sigma x_i + n \bar{x}^2 } ( \Sigma x_i y_i - \bar{x} \Sigma y_i ) \\
+= \frac{1}{\Sigma x_i^2  - n \bar{x}^2 } ( \Sigma x_i y_i - n \bar{x} \bar{y} ) \\
+\end{split}\]</div>
+<p>Really?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_hat</span> <span class="o">=</span> <span class="n">Xp</span> <span class="o">@</span> <span class="n">voxel_time_course</span>
-<span class="n">beta_hat</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b_yet_again</span> <span class="o">=</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">n</span> <span class="o">*</span> <span class="n">x_bar</span> <span class="o">*</span> <span class="n">y_bar</span><span class="p">)</span> <span class="o">/</span>
+               <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">n</span> <span class="o">*</span> <span class="n">x_bar</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b_yet_again</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  31.185514, 2029.367689])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can then calculate <span class="math notranslate nohighlight">\(\yhat\)</span> (also called the <em>fitted data</em>):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta_hat</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Finally, we may be interested to calculate the MSE of this model:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Residuals are actual minus fitted.</span>
-<span class="n">e_vec</span> <span class="o">=</span> <span class="n">voxel_time_course</span> <span class="o">-</span> <span class="n">y_hat</span>
-<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">e_vec</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">mse</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>245.00339852605674
-</pre></div>
-</div>
-</div>
-</div>
-<p>Notice that the <span class="math notranslate nohighlight">\(\bhat\)</span> parameters are the same as the slope and intercept from the Scipy calculation using <code class="docutils literal notranslate"><span class="pre">linregress</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">sps</span>
-<span class="n">sps</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">voxel_time_course</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=31.18551366491453, intercept=2029.367689291584, rvalue=0.7044637722561978, pvalue=1.1832511547748845e-26, stderr=2.4312815394118448, intercept_stderr=1.634742742490283)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -994,20 +1057,6 @@ invertible, the pseudoinverse is given by:</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="mean_test_example.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">A worked example of the general linear model</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="multi_multiply.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Estimation for many voxels at the same time</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
