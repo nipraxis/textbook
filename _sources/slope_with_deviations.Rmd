@@ -1,6 +1,5 @@
 ---
 jupyter:
-  orphan: true
   jupytext:
     notebook_metadata_filter: all,-language_info
     split_at_heading: true
@@ -13,6 +12,7 @@ jupyter:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
+  orphan: true
 ---
 
 ```{python}
@@ -92,6 +92,12 @@ b = r * s_y / s_x
 np.isclose(fit.slope, b)
 ```
 
+Remember, we can reconstruct the best-fit intercept from the best-fit slope with:
+
+$$
+c = \bar{y} - \bar{x} b
+$$
+
 ```{python}
 # Intercept, recalculated from r
 c = y_bar - x_bar * b
@@ -126,7 +132,7 @@ b_again = np.sum(d_x * y) / np.sum(d_x ** 2)
 np.isclose(b, b_again)
 ```
 
-Finally, rewrite in terms of $y_i$ and $x_i$:
+Finally, rewrite the slope in terms of $y_i$ and $x_i$:
 
 
 $$
@@ -144,3 +150,51 @@ b_yet_again = ((np.sum(y * x) - n * x_bar * y_bar) /
                (np.sum(x ** 2) - n * x_bar ** 2))
 np.isclose(b, b_yet_again)
 ```
+
+Then consider the general linear model.
+
+Compile the design $X$ from $\vec{d_x}$ and a column of ones.
+
+Now:
+
+$$
+X^T\vec{y} =
+\begin{bmatrix}
+\Sigma (d_{x_i} y_i) \\ n \bar{y}
+\end{bmatrix} \\
+X^T X =
+\begin{bmatrix}
+\Sigma (d_{x_i})^2 && \Sigma d_{x_i} \\
+\Sigma d_{x_i} && n
+\end{bmatrix} \\
+=
+\begin{bmatrix}
+\Sigma (d_{x_i})^2 && 0 \\
+0 && n
+\end{bmatrix} \\
+(X^T X)^{-1} =
+\begin{bmatrix}
+\frac{1}{\Sigma (d_{x_i})^2} && 0 \\
+0 && \frac{1}{n}
+\end{bmatrix} \\
+(X^T X)^{-1} X^T\vec{y} =
+\begin{bmatrix}
+\frac{1}{\Sigma (d_{x_i})^2} \Sigma (d_{x_i} y_i) \\
+\bar{y}
+\end{bmatrix}
+$$
+
+
+You will recognize the first term as the slope we calculated
+above. The second is the intercept for the best-fit line of
+$d_x$ and $y$.  Call this intercept $c_{d_x}$.  We can check
+what this value should be by using the formula above for
+getting the intercept given the slope.
+
+$$
+c_{d_x} = \bar{y} - \bar{d_x} b \\
+= \bar{y}
+$$
+
+The general linear model has found the correct slope and
+intercept, as we derived them above from the correlation $r$.

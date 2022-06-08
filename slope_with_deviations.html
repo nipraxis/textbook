@@ -847,7 +847,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.09338368621002217
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.3222284159211949
 </pre></div>
 </div>
 </div>
@@ -861,7 +861,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10.195514240137474, 10.401455018632552)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10.294422208678482, 9.603060026242424)
 </pre></div>
 </div>
 </div>
@@ -895,7 +895,7 @@ z_{y_i} = \frac{d_{y_i}}{\sigma_y}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.091332491155015, 1.8589704191813505)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.3478883006451854, 1.41328937718585)
 </pre></div>
 </div>
 </div>
@@ -907,7 +907,7 @@ z_{y_i} = \frac{d_{y_i}}{\sigma_y}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.091332491155015, 1.8589704191813505)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.3478883006451854, 1.41328937718585)
 </pre></div>
 </div>
 </div>
@@ -942,7 +942,7 @@ z_{y_i} = \frac{d_{y_i}}{\sigma_y}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=-0.08300808744317316, intercept=11.247765156206, rvalue=-0.09338368621002217, pvalue=0.7728397976674917, stderr=0.27986426868969516, intercept_stderr=2.9127697406882413)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=-0.33786330590662744, intercept=13.081167546065142, rvalue=-0.3222284159211949, pvalue=0.30703601899276534, stderr=0.31388612057998194, intercept_stderr=3.2588565167492574)
 </pre></div>
 </div>
 </div>
@@ -961,6 +961,11 @@ z_{y_i} = \frac{d_{y_i}}{\sigma_y}
 </div>
 </div>
 </div>
+<p>Remember, we can reconstruct the best-fit intercept from the best-fit slope with:</p>
+<div class="math notranslate nohighlight">
+\[
+c = \bar{y} - \bar{x} b
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intercept, recalculated from r</span>
@@ -1006,7 +1011,7 @@ b = \frac{1}{\Sigma (d_x)^2 }\Sigma ( d_{x_i} d_{y_i} ) \\
 </div>
 </div>
 </div>
-<p>Finally, rewrite in terms of <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
+<p>Finally, rewrite the slope in terms of <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 b = \frac{1}{\Sigma (d_x)^2 }\Sigma d_{x_i} y_i \\
@@ -1029,6 +1034,48 @@ b = \frac{1}{\Sigma (d_x)^2 }\Sigma d_{x_i} y_i \\
 </div>
 </div>
 </div>
+<p>Then consider the general linear model.</p>
+<p>Compile the design <span class="math notranslate nohighlight">\(X\)</span> from <span class="math notranslate nohighlight">\(\vec{d_x}\)</span> and a column of ones.</p>
+<p>Now:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X^T\vec{y} =
+\begin{bmatrix}
+\Sigma (d_{x_i} y_i) \\ n \bar{y}
+\end{bmatrix} \\
+X^T X =
+\begin{bmatrix}
+\Sigma (d_{x_i})^2 &amp;&amp; \Sigma d_{x_i} \\
+\Sigma d_{x_i} &amp;&amp; n
+\end{bmatrix} \\
+=
+\begin{bmatrix}
+\Sigma (d_{x_i})^2 &amp;&amp; 0 \\
+0 &amp;&amp; n
+\end{bmatrix} \\
+(X^T X)^{-1} =
+\begin{bmatrix}
+\frac{1}{\Sigma (d_{x_i})^2} &amp;&amp; 0 \\
+0 &amp;&amp; \frac{1}{n}
+\end{bmatrix} \\
+(X^T X)^{-1} X^T\vec{y} =
+\begin{bmatrix}
+\frac{1}{\Sigma (d_{x_i})^2} \Sigma (d_{x_i} y_i) \\
+\bar{y}
+\end{bmatrix}
+\end{split}\]</div>
+<p>You will recognize the first term as the slope we calculated
+above. The second is the intercept for the best-fit line of
+<span class="math notranslate nohighlight">\(d_x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.  Call this intercept <span class="math notranslate nohighlight">\(c_{d_x}\)</span>.  We can check
+what this value should be by using the formula above for
+getting the intercept given the slope.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+c_{d_x} = \bar{y} - \bar{d_x} b \\
+= \bar{y}
+\end{split}\]</div>
+<p>The general linear model has found the correct slope and
+intercept, as we derived them above from the correlation <span class="math notranslate nohighlight">\(r\)</span>.</p>
 
     <script type="text/x-thebe-config">
     {
