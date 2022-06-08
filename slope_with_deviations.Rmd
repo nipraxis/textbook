@@ -1,0 +1,146 @@
+---
+jupyter:
+  orphan: true
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.11.5
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+```{python}
+import numpy as np
+import scipy.stats as sps
+```
+
+```{python}
+rng = np.random.default_rng()
+```
+
+```{python}
+n = 12
+x = rng.normal(10, 2, size=n)
+y = rng.normal(10, 2, size=n)
+```
+
+```{python}
+r = np.corrcoef(x, y)[0, 1]
+r
+```
+
+```{python}
+x_bar = np.mean(x)
+y_bar = np.mean(y)
+x_bar, y_bar
+```
+
+Write the *deviations* as e.g. $d_{x_i}$, so:
+
+$$
+d_{x_i} = x_i - \bar{x} \\
+d_{y_i} = y_i - \bar{y}
+$$
+
+```{python}
+d_x = x - x_bar
+d_y = y - y_bar
+```
+
+As before, the z-scores are:
+
+$$
+z_{x_i} = \frac{d_{x_i}}{\sigma_x} \\
+z_{y_i} = \frac{d_{y_i}}{\sigma_y}
+$$
+
+```{python}
+s_x = np.sqrt(np.mean(d_x ** 2))
+s_y = np.sqrt(np.mean(d_y ** 2))
+s_x, s_y
+```
+
+```{python}
+np.std(x), np.std(y)
+```
+
+```{python}
+z_x = d_x / s_x
+z_y = d_y / s_y
+```
+
+```{python}
+# r (correlation) again.
+r_again = np.mean(z_x * z_y)
+np.isclose(r, r_again)
+```
+
+```{python}
+fit = sps.linregress(x, y)
+fit
+```
+
+```{python}
+# The slope, recalculated from r
+b = r * s_y / s_x
+np.isclose(fit.slope, b)
+```
+
+```{python}
+# Intercept, recalculated from r
+c = y_bar - x_bar * b
+np.isclose(fit.intercept, c)
+```
+
+Next, rewrite slope $b$ in terms of $d_{x_i}, d_{y_i}$:
+
+$$
+b = \frac{r \sigma_y}{\sigma_x} \\
+= \frac{\frac{1}{n}\Sigma ( z_{x_i} z_{y_i} ) \sigma_y}{\sigma_x} \\
+= \frac{\frac{1}{n \sigma_y \sigma_x }\Sigma ( d_{x_i} d_{y_i} ) \sigma_y}{\sigma_x} \\
+= \frac{1}{n \sigma_x^2 }\Sigma ( d_{x_i} d_{y_i} ) \\
+= \frac{1}{\Sigma (d_x)^2 }\Sigma ( d_{x_i} d_{y_i} )
+$$
+
+
+Therefore:
+
+$$
+b = \frac{1}{\Sigma (d_x)^2 }\Sigma ( d_{x_i} d_{y_i} ) \\
+= \frac{1}{\Sigma (d_x)^2 }\Sigma ( d_{x_i} (y_i - \bar{y}) ) \\
+= \frac{1}{\Sigma (d_x)^2 }(\Sigma ( d_{x_i} y_i ) - \bar{y} \Sigma d_{x_i}) )) \\
+= \frac{1}{\Sigma (d_x)^2 }\Sigma d_{x_i} y_i 
+$$
+
+
+Really though?
+
+```{python}
+b_again = np.sum(d_x * y) / np.sum(d_x ** 2)
+np.isclose(b, b_again)
+```
+
+Finally, rewrite in terms of $y_i$ and $x_i$:
+
+
+$$
+b = \frac{1}{\Sigma (d_x)^2 }\Sigma d_{x_i} y_i \\
+= \frac{1}{\Sigma (x_i  - \bar{x})^2 } \Sigma (x_i - \bar{x}) y_i \\
+= \frac{1}{\Sigma x_i^2  - 2 \bar{x} \Sigma x_i + n \bar{x}^2 } ( \Sigma x_i y_i - \bar{x} \Sigma y_i ) \\
+= \frac{1}{\Sigma x_i^2  - n \bar{x}^2 } ( \Sigma x_i y_i - n \bar{x} \bar{y} ) \\
+$$
+
+
+Really?
+
+```{python}
+b_yet_again = ((np.sum(y * x) - n * x_bar * y_bar) /
+               (np.sum(x ** 2) - n * x_bar ** 2))
+np.isclose(b, b_yet_again)
+```
