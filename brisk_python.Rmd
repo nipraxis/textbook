@@ -1068,7 +1068,7 @@ software = {}
 ```
 
 Here we insert a new key / value mapping into the dictionary. The key is a
-string — `'Python'` — and the corresponding value is an integer 50:
+string — `'Python'` — and the corresponding value is an integer 100:
 
 ```{python}
 software['Python'] = 100
