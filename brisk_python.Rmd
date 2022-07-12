@@ -72,6 +72,13 @@ a + b
 a * b
 ```
 
+By default, jupyter notebook cells will only print the results of the last line of code when it is not assigned to a variable. To print the results of previous lines of codes in the cell as well, the function print() can be used:
+
+```{python}
+print(a + b)
+a * b
+```
+
 Dividing an int by an int also gives a float:
 
 ```{python}
@@ -107,7 +114,6 @@ The `%` operator on numbers gives you the remainder of integer division
 5.0 % 2.0
 ```
 
-(true-and-false)=
 
 ## True and False
 
@@ -186,7 +192,6 @@ different from MATLAB, which uses `~=`:
 a != 1
 ```
 
-(comparison-operators)=
 
 ## Comparison operators
 
@@ -269,7 +274,7 @@ print('not True:', not True)
 print('not False:', not False)
 ```
 
-In fact, the logical operators will first force their arguments to be True or False before they give their answer.  So, in the case of `and` or `or`, they force force their left and right arguents to be `bool` values, before they calculate the answer.  So, in fact, you can use things other than exact True and False on either side of the `and` or `or`, as long as applying `bool(value)` to the thing to the left and right will produce a True or False value.  See {doc}`truthiness` for more detail.
+In fact, the logical operators will first force their arguments to be True or False before they give their answer.  So, in the case of `and` or `or`, they force their left and right arguents to be `bool` values, before they calculate the answer.  So, in fact, you can use things other than exact True and False on either side of the `and` or `or`, as long as applying `bool(value)` to the thing to the left and right will produce a True or False value.  See {doc}`truthiness` for more detail.
 
 ## “If” statements, blocks and indention
 
@@ -689,7 +694,6 @@ you a reversed copy of the list:
 my_list[::-1]
 ```
 
-(tuples)=
 
 ## Tuples
 
@@ -869,7 +873,7 @@ characters removed from the beginning and end of the string:
 ```{python}
 # A string with a newline character at the end
 my_string = ' a string\n'
-my_string
+print(my_string)
 my_string.strip()
 ```
 
