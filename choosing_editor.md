@@ -76,6 +76,7 @@ to PyCharm users).
 * [Sublime text](https://www.sublimetext.com)
 * [Emacs](https://emacs.org)
 * [Spyder](https://www.spyder-ide.org)
+* [GitHub Codespaces](https://github.com/features/codespaces)
 
 ## Some version of Visual Studio Code
 

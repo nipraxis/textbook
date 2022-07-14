@@ -40,7 +40,7 @@ post](http://asterisk.dynevor.org/python-matlab.html).
 
 ## The Jupyter Notebook
 
-We will soon here more about the Jupyter Notebook.  It is a particularly
+We will soon hear more about the Jupyter Notebook.  It is a particularly
 easy interface to run Python code, and display the results.
 
 The Notebook has two parts.  The first is the web application, that you

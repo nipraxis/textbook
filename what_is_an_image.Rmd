@@ -79,10 +79,15 @@ import os  # module for interacting with the operating system
 If you want to explore modules or objects, type their name followed by a
 period, and press tab to see what functions or classes are available.
 
-Try this now.  Type  ( followed by a period) then press tab, to see
+Try this now.  Type os (followed by a period) then press tab, to see
 what functions are in the `os` module. Continue typing so you have
-`os.getcwd`, and then type `?` followed by Return. This shows you
+`os.getcwd`, and then type `?` followed by SHIFT + Return. This shows you
 the help for the `os.getcwd` function.
+
+```{python}
+# Cell to follow instructions in the previous parragraph
+os.
+```
 
 For example, here we print out the Python's *working directory*.  It is the
 directory that contains this notebook file.
@@ -145,7 +150,7 @@ How do I find out what `type` of object is attached to this variable called
 
 How big is this file in terms of bytes? Can you find out from the
 `contents` variable? (Hint: you want to know the length of
-`contents`).
+`contents`; Hint 2: use function len() ).
 
 ```{python}
 # n_bytes = ?
