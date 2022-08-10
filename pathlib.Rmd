@@ -17,7 +17,10 @@ jupyter:
 
 # Using the `pathlib` module
 
-The `pathlib` module is one of two ways of manipulating and using file paths in Python.  See the {doc}`path manipulation <path_manipulation.Rmd>` page for more discussion, and {doc}`os_path.Rmd` page for a tutorial on the alternative `os.path` approach.
+The `pathlib` module is one of two ways of manipulating and using file paths in
+Python.  See the [path manipulation](path_manipulation.Rmd) page for more
+discussion, and [os.path](os_path.Rmd) page for a tutorial on the alternative
+`os.path` approach.
 
 The primary documentation for `pathlib` is
 <https://docs.python.org/3/library/pathlib.html>.
