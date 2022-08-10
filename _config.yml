@@ -34,7 +34,6 @@ exclude_patterns:
   - comparing_floats.md
   - diag_inverse.md
   - dot_and_outer.md
-  - floating_in_text.md
   - index_reshape.Rmd
   - keyword_arguments.Rmd
   - nans.md
