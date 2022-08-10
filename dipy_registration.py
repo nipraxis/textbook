@@ -1,6 +1,8 @@
 """ Run non-linear registration using Dipy
 """
 
+# Port to pathlib
+
 import os
 from os.path import split as psplit, join as pjoin, splitext, exists
 import pickle

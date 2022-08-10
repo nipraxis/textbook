@@ -31,103 +31,12 @@ os.getcwd()
 
 There are two standard ways of manipulating pathnames in Python.
 
-* Using the `os.path` module, covered in this page.
-* Using the `pathlib` module.
+* {doc}`pathlib.Rmd`
+* {doc}`os_path.Rmd`
 
 Of the two techniques, the `os.path` way is rather simpler, but it covers a
 smaller range of tasks.  It can also be more verbose. `pathlib` does more, and
 can give you nice-looking, concise code, but it does rely on a particularly
-Python way of thinking.   You will see examples of both in lots of modern
-code, but we concentrate on `os.path` here, because we think it is easier when
-you are getting started.
-
-## os.path
-
-See: [https://docs.python.org/3.5/library/os.path.html](https://docs.python.org/3.5/library/os.path.html)
-
-Here we will cover:
-
-* `os.path`
-* `dirname, basename, join, splitext, abspath`
-
-```{python}
-import os.path
-```
-
-In IPython, you can tab complete on `os.path` to list the functions and
-attributes there.
-
-The first function we will use from `os.path` is `dirname`.  To avoid
-typing `os.path` all the time, we import `os.path` with the shortened name
-`op`:
-
-```{python}
-import os.path as op
-op.dirname
-```
-
-The `dirname` function gives the directory name from a full file path. It
-works correctly for Unix paths on Unix machines, and Windows paths on Windows
-machines:
-
-```{python}
-# On Unix
-op.dirname('/a/full/path/then_filename.txt')
-```
-
-You'll see something like this as output if you run something similar on
-Windows.  So `op.dirname('c:\\a\\full\\path\\then_filename.txt') ` will give:
-
-```
-'c:\\a\\full\\path'
-```
-
-Notice that, on Windows, you need to use double backslashes, because the
-backslash in a Python string is a way of *escaping* a character — meaning, to
-specify you mean exactly that character.  Double backslash has the meaning
-"Yes, I do mean exactly backslash for the next character".
-
-`dirname` also works for relative paths,  A relative path where the starting
-directory is relative to the current directory, rather than absolute, in terms
-of the root of the file system:
-
-```{python}
-# On Unix
-op.dirname('relative/path/then_filename.txt')
-```
-
-Use `basename` to get the filename rather than the directory name:
-
-```{python}
-# On Unix
-op.basename('/a/full/path/then_filename.txt')
-```
-
-Sometimes you want to join one or more directory names with a filename to get
-a path.   Windows and Unix have different characters to separate directories
-in a path.  Windows uses the backslash: `\`, Unix uses a forward slash:
-`/`. If your code will run on Windows and Unix, you need to take care that
-you get the right character joining your paths.  This is what `os.path.join`
-does:
-
-```{python}
-# On Unix
-op.join('relative', 'path', 'then_filename.txt')
-```
-
-This also works on Windows.  `op.join('relative', 'path', 'then_filename.txt')` gives output `'relative\\path\\then_filename.txt'`.
-
-To convert a relative to an absolute path, use `abspath`:
-
-```{python}
-# Show the current working directory
-os.getcwd()
-op.abspath('relative/path/then_filename.txt')
-```
-
-Use `splitext` to split a path into: the path + filename; and the file
-extension:
-
-```{python}
-op.splitext('relative/path/then_filename.txt')
-```
+Python way of thinking.   You will see examples of both in lots of modern code,
+but we will use `pathlib` in this textbook, because it will likely be the
+method you end up using when you are more experienced writing Python code.

@@ -6,7 +6,7 @@ BSD 2-clause license
 """
 
 import os
-import os.path as op
+from pathlib import Path
 from subprocess import check_call
 
 import numpy as np
@@ -18,17 +18,17 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import (SimpleDocTemplate, Table, TableStyle,
                                 Paragraph)
 
-HERE = op.dirname(__file__)
+HERE = Path(__file__).parent
 
-course_fname = op.join(HERE, '..', 'data', 'rate_my_course.csv')
-big_courses = pd.read_csv(course_fname).head(6)
+course_pth = HERE / '..' / 'data' / 'rate_my_course.csv'
+big_courses = pd.read_csv(course_pth).head(6)
 # Put the columns into arrays
 disciplines = np.array(big_courses['Discipline'])
 easiness = np.array(big_courses['Easiness'])
 quality = np.array(big_courses['Overall Quality'])
 
-pdf_fname = op.join(HERE, "easiness_values.pdf")
-doc = SimpleDocTemplate(pdf_fname, pagesize=letter)
+pdf_pth = HERE / "easiness_values.pdf"
+doc = SimpleDocTemplate(str(pdf_pth), pagesize=letter)
 
 col_widths = 34
 easy_list = [round(e, 2) for e in easiness]
@@ -81,24 +81,26 @@ doc.build(sum([
 ], []))
 
 
-def write_png(pdf_fname):
+def write_png(pdf_pth):
     # From some TeX distribution.
-    check_call(['pdfcrop', pdf_fname,
+    check_call(['pdfcrop', str(pdf_pth),
                 '--margins', '10 10 10 10',
-                pdf_fname])
+                pdf_pth])
 
     # ImageMagick
-    png_fname = op.splitext(pdf_fname)[0] + '.png'
+    png_pth = pdf_pth.with_suffix('.png')
     check_call(['convert', '-strip',
                 '-density', '300',
-                pdf_fname,
-                png_fname])
-    os.unlink(pdf_fname)
+                str(pdf_pth),
+                str(png_pth)])
+    os.unlink(pdf_pth)
 
-write_png(pdf_fname)
 
-other_array = op.join(HERE, "easiness_reused.pdf")
-o_doc = SimpleDocTemplate(other_array, pagesize=letter)
+write_png(pdf_pth)
+
+
+other_array = HERE / "easiness_reused.pdf"
+o_doc = SimpleDocTemplate(str(other_array), pagesize=letter)
 
 col_widths = 70
 o_t1 = Table([list(disciplines)],

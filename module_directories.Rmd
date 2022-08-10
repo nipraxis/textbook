@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.10.3
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3
     language: python
@@ -41,26 +41,26 @@ It's a directory, so we first create the directory.
 
 The directory may already exist from a prior run through of this notebook, so we start by deleting the directory, if it exists.
 
-We use the [os.path](path_manipulation.Rmd) routines to check if the directory
-exists, and the `rmtree` function from the `shutil` module to remove it, if it
-does:
+We use a [pathlib](pathlib.Rmd) `Path` object to check if the directory exists,
+and the `rmtree` function from the `shutil` module to remove it, if it does:
 
 ```{python}
 import os
-import os.path as op
+from pathlib import Path
 import shutil
 ```
 
 ```{python}
 # Remove mydirmod directory if it exists.
-if op.isdir('mydirmod'):
-    shutil.rmtree('mydirmod')
+mod_path = Path('mydirmod')
+if mod_path.is_dir():
+    shutil.rmtree(mod_path)
 ```
 
 With that out of the way, we create the directory.
 
 ```{python}
-os.mkdir('mydirmod')
+mod_path.mkdir()
 ```
 
 Next we put a `.py` file into that directory, using the `%%file` notebook command:
@@ -77,7 +77,7 @@ def myfunc(a):
 Just to confirm, we show the files in `mydirmod`:
 
 ```{python}
-os.listdir('mydirmod')
+list(mod_path.glob('*'))  # Get, show all files
 ```
 
 But, our work here is not yet done.  To make the `mydirmod` into a directory

@@ -2,27 +2,20 @@
 """ Write redirects
 """
 
-import os
-import os.path as op
-import sys
+from pathlib import Path
 from argparse import ArgumentParser
 
 import yaml
 
-HERE = op.dirname(op.realpath(__file__))
-SITE_ROOT = op.realpath(op.join(HERE, '..'))
-sys.path.append(HERE)
-
-from cutils import find_site_config
+from oktools.cutils import find_site_config
 
 
 def write_redirect(source, target, out_dir):
-    redirect_fname = op.join(out_dir, f'{source}.html')
-    fname_dir = op.dirname(redirect_fname)
-    if not op.isdir(fname_dir):
-        os.makedirs(fname_dir)
-    with open(redirect_fname, 'wt') as fobj:
-        fobj.write(
+    redirect_pth = Path(out_dir) / f'{source}.html'
+    fname_dir = redirect_pth.parent
+    if not fname_dir.is_dir():
+       fname_dir.mkdir(parents=True)
+    redirect_pth.write_text(
             """<meta http-equiv="Refresh" content="0; """
             f"""url='{target}.html'" />""")
 
@@ -36,7 +29,7 @@ def main():
     args = parser.parse_args()
     site_config = args.site_config
     if site_config is None:
-       site_config = find_site_config(os.getcwd(), filenames=('_config.yml',))
+       site_config = find_site_config(Path(), filenames=('_config.yml',))
     with open(site_config, 'r') as ff:
         site_dict = yaml.load(ff.read(), Loader=yaml.SafeLoader)
     redirection = site_dict.get('redirection', {})
