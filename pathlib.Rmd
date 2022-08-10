@@ -19,8 +19,8 @@ jupyter:
 
 The `pathlib` module is one of two ways of manipulating and using file paths in
 Python.  See the [path manipulation](path_manipulation.Rmd) page for more
-discussion, and [os.path](os_path.Rmd) page for a tutorial on the alternative
-`os.path` approach.
+discussion, and [os.path](os_path.Rmd) page for a tutorial on an alternative
+approach.
 
 The primary documentation for `pathlib` is
 <https://docs.python.org/3/library/pathlib.html>.
@@ -73,9 +73,10 @@ We can always convert the `Path` object to a simple string, using the
 str(abs_p)
 ```
 
-The first function we will use from `os.path` is `dirname`.  To avoid
-typing `os.path` all the time, we import `os.path` with the shortened name
-`op`:
+Sometimes we want to get a path referring the directory *containing* a path.
+The Path object has a `parent` attribute attached to it (an attribute is data
+attached to an object).  The `parent` attribute is a Path object for the
+containing directory:
 
 ```{python}
 abs_p.parent
