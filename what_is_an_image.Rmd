@@ -12,6 +12,8 @@ jupyter:
     display_name: Python 3
     language: python
     name: python3
+  prereqs:
+  - pathlib
 ---
 
 # What is an image?
@@ -118,22 +120,14 @@ structural_fname = nipraxis.fetch_file('ds114_sub009_highres.nii')
 structural_fname
 ```
 
-Let’s read the image into memory.
+Let’s read the image into memory.  We will use the [pathlib
+module](pathlib.Rmd):
 
 ```{python}
-# Open a file in Read Binary ('rb') mode
-fobj = open(structural_fname, 'rb')
-print(fobj)
-```
+# Open a file, read in binary bytes.
+from pathlib import Path
 
-The thing named `fobj` we just made is a [Python file
-object](https://docs.python.org/3/glossary.html#term-file-object).  This is a
-thing that knows how to read data from the file into memory.  That is what we
-will do next.
-
-```{python}
-# read all the characters into a variable in memory
-contents = fobj.read()
+contents = Path(structural_fname).read_binary()
 ```
 
 How do I find out what `type` of object is attached to this variable called

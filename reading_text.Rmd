@@ -13,12 +13,15 @@ jupyter:
     language: python
     name: python3
   orphan: true
+  prereqs:
+  - pathlib
 ---
 
 # Reading data from text files
 
-We have been reading various values from text files using the file `open`
-function, and then processing the lines in the file.
+We have been reading various values from text files using the [pathlib
+Path](pathlib.Rmd) `read_text` method, and then processing the lines in the
+file.
 
 Here is some revision on how to do that, going from the crude to the elegant
 way.
@@ -26,20 +29,30 @@ way.
 First we write a little text file out to disk:
 
 ```{python}
+from pathlib import Path
+
 numbers = [1.2, 2.3, 3.4, 4.5]
-fobj = open('some_numbers.txt', 'wt')
+strings = []
 for number in numbers:
-    # String version of number, plus end-of-line character
-    fobj.write(str(number) + '\n')
-fobj.close()
+    # String version of number.
+    strings.append(str(number))
+
+# Stick the strings together separated by new lines ('\n'):
+out_text = '\n'.join(strings)
+out_text
 ```
 
-Now we read it back again. First, we will read the all the lines in one shot,
-returning a list of strings:
+```{python}
+# Write text to file.
+path = Path('some_numbers.txt')
+path.write_text(out_text)
+```
+
+Now we read it back again. First, we will read the all the lines as one long string, then split it into lines at newline characters:
 
 ```{python}
-fobj = open('some_numbers.txt', 'rt')
-lines = fobj.readlines()
+text_back = path.read_text()
+lines = text_back.splitlines()
 len(lines)
 ```
 
@@ -47,12 +60,11 @@ len(lines)
 lines[0]
 ```
 
-Next we will read the file, but converting each number to a float:
+Next we will convert each number to a float:
 
 ```{python}
-fobj = open('some_numbers.txt', 'rt')
 numbers_again = []
-for line in fobj.readlines():
+for line in lines:
     numbers_again.append(float(line))
 numbers_again
 ```
@@ -66,4 +78,10 @@ import numpy as np
 
 ```{python}
 np.loadtxt('some_numbers.txt')
+```
+
+Finally, for neatness, we delete the temporary file:
+
+```{python}
+path.unlink()
 ```

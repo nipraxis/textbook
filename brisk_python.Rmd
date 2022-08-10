@@ -1363,6 +1363,10 @@ sorted(people, key=get_last_name)
 
 ## Files
 
+**Note**: The section below covers Python's most basic interface to writing and
+reading files.  See the [pathlib module](pathlib.Rmd) for a more concise
+interface to files and their data.
+
 You can open a file in several different *modes*.  The mode specifies whether
 you want to read or write the file, and whether the data in the file is, or
 will be, text data (string) or binary data (bytes).  For example, here we open

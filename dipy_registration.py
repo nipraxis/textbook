@@ -1,7 +1,7 @@
 """ Run non-linear registration using Dipy
 """
 
-# Port to pathlib
+# Port to pathlib, remove use of open
 
 import os
 from os.path import split as psplit, join as pjoin, splitext, exists

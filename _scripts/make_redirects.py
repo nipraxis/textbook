@@ -30,8 +30,8 @@ def main():
     site_config = args.site_config
     if site_config is None:
        site_config = find_site_config(Path(), filenames=('_config.yml',))
-    with open(site_config, 'r') as ff:
-        site_dict = yaml.load(ff.read(), Loader=yaml.SafeLoader)
+    ff = Path(site_config)
+    site_dict = yaml.load(ff.read_text(), Loader=yaml.SafeLoader)
     redirection = site_dict.get('redirection', {})
     out_dir = redirection['builddir']
     redirects = redirection['redirects']
