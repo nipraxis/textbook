@@ -89,8 +89,9 @@ There is one row per trial, where each row records:
   'spacebar')
 * `response_time` — the reaction time for their response (milliseconds after
   the stimulus, 0 if no response)
-* `trial_ISI` — the time to wait until the *next* stimulus (the Interstimulus
-  Interval)
+* `trial_ISI` — the time between the *previous* stimulus and this one (the
+  Interstimulus Interval).  For the first stimulus this is the time from the
+  start of the experimental software.
 * `trial_shape` — the name of the stimulus ('red_star', 'red_circle' and so
   on).
 
@@ -100,7 +101,10 @@ Here we open the file as text, and load the lines of the file into memory as a l
 
 ```{python}
 # Load the lines in the file as a list.
-lines = open(stim_fname, 'rt').readlines()
+from pathlib import Path
+
+text = Path(stim_fname).read_text()
+lines = text.splitlines()
 # Show the first 5 lines.
 lines[:5]
 ```
@@ -263,6 +267,8 @@ my_list[1] = 'some_text'
 my_list
 ```
 
+## Reading directly into arrays
+
 There is another way we could have collected the information from the file, and put it directly into arrays.
 
 We could have started with an array of the right length and type, by using the `np.zeros` function to make an array with all 0.0 values.
@@ -420,21 +426,21 @@ Remember {ref}`Boolean values <true-and-false>`, and
 Let's start by looking at the first 15 reaction times.
 
 ```{python}
-first_rts = rt_arr[:15]
-first_rts
+first_15_rts = rt_arr[:15]
+first_15_rts
 ```
 
 Remember that comparisons are operators that give answers to a *comparison
 question*.  This is how comparisons work on individual values:
 
 ```{python}
-first_rts[0] > 0
+first_15_rts[0] > 0
 ```
 
 What do you think will happen if we do the comparison on the whole array, like this?
 
 ```python
-first_rts > 0
+first_15_rts > 0
 ```
 
 You have seen how Numpy works when adding a single number to an array — it
@@ -444,21 +450,22 @@ array*.
 Comparisons work the same way:
 
 ```{python}
-first_rts_not_zero = first_rts > 0
-first_rts_not_zero
+first_15_rts_not_zero = first_15_rts > 0
+first_15_rts_not_zero
 ```
 
 This is the result of asking the comparison question `> 0` of *every element in
 the array*.
 
-So the values that end up in the `first_rts_not_zero` array come from these comparisons:
+So the values that end up in the `first_15_rts_not_zero` array come from these
+comparisons:
 
 ```{python}
-print('Position 0:', first_rts[0] > 0)
-print('Position 1:', first_rts[1] > 0)
+print('Position 0:', first_15_rts[0] > 0)
+print('Position 1:', first_15_rts[1] > 0)
 print(' ... and so on, up to ...')
-print('Position 13:', first_rts[13] > 0)
-print('Position 14:', first_rts[14] > 0)
+print('Position 13:', first_15_rts[13] > 0)
+print('Position 14:', first_15_rts[14] > 0)
 ```
 Here is the equivalent array for all the reaction times:
 
@@ -472,7 +479,8 @@ We will [soon see](boolean_indexing) that we can use these arrays to select elem
 
 Specifically, if we put a Boolean array like `rts_not_zero` between square brackets for another array, that will have the effect of selecting the elements at positions where `rts_not_zero` has True, and throwing away elements where `rts_not_zero` has False.
 
-For0 example, rushing ahead, we can select the values in `rt_arr` corresponding to reaction times greater than zero with:
+For example, rushing ahead, we can select the values in `rt_arr` corresponding
+to reaction times greater than zero with:
 
 ```{python}
 rt_arr[rts_not_zero]

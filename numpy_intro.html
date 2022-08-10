@@ -817,6 +817,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-directly-into-arrays">
+   Reading directly into arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#baby-steps">
    Baby steps
   </a>
@@ -888,6 +893,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#arrays-have-a-datatype">
    Arrays have a datatype
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-directly-into-arrays">
+   Reading directly into arrays
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1038,8 +1048,9 @@ There is one row per trial, where each row records:</p>
 ‘spacebar’)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">response_time</span></code> — the reaction time for their response (milliseconds after
 the stimulus, 0 if no response)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">trial_ISI</span></code> — the time to wait until the <em>next</em> stimulus (the Interstimulus
-Interval)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trial_ISI</span></code> — the time between the <em>previous</em> stimulus and this one (the
+Interstimulus Interval).  For the first stimulus this is the time from the
+start of the experimental software.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">trial_shape</span></code> — the name of the stimulus (‘red_star’, ‘red_circle’ and so
 on).</p></li>
 </ul>
@@ -1048,18 +1059,21 @@ on).</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the lines in the file as a list.</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">stim_fname</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">stim_fname</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 <span class="c1"># Show the first 5 lines.</span>
 <span class="n">lines</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;response,response_time,trial_ISI,trial_shape\n&#39;,
- &#39;None,0,2000,red_star\n&#39;,
- &#39;None,0,1000,red_circle\n&#39;,
- &#39;None,0,2500,green_triangle\n&#39;,
- &#39;None,0,1500,yellow_square\n&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;response,response_time,trial_ISI,trial_shape&#39;,
+ &#39;None,0,2000,red_star&#39;,
+ &#39;None,0,1000,red_circle&#39;,
+ &#39;None,0,2500,green_triangle&#39;,
+ &#39;None,0,1500,yellow_square&#39;]
 </pre></div>
 </div>
 </div>
@@ -1142,11 +1156,11 @@ statistical modeling.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;response,response_time,trial_ISI,trial_shape\n&#39;,
- &#39;None,0,2000,red_star\n&#39;,
- &#39;None,0,1000,red_circle\n&#39;,
- &#39;None,0,2500,green_triangle\n&#39;,
- &#39;None,0,1500,yellow_square\n&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;response,response_time,trial_ISI,trial_shape&#39;,
+ &#39;None,0,2000,red_star&#39;,
+ &#39;None,0,1000,red_circle&#39;,
+ &#39;None,0,2500,green_triangle&#39;,
+ &#39;None,0,1500,yellow_square&#39;]
 </pre></div>
 </div>
 </div>
@@ -1160,11 +1174,11 @@ statistical modeling.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;None,0,2000,red_star\n&#39;,
- &#39;None,0,1000,red_circle\n&#39;,
- &#39;None,0,2500,green_triangle\n&#39;,
- &#39;None,0,1500,yellow_square\n&#39;,
- &#39;None,0,1500,blue_circle\n&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;None,0,2000,red_star&#39;,
+ &#39;None,0,1000,red_circle&#39;,
+ &#39;None,0,2500,green_triangle&#39;,
+ &#39;None,0,1500,yellow_square&#39;,
+ &#39;None,0,1500,blue_circle&#39;]
 </pre></div>
 </div>
 </div>
@@ -1203,7 +1217,7 @@ statistical modeling.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;None,0,2000,red_star\n&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;None,0,2000,red_star&#39;
 </pre></div>
 </div>
 </div>
@@ -1217,7 +1231,7 @@ statistical modeling.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;None&#39;, &#39;0&#39;, &#39;2000&#39;, &#39;red_star\n&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;None&#39;, &#39;0&#39;, &#39;2000&#39;, &#39;red_star&#39;]
 </pre></div>
 </div>
 </div>
@@ -1383,6 +1397,9 @@ type of elements the array does and can contain.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="reading-directly-into-arrays">
+<h2>Reading directly into arrays<a class="headerlink" href="#reading-directly-into-arrays" title="Permalink to this headline">#</a></h2>
 <p>There is another way we could have collected the information from the file, and put it directly into arrays.</p>
 <p>We could have started with an array of the right length and type, by using the <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> function to make an array with all 0.0 values.</p>
 <div class="cell docutils container">
@@ -1656,8 +1673,8 @@ indexing</span></a> for more.</p>
 <p>Let’s start by looking at the first 15 reaction times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts</span> <span class="o">=</span> <span class="n">rt_arr</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
-<span class="n">first_rts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span> <span class="o">=</span> <span class="n">rt_arr</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+<span class="n">first_15_rts</span>
 </pre></div>
 </div>
 </div>
@@ -1672,7 +1689,7 @@ indexing</span></a> for more.</p>
 question</em>.  This is how comparisons work on individual values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -1683,7 +1700,7 @@ question</em>.  This is how comparisons work on individual values:</p>
 </div>
 </div>
 <p>What do you think will happen if we do the comparison on the whole array, like this?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </pre></div>
 </div>
 <p>You have seen how Numpy works when adding a single number to an array — it
@@ -1692,8 +1709,8 @@ array</em>.</p>
 <p>Comparisons work the same way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_rts_not_zero</span> <span class="o">=</span> <span class="n">first_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">first_rts_not_zero</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts_not_zero</span> <span class="o">=</span> <span class="n">first_15_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">first_15_rts_not_zero</span>
 </pre></div>
 </div>
 </div>
@@ -1706,14 +1723,15 @@ array</em>.</p>
 </div>
 <p>This is the result of asking the comparison question <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> of <em>every element in
 the array</em>.</p>
-<p>So the values that end up in the <code class="docutils literal notranslate"><span class="pre">first_rts_not_zero</span></code> array come from these comparisons:</p>
+<p>So the values that end up in the <code class="docutils literal notranslate"><span class="pre">first_15_rts_not_zero</span></code> array come from these
+comparisons:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 0:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 1:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 0:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 1:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; ... and so on, up to ...&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 13:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 14:&#39;</span><span class="p">,</span> <span class="n">first_rts</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 13:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 14:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1749,7 +1767,8 @@ Position 14: False
 </div>
 <p>We will <a class="reference internal" href="boolean_indexing.html"><span class="doc std std-doc">soon see</span></a> that we can use these arrays to select elements from other arrays.</p>
 <p>Specifically, if we put a Boolean array like <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> between square brackets for another array, that will have the effect of selecting the elements at positions where <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has True, and throwing away elements where <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has False.</p>
-<p>For0 example, rushing ahead, we can select the values in <code class="docutils literal notranslate"><span class="pre">rt_arr</span></code> corresponding to reaction times greater than zero with:</p>
+<p>For example, rushing ahead, we can select the values in <code class="docutils literal notranslate"><span class="pre">rt_arr</span></code> corresponding
+to reaction times greater than zero with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rt_arr</span><span class="p">[</span><span class="n">rts_not_zero</span><span class="p">]</span>
