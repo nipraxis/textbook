@@ -1259,7 +1259,7 @@ return the elements in any order it likes:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;metacognition&#39;, &#39;perception&#39;, &#39;mindwandering&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mindwandering&#39;, &#39;perception&#39;, &#39;metacognition&#39;}
 </pre></div>
 </div>
 </div>
@@ -1306,7 +1306,7 @@ any particular element (because the set is unordered):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;metacognition&#39;, &#39;consciousness&#39;, &#39;perception&#39;, &#39;mindwandering&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mindwandering&#39;, &#39;perception&#39;, &#39;consciousness&#39;, &#39;metacognition&#39;}
 </pre></div>
 </div>
 </div>
@@ -1321,8 +1321,8 @@ any particular element (because the set is unordered):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;metacognition&#39;, &#39;consciousness&#39;, &#39;perception&#39;, &#39;mindwandering&#39;}
-{&#39;metacognition&#39;, &#39;consciousness&#39;, &#39;perception&#39;, &#39;mindwandering&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mindwandering&#39;, &#39;perception&#39;, &#39;consciousness&#39;, &#39;metacognition&#39;}
+{&#39;mindwandering&#39;, &#39;perception&#39;, &#39;consciousness&#39;, &#39;metacognition&#39;}
 </pre></div>
 </div>
 </div>
@@ -1726,41 +1726,35 @@ options after a <code class="docutils literal notranslate"><span class="pre">:</
 </section>
 <section id="files">
 <h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">#</a></h2>
+<p>Use <a class="reference internal" href="pathlib.html"><span class="doc std std-doc">pathlib</span></a> to write text and read text from files.</p>
 <p>Write lines to a text file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;important_notes.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">fobj</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;important_notes.txt&quot;</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_io.TextIOWrapper
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pathlib.PosixPath
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fobj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;captains log 672828: I had a banana for breakfast.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">fobj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;captains log 672829: I should watch less TV.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">fobj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Read lines from a text file:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;important_notes.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fobj</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fobj</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;captains log 672828: I had a banana for breakfast.</span>
+<span class="s2">captains log 672829: I should watch less TV.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">my_text</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>captains log 672828: I had a banana for breakfast.
-
 captains log 672829: I should watch less TV.
 </pre></div>
 </div>
@@ -1768,30 +1762,38 @@ captains log 672829: I should watch less TV.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fobj</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">my_text</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>96
 </pre></div>
 </div>
 </div>
 </div>
-<p>Close a file when you have finished with it:</p>
+<p>Read lines from a text file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fobj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_again</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text_again</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>captains log 672828: I had a banana for breakfast.
+captains log 672829: I should watch less TV.
 </pre></div>
 </div>
 </div>
 </div>
-<p>One way to read all the lines from a text file:</p>
+<p>Split the lines from a text into a list, where there is one element per line,
+and each element is a string:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;important_notes.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-<span class="n">fobj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The splitlines method of a string.</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">text_again</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
 <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -1800,25 +1802,16 @@ captains log 672829: I should watch less TV.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>captains log 672828: I had a banana for breakfast.
-
 captains log 672829: I should watch less TV.
 </pre></div>
 </div>
 </div>
 </div>
-<p>We may want to delete the file when we’ve finished with it.  There are utilities for things like that.  Here I’m using the <code class="docutils literal notranslate"><span class="pre">unlink</span></code> function from the <code class="docutils literal notranslate"><span class="pre">os</span></code> module (library) to delete the file:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the os module (library) so we can use it.</span>
-<span class="kn">import</span> <span class="nn">os</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>We may want to delete the file when we’ve finished with it.  Again the <code class="docutils literal notranslate"><span class="pre">Path</span></code> object does the job:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete the file.</span>
-<span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="s1">&#39;important_notes.txt&#39;</span><span class="p">)</span>
+<span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

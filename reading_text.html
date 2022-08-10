@@ -788,29 +788,53 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="reading-data-from-text-files">
 <h1>Reading data from text files<a class="headerlink" href="#reading-data-from-text-files" title="Permalink to this headline">#</a></h1>
-<p>We have been reading various values from text files using the file <code class="docutils literal notranslate"><span class="pre">open</span></code>
-function, and then processing the lines in the file.</p>
+<p>We have been reading various values from text files using the <a class="reference internal" href="pathlib.html"><span class="doc std std-doc">pathlib
+Path</span></a> <code class="docutils literal notranslate"><span class="pre">read_text</span></code> method, and then processing the lines in the
+file.</p>
 <p>Here is some revision on how to do that, going from the crude to the elegant
 way.</p>
 <p>First we write a little text file out to disk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
-<span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some_numbers.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+<span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-    <span class="c1"># String version of number, plus end-of-line character</span>
-    <span class="n">fobj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">fobj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># String version of number.</span>
+    <span class="n">strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
+
+<span class="c1"># Stick the strings together separated by new lines (&#39;\n&#39;):</span>
+<span class="n">out_text</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+<span class="n">out_text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.2\n2.3\n3.4\n4.5&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now we read it back again. First, we will read the all the lines in one shot,
-returning a list of strings:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some_numbers.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write text to file.</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;some_numbers.txt&#39;</span><span class="p">)</span>
+<span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">out_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we read it back again. First, we will read the all the lines as one long string, then split it into lines at newline characters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_back</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">text_back</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -828,17 +852,16 @@ returning a list of strings:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.2\n&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.2&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Next we will read the file, but converting each number to a float:</p>
+<p>Next we will convert each number to a float:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some_numbers.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span>
-<span class="n">numbers_again</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fobj</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers_again</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
     <span class="n">numbers_again</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
 <span class="n">numbers_again</span>
 </pre></div>
@@ -867,6 +890,14 @@ returning a list of strings:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.2, 2.3, 3.4, 4.5])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, for neatness, we delete the temporary file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
