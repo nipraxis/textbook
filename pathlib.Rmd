@@ -89,62 +89,98 @@ a_path = Path('/a/full/path/then_filename.txt')
 a_path.parent
 ```
 
-You'll see something like this as output if you run something similar on
-Windows.
-
-```
-'c:\\a\\full\\path'
-```
-
-Notice that, on Windows, you need to use double backslashes, because the
-backslash in a Python string is a way of *escaping* a character — meaning, to
-specify you mean exactly that character.  Double backslash has the meaning
-"Yes, I do mean exactly backslash for the next character".
-
-`dirname` also works for relative paths,  A relative path where the starting
-directory is relative to the current directory, rather than absolute, in terms
-of the root of the file system:
+`parent` also works for relative paths.
 
 ```{python}
 # On Unix
-Path('relative/path/then_filename.txt').parent
+rel_path = Path('relative/path/then_filename.txt')
+rel_path.parent
 ```
 
-Use `basename` to get the filename rather than the directory name:
+Use the `name` attribute of the Path object to get the filename rather
+than the directory name:
 
 ```{python}
 # On Unix
-Path('/a/full/path/then_filename.txt').name
+rel_path.name
 ```
 
-Sometimes you want to join one or more directory names with a filename to get
-a path.   Windows and Unix have different characters to separate directories
-in a path.  Windows uses the backslash: `\`, Unix uses a forward slash:
-`/`. If your code will run on Windows and Unix, you need to take care that
-you get the right character joining your paths.  This is what `os.path.join`
-does:
+Sometimes you want to join one or more directory names with a filename to get a
+path.  Path objects have a clever way of doing this, by *overriding* the `/`
+(division) operator.
+
+To remind you about operator overloading, remember that addition means different things for numbers and strings.  For numbers, addition means arithmetic addition:
+
+```{python}
+# Addition for numbers
+2 + 2
+```
+
+For strings, addition means concatenation — sticking the strings together:
+
+```{python}
+# Addition for strings.
+"first" + "second"
+```
+
+Path objects use the division operator `/` to mean "stick the path fragments
+together to make a new path, where the `/` separates directories".
+
 
 ```{python}
 # On Unix
 Path('relative') / 'path' / 'then_filename.txt'
 ```
 
-This also works on Windows.  `op.join('relative', 'path', 'then_filename.txt')` gives output `'relative\\path\\then_filename.txt'`.
+This also works on Windows and Unix in the same way.
 
-To convert a relative to an absolute path, use `abspath`:
-
-```{python}
-# Show the current working directory
-Path('relative/path/then_filename.txt').absolute()
-```
-
-Use `suffix` to split a path into: the path + filename; and the file
-extension:
+Sometimes you want to get the filename extension.  Use the `suffix` attribute for this:
 
 ```{python}
-Path('relative/path/then_filename.txt').suffix
+rel_path
 ```
 
-`read_bytes`
-`read_text`
+```{python}
+rel_path.suffix
+```
 
+You will often find yourself wanting to replace the file extension.  You can do this with the `with_suffix` method:
+
+```{python}
+rel_path.with_suffix('.md')
+```
+
+Path objects also have methods that allow you to read and write text characters and raw bytes.
+
+Let us make a new path to point to a file we will write in the current directory.
+
+```{python}
+new_path = Path() / 'a_test_file.txt'
+new_path
+```
+
+We can write text characters (strings) to this file, with the `write_text` method:
+
+```{python}
+a_multiline_string = """Some text.
+More text.
+Last text."""
+new_path.write_text(a_multiline_string)
+```
+
+We can read the text out of a file using `read_text`:
+
+```{python}
+new_path.read_text()
+```
+
+Similarly, we can write and read raw byte data, using `write_bytes` and `read_bytes`.
+
+It is often useful to read in a text file, and split the result into lines.  We
+do this with `read_text`, and then we use the `splitlines` method of string
+object to split the read text into lines.
+
+```{python}
+text = new_path.read_text()
+text.splitlines()
+```
