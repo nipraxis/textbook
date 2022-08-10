@@ -6,37 +6,38 @@ jupyter:
       format_name: rmarkdown
       format_version: '1.2'
       jupytext_version: 1.11.5
+prereqs:
+  - pathlib
 ---
 
-## Git walk-through
+# Git walk-through
 
-### Basic configuration
+## Basic configuration
 
 We need to tell git about us before we start. This stuff will go into
 the commit information by default.
 
-<!-- $ rm -rf our_work
- -->
 ```
 $ git config --global user.name "Matthew Brett"
 $ git config --global user.email "matthew.brett@gmail.com"
 ```
 
-git often needs to call up a text editor. We will use Atom as our text editor
-(see [associating text editors with git](https://help.github.com/articles/associating-text-editors-with-git)):
+Git often needs to call up a text editor. We will use Nano as our text editor
+(see [associating text editors with
+git](https://help.github.com/articles/associating-text-editors-with-git)):
 
 ```
-$ git config --global core.editor "atom --wait"
+$ git config --global core.editor "nano"
 ```
 
-We also turn on the use of color, which is very helpful in making the
-output of git easier to read:
+We also turn on the use of color, which is very helpful in making the output of
+git easier to read:
 
 ```
 $ git config --global color.ui "auto"
 ```
 
-### Getting help
+## Getting help
 
 ```
 $ git
@@ -90,15 +91,14 @@ See 'git help git' for an overview of the system.
 
 Try `git help add` for an example.
 
-### Initializing the repository
+## Initializing the repository
 
 We first make a new empty directory that will be version controlled with git.
 
-<!-- $ mkdir our_work
- -->
 Create the git repository:
 
 ```
+$ mkdir our_work
 $ cd our_work
 $ git init
 Initialized empty Git repository in /Volumes/zorg/mb312/dev_trees/psych-214-fall-2016/working/our_work/.git/
@@ -137,7 +137,7 @@ $ ls .git/objects/*
 .git/objects/pack:
 ```
 
-### git add - put stuff into the staging area
+## git add - put stuff into the staging area
 
 Type this file in Atom and save:
 
@@ -168,7 +168,7 @@ Show yourself there is a new sub-directory and file in `.git/objects`:
 $ ls .git/objects/*
 ```
 
-### Looking at real git objects
+## Looking at real git objects
 
 Now we’re going to read the new object in Python, and find the hash of its
 contents.  You don’t need to do this kind of thing to use git.  This is to
@@ -179,11 +179,9 @@ To read the new object, you’ll need a few new bits of Python.
 Here’s how to read the binary contents of a whole file into memory:
 
 ```{python}
-# Open a file in Read Binary mode to read bytes
-fobj = open('our_paper.txt', 'rb')
-# Read contents as bytes
-contents = fobj.read()  # Read the whole file
-fobj.close()
+# Read binary content from a file with Pathlib
+from pathlib import Path
+contents = Path('our_paper.txt').read_bytes()
 type(contents)
 ```
 
@@ -222,16 +220,18 @@ you recognize that?
 
 You should start with something like:
 
-```
->>> fobj = open('.git/objects/d6/05b79accc16319ffe95fdc0a7992e830695c1c', 'rb')
+```python
+from pathlib import Path
+pth = Path('.git/objects/d6/05b79accc16319ffe95fdc0a7992e830695c1c')
+contents = pth.read_bytes()
 ```
 
-where `.git/objects/d6/05b79accc16319ffe95fdc0a7992e830695c1c` is the new file that appeared in your
-`.git/objects` directory when you staged `our_paper.txt`.
+where `.git/objects/d6/05b79accc16319ffe95fdc0a7992e830695c1c` is the new file
+that appeared in your `.git/objects` directory when you staged `our_paper.txt`.
 
 When you are done, have a look at the solution in: [reading git objects](https://matthew-brett.github.io/curious-git/reading_git_objects.html).
 
-# Make a first commit
+## Make a first commit
 
 Remember what will go into this commit:
 
@@ -270,7 +270,7 @@ Show what branch you are on, with the hash of the current commit:
 $ git branch -v
 ```
 
-# Edit again, check and commit
+## Edit again, check and commit
 
 Edit the paper file again to add some text:
 
@@ -331,7 +331,7 @@ Check which hash the default branch is pointing to now:
 $ git branch -v
 ```
 
-# A new file
+## A new file
 
 Make a new file like this:
 
@@ -348,7 +348,8 @@ Make a commit.
  1 file changed, 4 insertions(+)
  create mode 100644 our_analysis.py
  -->
-# A prettier log command
+
+## A prettier log command
 
 ```
 $ git config --global alias.slog "log --oneline --graph"
@@ -361,7 +362,7 @@ $ git slog
 * 8d1e37f First version of the paper
 ```
 
-# Thinking about objects again
+## Thinking about objects again
 
 See if you can guess how many files there are now in `.git/objects`.
 
@@ -382,7 +383,7 @@ listing for our most recent commit, and display its contents.  Hint: Find the
 hash for the current commit message.  Try displaying the contents for the
 current commit message.
 
-# Moving files
+## Moving files
 
 Try moving a file (renaming) using `git mv`:
 
@@ -402,7 +403,8 @@ commit.  What changed?
  1 file changed, 0 insertions(+), 0 deletions(-)
  rename our_analysis.py => our_first_analysis.py (100%)
  -->
-# Making a new branch
+
+## Making a new branch
 
 Make a new branch with:
 
@@ -471,7 +473,8 @@ Create this data file, add it to the staging area and commit.
  1 file changed, 3 insertions(+)
  create mode 100644 our_data.csv
  -->
-# Merging
+
+## Merging
 
 Now we want to merge the work from the `work-from-home` branch.  Put another
 way, we want to merge the `work-from-home` branch into our current branch,
@@ -492,7 +495,7 @@ Have a look at the output of `git slog`.
 
 What do you see with `git log --parents`?
 
-# Conflicts
+## Conflicts
 
 The merge that you just did should have been simple, with no conflicts.
 
@@ -579,7 +582,8 @@ $ git add our_paper.txt
 $ git commit -m "Resolve conflict"
 [master f4a7ae3] Resolve conflict
  -->
-# The end
+
+## The end
 
 Congratulations!  You now know the basics of working with a single git
 repository.
