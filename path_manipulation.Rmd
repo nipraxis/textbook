@@ -31,8 +31,8 @@ os.getcwd()
 
 There are two standard ways of manipulating pathnames in Python.
 
-* {doc}`pathlib.Rmd`
-* {doc}`os_path.Rmd`
+* [The pathlib module](pathlib.Rmd)
+* [The os.path module](os_path.Rmd)
 
 Of the two techniques, the `os.path` way is rather simpler, but it covers a
 smaller range of tasks.  It can also be more verbose. `pathlib` does more, and
