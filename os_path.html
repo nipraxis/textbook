@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>String literals in Python &#8212; Practice and theory of brain imaging</title>
+    <title>Using the os.path module &#8212; Practice and theory of brain imaging</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -565,7 +565,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/string_literals.Rmd"
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/os_path.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -583,7 +583,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/string_literals.Rmd&branch=main"
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/os_path.Rmd&branch=main"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -601,7 +601,7 @@ title="Launch on JupyterHub"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/string_literals.Rmd"
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/os_path.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -619,7 +619,7 @@ title="Launch on Colab"
       </li>
       
       <li>
-        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fstring_literals.Rmd"
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fos_path.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -697,7 +697,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fstring_literals.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fos_path.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -725,7 +725,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/string_literals.Rmd"
+        <a href="_sources/os_path.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -774,7 +774,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>String literals in Python</h1>
+                <h1>Using the os.path module</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -786,135 +786,144 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="string-literals-in-python">
-<h1>String literals in Python<a class="headerlink" href="#string-literals-in-python" title="Permalink to this headline">#</a></h1>
-<p>A string literal is where you specify the contents of a string in a program.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="using-the-os-path-module">
+<h1>Using the <code class="docutils literal notranslate"><span class="pre">os.path</span></code> module<a class="headerlink" href="#using-the-os-path-module" title="Permalink to this headline">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">os.path</span></code> module is one of two ways of manipulating and using file
+paths in Python.  See the <a class="reference internal" href="path_manipulation.html"><span class="doc std std-doc">path manipulation</span></a> page
+for more discussion, and <a class="reference internal" href="pathlib.html"><span class="doc std std-doc">pathlib</span></a> page for a tutorial on the
+alternative <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> approach.</p>
+<p>The primary documentation for <code class="docutils literal notranslate"><span class="pre">os.path</span></code> is
+<a class="reference external" href="https://docs.python.org/3/library/os.path.html">https://docs.python.org/3/library/os.path.html</a></p>
+<p>This page covers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">os.path</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dirname,</span> <span class="pre">basename,</span> <span class="pre">join,</span> <span class="pre">splitext,</span> <span class="pre">abspath</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;A string&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Here ‘A string’ is a string literal.  The variable <code class="docutils literal notranslate"><span class="pre">a</span></code> is a string variable,
-or, better put in Python, a variable that points to a string.</p>
-<p>String literals can use single or double quote delimiters.</p>
+<p>In IPython, you can tab complete on <code class="docutils literal notranslate"><span class="pre">os.path</span></code> to list the functions and
+attributes there.</p>
+<p>The first function we will use from <code class="docutils literal notranslate"><span class="pre">os.path</span></code> is <code class="docutils literal notranslate"><span class="pre">dirname</span></code>.  To avoid
+typing <code class="docutils literal notranslate"><span class="pre">os.path</span></code> all the time, we import <code class="docutils literal notranslate"><span class="pre">os.path</span></code> with the shortened name
+<code class="docutils literal notranslate"><span class="pre">op</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;A string&#39;</span>  <span class="c1"># string literal with single quotes</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;A string&quot;</span>  <span class="c1"># string literal with double quotes</span>
-<span class="n">b</span> <span class="o">==</span> <span class="n">a</span>  <span class="c1"># there is no difference between these strings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="n">op</span><span class="o">.</span><span class="n">dirname</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function posixpath.dirname(p)&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Literal strings with single quote delimiters can use double quotes inside them
-without any extra work.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dirname</span></code> function gives the directory name from a full file path. It
+works correctly for Unix paths on Unix machines, and Windows paths on Windows
+machines:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Single quoted string with &quot; is no problem&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
+<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Single quoted string with &quot; is no problem
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/a/full/path&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>If you need an actual single quote character inside a literal string delimited
-by single quotes, you can use the backslash character before the single quote,
-to tell Python not to terminate the string:</p>
+<p>You’ll see something like this as output if you run something similar on
+Windows.  So <code class="docutils literal notranslate"><span class="pre">op.dirname('c:\\a\\full\\path\\then_filename.txt')</span> </code> will give:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">a</span><span class="se">\\</span><span class="s1">full</span><span class="se">\\</span><span class="s1">path&#39;</span>
+</pre></div>
+</div>
+<p>Notice that, on Windows, you need to use double backslashes, because the
+backslash in a Python string is a way of <em>escaping</em> a character — meaning, to
+specify you mean exactly that character.  Double backslash has the meaning
+“Yes, I do mean exactly backslash for the next character”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dirname</span></code> also works for relative paths,  A relative path where the starting
+directory is relative to the current directory, rather than absolute, in terms
+of the root of the file system:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Single quoted string containing </span><span class="se">\&#39;</span><span class="s1"> is OK with backslash&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
+<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Single quoted string containing &#39; is OK with backslash
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;relative/path&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Likewise for double quotes:</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">basename</span></code> to get the filename rather than the directory name:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Double quoted string with &#39; is no problem&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Double quoted string containing </span><span class="se">\&quot;</span><span class="s2"> is OK with backslash&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
+<span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double quoted string with &#39; is no problem
-Double quoted string containing &quot; is OK with backslash
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;then_filename.txt&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Some characters preceded by a backslash have special meaning.  For example:</p>
+<p>Sometimes you want to join one or more directory names with a filename to get
+a path.   Windows and Unix have different characters to separate directories
+in a path.  Windows uses the backslash: <code class="docutils literal notranslate"><span class="pre">\</span></code>, Unix uses a forward slash:
+<code class="docutils literal notranslate"><span class="pre">/</span></code>. If your code will run on Windows and Unix, you need to take care that
+you get the right character joining your paths.  This is what <code class="docutils literal notranslate"><span class="pre">os.path.join</span></code>
+does:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Backslash before &quot;n&quot;, as in </span><span class="se">\n</span><span class="s1">, inserts a new line character&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
+<span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backslash before &quot;n&quot;, as in 
-, inserts a new line character
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;relative/path/then_filename.txt&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>If you do not want the backslash to have this special meaning, prefix your
-string literal with ‘r’, meaning “raw”:</p>
+<p>This also works on Windows.  <code class="docutils literal notranslate"><span class="pre">op.join('relative',</span> <span class="pre">'path',</span> <span class="pre">'then_filename.txt')</span></code> gives output <code class="docutils literal notranslate"><span class="pre">'relative\\path\\then_filename.txt'</span></code>.</p>
+<p>To convert a relative to an absolute path, use <code class="docutils literal notranslate"><span class="pre">abspath</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Prefixed by &quot;r&quot; the \n no longer inserts a new line&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the current working directory</span>
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prefixed by &quot;r&quot; the \n no longer inserts a new line
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/textbook/textbook/relative/path/then_filename.txt&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>You can use triple quotes to enclose strings with more than one line:</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">splitext</span></code> to split a path into: the path + filename; and the file
+extension:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;This string literal</span>
-<span class="s1">has more than one</span>
-<span class="s1">line&#39;&#39;&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This string literal
-has more than one
-line
-</pre></div>
-</div>
-</div>
-</div>
-<p>Triple quotes can use single or double quote marks:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;This string literal</span>
-<span class="s2">also has more than one</span>
-<span class="s2">line&quot;&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This string literal
-also has more than one
-line
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;relative/path/then_filename&#39;, &#39;.txt&#39;)
 </pre></div>
 </div>
 </div>

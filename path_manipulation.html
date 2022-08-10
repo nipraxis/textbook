@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -585,7 +585,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https://github.com/nipraxis/textbook&urlpath=tree/textbook/path_manipulation.Rmd&branch=main"
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/path_manipulation.Rmd&branch=main"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -796,11 +796,6 @@ title="Print to PDF"
    Two ways of manipulating pathnames
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#os-path">
-   os.path
-  </a>
- </li>
 </ul>
 
     </nav>
@@ -828,11 +823,6 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#two-ways-of-manipulating-pathnames">
    Two ways of manipulating pathnames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#os-path">
-   os.path
   </a>
  </li>
 </ul>
@@ -871,153 +861,15 @@ computer filesystem.</p>
 <h2>Two ways of manipulating pathnames<a class="headerlink" href="#two-ways-of-manipulating-pathnames" title="Permalink to this headline">#</a></h2>
 <p>There are two standard ways of manipulating pathnames in Python.</p>
 <ul class="simple">
-<li><p>Using the <code class="docutils literal notranslate"><span class="pre">os.path</span></code> module, covered in this page.</p></li>
-<li><p>Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module.</p></li>
+<li><p><a class="reference internal" href="pathlib.html"><span class="doc std std-doc">The pathlib module</span></a></p></li>
+<li><p><a class="reference internal" href="os_path.html"><span class="doc std std-doc">The os.path module</span></a></p></li>
 </ul>
 <p>Of the two techniques, the <code class="docutils literal notranslate"><span class="pre">os.path</span></code> way is rather simpler, but it covers a
 smaller range of tasks.  It can also be more verbose. <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> does more, and
 can give you nice-looking, concise code, but it does rely on a particularly
-Python way of thinking.   You will see examples of both in lots of modern
-code, but we concentrate on <code class="docutils literal notranslate"><span class="pre">os.path</span></code> here, because we think it is easier when
-you are getting started.</p>
-</section>
-<section id="os-path">
-<h2>os.path<a class="headerlink" href="#os-path" title="Permalink to this headline">#</a></h2>
-<p>See: <a class="reference external" href="https://docs.python.org/3.5/library/os.path.html">https://docs.python.org/3.5/library/os.path.html</a></p>
-<p>Here we will cover:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">os.path</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dirname,</span> <span class="pre">basename,</span> <span class="pre">join,</span> <span class="pre">splitext,</span> <span class="pre">abspath</span></code></p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In IPython, you can tab complete on <code class="docutils literal notranslate"><span class="pre">os.path</span></code> to list the functions and
-attributes there.</p>
-<p>The first function we will use from <code class="docutils literal notranslate"><span class="pre">os.path</span></code> is <code class="docutils literal notranslate"><span class="pre">dirname</span></code>.  To avoid
-typing <code class="docutils literal notranslate"><span class="pre">os.path</span></code> all the time, we import <code class="docutils literal notranslate"><span class="pre">os.path</span></code> with the shortened name
-<code class="docutils literal notranslate"><span class="pre">op</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
-<span class="n">op</span><span class="o">.</span><span class="n">dirname</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function posixpath.dirname(p)&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">dirname</span></code> function gives the directory name from a full file path. It
-works correctly for Unix paths on Unix machines, and Windows paths on Windows
-machines:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/a/full/path&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>You’ll see something like this as output if you run something similar on
-Windows.  So <code class="docutils literal notranslate"><span class="pre">op.dirname('c:\\a\\full\\path\\then_filename.txt')</span> </code> will give:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">a</span><span class="se">\\</span><span class="s1">full</span><span class="se">\\</span><span class="s1">path&#39;</span>
-</pre></div>
-</div>
-<p>Notice that, on Windows, you need to use double backslashes, because the
-backslash in a Python string is a way of <em>escaping</em> a character — meaning, to
-specify you mean exactly that character.  Double backslash has the meaning
-“Yes, I do mean exactly backslash for the next character”.</p>
-<p><code class="docutils literal notranslate"><span class="pre">dirname</span></code> also works for relative paths,  A relative path where the starting
-directory is relative to the current directory, rather than absolute, in terms
-of the root of the file system:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;relative/path&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Use <code class="docutils literal notranslate"><span class="pre">basename</span></code> to get the filename rather than the directory name:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="s1">&#39;/a/full/path/then_filename.txt&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;then_filename.txt&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Sometimes you want to join one or more directory names with a filename to get
-a path.   Windows and Unix have different characters to separate directories
-in a path.  Windows uses the backslash: <code class="docutils literal notranslate"><span class="pre">\</span></code>, Unix uses a forward slash:
-<code class="docutils literal notranslate"><span class="pre">/</span></code>. If your code will run on Windows and Unix, you need to take care that
-you get the right character joining your paths.  This is what <code class="docutils literal notranslate"><span class="pre">os.path.join</span></code>
-does:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Unix</span>
-<span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;then_filename.txt&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;relative/path/then_filename.txt&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>This also works on Windows.  <code class="docutils literal notranslate"><span class="pre">op.join('relative',</span> <span class="pre">'path',</span> <span class="pre">'then_filename.txt')</span></code> gives output <code class="docutils literal notranslate"><span class="pre">'relative\\path\\then_filename.txt'</span></code>.</p>
-<p>To convert a relative to an absolute path, use <code class="docutils literal notranslate"><span class="pre">abspath</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the current working directory</span>
-<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/work/textbook/textbook/relative/path/then_filename.txt&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Use <code class="docutils literal notranslate"><span class="pre">splitext</span></code> to split a path into: the path + filename; and the file
-extension:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;relative/path/then_filename.txt&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;relative/path/then_filename&#39;, &#39;.txt&#39;)
-</pre></div>
-</div>
-</div>
-</div>
+Python way of thinking.   You will see examples of both in lots of modern code,
+but we will use <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> in this textbook, because it will likely be the
+method you end up using when you are more experienced writing Python code.</p>
 </section>
 </section>
 

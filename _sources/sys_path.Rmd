@@ -185,17 +185,18 @@ Another more general way of making sure the code directory is on the Python
 path.
 """
 
-import os.path as op
+from pathlib import Path
 
 # Directory containing this script.
-MY_DIRECTORY = op.dirname(__file__)
+MY_DIRECTORY = Path(__file__).parent
 # Code directory is in the directory above the one containing the script.
-CODE_DIRECTORY = op.join(MY_DIRECTORY, '..', 'code')
-print('code directory is', CODE_DIRECTORY)
+CODE_DIRECTORY = MY_DIRECTORY / '..' / 'code'
+print('code directory is', str(CODE_DIRECTORY))
 
 # Put this directory on the path.
+# sys.path expects strings, not Path objects.
 import sys
-sys.path.append(CODE_DIRECTORY)
+sys.path.append(str(CODE_DIRECTORY))
 
 import a_module
 

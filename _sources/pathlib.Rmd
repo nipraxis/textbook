@@ -1,0 +1,196 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.10.3
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+  orphan: true
+---
+
+# Using the `pathlib` module
+
+The `pathlib` module is one of two ways of manipulating and using file paths in
+Python.  See the [path manipulation](path_manipulation.Rmd) page for more
+discussion, and [os.path](os_path.Rmd) page for a tutorial on the alternative
+`os.path` approach.
+
+The primary documentation for `pathlib` is
+<https://docs.python.org/3/library/pathlib.html>.
+
+The standard way to use the Pathlib module is to import the `Path` class from the module:
+
+```{python}
+from pathlib import Path
+```
+
+In Jupyter or IPython, you can tab complete on `Path` to list the methods (functions) and attributes attached to it.
+
+An object (value) of type `Path` represents a pathname.  As you [remember
+](path_manipulation.Rmd), a pathname is a string that identifies a
+particular file or directory on a computer filesystem.
+
+Let us start by making a default object from the `Path` class, like this:
+
+```{python}
+p = Path()
+p
+```
+
+By default, the path object, here `p`, refers to our current working directory, or `.` for short.   `.` is a *relative path*, meaning that we specify where we are relative to our current directory.  `.` means we are exactly in our current directory.
+
+Because the `.` is a *relative path*, it does not tell us where we are in
+the filesystem, only where we are relative to the current directory.
+
+Path objects have an `absolute` function attached to them.  Another way of
+saying this is that Path objects have an `absolute` *method*.  Calling
+this method gives us the *absolute* location of the path, meaning, the
+filesystem position relative to the base location of the disk the file is
+on.
+
+```{python}
+abs_p = p.absolute()
+abs_p
+```
+
+Notice the `/` in front of the absolute filename (on Unix), meaning the
+base location for all files.  You will see a drive location like `C:` or
+similar, at the front of the absolute path, if you are on Windows.
+
+
+We can always convert the `Path` object to a simple string, using the
+`str` function. `str()` converts anything to a string, if it can:
+
+```{python}
+# The path, as a string
+str(abs_p)
+```
+
+The first function we will use from `os.path` is `dirname`.  To avoid
+typing `os.path` all the time, we import `os.path` with the shortened name
+`op`:
+
+```{python}
+abs_p.parent
+```
+
+The `parent` attribute of the Path object gives the directory name from a
+full file path. It works correctly for Unix paths on Unix machines, and
+Windows paths on Windows machines.
+
+```{python}
+# On Unix
+a_path = Path('/a/full/path/then_filename.txt')
+# Show the directory containing the file.
+a_path.parent
+```
+
+`parent` also works for relative paths.
+
+```{python}
+# On Unix
+rel_path = Path('relative/path/then_filename.txt')
+rel_path.parent
+```
+
+Use the `name` attribute of the Path object to get the filename rather
+than the directory name:
+
+```{python}
+# On Unix
+rel_path.name
+```
+
+Sometimes you want to join one or more directory names with a filename to get a
+path.  Path objects have a clever way of doing this, by *overriding* the `/`
+(division) operator.
+
+To remind you about operator overloading, remember that addition means different things for numbers and strings.  For numbers, addition means arithmetic addition:
+
+```{python}
+# Addition for numbers
+2 + 2
+```
+
+For strings, addition means concatenation — sticking the strings together:
+
+```{python}
+# Addition for strings.
+"first" + "second"
+```
+
+Path objects use the division operator `/` to mean "stick the path fragments
+together to make a new path, where the `/` separates directories".
+
+
+```{python}
+# On Unix
+Path('relative') / 'path' / 'then_filename.txt'
+```
+
+This also works on Windows and Unix in the same way.
+
+Sometimes you want to get the filename extension.  Use the `suffix` attribute for this:
+
+```{python}
+rel_path
+```
+
+```{python}
+rel_path.suffix
+```
+
+You will often find yourself wanting to replace the file extension.  You can do this with the `with_suffix` method:
+
+```{python}
+rel_path.with_suffix('.md')
+```
+
+Path objects also have methods that allow you to read and write text characters and raw bytes.
+
+Let us make a new path to point to a file we will write in the current directory.
+
+```{python}
+new_path = Path() / 'a_test_file.txt'
+new_path
+```
+
+We can write text characters (strings) to this file, with the `write_text` method:
+
+```{python}
+a_multiline_string = """Some text.
+More text.
+Last text."""
+new_path.write_text(a_multiline_string)
+```
+
+We can read the text out of a file using `read_text`:
+
+```{python}
+new_path.read_text()
+```
+
+Similarly, we can write and read raw byte data, using `write_bytes` and `read_bytes`.
+
+It is often useful to read in a text file, and split the result into lines.  We
+do this with `read_text`, and then we use the `splitlines` method of string
+object to split the read text into lines.
+
+```{python}
+text = new_path.read_text()
+text.splitlines()
+```
+
+And finally finally, for tidyness, we use the `unlink` method to delete the
+temporary file we were using.
+
+```{python}
+new_path.unlink()
+```

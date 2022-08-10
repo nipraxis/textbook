@@ -1,6 +1,5 @@
 ---
 jupyter:
-  orphan: true
   jupytext:
     notebook_metadata_filter: all,-language_info
     split_at_heading: true
@@ -13,6 +12,7 @@ jupyter:
     display_name: Python 3
     language: python
     name: python3
+  orphan: true
 ---
 
 # Validating data
@@ -60,39 +60,25 @@ the `README.md` file *Get the data section*.
 
 Imagine we wanted to read in the byte-by-byte contents of a file.
 
-We start with the filename — see [os.path](path_manipulation.Rmd).
+We start with the Path object — see [pathlib](pathlib.Rmd).
 
 ```{python}
-import os.path as op
+from pathlib import Path
 
 # A picture (in fact, the logo for the textbook)
-fname = op.join('images', 'reggie.png')
-fname
+pth = Path('images') / 'reggie.png'
+pth
 ```
 
-Here we read a sequence of bytes from the file, using the `rb` argument to the
-`open` function. `r` stands for Read, `b` stands for Bytes.  We could instead
-have used `rt` to read text characters from the file.   In that case Python
-interprets the file contents as text.
+Here we read a sequence of bytes from the file, using the `read_bytes` method
+of the Path object.  We could instead have used the `read_text` method to read
+text characters from the file.   In that case Python interprets the file
+contents as text.  See the [pathlib page](pathlib.Rmd) for detail.
 
 ```{python}
-# The obvious way.
-fobj = open(fname, 'rb')
-reggie_bytes = fobj.read()
-fobj.close()
+reggie_bytes = pth.read_bytes()
 
 # Show the first 10 bytes of the file.
-reggie_bytes[:10]
-```
-
-Even better, we can use the [`with`
-statement](https://python.plainenglish.io/with-statement-in-python-3bfc1984b0bf)
-with `open`, to close the file automatically:
-
-```{python}
-with open(fname, 'rb') as fobj:  # 'rb' means Read Bytes.
-    reggie_bytes = fobj.read()
-
 reggie_bytes[:10]
 ```
 
