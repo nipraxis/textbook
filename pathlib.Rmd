@@ -184,3 +184,10 @@ object to split the read text into lines.
 text = new_path.read_text()
 text.splitlines()
 ```
+
+And finally finally, for tidyness, we use the `unlink` method to delete the
+temporary file we were using.
+
+```{python}
+new_path.unlink()
+```
