@@ -30,9 +30,9 @@ from pathlib import Path
 
 In Jupyter or IPython, you can tab complete on `Path` to list the methods (functions) and attributes attached to it.
 
-An object (value) of type `Path` represents a pathname.  As you {doc}`remember
-<path_manipulation.Rmd>`, a pathname is a string that identifies a particular
-file or directory on a computer filesystem.
+An object (value) of type `Path` represents a pathname.  As you [remember
+](path_manipulation.Rmd), a pathname is a string that identifies a
+particular file or directory on a computer filesystem.
 
 Let us start by making a default object from the `Path` class, like this:
 
@@ -41,20 +41,34 @@ p = Path()
 p
 ```
 
+By default, the path object, here `p`, refers to our current working directory, or `.` for short.   `.` is a *relative path*, meaning that we specify where we are relative to our current directory.  `.` means we are exactly in our current directory.
+
+Because the `.` is a *relative path*, it does not tell us where we are in
+the filesystem, only where we are relative to the current directory.
+
+Path objects have an `absolute` function attached to them.  Another way of
+saying this is that Path objects have an `absolute` *method*.  Calling
+this method gives us the *absolute* location of the path, meaning, the
+filesystem position relative to the base location of the disk the file is
+on.
+
 ```{python}
 abs_p = p.absolute()
 abs_p
 ```
 
-We can always convert the `Path` object to a simple string, using the `str` function. `str()` converts anything to a string, if possible:
+Notice the `/` in front of the absolute filename (on Unix), meaning the
+base location for all files.  You will see a drive location like `C:` or
+similar, at the front of the absolute path, if you are on Windows.
+
+
+We can always convert the `Path` object to a simple string, using the
+`str` function. `str()` converts anything to a string, if it can:
 
 ```{python}
 # The path, as a string
 str(abs_p)
 ```
-
-`read_bytes`
-`read_text`
 
 The first function we will use from `os.path` is `dirname`.  To avoid
 typing `os.path` all the time, we import `os.path` with the shortened name
@@ -64,17 +78,19 @@ typing `os.path` all the time, we import `os.path` with the shortened name
 abs_p.parent
 ```
 
-The `dirname` function gives the directory name from a full file path. It
-works correctly for Unix paths on Unix machines, and Windows paths on Windows
-machines:
+The `parent` attribute of the Path object gives the directory name from a
+full file path. It works correctly for Unix paths on Unix machines, and
+Windows paths on Windows machines.
 
 ```{python}
 # On Unix
-Path('/a/full/path/then_filename.txt').parent
+a_path = Path('/a/full/path/then_filename.txt')
+# Show the directory containing the file.
+a_path.parent
 ```
 
 You'll see something like this as output if you run something similar on
-Windows.  So `op.dirname('c:\\a\\full\\path\\then_filename.txt') ` will give:
+Windows.
 
 ```
 'c:\\a\\full\\path'
@@ -128,3 +144,7 @@ extension:
 ```{python}
 Path('relative/path/then_filename.txt').suffix
 ```
+
+`read_bytes`
+`read_text`
+
