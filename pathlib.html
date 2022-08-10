@@ -790,8 +790,8 @@ title="Print to PDF"
 <h1>Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module<a class="headerlink" href="#using-the-pathlib-module" title="Permalink to this headline">#</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module is one of two ways of manipulating and using file paths in
 Python.  See the <a class="reference internal" href="path_manipulation.html"><span class="doc std std-doc">path manipulation</span></a> page for more
-discussion, and <a class="reference internal" href="os_path.html"><span class="doc std std-doc">os.path</span></a> page for a tutorial on the alternative
-<code class="docutils literal notranslate"><span class="pre">os.path</span></code> approach.</p>
+discussion, and <a class="reference internal" href="os_path.html"><span class="doc std std-doc">os.path</span></a> page for a tutorial on an alternative
+approach.</p>
 <p>The primary documentation for <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> is
 <a class="reference external" href="https://docs.python.org/3/library/pathlib.html">https://docs.python.org/3/library/pathlib.html</a>.</p>
 <p>The standard way to use the Pathlib module is to import the <code class="docutils literal notranslate"><span class="pre">Path</span></code> class from the module:</p>
@@ -859,9 +859,10 @@ similar, at the front of the absolute path, if you are on Windows.</p>
 </div>
 </div>
 </div>
-<p>The first function we will use from <code class="docutils literal notranslate"><span class="pre">os.path</span></code> is <code class="docutils literal notranslate"><span class="pre">dirname</span></code>.  To avoid
-typing <code class="docutils literal notranslate"><span class="pre">os.path</span></code> all the time, we import <code class="docutils literal notranslate"><span class="pre">os.path</span></code> with the shortened name
-<code class="docutils literal notranslate"><span class="pre">op</span></code>:</p>
+<p>Sometimes we want to get a path referring the directory <em>containing</em> a path.
+The Path object has a <code class="docutils literal notranslate"><span class="pre">parent</span></code> attribute attached to it (an attribute is data
+attached to an object).  The <code class="docutils literal notranslate"><span class="pre">parent</span></code> attribute is a Path object for the
+containing directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">abs_p</span><span class="o">.</span><span class="n">parent</span>
