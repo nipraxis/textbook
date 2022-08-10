@@ -1,11 +1,9 @@
 """ Run non-linear registration using Dipy
 """
 
-# Port to pathlib, remove use of open
-
 import os
-from os.path import split as psplit, join as pjoin, splitext, exists
 import pickle
+from pathlib import Path
 
 import numpy as np
 import numpy.linalg as npl
@@ -57,8 +55,8 @@ def apply_mask(brain_img, mask_img):
     b_aff = brain_img.affine
     b_hdr = brain_img.header
     mask_img = as_image(mask_img)
-    brain_data = brain_img.get_data()
-    mask_data = mask_img.get_data()
+    brain_data = brain_img.get_fdata()
+    mask_data = mask_img.get_fdata()
     if not np.allclose(b_aff, mask_img.affine):
         # Mask and brain have different affines - we need to resample
         brain2mask = npl.inv(mask_img.affine) @ brain_img.affine
@@ -97,8 +95,8 @@ def register_affine(t_masked, m_masked, affreg=None,
         metric = MutualInformationMetric(nbins=32,
                                          sampling_proportion=None)
         affreg = AffineRegistration(metric=metric)
-    t_data = t_masked.get_data().astype(float)
-    m_data = m_masked.get_data().astype(float)
+    t_data = t_masked.get_fdata()
+    m_data = m_masked.get_fdata()
     t_aff = t_masked.affine
     m_aff = m_masked.affine
     translation = affreg.optimize(t_data, m_data, TranslationTransform3D(),
@@ -140,8 +138,8 @@ def register_diffeo(t_masked, m_masked, start_affine, registration=None):
         registration = SymmetricDiffeomorphicRegistration(
             metric=CCMetric(3),
             level_iters=[10, 10, 5])
-    return registration.optimize(t_masked.get_data().astype(float),
-                                 m_masked.get_data().astype(float),
+    return registration.optimize(t_masked.get_fdata(),
+                                 m_masked.get_fdata(),
                                  t_masked.affine,
                                  m_masked.affine,
                                  start_affine)
@@ -172,21 +170,20 @@ def register_save(template_fname, template_mask_fname,
         Instance giving affine + non-linear mapping between voxels in
         `template_fname` and voxels in `moving_fname`.
     """
-    path, basename = psplit(moving_fname)
-    root, ext = splitext(basename)
-    if ext == '.gz':  # ignore .gz suffix
-        root, ext = splitext(root)
+    mv_pth = Path(moving_fname)
+    root = mv_pth.stem
+    if root.endswith('.gz'):
+        root = root[:-3]
     t_masked = apply_mask(template_fname, template_mask_fname)
     m_masked = apply_mask(moving_fname, moving_mask_fname)
     affine = register_affine(t_masked, m_masked)
     mapping = register_diffeo(t_masked, m_masked, affine)
-    masked_data = m_masked.get_data()
+    masked_data = m_masked.get_fdata()
     warped_moving = nib.Nifti1Image(mapping.transform(masked_data),
                                     t_masked.affine,
                                     t_masked.header)
-    nib.save(warped_moving, pjoin(path, 'w_' + basename))
-    with open(pjoin(path, 'map_' + root + '.pkl'), 'wb') as fobj:
-        pickle.dump(mapping, fobj)
+    nib.save(warped_moving, mv_pth.with_name('w_' + mv_pth.name))
+    mv_pth.with_name(f'map_{root}.pkl').write_bytes(pickle.dumps(mapping))
     return mapping
 
 
@@ -216,12 +213,11 @@ def write_warped(fname, mapping, interpolation='nearest', template_header=None):
     img = nib.load(fname)
     mapping = as_mapping(mapping)
     template_affine = mapping.codomain_grid2world
-    data = img.get_data().astype(float)
+    data = img.get_fdata()
     warped = mapping.transform(data, interpolation=interpolation)
     warped_img = nib.Nifti1Image(warped, template_affine, template_header)
-    path, basename = psplit(fname)
-    out_fname = pjoin(path, 'w_' + basename)
-    nib.save(warped_img, out_fname)
+    path = Path(fname)
+    nib.save(warped_img, path.with_name('w_' + path.name))
 
 
 def find_anatomicals(root):
@@ -241,11 +237,12 @@ def find_anatomicals(root):
     for dirpath, dirnames, filenames in os.walk(root):
         if not 'highres001.nii.gz' in filenames:
             continue
-        full_image = pjoin(dirpath, 'highres001.nii.gz')
-        mask_image = pjoin(dirpath, 'highres001_brain_mask.nii.gz')
-        assert exists(full_image)
-        assert exists(mask_image)
-        anatomicals.append((mask_image, full_image))
+        pth = Path(dirpath)
+        full_image = pth / 'highres001.nii.gz'
+        mask_image = pth / 'highres001_brain_mask.nii.gz'
+        assert full_image.is_file()
+        assert mask_image.is_file()
+        anatomicals.append((str(mask_image), str(full_image)))
     return anatomicals
 
 
@@ -266,11 +263,11 @@ def sub2img_mask(root, sub_no):
     mask_fname : str
         filename of anatomical image brain mask, beginning with path `root`
     """
-    anatomical_path = pjoin(root, 'sub{:03d}'.format(sub_no), 'anatomy')
-    ret = (pjoin(anatomical_path, 'highres001.nii.gz'),
-           pjoin(anatomical_path, 'highres001_brain_mask.nii.gz'))
-    if all(exists(p) for p in ret):
-        return ret
+    anatomical_path = Path(root) / 'sub{:03d}'.format(sub_no) / 'anatomy'
+    imgs = (anatomical_path / 'highres001.nii.gz',
+            anatomical_path / 'highres001_brain_mask.nii.gz')
+    if all(p.is_file() for p in imgs):
+        return tuple(str(p) for p in imgs)
     return ()
 
 
