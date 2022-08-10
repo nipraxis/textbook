@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3
     language: python
@@ -127,7 +127,7 @@ module](pathlib.Rmd):
 # Open a file, read in binary bytes.
 from pathlib import Path
 
-contents = Path(structural_fname).read_binary()
+contents = Path(structural_fname).read_bytes()
 ```
 
 How do I find out what `type` of object is attached to this variable called
