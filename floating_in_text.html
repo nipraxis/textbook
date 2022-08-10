@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>General resampling between images with scipy.ndimage.map_coordinates &#8212; Practice and theory of brain imaging</title>
+    <title>Formats for floating point values in text files &#8212; Practice and theory of brain imaging</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The image header and affine" href="image_header_and_affine.html" />
-    <link rel="prev" title="Applying coordinate transforms with nibabel.affines.apply_affine" href="nibabel_apply_affine.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -364,7 +362,7 @@ const thebe_selector_output = ".output, .cell_output"
   Spatial processing
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="slice_timing.html">
    Slice timing correction
@@ -401,8 +399,8 @@ const thebe_selector_output = ".output, .cell_output"
    </code>
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="map_coordinates.html">
    General resampling between images with
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -567,7 +565,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/map_coordinates.Rmd"
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/floating_in_text.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -585,7 +583,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/map_coordinates.Rmd&branch=main"
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/floating_in_text.Rmd&branch=main"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -603,7 +601,7 @@ title="Launch on JupyterHub"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/map_coordinates.Rmd"
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/floating_in_text.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -621,7 +619,7 @@ title="Launch on Colab"
       </li>
       
       <li>
-        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fmap_coordinates.Rmd"
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Ffloating_in_text.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -699,7 +697,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fmap_coordinates.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Ffloating_in_text.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -727,7 +725,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/map_coordinates.Rmd"
+        <a href="_sources/floating_in_text.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -776,7 +774,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>General resampling between images with scipy.ndimage.map_coordinates</h1>
+                <h1>Formats for floating point values in text files</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -788,230 +786,92 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="general-resampling-between-images-with-scipy-ndimage-map-coordinates">
-<h1>General resampling between images with <code class="docutils literal notranslate"><span class="pre">scipy.ndimage.map_coordinates</span></code><a class="headerlink" href="#general-resampling-between-images-with-scipy-ndimage-map-coordinates" title="Permalink to this headline">#</a></h1>
-<p>Requirements:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://nipy.org/nibabel/coordinate_systems.html">coordinate systems and affine transforms</a>;</p></li>
-<li><p>Making coordinate arrays with <code class="docutils literal notranslate"><span class="pre">meshgrid</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numpy.tranpose</span></code> for swapping axes;</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">nibabel.affines</span></code> module;</p></li>
-<li><p>Applying coordinate transforms with <code class="docutils literal notranslate"><span class="pre">nibabel.affines.apply_affine</span></code>;</p></li>
-</ul>
-<!-- see coordinate_board.jpg for diagram needed about here. -->
-<p><code class="docutils literal notranslate"><span class="pre">scipy.ndimage.affine_transform</span></code> is a routine that samples between images where
-there is an affine transform between the coordinates of the output image and
-the input image.</p>
-<p><code class="docutils literal notranslate"><span class="pre">scipy.ndimage.map_coordinates</span></code> is a more general way of resampling between
-images, where we specify the coordinates in the input image, for each voxel
-coordinate in the output image.</p>
-<p>Instead of using the <em>implied</em> coordinate grid, we pass in an actual
-coordinate array.</p>
-<p>This means that we can resample using coordinate transformations that cannot
-be expressed as an affine, such as complex non-linear transformations.</p>
-<p><code class="docutils literal notranslate"><span class="pre">map_coordinates</span></code> accepts:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code> – the array to resample from;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">coordinates</span></code> – the array shape (3,) + <code class="docutils literal notranslate"><span class="pre">output_shape</span></code> giving the
-voxel coordinates at which to sample <code class="docutils literal notranslate"><span class="pre">input</span></code>;</p></li>
-</ul>
-<p>Here the <code class="docutils literal notranslate"><span class="pre">output_shape</span></code> is implied by the shape of <code class="docutils literal notranslate"><span class="pre">coordinates</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">map_coordinates</span></code> then makes an empty array shape <code class="docutils literal notranslate"><span class="pre">K</span></code> where <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">coordinates.shape[1:]</span></code>. For every index <code class="docutils literal notranslate"><span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k</span></code> implied by <code class="docutils literal notranslate"><span class="pre">K.shape</span></code>
-it:</p>
-<ul class="simple">
-<li><p>gets the 3-length vector <code class="docutils literal notranslate"><span class="pre">coord</span> <span class="pre">=</span> <span class="pre">coordinates[:,</span> <span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k]</span></code> giving the
-voxel coordinate in <code class="docutils literal notranslate"><span class="pre">input</span></code>;</p></li>
-<li><p>samples <code class="docutils literal notranslate"><span class="pre">input</span></code> at coordinates <code class="docutils literal notranslate"><span class="pre">coord</span></code> to give value <code class="docutils literal notranslate"><span class="pre">v</span></code>;</p></li>
-<li><p>inserts <code class="docutils literal notranslate"><span class="pre">v</span></code> into <code class="docutils literal notranslate"><span class="pre">K</span></code> with <code class="docutils literal notranslate"><span class="pre">K[i,</span> <span class="pre">j,</span> <span class="pre">k]</span> <span class="pre">=</span> <span class="pre">v</span></code>.</p></li>
-</ul>
-<p>This might be clearer with an example. Let’s resample a structural brain image
-to a functional brain image.   See the Reslicing with affines exercise for
-an exercise using <code class="docutils literal notranslate"><span class="pre">scipy.ndimage.affine_transform</span></code> to do this.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="formats-for-floating-point-values-in-text-files">
+<h1>Formats for floating point values in text files<a class="headerlink" href="#formats-for-floating-point-values-in-text-files" title="Permalink to this headline">#</a></h1>
+<p>Let’s say we have a floating point numbers like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#: standard imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
-<span class="c1"># print arrays to 4 decimal places</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1">#: gray colormap and nearest neighbor interpolation by default</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.interpolation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;nearest&#39;</span>
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We will need the:</p>
-<ul class="simple">
-<li><p>BOLD (functional) image : <code class="docutils literal notranslate"><span class="pre">ds114_sub009_t2r1.nii</span></code>;</p></li>
-<li><p>structural image : <code class="docutils literal notranslate"><span class="pre">ds114_sub009_highres.nii</span></code>.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the function to fetch the data file we need.</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-<span class="c1"># Fetch the BOLD image</span>
-<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_t2r1.nii&#39;</span><span class="p">)</span>
-<span class="c1"># Show the file name.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
-<span class="c1"># Fetch structural image</span>
-<span class="n">structural_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">)</span>
-<span class="c1"># Show the file names</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">structural_fname</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_number</span> <span class="o">=</span> <span class="mf">314.15926</span>
+<span class="n">a_number</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/nipraxis/0.4/ds114_sub009_t2r1.nii
-/home/runner/.cache/nipraxis/0.4/ds114_sub009_highres.nii
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>314.15926
 </pre></div>
 </div>
 </div>
 </div>
+<p>We can also represent these numbers in exponential format.  Exponential format
+breaks the number into a two parts: the <em>significand</em>; and the <em>exponent</em>.</p>
+<p>The significand is a floating point number with one digit before a decimal
+point.  The exponent is an integer.  For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bold_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
-<span class="n">mean_bold_data</span> <span class="o">=</span> <span class="n">bold_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">structural_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">structural_fname</span><span class="p">)</span>
-<span class="n">structural_data</span> <span class="o">=</span> <span class="n">structural_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We now now the transformation to go from voxels in the structural to voxels in
-the (mean) functional:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_mm2vox</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">bold_img</span><span class="o">.</span><span class="n">affine</span><span class="p">)</span>
-<span class="n">struct_vox2mean_vox</span> <span class="o">=</span> <span class="n">mean_mm2vox</span> <span class="o">@</span> <span class="n">structural_img</span><span class="o">.</span><span class="n">affine</span>
-<span class="n">struct_vox2mean_vox</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp_number</span> <span class="o">=</span> <span class="mf">3.1415926E2</span>
+<span class="n">exp_number</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ -0.2497,   0.0151,  -0.0027,  63.5174],
-       [  0.0115,   0.3242,   0.0137,   1.1053],
-       [ -0.0034,  -0.0176,   0.2496, -27.7359],
-       [  0.    ,   0.    ,   0.    ,   1.    ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>314.15926
 </pre></div>
 </div>
 </div>
 </div>
-<p>Sure enough, if we use this affine to resample the functional image, we get a
-functional image with the same voxel sizes and positions as the structural
-image:</p>
+<p>Here the significand is <code class="docutils literal notranslate"><span class="pre">3.1415926</span></code>, and the exponent is <code class="docutils literal notranslate"><span class="pre">2</span></code>, the value after
+the <code class="docutils literal notranslate"><span class="pre">E</span></code>.  The number is given by <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">*</span> <span class="pre">10</span> <span class="pre">**</span> <span class="pre">e</span></code> where <code class="docutils literal notranslate"><span class="pre">s</span></code> is the significand and
+<code class="docutils literal notranslate"><span class="pre">e</span></code> is the exponent.  In this case: <code class="docutils literal notranslate"><span class="pre">314.15926</span> <span class="pre">=</span> <span class="pre">3.1415926</span> <span class="pre">*</span> <span class="pre">10</span> <span class="pre">**</span> <span class="pre">2</span></code>.</p>
+<p>This exponential format is the default format that <code class="docutils literal notranslate"><span class="pre">np.savetxt</span></code> uses to
+represent floating point numbers when writing to text files.  For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resample using affine_transform</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">affine_transform</span>
-<span class="n">mat</span><span class="p">,</span> <span class="n">vec</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">affines</span><span class="o">.</span><span class="n">to_matvec</span><span class="p">(</span><span class="n">struct_vox2mean_vox</span><span class="p">)</span>
-<span class="n">resampled_mean</span> <span class="o">=</span> <span class="n">affine_transform</span><span class="p">(</span><span class="n">mean_bold_data</span><span class="p">,</span> <span class="n">mat</span><span class="p">,</span> <span class="n">vec</span><span class="p">,</span>
-                                  <span class="n">output_shape</span><span class="o">=</span><span class="n">structural_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show resampled data</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">resampled_mean</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">150</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">structural_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">150</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">an_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a_number</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">an_array</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd4d2159640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([314.15926,   1.     ,   2.     ])
 </pre></div>
 </div>
-<img alt="_images/map_coordinates_9_1.png" src="_images/map_coordinates_9_1.png" />
 </div>
 </div>
-<p>We get the exact same effect with <code class="docutils literal notranslate"><span class="pre">map_coordinates</span></code> if we create the voxel
-coordinates ourselves, and apply the transform to them.  We need
-numpy.meshgrid to make the initial coordinate array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the I, J, K coordinates implied by the structural data array</span>
-<span class="c1"># shape</span>
-<span class="n">I</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span> <span class="o">=</span> <span class="n">structural_data</span><span class="o">.</span><span class="n">shape</span>
-<span class="n">i_vals</span><span class="p">,</span> <span class="n">j_vals</span><span class="p">,</span> <span class="n">k_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">I</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">J</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">),</span>
-                                     <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
-<span class="n">in_vox_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i_vals</span><span class="p">,</span> <span class="n">j_vals</span><span class="p">,</span> <span class="n">k_vals</span><span class="p">])</span>
-<span class="n">in_vox_coords</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the array as a text file.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;some_numbers.txt&#39;</span><span class="p">,</span> <span class="n">an_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the text in the file</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">pth</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;some_numbers.txt&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pth</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 256, 156, 256)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592600000000175e+02
+1.000000000000000000e+00
+2.000000000000000000e+00
 </pre></div>
 </div>
 </div>
 </div>
+<p>Finally, clean up the temporary file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">in_vox_coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pth</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">in_vox_coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 0])
-</pre></div>
-</div>
-</div>
-</div>
-<!-- rewrite using reshape, mat vec -->
-<p>We transform the coordinate grid using nibabel’s apply_affine function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coords_last</span> <span class="o">=</span> <span class="n">in_vox_coords</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">mean_vox_coords</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">affines</span><span class="o">.</span><span class="n">apply_affine</span><span class="p">(</span><span class="n">struct_vox2mean_vox</span><span class="p">,</span>
-                                           <span class="n">coords_last</span><span class="p">)</span>
-<span class="n">coords_first_again</span> <span class="o">=</span> <span class="n">mean_vox_coords</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Use this with <code class="docutils literal notranslate"><span class="pre">map_coordinates</span></code> to get the same result as we got for
-<code class="docutils literal notranslate"><span class="pre">affine_transform</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resample using map_coordinates</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">map_coordinates</span>
-<span class="n">resampled_mean_again</span> <span class="o">=</span> <span class="n">map_coordinates</span><span class="p">(</span><span class="n">mean_bold_data</span><span class="p">,</span>
-                                       <span class="n">coords_first_again</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show resampled data</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">resampled_mean_again</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">150</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">structural_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">150</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd4d003a8e0&gt;
-</pre></div>
-</div>
-<img alt="_images/map_coordinates_18_1.png" src="_images/map_coordinates_18_1.png" />
 </div>
 </div>
 </section>
@@ -1043,20 +903,6 @@ numpy.meshgrid to make the initial coordinate array:</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="nibabel_apply_affine.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Applying coordinate transforms with <code class="docutils literal notranslate"><span class="pre">nibabel.affines.apply_affine</span></code></p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="image_header_and_affine.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The image header and affine</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
