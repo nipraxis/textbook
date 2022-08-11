@@ -97,169 +97,176 @@ There is one row per trial, where each row records:
 
 Our task here is to take the values in this file and generate a sequence of times that record the *stimulus onset times*, in terms of the *number of scans* since the scanner run started.  More on this below.
 
-Here we open the file as text, and load the lines of the file into memory as a list.
+Here we open the file as text, and load the lines of the file into memory as a
+list.  See the [pathlib page](pathlib.Rmd) for more details on how this works.
 
 ```{python}
-# Load the lines in the file as a list.
+# Load text from the file.
 from pathlib import Path
 
 text = Path(stim_fname).read_text()
-lines = text.splitlines()
-# Show the first 5 lines.
-lines[:5]
+
+# Show the first 5 lines of the file text.
+text.splitlines()[:5]
+```
+
+There is a very powerful library in Python for reading these
+comma-seperated-values (CSV) files, called [Pandas](https://pandas.pydata.org).
+We won't go into the details here, but we use the library to read the file
+above as something called a Pandas Dataframe — something like an Excel
+spreadsheet in Python, with rows and columns.
+
+```{python}
+# Get the Pandas module, rename as "pd"
+import pandas as pd
+
+# Read the data file into a data frame.
+data = pd.read_csv(stim_fname)
+# Show the result
+data
+```
+
+We can use the `len` function on Pandas data frames, and this will give us the number of rows:
+
+```{python}
+n_trials = len(data)
+n_trials
 ```
 
 ## The task
 
 Now we can give some more detail of what we need to do.
 
-* The times in this file are from the experimental software.
+* All the times in this file are from the experimental software.
 * The `trial_ISI` values are times *between* the stimuli.  Thus the first
-  stimulus occurred 2000 ms after the experimental software started, and the second stimulus occurred 2000 + 1000 = 3000 ms after the experimental software started.  Call these the `exp_onset_times`.
+  stimulus occurred 2000 ms after the experimental software started, and the second stimulus occurred 2000 + 1000 = 3000 ms after the experimental software started.
+* We will need the time that each trial started, in terms of milliseconds after
+  the start of the experimental software. We get these times by adding the current and all previous `trial_ISI` values, as above.  Call these values `exp_onsets`.  The first two values will be 2000 and 3000 as above.
 * The scanner started 4 seconds (4000ms) *before* the experimental software.
-  So the onset times in relation to the *scanner start* are 4000 + 2000 = 6000, 4000 + 2000 + 1000 = 7000ms.  Call these the `scan_onset_times`.
+  So the onset times in relation to the *scanner start* are 4000 + 2000 = 6000,
+  4000 + 2000 + 1000 = 7000ms.  Call these the `scanner_onsets`.  We get the
+  `scanner_onsets` by adding 4000 to the corresponding `exp_onsets`.
 * Finally, the scanner starts a new scan each 2 second (2000 ms).  To get the
-  times in terms of scans we divide the `scan_onset_times` by 2000.  Call these
-  the `scan_onset_in_scans` These are the times we need for our later
+  times in terms of scans we divide each of the `scanner_onsets` by 2000.  Call
+  these the `onsets_in_scans` These are the times we need for our later
   statistical modeling.
 
-The first four `trial_ISI` values from the lines above are: 2000, 1000, 2500,
-1500.
+Here then the values for `exp_onsets`, `scanner_onsets` and `onsets_in_scans` for the first four trials:
 
-Therefore the first four values for `exp_onset_times` are:
+| Trial no | trial_ISI | exp_onsets (cumulative) | scanner_onsets (+4000) | onsets_in_scans (/2000) |
+| -------- | --------- | ---------- | -------------- | --------------- |
+| 0        | 2000      | 2000       | 6000           | 3.0             |
+| 1        | 1000      | 3000       | 7000           | 3.5             |
+| 2        | 2500      | 5500       | 9500           | 4.75            |
+| 3        | 1500      | 7000       | 11000          | 5.5             |
 
-```{python}
-# First four values of exp_onset_times
-[2000, 2000 + 1000, 2000 + 1000 + 2500, 2000 + 1000 + 2500 + 1500]
-```
-
-The `scan_onset_times` are just these values + 4000:
-
-```{python}
-# First four values of scan_onset_times
-[4000 + 2000,
- 4000 + 2000 + 1000,
- 4000 + 2000 + 1000 + 2500,
- 4000 + 2000 + 1000 + 2500 + 1500]
-```
-
-Finally, the `scan_onset_in_scans` values will start:
+Here is a calculation for the first four values for `exp_onsets`:
 
 ```{python}
-# First four values of scan_onset_in_scans
-[(4000 + 2000) / 2000,
- (4000 + 2000 + 1000) / 2000,
- (4000 + 2000 + 1000 + 2500) / 2000,
- (4000 + 2000 + 1000 + 2500 + 1500) / 2000]
+first_4_trial_isis = [2000, 1000, 2500, 1500]
+# First four values of exp_onsets
+first_4_exp_onsets = [first_4_trial_isis[0],
+                      first_4_trial_isis[0] + first_4_trial_isis[1],
+                      first_4_trial_isis[0] + first_4_trial_isis[1] +
+                      first_4_trial_isis[2],
+                      first_4_trial_isis[0] + first_4_trial_isis[1] +
+                      first_4_trial_isis[2] + first_4_trial_isis[3]]
+first_4_exp_onsets
 ```
 
-All this is ugly to type out.  Luckily Numpy is an excellent tool for this calculation.
-
-## Back to the file.
-
-Here are the first five lines of the file again.
+The `scanner_onsets` are just these values + 4000:
 
 ```{python}
-# Show the first 5 lines.
-lines[:5]
+# First four values of scanner_onsets
+first_4_scanner_onsets = [first_4_exp_onsets[0] + 4000,
+                          first_4_exp_onsets[1] + 4000,
+                          first_4_exp_onsets[2] + 4000,
+                          first_4_exp_onsets[3] + 4000]
+first_4_scanner_onsets
 ```
 
-As you can see, the first line in the file gives the names of the fields in each row.  We will throw away that line to start.
+Finally, the `onsets_in_scans` values will start:
 
 ```{python}
-del lines[0]
-lines[:5]
+first_4_onsets_in_scans = [first_4_scanner_onsets[0] / 2000,
+                           first_4_scanner_onsets[1] / 2000,
+                           first_4_scanner_onsets[2] / 2000,
+                           first_4_scanner_onsets[3] / 2000]
+first_4_onsets_in_scans
 ```
 
-There is one line for each trial, so the number of lines in the file is also the number of trials.
+All this is ugly to type out --- we surely want to the computer to do this calculation for us.
+
+Luckily Pandas has already read in the data, so we can get all the `trial_ISI` values as a list of 320 values, like this:
 
 ```{python}
-n_trials = len(lines)
-n_trials
+# Convert the column of data into a list with 320 elements.
+trial_isis_list = list(data['trial_ISI'])
+# Show the first 15 values.
+trial_isis_list[:15]
 ```
 
-Let's look at the first line again:
+Notice that we used the `list` function to convert the 320 values in the Pandas column into a list with 320 values.
+
+We could also have converted these 320 values into an *array* with 320 values, by using the `np.array` function:
 
 ```{python}
-type(lines[0])
+# Convert the column of data into an array with 320 elements.
+trial_isis = np.array(data['trial_ISI'])
+# Show the first 15 values.
+trial_isis[:15]
 ```
+
+Notice that we can index into arrays in the same way we can index into lists.  Here we get the first value in the array:
 
 ```{python}
-lines[0]
+trial_isis[0]
 ```
 
-We can use the `split` *method* of the string to split the string at the commas (`,`).  This gives us a list of strings:
+You've seen above that we can get the first 15 values with *slicing*, using the colon `:` syntax, as in:
 
 ```{python}
-parts = lines[0].split(',')
-parts
+trial_isis[:15]
 ```
 
-This in turn suggests how we could use `for` loop to collect the response times and the trial ISIs into lists, with one element per trial.
-
-```{python}
-rt_list = []  # List to hold the response times.
-isi_list = []  # List to hold the trial_isis
-# For each number from 0 up to (not including) the value of n_trials.
-for i in range(n_trials):
-    line = lines[i]  # Get the corresponding line for trial position i
-    parts = line.split(',')  # Split at commas
-    rt_list.append(float(parts[1]))  # Second thing is response time
-    isi_list.append(float(parts[2]))  # Third thing is trialISI
-# Show the first 5 trial ISIs.
-isi_list[:5]
-```
-
-## From lists to arrays
-
-Lists are useful, but we very often need arrays to help us process the data.
-
-We hope you will see why by example.
-
-You can make an array from a list by using the `np.array` function.
-
-```{python}
-isi_arr = np.array(isi_list)
-isi_arr
-```
-
-Let us do the same for the reaction times:
-
-```{python}
-rt_arr = np.array(rt_list)
-# Show the first 15 elements for brevity
-rt_list[:15]
-```
+meaning, get all values starting at (implicitly) position 0, and going up to, but not including, position 15.
 
 ## Arrays have a shape
 
-The array object has `shape` data attached to it:
+The new array object has `shape` data attached to it:
 
 ```{python}
-isi_arr.shape
+trial_isis.shape
 ```
 
-The shape gives the number of dimensions, and the number of elements for each dimension.  We only have a one-dimensional array, so we see one number, which is the number of elements in the array.  We will get on to two-dimensional arrays later.
+The shape gives the number of *dimensions*, and the number of elements for each
+dimension.  We only have a one-dimensional array, so we see one number, which
+is the number of elements in the array.  We will get on to two-dimensional
+arrays later.
 
 ## Arrays have a datatype
 
-Notice that the `np.array` function worked out that all the values in the list
-are floating point values, so the array has a *datatype* (`dtype`) of
-`float64` — the standard type of floating point value for Numpy and most other
-numerical packages (such as Matlab and R).   The array `dtype` specifies what
-type of elements the array does and can contain.
+An array differs from a list, in that each element of a list can be any data type, whereas all elements in an array have to be the same datatype.
+
+Here is the data type for all the values in our array, given by the `dtype` (Data TYPE) attribute:
 
 ```{python}
-isi_arr.dtype
+trial_isis.dtype
 ```
 
-This means that, for example, you cannot put data into this array that can very simply make a floating point value:
+This tells us that all the values in the array are floating point values, so
+of type `float64` — the standard type of floating point value for Numpy and
+most other numerical packages (such as Matlab and R).   The array `dtype` attribute specifies what type of elements the array does and can contain.
+
+The `float64` dtype of the array means that you cannot put data into this array
+that cannot be made trivially into a floating point value:
 
 ```{python tags=c("raises-exception")}
 isi_arr[0] = 'some text'
 ```
 
-This is in contrast to a list, where the elements can be a mixture of any type of Python value.
+This is in contrast to a list, where the elements can be a mixture of any type
+of Python value.
 
 ```{python}
 my_list = [10.1, 15.3, 0.5]
@@ -267,136 +274,123 @@ my_list[1] = 'some_text'
 my_list
 ```
 
-## Reading directly into arrays
+## Making new arrays
 
-There is another way we could have collected the information from the file, and put it directly into arrays.
-
-We could have started with an array of the right length and type, by using the `np.zeros` function to make an array with all 0.0 values.
+You have already seen how we can make an array from a sequence of values, using the `np.array` function.  For example:
 
 ```{python}
-rt_arr = np.zeros(n_trials)
-rt_arr
+# Convert a list into an array.
+my_array = np.array(my_list)
+my_array
 ```
 
+Numpy has various functions for making arrays.  One very common way of making new arrays is the `np.zeros` function.  This makes arrays containing all zero values of the shape we pass to the function.  For example, to make an array of 10 zeros, we could write:
+
 ```{python}
-rt_arr = np.zeros(n_trials)
-isi_arr = np.zeros(n_trials)
+# An array containing 10 zeros.
+np.zeros(10)
+```
+
+## Calculating without using the mathematics of arrays
+
+Another feature of arrays is that they are are very concise and efficient for
+doing operations on the whole array, using *array mathematics*.
+
+To show how this works, let's start off by doing calculations we need *without* using the special features of *array mathematics*.
+
+For example, we could use a `for` loop and some pre-built arrays to do the
+calculations for us.   It would look like this:
+
+```{python}
+# Arrays to hold the calculated values.
+exp_onsets = np.zeros(n_trials)
+scanner_onsets = np.zeros(n_trials)
+onsets_in_scans = np.zeros(n_trials)
+# For each number from 0 up to (not including) the value of n_trials.
+time_running_total = 0
 for i in range(n_trials):
-    line = lines[i]
-    parts = line.split(',')
-    rt_arr[i] = float(parts[1])
-    isi_arr[i] = float(parts[2])
-isi_arr[:5]
-```
+    time_running_total = time_running_total + trial_isis[i]
+    exp_onsets[i] = time_running_total
+    scanner_onsets[i] = exp_onsets[i] + 4000
+    onsets_in_scans[i] = scanner_onsets[i] / 2000
 
-This is a fairly typical use of `np.zeros`.  We make an array of the right size and then fill in the elements later.
-
-## Baby steps
-
-Let's proceed in steps.  First let us work out the time for each trial *from
-the start of the experimental software*.   We called these the
-`exp_onset_times`.
-
-Because we are careful, we first work out what that would look like if we did it by hand.   Here are the first five ISI values.
-
-```{python}
-isi_arr[:5]
-```
-
-The first value for `exp_onset_times` should be 2000.  The second will be 2000 + 1000.  The third will be 2000 + 1000 + 2500.
-
-```{python}
-[2000, 2000 + 1000, 2000 + 1000 + 2500, 2000 + 1000 + 2500 + 1500]
-```
-
-We could do the calculation for every trial with a `for` loop, like this:
-
-```{python}
-exp_onset_times = np.zeros(n_trials)
-start_time = 0
-for i in range(0, n_trials):
-    start_time = start_time + isi_arr[i]
-    exp_onset_times[i] = start_time
-# Show the first 10 values
-exp_onset_times[:10]
+# Show the first 15 onsets in scans
+onsets_in_scans[:15]
 ```
 
 That calculation looks right, comparing to our by-hand calculation above.
 
-Luckily, Numpy has a useful function called `np.cumsum` that does the cumulative sum of the elements in the array.  As you can see, this does exactly what we want here:
+## Array mathematics
+
+Above you see the `for` loop way.  Arrays allow us to express the same calculation in a much more efficient way.  It is more efficient in the sense that we type less code, the code is usually easier to read, and the operations are much more efficient for the computer, because the computer can take advantage of the fact that it knows that all the values are of the same type.
+
+One way that arrays can be more efficient, is when we have a pre-built,
+highly-optimized function to do the work for us. In our case, to calculate
+`exp_onsets`, Numpy has a useful function called `np.cumsum` that does the
+cumulative sum of the elements in the array.  As you can see, this does exactly
+what we want here:
 
 ```{python}
 # Show the cumulative sum
-exp_onset_times = np.cumsum(isi_arr)
-# Show the first 10 values
-exp_onset_times[:10]
+exp_onsets = np.cumsum(trial_isis)
+# Show the first 15 values
+exp_onsets[:15]
 ```
 
-Next we need to make these experiment time into times in terms of the scanner
-start.  We decided to call these the `scan_onset_times`. To do this, we need to
-add 4000 to every time.   Of course we could go through and do that with a For
-loop:
+Next we need to make these experiment times into times in terms of the scanner
+start.  We decided to call these the `scanner_onsets`. To do this, we need to
+add 4000 to every time.   Above we did this in a step in the `for` loop. But,
+Numpy can do the same calculation more efficiently, because when we ask Numpy
+to add a single number to an array, it has the effect of adding that number to
+*every element* in the array. That means we can calculate the `scanner_onsets` in one line:
 
 ```{python}
-scan_onset_times = np.zeros(n_trials)
-for i in range(n_trials):
-    scan_onset_times[i] = exp_onset_times[i] + 4000
-scan_onset_times[:10]
+scanner_onsets = exp_onsets + 4000
+scanner_onsets[:15]
 ```
 
-Luckily, however, Numpy will do that for us, because when we add a single number to an array, it has the effect of adding that number to *every element* in the array:
+Next we need to divide each `scanner_onsets` value by 2000 to give the
+`onsets_in_scan`. Luckily — Numpy does division in the same way as it does
+addition; dividing a single number into an array causes the number to be divided into each element:
 
 ```{python}
-scan_onset_times = exp_onset_times + 4000
-scan_onset_times[:10]
-```
-
-We now have trial onset times in milliseconds, from the start of the first scan.  We want to recode these numbers in terms of scans since the scanner session started.  We call these the `scan_onset_in_scans`.
-
-For example, the first time is 6000 ms.  The scans each last 2000 ms.  So, in terms of scans, the first time is:
-
-```{python}
-scan_length_ms = 2000
-6000 / scan_length_ms
-```
-
-Luckily — Numpy does division in the same way as it does addition, with a single number against an array:
-
-```{python}
-scan_onset_in_scans = scan_onset_times / scan_length_ms
-scan_onset_in_scans[:10]
+onsets_in_scans = scanner_onsets / 2000
+onsets_in_scans[:15]
 ```
 
 ## Processing reaction times
 
-OK — we have the stimulus onset times, but what about the times for the *responses*?
+OK — we have the stimulus onset times, but what about the times for the
+*responses*?
 
-Here are the first 15 reaction times:
+We make the `response_time` values into an array in the familiar way:
 
 ```{python}
-rt_arr[:15]
+response_times = np.array(data['response_time'])
+# Show the first 15 values.
+response_times[:15]
 ```
 
-Notice that there is a reaction time of 0 when there was no response.  We'll
+Notice that there is a `response_time` of 0 when there was no response.  We'll
 pretend we haven't noticed that, for now.
 
-Now we want to calculate the *response times* in terms of the start of the scanner.  We have the times of the trials onsets in terms of the scanner:
+Now we want to calculate the `scanner_reponse_onsets`.  These are the *response
+times* in terms of the start of the scanner.  We already have the times of the
+trials onsets in terms of the scanner:
 
 ```{python}
-scan_onset_times[:15]
+scanner_onsets[:15]
 ```
 
-The response onset times, in terms of the scanner start, are just the trial
-onset times, plus the corresponding reaction times.  Of course we could do this
-with a `for` loop, like this:
+The `scanner_response_onsets` are just the trial onset times in terms of the
+scanner start (`scanner_onsets`), plus the corresponding reaction times.  Of
+course we could do this with a `for` loop, like this:
 
 ```{python}
-scan_response_times = np.zeros(n_trials)
+scanner_response_onsets = np.zeros(n_trials)
 for i in range(n_trials):
-    trial_onset = scan_onset_times[i]
-    this_rt = rt_arr[i]
-    scan_response_times[i] = trial_onset + this_rt
-scan_response_times[:15]
+    scanner_response_onsets[i] = scanner_onsets[i] + response_times[i]
+scanner_response_onsets[:15]
 ```
 
 Luckily though, Numpy knows what to do when we add two arrays with the same shape.  It takes each element in the first array and adds the corresponding element in the second array - just like the `for` loop above.
@@ -405,8 +399,8 @@ This is call *elementwise* addition, because it does the addition (or subtractio
 
 ```{python}
 # Same result from adding the two arrays with the same shape.
-scan_response_times = scan_onset_times + rt_arr
-scan_response_times[:15]
+scanner_response_onsets = scanner_onsets + response_times
+scanner_response_onsets[:15]
 ```
 
 ## Boolean arrays
@@ -426,7 +420,7 @@ Remember {ref}`Boolean values <true-and-false>`, and
 Let's start by looking at the first 15 reaction times.
 
 ```{python}
-first_15_rts = rt_arr[:15]
+first_15_rts = response_times[:15]
 first_15_rts
 ```
 
@@ -470,7 +464,7 @@ print('Position 14:', first_15_rts[14] > 0)
 Here is the equivalent array for all the reaction times:
 
 ```{python}
-rts_not_zero = rt_arr > 0
+rts_not_zero = response_times > 0
 # Show the first 50 values.
 rts_not_zero[:50]
 ```
@@ -483,7 +477,7 @@ For example, rushing ahead, we can select the values in `rt_arr` corresponding
 to reaction times greater than zero with:
 
 ```{python}
-rt_arr[rts_not_zero]
+response_times[rts_not_zero]
 ```
 
 ## 2D arrays
@@ -497,9 +491,9 @@ all_times.shape
 
 ```{python}
 # Fill all of the rows, first column with the isi_arr values.
-all_times[:, 0] = isi_arr
+all_times[:, 0] = trial_isis
 # Fill all of the rows, second column with the rt_arr values.
-all_times[:, 1] = rt_arr
+all_times[:, 1] = response_times
 # Show the first 5 rows, and all columns.
 all_times[:5, :]
 ```
