@@ -1,5 +1,6 @@
 # Requirements for notebooks / Binderhub
 matplotlib
+pandas
 scipy
 nibabel
 ipython
