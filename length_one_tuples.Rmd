@@ -48,7 +48,8 @@ just_a_number
 ```
 
 Just a single number or string, with parentheses around it, does not make a
-tuple, because Python interprets this as your usual brackets for arithmetic.  That means that:
+tuple, because Python interprets this as your usual brackets for arithmetic.
+That means that:
 
 ```{python}
 (1)

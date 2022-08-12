@@ -739,8 +739,9 @@ not_a_tuple = (1)
 not_a_tuple
 ```
 
-This is because Python can’t tell that you meant this to be a tuple,
-rather than an expression with parentheses round it.  See {doc}`length_one_tuples` for an explanation.
+This is because Python can’t tell that you meant this to be a tuple, rather
+than an expression with parentheses round it.  See {doc}`length_one_tuples` for
+an explanation.
 
 To tell Python that you mean this to be a length-one tuple, add a comma after
 the element, and before the closing parenthesis:

@@ -15,13 +15,15 @@ jupyter:
   orphan: true
 ---
 
-# Tuple unpacking
+# Sequence unpacking
 
-Python has a very nice trick for separating out items from a sequence, called *unpacking*.
+Python has a very nice trick for separating out items from a sequence, called
+*unpacking*.
 
-You unpack a sequence when you separate elements out into separate variables.  It is easiest to explain by example.
+You unpack a sequence when you separate elements out into separate variables.
+It is easiest to explain by example.
 
-Consider this tuple, on the *right hand side* of an assignment:
+Consider this {ref}`tuple <tuples>`, on the *right hand side* of an assignment:
 
 ```{python}
 # a gets the value (1, 2)
@@ -32,8 +34,8 @@ a
 We do *unpacking* when we write a tuple on the *left hand side* of an
 assignment.
 
-In the cell below, we are unpacking the two values in `a` by writing a tuple
-of variables on the left hand side:
+In the cell below, we are unpacking the two values in `a` by writing a tuple of
+variables on the left hand side:
 
 ```{python}
 (b, c) = a

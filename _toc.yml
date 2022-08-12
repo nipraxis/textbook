@@ -22,12 +22,15 @@ parts:
   chapters:
   - file: what_is_an_image
   - file: numpy_intro
+  # arrays exercise
   - file: boolean_arrays
-  - file: arrays_2d_reshape
+  - file: reshape_and_2d
   - file: arrays_and_images
+  # camera exercise
   - file: arrays_3d
   - file: images_3d
   - file: reshape_and_3d
+  # anatomical exercise
   - file: boolean_indexing
   - file: boolean_indexing_nd
   - file: intro_to_4d
