@@ -184,6 +184,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="boolean_arrays.html">
+   Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_2d_reshape.html">
+   Two-dimensions, reshaping
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="arrays_and_images.html">
    Arrays as images, images as arrays
   </a>
@@ -876,7 +886,7 @@ the default normal distribution (mean 0, variance 1):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10062574946166704
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0440757535317355
 </pre></div>
 </div>
 </div>
@@ -890,7 +900,7 @@ the default normal distribution (mean 0, variance 1):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.712753944330833
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.110161244270284
 </pre></div>
 </div>
 </div>
@@ -903,14 +913,14 @@ the default normal distribution (mean 0, variance 1):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[17.3437, 14.2447, 14.2867, 14.1369, 15.3847],
-       [15.8768, 17.3093, 13.2797, 17.0245, 14.2519],
-       [15.6254, 13.6719,  9.4087, 15.1167, 14.4344],
-       [18.2207, 16.1716, 14.9967, 16.7748, 13.6274],
-       [19.079 , 15.2331, 15.0087, 13.7314, 15.016 ],
-       [17.0712, 15.2779, 13.3303, 15.158 , 15.9162],
-       [15.6825, 14.7465, 13.3691, 14.5682, 12.613 ],
-       [15.8668, 13.6421, 18.3021, 16.5887, 15.8169]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[13.114 , 12.7467, 15.6686, 13.7479, 14.0919],
+       [22.6077, 15.5065, 14.1781, 18.257 , 15.6429],
+       [15.5307, 14.2621, 16.4894, 13.0534, 17.5492],
+       [14.1891, 13.0642, 16.9218, 16.7331, 14.2959],
+       [13.1741, 14.4174, 12.216 , 14.8939, 14.2834],
+       [13.7167, 13.5024, 16.0839, 13.6447, 16.2018],
+       [14.0414, 16.2934, 15.0656, 14.4656, 13.8807],
+       [17.4049, 12.8973, 13.8044, 17.0151, 16.5197]])
 </pre></div>
 </div>
 </div>
@@ -924,11 +934,11 @@ mean 1 and variance 1:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.1322, -1.7626,  0.5894],
-       [-0.371 , -0.1114, -0.0153],
-       [-0.8236, -0.089 , -0.6023],
-       [ 0.6909,  0.0459, -0.5149],
-       [-0.924 ,  0.0397, -0.2748]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.331 , -0.9519, -0.8486],
+       [ 1.4038, -0.1873, -0.7991],
+       [-0.9467,  0.4008, -0.4137],
+       [-2.8371,  2.0316,  0.0255],
+       [ 0.7752, -1.0454,  2.382 ]])
 </pre></div>
 </div>
 </div>

@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Arrays as images, images as arrays" href="arrays_and_images.html" />
+    <link rel="next" title="Boolean arrays" href="boolean_arrays.html" />
     <link rel="prev" title="What is an image?" href="what_is_an_image.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -181,6 +181,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Introduction to Numpy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean_arrays.html">
+   Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_2d_reshape.html">
+   Two-dimensions, reshaping
   </a>
  </li>
  <li class="toctree-l1">
@@ -826,21 +836,6 @@ title="Print to PDF"
    Processing reaction times
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#boolean-arrays">
-   Boolean arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-arrays">
-   2D arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping">
-   Reshaping
-  </a>
- </li>
 </ul>
 
     </nav>
@@ -898,21 +893,6 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#processing-reaction-times">
    Processing reaction times
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#boolean-arrays">
-   Boolean arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-arrays">
-   2D arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping">
-   Reshaping
   </a>
  </li>
 </ul>
@@ -1020,9 +1000,6 @@ thing.  It’s near-universal convention.  That way, everyone knows you mean
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;24719.f3_beh_CHYM.csv&#39; from &#39;https://raw.githubusercontent.com/nipraxis/nipraxis-data/0.4/24719.f3_beh_CHYM.csv&#39; to &#39;/home/runner/.cache/nipraxis/0.4&#39;.
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.4/24719.f3_beh_CHYM.csv&#39;
 </pre></div>
 </div>
@@ -1369,7 +1346,8 @@ statistical modeling.</p></li>
 </div>
 </div>
 </div>
-<p>Notice that we can index into arrays in the same way we can index into lists.  Here we get the first value in the array:</p>
+<p>Notice that we can index into arrays in the same way we can index into lists.
+Here we get the first value in the array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trial_isis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1382,7 +1360,24 @@ statistical modeling.</p></li>
 </div>
 </div>
 </div>
-<p>You’ve seen above that we can get the first 15 values with <em>slicing</em>, using the colon <code class="docutils literal notranslate"><span class="pre">:</span></code> syntax, as in:</p>
+<p>We can also set values by putting the indexing on the right hand side:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trial_isis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Actually, let’s set that back to what it was before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trial_isis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You’ve seen above that we can get the first 15 values with <em>slicing</em>, using the
+colon <code class="docutils literal notranslate"><span class="pre">:</span></code> syntax, as in:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trial_isis</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
@@ -1396,7 +1391,8 @@ statistical modeling.</p></li>
 </div>
 </div>
 </div>
-<p>meaning, get all values starting at (implicitly) position 0, and going up to, but not including, position 15.</p>
+<p>— meaning, get all values starting at (implicitly) position 0, and going up to,
+but not including, position 15.</p>
 </section>
 <section id="arrays-have-a-shape">
 <h2>Arrays have a shape<a class="headerlink" href="#arrays-have-a-shape" title="Permalink to this headline">#</a></h2>
@@ -1420,8 +1416,10 @@ arrays later.</p>
 </section>
 <section id="arrays-have-a-datatype">
 <h2>Arrays have a datatype<a class="headerlink" href="#arrays-have-a-datatype" title="Permalink to this headline">#</a></h2>
-<p>An array differs from a list, in that each element of a list can be any data type, whereas all elements in an array have to be the same datatype.</p>
-<p>Here is the data type for all the values in our array, given by the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> (Data TYPE) attribute:</p>
+<p>An array differs from a list, in that each element of a list can be any data
+type, whereas all elements in an array have to be the same datatype.</p>
+<p>Here is the data type for all the values in our array, given by the <code class="docutils literal notranslate"><span class="pre">dtype</span></code>
+(Data TYPE) attribute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trial_isis</span><span class="o">.</span><span class="n">dtype</span>
@@ -1434,9 +1432,10 @@ arrays later.</p>
 </div>
 </div>
 </div>
-<p>This tells us that all the values in the array are floating point values, so
-of type <code class="docutils literal notranslate"><span class="pre">float64</span></code> — the standard type of floating point value for Numpy and
-most other numerical packages (such as Matlab and R).   The array <code class="docutils literal notranslate"><span class="pre">dtype</span></code> attribute specifies what type of elements the array does and can contain.</p>
+<p>This tells us that all the values in the array are floating point values, so of
+type <code class="docutils literal notranslate"><span class="pre">float64</span></code> — the standard type of floating point value for Numpy and most
+other numerical packages (such as Matlab and R).   The array <code class="docutils literal notranslate"><span class="pre">dtype</span></code> attribute
+specifies what type of elements the array does and can contain.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">float64</span></code> dtype of the array means that you cannot put data into this array
 that cannot be made trivially into a floating point value:</p>
 <div class="cell tag_raises-exception docutils container">
@@ -1448,7 +1447,7 @@ that cannot be made trivially into a floating point value:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [20],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="nn">Input In [22],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">isi_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;some text&#39;</span>
 
 <span class="ne">NameError</span>: name &#39;isi_arr&#39; is not defined
@@ -1475,7 +1474,8 @@ of Python value.</p>
 </section>
 <section id="making-new-arrays">
 <h2>Making new arrays<a class="headerlink" href="#making-new-arrays" title="Permalink to this headline">#</a></h2>
-<p>You have already seen how we can make an array from a sequence of values, using the <code class="docutils literal notranslate"><span class="pre">np.array</span></code> function.  For example:</p>
+<p>You have already seen how we can make an array from a sequence of values, using
+the <code class="docutils literal notranslate"><span class="pre">np.array</span></code> function.  For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert a list into an array.</span>
@@ -1677,263 +1677,6 @@ course we could do this with a <code class="docutils literal notranslate"><span 
 </div>
 </div>
 </section>
-<section id="boolean-arrays">
-<h2>Boolean arrays<a class="headerlink" href="#boolean-arrays" title="Permalink to this headline">#</a></h2>
-<p>We still have the problem of the 0 values for reaction time, indicating that there was no response.</p>
-<p>We can use Boolean arrays to select the response times that were not equal to zero.</p>
-<p>This is just a taster of selecting with Boolean arrays.  See <a class="reference internal" href="boolean_indexing.html"><span class="doc std std-doc">Boolean
-indexing</span></a> for more.</p>
-<p>Boolean arrays are arrays that contain values that are one of the two Boolean values <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-<p>Remember <a class="reference internal" href="brisk_python.html#true-and-false"><span class="std std-ref">Boolean values</span></a>, and
-<a class="reference internal" href="brisk_python.html#comparison-operators"><span class="std std-ref">Comparison operators</span></a> from <a class="reference internal" href="brisk_python.html"><span class="doc">Brisk introduction to Python</span></a>.  We can be use comparison operators on arrays, to create Boolean arrays.</p>
-<p>Let’s start by looking at the first 15 reaction times.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span> <span class="o">=</span> <span class="n">response_times</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
-<span class="n">first_15_rts</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 427,   0,   0,
-       369,   0])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Remember that comparisons are operators that give answers to a <em>comparison
-question</em>.  This is how comparisons work on individual values:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
-</pre></div>
-</div>
-</div>
-</div>
-<p>What do you think will happen if we do the comparison on the whole array, like this?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</pre></div>
-</div>
-<p>You have seen how Numpy works when adding a single number to an array — it
-takes this to mean that you want to add that number <em>to every element in the
-array</em>.</p>
-<p>Comparisons work the same way:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts_not_zero</span> <span class="o">=</span> <span class="n">first_15_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="n">first_15_rts_not_zero</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
-       False,  True, False, False,  True, False])
-</pre></div>
-</div>
-</div>
-</div>
-<p>This is the result of asking the comparison question <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> of <em>every element in
-the array</em>.</p>
-<p>So the values that end up in the <code class="docutils literal notranslate"><span class="pre">first_15_rts_not_zero</span></code> array come from these
-comparisons:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 0:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 1:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; ... and so on, up to ...&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 13:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 14:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Position 0: False
-Position 1: False
- ... and so on, up to ...
-Position 13: True
-Position 14: False
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here is the equivalent array for all the reaction times:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rts_not_zero</span> <span class="o">=</span> <span class="n">response_times</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="c1"># Show the first 50 values.</span>
-<span class="n">rts_not_zero</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
-       False,  True, False, False,  True, False,  True, False,  True,
-       False, False, False, False, False,  True,  True,  True, False,
-       False, False,  True, False,  True, False, False, False, False,
-       False, False,  True, False, False, False, False,  True,  True,
-        True, False, False,  True, False])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We will <a class="reference internal" href="boolean_indexing.html"><span class="doc std std-doc">soon see</span></a> that we can use these arrays to select elements from other arrays.</p>
-<p>Specifically, if we put a Boolean array like <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> between square brackets for another array, that will have the effect of selecting the elements at positions where <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has True, and throwing away elements where <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has False.</p>
-<p>For example, rushing ahead, we can select the values in <code class="docutils literal notranslate"><span class="pre">rt_arr</span></code> corresponding
-to reaction times greater than zero with:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span><span class="p">[</span><span class="n">rts_not_zero</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([427, 369, 337, 308, 375, 478, 300, 321, 306, 370, 372, 372, 342,
-       382, 318, 371, 450, 442, 452, 381, 351, 394, 353, 380, 387, 341,
-       366, 432, 415, 406, 466, 364, 462, 477, 374, 384, 375, 432, 369,
-       354, 455, 338, 364, 376, 345, 299, 308, 381, 375, 438, 325, 371,
-       377, 314, 297, 349, 607, 391, 334, 385, 386, 369, 394, 361, 480,
-       375, 368, 325, 410, 328, 412, 379, 383, 376, 351, 361, 403, 411,
-       447, 590, 328, 376, 410, 433, 370, 353, 353, 386, 417, 315, 298,
-       370, 365, 439, 391, 351, 464, 357, 328, 294, 471])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="d-arrays">
-<h2>2D arrays<a class="headerlink" href="#d-arrays" title="Permalink to this headline">#</a></h2>
-<p>We can also have arrays with more than one dimension.  For example, we can make our original trial and reaction times into a two-dimensional array, like this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_trials</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">all_times</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(320, 2)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fill all of the rows, first column with the isi_arr values.</span>
-<span class="n">all_times</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">trial_isis</span>
-<span class="c1"># Fill all of the rows, second column with the rt_arr values.</span>
-<span class="n">all_times</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">response_times</span>
-<span class="c1"># Show the first 5 rows, and all columns.</span>
-<span class="n">all_times</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2000.,    0.],
-       [1000.,    0.],
-       [2500.,    0.],
-       [1500.,    0.],
-       [1500.,    0.]])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="reshaping">
-<h2>Reshaping<a class="headerlink" href="#reshaping" title="Permalink to this headline">#</a></h2>
-<p>Finally, we often want to change the <em>shape</em> of arrays.</p>
-<p>One common thing we may want to do is to take a 2D array and flatten it out into a 1D array, or visa versa.  That does not make much sense in this particular case, but bear with us.</p>
-<p>Remember, the original 2D shape was:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_times</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(320, 2)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now we want to <em>flatten</em> this 2D thing into a 1D thing.   The new shape we want is therefore:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_trials</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">new_shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[640]
-</pre></div>
-</div>
-</div>
-</div>
-<p>We pass the new shape to the <code class="docutils literal notranslate"><span class="pre">np.reshape</span></code> function, along with the array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flattened</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">all_times</span><span class="p">,</span> <span class="p">[</span><span class="n">n_trials</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">flattened</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(640,)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first 10 values.</span>
-<span class="n">flattened</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2000.,    0., 1000.,    0., 2500.,    0., 1500.,    0., 1500.,
-          0.])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here we take the flattened array, and put it back into its original two dimensions:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unflattened</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">flattened</span><span class="p">,</span> <span class="p">[</span><span class="n">n_trials</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">unflattened</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(320, 2)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the first five rows.</span>
-<span class="n">unflattened</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2000.,    0.],
-       [1000.,    0.],
-       [2500.,    0.],
-       [1500.,    0.],
-       [1500.,    0.]])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1970,10 +1713,10 @@ to reaction times greater than zero with:</p>
             <p class="prev-next-title">What is an image?</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="arrays_and_images.html" title="next page">
+    <a class='right-next' id="next-link" href="boolean_arrays.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Arrays as images, images as arrays</p>
+        <p class="prev-next-title">Boolean arrays</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

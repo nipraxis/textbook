@@ -184,6 +184,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="boolean_arrays.html">
+   Boolean arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays_2d_reshape.html">
+   Two-dimensions, reshaping
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="arrays_and_images.html">
    Arrays as images, images as arrays
   </a>
@@ -785,8 +795,8 @@ make sure you are running a <strong>Powershell</strong> shell, not the much olde
 </div>
 <p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="eae4edf7-f5d7-4bc6-9e36-dc2f32dcd4bc" name="3deee571-e06b-4d0e-a5f1-8ccb52e0118e" type="radio">
-</input><label class="sd-tab-label" for="eae4edf7-f5d7-4bc6-9e36-dc2f32dcd4bc">
+<input checked="checked" id="2a4cb1a3-fd8a-41f7-a90d-67a97d070658" name="d80b3c33-180a-482b-b796-83940c91840d" type="radio">
+</input><label class="sd-tab-label" for="2a4cb1a3-fd8a-41f7-a90d-67a97d070658">
 Windows Powershell</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
 <span class="o">----</span>
@@ -794,15 +804,15 @@ Windows Powershell</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="abed7073-2120-4046-9721-6e44e133d3e9" name="3deee571-e06b-4d0e-a5f1-8ccb52e0118e" type="radio">
-</input><label class="sd-tab-label" for="abed7073-2120-4046-9721-6e44e133d3e9">
+<input id="1a7a55e3-2b7d-402d-aac4-ce6cac7ddc4d" name="d80b3c33-180a-482b-b796-83940c91840d" type="radio">
+</input><label class="sd-tab-label" for="1a7a55e3-2b7d-402d-aac4-ce6cac7ddc4d">
 Mac</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
 </div>
 </div>
-<input id="f98e51ce-fde4-4db6-ad3b-c2a9a87a42bc" name="3deee571-e06b-4d0e-a5f1-8ccb52e0118e" type="radio">
-</input><label class="sd-tab-label" for="f98e51ce-fde4-4db6-ad3b-c2a9a87a42bc">
+<input id="84285c92-6be1-466e-a9d6-85379938ef21" name="d80b3c33-180a-482b-b796-83940c91840d" type="radio">
+</input><label class="sd-tab-label" for="84285c92-6be1-466e-a9d6-85379938ef21">
 Linux</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">working</span>
 </pre></div>
@@ -849,8 +859,8 @@ computer.   Note where the file went.  For example, you might have downloaded th
 </div>
 <p>from your terminal.  You should see something like:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ca4e28e9-85a9-4ca6-96fb-2ed5eef6b260" name="cc0c8d0d-8ddf-41ef-994b-f092f26a3e69" type="radio">
-</input><label class="sd-tab-label" for="ca4e28e9-85a9-4ca6-96fb-2ed5eef6b260">
+<input checked="checked" id="50b66f90-d654-47db-acad-836a2ab44fad" name="867baa84-2d2b-4781-9dbd-da61e4bd1bb9" type="radio">
+</input><label class="sd-tab-label" for="50b66f90-d654-47db-acad-836a2ab44fad">
 Windows Poweshell</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 
@@ -861,8 +871,8 @@ Windows Poweshell</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3fa5a803-165c-4d77-ba28-d7c62f6431b2" name="cc0c8d0d-8ddf-41ef-994b-f092f26a3e69" type="radio">
-</input><label class="sd-tab-label" for="3fa5a803-165c-4d77-ba28-d7c62f6431b2">
+<input id="a37e16c1-308c-4ef0-a78b-dedc4290e7ab" name="867baa84-2d2b-4781-9dbd-da61e4bd1bb9" type="radio">
+</input><label class="sd-tab-label" for="a37e16c1-308c-4ef0-a78b-dedc4290e7ab">
 Mac or Linux</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
 </pre></div>

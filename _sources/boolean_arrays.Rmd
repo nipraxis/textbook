@@ -1,0 +1,170 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.10.3
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Boolean arrays
+
+```{python}
+import numpy as np
+```
+
+Remember the problem of the [onsets and reaction times](numpy_intro.Rmd).
+
+We had the task of calculating the onset times of trials, given a file of trial
+inter-stimulus intervals, and response times.
+
+```{python}
+import nipraxis
+
+# Fetch the file.
+stim_fname = nipraxis.fetch_file('24719.f3_beh_CHYM.csv')
+# Show the filename.
+stim_fname
+```
+
+We got the data using the Pandas library:
+
+```{python}
+# Get the Pandas module, rename as "pd"
+import pandas as pd
+
+# Read the data file into a data frame.
+data = pd.read_csv(stim_fname)
+# Show the result
+data
+```
+
+There is one row for each trial.  The columns we are interested in are:
+
+* `response_time` — the reaction time for their response (milliseconds after
+  the stimulus, 0 if no response)
+* `trial_ISI` — the time between the *previous* stimulus and this one (the
+  Interstimulus Interval).  For the first stimulus this is the time from the
+  start of the experimental software.
+
+```{python}
+response_times = np.array(data['response_time'])
+trial_isis = np.array(data['trial_ISI'])
+```
+
+We then calculated the onset times of each trial relative to the start of the
+scanning run.  The scanning run started 4000 milliseconds before the
+experimental software.
+
+```{python}
+exp_onsets = np.cumsum(trial_isis)
+scanner_onsets = exp_onsets + 4000
+scanner_onsets[:15]
+```
+
+We then wanted to calculate the onset times of each response, relative to the
+scanner start.  The response times for each trial are relative to the start of
+the trial, so we can add the response 
+
+```{python}
+# Same result from adding the two arrays with the same shape.
+scanner_response_onsets = scanner_onsets + response_times
+scanner_response_onsets[:15]
+```
+
+## Boolean arrays
+
+As you remember, many of the response time values are 0 indicating no response:
+
+```{python}
+first_15_rts = response_times[:15]
+first_15_rts
+```
+
+We would like to select the response onsets corresponding to not 0
+`response_times`.
+
+We can use Boolean arrays to do this.
+
+This is just a taster of selecting with Boolean arrays.  See [Boolean
+indexing](boolean_indexing) for more.
+
+Boolean arrays are arrays that contain values that are one of the two Boolean
+values `True` or `False`.
+
+Remember {ref}`Boolean values <true-and-false>`, and
+{ref}`comparison-operators` from {doc}`brisk_python`.  We can be use comparison
+operators on arrays, to create Boolean arrays.
+
+Let's start by looking at the first 15 reaction times:
+
+```{python}
+first_15_rts
+```
+
+Remember that comparisons are operators that give answers to a *comparison
+question*.  This is how comparisons work on individual values:
+
+```{python}
+first_15_rts[0] > 0
+```
+
+What do you think will happen if we do the comparison on the whole array, like this?
+
+```python
+first_15_rts > 0
+```
+
+You have seen how Numpy works when adding a single number to an array — it
+takes this to mean that you want to add that number *to every element in the
+array*.
+
+Comparisons work the same way:
+
+```{python}
+first_15_rts_not_zero = first_15_rts > 0
+first_15_rts_not_zero
+```
+
+This is the result of asking the comparison question `> 0` of *every element in
+the array*.
+
+So the values that end up in the `first_15_rts_not_zero` array come from these
+comparisons:
+
+```{python}
+print('Position 0:', first_15_rts[0] > 0)
+print('Position 1:', first_15_rts[1] > 0)
+print(' ... and so on, up to ...')
+print('Position 13:', first_15_rts[13] > 0)
+print('Position 14:', first_15_rts[14] > 0)
+```
+Here is the equivalent array for all the reaction times:
+
+```{python}
+rts_not_zero = response_times > 0
+# Show the first 50 values.
+rts_not_zero[:50]
+```
+
+We will [soon see](boolean_indexing) that we can use these arrays to select
+elements from other arrays.
+
+Specifically, if we put a Boolean array like `rts_not_zero` between square
+brackets for another array, that will have the effect of selecting the elements
+at positions where `rts_not_zero` has True, and throwing away elements where
+`rts_not_zero` has False.
+
+For example, rushing ahead, we can select the values in `rt_arr` corresponding
+to reaction times greater than zero with:
+
+```{python}
+response_times[rts_not_zero]
+```

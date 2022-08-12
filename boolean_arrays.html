@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Resampling with scipy.ndimage &#8212; Practice and theory of brain imaging</title>
+    <title>Boolean arrays &#8212; Practice and theory of brain imaging</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,12 +50,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Registration with dipy" href="dipy_registration.html" />
-    <link rel="prev" title="Rotations and rotation matrices" href="rotation_2d_3d.html" />
+    <link rel="next" title="Two-dimensions, reshaping" href="arrays_2d_reshape.html" />
+    <link rel="prev" title="Introduction to Numpy" href="numpy_intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -174,7 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
   Images and code and images
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="what_is_an_image.html">
    What is an image?
@@ -185,8 +183,8 @@ const thebe_selector_output = ".output, .cell_output"
    Introduction to Numpy
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="boolean_arrays.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Boolean arrays
   </a>
  </li>
@@ -376,7 +374,7 @@ const thebe_selector_output = ".output, .cell_output"
   Spatial processing
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="slice_timing.html">
    Slice timing correction
@@ -438,8 +436,8 @@ const thebe_selector_output = ".output, .cell_output"
    Rotations and rotation matrices
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling_with_ndimage.html">
    Resampling with
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -579,7 +577,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/resampling_with_ndimage.Rmd"
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/boolean_arrays.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -597,7 +595,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/resampling_with_ndimage.Rmd&branch=main"
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/boolean_arrays.Rmd&branch=main"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -615,7 +613,7 @@ title="Launch on JupyterHub"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/resampling_with_ndimage.Rmd"
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/boolean_arrays.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -633,7 +631,7 @@ title="Launch on Colab"
       </li>
       
       <li>
-        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fresampling_with_ndimage.Rmd"
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fboolean_arrays.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -711,7 +709,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fresampling_with_ndimage.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fboolean_arrays.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -739,7 +737,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/resampling_with_ndimage.Rmd"
+        <a href="_sources/boolean_arrays.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -798,31 +796,9 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Resampling with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     scipy.ndimage
-    </span>
-   </code>
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reampling-pull-push">
-     Reampling, pull, push
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scipy-ndimage-and-affine-transform">
-     Scipy ndimage and affine_transform
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resampling-with-images-of-different-shapes">
-   Resampling with images of different shapes
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Boolean arrays
   </a>
  </li>
 </ul>
@@ -834,7 +810,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Resampling with scipy.ndimage</h1>
+                <h1>Boolean arrays</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -844,31 +820,9 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Resampling with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     scipy.ndimage
-    </span>
-   </code>
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reampling-pull-push">
-     Reampling, pull, push
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scipy-ndimage-and-affine-transform">
-     Scipy ndimage and affine_transform
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resampling-with-images-of-different-shapes">
-   Resampling with images of different shapes
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Boolean arrays
   </a>
  </li>
 </ul>
@@ -881,243 +835,357 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="resampling-with-scipy-ndimage">
-<h1>Resampling with <code class="docutils literal notranslate"><span class="pre">scipy.ndimage</span></code><a class="headerlink" href="#resampling-with-scipy-ndimage" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="boolean-arrays">
+<h1>Boolean arrays<a class="headerlink" href="#boolean-arrays" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import common modules</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># print arrays to 4DP</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1"># gray colormap and nearest neighbor interpolation by default</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.interpolation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;nearest&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="reampling-pull-push">
-<h2>Reampling, pull, push<a class="headerlink" href="#reampling-pull-push" title="Permalink to this headline">#</a></h2>
-<p>Let us say we have two images <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{J}\)</span>.</p>
-<p>There is some spatial transform between them, such as a translation, or
-rotation.</p>
-<p>We could either think of the transformation that maps <span class="math notranslate nohighlight">\(\mathbf{I} \to
-\mathbf{J}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{J} \to \mathbf{I}\)</span>.</p>
-<p>The transformations map voxel coordinates in one image to coordinates in the
-other.</p>
-<p>For example, write a coordinate in <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> as <span class="math notranslate nohighlight">\((x_i, y_i,
-z_i)\)</span>, and a coordinate in <span class="math notranslate nohighlight">\(\mathbf{J}\)</span> as <span class="math notranslate nohighlight">\((x_j, y_j, z_j)\)</span>.</p>
-<p>The mapping <span class="math notranslate nohighlight">\(\mathbf{I} \to \mathbf{J}\)</span> maps <span class="math notranslate nohighlight">\((x_i, y_i, z_i) \to
-(x_j, y_j, z_j)\)</span>.</p>
-<p>Now let us say that we want to move image <span class="math notranslate nohighlight">\(\mathbf{J}\)</span> to match image
-<span class="math notranslate nohighlight">\(\mathbf{I}\)</span>.</p>
-<p>To do this moving, we need to resample <span class="math notranslate nohighlight">\(\mathbf{J}\)</span> onto the same voxel
-grid as <span class="math notranslate nohighlight">\(\mathbf{I}\)</span>.</p>
-<p>Specifically, we are going to do the following:</p>
+<p>Remember the problem of the <a class="reference internal" href="numpy_intro.html"><span class="doc std std-doc">onsets and reaction times</span></a>.</p>
+<p>We had the task of calculating the onset times of trials, given a file of trial
+inter-stimulus intervals, and response times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nipraxis</span>
+
+<span class="c1"># Fetch the file.</span>
+<span class="n">stim_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;24719.f3_beh_CHYM.csv&#39;</span><span class="p">)</span>
+<span class="c1"># Show the filename.</span>
+<span class="n">stim_fname</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.4/24719.f3_beh_CHYM.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We got the data using the Pandas library:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the Pandas module, rename as &quot;pd&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Read the data file into a data frame.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">stim_fname</span><span class="p">)</span>
+<span class="c1"># Show the result</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>response</th>
+      <th>response_time</th>
+      <th>trial_ISI</th>
+      <th>trial_shape</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>None</td>
+      <td>0</td>
+      <td>2000</td>
+      <td>red_star</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>None</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>red_circle</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>None</td>
+      <td>0</td>
+      <td>2500</td>
+      <td>green_triangle</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>None</td>
+      <td>0</td>
+      <td>1500</td>
+      <td>yellow_square</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>None</td>
+      <td>0</td>
+      <td>1500</td>
+      <td>blue_circle</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>315</th>
+      <td>space</td>
+      <td>294</td>
+      <td>1000</td>
+      <td>red_square</td>
+    </tr>
+    <tr>
+      <th>316</th>
+      <td>None</td>
+      <td>0</td>
+      <td>2500</td>
+      <td>green_circle</td>
+    </tr>
+    <tr>
+      <th>317</th>
+      <td>None</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>green_star</td>
+    </tr>
+    <tr>
+      <th>318</th>
+      <td>space</td>
+      <td>471</td>
+      <td>1000</td>
+      <td>red_circle</td>
+    </tr>
+    <tr>
+      <th>319</th>
+      <td>None</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>blue_circle</td>
+    </tr>
+  </tbody>
+</table>
+<p>320 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>There is one row for each trial.  The columns we are interested in are:</p>
 <ul class="simple">
-<li><p>make a new empty image <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> that has the same voxel
-grid as <span class="math notranslate nohighlight">\(\mathbf{I}\)</span>;</p></li>
-<li><p>for each coordinate in <span class="math notranslate nohighlight">\(\mathbf{I} : (x_i, y_i, z_i)\)</span> we will apply
-the transform <span class="math notranslate nohighlight">\(\mathbf{I} \to \mathbf{J}\)</span> to get <span class="math notranslate nohighlight">\((x_j, y_j,
-z_j)\)</span>;</p></li>
-<li><p>we will probably need to estimate a value <span class="math notranslate nohighlight">\(v\)</span> from <span class="math notranslate nohighlight">\(\mathbf{J}\)</span>
-at <span class="math notranslate nohighlight">\((x_j, y_j, z_j)\)</span> because the coordinate values <span class="math notranslate nohighlight">\((x_j, y_j,
-z_j)\)</span> will probably not be integers, and so there is no exactly matching
-value in <span class="math notranslate nohighlight">\(\mathbf{J}\)</span>;</p></li>
-<li><p>we place <span class="math notranslate nohighlight">\(v\)</span> into <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> at coordinate <span class="math notranslate nohighlight">\((x_i, y_i,
-z_i)\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">response_time</span></code> — the reaction time for their response (milliseconds after
+the stimulus, 0 if no response)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trial_ISI</span></code> — the time between the <em>previous</em> stimulus and this one (the
+Interstimulus Interval).  For the first stimulus this is the time from the
+start of the experimental software.</p></li>
 </ul>
-<p>Notice that, in order to move <span class="math notranslate nohighlight">\(\mathbf{J}\)</span> to match <span class="math notranslate nohighlight">\(\mathbf{I}\)</span>
-we needed the opposite transform – that is: <span class="math notranslate nohighlight">\(\mathbf{I} \to
-\mathbf{J}\)</span>.  This is called <em>pull resampling</em>.</p>
-<p>We will call the <span class="math notranslate nohighlight">\(\mathbf{I} \to \mathbf{J}\)</span> transform the <em>resampling
-transform</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;response_time&#39;</span><span class="p">])</span>
+<span class="n">trial_isis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;trial_ISI&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then calculated the onset times of each trial relative to the start of the
+scanning run.  The scanning run started 4000 milliseconds before the
+experimental software.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp_onsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">trial_isis</span><span class="p">)</span>
+<span class="n">scanner_onsets</span> <span class="o">=</span> <span class="n">exp_onsets</span> <span class="o">+</span> <span class="mi">4000</span>
+<span class="n">scanner_onsets</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6000,  7000,  9500, 11000, 12500, 14500, 17000, 18500, 20500,
+       21500, 22500, 24000, 25500, 27500, 29000])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then wanted to calculate the onset times of each response, relative to the
+scanner start.  The response times for each trial are relative to the start of
+the trial, so we can add the response</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same result from adding the two arrays with the same shape.</span>
+<span class="n">scanner_response_onsets</span> <span class="o">=</span> <span class="n">scanner_onsets</span> <span class="o">+</span> <span class="n">response_times</span>
+<span class="n">scanner_response_onsets</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6000,  7000,  9500, 11000, 12500, 14500, 17000, 18500, 20500,
+       21500, 22927, 24000, 25500, 27869, 29000])
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>Boolean arrays<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>As you remember, many of the response time values are 0 indicating no response:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span> <span class="o">=</span> <span class="n">response_times</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span>
+<span class="n">first_15_rts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 427,   0,   0,
+       369,   0])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We would like to select the response onsets corresponding to not 0
+<code class="docutils literal notranslate"><span class="pre">response_times</span></code>.</p>
+<p>We can use Boolean arrays to do this.</p>
+<p>This is just a taster of selecting with Boolean arrays.  See <a class="reference internal" href="boolean_indexing.html"><span class="doc std std-doc">Boolean
+indexing</span></a> for more.</p>
+<p>Boolean arrays are arrays that contain values that are one of the two Boolean
+values <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Remember <a class="reference internal" href="brisk_python.html#true-and-false"><span class="std std-ref">Boolean values</span></a>, and
+<a class="reference internal" href="brisk_python.html#comparison-operators"><span class="std std-ref">Comparison operators</span></a> from <a class="reference internal" href="brisk_python.html"><span class="doc">Brisk introduction to Python</span></a>.  We can be use comparison
+operators on arrays, to create Boolean arrays.</p>
+<p>Let’s start by looking at the first 15 reaction times:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 427,   0,   0,
+       369,   0])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember that comparisons are operators that give answers to a <em>comparison
+question</em>.  This is how comparisons work on individual values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>What do you think will happen if we do the comparison on the whole array, like this?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>You have seen how Numpy works when adding a single number to an array — it
+takes this to mean that you want to add that number <em>to every element in the
+array</em>.</p>
+<p>Comparisons work the same way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_15_rts_not_zero</span> <span class="o">=</span> <span class="n">first_15_rts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">first_15_rts_not_zero</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
+       False,  True, False, False,  True, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is the result of asking the comparison question <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> of <em>every element in
+the array</em>.</p>
+<p>So the values that end up in the <code class="docutils literal notranslate"><span class="pre">first_15_rts_not_zero</span></code> array come from these
+comparisons:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 0:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 1:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; ... and so on, up to ...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 13:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position 14:&#39;</span><span class="p">,</span> <span class="n">first_15_rts</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Position 0: False
+Position 1: False
+ ... and so on, up to ...
+Position 13: True
+Position 14: False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the equivalent array for all the reaction times:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rts_not_zero</span> <span class="o">=</span> <span class="n">response_times</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="c1"># Show the first 50 values.</span>
+<span class="n">rts_not_zero</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
+       False,  True, False, False,  True, False,  True, False,  True,
+       False, False, False, False, False,  True,  True,  True, False,
+       False, False,  True, False,  True, False, False, False, False,
+       False, False,  True, False, False, False, False,  True,  True,
+        True, False, False,  True, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will <a class="reference internal" href="boolean_indexing.html"><span class="doc std std-doc">soon see</span></a> that we can use these arrays to select
+elements from other arrays.</p>
+<p>Specifically, if we put a Boolean array like <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> between square
+brackets for another array, that will have the effect of selecting the elements
+at positions where <code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has True, and throwing away elements where
+<code class="docutils literal notranslate"><span class="pre">rts_not_zero</span></code> has False.</p>
+<p>For example, rushing ahead, we can select the values in <code class="docutils literal notranslate"><span class="pre">rt_arr</span></code> corresponding
+to reaction times greater than zero with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span><span class="p">[</span><span class="n">rts_not_zero</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([427, 369, 337, 308, 375, 478, 300, 321, 306, 370, 372, 372, 342,
+       382, 318, 371, 450, 442, 452, 381, 351, 394, 353, 380, 387, 341,
+       366, 432, 415, 406, 466, 364, 462, 477, 374, 384, 375, 432, 369,
+       354, 455, 338, 364, 376, 345, 299, 308, 381, 375, 438, 325, 371,
+       377, 314, 297, 349, 607, 391, 334, 385, 386, 369, 394, 361, 480,
+       375, 368, 325, 410, 328, 412, 379, 383, 376, 351, 361, 403, 411,
+       447, 590, 328, 376, 410, 433, 370, 353, 353, 386, 417, 315, 298,
+       370, 365, 439, 391, 351, 464, 357, 328, 294, 471])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="scipy-ndimage-and-affine-transform">
-<h2>Scipy ndimage and affine_transform<a class="headerlink" href="#scipy-ndimage-and-affine-transform" title="Permalink to this headline">#</a></h2>
-<!-- see coordinate_board.jpg for diagram needed about here. -->
-<p>Scipy has a function for doing reampling with transformations, called
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.affine_transform.html">scipy.ndimage.affine_transform</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">affine_transform</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>It does all the heavy work of resampling for us.</p>
-<p>For example, lets say we have an image volume <span class="math notranslate nohighlight">\(\mathbf{I}\)</span>
-(<code class="docutils literal notranslate"><span class="pre">ds107_sub012_t1r2.nii</span></code>):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the data file.</span>
-<span class="kn">import</span> <span class="nn">nipraxis</span>
-<span class="c1"># Fetch image file.</span>
-<span class="n">bold_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="s1">&#39;ds107_sub012_t1r2.nii&#39;</span><span class="p">)</span>
-<span class="n">bold_fname</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/runner/.cache/nipraxis/0.4/ds107_sub012_t1r2.nii&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
-<span class="n">I</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># I is the first volume</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We have another image volume <span class="math notranslate nohighlight">\(\mathbf{J}\)</span>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># I is the second volume</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s say we know that the resampling transformation <span class="math notranslate nohighlight">\(\mathbf{I} \to
-\mathbf{J}\)</span> is given by:</p>
-<ul class="simple">
-<li><p>a rotation by 0.2 radians about the x axis;</p></li>
-<li><p>a translation of [1, 2, 3] voxels.</p></li>
-</ul>
-<p>See Rotations and rotation matrices for more on 2D and 3D rotation matrices.</p>
-<p>Here we use the
-<a class="reference external" href="https://github.com/nipraxis/nipraxis/blob/main/nipraxis/rotations.py">nipraxis.rotations</a>
-module. It has routines that will make 3 by 3 rotation matrices for rotations
-by given angles around the x, y, and z axes.</p>
-<p>Of course you will want to be assured these functions are tested.  Have a look
-at
-<a class="reference external" href="https://github.com/nipraxis/nipraxis/blob/main/nipraxis/tests/test_rotations.py">test_rotations.py</a>.</p>
-<p>We use the routines in the <code class="docutils literal notranslate"><span class="pre">nipraxis.rotations</span></code> module to make the rotation
-matrix we need:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipraxis.rotations</span> <span class="kn">import</span> <span class="n">x_rotmat</span>
-<span class="c1"># rotation matrix for rotation of 0.2 radians around x axis</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">x_rotmat</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">M</span>
-<span class="n">translation</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>  <span class="c1"># Translation from I to J</span>
-<span class="n">translation</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
-</pre></div>
-</div>
-</div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">affine_transform</span></code> function does the work of resampling.  By default, it
-implements the following algorithm:</p>
-<ul class="simple">
-<li><p>makes the new empty volume <code class="docutils literal notranslate"><span class="pre">K</span></code>, assuming it will be the same shape as
-<code class="docutils literal notranslate"><span class="pre">J</span></code>;</p></li>
-<li><p>for each coordinate <span class="math notranslate nohighlight">\((x_i, y_i, z_i)\)</span> implied by the volume <code class="docutils literal notranslate"><span class="pre">K</span></code>:</p>
-<ul>
-<li><p>apply the transformations implied by <code class="docutils literal notranslate"><span class="pre">M</span></code> and <code class="docutils literal notranslate"><span class="pre">translation</span></code> to <span class="math notranslate nohighlight">\((x_i, y_i,
-z_i)\)</span> to get the corresponding point in <code class="docutils literal notranslate"><span class="pre">J</span></code> : <span class="math notranslate nohighlight">\((x_j, y_j, z_j)\)</span>;</p></li>
-<li><p>resample <code class="docutils literal notranslate"><span class="pre">J</span></code> at <span class="math notranslate nohighlight">\((x_j, y_j, z_j)\)</span> to get <span class="math notranslate nohighlight">\(v\)</span>;</p></li>
-<li><p>place <span class="math notranslate nohighlight">\(v\)</span> at <span class="math notranslate nohighlight">\((x_i, y_i, z_i)\)</span> in <code class="docutils literal notranslate"><span class="pre">K</span></code></p></li>
-</ul>
-</li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># order=1 for linear interpolation</span>
-<span class="n">K</span> <span class="o">=</span> <span class="n">affine_transform</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">translation</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">K</span><span class="o">.</span><span class="n">shape</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">17</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fd53a650880&gt;
-</pre></div>
-</div>
-<img alt="_images/resampling_with_ndimage_12_1.png" src="_images/resampling_with_ndimage_12_1.png" />
-</div>
-</div>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="resampling-with-images-of-different-shapes">
-<h1>Resampling with images of different shapes<a class="headerlink" href="#resampling-with-images-of-different-shapes" title="Permalink to this headline">#</a></h1>
-<p>Notice the assumption that <code class="docutils literal notranslate"><span class="pre">affine_transform</span></code> makes above – that the
-output image will be the same shape as the input image.</p>
-<p>This need not be the case.  In fact we can tell <code class="docutils literal notranslate"><span class="pre">affine_transform</span></code> to start
-with an empty volume <code class="docutils literal notranslate"><span class="pre">K</span></code> with another shape.  To do this, we use the
-<code class="docutils literal notranslate"><span class="pre">output_shape</span></code> parameter.</p>
-<p>Now we can be more precise about the algorithm of <code class="docutils literal notranslate"><span class="pre">affine_transform</span></code>.
-<code class="docutils literal notranslate"><span class="pre">affine_transform</span></code> accepts:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code> – an array to resample from.  Say this array as <code class="docutils literal notranslate"><span class="pre">n</span></code>
-dimensions (<code class="docutils literal notranslate"><span class="pre">len(input.shape)</span></code>);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">matrix</span></code> – an <code class="docutils literal notranslate"><span class="pre">n</span></code> by <code class="docutils literal notranslate"><span class="pre">n</span></code> transformation matrix (the top left
-<code class="docutils literal notranslate"><span class="pre">mat</span></code> part of an affine);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code> – a optional length <code class="docutils literal notranslate"><span class="pre">n</span></code> translation vector to be applied after the
-<code class="docutils literal notranslate"><span class="pre">matrix</span></code> transformation (the <code class="docutils literal notranslate"><span class="pre">vec</span></code> part of an affine);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output_shape</span></code> : an optional tuple giving the shape of the output array into
-which we will put the values resampled from <code class="docutils literal notranslate"><span class="pre">input</span></code>. <code class="docutils literal notranslate"><span class="pre">output_shape</span></code> defaults
-to <code class="docutils literal notranslate"><span class="pre">input.shape</span></code>; this is the default we have been using above.</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">affine_transform</span></code> then generates all the voxel coordinates <em>implied by</em> the
-<code class="docutils literal notranslate"><span class="pre">output_shape</span></code>, and transforms them with the <code class="docutils literal notranslate"><span class="pre">matrix</span></code> and <code class="docutils literal notranslate"><span class="pre">offset</span></code>
-transforms to get a new set of coordinates <code class="docutils literal notranslate"><span class="pre">C</span></code>. It then samples the
-<code class="docutils literal notranslate"><span class="pre">input</span></code> array at the coordinates given by <code class="docutils literal notranslate"><span class="pre">C</span></code> to generate the output
-array.</p>
-<p>Here is the call to <code class="docutils literal notranslate"><span class="pre">affine_transform</span></code> that we used above, where we allowed
-the routine to assume that the output shape was the same as the input shape:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">affine_transform</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">translation</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">K</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 35)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The is the same as the following call, where we specify the shape explicitly:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">affine_transform</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">translation</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="n">J</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">K</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 35)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The output shape can be different from the input shape:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">affine_transform</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">translation</span><span class="p">,</span>
-                     <span class="n">output_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">36</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">K</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(65, 65, 36)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Remember that the <code class="docutils literal notranslate"><span class="pre">M</span></code> matrix and <code class="docutils literal notranslate"><span class="pre">translation</span></code> vector apply to the
-coordinates implied by the output shape.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1147,17 +1215,17 @@ coordinates implied by the output shape.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="rotation_2d_3d.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="numpy_intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Rotations and rotation matrices</p>
+            <p class="prev-next-title">Introduction to Numpy</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="dipy_registration.html" title="next page">
+    <a class='right-next' id="next-link" href="arrays_2d_reshape.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Registration with dipy</p>
+        <p class="prev-next-title">Two-dimensions, reshaping</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
