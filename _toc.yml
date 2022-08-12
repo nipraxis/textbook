@@ -22,6 +22,8 @@ parts:
   chapters:
   - file: what_is_an_image
   - file: numpy_intro
+  - file: boolean_arrays
+  - file: arrays_2d_reshape
   - file: arrays_and_images
   - file: arrays_3d
   - file: images_3d

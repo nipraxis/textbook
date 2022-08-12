@@ -1,0 +1,176 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.10.3
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Two-dimensions, reshaping
+
+```{python}
+import numpy as np
+
+import pandas as pd
+
+import nipraxis
+```
+
+Let us return to the problem of the [onsets and reaction
+times](numpy_intro.Rmd).
+
+Again, we get the interstimulus intervals and response times for each trial in
+an experimental run:
+
+```{python}
+# Fetch the file.
+stim_fname = nipraxis.fetch_file('24719.f3_beh_CHYM.csv')
+data = pd.read_csv(stim_fname)
+n_trials = len(data)
+trial_isis = np.array(data['trial_ISI'])
+response_times = np.array(data['response_time'])
+```
+
+Again we calculate the onset times of each trial relative to the start of the
+scanning run.
+
+```{python}
+exp_onsets = np.cumsum(trial_isis)
+scanner_onsets = exp_onsets + 4000
+scanner_onsets[:15]
+```
+
+## 2D arrays
+
+So far we have only used one-dimensional arrays.
+
+For example, `scanner_onsets` is a one-dimensional array.  We can see this from the array `shape`:
+
+```{python}
+scanner_onsets.shape
+```
+
+This tells us the array has one dimension, and that dimension has length 320.
+
+We can also have arrays with more than one dimension.  For example, we can make a two-dimensional array of all zero like this:
+
+```{python}
+# Make a two-dimensional array with 320 rows, 2 columns.
+two_dimensions = np.zeros([320, 2])
+# Notice the shape
+two_dimensions.shape
+```
+
+This array has two dimensions, also called *axes*.  We call the first dimension
+(axis) the *rows* and the second dimension the *columns*.  The rows are the
+first axis (axis position 0).  The columns are the second axis (axis position
+1).
+
+We can also make two-dimensional arrays by *stacking* arrays together.
+
+For example, we can stack the `scanner_onsets` and the `response_times` into a
+two-dimensional array like this:
+
+```{python}
+# Specify sequence of arrays to stack.
+arrays_to_stack = [scanner_onsets, response_times]
+# Stack the arrays into two columns (axis=1)
+all_times = np.stack(arrays_to_stack, axis=1)
+all_times.shape
+```
+
+To make things simpler to see in the examples below, we will use
+two-dimensional indexing to restrict ourselves to the first 15 rows of the
+array:
+
+
+```{python}
+first_15_rows = all_times[:15, :]
+```
+
+Notice the indexing above.  There are two parts of the indexing, separated by a
+comma.  The first part is a *slice* for the rows (axis=0).  The second is an
+*slice* for the columns (axis=1).
+
+The row slice `:15` asks for the first 15 rows.  The column slice `:` asks for
+all the columns.
+
+
+## Reshaping
+
+
+We often want to change the *shape* of arrays.
+
+Our array above has 15 * 2 = 30 elements.  Numpy can change make any shape array from these 30 elements, as long as the shape corresponds to 30 elements.
+
+For example, one common move is to take a 2D array and flatten it out into a 1D
+array.  The corresponding 1D array would have one axis of length 30:
+
+```{python}
+new_shape = [30]
+new_shape
+```
+
+We pass the new shape to the `np.reshape` function, along with the array:
+
+```{python}
+flattened = np.reshape(first_15_rows, new_shape)
+flattened.shape
+```
+
+```{python}
+# show the values.
+flattened
+```
+
+Notice the way that Numpy filled out the 1D array from the 2D array.  It
+fetches the elements by going across the columns first, and then the rows.
+Call the original 2D thing `a`:
+
+```{python}
+a = first_15_rows
+```
+
+Then the first eight values of the 1D reshaped version comes from:
+
+```{python}
+[a[0,0], a[0,1], a[1,0], a[1,1], a[2,0], a[2,1], a[3,0], a[3,1]]
+```
+
+We can reverse the process, by taking the flattened array, and putting it back
+into its original two dimensions:
+
+```{python}
+unflattened = np.reshape(flattened, [15, 2])
+unflattened.shape
+```
+
+```{python}
+unflattened
+```
+
+Notice that the 1D to 2D reshaping above exactly reversed the original 2D to 1D
+reshaping. Numpy fills the columns first, and then the rows.
+
+Call the flattened (1D) version of the array `f`:
+
+```{python}
+f = flattened
+```
+
+So, the first four columns of the new array are given by:
+
+```{python}
+print('Row 0', [f[0], f[1]])
+print('Row 1', [f[2], f[3]])
+print('Row 2', [f[4], f[5]])
+print('Row 3', [f[6], f[7]])
+```

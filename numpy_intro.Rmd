@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.10.3
   kernelspec:
     display_name: Python 3
     language: python
@@ -217,19 +217,34 @@ trial_isis = np.array(data['trial_ISI'])
 trial_isis[:15]
 ```
 
-Notice that we can index into arrays in the same way we can index into lists.  Here we get the first value in the array:
+Notice that we can index into arrays in the same way we can index into lists.
+Here we get the first value in the array:
 
 ```{python}
 trial_isis[0]
 ```
 
-You've seen above that we can get the first 15 values with *slicing*, using the colon `:` syntax, as in:
+We can also set values by putting the indexing on the right hand side:
+
+```{python}
+trial_isis[0] = 4000
+```
+
+Actually, let's set that back to what it was before:
+
+```{python}
+trial_isis[0] = 2000
+```
+
+You've seen above that we can get the first 15 values with *slicing*, using the
+colon `:` syntax, as in:
 
 ```{python}
 trial_isis[:15]
 ```
 
-meaning, get all values starting at (implicitly) position 0, and going up to, but not including, position 15.
+— meaning, get all values starting at (implicitly) position 0, and going up to,
+but not including, position 15.
 
 ## Arrays have a shape
 
@@ -246,17 +261,20 @@ arrays later.
 
 ## Arrays have a datatype
 
-An array differs from a list, in that each element of a list can be any data type, whereas all elements in an array have to be the same datatype.
+An array differs from a list, in that each element of a list can be any data
+type, whereas all elements in an array have to be the same datatype.
 
-Here is the data type for all the values in our array, given by the `dtype` (Data TYPE) attribute:
+Here is the data type for all the values in our array, given by the `dtype`
+(Data TYPE) attribute:
 
 ```{python}
 trial_isis.dtype
 ```
 
-This tells us that all the values in the array are floating point values, so
-of type `float64` — the standard type of floating point value for Numpy and
-most other numerical packages (such as Matlab and R).   The array `dtype` attribute specifies what type of elements the array does and can contain.
+This tells us that all the values in the array are floating point values, so of
+type `float64` — the standard type of floating point value for Numpy and most
+other numerical packages (such as Matlab and R).   The array `dtype` attribute
+specifies what type of elements the array does and can contain.
 
 The `float64` dtype of the array means that you cannot put data into this array
 that cannot be made trivially into a floating point value:
@@ -276,7 +294,8 @@ my_list
 
 ## Making new arrays
 
-You have already seen how we can make an array from a sequence of values, using the `np.array` function.  For example:
+You have already seen how we can make an array from a sequence of values, using
+the `np.array` function.  For example:
 
 ```{python}
 # Convert a list into an array.
@@ -401,144 +420,4 @@ This is call *elementwise* addition, because it does the addition (or subtractio
 # Same result from adding the two arrays with the same shape.
 scanner_response_onsets = scanner_onsets + response_times
 scanner_response_onsets[:15]
-```
-
-## Boolean arrays
-
-We still have the problem of the 0 values for reaction time, indicating that there was no response.
-
-We can use Boolean arrays to select the response times that were not equal to zero.
-
-This is just a taster of selecting with Boolean arrays.  See [Boolean
-indexing](boolean_indexing) for more.
-
-Boolean arrays are arrays that contain values that are one of the two Boolean values `True` or `False`.
-
-Remember {ref}`Boolean values <true-and-false>`, and
-{ref}`comparison-operators` from {doc}`brisk_python`.  We can be use comparison operators on arrays, to create Boolean arrays.
-
-Let's start by looking at the first 15 reaction times.
-
-```{python}
-first_15_rts = response_times[:15]
-first_15_rts
-```
-
-Remember that comparisons are operators that give answers to a *comparison
-question*.  This is how comparisons work on individual values:
-
-```{python}
-first_15_rts[0] > 0
-```
-
-What do you think will happen if we do the comparison on the whole array, like this?
-
-```python
-first_15_rts > 0
-```
-
-You have seen how Numpy works when adding a single number to an array — it
-takes this to mean that you want to add that number *to every element in the
-array*.
-
-Comparisons work the same way:
-
-```{python}
-first_15_rts_not_zero = first_15_rts > 0
-first_15_rts_not_zero
-```
-
-This is the result of asking the comparison question `> 0` of *every element in
-the array*.
-
-So the values that end up in the `first_15_rts_not_zero` array come from these
-comparisons:
-
-```{python}
-print('Position 0:', first_15_rts[0] > 0)
-print('Position 1:', first_15_rts[1] > 0)
-print(' ... and so on, up to ...')
-print('Position 13:', first_15_rts[13] > 0)
-print('Position 14:', first_15_rts[14] > 0)
-```
-Here is the equivalent array for all the reaction times:
-
-```{python}
-rts_not_zero = response_times > 0
-# Show the first 50 values.
-rts_not_zero[:50]
-```
-
-We will [soon see](boolean_indexing) that we can use these arrays to select elements from other arrays.
-
-Specifically, if we put a Boolean array like `rts_not_zero` between square brackets for another array, that will have the effect of selecting the elements at positions where `rts_not_zero` has True, and throwing away elements where `rts_not_zero` has False.
-
-For example, rushing ahead, we can select the values in `rt_arr` corresponding
-to reaction times greater than zero with:
-
-```{python}
-response_times[rts_not_zero]
-```
-
-## 2D arrays
-
-We can also have arrays with more than one dimension.  For example, we can make our original trial and reaction times into a two-dimensional array, like this:
-
-```{python}
-all_times = np.zeros((n_trials, 2))
-all_times.shape
-```
-
-```{python}
-# Fill all of the rows, first column with the isi_arr values.
-all_times[:, 0] = trial_isis
-# Fill all of the rows, second column with the rt_arr values.
-all_times[:, 1] = response_times
-# Show the first 5 rows, and all columns.
-all_times[:5, :]
-```
-
-## Reshaping
-
-
-Finally, we often want to change the *shape* of arrays.
-
-One common thing we may want to do is to take a 2D array and flatten it out into a 1D array, or visa versa.  That does not make much sense in this particular case, but bear with us.
-
-
-Remember, the original 2D shape was:
-
-```{python}
-all_times.shape
-```
-
-Now we want to *flatten* this 2D thing into a 1D thing.   The new shape we want is therefore:
-
-```{python}
-new_shape = [n_trials * 2]
-new_shape
-```
-
-We pass the new shape to the `np.reshape` function, along with the array:
-
-```{python}
-flattened = np.reshape(all_times, [n_trials * 2])
-flattened.shape
-```
-
-```{python}
-# The first 10 values.
-flattened[:10]
-```
-
-Here we take the flattened array, and put it back into its original two dimensions:
-
-```{python}
-unflattened = np.reshape(flattened, [n_trials, 2])
-unflattened.shape
-```
-
-```{python}
-# Show the first five rows.
-unflattened[:5, :]
 ```
