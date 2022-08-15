@@ -862,8 +862,12 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>So far we have seen one-dimensional and two-dimensional arrays.  These are easy to think about, the one-dimensional array is like a row from a table or spreadsheet.  A two-dimensional array has rows and columns, like a table or a spreadsheet.</p>
-<p>A three-dimensional array takes a little bit more work to visualize, and get used to.</p>
+<p>So far we have seen one-dimensional and two-dimensional arrays.  These are easy
+to think about, the one-dimensional array is like a row from a table or
+spreadsheet.  A two-dimensional array has rows and columns, like a table or a
+spreadsheet.</p>
+<p>A three-dimensional array takes a little bit more work to visualize, and get
+used to.</p>
 <section id="two-dimensions-before-three">
 <h2>Two dimensions before three<a class="headerlink" href="#two-dimensions-before-three" title="Permalink to this headline">#</a></h2>
 <p>One way to think of three-dimensional arrays is as stacks of 2D arrays.</p>
@@ -908,7 +912,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>We can get rows from the 2D arrays by slicing with an index on the first dimension, thus:</p>
+<p>We can get rows from the 2D arrays by slicing with an index on the first
+dimension, thus:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third row, all the columns.</span>
@@ -950,7 +955,9 @@ elements along the second dimension (axis).</p>
 </div>
 </div>
 </div>
-<p>They therefore have <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">=</span> <span class="pre">12</span></code> elements each.   The <code class="docutils literal notranslate"><span class="pre">np.prod</span></code> function multiples all the elements in a sequence, so we can get the number of elements in an array with:</p>
+<p>They therefore have <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">=</span> <span class="pre">12</span></code> elements each.   The <code class="docutils literal notranslate"><span class="pre">np.prod</span></code> function
+multiples all the elements in a sequence, so we can get the number of elements
+in an array with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4 * 3</span>
@@ -1014,42 +1021,45 @@ elements along the second dimension (axis).</p>
 </div>
 </div>
 <p>If you imagine the <code class="docutils literal notranslate"><span class="pre">first_2d</span></code> array and the <code class="docutils literal notranslate"><span class="pre">second_2d</span></code> array as flat physical
-objects, such as trays, then when we stack them, we will get the 3D array
-shown in the image below:</p>
+objects, such as trays, then when we stack them, we will get the 3D array shown
+in the image below:</p>
 <p><img alt="" src="_images/two_d_slices_without_annotation.png" /></p>
-<p>The object in the foreground of the image (with 10, 11, 12 on its topmost row) is the first <em>plane</em> of the 3D array, and contains the values from the <code class="docutils literal notranslate"><span class="pre">first_2d</span></code> array. The object in the background of the image (with 100, 101, 102 on its topmost row) is the second plane, and contains the values from the <code class="docutils literal notranslate"><span class="pre">second_2d</span></code> array.</p>
-<p>To create the 3D array, first we create an empty array of the right shape:</p>
+<p>The object in the foreground of the image (with 10, 11, 12 on its topmost row)
+is the first <em>plane</em> of the 3D array, and contains the values from the
+<code class="docutils literal notranslate"><span class="pre">first_2d</span></code> array. The object in the background of the image (with 100, 101, 102
+on its topmost row) is the second plane, and contains the values from the
+<code class="docutils literal notranslate"><span class="pre">second_2d</span></code> array.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">np.stack</span></code> to stack the two 2D arrays into a 3D array.  Here we want to stack over the third axis (<code class="docutils literal notranslate"><span class="pre">axis=2</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a 3D array</span>
-<span class="n">into_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-
-<span class="c1"># show the 3D array</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a 3D array by stacking the two 2D arrays.</span>
+<span class="n">into_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">first_2d</span><span class="p">,</span> <span class="n">second_2d</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Show the result.  This display is not easy to read, see below for more.</span>
 <span class="n">into_3d</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[0., 0.],
-        [0., 0.],
-        [0., 0.]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 10, 100],
+        [ 11, 101],
+        [ 12, 102]],
 
-       [[0., 0.],
-        [0., 0.],
-        [0., 0.]],
+       [[ 13, 103],
+        [ 14, 104],
+        [ 15, 105]],
 
-       [[0., 0.],
-        [0., 0.],
-        [0., 0.]],
+       [[ 16, 106],
+        [ 17, 107],
+        [ 18, 108]],
 
-       [[0., 0.],
-        [0., 0.],
-        [0., 0.]]])
+       [[ 19, 109],
+        [ 20, 110],
+        [ 21, 111]]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>The 3D array, as numpy shows it, might not have an obvious resemblance to the
+<p>The 3D array, as Numpy shows it, might not have an obvious resemblance to the
 image of the two planes shown above, but bear with us.</p>
 <p>The 3D array is of the right shape:</p>
 <div class="cell docutils container">
@@ -1066,12 +1076,15 @@ image of the two planes shown above, but bear with us.</p>
 </div>
 <p>The shape can be read as “two planes, each with 4 rows and 3 columns”, which
 corresponds to what is shown in the image of the planes above.</p>
-<p>Currently the 3D array only contains zeros, so next we make the <code class="docutils literal notranslate"><span class="pre">first_2d</span></code>
-array be the first 4 by 3 plane of the 3D array:</p>
+<p>We can use <em>indexing</em> to fetch the component 2D planes back out of the 3D array.</p>
+<p>There are three dimensions, so we can use three elements for indexing,
+separated by commas.  The first element is for rows, the second for columns,
+and the third for planes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the first_2d array</span>
-<span class="n">first_2d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the first 2D plane.</span>
+<span class="c1"># Read this as &#39;all rows, all columns of plane 0&#39;</span>
+<span class="n">into_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1086,19 +1099,9 @@ array be the first 4 by 3 plane of the 3D array:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set all rows, all columns for plane 0 to be the first_2d array</span>
-<span class="n">into_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_2d</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The image below shows how the <code class="docutils literal notranslate"><span class="pre">into_3d</span></code> array now looks, with the <code class="docutils literal notranslate"><span class="pre">first_2d</span></code> array as the first 3 by 4 plane:</p>
-<p><img alt="" src="_images/two_d_slices_first_plane.png" /></p>
-<p>Next we make the <code class="docutils literal notranslate"><span class="pre">second_2d</span></code> array be the second 4 by 3 plane of the 3D array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the second_2d array</span>
-<span class="n">second_2d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the second 2D plane.</span>
+<span class="c1"># Read this as &#39;all rows, all columns of plane 1&#39;</span>
+<span class="n">into_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1111,19 +1114,9 @@ array be the first 4 by 3 plane of the 3D array:</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set all rows, all columns for plane 1 to be the second_2d array</span>
-<span class="n">into_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">second_2d</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We have just stacked the <code class="docutils literal notranslate"><span class="pre">first_2d</span></code> and <code class="docutils literal notranslate"><span class="pre">second_2d</span></code> arrays into the <code class="docutils literal notranslate"><span class="pre">into_3d</span></code> array. The image below shows how the index commands we just used in order to do this relate to the planes of the <code class="docutils literal notranslate"><span class="pre">into_3d</span></code> array, and to the values that are now in each plane.</p>
-<p><code class="docutils literal notranslate"><span class="pre">into_3d[:,</span> <span class="pre">:,</span> <span class="pre">0]</span></code> can be read as <em>‘all rows, all columns of plane 0’</em>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">into_3d[:,</span> <span class="pre">:,</span> <span class="pre">1]</span></code> can be read as <em>‘all rows, all columns of plane 1’</em>.</p>
 <p><img alt="" src="_images/two_d_slices.png" /></p>
-<p>The output of the cell below is how Numpy shows us the contents of the <code class="docutils literal notranslate"><span class="pre">into_3d</span></code> array:</p>
+<p>You have already seen the output of the cell below.  It is the way that Numpy
+shows us the contents of the <code class="docutils literal notranslate"><span class="pre">into_3d</span></code> array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">into_3d</span>
@@ -1131,26 +1124,27 @@ array be the first 4 by 3 plane of the 3D array:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 10., 100.],
-        [ 11., 101.],
-        [ 12., 102.]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 10, 100],
+        [ 11, 101],
+        [ 12, 102]],
 
-       [[ 13., 103.],
-        [ 14., 104.],
-        [ 15., 105.]],
+       [[ 13, 103],
+        [ 14, 104],
+        [ 15, 105]],
 
-       [[ 16., 106.],
-        [ 17., 107.],
-        [ 18., 108.]],
+       [[ 16, 106],
+        [ 17, 107],
+        [ 18, 108]],
 
-       [[ 19., 109.],
-        [ 20., 110.],
-        [ 21., 111.]]])
+       [[ 19, 109],
+        [ 20, 110],
+        [ 21, 111]]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Relative to the images above, this is a different way of looking at the <code class="docutils literal notranslate"><span class="pre">into_3d</span></code> array, where the slices are in the first dimension, like this:</p>
+<p>Relative to the images above, this is a different way of looking at the
+<code class="docutils literal notranslate"><span class="pre">into_3d</span></code> array, where the slices are in the first dimension, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First row, all columns, all planes.</span>
@@ -1159,9 +1153,9 @@ array be the first 4 by 3 plane of the 3D array:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 10., 100.],
-       [ 11., 101.],
-       [ 12., 102.]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 10, 100],
+       [ 11, 101],
+       [ 12, 102]])
 </pre></div>
 </div>
 </div>
@@ -1175,9 +1169,9 @@ array be the first 4 by 3 plane of the 3D array:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 13., 103.],
-       [ 14., 104.],
-       [ 15., 105.]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 13, 103],
+       [ 14, 104],
+       [ 15, 105]])
 </pre></div>
 </div>
 </div>
@@ -1191,9 +1185,9 @@ array be the first 4 by 3 plane of the 3D array:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 16., 106.],
-       [ 17., 107.],
-       [ 18., 108.]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 16, 106],
+       [ 17, 107],
+       [ 18, 108]])
 </pre></div>
 </div>
 </div>
