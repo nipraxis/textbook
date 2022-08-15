@@ -259,6 +259,11 @@ dimension.  We only have a one-dimensional array, so we see one number, which
 is the number of elements in the array.  We will get on to two-dimensional
 arrays later.
 
+Notice that the shape is a {ref}`tuple <tuples>`.  A tuple a type of sequence,
+like a list.  See the link for details.  In this case, of a 1D array, the shape
+is a [single element tuple](length_one_tuples.Rmd).
+
+
 ## Arrays have a datatype
 
 An array differs from a list, in that each element of a list can be any data
@@ -303,7 +308,10 @@ my_array = np.array(my_list)
 my_array
 ```
 
-Numpy has various functions for making arrays.  One very common way of making new arrays is the `np.zeros` function.  This makes arrays containing all zero values of the shape we pass to the function.  For example, to make an array of 10 zeros, we could write:
+Numpy has various functions for making arrays.  One very common way of making
+new arrays is the `np.zeros` function.  This makes arrays containing all zero
+values of the shape we pass to the function.  For example, to make an array of
+10 zeros, we could write:
 
 ```{python}
 # An array containing 10 zeros.
@@ -339,7 +347,9 @@ onsets_in_scans[:15]
 
 That calculation looks right, comparing to our by-hand calculation above.
 
+
 ## Array mathematics
+
 
 Above you see the `for` loop way.  Arrays allow us to express the same calculation in a much more efficient way.  It is more efficient in the sense that we type less code, the code is usually easier to read, and the operations are much more efficient for the computer, because the computer can take advantage of the fact that it knows that all the values are of the same type.
 
@@ -412,9 +422,12 @@ for i in range(n_trials):
 scanner_response_onsets[:15]
 ```
 
-Luckily though, Numpy knows what to do when we add two arrays with the same shape.  It takes each element in the first array and adds the corresponding element in the second array - just like the `for` loop above.
+Luckily though, Numpy knows what to do when we add two arrays with the same
+shape.  It takes each element in the first array and adds the corresponding
+element in the second array - just like the `for` loop above.
 
-This is call *elementwise* addition, because it does the addition (or subtraction or division ...) *element* by *element*.
+This is call *elementwise* addition, because it does the addition (or
+subtraction or division ...) *element* by *element*.
 
 ```{python}
 # Same result from adding the two arrays with the same shape.

@@ -189,7 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="arrays_2d_reshape.html">
+  <a class="reference internal" href="reshape_and_2d.html">
    Two-dimensions, reshaping
   </a>
  </li>
@@ -797,21 +797,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-dimensional-arrays">
-   One-dimensional arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapes-are-tuples">
-   Shapes are tuples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping">
-   Reshaping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#into-the-third-dimension">
    Into the third dimension
   </a>
@@ -841,21 +826,6 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-dimensional-arrays">
-   One-dimensional arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapes-are-tuples">
-   Shapes are tuples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reshaping">
-   Reshaping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#into-the-third-dimension">
    Into the third dimension
   </a>
@@ -877,9 +847,6 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="reshaping-and-three-dimensional-arrays">
 <h1>Reshaping and three-dimensional arrays<a class="headerlink" href="#reshaping-and-three-dimensional-arrays" title="Permalink to this headline">#</a></h1>
-<section id="one-dimensional-arrays">
-<h2>One-dimensional arrays<a class="headerlink" href="#one-dimensional-arrays" title="Permalink to this headline">#</a></h2>
-<p>Our usual import:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -887,395 +854,37 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Here is a one-dimensional array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">arr_1d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="shapes-are-tuples">
-<h2>Shapes are tuples<a class="headerlink" href="#shapes-are-tuples" title="Permalink to this headline">#</a></h2>
-<p>Notice the shape:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6,)
-</pre></div>
-</div>
-</div>
-</div>
-<p>What type of thing is the shape?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">arr_1d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tuple
-</pre></div>
-</div>
-</div>
-</div>
-<p>A tuple is a basic Python object, like a list, with some small differences.</p>
-<p>As y’all remember, we form a list with square brackets, as in:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A list</span>
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">my_list</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
-</pre></div>
-</div>
-</div>
-</div>
-<p>We form a tuple with <strong>parentheses</strong> (round brackets):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A tuple</span>
-<span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">my_tuple</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 3)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Like a list, we can get the length of a tuple, and we can index into a tuple:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Length of the tuple is:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tuple element at position 1 is:&#39;</span><span class="p">,</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of the tuple is: 3
-tuple element at position 1 is: 2
-</pre></div>
-</div>
-</div>
-</div>
-<p>There is a wrinkle with making a length-1 tuple.  Just putting something in between parentheses does not work, because Python thinks you are using the parentheses to bracket an expression, not define a tuple.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python interprets this parentheses in arithmetic.</span>
-<span class="n">just_a_number</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">just_a_number</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-</pre></div>
-</div>
-</div>
-</div>
-<p>To form a length-1 tuple, you need to disambiguate from bracketing an expression by appending a trailing comma, like this.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">short_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>  <span class="c1"># Notice the extra comma</span>
-<span class="n">short_tuple</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1,)
-</pre></div>
-</div>
-</div>
-</div>
-<p>See <a class="reference internal" href="brisk_python.html#tuples"><span class="std std-ref">Tuples</span></a> for more.</p>
-</section>
-<section id="reshaping">
-<h2>Reshaping<a class="headerlink" href="#reshaping" title="Permalink to this headline">#</a></h2>
-<p>We can reshape this array to two dimensions using the <code class="docutils literal notranslate"><span class="pre">np.reshape</span></code> function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the array before reshaping</span>
-<span class="n">arr_1d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># New shape, as a tuple.</span>
-<span class="n">arr_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d</span><span class="p">,</span> <span class="n">new_shape</span><span class="p">)</span>
-<span class="n">arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
-       [3, 4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Notice how NumPy used the 1D array elements.  It takes each element from the
-1D array, and fills the rows first, and then the columns. This is illustrated further in the two cells below:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># another 1D array, using single-character strings.</span>
-<span class="n">another_arr_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span>
-                           <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span>
-                           <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">])</span>
-<span class="n">another_arr_1d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;], dtype=&#39;&lt;U1&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshaping to a three by three 2D array.</span>
-<span class="c1"># Notice that numpy fills the rows of the new array first, and then the columns.</span>
-<span class="n">new_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># New shape, as a tuple.</span>
-<span class="n">another_arr_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">another_arr_1d</span><span class="p">,</span> <span class="n">new_shape</span><span class="p">)</span>
-<span class="n">another_arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;],
-       [&#39;d&#39;, &#39;e&#39;, &#39;f&#39;],
-       [&#39;g&#39;, &#39;h&#39;, &#39;i&#39;]], dtype=&#39;&lt;U1&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can reshape back to one dimension.  Let us go back to our original 2D array, with numbers:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the 2D array, before reshaping</span>
-<span class="n">arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
-       [3, 4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_d_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,)</span>  <span class="c1"># 1D shape, as a tuple.  Notice extra comma.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">,</span> <span class="n">one_d_shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here NumPy fetches the data from the <em>rows first</em>, and then the columns, to
-fill out the elements of the 1D array.</p>
-<p>The value <code class="docutils literal notranslate"><span class="pre">-1</span></code> is special for <code class="docutils literal notranslate"><span class="pre">np.reshape</span></code>.  It means, “make a
-dimension the size that will use the remaining unspecified elements”.   We’ll
-see what “unspecified” means soon.  At the moment, “unspecified” is true of
-all the elements, so the shape is the same as the number of elements in the 2D
-array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>It is very common to convert a 2 or 3 or N-dimensional array to a 1D array, so
-there is a short-cut command for that:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can reshape from one shape, to any other shape, as long as the number of
-elements stays the same (remember, we can use the <code class="docutils literal notranslate"><span class="pre">.size</span></code> attribute to show the number of elements).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the 2D array</span>
-<span class="n">arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
-       [3, 4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reshape arr_2d to a 3 by 2 array</span>
-<span class="n">arr_2d_3_by_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">arr_2d_3_by_2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
-       [2, 3],
-       [4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the reshaping in the cell above is possible because the arrays have the same number of elements</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Size of arr2d is&#39;</span><span class="p">,</span> <span class="n">arr_2d</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Size of arr2d_3_by_2 is&#39;</span><span class="p">,</span> <span class="n">arr_2d_3_by_2</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of arr2d is 6
-Size of arr2d_3_by_2 is 6
-</pre></div>
-</div>
-</div>
-</div>
-<p>Again, notice the algorithm NumPy is using to decide which elements go in which position of the array — rows first, and then columns.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the 2D array</span>
-<span class="n">arr_2d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
-       [3, 4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reshape arr_2d to a 3 by 2 array</span>
-<span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_2d</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
-       [2, 3],
-       [4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Reshape uses -1 as a value to mean the shape value that will use the remaining
-unspecified elements.  For example, we could specify that we want the first
-dimension to be length 3, and NumPy can work out the second dimension must be
-length 2, and the other way round:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the 1D array</span>
-<span class="n">arr_1d</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape to an array with 3 rows, and whatever number of columns fits,</span>
-<span class="c1"># given the size of the array.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
-       [2, 3],
-       [4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape to an array with 2 columns, and whatever number of rows fits,</span>
-<span class="c1"># given the size of the array.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1],
-       [2, 3],
-       [4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="into-the-third-dimension">
 <h2>Into the third dimension<a class="headerlink" href="#into-the-third-dimension" title="Permalink to this headline">#</a></h2>
 <p>As we discussed in the <a class="reference internal" href="arrays_3d.html"><span class="doc std std-doc">three-dimensional arrays page</span></a> page,
-one-dimensional and two-dimensional arrays are easy to think about.  For example we can think of a 2D array as a table or a spreadsheet.</p>
-<p>A three-dimensional array takes a little bit more work to visualize, and get used to.</p>
+one-dimensional and two-dimensional arrays are easy to think about.  For
+example we can think of a 2D array as a table or a spreadsheet, with rows and
+columns.</p>
+<p>A three-dimensional array takes a little bit more work to visualize, and get
+used to.</p>
 </section>
 <section id="reshaping-a-three-dimensional-array">
 <h2>Reshaping a three-dimensional array<a class="headerlink" href="#reshaping-a-three-dimensional-array" title="Permalink to this headline">#</a></h2>
+<p>You have already seen the algorithm for <a class="reference internal" href="reshape_and_2d.html"><span class="doc std std-doc">reshaping in one and two
+dimensions</span></a>.</p>
 <p>NumPy uses the same algorithm for reshaping a three-dimensional array.</p>
-<p>We start with a 1D array with more elements:</p>
+<p>We start with a one-dimensional array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d_bigger</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">arr_1d_bigger</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">arr_1d</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(24,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d</span>
 </pre></div>
 </div>
 </div>
@@ -1286,23 +895,10 @@ one-dimensional and two-dimensional arrays are easy to think about.  For example
 </div>
 </div>
 </div>
-<p>This is a 1D array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_1d_bigger</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(24,)
-</pre></div>
-</div>
-</div>
-</div>
 <p>Then, reshape to three dimensions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d_bigger</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">arr_3d</span>
 </pre></div>
 </div>
@@ -1319,7 +915,9 @@ one-dimensional and two-dimensional arrays are easy to think about.  For example
 </div>
 </div>
 </div>
-<p>Remember from the <a class="reference internal" href="arrays_3d.html"><span class="doc std std-doc">three-dimensional arrays page</span></a> page that we can read the shape of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> - which is <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4)</span></code> - as “two rows, three columns, four planes”.</p>
+<p>Remember from the <a class="reference internal" href="arrays_3d.html"><span class="doc std std-doc">three-dimensional arrays page</span></a> page that we can
+read the shape of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> - <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4)</span></code> - as “two rows, three columns, four
+planes”.</p>
 <p>Let us translate that into the output of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> as NumPy shows it. If we
 picture <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> in physical space, it would be four planes stacked in a line,
 each containing 2 rows and 3 columns.</p>
@@ -1337,7 +935,8 @@ each containing 2 rows and 3 columns.</p>
 <li><p>column (last axis), then</p></li>
 <li><p>row (first axis).</p></li>
 </ul>
-<p>This means, as in the diagram above, that the first <em>plane</em> will get every 4th value from the original 1D array, because:</p>
+<p>That means, as in the diagram above, that the first <em>plane</em> will get every 4th
+value from the original 1D array, because:</p>
 <ul class="simple">
 <li><p>0, 1, 2, 3 fills the first row, <strong>first</strong> column, over the planes.  We see 0
 in the first row, first column of the first plane.</p></li>
@@ -1405,8 +1004,10 @@ Second row of data from 3D array:
 towards you from the plane of the screen, and look at these tipped planes from
 the left, so the 0 sits nearly on top of 12, in the plane of the screen, and 4
 sits nearly on top of 16, a little forward of the plane of the screen.</p>
-<p>Compare the NumPy outputs to the image above, to makes sure you can visualize the array from both perspectives.</p>
-<p>We can reshape to one dimension in the same way as we did for the 2D arrays.</p>
+<p>Compare the NumPy outputs to the image above, to make sure you can visualize
+the array from both perspectives.</p>
+<p>We can reshape to one dimension in the <a class="reference internal" href="reshape_and_2d.html"><span class="doc std std-doc">same way as we did for the 2D
+arrays</span></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape to 1D array with 24 elements.</span>
@@ -1449,14 +1050,14 @@ sits nearly on top of 16, a little forward of the plane of the screen.</p>
 </div>
 </div>
 </div>
-<p>To get the elements of the 1D array, NumPy first fetches values across the
-last axis (the depth or plane axis), then the second to last (column) axis,
+<p>To get the elements of the 1D array, NumPy first fetches values across the last
+axis (the depth or plane axis), then the second to last (column) axis,
 then the first (row) axis.</p>
-<p>When reshaping to three dimensions, NumPy fills out the last, then second,
-then first dimensions (last to first):</p>
+<p>When reshaping to three dimensions, NumPy fills out the last, then second, then
+first dimensions (last to first):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d_bigger</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr_1d</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">arr_3d</span>
 </pre></div>
 </div>

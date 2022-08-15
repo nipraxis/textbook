@@ -52,7 +52,8 @@ scanner_onsets[:15]
 
 So far we have only used one-dimensional arrays.
 
-For example, `scanner_onsets` is a one-dimensional array.  We can see this from the array `shape`:
+For example, `scanner_onsets` is a one-dimensional array.  We can see this from
+the array `shape`:
 
 ```{python}
 scanner_onsets.shape
@@ -60,24 +61,32 @@ scanner_onsets.shape
 
 This tells us the array has one dimension, and that dimension has length 320.
 
-We can also have arrays with more than one dimension.  For example, we can make a two-dimensional array of all zero like this:
+Notice that the shape is a {ref}`tuple <tuples>`.  A tuple a type of sequence,
+like a list.  See the link for details.  In this case, of a 1D array, the shape
+is a [single element tuple](length_one_tuples.Rmd).
+
+We can also have arrays with more than one dimension.  For example, we can make
+a two-dimensional array of all zeros by passing the two-dimensional shape to
+the `np.zeros` function, like this:
 
 ```{python}
 # Make a two-dimensional array with 320 rows, 2 columns.
-two_dimensions = np.zeros([320, 2])
+two_dimensions = np.zeros((320, 2))
 # Notice the shape
 two_dimensions.shape
 ```
 
-This array has two dimensions, also called *axes*.  We call the first dimension
-(axis) the *rows* and the second dimension the *columns*.  The rows are the
-first axis (axis position 0).  The columns are the second axis (axis position
-1).
+This array has two dimensions, also called *axes*, so the shape is a
+two-element tuple. 
+
+We call the first dimension (axis) the *rows* and the second dimension the
+*columns*.  The rows are the first axis (axis position 0).  The columns are the
+second axis (axis position 1).
 
 We can also make two-dimensional arrays by *stacking* arrays together.
 
 For example, we can stack the `scanner_onsets` and the `response_times` into a
-two-dimensional array like this:
+two-dimensional array, with two columns, like this:
 
 ```{python}
 # Specify sequence of arrays to stack.
@@ -112,11 +121,13 @@ We often want to change the *shape* of arrays.
 Our array above has 15 * 2 = 30 elements.  Numpy can change make any shape array from these 30 elements, as long as the shape corresponds to 30 elements.
 
 For example, one common move is to take a 2D array and flatten it out into a 1D
-array.  The corresponding 1D array would have one axis of length 30:
+array.  The corresponding 1D array would have one axis of length 30.
+
+We could write the new shape as a [single element
+tuple](length_one_tuples.Rmd), like this:
 
 ```{python}
-new_shape = [30]
-new_shape
+new_shape = (30,)
 ```
 
 We pass the new shape to the `np.reshape` function, along with the array:
@@ -142,14 +153,22 @@ a = first_15_rows
 Then the first eight values of the 1D reshaped version comes from:
 
 ```{python}
-[a[0,0], a[0,1], a[1,0], a[1,1], a[2,0], a[2,1], a[3,0], a[3,1]]
+[a[0,0], a[0,1],
+ a[1,0], a[1,1],
+ a[2,0], a[2,1],
+ a[3,0], a[3,1]]
 ```
+
+The image below shows the order in which `np.reshape` fetches the elements from the array:
+
+![](images/2d_reshape.svg)
+
 
 We can reverse the process, by taking the flattened array, and putting it back
 into its original two dimensions:
 
 ```{python}
-unflattened = np.reshape(flattened, [15, 2])
+unflattened = np.reshape(flattened, (15, 2))
 unflattened.shape
 ```
 
@@ -173,4 +192,66 @@ print('Row 0', [f[0], f[1]])
 print('Row 1', [f[2], f[3]])
 print('Row 2', [f[4], f[5]])
 print('Row 3', [f[6], f[7]])
+```
+
+Here is another example of reshaping with an array of strings instead of numbers:
+
+```{python}
+# another 1D array, using single-character strings.
+arr_1d_strs = np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])
+arr_1d_strs
+```
+
+```{python}
+# Reshaping to a three by three 2D array.
+# Notice that numpy fills across the columns of the new array, then rows.
+new_shape = (2, 4)  # New shape, as a tuple.
+arr_2d_strs = np.reshape(arr_1d_strs, new_shape)
+arr_2d_strs
+```
+
+Back to 1D:
+
+```{python}
+np.reshape(arr_2d_strs, (8,))
+```
+
+As before, NumPy fetches the data across the columns, then the rows, to fill
+out the elements of the 1D array.
+
+## Reshape and -1
+
+The value `-1` is special for `np.reshape`.  It means, "make a dimension the
+size that will use the remaining unspecified elements".
+
+For example, we could ask for the same 1D to 2D reshape above as:
+
+```{python}
+np.reshape(arr_1d_strs, (2, -1))
+```
+
+This works because, once we have specified 2 as the length of the first
+dimension, Numpy can work out that the second dimension must be length 4, in
+order to use all the elements.
+
+From the same logic, we could also write:
+
+```{python}
+np.reshape(arr_1d_strs, (-1, 4))
+```
+
+Following the same logic, you can use -1 on its own as a shape, to reshape to
+one dimension.
+
+```{python}
+np.reshape(arr_2d_strs, (-1,))
+```
+
+## Ravel
+
+It is very common to reshape an array of any shape to a 1D array, so Numpy has
+a short-cut function to do that:
+
+```{python}
+np.ravel(arr_2d_strs)
 ```

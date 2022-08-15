@@ -189,7 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="arrays_2d_reshape.html">
+  <a class="reference internal" href="reshape_and_2d.html">
    Two-dimensions, reshaping
   </a>
  </li>
@@ -1413,6 +1413,9 @@ but not including, position 15.</p>
 dimension.  We only have a one-dimensional array, so we see one number, which
 is the number of elements in the array.  We will get on to two-dimensional
 arrays later.</p>
+<p>Notice that the shape is a <a class="reference internal" href="brisk_python.html#tuples"><span class="std std-ref">tuple</span></a>.  A tuple a type of sequence,
+like a list.  See the link for details.  In this case, of a 1D array, the shape
+is a <a class="reference internal" href="length_one_tuples.html"><span class="doc std std-doc">single element tuple</span></a>.</p>
 </section>
 <section id="arrays-have-a-datatype">
 <h2>Arrays have a datatype<a class="headerlink" href="#arrays-have-a-datatype" title="Permalink to this headline">#</a></h2>
@@ -1490,7 +1493,10 @@ the <code class="docutils literal notranslate"><span class="pre">np.array</span>
 </div>
 </div>
 </div>
-<p>Numpy has various functions for making arrays.  One very common way of making new arrays is the <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> function.  This makes arrays containing all zero values of the shape we pass to the function.  For example, to make an array of 10 zeros, we could write:</p>
+<p>Numpy has various functions for making arrays.  One very common way of making
+new arrays is the <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> function.  This makes arrays containing all zero
+values of the shape we pass to the function.  For example, to make an array of
+10 zeros, we could write:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An array containing 10 zeros.</span>
@@ -1659,8 +1665,11 @@ course we could do this with a <code class="docutils literal notranslate"><span 
 </div>
 </div>
 </div>
-<p>Luckily though, Numpy knows what to do when we add two arrays with the same shape.  It takes each element in the first array and adds the corresponding element in the second array - just like the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop above.</p>
-<p>This is call <em>elementwise</em> addition, because it does the addition (or subtraction or division …) <em>element</em> by <em>element</em>.</p>
+<p>Luckily though, Numpy knows what to do when we add two arrays with the same
+shape.  It takes each element in the first array and adds the corresponding
+element in the second array - just like the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop above.</p>
+<p>This is call <em>elementwise</em> addition, because it does the addition (or
+subtraction or division …) <em>element</em> by <em>element</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same result from adding the two arrays with the same shape.</span>
