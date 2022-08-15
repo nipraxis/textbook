@@ -2,6 +2,8 @@
 """
 
 from pathlib import Path
+import sys
+from subprocess import check_call
 
 import numpy as np
 import pandas as pd
@@ -15,6 +17,9 @@ from reportlab.pdfgen import canvas
 import nipraxis
 
 HERE = (Path(__file__).parent / '..').absolute()
+sys.path.append(str(HERE))
+
+import replabtools as rlt
 
 # Fetch the file.
 stim_fname = nipraxis.fetch_file('24719.f3_beh_CHYM.csv')
@@ -36,8 +41,9 @@ m, n = arr.shape
 in_data = arr.astype('U10').tolist()
 t=Table(in_data, n * [0.6 * inch], m * [0.4 * inch])
 t.setStyle(TableStyle([
-    ('ALIGN',(0, 0),(-1, -1),'CENTER'),
-    ('VALIGN',(0, 0),(-1, -1),'MIDDLE'),
+    ('TEXTFONT', (0, 0), (-1, -1), 'Courier'),
+    ('ALIGN',(0, 0), (-1, -1),'CENTER'),
+    ('VALIGN',(0, 0), (-1, -1),'MIDDLE'),
     ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
     ('BOX', (0, 0), (-1, -1), 0.25, colors.black),
 ]))
@@ -50,25 +56,38 @@ cps = cps[:-1] + col_width / 2
 rps = np.array(t._rowpositions)
 row_height = np.mean(-np.diff(rps))
 rps = rps[:-1] - row_height / 2
-n = len(rps)
 red = PCMYKColor(0,100,100,0)
 red50transparent = red.clone(alpha=50)
 canvas.setStrokeColor(red50transparent)
+canvas.setFillColor(red50transparent)
 canvas.setLineWidth(2)
-w_y = 15
-w_x = 8
-angle = np.arctan(row_height / col_width)
-arr_start_deg = angle * 180 / np.pi - 5
-w_y_d = w_x * np.sin(angle)
-w_x_d = w_x * np.cos(angle)
-L, R = cps
+
+arr_prop = 0.1
+extent_deg = 40
+
+# Straight line.
+left, right = cps
+y1, y2 = rps[:2]
+(hx1, hx2), _ = rlt.prop_points([0.20, 0.80], left, y1, 0, right-left)
+line_len = hx2 - hx1
+# Get parameters from first diagonal line
+dtheta, vL = rlt.theta_diag(left, y2, right, y1)
+(vx1, vx2), v_ys = rlt.prop_points([0.20, 0.80], right, y1, dtheta, vL)
+dvy1, dvy2 = v_ys - y1
+
+last_rn = len(rps) - 1
+arr_prop = 0.1
+extent_deg = 60
 for i, rp in enumerate(rps):
-    canvas.line(L + w_x, rp, R - w_x - 1, rp)
-    canvas.wedge(R - w_x, rp - w_y, R, rp + w_y, 175, 10)
-    if i < n - 1:
-        rp_p1 = rps[i + 1]
-        canvas.line(
-            R - w_x_d, rp - w_y_d, L + w_x_d, rp_p1 + w_y_d)
-        canvas.wedge(
-            L + w_x_d, rp_p1 - w_y_d, L + w_x_d, rp_p1 + w_y_d, arr_start_deg, 10)
+    rlt.draw_line_arrow_theta(canvas, hx2, rp, np.pi, line_len,
+                              arrow_prop=arr_prop, extent_deg=extent_deg)
+    if i == last_rn:
+        break
+    rlt.draw_line_arrow(canvas,
+                        vx1, rp + dvy1, vx2, rp + dvy2,
+                        arrow_prop=arr_prop,
+                        extent_deg=extent_deg)
 canvas.save()
+
+check_call(['inkscape',  '--export-area-drawing',
+            '--export-type=svg', out_path])

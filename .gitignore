@@ -20,3 +20,5 @@ test_rdmodule.py
 *.ipynb
 *.orig
 an_example_4d.nii
+_scripts/test_*.pdf
+images/2d_reshape.pdf
