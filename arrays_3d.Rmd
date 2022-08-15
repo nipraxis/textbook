@@ -7,9 +7,9 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.10.1
+      jupytext_version: 1.10.3
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python 3
     language: python
     name: python3
 ---
@@ -28,9 +28,14 @@ plt.rcParams['image.cmap'] = 'gray'
 np.set_printoptions(precision=4, suppress=True)
 ```
 
-So far we have seen one-dimensional and two-dimensional arrays.  These are easy to think about, the one-dimensional array is like a row from a table or spreadsheet.  A two-dimensional array has rows and columns, like a table or a spreadsheet.
+So far we have seen one-dimensional and two-dimensional arrays.  These are easy
+to think about, the one-dimensional array is like a row from a table or
+spreadsheet.  A two-dimensional array has rows and columns, like a table or a
+spreadsheet.
 
-A three-dimensional array takes a little bit more work to visualize, and get used to.
+A three-dimensional array takes a little bit more work to visualize, and get
+used to.
+
 
 ## Two dimensions before three
 
@@ -56,7 +61,8 @@ second_2d = np.reshape(second_1d, (4, 3))
 second_2d
 ```
 
-We can get rows from the 2D arrays by slicing with an index on the first dimension, thus:
+We can get rows from the 2D arrays by slicing with an index on the first
+dimension, thus:
 
 ```{python}
 # Third row, all the columns.
@@ -77,7 +83,9 @@ elements along the second dimension (axis).
 first_2d.shape
 ```
 
-They therefore have `4 * 3 = 12` elements each.   The `np.prod` function multiples all the elements in a sequence, so we can get the number of elements in an array with:
+They therefore have `4 * 3 = 12` elements each.   The `np.prod` function
+multiples all the elements in a sequence, so we can get the number of elements
+in an array with:
 
 ```{python}
 # 4 * 3
@@ -90,7 +98,9 @@ but there is even a short-cut way to get that:
 first_2d.size
 ```
 
+
 ## Three dimensions
+
 
 Here we make a three-dimensional array, by stacking the two 2D arrays together.
 
@@ -107,26 +117,29 @@ second_2d
 ```
 
 If you imagine the `first_2d` array and the `second_2d` array as flat physical
-objects, such as trays, then when we stack them, we will get the 3D array
-shown in the image below:
+objects, such as trays, then when we stack them, we will get the 3D array shown
+in the image below:
 
 
 ![](images/two_d_slices_without_annotation.png)
 
 
-The object in the foreground of the image (with 10, 11, 12 on its topmost row) is the first *plane* of the 3D array, and contains the values from the `first_2d` array. The object in the background of the image (with 100, 101, 102 on its topmost row) is the second plane, and contains the values from the `second_2d` array.
+The object in the foreground of the image (with 10, 11, 12 on its topmost row)
+is the first *plane* of the 3D array, and contains the values from the
+`first_2d` array. The object in the background of the image (with 100, 101, 102
+on its topmost row) is the second plane, and contains the values from the
+`second_2d` array.
 
-To create the 3D array, first we create an empty array of the right shape:
+We can use `np.stack` to stack the two 2D arrays into a 3D array.  Here we want to stack over the third axis (`axis=2`):
 
 ```{python}
-# make a 3D array
-into_3d = np.zeros((4, 3, 2))
-
-# show the 3D array
+# Make a 3D array by stacking the two 2D arrays.
+into_3d = np.stack([first_2d, second_2d], axis=2)
+# Show the result.  This display is not easy to read, see below for more.
 into_3d
 ```
 
-The 3D array, as numpy shows it, might not have an obvious resemblance to the
+The 3D array, as Numpy shows it, might not have an obvious resemblance to the
 image of the two planes shown above, but bear with us.
 
 The 3D array is of the right shape:
@@ -138,53 +151,36 @@ into_3d.shape
 The shape can be read as "two planes, each with 4 rows and 3 columns", which
 corresponds to what is shown in the image of the planes above.
 
-Currently the 3D array only contains zeros, so next we make the `first_2d`
-array be the first 4 by 3 plane of the 3D array:
+
+We can use *indexing* to fetch the component 2D planes back out of the 3D array.
+
+There are three dimensions, so we can use three elements for indexing,
+separated by commas.  The first element is for rows, the second for columns,
+and the third for planes.
 
 ```{python}
-# show the first_2d array
-first_2d
+# Fetch the first 2D plane.
+# Read this as 'all rows, all columns of plane 0'
+into_3d[:, :, 0]
 ```
 
 ```{python}
-# Set all rows, all columns for plane 0 to be the first_2d array
-into_3d[:, :, 0] = first_2d
+# Fetch the second 2D plane.
+# Read this as 'all rows, all columns of plane 1'
+into_3d[:, :, 1]
 ```
-
-The image below shows how the `into_3d` array now looks, with the `first_2d` array as the first 3 by 4 plane:
-
-
-![](images/two_d_slices_first_plane.png)
-
-
-Next we make the `second_2d` array be the second 4 by 3 plane of the 3D array:
-
-```{python}
-# show the second_2d array
-second_2d
-```
-
-```{python}
-# Set all rows, all columns for plane 1 to be the second_2d array
-into_3d[:, :, 1] = second_2d
-```
-We have just stacked the `first_2d` and `second_2d` arrays into the `into_3d` array. The image below shows how the index commands we just used in order to do this relate to the planes of the `into_3d` array, and to the values that are now in each plane.
-
-`into_3d[:, :, 0]` can be read as *'all rows, all columns of plane 0'*.
-
-`into_3d[:, :, 1]` can be read as *'all rows, all columns of plane 1'*.
-
 
 ![](images/two_d_slices.png)
 
-
-The output of the cell below is how Numpy shows us the contents of the `into_3d` array:
+You have already seen the output of the cell below.  It is the way that Numpy
+shows us the contents of the `into_3d` array:
 
 ```{python}
 into_3d
 ```
 
-Relative to the images above, this is a different way of looking at the `into_3d` array, where the slices are in the first dimension, like this:
+Relative to the images above, this is a different way of looking at the
+`into_3d` array, where the slices are in the first dimension, like this:
 
 ```{python}
 # First row, all columns, all planes.
