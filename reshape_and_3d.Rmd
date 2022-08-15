@@ -33,7 +33,7 @@ used to.
 ## Reshaping a three-dimensional array
 
 You have already seen the algorithm for [reshaping in one and two
-dimensions](arrays_2d_reshape.Rmd).
+dimensions](reshape_and_2d.Rmd).
 
 NumPy uses the same algorithm for reshaping a three-dimensional array.
 
@@ -118,7 +118,7 @@ the array from both perspectives.
 
 
 We can reshape to one dimension in the [same way as we did for the 2D
-arrays](arrays_2d_reshape.Rmd):
+arrays](reshape_and_2d.Rmd):
 
 ```{python}
 # Reshape to 1D array with 24 elements.
