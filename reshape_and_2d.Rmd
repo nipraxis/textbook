@@ -153,8 +153,16 @@ a = first_15_rows
 Then the first eight values of the 1D reshaped version comes from:
 
 ```{python}
-[a[0,0], a[0,1], a[1,0], a[1,1], a[2,0], a[2,1], a[3,0], a[3,1]]
+[a[0,0], a[0,1],
+ a[1,0], a[1,1],
+ a[2,0], a[2,1],
+ a[3,0], a[3,1]]
 ```
+
+The image below shows the order in which `np.reshape` fetches the elements from the array:
+
+![](images/2d_reshape.svg)
+
 
 We can reverse the process, by taking the flattened array, and putting it back
 into its original two dimensions:
@@ -205,7 +213,7 @@ arr_2d_strs
 Back to 1D:
 
 ```{python}
-np.reshape(arr_2_strs, (9,))
+np.reshape(arr_2d_strs, (8,))
 ```
 
 As before, NumPy fetches the data across the columns, then the rows, to fill
