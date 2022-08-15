@@ -123,8 +123,8 @@ Our array above has 15 * 2 = 30 elements.  Numpy can change make any shape array
 For example, one common move is to take a 2D array and flatten it out into a 1D
 array.  The corresponding 1D array would have one axis of length 30.
 
-We could write the new shape as a [single element tuple](length_one_tuple.Rmd),
-like this:
+We could write the new shape as a [single element
+tuple](length_one_tuples.Rmd), like this:
 
 ```{python}
 new_shape = (30,)
