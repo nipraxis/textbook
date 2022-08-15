@@ -68,11 +68,13 @@ extent_deg = 40
 # Straight line.
 left, right = cps
 y1, y2 = rps[:2]
-(hx1, hx2), _ = rlt.prop_points([0.20, 0.80], left, y1, 0, right-left)
+lengths = np.array([0.2, 0.8]) * col_width
+(hx1, hx2), _ = rlt.pts_along_line(lengths, left, y1, 0)
 line_len = hx2 - hx1
 # Get parameters from first diagonal line
 dtheta, vL = rlt.theta_diag(left, y2, right, y1)
-(vx1, vx2), v_ys = rlt.prop_points([0.20, 0.80], right, y1, dtheta, vL)
+lengths = np.array([0.2, 0.8]) * vL
+(vx1, vx2), v_ys = rlt.pts_along_line(lengths, right, y1, dtheta)
 dvy1, dvy2 = v_ys - y1
 
 last_rn = len(rps) - 1
