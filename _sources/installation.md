@@ -76,19 +76,19 @@ This Prints the Working Directory (pwd).  You should see something like the foll
 ```
 Path
 ----
-C:\Users\your-user\Documents\nipraxis-working
+C:\Users\your-user\Documents\nipraxis-work
 ```
 :::
 
 :::{tab-item} Mac
 ```
-/Users/your-user/Documents/nipraxis-working
+/Users/your-user/Documents/nipraxis-work
 ```
 :::
 
 :::{tab-item} Linux
 ```
-/home/your-user/Documents/nipraxis-working
+/home/your-user/Documents/nipraxis-work
 ```
 :::
 
@@ -155,7 +155,7 @@ from your terminal.  You should see something like:
 
 ::::{tab-set}
 
-:::{tab-item} Windows Poweshell
+:::{tab-item} Windows Powershell
 ```
     Directory: C:\Users\your-user\Documents\nipraxis-work
 

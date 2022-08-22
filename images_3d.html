@@ -818,9 +818,9 @@ title="Print to PDF"
 <p>We will spend a lot of time loading data from brain images.</p>
 <p>MRI images for functional MRI analysis are usually stored using the <a class="reference external" href="https://nifti.nimh.nih.gov/nifti-1">NIfTI
 format</a>.</p>
-<p>As you’ve already seen, this is a very simple format that is typically a
-single file with extension <code class="docutils literal notranslate"><span class="pre">.nii</span></code>.  If the file is compressed, it will end
-with <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> instead.</p>
+<p>As you’ve <a class="reference internal" href="what_is_an_image.html"><span class="doc std std-doc">already seen</span></a>, NIfTI is a very simple format
+that is typically a single file with extension <code class="docutils literal notranslate"><span class="pre">.nii</span></code>.  If the file is
+compressed, it will end with <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> instead.</p>
 <p>Inside, the file contains:</p>
 <ul class="simple">
 <li><p>348 bytes of <em>header</em> information.  Among other things, the header
@@ -871,7 +871,7 @@ package.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7f7b8c508d00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7f93a1c67be0&gt;
 </pre></div>
 </div>
 </div>
@@ -1004,7 +1004,7 @@ Once loaded, we can confirm that now the values in the NIfTI file have been load
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7b64b98d60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f93a1884910&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_17_1.png" src="_images/images_3d_17_1.png" />
@@ -1046,7 +1046,7 @@ Let’s plot the histogram corresponding to values above zero to exclude the ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7b64820880&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f939f48aca0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_23_1.png" src="_images/images_3d_23_1.png" />
@@ -1062,7 +1062,7 @@ need to transpose <em>and</em> flip up to down:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7b6478c430&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f939f463ee0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_25_1.png" src="_images/images_3d_25_1.png" />
@@ -1096,7 +1096,7 @@ from bottom, and so on:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7b646eceb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f93985a37c0&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_28_1.png" src="_images/images_3d_28_1.png" />
@@ -1126,7 +1126,7 @@ direction, giving us an image of shape (156, 256).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7b646dba60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f9398591400&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_31_1.png" src="_images/images_3d_31_1.png" />
