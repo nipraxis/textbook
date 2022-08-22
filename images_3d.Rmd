@@ -41,9 +41,9 @@ We will spend a lot of time loading data from brain images.
 MRI images for functional MRI analysis are usually stored using the [NIfTI
 format](https://nifti.nimh.nih.gov/nifti-1).
 
-As you've already seen, this is a very simple format that is typically a
-single file with extension `.nii`.  If the file is compressed, it will end
-with `.nii.gz` instead.
+As you've [already seen](what_is_an_image.Rmd), NIfTI is a very simple format
+that is typically a single file with extension `.nii`.  If the file is
+compressed, it will end with `.nii.gz` instead.
 
 Inside, the file contains:
 
