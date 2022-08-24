@@ -709,8 +709,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   Python
+  <a class="reference internal nav-link" href="#install-python">
+   Install Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-python-for-your-terminal">
+   Set up Python for your Terminal
   </a>
  </li>
 </ul>
@@ -748,8 +753,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   Python
+  <a class="reference internal nav-link" href="#install-python">
+   Install Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-python-for-your-terminal">
+   Set up Python for your Terminal
   </a>
  </li>
 </ul>
@@ -800,14 +810,35 @@ We recommend Homebrew to any serious Mac user; you will need it for the
 instructions on this page.</p>
 <p>To install Homebrew, follow the instructions on the <a class="reference external" href="https://brew.sh/">homebrew home page</a>.</p>
 </section>
-<section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
+<section id="install-python">
+<h2>Install Python<a class="headerlink" href="#install-python" title="Permalink to this headline">#</a></h2>
 <p>Mac actually comes with a version of Python for its own use, but it’s nearly always better to install your own version, for your use.</p>
 <p>First, install with Homebrew.</p>
 <p>In <a class="reference internal" href="#terminal-app"><span class="std std-ref">Terminal.app</span></a>, type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew install python
 </pre></div>
 </div>
+<p><strong>Check carefully for any error messages about failure, like this</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Error: The `brew link` step did not complete successfully
+The formula built, but is not symlinked into /usr/local
+Could not symlink bin/2to3
+Target /usr/local/bin/2to3
+already exists. You may want to remove it:
+  rm &#39;/usr/local/bin/2to3&#39;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">2to3</span></code> command above is just one command that Python installs to your
+system.</p>
+<p>If you see a message like that, it means you had another, presumably older,
+copy of Python and its associated commands installed in your <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>
+folder.  Fix the problem by forcing Homebrew to overwrite the old copy, with
+the instructions you will see further down that message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">link</span> <span class="o">--</span><span class="n">overwrite</span> <span class="n">python</span>
+</pre></div>
+</div>
+</section>
+<section id="set-up-python-for-your-terminal">
+<h2>Set up Python for your Terminal<a class="headerlink" href="#set-up-python-for-your-terminal" title="Permalink to this headline">#</a></h2>
 <p>Next, open the file <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> with a text editor, for example, like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">~/.</span><span class="n">bash_profile</span>
 <span class="nb">open</span> <span class="o">-</span><span class="n">a</span> <span class="n">TextEdit</span> <span class="o">~/.</span><span class="n">bash_profile</span>
@@ -817,8 +848,8 @@ instructions on this page.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/usr/local/bin:$PATH
 </pre></div>
 </div>
-<p>Be very careful that TextEdit doesn’t capitalize Export for you.  Correct it
-again to lower case if it does.</p>
+<p>Be very careful that TextEdit doesn’t automatically capitalize <code class="docutils literal notranslate"><span class="pre">export</span></code> above
+to <code class="docutils literal notranslate"><span class="pre">Export</span></code>.  Correct it again to lower case if it does.</p>
 <p>Save, and close the text editor.  Close Terminal.app  Start Terminal.app again, and confirm you are looking at the right Python:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which python3
 </pre></div>

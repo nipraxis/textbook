@@ -95,7 +95,7 @@ print(structural_fname)
 
 ```{python}
 bold_img = nib.load(bold_fname)
-mean_bold_data = bold_img.get_fdata().mean(axis=-1)
+mean_bold_data = np.mean(bold_img.get_fdata(), axis=-1)
 structural_img = nib.load(structural_fname)
 structural_data = structural_img.get_fdata()
 ```

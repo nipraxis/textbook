@@ -871,7 +871,7 @@ package.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7f93a1c67be0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nibabel.nifti1.Nifti1Image at 0x7fe6f03efb80&gt;
 </pre></div>
 </div>
 </div>
@@ -985,7 +985,9 @@ Once loaded, we can confirm that now the values in the NIfTI file have been load
 <p>Naturally, we can use all the tooling Numpy offers, for example, to extract summary statistics:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mean intensity of this image is </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, and the standard deviation is </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mean intensity of this image is </span><span class="si">{</span><span class="n">data_mean</span><span class="si">}</span><span class="s2">, and the standard deviation is </span><span class="si">{</span><span class="n">data_std</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1004,7 +1006,7 @@ Once loaded, we can confirm that now the values in the NIfTI file have been load
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f93a1884910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fe6c1a77910&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_17_1.png" src="_images/images_3d_17_1.png" />
@@ -1023,14 +1025,23 @@ In order to do that, we <code class="docutils literal notranslate"><span class="
 <img alt="_images/images_3d_19_0.png" src="_images/images_3d_19_0.png" />
 </div>
 </div>
-<p>At a bird’s eye view, the extremes of the histogram are the most informative bits.
-On the far end, the histogram extends to very large voxel values (a bit above 3000) with very small voxel counts (just a few voxels that are very bright).
-On the origin, there’s a massive amount of pixels with zero or almost-zero value (corresponding to the background).
-Let’s plot the histogram corresponding to values above zero to exclude the very large number of zero-valued voxels, and below 1000 to exclude the scarce voxels with very high values.</p>
+<p>At a bird’s eye view, the extremes of the histogram are the most informative
+bits. On the far end, the histogram extends to very large voxel values (a bit
+above 3000) with very small voxel counts (just a few voxels that are very
+bright). On the origin, there’s a massive amount of pixels with zero or
+almost-zero value (corresponding to the background). Let’s plot the histogram
+corresponding to values above zero to exclude the very large number of
+zero-valued voxels, and below 1000 to exclude the scarce voxels with very high
+values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show histogram of the values in the 3D image.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show histogram of the values in the 3D image, but selecting only voxels</span>
+<span class="c1"># with values &gt; 0 and &lt; 1000</span>
+<span class="n">is_above_0</span> <span class="o">=</span> <span class="n">data</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">is_below_1000</span> <span class="o">=</span> <span class="n">data</span> <span class="o">&lt;</span> <span class="mi">1000</span>
+<span class="c1"># Combine the two selections with &amp; (True if both are True).</span>
+<span class="n">is_both</span> <span class="o">=</span> <span class="n">is_above_0</span> <span class="o">&amp;</span> <span class="n">is_below_1000</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">is_both</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1046,7 +1057,7 @@ Let’s plot the histogram corresponding to values above zero to exclude the ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f939f48aca0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fe6bf682100&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_23_1.png" src="_images/images_3d_23_1.png" />
@@ -1062,7 +1073,7 @@ need to transpose <em>and</em> flip up to down:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f939f463ee0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fe6bf65dd90&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_25_1.png" src="_images/images_3d_25_1.png" />
@@ -1096,7 +1107,7 @@ from bottom, and so on:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f93985a37c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fe6b879b730&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_28_1.png" src="_images/images_3d_28_1.png" />
@@ -1126,7 +1137,7 @@ direction, giving us an image of shape (156, 256).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f9398591400&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fe6b8716220&gt;
 </pre></div>
 </div>
 <img alt="_images/images_3d_31_1.png" src="_images/images_3d_31_1.png" />

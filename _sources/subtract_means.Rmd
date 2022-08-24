@@ -52,7 +52,7 @@ de_meaned = arr.copy()
 for i in range(arr.shape[0]):  # iterate over rows
     de_meaned[i] = de_meaned[i] - row_means[i]
 # The rows now have very near 0 mean
-de_meaned.mean(axis=1)
+np.mean(de_meaned, axis=1)
 ```
 
 # An inefficient way using “np.outer”
@@ -72,7 +72,7 @@ Now we can subtract this expanded array to remove the row means:
 ```{python}
 re_de_meaned = arr - means_expanded
 # The row means are now very close to zero
-re_de_meaned.mean(axis=1)
+np.mean(re_de_meaned, axis=1)
 ```
 
 This is an example of *vectorizing*. We worked out a way of doing the
@@ -110,7 +110,7 @@ Here is the broadcasting way of subtracting the row means:
 # the columns during broadcasting.
 row_means_col_vec = np.reshape(row_means, (4, 1))  # Better: np.newaxis.
 broadcast_demeaned = arr - row_means_col_vec
-broadcast_demeaned.mean(axis=1)
+np.mean(broadcast_demeaned, axis=1)
 ```
 
 When NumPy sees `arr - row_means_col_vec` it notices that `arr` is shape

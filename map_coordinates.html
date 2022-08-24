@@ -883,7 +883,7 @@ an exercise using <code class="docutils literal notranslate"><span class="pre">s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bold_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bold_fname</span><span class="p">)</span>
-<span class="n">mean_bold_data</span> <span class="o">=</span> <span class="n">bold_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mean_bold_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bold_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">structural_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">structural_fname</span><span class="p">)</span>
 <span class="n">structural_data</span> <span class="o">=</span> <span class="n">structural_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
 </pre></div>
@@ -933,7 +933,7 @@ image:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa73378f730&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4a8683e820&gt;
 </pre></div>
 </div>
 <img alt="_images/map_coordinates_9_1.png" src="_images/map_coordinates_9_1.png" />
@@ -1018,7 +1018,7 @@ numpy.meshgrid to make the initial coordinate array:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa71c69d100&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4a867d8310&gt;
 </pre></div>
 </div>
 <img alt="_images/map_coordinates_18_1.png" src="_images/map_coordinates_18_1.png" />

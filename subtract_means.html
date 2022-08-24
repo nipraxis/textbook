@@ -922,7 +922,7 @@ is the row mean:</p>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>  <span class="c1"># iterate over rows</span>
     <span class="n">de_meaned</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">de_meaned</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">row_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="c1"># The rows now have very near 0 mean</span>
-<span class="n">de_meaned</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">de_meaned</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -960,7 +960,7 @@ ones:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re_de_meaned</span> <span class="o">=</span> <span class="n">arr</span> <span class="o">-</span> <span class="n">means_expanded</span>
 <span class="c1"># The row means are now very close to zero</span>
-<span class="n">re_de_meaned</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">re_de_meaned</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1009,7 +1009,7 @@ shapes of the two input arrays match.</p>
 <span class="c1"># the columns during broadcasting.</span>
 <span class="n">row_means_col_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">row_means</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># Better: np.newaxis.</span>
 <span class="n">broadcast_demeaned</span> <span class="o">=</span> <span class="n">arr</span> <span class="o">-</span> <span class="n">row_means_col_vec</span>
-<span class="n">broadcast_demeaned</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">broadcast_demeaned</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

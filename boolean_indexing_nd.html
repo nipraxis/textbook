@@ -797,8 +797,38 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#but-wait">
-   But wait
+  <a class="reference internal nav-link" href="#id1">
+   Boolean indexing with more than one dimension
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boolean-indexing-in-two-dimensions">
+   Boolean indexing in two dimensions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-a-three-dimensional-array-with-a-1d-boolean">
+   Indexing a three-dimensional array with a 1D Boolean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-a-three-dimensional-array-with-a-2d-boolean">
+   Indexing a three-dimensional array with a 2D Boolean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-a-three-dimensional-array-with-a-3d-boolean">
+   Indexing a three-dimensional array with a 3D Boolean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#another-summary-of-the-rule">
+   Another summary of the rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-1d-boolean-arrays-on-other-axes">
+   Using 1D Boolean arrays on other axes
   </a>
  </li>
 </ul>
@@ -821,8 +851,38 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#but-wait">
-   But wait
+  <a class="reference internal nav-link" href="#id1">
+   Boolean indexing with more than one dimension
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boolean-indexing-in-two-dimensions">
+   Boolean indexing in two dimensions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-a-three-dimensional-array-with-a-1d-boolean">
+   Indexing a three-dimensional array with a 1D Boolean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-a-three-dimensional-array-with-a-2d-boolean">
+   Indexing a three-dimensional array with a 2D Boolean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-a-three-dimensional-array-with-a-3d-boolean">
+   Indexing a three-dimensional array with a 3D Boolean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#another-summary-of-the-rule">
+   Another summary of the rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-1d-boolean-arrays-on-other-axes">
+   Using 1D Boolean arrays on other axes
   </a>
  </li>
 </ul>
@@ -846,7 +906,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>First we make a 3D array of shape (4, 3, 2)</p>
+<p>First we make a 3D array of shape (4, 3, 2), just as we did in <a class="reference internal" href="arrays_3d.html"><span class="doc std std-doc">the 3D array
+page</span></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create an array of numbers from 0 to 11 inclusive, reshape this into a 4 rows by 3 columns array</span>
@@ -881,46 +942,177 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">np.stack</span></code> to stack the two 2D arrays into a 3D array, by stacking
+over the third axis (<code class="docutils literal notranslate"><span class="pre">axis=2</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a 3D array, full of 0s, with 4 rows, 3 columns and 2 planes, all filled with 0s</span>
-<span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-
-<span class="c1"># set the first plane to be equal to plane0</span>
-<span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">plane0</span>
-
-<span class="c1"># set the first plane to be equal to plane1</span>
-<span class="n">arr_3d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">plane1</span>
-
-<span class="c1"># show the array</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a 3D array by stacking the two 2D arrays.</span>
+<span class="n">arr_3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">plane0</span><span class="p">,</span> <span class="n">plane1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">arr_3d</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  0., 100.],
-        [  1., 101.],
-        [  2., 102.]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  0, 100],
+        [  1, 101],
+        [  2, 102]],
 
-       [[  3., 103.],
-        [  4., 104.],
-        [  5., 105.]],
+       [[  3, 103],
+        [  4, 104],
+        [  5, 105]],
 
-       [[  6., 106.],
-        [  7., 107.],
-        [  8., 108.]],
+       [[  6, 106],
+        [  7, 107],
+        [  8, 108]],
 
-       [[  9., 109.],
-        [ 10., 110.],
-        [ 11., 111.]]])
+       [[  9, 109],
+        [ 10, 110],
+        [ 11, 111]]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Pictured in 3D space, this array looks as below:</p>
+<p>Here is the array pictured in 3D space:</p>
 <p><img alt="" src="_images/arr_3d_planes.jpg" /></p>
-<p>We can index this with a one-dimensional Boolean array. This selects
-elements from the first axis.</p>
+<section id="id1">
+<h2>Boolean indexing with more than one dimension<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>Below you will see that we use Boolean arrays of one or two or three dimensions
+to index into a three-dimensional array.</p>
+<p>This is a little hard to visualize, so we will go through it slowly.  But
+first, we will give you the rule for what you get back from indexing with a
+Boolean array.</p>
+<p>Let’s say you have an array <code class="docutils literal notranslate"><span class="pre">A</span></code>, of N dimensions - in our case N=3.</p>
+<p>Let’s say you are indexing with a Boolean array <code class="docutils literal notranslate"><span class="pre">B</span></code> of P dimensions.  P can be
+1 or 2 or 3.  Indexing <code class="docutils literal notranslate"><span class="pre">A</span></code> with <code class="docutils literal notranslate"><span class="pre">B</span></code> gives a result <code class="docutils literal notranslate"><span class="pre">R</span></code>, as in:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">B</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Rule</strong>: The result <code class="docutils literal notranslate"><span class="pre">R</span></code> of Indexing an N-dimensional array <code class="docutils literal notranslate"><span class="pre">A</span></code> with a
+P-dimensional Boolean array <code class="docutils literal notranslate"><span class="pre">B</span></code> gives you one <em>row</em> for every <code class="docutils literal notranslate"><span class="pre">True</span></code> element in
+<code class="docutils literal notranslate"><span class="pre">B</span></code>, and as many extra dimension as are left in <code class="docutils literal notranslate"><span class="pre">A</span></code> — specifically, <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">-</span> <span class="pre">P</span></code>.
+Let’s say there are <code class="docutils literal notranslate"><span class="pre">T</span></code> True elements in <code class="docutils literal notranslate"><span class="pre">B</span></code>.  Then the shape of <code class="docutils literal notranslate"><span class="pre">R</span></code> is <code class="docutils literal notranslate"><span class="pre">(T,)</span> <span class="pre">+</span> <span class="pre">A.shape[(N</span> <span class="pre">-</span> <span class="pre">P):]</span></code></p>
+<p>That is a hard to follow in the abstract, but you will see the rule playing out
+in the examples below.  We will rephrase the rule again a couple of times at
+the end.</p>
+</section>
+<section id="boolean-indexing-in-two-dimensions">
+<h2>Boolean indexing in two dimensions<a class="headerlink" href="#boolean-indexing-in-two-dimensions" title="Permalink to this headline">#</a></h2>
+<p>Let’s see how the rule plays out in two dimensions.  Remember:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plane0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2],
+       [ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now imagine we index into this 2D array with a one-dimensional array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B_1D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+<span class="n">B_1D</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False,  True, False,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_1d</span> <span class="o">=</span> <span class="n">plane0</span><span class="p">[</span><span class="n">B_1D</span><span class="p">]</span>
+<span class="n">res_1d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3,  4,  5],
+       [ 9, 10, 11]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the Boolean array <code class="docutils literal notranslate"><span class="pre">B_1D</span></code> has one element for each <em>row</em> in
+<code class="docutils literal notranslate"><span class="pre">plane0</span></code>, and it has selected only the rows of <code class="docutils literal notranslate"><span class="pre">plane0</span></code> where there is a <code class="docutils literal notranslate"><span class="pre">True</span></code>
+in the Boolean array. There are 2 <code class="docutils literal notranslate"><span class="pre">True</span></code> values in <code class="docutils literal notranslate"><span class="pre">B_1D</span></code> (<code class="docutils literal notranslate"><span class="pre">T</span></code>, above = 2)
+<code class="docutils literal notranslate"><span class="pre">B_1D</span></code> has one dimension, leaving N - P = 2-1 = 1 dimension over, so the output
+array is two dimensions, shape <code class="docutils literal notranslate"><span class="pre">(2,)</span> <span class="pre">+</span> <span class="pre">plane0.shape[1:]</span></code> == <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_1d</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets try a two dimensional Boolean array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B_2D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+                 <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+                 <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+                 <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]])</span>
+<span class="n">B_2D</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ True, False,  True],
+       [False,  True, False],
+       [ True, False,  True],
+       [ True,  True, False]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_2d</span> <span class="o">=</span> <span class="n">plane0</span><span class="p">[</span><span class="n">B_2D</span><span class="p">]</span>
+<span class="n">res_2d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  2,  4,  6,  8,  9, 10])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the Boolean array <code class="docutils literal notranslate"><span class="pre">B_2D</span></code> has one element for each <em>element</em> in
+<code class="docutils literal notranslate"><span class="pre">plane0</span></code>, and it has selected <em>elements</em> from <code class="docutils literal notranslate"><span class="pre">plane0</span></code> where there is a <code class="docutils literal notranslate"><span class="pre">True</span></code>
+in the Boolean array. There are 7 <code class="docutils literal notranslate"><span class="pre">True</span></code> values in <code class="docutils literal notranslate"><span class="pre">B_2D</span></code> (<code class="docutils literal notranslate"><span class="pre">T</span></code>, above = 7)
+<code class="docutils literal notranslate"><span class="pre">B_2D</span></code> has two dimensions, leaving N - P = 2-2 = 0 dimension over, so the output
+array is one dimensions, shape <code class="docutils literal notranslate"><span class="pre">(7,)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_2d</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexing-a-three-dimensional-array-with-a-1d-boolean">
+<h2>Indexing a three-dimensional array with a 1D Boolean<a class="headerlink" href="#indexing-a-three-dimensional-array-with-a-1d-boolean" title="Permalink to this headline">#</a></h2>
+<p>We can index <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> with a one-dimensional Boolean array. This selects
+elements from the <em>first</em> axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
@@ -929,40 +1121,65 @@ elements from the first axis.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  3., 103.],
-        [  4., 104.],
-        [  5., 105.]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  3, 103],
+        [  4, 104],
+        [  5, 105]],
 
-       [[  6., 106.],
-        [  7., 107.],
-        [  8., 108.]]])
+       [[  6, 106],
+        [  7, 107],
+        [  8, 108]]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Pictured in 3D space, the first axis is the rows, across each plane. So, using <code class="docutils literal notranslate"><span class="pre">[False,</span> <span class="pre">True,</span> <span class="pre">True,</span> <span class="pre">False]</span></code> to index <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> is equivalent to stating “give me the the 2nd and 3rd rows, across both remaining planes, from <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>”.</p>
+<p>Pictured in 3D space, the first axis is the rows, across each plane. So, using
+<code class="docutils literal notranslate"><span class="pre">[False,</span> <span class="pre">True,</span> <span class="pre">True,</span> <span class="pre">False]</span></code> to index <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> is equivalent to stating “give
+me the 2nd and 3rd rows, across both remaining planes, from <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>”.</p>
 <p>Put another way, the 1D Boolean index is saying, “Give me only the <em>rows</em> with True, and all the columns and all the planes”.</p>
-<p>Remember that the <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> values in the boolean array act as ‘switches’: only the elements corresponding to <code class="docutils literal notranslate"><span class="pre">True</span></code> make it into the final array:</p>
+<p>Remember that the <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> values in the Boolean array act as
+‘switches’: only the elements corresponding to <code class="docutils literal notranslate"><span class="pre">True</span></code> make it into the final
+array:</p>
 <p><img alt="" src="_images/arr_3d_1d_bool.jpg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the final array, from indexing arr_3d with bool_1d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the final array, from indexing arr_3d with bool_1d</span>
 <span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_1d</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  3., 103.],
-        [  4., 104.],
-        [  5., 105.]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  3, 103],
+        [  4, 104],
+        [  5, 105]],
 
-       [[  6., 106.],
-        [  7., 107.],
-        [  8., 108.]]])
+       [[  6, 106],
+        [  7, 107],
+        [  8, 108]]])
 </pre></div>
 </div>
 </div>
 </div>
+<p>Notice that the Boolean array <code class="docutils literal notranslate"><span class="pre">bool_1d</span></code> has one element for each <em>row</em> in
+<code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>, and it has selected only the rows of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> where there is a <code class="docutils literal notranslate"><span class="pre">True</span></code>
+in the Boolean array. There are 2 <code class="docutils literal notranslate"><span class="pre">True</span></code> values in <code class="docutils literal notranslate"><span class="pre">bool_1D</span></code>,  <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">2</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bool_1D</span></code> has one dimension, leaving N - P = 3 - 1 = 2 dimensions over, so the
+output array is three dimensions, shape <code class="docutils literal notranslate"><span class="pre">(2,)</span> <span class="pre">+</span> <span class="pre">arr_3d.shape[1:]</span></code> == <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">2)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the shape of the final array.</span>
+<span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_1d</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 3, 2)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexing-a-three-dimensional-array-with-a-2d-boolean">
+<h2>Indexing a three-dimensional array with a 2D Boolean<a class="headerlink" href="#indexing-a-three-dimensional-array-with-a-2d-boolean" title="Permalink to this headline">#</a></h2>
 <p>We can also index with a two-dimensional Boolean array.</p>
 <p>Put another way, we want “Only the rows, columns with a True value, and all the planes”.</p>
 <div class="cell docutils container">
@@ -985,8 +1202,7 @@ elements from the first axis.</p>
 </div>
 </div>
 </div>
-<p>If we index with this array, it selects elements
-from the first <em>two</em> axes.</p>
+<p>If we index with this array, it selects elements from the first <em>two</em> axes.</p>
 <p>Put another way, we want “Only the rows, columns with a True value, and all the planes”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -996,11 +1212,11 @@ from the first <em>two</em> axes.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1., 101.],
-       [  3., 103.],
-       [  5., 105.],
-       [  6., 106.],
-       [ 11., 111.]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1, 101],
+       [  3, 103],
+       [  5, 105],
+       [  6, 106],
+       [ 11, 111]])
 </pre></div>
 </div>
 </div>
@@ -1015,15 +1231,21 @@ from the first <em>two</em> axes.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1., 101.],
-       [  3., 103.],
-       [  5., 105.],
-       [  6., 106.],
-       [ 11., 111.]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1, 101],
+       [  3, 103],
+       [  5, 105],
+       [  6, 106],
+       [ 11, 111]])
 </pre></div>
 </div>
 </div>
 </div>
+<p>The Boolean array <code class="docutils literal notranslate"><span class="pre">bool_2d</span></code> has one element for each <em>row, column</em> pair in
+<code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>, and it has selected only the row, column pairs of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> where
+there is a <code class="docutils literal notranslate"><span class="pre">True</span></code> in the Boolean array. There are 5 <code class="docutils literal notranslate"><span class="pre">True</span></code> values in <code class="docutils literal notranslate"><span class="pre">bool_2d</span></code>,
+<code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">bool_2d</span></code> has two dimensions, leaving N - P = 3 - 2 = 1 dimensions left
+over, so the output array is two dimensions, shape <code class="docutils literal notranslate"><span class="pre">(5,)</span> <span class="pre">+</span> <span class="pre">arr_3d.shape[2:]</span></code> ==
+<code class="docutils literal notranslate"><span class="pre">(5,</span> <span class="pre">2)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the shape of the arr_3d array, when indexed with the bool_2d boolean array</span>
@@ -1037,6 +1259,9 @@ from the first <em>two</em> axes.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="indexing-a-three-dimensional-array-with-a-3d-boolean">
+<h2>Indexing a three-dimensional array with a 3D Boolean<a class="headerlink" href="#indexing-a-three-dimensional-array-with-a-3d-boolean" title="Permalink to this headline">#</a></h2>
 <p>We can even index with a 3D array, this selects elements over all three
 dimensions.  In which order does it get the elements?</p>
 <div class="cell docutils container">
@@ -1110,13 +1335,49 @@ dimensions.  In which order does it get the elements?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([100.,   1., 101.,   3.,   5.,   6., 106., 107., 109.,  11.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([100,   1, 101,   3,   5,   6, 106, 107, 109,  11])
 </pre></div>
 </div>
 </div>
 </div>
 <p><img alt="" src="_images/arr_3d_3d_bool.jpg" /></p>
-<p>Now we have done the indexing in one, two and three dimensions, let us think about the rule for the shape.</p>
+<p>The Boolean array <code class="docutils literal notranslate"><span class="pre">bool_3d</span></code> has one element for each <em>row, column, plane</em>
+triple in <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>.  Each triple defines an element.  <code class="docutils literal notranslate"><span class="pre">bool_3d</span></code> has selected
+only the elements of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code> where there is a <code class="docutils literal notranslate"><span class="pre">True</span></code> in the Boolean array.
+There are 10 <code class="docutils literal notranslate"><span class="pre">True</span></code> values in <code class="docutils literal notranslate"><span class="pre">bool_3d</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">bool_3d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">bool_3d</span></code> has three dimensions
+leaving N - P = 3 - 3 = 0 dimensions left over, so the output array is one
+dimension, shape <code class="docutils literal notranslate"><span class="pre">(10,)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the shape</span>
+<span class="n">arr_3d</span><span class="p">[</span><span class="n">bool_3d</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="another-summary-of-the-rule">
+<h2>Another summary of the rule<a class="headerlink" href="#another-summary-of-the-rule" title="Permalink to this headline">#</a></h2>
+<p>Now we have done the indexing in one, two and three dimensions, let us think
+again about the rule for the shape.</p>
 <p>The Boolean index selects the items on the corresponding dimension(s).
 Therefore:</p>
 <ul class="simple">
@@ -1125,13 +1386,13 @@ The output has one <em>row</em> for each True in the array, and the original num
 of columns and planes.  It is therefore 3D.</p></li>
 <li><p>A 2D index on its own selects row, column elements (and leaves planes
 intact).  The output has one <em>row</em> for each True in the 2D array (each
-selected row, column element), and the original number of planes.  It is
+selected row, column pair), and the original number of planes.  It is
 therefore 2D.</p></li>
 <li><p>A 3D index selects row, column, plane elements.  The output has one <em>row</em> for
 each True in the 3D array (each selected row, column, plane element).  It is
 therefore 1D.</p></li>
 </ul>
-<p>What’s the rule?</p>
+<p>What’s the rule again?</p>
 <p>The dimensions in the indexing Boolean array get collapsed to a single
 dimension.  Call that the Boolean dimension.  The dimension has the same number
 of elements are there are True values in the Boolean array.  The remaining
@@ -1146,8 +1407,9 @@ Boolean dimension.</p></li>
 </ul>
 <p>In each of the cases above, the Boolean dimension has the same length as the
 number of True elements in the indexing Boolean array.</p>
-<section id="but-wait">
-<h2>But wait<a class="headerlink" href="#but-wait" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="using-1d-boolean-arrays-on-other-axes">
+<h2>Using 1D Boolean arrays on other axes<a class="headerlink" href="#using-1d-boolean-arrays-on-other-axes" title="Permalink to this headline">#</a></h2>
 <p>We can also mix 1D Boolean arrays with ordinary slicing to select elements on
 a single axis. E.g. the code below returns the entire second plane of <code class="docutils literal notranslate"><span class="pre">arr_3d</span></code>:</p>
 <div class="cell docutils container">
@@ -1158,21 +1420,21 @@ a single axis. E.g. the code below returns the entire second plane of <code clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[100.],
-        [101.],
-        [102.]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[100],
+        [101],
+        [102]],
 
-       [[103.],
-        [104.],
-        [105.]],
+       [[103],
+        [104],
+        [105]],
 
-       [[106.],
-        [107.],
-        [108.]],
+       [[106],
+        [107],
+        [108]],
 
-       [[109.],
-        [110.],
-        [111.]]])
+       [[109],
+        [110],
+        [111]]])
 </pre></div>
 </div>
 </div>
