@@ -52,7 +52,7 @@ instructions on this page.
 
 To install Homebrew, follow the instructions on the [homebrew home page](https://brew.sh/).
 
-## Python
+## Install Python
 
 Mac actually comes with a version of Python for its own use, but it's nearly always better to install your own version, for your use.
 
@@ -63,6 +63,31 @@ In {ref}`terminal-app`, type:
 ```bash
 brew install python
 ```
+
+**Check carefully for any error messages about failure, like this**:
+
+```
+Error: The `brew link` step did not complete successfully
+The formula built, but is not symlinked into /usr/local
+Could not symlink bin/2to3
+Target /usr/local/bin/2to3
+already exists. You may want to remove it:
+  rm '/usr/local/bin/2to3'
+```
+
+The `2to3` command above is just one command that Python installs to your
+system.
+
+If you see a message like that, it means you had another, presumably older,
+copy of Python and its associated commands installed in your `/usr/local/bin`
+folder.  Fix the problem by forcing Homebrew to overwrite the old copy, with
+the instructions you will see further down that message:
+
+```
+brew link --overwrite python
+```
+
+## Set up Python for your Terminal
 
 Next, open the file `~/.bash_profile` with a text editor, for example, like this:
 
@@ -77,8 +102,8 @@ Scroll to the end of the file, and add this line:
 export PATH=/usr/local/bin:$PATH
 ```
 
-Be very careful that TextEdit doesn't capitalize Export for you.  Correct it
-again to lower case if it does.
+Be very careful that TextEdit doesn't automatically capitalize `export` above
+to `Export`.  Correct it again to lower case if it does.
 
 Save, and close the text editor.  Close Terminal.app  Start Terminal.app again, and confirm you are looking at the right Python:
 
