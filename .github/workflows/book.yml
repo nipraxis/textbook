@@ -47,6 +47,12 @@ jobs:
       run: |
         make html
 
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: error_logs
+        path: ./_build/html/reports
+
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
       if: ${{ github.ref == 'refs/heads/main' }}
