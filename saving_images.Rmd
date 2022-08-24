@@ -40,7 +40,7 @@ to clip them down to a more reasonable number:
 
 ```{python}
 data = img.get_fdata()
-data.max()
+np.max(data)
 ```
 
 We might consider clipping the top 5 percent of voxel values:
@@ -54,7 +54,7 @@ top_95_thresh
 ```{python}
 new_data = data.copy()
 new_data[new_data > top_95_thresh] = top_95_thresh
-new_data.max()
+np.max(new_data)
 ```
 
 We can make a new `Nifti1Image` by constructing it directly.  We pass the
@@ -97,5 +97,5 @@ This image has the clipped data:
 
 ```{python}
 clipped_back = nib.load('clipped_image.nii')
-clipped_back.get_fdata().max()
+np.max(clipped_back.get_fdata())
 ```

@@ -231,7 +231,7 @@ method](otsu_threshold.Rmd).  You will need
 
 ```{python}
 from skimage.filters import threshold_otsu
-mean = data.mean(axis=-1)
+mean = np.mean(data, axis=-1)
 mean.shape
 ```
 
