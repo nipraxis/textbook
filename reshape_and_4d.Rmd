@@ -28,7 +28,7 @@ We often find ourselves doing complicated reshape operations when we are
 dealing with images.   For example, we may find ourselves reshaping the first
 few dimensions, but leaving the last intact.
 
-Let's start with a [familiar 3D array](reshape_and_4d.Rmd):
+Let's start with a [familiar 3D array](reshape_and_3d.Rmd):
 
 ```{python}
 arr_3d = np.reshape(np.arange(24), (2, 3, 4))
