@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="What is an image?" href="what_is_an_image.html" />
+    <link rel="next" title="Using the pathlib module" href="pathlib.html" />
     <link rel="prev" title="Brisk introduction to Python" href="brisk_python.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -174,6 +174,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="pathlib.html">
+   Using the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pathlib
+    </span>
+   </code>
+   module
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="what_is_an_image.html">
    What is an image?
   </a>
@@ -264,11 +275,6 @@ const thebe_selector_output = ".output, .cell_output"
     </span>
    </code>
    for testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="path_manipulation.html">
-   Making and breaking file paths in Python
   </a>
  </li>
  <li class="toctree-l1">
@@ -795,8 +801,8 @@ make sure you are running a <strong>Powershell</strong> shell, not the much olde
 </div>
 <p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="982144a0-2085-4d00-bb00-ee2df1bc2442" name="acd0c67d-dbba-4b63-a4c5-9cfca2e1a9fe" type="radio">
-</input><label class="sd-tab-label" for="982144a0-2085-4d00-bb00-ee2df1bc2442">
+<input checked="checked" id="b8d09050-f93e-4d5c-9152-6f4a4b6f8640" name="792f62e4-2c45-43c0-9933-09fe7dd52e76" type="radio">
+</input><label class="sd-tab-label" for="b8d09050-f93e-4d5c-9152-6f4a4b6f8640">
 Windows Powershell</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
 <span class="o">----</span>
@@ -804,15 +810,15 @@ Windows Powershell</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="97520e73-c1ad-4847-ae4e-f1b2611eae06" name="acd0c67d-dbba-4b63-a4c5-9cfca2e1a9fe" type="radio">
-</input><label class="sd-tab-label" for="97520e73-c1ad-4847-ae4e-f1b2611eae06">
+<input id="31d65087-dbab-43d2-8812-62da2f08c1d3" name="792f62e4-2c45-43c0-9933-09fe7dd52e76" type="radio">
+</input><label class="sd-tab-label" for="31d65087-dbab-43d2-8812-62da2f08c1d3">
 Mac</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 </pre></div>
 </div>
 </div>
-<input id="ea4944c9-8c36-4bb4-a722-0d6d5591ff83" name="acd0c67d-dbba-4b63-a4c5-9cfca2e1a9fe" type="radio">
-</input><label class="sd-tab-label" for="ea4944c9-8c36-4bb4-a722-0d6d5591ff83">
+<input id="df617eef-50ac-46ca-9b9d-a8694b5637af" name="792f62e4-2c45-43c0-9933-09fe7dd52e76" type="radio">
+</input><label class="sd-tab-label" for="df617eef-50ac-46ca-9b9d-a8694b5637af">
 Linux</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 </pre></div>
@@ -859,8 +865,8 @@ computer.   Note where the file went.  For example, you might have downloaded th
 </div>
 <p>from your terminal.  You should see something like:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="04adf74f-a9c1-46c1-86c5-c801b50bf6e5" name="e2b4f722-0e46-42d6-ac14-02fbaa4e44ca" type="radio">
-</input><label class="sd-tab-label" for="04adf74f-a9c1-46c1-86c5-c801b50bf6e5">
+<input checked="checked" id="807f747b-2e22-4248-8bd9-83366fc6be02" name="4827597d-d084-4e23-9a92-acd1ac5622a8" type="radio">
+</input><label class="sd-tab-label" for="807f747b-2e22-4248-8bd9-83366fc6be02">
 Windows Powershell</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
 
@@ -871,8 +877,8 @@ Windows Powershell</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a7005d79-a59d-44c7-ba5d-53b50b718d02" name="e2b4f722-0e46-42d6-ac14-02fbaa4e44ca" type="radio">
-</input><label class="sd-tab-label" for="a7005d79-a59d-44c7-ba5d-53b50b718d02">
+<input id="2d99a834-c7ed-4c3d-af21-e95808dafe73" name="4827597d-d084-4e23-9a92-acd1ac5622a8" type="radio">
+</input><label class="sd-tab-label" for="2d99a834-c7ed-4c3d-af21-e95808dafe73">
 Mac or Linux</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
@@ -940,10 +946,10 @@ are interested in.</p>
             <p class="prev-next-title">Brisk introduction to Python</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="what_is_an_image.html" title="next page">
+    <a class='right-next' id="next-link" href="pathlib.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">What is an image?</p>
+        <p class="prev-next-title">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
