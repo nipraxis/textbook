@@ -20,6 +20,7 @@ parts:
 
 - caption: Images and code and images
   chapters:
+  - file: pathlib
   - file: what_is_an_image
   - file: numpy_intro
   # arrays exercise
@@ -42,7 +43,6 @@ parts:
   - file: on_modules
   - file: sys_path
   - file: assert
-  - file: path_manipulation
   - file: coding_style
   - file: docstrings
   - file: module_directories
