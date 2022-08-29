@@ -30,6 +30,7 @@ columns.
 A three-dimensional array takes a little bit more work to visualize, and get
 used to.
 
+
 ## Reshaping a three-dimensional array
 
 You have already seen the algorithm for [reshaping in one and two
