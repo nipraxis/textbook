@@ -17,8 +17,8 @@ jupyter:
 # Modules and scripts
 
 ```{python}
-# Operating system utilities
-import os
+# For working with paths
+from pathlib import Path
 
 # Usual imports
 import numpy as np
@@ -37,7 +37,7 @@ data_fname = nipraxis.fetch_file('ds107_sub012_t1r2.nii')
 data_fname
 ```
 
-Let’s say I have a function that loads a 4D image, and returns a list with
+Let’s say we have a function that loads a 4D image, and returns a list with
 mean values across all voxels in each volume:
 
 ```{python}
@@ -112,11 +112,22 @@ will `import` the module.
 The simplest possible *module* is just a file with a `.py` extension, with
 Python code.
 
-In the cell below, I'm using the notebook machinery to write some context to a
-text file called `vol_means.py` in the current working directory, with a
+In the cell below, we are using the notebook machinery to write some context
+to a text file called `volmeans.py` in the current working directory, with a
 ``%%file`` Jupyter *magic* command at the top of the cell.
 
-Usually we would write the file with our text editor.  You will very rarely need or use the `%%file` magic; it is really only useful for demonstration notebooks like this one.
+First we check whether we already have a `volmeans.py` in the current
+directory, using [pathlib](pathlib.Rmd):
+
+```{python}
+Path('volmeans.py').is_file()
+```
+
+That should show `False` meaning that the file does not exist.
+
+Usually we would go on to write the file with our text editor.  You will very
+rarely need or use the `%%file` magic; it is really only useful for
+demonstration notebooks like this one.
 
 ```{python}
 # %%file volmeans.py
@@ -147,10 +158,10 @@ def detect_outliers_fixed(some_values, n_stds=2):
     return np.where(is_outlier)[0]
 ```
 
-We now have a file in the current directory called `volmeans.py`:
+We now do have a file in the current directory called `volmeans.py`:
 
 ```{python}
-'volmeans.py' in os.listdir()
+Path('volmeans.py').is_file()
 ```
 
 We can use this new *module* very simply - by `import`ing it, as we have
