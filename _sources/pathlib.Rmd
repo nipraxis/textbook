@@ -189,8 +189,64 @@ text = new_path.read_text()
 text.splitlines()
 ```
 
-And finally finally, for tidyness, we use the `unlink` method to delete the
-temporary file we were using.
+## Listing files in a directory
+
+We can use the `glob` method of the `Path` object to give a list of all, or
+some files in a directory.
+
+For example, to see all files in the current directory, we could do this:
+
+```{python}
+cwd = Path()
+list(cwd.glob('*'))
+```
+
+Notice two things here.
+
+### Selecting files with `glob`
+
+The argument to the `glob` method above is `'*'`.  The `'*'` tells `glob` to
+get *all* files and directories, using what is called a [Glob
+match](https://docs.python.org/3/library/glob.html).  This is a powerful
+feature that allows you to be selective in asking for the files that `glob`
+returns.  For example, if you wanted to see only the files ending with `.txt`
+you could do:
+
+```{python}
+list(cwd.glob('*.txt'))
+```
+
+There are more detail in the page linked above.
+
+### `list` around the output of `glob`
+
+Notice that we used `list` around the output of `glob`, as in, for example:
+
+```{python}
+list(cwd.glob('*.txt'))
+```
+
+This is because `glob` returns something called a *generator* which *can*
+return all the Path objects, but will not do that until we ask it to.
+
+```{python}
+cwd.glob('*.txt')
+```
+
+The `list` call converts the result into a list, and in doing so, asks the
+generator to return all the Path objects:
+
+```{python}
+list(cwd.glob('*.txt'))
+```
+
+## Deleting files
+
+And finally, to be tidy, we use the `unlink` method to delete the temporary
+file we were using. `unlink` is [strangely
+named](https://linux.die.net/man/2/unlink), where the name refers to the way
+the computer disk system stores files, but does always have the effect of
+deleting the file.
 
 ```{python}
 new_path.unlink()

@@ -913,8 +913,8 @@ title="Print to PDF"
 <h1>Modules and scripts<a class="headerlink" href="#modules-and-scripts" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Operating system utilities</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For working with paths</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="c1"># Usual imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -945,7 +945,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Let’s say I have a function that loads a 4D image, and returns a list with
+<p>Let’s say we have a function that loads a 4D image, and returns a list with
 mean values across all voxels in each volume:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -972,7 +972,7 @@ without a loop?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f50044d0340&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f2bd98f4340&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_modules_7_1.png" src="_images/on_modules_7_1.png" />
@@ -1039,10 +1039,27 @@ things) that other modules and scripts may use. These other modules and scripts
 will <code class="docutils literal notranslate"><span class="pre">import</span></code> the module.</p>
 <p>The simplest possible <em>module</em> is just a file with a <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension, with
 Python code.</p>
-<p>In the cell below, I’m using the notebook machinery to write some context to a
-text file called <code class="docutils literal notranslate"><span class="pre">vol_means.py</span></code> in the current working directory, with a
+<p>In the cell below, we are using the notebook machinery to write some context
+to a text file called <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code> in the current working directory, with a
 <code class="docutils literal notranslate"><span class="pre">%%file</span></code> Jupyter <em>magic</em> command at the top of the cell.</p>
-<p>Usually we would write the file with our text editor.  You will very rarely need or use the <code class="docutils literal notranslate"><span class="pre">%%file</span></code> magic; it is really only useful for demonstration notebooks like this one.</p>
+<p>First we check whether we already have a <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code> in the current
+directory, using <a class="reference internal" href="pathlib.html"><span class="doc std std-doc">pathlib</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;volmeans.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>That should show <code class="docutils literal notranslate"><span class="pre">False</span></code> meaning that the file does not exist.</p>
+<p>Usually we would go on to write the file with our text editor.  You will very
+rarely need or use the <code class="docutils literal notranslate"><span class="pre">%%file</span></code> magic; it is really only useful for
+demonstration notebooks like this one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> volmeans.py
@@ -1080,10 +1097,10 @@ text file called <code class="docutils literal notranslate"><span class="pre">vo
 </div>
 </div>
 </div>
-<p>We now have a file in the current directory called <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code>:</p>
+<p>We now do have a file in the current directory called <code class="docutils literal notranslate"><span class="pre">volmeans.py</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;volmeans.py&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;volmeans.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

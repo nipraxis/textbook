@@ -73,34 +73,50 @@ We will go into more details on strings and slicing soon.
 Now we will try loading an example image and seeing if we can understand
 the image data.
 
-```{python}
-# This is a Python module
-import os  # module for interacting with the operating system
-```
+
+## Exploring modules and objects
 
 If you want to explore modules or objects, type their name followed by a
 period, and press tab to see what functions or classes are available.
 
-Try this now.  Type  ( followed by a period) then press tab, to see
-what functions are in the `os` module. Continue typing so you have
-`os.getcwd`, and then type `?` followed by Return. This shows you
-the help for the `os.getcwd` function.
-
-For example, here we print out the Python's *working directory*.  It is the
-directory that contains this notebook file.
+Let us start by making an object to point to the current working directory.  We
+can do that with the `Path` class from the [pathlib module](pathlib.Rmd):
 
 ```{python}
-# Get the current working directory (CWD)
-cwd = os.getcwd()
-print(cwd)
+# Import the Path class
+from pathlib import Path
 ```
 
-You can list all the files in this working directory.  Among them you will see
-the filename of this notebook (the file starting with `what_is_an_image`).
+```{python}
+# Path() points to the current working directory by default.
+cwd = Path()
+cwd
+```
+
+The *working directory* of the notebook is the directory that contains this
+notebook file.
+
+The new `cwd` object is if type (*class*) `Path`.
 
 ```{python}
-# List files and directories in the current working directory
-print(os.listdir(cwd))
+type(cwd)
+```
+
+Try exploring this `cwd` object now.  Type `cwd.` (`cwd` followed by a period)
+then press the Tab key, to see everything attached to the `cwd` object.
+Continue typing so you have `cwd.absolute`, and then type `?` followed by
+Return. This shows you the help for the `Path` `absolute` method. (Remember, a
+*method* is a function attached to an object).
+
+```{python}
+# Use this cell to explore the "cwd" object.
+```
+
+Using the `absolute` method, we can print out the full (absolute) path to Python's
+*working directory*:
+
+```{python}
+cwd.absolute()
 ```
 
 We next fetch a data file from the web.  We have a special utility to do that,
@@ -112,7 +128,7 @@ simply, `nipraxis`.
 import nipraxis
 ```
 
-Here was ask Nipraxis to download the data to the local hard disk.
+Here we ask Nipraxis to download the data to the local hard disk.
 
 ```{python}
 structural_fname = nipraxis.fetch_file('ds114_sub009_highres.nii')
@@ -120,13 +136,11 @@ structural_fname = nipraxis.fetch_file('ds114_sub009_highres.nii')
 structural_fname
 ```
 
-Let’s read the image into memory.  We will use the [pathlib
-module](pathlib.Rmd):
+Let’s read the bytes from the image into memory using the `read_bytes` method
+of the `Path` object:
 
 ```{python}
 # Open a file, read in binary bytes.
-from pathlib import Path
-
 contents = Path(structural_fname).read_bytes()
 ```
 
