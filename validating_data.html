@@ -828,8 +828,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#on-to-the-exercise">
-   On to the exercise
+  <a class="reference internal nav-link" href="#on-to-the-validation">
+   On to the validation
   </a>
  </li>
 </ul>
@@ -879,8 +879,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#on-to-the-exercise">
-   On to the exercise
+  <a class="reference internal nav-link" href="#on-to-the-validation">
+   On to the validation
   </a>
  </li>
 </ul>
@@ -900,22 +900,20 @@ title="Print to PDF"
 <p>Go to your fork of your diagnostics repository, and follow the instructions in
 the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file <em>Get the data section</em>.</p>
 <ul class="simple">
-<li><p>Your <code class="docutils literal notranslate"><span class="pre">data</span></code> directory should now a directory called <code class="docutils literal notranslate"><span class="pre">group-0?</span></code> where <code class="docutils literal notranslate"><span class="pre">?</span></code> ia a
+<li><p>Your <code class="docutils literal notranslate"><span class="pre">data</span></code> directory should now a directory called <code class="docutils literal notranslate"><span class="pre">group-0?</span></code> where <code class="docutils literal notranslate"><span class="pre">?</span></code> is a
 number from 0 through 2.  This directory in turn contains 10 subdirectories
 of form <code class="docutils literal notranslate"><span class="pre">sub-0?</span></code>, where <code class="docutils literal notranslate"><span class="pre">?</span></code> is a number between 1 and 10. Each of these
 directories contain a <code class="docutils literal notranslate"><span class="pre">func</span></code> directory, which each contain two <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code>
 files.  These are the FMRI data files.  There are matching <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> files that contain the event onset data for the task during each scanning run.  You will also see a file of form <code class="docutils literal notranslate"><span class="pre">group-0?/hash_list.txt</span></code>.</p></li>
-<li><p>Now do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>.  You will see that note of the files you have just
-unpackaged show up in Git’s listing of untracked files. This is because we
-put a clever <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory, to tell git to ignore
-all files.</p></li>
-<li><p>You can see the file by opening it in your text editor, or with <code class="docutils literal notranslate"><span class="pre">more</span> <span class="pre">data/group-0?/.gitignore</span></code> at the terminal (where <code class="docutils literal notranslate"><span class="pre">?</span></code> is the number that matches your data, from 0 through 2).</p></li>
-<li><p>In fact, you do want to put the <code class="docutils literal notranslate"><span class="pre">data/group-0?/hash_list.txt</span></code> file into Git
-version control.  To do this, make a new branch, checkout that branch, and
-then run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-f</span> <span class="pre">data/group-0?/hash_list.txt</span></code>  The <code class="docutils literal notranslate"><span class="pre">-f</span></code> tells Git to add
-the file, even though the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file says to ignore it.  Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to check that you did add the file to the staging area.  Commit your
-change, push up your branch and make a PR to the main repo.  Someone should
-merge this.</p></li>
+<li><p>Now do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>.  You will see that directory of the files you have just
+unpackaged show up in Git’s listing of untracked files.</p></li>
+<li><p>Next put the <code class="docutils literal notranslate"><span class="pre">data/group-0?/hash_list.txt</span></code> file into Git version control, so
+you are keeping a record of what the data hashes ought to be.  To do this,
+make a new branch, maybe called <code class="docutils literal notranslate"><span class="pre">add-hashes</span></code>, checkout that branch, and then
+run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">data/group-0?/hash_list.txt</span></code>  Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to check that you
+did add the file to the staging area.  Commit your change, push up your
+branch and make a Pull Request (PR) to the main repo.  Someone should merge
+this.  As it is simple, that person could be you.</p></li>
 <li><p>Now have a look at <code class="docutils literal notranslate"><span class="pre">data/group-0?/hash_list.txt</span></code>. For each of the files,
 <code class="docutils literal notranslate"><span class="pre">hash_list.txt</span></code> has a line with the SHA1 hash for that file, and the
 filename, separated by a space;</p></li>
@@ -923,8 +921,8 @@ filename, separated by a space;</p></li>
 corrupted since you downloaded it.  To do this, you need to calculate the
 current hash for each of the unpacked <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> and <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> files and compare
 it to the hash value in <code class="docutils literal notranslate"><span class="pre">hash_list.txt</span></code>;</p></li>
-<li><p>Now run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">scripts/validate_data.py</span> <span class="pre">data</span></code>.  When you first run this
-file, it will fail;</p></li>
+<li><p>Now run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">scripts/validate_data.py</span></code>.  When you first run this file, it
+will fail;</p></li>
 <li><p>In due course, you will edit <code class="docutils literal notranslate"><span class="pre">scripts/validate_data.py</span></code> in your text editor
 to fix.  See below.</p></li>
 </ul>
@@ -1044,9 +1042,9 @@ example:</p>
 </div>
 </section>
 </section>
-<section id="on-to-the-exercise">
-<h2>On to the exercise<a class="headerlink" href="#on-to-the-exercise" title="Permalink to this headline">#</a></h2>
-<p>Now run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">scripts/validate_data.py</span> <span class="pre">data</span></code>.  It will fail.  Use the code
+<section id="on-to-the-validation">
+<h2>On to the validation<a class="headerlink" href="#on-to-the-validation" title="Permalink to this headline">#</a></h2>
+<p>Now run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">scripts/validate_data.py</span></code>.  It will fail.  Use the code
 suggestions above to edit the <code class="docutils literal notranslate"><span class="pre">validate_data.py</span></code> script and fix it, so it
 correctly checks all the hashes of the listed data files.</p>
 </section>
