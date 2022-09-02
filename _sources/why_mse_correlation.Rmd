@@ -418,9 +418,9 @@ With the results above, we can prove z-scores have a sum of 0:
 
 $$
 \Sigma z_x = \Sigma ((x_i - \xbar) / \sigma_x) \\
-= \sigma_x \Sigma (x_i - \xbar) \\
-= \sigma_x (\Sigma x_i - \Sigma \xbar) \\
-= \sigma_x (n \xbar - n \xbar) \\
+= \frac{1}{\sigma_x} \Sigma (x_i - \xbar) \\
+= \frac{1}{\sigma_x} (\Sigma x_i - \Sigma \xbar) \\
+= \frac{1}{\sigma_x} (n \xbar - n \xbar) \\
 = 0
 $$
 
