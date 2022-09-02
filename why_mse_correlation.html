@@ -1031,7 +1031,10 @@ call this a “clammy” score.</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are Numpy <em>arrays</em>, but we can also call them <em>vectors</em>.  Vector is just a technical and mathematical term for a one-dimensional array.</p>
 <p>We are on a quest to find why it turned out that the correlation coefficient is
-always the best (least squared error) slope for the z-scored versions of these vectors (1D arrays).  To find out why, we need to be able to be able to express these <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> vectors in the most general way possible — independent of the numbers we have here.</p>
+always the best (least squared error) slope for the z-scored versions of these
+vectors (1D arrays).  To find out why, we need to express these <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>
+vectors in the most general way possible — independent of the numbers we have
+here.</p>
 <p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}\)</span></p>
 <p>First, in mathematical notation, we will call our <code class="docutils literal notranslate"><span class="pre">x</span></code> array <span class="math notranslate nohighlight">\(\xvec\)</span>, to remind us that <code class="docutils literal notranslate"><span class="pre">x</span></code> is a vector of numbers, not just a single number.</p>
 <p>Next we generalize <span class="math notranslate nohighlight">\(\xvec\)</span> to refer to any set of <span class="math notranslate nohighlight">\(n\)</span> numbers.  So, in our <code class="docutils literal notranslate"><span class="pre">x</span></code>
@@ -1050,12 +1053,12 @@ numbers.</p>
 </section>
 <section id="writing-sums">
 <h2>Writing sums<a class="headerlink" href="#writing-sums" title="Permalink to this headline">#</a></h2>
-<p>We are next going to do the z-score transform on <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span>.  As you remember, this involves subtracting the mean and dividing by the standard deviation.   We need to be able express these mathematically.</p>
-<p>To do this we will use <a class="reference external" href="https://matthew-brett.github.io/teaching/some_sums.html">sum
-notation</a>.  This uses
-the symbol <span class="math notranslate nohighlight">\(\Sigma\)</span> to mean adding up the values in a vector.  <span class="math notranslate nohighlight">\(\Sigma\)</span> is
-capital S in the Greek alphabet.   It is just a shorthand for the operation we
-are used to calling <code class="docutils literal notranslate"><span class="pre">sum</span></code> in code.   So:</p>
+<p>We are next going to do the z-score transform on <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span>.  As you remember, this involves subtracting the mean and dividing by the standard deviation.   We need to express these mathematically.</p>
+<p>We will use <a class="reference external" href="https://matthew-brett.github.io/teaching/some_sums.html">sum
+notation</a> for this
+task.  This uses the symbol <span class="math notranslate nohighlight">\(\Sigma\)</span> to mean adding up the values in a vector.
+<span class="math notranslate nohighlight">\(\Sigma\)</span> is capital S in the Greek alphabet.   It is just a shorthand for the
+operation we are used to calling <code class="docutils literal notranslate"><span class="pre">sum</span></code> in code.   So:</p>
 <div class="math notranslate nohighlight">
 \[
 \Sigma_{i=1}^{n} x_i = x_1 + x_2 + x_3 ... + x_n
@@ -1121,13 +1124,76 @@ definition of the mean is:</p>
 \[
 \ybar = \frac{1}{n} \Sigma y_i
 \]</div>
-<p>The standard deviation is the square root of the variance.  The variance is the mean squared deviation.  The deviation for each element is the result of subtracting the mean from the element.  Call the variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.  Read this as “sigma squared”.  Call the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
-<p>In code:</p>
+<p>Next we are going to calculate the <em>standard deviation</em>.  In order to do that,
+we start with the <em>deviations</em>. The deviation for each element is the result of
+subtracting the mean from the element.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deviations</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x_bar</span>
-<span class="n">sigma_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">deviations</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># Variance</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_2</span><span class="p">)</span>  <span class="c1"># Standard deviation</span>
+<span class="n">deviations</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.954667, -8.856667, -1.166667,  1.464333, -4.954667, -6.807667,
+        3.972333, -0.350667,  1.819333, -1.468667,  9.350333,  8.953333])
+</pre></div>
+</div>
+</div>
+</div>
+<p>In mathematical notation, we can write the deviations as:</p>
+<div class="math notranslate nohighlight">
+\[
+[x_1 - \xbar, x_2 - \xbar, x_3 - \xbar, ..., x_n - \xbar]
+\]</div>
+<p>We have the deviations but we want something called the <em>standard</em> deviation, a
+measure of how far the typical (standard) value deviates from the mean.</p>
+<p>To start, we turn all the deviations to positive values by squaring them.  These are the <em>squared deviations</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squared_deviations</span> <span class="o">=</span> <span class="n">deviations</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">squared_deviations</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3.820722, 78.440544,  1.361111,  2.144272, 24.548722, 46.344325,
+       15.779432,  0.122967,  3.309974,  2.156982, 87.428733, 80.162178])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+[(x_1 - \xbar)^2, (x_2 - \xbar)^2, (x_3 - \xbar)^2, ..., (x_n - \xbar)^2]
+\]</div>
+<p>We can now get an average <em>squared deviation</em>.  We can call this the <em>mean
+squared deviation</em>, but we often call this value — the <em>variance</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variance is the mean squared deviation.</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">squared_deviations</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">variance</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28.80166355555556
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{n} \Sigma (x_i - \xbar)^2
+\]</div>
+<p>The <em>standard deviation</em> is the square root of the mean squared deviation — the
+square root of the variance. We often write the standard deviation as <span class="math notranslate nohighlight">\(\sigma\)</span>.
+Read this as “sigma”.  <span class="math notranslate nohighlight">\(\sigma\)</span> is a small “s” in the Greek alphabet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard deviation</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
 <span class="n">sigma</span>
 </pre></div>
 </div>
@@ -1138,10 +1204,11 @@ definition of the mean is:</p>
 </div>
 </div>
 </div>
-<p>Here is the calculation of <code class="docutils literal notranslate"><span class="pre">np.std</span></code>:</p>
+<p>These are simple calculations, but Numpy also has a short-cut to do them, called <code class="docutils literal notranslate"><span class="pre">np.std</span></code> (NumPy STandard Deviation):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numpy calculation of the standard deviation.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1151,12 +1218,14 @@ definition of the mean is:</p>
 </div>
 </div>
 </div>
-<p>This is how we write the variance in mathematical notation:</p>
+<p>We often find ourselves writing equations with the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>
+and the variance (mean squared deviation).  Because the variance is the squared
+standard deviation, we usually write the variance as <span class="math notranslate nohighlight">\(\sigma^2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma^2 = \frac{1}{n} \Sigma (x_i - \xbar)^2
 \]</div>
-<p>Therefore:</p>
+<p>And:</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma = \sqrt{\sigma^2}
@@ -1182,10 +1251,31 @@ vector name as a subscript.  For example, if we mean the standard deviation for
 </div>
 </div>
 </div>
+<p>Similarly for <span class="math notranslate nohighlight">\(\yvec\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\sigma_y^2 = \frac{1}{n} \Sigma (y_i - \ybar)^2 \\
+\sigma_y = \sqrt{\sigma_y^2}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">sigma_y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.78136974149229
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="the-z-score-transformation">
 <h2>The z-score transformation<a class="headerlink" href="#the-z-score-transformation" title="Permalink to this headline">#</a></h2>
-<p>The z-score transformation is to subtract the mean and divide by the standard deviation:</p>
+<p>The z-score transformation is to subtract the mean and divide by the standard
+deviation.  Put another way, the z-scores are the <em>deviations</em> divided by the
+<em>standard deviation</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_bar</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma_x</span>
@@ -1288,7 +1378,7 @@ vector, slope and intercept:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_29_0.png" src="_images/why_mse_correlation_29_0.png" />
+<img alt="_images/why_mse_correlation_38_0.png" src="_images/why_mse_correlation_38_0.png" />
 </div>
 </div>
 <p>As <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">before</span></a>, it looks as though <span class="math notranslate nohighlight">\(c=0\)</span> is the intercept that
@@ -1309,7 +1399,7 @@ minimizes the SSE, for a slope of 0.6.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_31_0.png" src="_images/why_mse_correlation_31_0.png" />
+<img alt="_images/why_mse_correlation_40_0.png" src="_images/why_mse_correlation_40_0.png" />
 </div>
 </div>
 <p>This suggests that the slope minimizing the SSE is around 0.52, at least, for
@@ -1543,7 +1633,7 @@ that varies with respect to <span class="math notranslate nohighlight">\(b\)</sp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_58_0.png" src="_images/why_mse_correlation_58_0.png" />
+<img alt="_images/why_mse_correlation_67_0.png" src="_images/why_mse_correlation_67_0.png" />
 </div>
 </div>
 <p>We would like to find the slope <span class="math notranslate nohighlight">\(b\)</span> value corresponding to the minimum of the

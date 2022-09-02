@@ -58,7 +58,10 @@ n
 `x` and `y` are Numpy *arrays*, but we can also call them *vectors*.  Vector is just a technical and mathematical term for a one-dimensional array.
 
 We are on a quest to find why it turned out that the correlation coefficient is
-always the best (least squared error) slope for the z-scored versions of these vectors (1D arrays).  To find out why, we need to be able to be able to express these `x` and `y` vectors in the most general way possible — independent of the numbers we have here.
+always the best (least squared error) slope for the z-scored versions of these
+vectors (1D arrays).  To find out why, we need to express these `x` and `y`
+vectors in the most general way possible — independent of the numbers we have
+here.
 
 $\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}$
 
@@ -82,13 +85,13 @@ $$
 
 ## Writing sums
 
-We are next going to do the z-score transform on $\xvec$ and $\yvec$.  As you remember, this involves subtracting the mean and dividing by the standard deviation.   We need to be able express these mathematically.
+We are next going to do the z-score transform on $\xvec$ and $\yvec$.  As you remember, this involves subtracting the mean and dividing by the standard deviation.   We need to express these mathematically.
 
-To do this we will use [sum
-notation](https://matthew-brett.github.io/teaching/some_sums.html).  This uses
-the symbol $\Sigma$ to mean adding up the values in a vector.  $\Sigma$ is
-capital S in the Greek alphabet.   It is just a shorthand for the operation we
-are used to calling `sum` in code.   So:
+We will use [sum
+notation](https://matthew-brett.github.io/teaching/some_sums.html) for this
+task.  This uses the symbol $\Sigma$ to mean adding up the values in a vector.
+$\Sigma$ is capital S in the Greek alphabet.   It is just a shorthand for the
+operation we are used to calling `sum` in code.   So:
 
 $$
 \Sigma_{i=1}^{n} x_i = x_1 + x_2 + x_3 ... + x_n
@@ -146,30 +149,76 @@ $$
 \ybar = \frac{1}{n} \Sigma y_i
 $$
 
-The standard deviation is the square root of the variance.  The variance is the mean squared deviation.  The deviation for each element is the result of subtracting the mean from the element.  Call the variance $\sigma^2$.  Read this as "sigma squared".  Call the standard deviation $\sigma$.
-
-In code:
+Next we are going to calculate the *standard deviation*.  In order to do that,
+we start with the *deviations*. The deviation for each element is the result of
+subtracting the mean from the element.
 
 ```{python}
 deviations = x - x_bar
-sigma_2 = np.sum(deviations ** 2) / n  # Variance
-sigma = np.sqrt(sigma_2)  # Standard deviation
+deviations
+```
+
+In mathematical notation, we can write the deviations as:
+
+$$
+[x_1 - \xbar, x_2 - \xbar, x_3 - \xbar, ..., x_n - \xbar]
+$$
+
+
+We have the deviations but we want something called the *standard* deviation, a
+measure of how far the typical (standard) value deviates from the mean.
+
+To start, we turn all the deviations to positive values by squaring them.  These are the *squared deviations*:
+
+```{python}
+squared_deviations = deviations ** 2
+squared_deviations
+```
+
+$$
+[(x_1 - \xbar)^2, (x_2 - \xbar)^2, (x_3 - \xbar)^2, ..., (x_n - \xbar)^2]
+$$
+
+We can now get an average *squared deviation*.  We can call this the *mean
+squared deviation*, but we often call this value — the *variance*.
+
+```{python}
+# Variance is the mean squared deviation.
+variance = np.sum(squared_deviations) / n
+variance
+```
+
+$$
+\frac{1}{n} \Sigma (x_i - \xbar)^2
+$$
+
+The *standard deviation* is the square root of the mean squared deviation — the
+square root of the variance. We often write the standard deviation as $\sigma$.
+Read this as "sigma".  $\sigma$ is a small "s" in the Greek alphabet.
+
+
+```{python}
+# Standard deviation
+sigma = np.sqrt(variance)
 sigma
 ```
 
-Here is the calculation of `np.std`:
+These are simple calculations, but Numpy also has a short-cut to do them, called `np.std` (NumPy STandard Deviation):
 
 ```{python}
+# Numpy calculation of the standard deviation.
 np.std(x)
 ```
 
-This is how we write the variance in mathematical notation:
+We often find ourselves writing equations with the standard deviation $\sigma$
+and the variance (mean squared deviation).  Because the variance is the squared
+standard deviation, we usually write the variance as $\sigma^2$:
 
 $$
 \sigma^2 = \frac{1}{n} \Sigma (x_i - \xbar)^2
 $$
 
-Therefore:
+And:
 
 $$
 \sigma = \sqrt{\sigma^2}
@@ -189,9 +238,23 @@ sigma_x = np.std(x)
 sigma_x
 ```
 
+Similarly for $\yvec$:
+
+$$
+\sigma_y^2 = \frac{1}{n} \Sigma (y_i - \ybar)^2 \\
+\sigma_y = \sqrt{\sigma_y^2}
+$$
+
+```{python}
+sigma_y = np.std(y)
+sigma_y
+```
+
 ## The z-score transformation
 
-The z-score transformation is to subtract the mean and divide by the standard deviation:
+The z-score transformation is to subtract the mean and divide by the standard
+deviation.  Put another way, the z-scores are the *deviations* divided by the
+*standard deviation*:
 
 ```{python}
 z_x = (x - x_bar) / sigma_x
