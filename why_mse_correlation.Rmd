@@ -262,7 +262,7 @@ z_x
 ```
 
 ```{python}
-z_y = (y - np.mean(y)) / np.std(y)
+z_y = (y - np.mean(y)) / sigma_y
 z_y
 ```
 
