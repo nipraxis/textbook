@@ -1124,6 +1124,19 @@ definition of the mean is:</p>
 \[
 \ybar = \frac{1}{n} \Sigma y_i
 \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">y_bar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.301833333333333
+</pre></div>
+</div>
+</div>
+</div>
 <p>Next we are going to calculate the <em>standard deviation</em>.  In order to do that,
 we start with the <em>deviations</em>. The deviation for each element is the result of
 subtracting the mean from the element.</p>
@@ -1292,7 +1305,7 @@ deviation.  Put another way, the z-scores are the <em>deviations</em> divided by
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">/</span> <span class="n">sigma_y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma_y</span>
 <span class="n">z_y</span>
 </pre></div>
 </div>
@@ -1378,7 +1391,7 @@ vector, slope and intercept:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_38_0.png" src="_images/why_mse_correlation_38_0.png" />
+<img alt="_images/why_mse_correlation_40_0.png" src="_images/why_mse_correlation_40_0.png" />
 </div>
 </div>
 <p>As <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">before</span></a>, it looks as though <span class="math notranslate nohighlight">\(c=0\)</span> is the intercept that
@@ -1399,7 +1412,7 @@ minimizes the SSE, for a slope of 0.6.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_40_0.png" src="_images/why_mse_correlation_40_0.png" />
+<img alt="_images/why_mse_correlation_42_0.png" src="_images/why_mse_correlation_42_0.png" />
 </div>
 </div>
 <p>This suggests that the slope minimizing the SSE is around 0.52, at least, for
@@ -1633,7 +1646,7 @@ that varies with respect to <span class="math notranslate nohighlight">\(b\)</sp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_67_0.png" src="_images/why_mse_correlation_67_0.png" />
+<img alt="_images/why_mse_correlation_69_0.png" src="_images/why_mse_correlation_69_0.png" />
 </div>
 </div>
 <p>We would like to find the slope <span class="math notranslate nohighlight">\(b\)</span> value corresponding to the minimum of the

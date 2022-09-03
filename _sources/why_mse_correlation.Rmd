@@ -149,6 +149,11 @@ $$
 \ybar = \frac{1}{n} \Sigma y_i
 $$
 
+```{python}
+y_bar = np.sum(y) / n
+y_bar
+```
+
 Next we are going to calculate the *standard deviation*.  In order to do that,
 we start with the *deviations*. The deviation for each element is the result of
 subtracting the mean from the element.
@@ -262,7 +267,7 @@ z_x
 ```
 
 ```{python}
-z_y = (y - np.mean(y)) / sigma_y
+z_y = (y - y_bar) / sigma_y
 z_y
 ```
 
