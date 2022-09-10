@@ -1037,7 +1037,7 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6ba43fba00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f35aa6993a0&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
@@ -1397,10 +1397,15 @@ from the estimate is given by <span class="math notranslate nohighlight">\(\Xmat
 will have nothing in them that can still be explained by the design matrix
 <span class="math notranslate nohighlight">\(\Xmat\)</span>. This is the same as saying that, when we have best prediction of the
 data (<span class="math notranslate nohighlight">\(\yhat = \Xmat \bhat\)</span>), the design matrix <span class="math notranslate nohighlight">\(\Xmat\)</span> should be orthogonal
-to the remaining error (<span class="math notranslate nohighlight">\(\yvec - \yhat\)</span>). If the design is orthogonal to the
-errors, then <span class="math notranslate nohighlight">\(\Xmat^T \evec\)</span> should be a vector of zeros.</p>
-<p>If that is the case then we can multiply
-<span class="math notranslate nohighlight">\(\yvec = \Xmat \bhat + \evec\)</span> through by <span class="math notranslate nohighlight">\(\Xmat^T\)</span>:</p>
+to the remaining error (<span class="math notranslate nohighlight">\(\yvec - \yhat\)</span>).</p>
+<p>For those of you who have learned <a class="reference external" href="http://matthew-brett.github.io/teaching/on_vectors.html">about
+vectors</a> in
+mathematics, you may remember that we say that two vectors are <em>orthogonal</em> if
+they have a <em>dot product</em> of zero.</p>
+<p>If the <em>design</em> is orthogonal to the errors, then <span class="math notranslate nohighlight">\(\Xmat^T \evec\)</span> should be a
+vector of zeros.</p>
+<p>If that is the case then we can multiply <span class="math notranslate nohighlight">\(\yvec = \Xmat \bhat + \evec\)</span> through
+by <span class="math notranslate nohighlight">\(\Xmat^T\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \Xmat^T \yvec = \Xmat^T \Xmat \bhat + \Xmat^T \evec
@@ -1416,13 +1421,12 @@ errors, then <span class="math notranslate nohighlight">\(\Xmat^T \evec\)</span>
 \[
 \bhat = (\Xmat^T \Xmat)^{-1} \Xmat^T \yvec
 \]</div>
-<p>It turns out that, if <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is not invertible, there are
-an infinite number of solutions, and we have to choose one solution,
-taking into account that the parameters <span class="math notranslate nohighlight">\(\bhat\)</span> will depend on
-which solution we chose. The <em>pseudoinverse</em> operator gives us one
-particular solution. If <span class="math notranslate nohighlight">\(\bf{A}^+\)</span> is the pseudoinverse of matrix
-<span class="math notranslate nohighlight">\(\bf{A}\)</span> then the general solution for <span class="math notranslate nohighlight">\(\bhat\)</span>, even when
-<span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is not invertible, is:</p>
+<p>It turns out that, if <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is not invertible, there are an infinite
+number of solutions, and we have to choose one solution, taking into account
+that the parameters <span class="math notranslate nohighlight">\(\bhat\)</span> will depend on which solution we chose. The
+<em>pseudoinverse</em> operator gives us one particular solution. If <span class="math notranslate nohighlight">\(\bf{A}^+\)</span> is the
+pseudoinverse of matrix <span class="math notranslate nohighlight">\(\bf{A}\)</span> then the general solution for <span class="math notranslate nohighlight">\(\bhat\)</span>, even
+when <span class="math notranslate nohighlight">\(\Xmat^T \Xmat\)</span> is not invertible, is:</p>
 <div class="math notranslate nohighlight">
 \[
 \bhat = \Xmat^+ \yvec
@@ -1475,7 +1479,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6ba2d11850&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f35a6f19730&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_51_1.png" src="_images/glm_intro_51_1.png" />
