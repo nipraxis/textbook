@@ -415,11 +415,18 @@ We might expect that, when we have found the right $\bhat$ then the errors
 will have nothing in them that can still be explained by the design matrix
 $\Xmat$. This is the same as saying that, when we have best prediction of the
 data ($\yhat = \Xmat \bhat$), the design matrix $\Xmat$ should be orthogonal
-to the remaining error ($\yvec - \yhat$). If the design is orthogonal to the
-errors, then $\Xmat^T \evec$ should be a vector of zeros.
+to the remaining error ($\yvec - \yhat$).
 
-If that is the case then we can multiply
-$\yvec = \Xmat \bhat + \evec$ through by $\Xmat^T$:
+For those of you who have learned [about
+vectors](http://matthew-brett.github.io/teaching/on_vectors.html) in
+mathematics, you may remember that we say that two vectors are *orthogonal* if
+they have a *dot product* of zero.
+
+If the *design* is orthogonal to the errors, then $\Xmat^T \evec$ should be a
+vector of zeros.
+
+If that is the case then we can multiply $\yvec = \Xmat \bhat + \evec$ through
+by $\Xmat^T$:
 
 $$
 \Xmat^T \yvec = \Xmat^T \Xmat \bhat + \Xmat^T \evec
@@ -438,13 +445,12 @@ $$
 \bhat = (\Xmat^T \Xmat)^{-1} \Xmat^T \yvec
 $$
 
-It turns out that, if $\Xmat^T \Xmat$ is not invertible, there are
-an infinite number of solutions, and we have to choose one solution,
-taking into account that the parameters $\bhat$ will depend on
-which solution we chose. The *pseudoinverse* operator gives us one
-particular solution. If $\bf{A}^+$ is the pseudoinverse of matrix
-$\bf{A}$ then the general solution for $\bhat$, even when
-$\Xmat^T \Xmat$ is not invertible, is:
+It turns out that, if $\Xmat^T \Xmat$ is not invertible, there are an infinite
+number of solutions, and we have to choose one solution, taking into account
+that the parameters $\bhat$ will depend on which solution we chose. The
+*pseudoinverse* operator gives us one particular solution. If $\bf{A}^+$ is the
+pseudoinverse of matrix $\bf{A}$ then the general solution for $\bhat$, even
+when $\Xmat^T \Xmat$ is not invertible, is:
 
 $$
 \bhat = \Xmat^+ \yvec
