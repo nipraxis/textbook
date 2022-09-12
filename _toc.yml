@@ -55,6 +55,7 @@ parts:
   - file: convolution_background
   - file: on_regression
   - file: regress_one_voxel
+  - file: regression_notation
   - file: glm_intro
   - file: mean_test_example
   - file: model_one_voxel
