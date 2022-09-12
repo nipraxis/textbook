@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Notes on the Bonferroni threshold &#8212; Practice and theory of brain imaging</title>
+    <title>Notation for regression models &#8212; Practice and theory of brain imaging</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Slice timing correction" href="slice_timing.html" />
-    <link rel="prev" title="Whole-brain t tests and p values" href="whole_image_statistics.html" />
+    <link rel="next" title="Introduction to the general linear model" href="glm_intro.html" />
+    <link rel="prev" title="Regression for a single voxel" href="regress_one_voxel.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -331,8 +331,8 @@ const thebe_selector_output = ".output, .cell_output"
    Regression for a single voxel
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_notation.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Notation for regression models
   </a>
  </li>
@@ -376,8 +376,8 @@ const thebe_selector_output = ".output, .cell_output"
    Whole-brain t tests and p values
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bonferroni_correction.html">
    Notes on the Bonferroni threshold
   </a>
  </li>
@@ -590,7 +590,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/bonferroni_correction.Rmd"
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/regression_notation.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -608,7 +608,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/bonferroni_correction.Rmd&branch=main"
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/regression_notation.Rmd&branch=main"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -626,7 +626,7 @@ title="Launch on JupyterHub"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/bonferroni_correction.Rmd"
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/regression_notation.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -644,7 +644,7 @@ title="Launch on Colab"
       </li>
       
       <li>
-        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fbonferroni_correction.Rmd"
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fregression_notation.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -722,7 +722,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fbonferroni_correction.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fregression_notation.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -750,7 +750,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/bonferroni_correction.Rmd"
+        <a href="_sources/regression_notation.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -810,18 +810,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#family-wise-error">
-   Family-wise error
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#not-the-bonferroni-correction">
-   Not the Bonferroni correction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-bonferroni-correction">
-   The Bonferroni correction
+  <a class="reference internal nav-link" href="#sweaty-palms-dangerous-students">
+   Sweaty palms, dangerous students
   </a>
  </li>
 </ul>
@@ -833,7 +823,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Notes on the Bonferroni threshold</h1>
+                <h1>Notation for regression models</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -844,18 +834,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#family-wise-error">
-   Family-wise error
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#not-the-bonferroni-correction">
-   Not the Bonferroni correction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-bonferroni-correction">
-   The Bonferroni correction
+  <a class="reference internal nav-link" href="#sweaty-palms-dangerous-students">
+   Sweaty palms, dangerous students
   </a>
  </li>
 </ul>
@@ -868,182 +848,278 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="notes-on-the-bonferroni-threshold">
-<h1>Notes on the Bonferroni threshold<a class="headerlink" href="#notes-on-the-bonferroni-threshold" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="notation-for-regression-models">
+<h1>Notation for regression models<a class="headerlink" href="#notation-for-regression-models" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># print to 4 decimal places</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import numerical and plotting libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Only show 6 decimals when printing</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">sps</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The Bonferroni threshold is a family-wise error threshold. That is, it treats
-a set of tests as one <em>family</em>, and the threshold is designed to control the
-probability of detecting <em>any</em> positive tests in the family (set) of tests, if
-the null hypothesis is true.</p>
-<section id="family-wise-error">
-<h2>Family-wise error<a class="headerlink" href="#family-wise-error" title="Permalink to this headline">#</a></h2>
-<p>The Bonferroni correction uses a result from probability theory to
-estimate the probability of finding <em>any</em> p value below a threshold
-<span class="math notranslate nohighlight">\(\theta\)</span>, given a set (family) of <span class="math notranslate nohighlight">\(n\)</span> p values.</p>
-<p>When we have found a threshold <span class="math notranslate nohighlight">\(\theta\)</span> that gives a probability
-<span class="math notranslate nohighlight">\(\le \alpha\)</span> that <em>any</em> p value will be <span class="math notranslate nohighlight">\(\lt \theta\)</span>, then
-the threshold <span class="math notranslate nohighlight">\(\theta\)</span> can be said to control the <em>family-wise
-error rate</em> at level <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
-</section>
-<section id="not-the-bonferroni-correction">
-<h2>Not the Bonferroni correction<a class="headerlink" href="#not-the-bonferroni-correction" title="Permalink to this headline">#</a></h2>
-<p>The inequality used for the Bonferroni is harder to explain than a
-simpler but related correction, called the Šidák correction.</p>
-<p>We will start with that, and then move on to the Bonferroni correction.</p>
-<p>The probability that all <span class="math notranslate nohighlight">\(n\)</span> tests are <em>above</em> p value threshold
-<span class="math notranslate nohighlight">\(\theta\)</span>, <em>assuming tests are independent</em>:</p>
-<div class="math notranslate nohighlight">
-\[
-(1 - \theta)^n
-\]</div>
-<p>Chance that one or more p values are <span class="math notranslate nohighlight">\(\le \theta\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-1 - (1 - \theta)^n
-\]</div>
-<p>We want a uncorrected p value threshold <span class="math notranslate nohighlight">\(\theta\)</span> such that the
-expression above equals some desired family-wise error (FWE) rate
-<span class="math notranslate nohighlight">\(\alpha_{fwe}\)</span>. For example we might want a p value threshold
-<span class="math notranslate nohighlight">\(\theta\)</span> such that there is probability (<span class="math notranslate nohighlight">\(\alpha_{fwe}\)</span>) of
-0.05 that there is one or more test with <span class="math notranslate nohighlight">\(p \le \theta\)</span> in a
-family of <span class="math notranslate nohighlight">\(n\)</span> tests, on the null hypothesis:</p>
-<div class="math notranslate nohighlight">
-\[
-\alpha_{fwe} = 1 - (1 - \theta)^n
-\]</div>
-<p>Solve for <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-\theta = 1 - (1 - \alpha_{fwe})^{1 / n}
-\]</div>
-<p>So, if we have 10 tests, and we want the threshold <span class="math notranslate nohighlight">\(\theta\)</span> to
-control <span class="math notranslate nohighlight">\(\alpha_{fwe}\)</span> at <span class="math notranslate nohighlight">\(0.05\)</span>:</p>
+<p>This page starts with the model for simple regression, that you have already
+see in the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">regression page</span></a>.</p>
+<p>Our purpose is to introduce the <em>mathematical notation</em> for regression models.
+You will need this notation to understand the <a class="reference internal" href="glm_intro.html"><span class="doc std std-doc">General Linear Model
+(GLM)</span></a>, a standard statistical generalization of <em>multiple
+regression</em>.  The GLM is the standard model for statistical analysis of
+functional imaging data.</p>
+<section id="sweaty-palms-dangerous-students">
+<h2>Sweaty palms, dangerous students<a class="headerlink" href="#sweaty-palms-dangerous-students" title="Permalink to this headline">#</a></h2>
+<p>You have already seen the data we are using here, in the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">regression
+page</span></a>.</p>
+<p>We have measured scores for a “psychopathy” personality trait in 12 students.
+We also measured how much sweat each student had on their palms, and we call
+this a “clammy” score.  We are looking for a straight-line (linear)
+relationship that allows us to use the “clammy” score to predict the
+“psychopathy” score.</p>
+<p>Here are our particular “psychopathy” and “clammy” scores as arrays:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sidak_thresh</span><span class="p">(</span><span class="n">alpha_fwe</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_fwe</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The values we are trying to predict.</span>
+<span class="n">psychopathy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="mf">11.416</span><span class="p">,</span>   <span class="mf">4.514</span><span class="p">,</span>  <span class="mf">12.204</span><span class="p">,</span>  <span class="mf">14.835</span><span class="p">,</span>
+      <span class="mf">8.416</span><span class="p">,</span>   <span class="mf">6.563</span><span class="p">,</span>  <span class="mf">17.343</span><span class="p">,</span>  <span class="mf">13.02</span><span class="p">,</span>
+     <span class="mf">15.19</span> <span class="p">,</span>  <span class="mf">11.902</span><span class="p">,</span>  <span class="mf">22.721</span><span class="p">,</span>  <span class="mf">22.324</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">sidak_thresh</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># The values we will predict with.</span>
+<span class="n">clammy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="mf">0.389</span><span class="p">,</span>  <span class="mf">0.2</span>  <span class="p">,</span>  <span class="mf">0.241</span><span class="p">,</span>  <span class="mf">0.463</span><span class="p">,</span>
+     <span class="mf">4.585</span><span class="p">,</span>  <span class="mf">1.097</span><span class="p">,</span>  <span class="mf">1.642</span><span class="p">,</span>  <span class="mf">4.972</span><span class="p">,</span>
+     <span class="mf">7.957</span><span class="p">,</span>  <span class="mf">5.585</span><span class="p">,</span>  <span class="mf">5.527</span><span class="p">,</span>  <span class="mf">6.964</span><span class="p">])</span>
+
+<span class="c1"># The number of values</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clammy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a plot of the two variables, with <code class="docutils literal notranslate"><span class="pre">clammy</span></code> on the x-axis and
+<code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> on the y-axis.  We could refer to this plot as “psychopathy” <em>as
+a function of</em> “clammy”, where “clammy” is on the x-axis.  By convention we put
+the predictor on the x-axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clammy</span><span class="p">,</span> <span class="n">psychopathy</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Clamminess of handshake&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Psychopathy score&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.005116196891823743
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Psychopathy score&#39;)
+</pre></div>
+</div>
+<img alt="_images/regression_notation_6_1.png" src="_images/regression_notation_6_1.png" />
+</div>
+</div>
+<p>We will call the sequence of 12 “clammy” scores — the “clammy” <em>variable</em> or
+<em>vector</em>.  A vector is a sequence of values — in this case the sequence of 12
+“clammy” scores, one for each student.  Similarly, we have a “psychopathy”
+vector of 12 values.</p>
+<p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}\)</span></p>
+<p>We could call the “clammy” vector a <em>predictor</em>, but other names for a
+predicting vector are <em>regressor</em>, <em>covariate</em>, <em>explanatory variable</em>,
+<em>independent variable</em> or <em>exogenous</em> variable.  We also often use the
+mathematical notation <span class="math notranslate nohighlight">\(\xvec\)</span> to refer to a predicting vector.  The arrow over
+the top of <span class="math notranslate nohighlight">\(\xvec\)</span> reminds us that <span class="math notranslate nohighlight">\(\xvec\)</span> refers to a vector (array, sequence)
+of values, rather than a single value.</p>
+<p>Just to remind us, let’s give the name <code class="docutils literal notranslate"><span class="pre">x</span></code> to the array (vector) of predicting values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">clammy</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="the-bonferroni-correction">
-<h2>The Bonferroni correction<a class="headerlink" href="#the-bonferroni-correction" title="Permalink to this headline">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\newcommand{\P}{\mathbb P}\)</span> The Bonferroni correction uses a
-result from probability theory, called Boole’s inequality. The result is
-by George Boole, of <em>Boolean</em> fame. Boole’s inequality applies to the
-situation where we have a set of events <span class="math notranslate nohighlight">\(A_1, A_2, A_3, \ldots \)</span>, each
-with some probability of occurring <span class="math notranslate nohighlight">\({P}(A_1), {P}(A_2), {P}(A_3) \ldots
-\)</span>. The inequality states that the probability of one or more of these
-events occurring is no greater than the sum of the probabilities of the
-individual events:</p>
-<div class="math notranslate nohighlight">
-\[
-\P\biggl(\bigcup_{i} A_i\biggr) \le \sum_i {\mathbb P}(A_i).
-\]</div>
-<p>You can read the <span class="math notranslate nohighlight">\(\cup\)</span> symbol here as “or” or “union”.
-<span class="math notranslate nohighlight">\(\P\biggl(\bigcup_{i} A_i\biggr)\)</span> is the probability of the
-<em>union</em> of all events, and therefore the probability of one or more
-event occurring.</p>
-<p>Boole’s inequality is true because:</p>
-<div class="math notranslate nohighlight">
-\[
-\P(A \cup B) = P(A) + P(B) - P(A \cap B)
-\]</div>
-<p>where you can read <span class="math notranslate nohighlight">\(\cap\)</span> as “and” or “intersection”. Because
-<span class="math notranslate nohighlight">\(P(A \cap B) \ge 0\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-\P(A \cup B) \le P(A) + P(B)
-\]</div>
-<p>In our case we have <span class="math notranslate nohighlight">\(n\)</span> tests (the family of tests). Each test
-that we label as significant is an event. Therefore the sum of the
-probabilities of all possible events is <span class="math notranslate nohighlight">\(n\theta\)</span>.
-<span class="math notranslate nohighlight">\({\mathbb P}\biggl(\bigcup_{i} A_i\biggr)\)</span> is our probability of
-family-wise error <span class="math notranslate nohighlight">\(\alpha_{fwe}\)</span>. To get a threshold
-<span class="math notranslate nohighlight">\(\theta\)</span> that controls family-wise error at <span class="math notranslate nohighlight">\(\alpha\)</span>, we
-need:</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{\alpha_{fwe}}{n} \le \theta
-\]</div>
-<p>For <span class="math notranslate nohighlight">\(n=10\)</span> tests and an <span class="math notranslate nohighlight">\(\alpha_{fwe}\)</span> of 0.05:</p>
+<p>We could call the vector we are trying to predict the <em>predicted variable</em>,
+<em>response variable</em>, <em>regressand</em>, <em>dependent variable</em> or <em>endogenous</em>
+variable. We also often use the mathematical notation <span class="math notranslate nohighlight">\(\yvec\)</span> to refer to a
+predicted vector.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bonferroni_thresh</span><span class="p">(</span><span class="n">alpha_fwe</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">alpha_fwe</span> <span class="o">/</span> <span class="n">n</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">psychopathy</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>You have already seen the best (minimal mean square error) line that relates
+the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> (<code class="docutils literal notranslate"><span class="pre">x</span></code>) scores to the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> (<code class="docutils literal notranslate"><span class="pre">y</span></code>) scores.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bonferroni_thresh</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">res</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.005
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=0.9992572262138825, intercept=10.071285848579462, rvalue=0.5178777312914014, pvalue=0.0845895203804765, stderr=0.5219718130218388, intercept_stderr=2.2534509778472835)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The Bonferroni correction does not assume the tests are independent.</p>
-<p>As we have seen, Boole’s inequality relies on:</p>
+<p>Call the slope of the line <code class="docutils literal notranslate"><span class="pre">b</span></code> and the intercept <code class="docutils literal notranslate"><span class="pre">c</span></code> (C for Constant).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">slope</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">intercept</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember, our predicted or <em>fitted</em> values are given by multiplying the <code class="docutils literal notranslate"><span class="pre">x</span></code>
+(<code class="docutils literal notranslate"><span class="pre">clammy</span></code>) values by <code class="docutils literal notranslate"><span class="pre">b</span></code> (the slope) and then adding <code class="docutils literal notranslate"><span class="pre">c</span></code> (the intercept).  In
+Numpy that looks like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+<span class="n">fitted</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.459997, 10.271137, 10.312107, 10.533942, 14.65288 , 11.167471,
+       11.712066, 15.039593, 18.022376, 15.652137, 15.594181, 17.030113])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <em>errors</em> are the differences between the <em>fitted</em> and <em>actual</em> (<code class="docutils literal notranslate"><span class="pre">y</span></code>) values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">errors</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">fitted</span>
+<span class="n">errors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.956003, -5.757137,  1.891893,  4.301058, -6.23688 , -4.604471,
+        5.630934, -2.019593, -2.832376, -3.750137,  7.126819,  5.293887])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The dashed lines in the plot below represent the <em>errors</em>.  The <code class="docutils literal notranslate"><span class="pre">errors</span></code> values
+above represent the (positive and negative) lengths of these dashed lines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual values&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the predicted values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fitted</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Values predicted from line&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the distance between predicted and actual, for all points.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="p">[</span><span class="n">fitted</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8e17d1c310&gt;
+</pre></div>
+</div>
+<img alt="_images/regression_notation_20_1.png" src="_images/regression_notation_20_1.png" />
+</div>
+</div>
+<p>Our next step is to write out this model more generally and more formally in
+mathematical symbols, so we can think about <em>any</em> vector (sequence) of x values
+<span class="math notranslate nohighlight">\(\xvec\)</span>, and any sequence (vector) of matching y values <span class="math notranslate nohighlight">\(\yvec\)</span>.  But to start
+with, let’s think about the actual set of values we have for <span class="math notranslate nohighlight">\(\xvec\)</span>.  We could
+write the actual values in mathematical notation as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\P(A \cup B) = P(A) + P(B) - P(A \cap B) \implies \\
-\P(A \cup B) \le P(A) + P(B)
+$\xvec = [ 0.389,  0.2  ,  0.241,  0.463, \\
+     4.585,  1.097,  1.642,  4.972, \\
+     7.957,  5.585,  5.527,  6.964 ]
 \end{split}\]</div>
-<p>This means that the Bonferroni correction will be conservative (the
-threshold will be too low) when the tests are positively dependent
-(<span class="math notranslate nohighlight">\(P(A \cap B) \gg 0\)</span>).</p>
-<p>The Bonferroni <span class="math notranslate nohighlight">\(\theta_{Bonferroni} = \alpha_{fwe} \space / \space n\)</span> is
-always smaller (more conservative) than the Šidák correction <span class="math notranslate nohighlight">\(\theta_{Šidák}\)</span>
-for <span class="math notranslate nohighlight">\(n \ge 1\)</span>, but it is close:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_tests</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>  <span class="c1"># n = 1 through 10</span>
-<span class="c1"># The exact threshold for independent p values</span>
-<span class="n">sidak_thresh</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_tests</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.05  , 0.0253, 0.017 , 0.0127, 0.0102, 0.0085, 0.0073, 0.0064,
-       0.0057, 0.0051])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The Bonferroni threshold for the same alpha, n</span>
-<span class="n">bonferroni_thresh</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_tests</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.05  , 0.025 , 0.0167, 0.0125, 0.01  , 0.0083, 0.0071, 0.0063,
-       0.0056, 0.005 ])
-</pre></div>
-</div>
-</div>
-</div>
+<p>This means that <span class="math notranslate nohighlight">\(\xvec\)</span> is a sequence of these specific 12 values.  But we
+could write <span class="math notranslate nohighlight">\(\xvec\)</span> in a more general way, to be <em>any</em> 12 values, like this:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\xvec = [ x_1, x_2, x_3, x_4, x_5, x_6,\\
+           x_7, x_8, x_9, x_{10}, x_{11}, x_{12} ]
+\end{split}\]</div>
+<p>This means that <span class="math notranslate nohighlight">\(\xvec\)</span> consists of 12 numbers, <span class="math notranslate nohighlight">\(x_1, x_2 ..., x_{12}\)</span>, where
+<span class="math notranslate nohighlight">\(x_1\)</span> can be any number, <span class="math notranslate nohighlight">\(x_2\)</span> can be any number, and so on.</p>
+<p><span class="math notranslate nohighlight">\(x_1\)</span> is the value for the first student, <span class="math notranslate nohighlight">\(x_2\)</span> is the value for the second student, and so on.</p>
+<p>In our <em>particular case</em>, <span class="math notranslate nohighlight">\(x_1 = 0.389,  x_2 = 0.2\)</span> and so on.</p>
+<p>We can make <span class="math notranslate nohighlight">\(\xvec\)</span> be even more general, by writing it like this:</p>
+<div class="math notranslate nohighlight">
+\[
+\xvec = [ x_1, x_2, ..., x_{n} ]
+\]</div>
+<p>This means that <span class="math notranslate nohighlight">\(\xvec\)</span> is a sequence of any <span class="math notranslate nohighlight">\(n\)</span> numbers, where <span class="math notranslate nohighlight">\(n\)</span> can be any
+whole number, such as 1, 2, 3 …  In our specific case, <span class="math notranslate nohighlight">\(n = 12\)</span>.</p>
+<p>Similarly, for our <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> (<span class="math notranslate nohighlight">\(\yvec\)</span>) values, we can write:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\yvec = [ 11.416,   4.514,  12.204,  14.835, \\
+8.416,   6.563,  17.343,  13.02, \\
+15.19 ,  11.902,  22.721,  22.324 ]
+\end{split}\]</div>
+<p>More generally we can write a vector of any <span class="math notranslate nohighlight">\(n\)</span> numbers as:</p>
+<div class="math notranslate nohighlight">
+\[
+\yvec = [ y_1, y_2, ..., y_{n} ]
+\]</div>
+<p>If we have <span class="math notranslate nohighlight">\(n\)</span> values in <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span> then we have <span class="math notranslate nohighlight">\(n\)</span> <em>fitted</em> values.  The fitted value for the first student as <span class="math notranslate nohighlight">\(f_1\)</span>, that for the second as <span class="math notranslate nohighlight">\(f_2\)</span> and so on:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{f} = [ f_1, f_2, ..., f_n ]
+\]</div>
+<p>Our regression model says each fitted value comes about by multiplying the corresponding <span class="math notranslate nohighlight">\(x\)</span> value by <span class="math notranslate nohighlight">\(b\)</span> (the slope) and then adding <span class="math notranslate nohighlight">\(c\)</span> (the intercept).</p>
+<p>So, the fitted values are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_1 = b x_1 + c \\
+f_2 = b x_2 + c \\
+... \\
+f_n = b x_n + c
+\end{split}\]</div>
+<p>More compactly:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{f} = [ b x_1 + c, b x_2 + c, ..., b x_n + c ]
+\]</div>
+<p>We often use <span class="math notranslate nohighlight">\(i\)</span> as a general <em>index</em> into the vectors.  So, instead of writing:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_1 = b x_1 + c \\
+f_2 = b x_2 + c \\
+... \\
+f_n = b x_n + c
+\end{split}\]</div>
+<p>we use <span class="math notranslate nohighlight">\(i\)</span> to mean any whole number from 1 through <span class="math notranslate nohighlight">\(n\)</span>, and so:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_i = b x_i + c \\
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(i \in [ 1, 2, ... n]\)</span>.  Read <span class="math notranslate nohighlight">\(\in\)</span> as “in”.</p>
+<p>We mean here, that for any whole number <span class="math notranslate nohighlight">\(i\)</span> from 1 through <span class="math notranslate nohighlight">\(n\)</span>, the fitted
+value <span class="math notranslate nohighlight">\(f_i\)</span> (e.g. <span class="math notranslate nohighlight">\(f_3\)</span>, where <span class="math notranslate nohighlight">\(i=3\)</span>) is given by <span class="math notranslate nohighlight">\(b\)</span> times the corresponding
+<span class="math notranslate nohighlight">\(x\)</span> value (<span class="math notranslate nohighlight">\(x_3\)</span> where <span class="math notranslate nohighlight">\(i=3\)</span>) plus <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<p>The error vector <span class="math notranslate nohighlight">\(\vec{e}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{e} = [ e_2, e_2, ..., e_n ]
+\]</div>
+<p>For our linear model, the errors are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vec{e} = [ y_1 - f_1, y_2 - f_2, ..., y_n - f_n ] \\
+= [ y_1 - (b x_1 + c), y_2 - (b x_2 + c), ..., y_n - (b x_n + c) ] \\
+\end{split}\]</div>
+<p>Again, we could also write this same idea with the general index <span class="math notranslate nohighlight">\(i\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[
+e_i = y_i - (b x_i + c)
+\]</div>
 </section>
 </section>
 
@@ -1074,17 +1150,17 @@ for <span class="math notranslate nohighlight">\(n \ge 1\)</span>, but it is clo
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="whole_image_statistics.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="regress_one_voxel.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Whole-brain t tests and p values</p>
+            <p class="prev-next-title">Regression for a single voxel</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="slice_timing.html" title="next page">
+    <a class='right-next' id="next-link" href="glm_intro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Slice timing correction</p>
+        <p class="prev-next-title">Introduction to the general linear model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

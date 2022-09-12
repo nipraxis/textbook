@@ -16,12 +16,13 @@ jupyter:
 
 # Introducing regression
 
-These are some notes on simple regression, multiple regression, and the general
-linear model.
+These are some notes to introduce simple regression.
 
 ## The example regression problem
 
-[So far](voxels_by_time.Rmd) we have been looking at the relationship between a neural predictor and a voxel time course.  We have thus far used *correlation* to look for a relationship.
+[So far](voxels_by_time.Rmd) we have been looking at the relationship between a
+neural predictor and a voxel time course.  We have thus far used *correlation*
+to look for a relationship.
 
 To make things simpler, for illustration, lets look the relationship between
 two short example arrays.  We will get back to the voxel and predictor problem

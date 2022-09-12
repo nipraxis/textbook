@@ -332,6 +332,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regression_notation.html">
+   Notation for regression models
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="glm_intro.html">
    Introduction to the general linear model
   </a>
@@ -925,11 +930,12 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="introducing-regression">
 <h1>Introducing regression<a class="headerlink" href="#introducing-regression" title="Permalink to this headline">#</a></h1>
-<p>These are some notes on simple regression, multiple regression, and the general
-linear model.</p>
+<p>These are some notes to introduce simple regression.</p>
 <section id="the-example-regression-problem">
 <h2>The example regression problem<a class="headerlink" href="#the-example-regression-problem" title="Permalink to this headline">#</a></h2>
-<p><a class="reference internal" href="voxels_by_time.html"><span class="doc std std-doc">So far</span></a> we have been looking at the relationship between a neural predictor and a voxel time course.  We have thus far used <em>correlation</em> to look for a relationship.</p>
+<p><a class="reference internal" href="voxels_by_time.html"><span class="doc std std-doc">So far</span></a> we have been looking at the relationship between a
+neural predictor and a voxel time course.  We have thus far used <em>correlation</em>
+to look for a relationship.</p>
 <p>To make things simpler, for illustration, lets look the relationship between
 two short example arrays.  We will get back to the voxel and predictor problem
 later.</p>
@@ -1059,7 +1065,7 @@ and slope <span class="math notranslate nohighlight">\(0.9\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd641101a60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d069f9d0&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_17_1.png" src="_images/on_regression_17_1.png" />
@@ -1372,7 +1378,7 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd640f042e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d04a03d0&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_58_1.png" src="_images/on_regression_58_1.png" />
@@ -1405,7 +1411,7 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd641038a90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d057f640&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_61_1.png" src="_images/on_regression_61_1.png" />
@@ -1682,7 +1688,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd640d83940&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d0316700&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_93_1.png" src="_images/on_regression_93_1.png" />
@@ -1828,7 +1834,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd640a9e880&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa4d003f730&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_regression_111_1.png" src="_images/on_regression_111_1.png" />
@@ -1875,7 +1881,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd640b83850&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa4d01222b0&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_regression_115_1.png" src="_images/on_regression_115_1.png" />

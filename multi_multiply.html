@@ -330,6 +330,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="regression_notation.html">
+   Notation for regression models
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="glm_intro.html">
    Introduction to the general linear model
   </a>
@@ -827,7 +832,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f0895de4c10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f04b13e1b80&gt;
 </pre></div>
 </div>
 <img alt="_images/multi_multiply_2_1.png" src="_images/multi_multiply_2_1.png" />
@@ -877,8 +882,8 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.88, -0.36, -0.11,  0.67,  0.59,  0.05,  1.18, -1.48,  0.53,
-       -0.25,  0.01,  2.09])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.52,  1.53,  1.5 ,  1.45,  0.19, -0.17, -0.19, -0.87,  0.94,
+        0.42, -0.94,  0.64])
 </pre></div>
 </div>
 </div>
@@ -891,7 +896,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.19, 0.32])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.66,  0.42])
 </pre></div>
 </div>
 </div>
@@ -905,8 +910,8 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.44,  0.74, -0.07, -1.22,  0.72,  0.69, -0.07,  0.84,  2.11,
-        0.48,  0.98, -0.18])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.16, -0.24,  0.77, -0.82,  1.53, -1.52, -0.12,  0.09,  0.33,
+       -0.09, -0.15,  0.01])
 </pre></div>
 </div>
 </div>
@@ -919,7 +924,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.48, 0.38])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.01, -0.03])
 </pre></div>
 </div>
 </div>
@@ -934,7 +939,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.41, -0.77])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.69, 0.47])
 </pre></div>
 </div>
 </div>
@@ -950,18 +955,18 @@ to these three sets of data with the one single matrix multiply:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.88, -0.44, -0.52],
-       [-0.36,  0.74,  0.07],
-       [-0.11, -0.07, -1.69],
-       [ 0.67, -1.22, -1.93],
-       [ 0.59,  0.72, -1.95],
-       [ 0.05,  0.69, -0.82],
-       [ 1.18, -0.07, -1.78],
-       [-1.48,  0.84,  0.73],
-       [ 0.53,  2.11,  0.13],
-       [-0.25,  0.48, -0.76],
-       [ 0.01,  0.98, -0.05],
-       [ 2.09, -0.18, -0.65]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.52, -0.16, -1.18],
+       [ 1.53, -0.24,  0.09],
+       [ 1.5 ,  0.77,  0.4 ],
+       [ 1.45, -0.82, -0.3 ],
+       [ 0.19,  1.53,  1.48],
+       [-0.17, -1.52,  0.08],
+       [-0.19, -0.12,  0.6 ],
+       [-0.87,  0.09,  0.74],
+       [ 0.94,  0.33,  1.06],
+       [ 0.42, -0.09,  1.52],
+       [-0.94, -0.15,  0.74],
+       [ 0.64,  0.01,  0.39]])
 </pre></div>
 </div>
 </div>
@@ -974,8 +979,8 @@ to these three sets of data with the one single matrix multiply:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.19,  0.48,  0.41],
-       [ 0.32,  0.38, -0.77]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.66, -0.01,  0.69],
+       [ 0.42, -0.03,  0.47]])
 </pre></div>
 </div>
 </div>
