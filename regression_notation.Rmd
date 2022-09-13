@@ -81,6 +81,8 @@ We will call the sequence of 12 "clammy" scores — the "clammy" *variable* or
 "clammy" scores, one for each student.  Similarly, we have a "psychopathy"
 vector of 12 values.
 
+## x, y, slope and intercept
+
 $\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}$
 
 We could call the "clammy" vector a *predictor*, but other names for a
@@ -120,6 +122,8 @@ b = res.slope
 c = res.intercept
 ```
 
+## Fitted values and errors
+
 Remember, our predicted or *fitted* values are given by multiplying the `x`
 (`clammy`) values by `b` (the slope) and then adding `c` (the intercept).  In
 Numpy that looks like this:
@@ -149,6 +153,8 @@ for i in range(n):
     plt.plot([x[i], x[i]], [fitted[i], y[i]], 'k:')
 plt.legend()
 ```
+
+## Mathematical notation
 
 Our next step is to write out this model more generally and more formally in
 mathematical symbols, so we can think about *any* vector (sequence) of x values
@@ -238,7 +244,8 @@ $$
 f_i = b x_i + c \\
 $$
 
-where $i \in [ 1, 2, ... n]$.  Read $\in$ as "in".
+where $i \in [ 1, 2, ... n]$.  Read $\in$ as "in", and the whole phrase in the
+last sentence as "Where $i$ can take any value from 1 through $n$ inclusive".
 
 We mean here, that for any whole number $i$ from 1 through $n$, the fitted
 value $f_i$ (e.g. $f_3$, where $i=3$) is given by $b$ times the corresponding
@@ -262,3 +269,35 @@ Again, we could also write this same idea with the general index $i$ as:
 $$
 e_i = y_i - (b x_i + c)
 $$
+
+
+## The regression model
+
+Our straight line model says that the $y_i$ values are approximately predicted
+by the fitted values $f_i = b x_i + c$.
+
+$$
+y_i \approx bx_i + c
+$$
+
+Read $\approx$ above as *approximately equal to*.
+
+With the $\approx$, we are accepting that we will not succeed in explaining our
+psychopathy values exactly. We can rephrase this by saying that each
+observation is equal to the predicted value (from the formula above) plus the
+remaining error for each observation:
+
+$$
+y_i = bx_i + c + e_i
+$$
+
+Of course this must be true for our calculated errors because we calculated
+them with:
+
+$$
+e_i = y_i - (b x_i + c)
+$$
+
+```{python}
+assert np.allclose(y, b * x + c + errors)
+```

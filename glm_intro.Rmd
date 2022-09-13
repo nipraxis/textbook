@@ -29,25 +29,27 @@ import matplotlib.pyplot as plt
 np.set_printoptions(precision=6)
 ```
 
-This page starts with the model for simple regression, that you have already see in the [regression page](on_regression.Rmd).
-We then show how the simple regression gets expressed in a *design matrix*.
-Once we have that, it’s easy to extend simple regression to multiple
-regression. By adding some specially formed regressors, we can also express
-group membership, and therefore do ANalysis Of VAriance (ANOVA). This last
-step is where multiple regression becomes the General Linear Model (GLM).
+This page starts with the model for simple regression, that you have already
+seen in the [regression page](on_regression.Rmd), and in [regression
+notation](regression_notation.Rmd). We then show how the simple regression gets
+expressed in a *design matrix*. Once we have that, it’s easy to extend simple
+regression to multiple regression. By adding some specially formed regressors,
+we can also express group membership, and therefore do ANalysis Of VAriance
+(ANOVA). This last step is where multiple regression becomes the General Linear
+Model (GLM).
+
 
 ## Simple regression
+
 
 You have already seen this problem in the [regression
 page](on_regression.Rmd).
 
-Image we have measured scores for a “psychopathy” personality trait in 12
-students. We also have some other information about these students. For
-example, we measured how much sweat each student had on their palms, and we
-call this a “clammy” score.  We will look for a straight-line (linear)
-relationship between the “clammy” score (our predictor or regressor or
-covariate or independent variable) and the “psychopathy” score (our dependent
-variable).
+We have measured scores for a “psychopathy” personality trait in 12
+students. We also measured how much sweat each student had on their palms, and
+we call this a “clammy” score.  We will look for a straight-line (linear)
+relationship between the “clammy” score (our *predictor* or *regressor*) and
+the “psychopathy” score (our *predicted* variable).
 
 
 ```{python}
@@ -73,7 +75,8 @@ plt.xlabel('Clamminess of handshake')
 plt.ylabel('Psychopathy score')
 ```
 
-You have already seen a preliminary guess we made at a straight line that links the `clammy` scores to the `psychopathy` scores.  Our guess was:
+You have already seen a preliminary guess we made at a straight line that links
+the `clammy` scores to the `psychopathy` scores.  Our guess was:
 
 ```{python}
 guessed_slope = 0.9
@@ -82,18 +85,10 @@ guessed_intercept = 10
 
 We use this line to *predict* the `psychopathy` scores from the `clammy` scores.
 
-What does our straight line relationship mean?
-
-We are saying that the values of `psychopathy` can be partly predicted by
-a straight line of formula `0.9 * clammy + 10`.
-
-
 ```{python}
 predicted_psychopathy = guessed_slope * clammy + guessed_intercept
 predicted_psychopathy
 ```
-
-Here are the data and our predictions from the guessed line.
 
 ```{python}
 # Plot the data and the predictions
@@ -105,13 +100,13 @@ plt.title('Clammy vs psychopathy with guessed line')
 plt.legend()
 ```
 
-Our next step is to write out this model more formally in mathematical
-symbols.
+As you saw in [regresssion notation](regression_notation.Rmd), we can write out
+this model more formally and more generally in mathematical symbols.
 
 $\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}$
 
-To make this more general, let’s call our `psychopathy` data
-$\yvec$ - a *vector* with 12 values, one for each student.   A *vector* is just a sequence of values.
+We write our `y` (`psychopathy`) data $\yvec$ — a vector with 12 values, one
+for each student.
 
 $y_1$ is the value for the first student (= 11.416) and $y_i$ is the value for
 student $i$ where $i \in 1 .. 12$:
@@ -133,10 +128,9 @@ sy_y_val = Matrix([sy_y_ind[i] for i in vector_indices])
 Eq(sy_y, Eq(sy_y_val, Matrix(psychopathy)), evaluate=False)
 ```
 
-Our `clammy` score is a *predictor*. Lets call the clammy scores $\xvec$.
+`x` (the `clammy` score) is a *predictor*. Lets call the clammy scores $\xvec$.
 $\xvec$ is another vector with 12 values. $x_1$ is the value for the first
-student (= 0.389) and $x_i$ is the value for student $i$ where $i \in 1 ..
-12$.
+student (= 0.389) and $x_i$ is the value for student $i$ where $i \in 1 .. 12$.
 
 ```{python tags=c("hide-input")}
 # Ignore this cell - it is to give a better display to the mathematics.
@@ -146,19 +140,8 @@ sy_x_val = Matrix([sy_x_ind[i] for i in vector_indices])
 Eq(sy_x, Eq(sy_x_val, Matrix(clammy)), evaluate=False)
 ```
 
-Our straight line model says:
-
-$y_i \approx bx_i + c$
-
-$\approx$ above means *approximately equal to*, $b$ is the slope and $c$ is
-the intercept. For the guessed line above:
-
-$y_i \approx 0.9 x_i + 10$
-
-With the $\approx$, we are accepting that we will not succeed in explaining
-our psychopathy values exactly. We can rephrase this by saying that each
-observation is equal to the predicted value (from the formula above) plus some
-error for each observation:
+In [regression notation](regression_notation.Rmd), we wrote our straight line
+model as:
 
 $y_i = bx_i + c + e_i$
 
