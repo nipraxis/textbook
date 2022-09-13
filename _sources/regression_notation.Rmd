@@ -255,7 +255,7 @@ $x$ value ($x_3$ where $i=3$) plus $c$.
 The error vector $\vec{e}$ is:
 
 $$
-\vec{e} = [ e_2, e_2, ..., e_n ]
+\vec{e} = [ e_1, e_2, ..., e_n ]
 $$
 
 For our linear model, the errors are:
