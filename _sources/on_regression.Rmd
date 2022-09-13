@@ -82,12 +82,14 @@ plt.xlabel('Clamminess of handshake')
 plt.ylabel('Psychopathy score')
 ```
 
-It looks like there may be some sort of straight line relationship.  We can define any line by specifying the:
+It looks like there may be some sort of straight line relationship.  We can
+define any line by specifying the:
 
 * Intercept and the
 * Slope
 
-The intercept is the y-axis value where the line crosses the y-axis.  Put another way, it is the value for y when x==0.
+The intercept is the y-axis value where the line crosses the y-axis.  Put
+another way, it is the value for y when x==0.
 
 
 Let's give `clammy` the name `x` and `psychopathy` the name `y`, to match the terminology.
@@ -97,9 +99,15 @@ x = clammy
 y = psychopathy
 ```
 
+What does our straight line relationship mean?
+
+We are saying that the values of `y` (`psychopathy`) can be partly predicted by
+a straight line of formula `0.9 * x + 10` (remember, `x` is `clammy`).
+
 The slope is change in the number of units in y, for every one unit change in
 x.  We can check this anywhere on the line, but one easy way to get the slope
-is to subtract the y value at x == 0 from the y value at x == 1.  This is, by definition, the number of units increase in y, for a one unit increase in x.
+is to subtract the y value at x == 0 from the y value at x == 1.  This is, by
+definition, the number of units increase in y, for a one unit increase in x.
 
 We could try guessing at a line to fit the data. Let’s try an intercept of $10$
 and slope $0.9$.
@@ -136,7 +144,8 @@ Our job is to look for a number to evaluate the line, compared to other lines.
 We want a number that is *low* when the line is good, and *high* when the line
 is bad.
 
-If the line is good, then it makes good *predictions*.  A good prediction is close to the value is it trying to predict.
+If the line is good, then it makes good *predictions*.  A good prediction is
+close to the value is it trying to predict.
 
 In this case the line is trying to predict 12 y values.
 

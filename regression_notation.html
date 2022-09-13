@@ -814,6 +814,26 @@ title="Print to PDF"
    Sweaty palms, dangerous students
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#x-y-slope-and-intercept">
+   x, y, slope and intercept
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitted-values-and-errors">
+   Fitted values and errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mathematical-notation">
+   Mathematical notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-regression-model">
+   The regression model
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -836,6 +856,26 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sweaty-palms-dangerous-students">
    Sweaty palms, dangerous students
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#x-y-slope-and-intercept">
+   x, y, slope and intercept
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitted-values-and-errors">
+   Fitted values and errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mathematical-notation">
+   Mathematical notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-regression-model">
+   The regression model
   </a>
  </li>
 </ul>
@@ -923,6 +963,9 @@ the predictor on the x-axis.</p>
 <em>vector</em>.  A vector is a sequence of values — in this case the sequence of 12
 “clammy” scores, one for each student.  Similarly, we have a “psychopathy”
 vector of 12 values.</p>
+</section>
+<section id="x-y-slope-and-intercept">
+<h2>x, y, slope and intercept<a class="headerlink" href="#x-y-slope-and-intercept" title="Permalink to this headline">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}\)</span></p>
 <p>We could call the “clammy” vector a <em>predictor</em>, but other names for a
 predicting vector are <em>regressor</em>, <em>covariate</em>, <em>explanatory variable</em>,
@@ -973,6 +1016,9 @@ the <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 </div>
+</section>
+<section id="fitted-values-and-errors">
+<h2>Fitted values and errors<a class="headerlink" href="#fitted-values-and-errors" title="Permalink to this headline">#</a></h2>
 <p>Remember, our predicted or <em>fitted</em> values are given by multiplying the <code class="docutils literal notranslate"><span class="pre">x</span></code>
 (<code class="docutils literal notranslate"><span class="pre">clammy</span></code>) values by <code class="docutils literal notranslate"><span class="pre">b</span></code> (the slope) and then adding <code class="docutils literal notranslate"><span class="pre">c</span></code> (the intercept).  In
 Numpy that looks like this:</p>
@@ -1021,12 +1067,15 @@ above represent the (positive and negative) lengths of these dashed lines.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8e17d1c310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe9f0cbc160&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_notation_20_1.png" src="_images/regression_notation_20_1.png" />
+<img alt="_images/regression_notation_21_1.png" src="_images/regression_notation_21_1.png" />
 </div>
 </div>
+</section>
+<section id="mathematical-notation">
+<h2>Mathematical notation<a class="headerlink" href="#mathematical-notation" title="Permalink to this headline">#</a></h2>
 <p>Our next step is to write out this model more generally and more formally in
 mathematical symbols, so we can think about <em>any</em> vector (sequence) of x values
 <span class="math notranslate nohighlight">\(\xvec\)</span>, and any sequence (vector) of matching y values <span class="math notranslate nohighlight">\(\yvec\)</span>.  But to start
@@ -1100,7 +1149,8 @@ f_n = b x_n + c
 \[\begin{split}
 f_i = b x_i + c \\
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(i \in [ 1, 2, ... n]\)</span>.  Read <span class="math notranslate nohighlight">\(\in\)</span> as “in”.</p>
+<p>where <span class="math notranslate nohighlight">\(i \in [ 1, 2, ... n]\)</span>.  Read <span class="math notranslate nohighlight">\(\in\)</span> as “in”, and the whole phrase in the
+last sentence as “Where <span class="math notranslate nohighlight">\(i\)</span> can take any value from 1 through <span class="math notranslate nohighlight">\(n\)</span> inclusive”.</p>
 <p>We mean here, that for any whole number <span class="math notranslate nohighlight">\(i\)</span> from 1 through <span class="math notranslate nohighlight">\(n\)</span>, the fitted
 value <span class="math notranslate nohighlight">\(f_i\)</span> (e.g. <span class="math notranslate nohighlight">\(f_3\)</span>, where <span class="math notranslate nohighlight">\(i=3\)</span>) is given by <span class="math notranslate nohighlight">\(b\)</span> times the corresponding
 <span class="math notranslate nohighlight">\(x\)</span> value (<span class="math notranslate nohighlight">\(x_3\)</span> where <span class="math notranslate nohighlight">\(i=3\)</span>) plus <span class="math notranslate nohighlight">\(c\)</span>.</p>
@@ -1120,6 +1170,37 @@ value <span class="math notranslate nohighlight">\(f_i\)</span> (e.g. <span clas
 \[
 e_i = y_i - (b x_i + c)
 \]</div>
+</section>
+<section id="the-regression-model">
+<h2>The regression model<a class="headerlink" href="#the-regression-model" title="Permalink to this headline">#</a></h2>
+<p>Our straight line model says that the <span class="math notranslate nohighlight">\(y_i\)</span> values are approximately predicted
+by the fitted values <span class="math notranslate nohighlight">\(f_i = b x_i + c\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+y_i \approx bx_i + c
+\]</div>
+<p>Read <span class="math notranslate nohighlight">\(\approx\)</span> above as <em>approximately equal to</em>.</p>
+<p>With the <span class="math notranslate nohighlight">\(\approx\)</span>, we are accepting that we will not succeed in explaining our
+psychopathy values exactly. We can rephrase this by saying that each
+observation is equal to the predicted value (from the formula above) plus the
+remaining error for each observation:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = bx_i + c + e_i
+\]</div>
+<p>Of course this must be true for our calculated errors because we calculated
+them with:</p>
+<div class="math notranslate nohighlight">
+\[
+e_i = y_i - (b x_i + c)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">errors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 

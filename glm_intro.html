@@ -949,23 +949,23 @@ forever?</a>.</p>
 </div>
 </div>
 </div>
-<p>This page starts with the model for simple regression, that you have already see in the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">regression page</span></a>.
-We then show how the simple regression gets expressed in a <em>design matrix</em>.
-Once we have that, it’s easy to extend simple regression to multiple
-regression. By adding some specially formed regressors, we can also express
-group membership, and therefore do ANalysis Of VAriance (ANOVA). This last
-step is where multiple regression becomes the General Linear Model (GLM).</p>
+<p>This page starts with the model for simple regression, that you have already
+seen in the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">regression page</span></a>, and in <a class="reference internal" href="regression_notation.html"><span class="doc std std-doc">regression
+notation</span></a>. We then show how the simple regression gets
+expressed in a <em>design matrix</em>. Once we have that, it’s easy to extend simple
+regression to multiple regression. By adding some specially formed regressors,
+we can also express group membership, and therefore do ANalysis Of VAriance
+(ANOVA). This last step is where multiple regression becomes the General Linear
+Model (GLM).</p>
 <section id="simple-regression">
 <h2>Simple regression<a class="headerlink" href="#simple-regression" title="Permalink to this headline">#</a></h2>
 <p>You have already seen this problem in the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">regression
 page</span></a>.</p>
-<p>Image we have measured scores for a “psychopathy” personality trait in 12
-students. We also have some other information about these students. For
-example, we measured how much sweat each student had on their palms, and we
-call this a “clammy” score.  We will look for a straight-line (linear)
-relationship between the “clammy” score (our predictor or regressor or
-covariate or independent variable) and the “psychopathy” score (our dependent
-variable).</p>
+<p>We have measured scores for a “psychopathy” personality trait in 12
+students. We also measured how much sweat each student had on their palms, and
+we call this a “clammy” score.  We will look for a straight-line (linear)
+relationship between the “clammy” score (our <em>predictor</em> or <em>regressor</em>) and
+the “psychopathy” score (our <em>predicted</em> variable).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The values we are trying to predict.</span>
@@ -998,10 +998,11 @@ variable).</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Psychopathy score&#39;)
 </pre></div>
 </div>
-<img alt="_images/glm_intro_5_1.png" src="_images/glm_intro_5_1.png" />
+<img alt="_images/glm_intro_6_1.png" src="_images/glm_intro_6_1.png" />
 </div>
 </div>
-<p>You have already seen a preliminary guess we made at a straight line that links the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> scores to the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> scores.  Our guess was:</p>
+<p>You have already seen a preliminary guess we made at a straight line that links
+the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> scores to the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> scores.  Our guess was:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guessed_slope</span> <span class="o">=</span> <span class="mf">0.9</span>
@@ -1011,9 +1012,6 @@ variable).</p>
 </div>
 </div>
 <p>We use this line to <em>predict</em> the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> scores from the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> scores.</p>
-<p>What does our straight line relationship mean?</p>
-<p>We are saying that the values of <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> can be partly predicted by
-a straight line of formula <code class="docutils literal notranslate"><span class="pre">0.9</span> <span class="pre">*</span> <span class="pre">clammy</span> <span class="pre">+</span> <span class="pre">10</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_psychopathy</span> <span class="o">=</span> <span class="n">guessed_slope</span> <span class="o">*</span> <span class="n">clammy</span> <span class="o">+</span> <span class="n">guessed_intercept</span>
@@ -1028,7 +1026,6 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 </div>
-<p>Here are the data and our predictions from the guessed line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the data and the predictions</span>
@@ -1042,17 +1039,17 @@ a straight line of formula <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fed0c906250&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f318c227a30&gt;
 </pre></div>
 </div>
 <img alt="_images/glm_intro_11_1.png" src="_images/glm_intro_11_1.png" />
 </div>
 </div>
-<p>Our next step is to write out this model more formally in mathematical
-symbols.</p>
+<p>As you saw in <a class="reference internal" href="regression_notation.html"><span class="doc std std-doc">regresssion notation</span></a>, we can write out
+this model more formally and more generally in mathematical symbols.</p>
 <p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}\)</span></p>
-<p>To make this more general, let’s call our <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> data
-<span class="math notranslate nohighlight">\(\yvec\)</span> - a <em>vector</em> with 12 values, one for each student.   A <em>vector</em> is just a sequence of values.</p>
+<p>We write our <code class="docutils literal notranslate"><span class="pre">y</span></code> (<code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>) data <span class="math notranslate nohighlight">\(\yvec\)</span> — a vector with 12 values, one
+for each student.</p>
 <p><span class="math notranslate nohighlight">\(y_1\)</span> is the value for the first student (= 11.416) and <span class="math notranslate nohighlight">\(y_i\)</span> is the value for
 student <span class="math notranslate nohighlight">\(i\)</span> where <span class="math notranslate nohighlight">\(i \in 1 .. 12\)</span>:</p>
 <div class="cell tag_hide-input docutils container">
@@ -1079,10 +1076,9 @@ student <span class="math notranslate nohighlight">\(i\)</span> where <span clas
 \[\begin{split}\displaystyle \vec{y} = \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}11.416\\4.514\\12.204\\14.835\\8.416\\6.563\\17.343\\13.02\\15.19\\11.902\\22.721\\22.324\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>Our <code class="docutils literal notranslate"><span class="pre">clammy</span></code> score is a <em>predictor</em>. Lets call the clammy scores <span class="math notranslate nohighlight">\(\xvec\)</span>.
+<p><code class="docutils literal notranslate"><span class="pre">x</span></code> (the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> score) is a <em>predictor</em>. Lets call the clammy scores <span class="math notranslate nohighlight">\(\xvec\)</span>.
 <span class="math notranslate nohighlight">\(\xvec\)</span> is another vector with 12 values. <span class="math notranslate nohighlight">\(x_1\)</span> is the value for the first
-student (= 0.389) and <span class="math notranslate nohighlight">\(x_i\)</span> is the value for student <span class="math notranslate nohighlight">\(i\)</span> where <span class="math notranslate nohighlight">\(i \in 1 ..
-12\)</span>.</p>
+student (= 0.389) and <span class="math notranslate nohighlight">\(x_i\)</span> is the value for student <span class="math notranslate nohighlight">\(i\)</span> where <span class="math notranslate nohighlight">\(i \in 1 .. 12\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell - it is to give a better display to the mathematics.</span>
@@ -1098,15 +1094,8 @@ student (= 0.389) and <span class="math notranslate nohighlight">\(x_i\)</span> 
 \[\begin{split}\displaystyle \vec{x} = \left[\begin{matrix}{x}_{1}\\{x}_{2}\\{x}_{3}\\{x}_{4}\\{x}_{5}\\{x}_{6}\\{x}_{7}\\{x}_{8}\\{x}_{9}\\{x}_{10}\\{x}_{11}\\{x}_{12}\end{matrix}\right] = \left[\begin{matrix}0.389\\0.2\\0.241\\0.463\\4.585\\1.097\\1.642\\4.972\\7.957\\5.585\\5.527\\6.964\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>Our straight line model says:</p>
-<p><span class="math notranslate nohighlight">\(y_i \approx bx_i + c\)</span></p>
-<p><span class="math notranslate nohighlight">\(\approx\)</span> above means <em>approximately equal to</em>, <span class="math notranslate nohighlight">\(b\)</span> is the slope and <span class="math notranslate nohighlight">\(c\)</span> is
-the intercept. For the guessed line above:</p>
-<p><span class="math notranslate nohighlight">\(y_i \approx 0.9 x_i + 10\)</span></p>
-<p>With the <span class="math notranslate nohighlight">\(\approx\)</span>, we are accepting that we will not succeed in explaining
-our psychopathy values exactly. We can rephrase this by saying that each
-observation is equal to the predicted value (from the formula above) plus some
-error for each observation:</p>
+<p>In <a class="reference internal" href="regression_notation.html"><span class="doc std std-doc">regression notation</span></a>, we wrote our straight line
+model as:</p>
 <p><span class="math notranslate nohighlight">\(y_i = bx_i + c + e_i\)</span></p>
 </section>
 <section id="simple-regression-in-matrix-form">
@@ -1484,7 +1473,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fed051a3880&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3184aa9370&gt;]
 </pre></div>
 </div>
 <img alt="_images/glm_intro_51_1.png" src="_images/glm_intro_51_1.png" />

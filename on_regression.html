@@ -1014,12 +1014,14 @@ and <code class="docutils literal notranslate"><span class="pre">psychopathy</sp
 <img alt="_images/on_regression_11_1.png" src="_images/on_regression_11_1.png" />
 </div>
 </div>
-<p>It looks like there may be some sort of straight line relationship.  We can define any line by specifying the:</p>
+<p>It looks like there may be some sort of straight line relationship.  We can
+define any line by specifying the:</p>
 <ul class="simple">
 <li><p>Intercept and the</p></li>
 <li><p>Slope</p></li>
 </ul>
-<p>The intercept is the y-axis value where the line crosses the y-axis.  Put another way, it is the value for y when x==0.</p>
+<p>The intercept is the y-axis value where the line crosses the y-axis.  Put
+another way, it is the value for y when x==0.</p>
 <p>Let’s give <code class="docutils literal notranslate"><span class="pre">clammy</span></code> the name <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> the name <code class="docutils literal notranslate"><span class="pre">y</span></code>, to match the terminology.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1029,9 +1031,13 @@ and <code class="docutils literal notranslate"><span class="pre">psychopathy</sp
 </div>
 </div>
 </div>
+<p>What does our straight line relationship mean?</p>
+<p>We are saying that the values of <code class="docutils literal notranslate"><span class="pre">y</span></code> (<code class="docutils literal notranslate"><span class="pre">psychopathy</span></code>) can be partly predicted by
+a straight line of formula <code class="docutils literal notranslate"><span class="pre">0.9</span> <span class="pre">*</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">10</span></code> (remember, <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">clammy</span></code>).</p>
 <p>The slope is change in the number of units in y, for every one unit change in
 x.  We can check this anywhere on the line, but one easy way to get the slope
-is to subtract the y value at x == 0 from the y value at x == 1.  This is, by definition, the number of units increase in y, for a one unit increase in x.</p>
+is to subtract the y value at x == 0 from the y value at x == 1.  This is, by
+definition, the number of units increase in y, for a one unit increase in x.</p>
 <p>We could try guessing at a line to fit the data. Let’s try an intercept of <span class="math notranslate nohighlight">\(10\)</span>
 and slope <span class="math notranslate nohighlight">\(0.9\)</span>.</p>
 <p>The line gives a <em>predicted y value</em> for every x value, like this:</p>
@@ -1065,7 +1071,7 @@ and slope <span class="math notranslate nohighlight">\(0.9\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d069f9d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff1dfb44af0&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_17_1.png" src="_images/on_regression_17_1.png" />
@@ -1079,7 +1085,8 @@ and slope <span class="math notranslate nohighlight">\(0.9\)</span>.</p>
 <p>Our job is to look for a number to evaluate the line, compared to other lines.
 We want a number that is <em>low</em> when the line is good, and <em>high</em> when the line
 is bad.</p>
-<p>If the line is good, then it makes good <em>predictions</em>.  A good prediction is close to the value is it trying to predict.</p>
+<p>If the line is good, then it makes good <em>predictions</em>.  A good prediction is
+close to the value is it trying to predict.</p>
 <p>In this case the line is trying to predict 12 y values.</p>
 <p>For each point, we can draw the distance between the predicted y value and the
 actual y value, like this:</p>
@@ -1378,7 +1385,7 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d04a03d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff1df93d2b0&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_58_1.png" src="_images/on_regression_58_1.png" />
@@ -1411,7 +1418,7 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d057f640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff1dfa79c10&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_61_1.png" src="_images/on_regression_61_1.png" />
@@ -1688,7 +1695,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4d0316700&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff1df7bb760&gt;
 </pre></div>
 </div>
 <img alt="_images/on_regression_93_1.png" src="_images/on_regression_93_1.png" />
@@ -1834,7 +1841,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa4d003f730&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff1df4e1940&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_regression_111_1.png" src="_images/on_regression_111_1.png" />
@@ -1881,7 +1888,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa4d01222b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff1df5c72e0&gt;]
 </pre></div>
 </div>
 <img alt="_images/on_regression_115_1.png" src="_images/on_regression_115_1.png" />
