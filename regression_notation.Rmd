@@ -242,10 +242,11 @@ we use $i$ to mean any whole number from 1 through $n$, and so:
 
 $$
 f_i = b x_i + c \\
-$$
+\text{where} i \in [ 1, 2, ... n]
+$$.
 
-where $i \in [ 1, 2, ... n]$.  Read $\in$ as "in", and the whole phrase in the
-last sentence as "Where $i$ can take any value from 1 through $n$ inclusive".
+For the second line above, read $\in$ as "in", and the whole line as "Where $i$
+can take any value from 1 through $n$ inclusive".
 
 We mean here, that for any whole number $i$ from 1 through $n$, the fitted
 value $f_i$ (e.g. $f_3$, where $i=3$) is given by $b$ times the corresponding
