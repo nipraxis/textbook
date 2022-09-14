@@ -17,13 +17,18 @@ jupyter:
 
 # Why the correlation gives the best slope
 
-In which we return to the [simple regression](on_regression.Rmd) problem, and work through the mathematics to show why the correlation is the best least-squares slope for two z-scored arrays.
+In which we return to the [simple regression](on_regression.Rmd) problem, and
+work through the mathematics to show why the correlation is the best
+least-squares slope for two z-scored arrays.
+
+As background, you may also want to read the [regression
+notation](regression_notation.Rmd) page.
 
 ## The example regression problem
 
 As you remember, we have (fake) measured scores for a “psychopathy” personality
-trait in 12 students. We also have a measure of how much sweat each student had on their palms, and we
-call this a “clammy” score.
+trait in 12 students. We also have a measure of how much sweat each student had
+on their palms, and we call this a “clammy” score.
 
 ```{python}
 # Import numerical and plotting libraries
@@ -46,7 +51,9 @@ plt.xlabel('Clammy')
 plt.ylabel('Psychopathy');
 ```
 
-To get ourselves into a mathematical mood, we will rename our x-axis values to `x` and the y-axis values to `y`.  We will store the number of observations in both as `n`.
+To get ourselves into a mathematical mood, we will rename our x-axis values to
+`x` and the y-axis values to `y`.  We will store the number of observations in
+both as `n`.
 
 ```{python}
 x = psychopathy
@@ -55,7 +62,8 @@ n = len(x)
 n
 ```
 
-`x` and `y` are Numpy *arrays*, but we can also call them *vectors*.  Vector is just a technical and mathematical term for a one-dimensional array.
+`x` and `y` are Numpy *arrays*, but we can also call them *vectors*.  Vector is
+just a technical and mathematical term for a one-dimensional array.
 
 We are on a quest to find why it turned out that the correlation coefficient is
 always the best (least squared error) slope for the z-scored versions of these
@@ -65,10 +73,13 @@ here.
 
 $\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}$
 
-First, in mathematical notation, we will call our `x` array $\xvec$, to remind us that `x` is a vector of numbers, not just a single number.
+First, in mathematical notation, we will call our `x` array $\xvec$, to remind
+us that `x` is a vector of numbers, not just a single number.
 
 Next we generalize $\xvec$ to refer to any set of $n$ numbers.  So, in our `x`
-we have `n` specific numbers, but we generalize $\xvec$ to mean a series of $n$ numbers, where $n$ can be any number.  We can therefore write $\xvec$ mathematically as:
+we have `n` specific numbers, but we generalize $\xvec$ to mean a series of $n$
+numbers, where $n$ can be any number.  We can therefore write $\xvec$
+mathematically as:
 
 $$
 \xvec = [x_1, x_2, x_3, ..., x_n]
@@ -85,7 +96,9 @@ $$
 
 ## Writing sums
 
-We are next going to do the z-score transform on $\xvec$ and $\yvec$.  As you remember, this involves subtracting the mean and dividing by the standard deviation.   We need to express these mathematically.
+We are next going to do the z-score transform on $\xvec$ and $\yvec$.  As you
+remember, this involves subtracting the mean and dividing by the standard
+deviation.   We need to express these mathematically.
 
 We will use [sum
 notation](https://matthew-brett.github.io/teaching/some_sums.html) for this
@@ -97,7 +110,9 @@ $$
 \Sigma_{i=1}^{n} x_i = x_1 + x_2 + x_3 ... + x_n
 $$
 
-The $i$ above is the *index* for the vector, so $x_i$ means the element from the vector at position $i$.  So, if $i = 3$ then $x_i$ is $x_3$ — the element at the third position in the vector.
+The $i$ above is the *index* for the vector, so $x_i$ means the element from
+the vector at position $i$.  So, if $i = 3$ then $x_i$ is $x_3$ — the element
+at the third position in the vector.
 
 Therefore, in code we, can write $\Sigma_{i=1}^{n} x_i$ as:
 
@@ -107,7 +122,9 @@ np.sum(x)
 
 The $i=1$ and $n$ at the bottom and top of the $\Sigma$ mean that adding should
 start at position 1 ($x_1$) and go up to position $n$ ($x_n$).  Of course, this
-means all the numbers in the vector.   In this page, we will always sum across all the numbers in the vector, and we will miss off the $i=1$ and $n$ above and below the $\Sigma$, so we will write:
+means all the numbers in the vector.   In this page, we will always sum across
+all the numbers in the vector, and we will miss off the $i=1$ and $n$ above and
+below the $\Sigma$, so we will write:
 
 $$
 \Sigma x_i
@@ -121,7 +138,8 @@ $$
 
 ## Mean and standard deviation
 
-Now we have a notation for adding things up in a vector, we can write the mathematical notation for the mean and standard deviation.
+Now we have a notation for adding things up in a vector, we can write the
+mathematical notation for the mean and standard deviation.
 
 $$
 \newcommand{\xbar}{\bar{x}}
@@ -462,35 +480,37 @@ $$
 
 ## The least-squares line for z-scores
 
-Let us say we have a data vector $\yvec$.  We have somehow calculated a fitted value $f_i$ for every corresponding value $y_i$ in $\yvec$.  Then the errors at each value $i$ are given by:
+Let us say we have a data vector $\yvec$.  We have somehow calculated an estimated (fitted)
+value $\hat{y}_i$ for every corresponding value $y_i$ in $\yvec$.  Then the errors at
+each value $i$ are given by:
 
 $$
-e_i = y_i - f_i
+e_i = y_i - \hat{y}_i
 $$
 
 The sum of squared errors are:
 
 $$
-SSE = \Sigma (y_i - f_i)^2
+SSE = \Sigma (y_i - \hat{y}_i)^2
 $$
 
 Remembering that $(a + b)^2 = (a + b)(a + b) = a^2 + 2ab + b^2$ we get:
 
 $$
-SSE = \Sigma (y_i^2 - 2y_i f_i + f_i^2)
+SSE = \Sigma (y_i^2 - 2y_i \hat{y}_i + \hat{y}_i^2)
 $$
 
 Simplifying with rules of sums above:
 
 $$
-SSE = \Sigma y_i^2 - 2 \Sigma y_i f_i + \Sigma f_i^2
+SSE = \Sigma y_i^2 - 2 \Sigma y_i \hat{y}_i + \Sigma \hat{y}_i^2
 $$
 
-Now we introduce our fitted value $f_i$, which we get from our straight line
+Now we introduce our fitted value $\hat{y}_i$, which we get from our straight line
 with slope $b$ and intercept $c$:
 
 $$
-f_i = b x_i + c
+\hat{y}_i = b x_i + c
 $$
 
 Substituting, then simplifying:
@@ -589,9 +609,38 @@ negative to positive.  So, when we have found the gradient=0 point, and
 confirmed it is at the bottom of a trough, as we see in the graph, then we have
 found the value of $b$ that minimizes the original SSE function.
 
+We can see the shape of our function curve, and it looks like it is a simple
+parabola, with one minimum.  When we take the derivative of function, which
+gives us the gradient, we expect to see a single x value where the gradient is
+0, and we can see that is a minimum point.  But, to be sure about this, in the
+general case, we will first want to check that there is in fact only one x
+value for which the derivative is 0.  And next, we will want to check whether
+this point is a minimum point or a maximum point.  You can probably imagine
+that a peak (maximum point) is also going to have a derivative of 0, as the
+slope goes from positive to negative. In order to check whether a 0 in the
+derivative is a maximum or a minimum, we take the gradient of the gradient (the
+derivative of the derivative).  This is the *second derivative*.  Think of it
+as the rate of change of the gradient.  If we are at a minimum point, then this
+rate of change of the gradient is positive, as the gradient goes from negative
+to positive.  If we are at a maximum point, this rate of change of the gradient
+will be negative, as the gradient goes from positive to negative.
 
-Let us first take the derivative with respect to $c$.  Taking the derivative is
-also called *differentiating* the function.
+Taking the derivative is also called *differentiating* the function.
+
+You need to know some rules for taking the derivative, but these rules are not
+hard to derive, once you are used to the idea of taking the derivative.  The
+key ones rules here are:
+
+* [Constant term
+  rule](https://en.wikipedia.org/wiki/Differentiation_rules#Constant_Term_Rule)
+* [Linearity](https://en.wikipedia.org/wiki/Linearity_of_differentiation)
+* [Power rule](https://en.wikipedia.org/wiki/Power_rule)
+
+You need to know too, that when differentiating with respect to some variable,
+say $x$, you can ignore (set to 0) all terms that do not vary with $x$.
+
+Let us first take the derivative of the $SSE_z$ function above, with respect to
+$c$.
 
 $$
 \frac{\partial SSE_z}{\partial c} = 2 n c
