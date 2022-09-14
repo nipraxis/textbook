@@ -122,6 +122,7 @@ b = res.slope
 c = res.intercept
 ```
 
+
 ## Fitted values and errors
 
 Remember, our predicted or *fitted* values are given by multiplying the `x`
@@ -151,6 +152,10 @@ plt.plot(x, fitted, 'ro', label='Values predicted from line')
 # Plot the distance between predicted and actual, for all points.
 for i in range(n):
     plt.plot([x[i], x[i]], [fitted[i], y[i]], 'k:')
+# The following code line is just to trick Matplotlib into making a new
+# a single legend entry for the dotted lines.
+plt.plot([], [], 'k:', label='Errors')
+# Show the legend
 plt.legend()
 ```
 
@@ -163,7 +168,7 @@ with, let's think about the actual set of values we have for $\xvec$.  We could
 write the actual values in mathematical notation as:
 
 $$
-$\xvec = [ 0.389,  0.2  ,  0.241,  0.463, \\
+\xvec = [ 0.389,  0.2  ,  0.241,  0.463, \\
      4.585,  1.097,  1.642,  4.972, \\
      7.957,  5.585,  5.527,  6.964 ]
 $$
@@ -173,7 +178,7 @@ could write $\xvec$ in a more general way, to be *any* 12 values, like this:
 
 $$
 \xvec = [ x_1, x_2, x_3, x_4, x_5, x_6,\\
-           x_7, x_8, x_9, x_{10}, x_{11}, x_{12} ]
+          x_7, x_8, x_9, x_{10}, x_{11}, x_{12} ]
 $$
 
 This means that $\xvec$ consists of 12 numbers, $x_1, x_2 ..., x_{12}$, where
@@ -181,7 +186,14 @@ $x_1$ can be any number, $x_2$ can be any number, and so on.
 
 $x_1$ is the value for the first student, $x_2$ is the value for the second student, and so on.
 
-In our *particular case*, $x_1 = 0.389,  x_2 = 0.2$ and so on.
+In our *particular case*:
+
+$$
+x_1 = 0.389 \\
+x_2 = 0.2 \\
+... \\
+x_{12} = 6.964
+$$
 
 We can make $\xvec$ be even more general, by writing it like this:
 
@@ -200,13 +212,13 @@ $$
 15.19 ,  11.902,  22.721,  22.324 ]
 $$
 
-More generally we can write a vector of any $n$ numbers as:
+More generally we can write $\yvec$ as a vector of any $n$ numbers:
 
 $$
 \yvec = [ y_1, y_2, ..., y_{n} ]
 $$
 
-If we have $n$ values in $\xvec$ and $\yvec$ then we have $n$ *fitted* values.  The fitted value for the first student as $f_1$, that for the second as $f_2$ and so on:
+If we have $n$ values in $\xvec$ and $\yvec$ then we have $n$ *fitted* values.  Write the fitted value for the first student as $f_1$, that for the second as $f_2$, and so on:
 
 $$
 \vec{f} = [ f_1, f_2, ..., f_n ]
@@ -242,10 +254,10 @@ we use $i$ to mean any whole number from 1 through $n$, and so:
 
 $$
 f_i = b x_i + c \\
-\text{where} i \in [ 1, 2, ... n]
+\text{for } i \in [ 1, 2, ... n]
 $$.
 
-For the second line above, read $\in$ as "in", and the whole line as "Where $i$
+For the second line above, read $\in$ as "in", and the whole line as "For $i$ in 1 through $n$", or as "Where $i$
 can take any value from 1 through $n$ inclusive".
 
 We mean here, that for any whole number $i$ from 1 through $n$, the fitted
@@ -265,14 +277,14 @@ $$
 = [ y_1 - (b x_1 + c), y_2 - (b x_2 + c), ..., y_n - (b x_n + c) ] \\
 $$
 
-Again, we could also write this same idea with the general index $i$ as:
+Again, we could write this same idea with the general index $i$ as:
 
 $$
 e_i = y_i - (b x_i + c)
 $$
 
 
-## The regression model
+## Approximation and errors
 
 Our straight line model says that the $y_i$ values are approximately predicted
 by the fitted values $f_i = b x_i + c$.

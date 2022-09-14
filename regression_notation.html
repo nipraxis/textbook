@@ -830,8 +830,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-regression-model">
-   The regression model
+  <a class="reference internal nav-link" href="#approximation-and-errors">
+   Approximation and errors
   </a>
  </li>
 </ul>
@@ -874,8 +874,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-regression-model">
-   The regression model
+  <a class="reference internal nav-link" href="#approximation-and-errors">
+   Approximation and errors
   </a>
  </li>
 </ul>
@@ -1062,12 +1062,16 @@ above represent the (positive and negative) lengths of these dashed lines.</p>
 <span class="c1"># Plot the distance between predicted and actual, for all points.</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="p">[</span><span class="n">fitted</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
+<span class="c1"># The following code line is just to trick Matplotlib into making a new</span>
+<span class="c1"># a single legend entry for the dotted lines.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Errors&#39;</span><span class="p">)</span>
+<span class="c1"># Show the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1c4044e970&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f73f1ed8ac0&gt;
 </pre></div>
 </div>
 <img alt="_images/regression_notation_21_1.png" src="_images/regression_notation_21_1.png" />
@@ -1083,7 +1087,7 @@ with, let’s think about the actual set of values we have for <span class="math
 write the actual values in mathematical notation as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-$\xvec = [ 0.389,  0.2  ,  0.241,  0.463, \\
+\xvec = [ 0.389,  0.2  ,  0.241,  0.463, \\
      4.585,  1.097,  1.642,  4.972, \\
      7.957,  5.585,  5.527,  6.964 ]
 \end{split}\]</div>
@@ -1092,12 +1096,19 @@ could write <span class="math notranslate nohighlight">\(\xvec\)</span> in a mor
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \xvec = [ x_1, x_2, x_3, x_4, x_5, x_6,\\
-           x_7, x_8, x_9, x_{10}, x_{11}, x_{12} ]
+          x_7, x_8, x_9, x_{10}, x_{11}, x_{12} ]
 \end{split}\]</div>
 <p>This means that <span class="math notranslate nohighlight">\(\xvec\)</span> consists of 12 numbers, <span class="math notranslate nohighlight">\(x_1, x_2 ..., x_{12}\)</span>, where
 <span class="math notranslate nohighlight">\(x_1\)</span> can be any number, <span class="math notranslate nohighlight">\(x_2\)</span> can be any number, and so on.</p>
 <p><span class="math notranslate nohighlight">\(x_1\)</span> is the value for the first student, <span class="math notranslate nohighlight">\(x_2\)</span> is the value for the second student, and so on.</p>
-<p>In our <em>particular case</em>, <span class="math notranslate nohighlight">\(x_1 = 0.389,  x_2 = 0.2\)</span> and so on.</p>
+<p>In our <em>particular case</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_1 = 0.389 \\
+x_2 = 0.2 \\
+... \\
+x_{12} = 6.964
+\end{split}\]</div>
 <p>We can make <span class="math notranslate nohighlight">\(\xvec\)</span> be even more general, by writing it like this:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1112,12 +1123,12 @@ whole number, such as 1, 2, 3 …  In our specific case, <span class="math notra
 8.416,   6.563,  17.343,  13.02, \\
 15.19 ,  11.902,  22.721,  22.324 ]
 \end{split}\]</div>
-<p>More generally we can write a vector of any <span class="math notranslate nohighlight">\(n\)</span> numbers as:</p>
+<p>More generally we can write <span class="math notranslate nohighlight">\(\yvec\)</span> as a vector of any <span class="math notranslate nohighlight">\(n\)</span> numbers:</p>
 <div class="math notranslate nohighlight">
 \[
 \yvec = [ y_1, y_2, ..., y_{n} ]
 \]</div>
-<p>If we have <span class="math notranslate nohighlight">\(n\)</span> values in <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span> then we have <span class="math notranslate nohighlight">\(n\)</span> <em>fitted</em> values.  The fitted value for the first student as <span class="math notranslate nohighlight">\(f_1\)</span>, that for the second as <span class="math notranslate nohighlight">\(f_2\)</span> and so on:</p>
+<p>If we have <span class="math notranslate nohighlight">\(n\)</span> values in <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span> then we have <span class="math notranslate nohighlight">\(n\)</span> <em>fitted</em> values.  Write the fitted value for the first student as <span class="math notranslate nohighlight">\(f_1\)</span>, that for the second as <span class="math notranslate nohighlight">\(f_2\)</span>, and so on:</p>
 <div class="math notranslate nohighlight">
 \[
 \vec{f} = [ f_1, f_2, ..., f_n ]
@@ -1148,8 +1159,8 @@ f_n = b x_n + c
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\begin{split}
 f_i = b x_i + c \\
-\text{where} i \in [ 1, 2, ... n]
-$$.\end{split}\\For the second line above, read $\in$ as &quot;in&quot;, and the whole line as &quot;Where $i$
+\text{for } i \in [ 1, 2, ... n]
+$$.\end{split}\\For the second line above, read $\in$ as &quot;in&quot;, and the whole line as &quot;For $i$ in 1 through $n$&quot;, or as &quot;Where $i$
 can take any value from 1 through $n$ inclusive&quot;.\\We mean here, that for any whole number $i$ from 1 through $n$, the fitted
 value $f_i$ (e.g. $f_3$, where $i=3$) is given by $b$ times the corresponding
 $x$ value ($x_3$ where $i=3$) plus $c$.\\The error vector $\vec{e}$ is:\end{aligned}\end{align} \]</div>
@@ -1161,14 +1172,14 @@ $$</p>
 \vec{e} = [ y_1 - f_1, y_2 - f_2, ..., y_n - f_n ] \\
 = [ y_1 - (b x_1 + c), y_2 - (b x_2 + c), ..., y_n - (b x_n + c) ] \\
 \end{split}\]</div>
-<p>Again, we could also write this same idea with the general index <span class="math notranslate nohighlight">\(i\)</span> as:</p>
+<p>Again, we could write this same idea with the general index <span class="math notranslate nohighlight">\(i\)</span> as:</p>
 <div class="math notranslate nohighlight">
 \[
 e_i = y_i - (b x_i + c)
 \]</div>
 </section>
-<section id="the-regression-model">
-<h2>The regression model<a class="headerlink" href="#the-regression-model" title="Permalink to this headline">#</a></h2>
+<section id="approximation-and-errors">
+<h2>Approximation and errors<a class="headerlink" href="#approximation-and-errors" title="Permalink to this headline">#</a></h2>
 <p>Our straight line model says that the <span class="math notranslate nohighlight">\(y_i\)</span> values are approximately predicted
 by the fitted values <span class="math notranslate nohighlight">\(f_i = b x_i + c\)</span>.</p>
 <div class="math notranslate nohighlight">
