@@ -218,42 +218,53 @@ $$
 \yvec = [ y_1, y_2, ..., y_{n} ]
 $$
 
-If we have $n$ values in $\xvec$ and $\yvec$ then we have $n$ *fitted* values.  Write the fitted value for the first student as $f_1$, that for the second as $f_2$, and so on:
+
+## Notation for fitted values
+
+
+If we have $n$ values in $\xvec$ and $\yvec$ then we have $n$ *fitted* values.
+
+Write the fitted value for the first student as $\hat{y}_1$, that for the
+second as $\hat{y}_2$, and so on:
 
 $$
-\vec{f} = [ f_1, f_2, ..., f_n ]
+\vec{\hat{y}} = [ \hat{y}_1, \hat{y}_2, ..., \hat{y}_n ]
 $$
 
-Our regression model says each fitted value comes about by multiplying the corresponding $x$ value by $b$ (the slope) and then adding $c$ (the intercept).
+Read the $|hat{ }$ over the $y$ as "estimated", so $\hat{y}_1$ is our
+*estimate* for $y_1$, given the model.
+
+Our regression model says each fitted value comes about by multiplying the
+corresponding $x$ value by $b$ (the slope) and then adding $c$ (the intercept).
 
 So, the fitted values are:
 
 $$
-f_1 = b x_1 + c \\
-f_2 = b x_2 + c \\
+\hat{y}_1 = b x_1 + c \\
+\hat{y}_2 = b x_2 + c \\
 ... \\
-f_n = b x_n + c
+\hat{y}_n = b x_n + c
 $$
 
 More compactly:
 
 $$
-\vec{f} = [ b x_1 + c, b x_2 + c, ..., b x_n + c ]
+\vec{\hat{y}} = [ b x_1 + c, b x_2 + c, ..., b x_n + c ]
 $$
 
 We often use $i$ as a general *index* into the vectors.  So, instead of writing:
 
 $$
-f_1 = b x_1 + c \\
-f_2 = b x_2 + c \\
+\hat{y}_1 = b x_1 + c \\
+\hat{y}_2 = b x_2 + c \\
 ... \\
-f_n = b x_n + c
+\hat{y}_n = b x_n + c
 $$
 
 we use $i$ to mean any whole number from 1 through $n$, and so:
 
 $$
-f_i = b x_i + c \\
+\hat{y}_i = b x_i + c \\
 \text{for } i \in [ 1, 2, ... n]
 $$.
 
@@ -261,7 +272,7 @@ For the second line above, read $\in$ as "in", and the whole line as "For $i$ in
 can take any value from 1 through $n$ inclusive".
 
 We mean here, that for any whole number $i$ from 1 through $n$, the fitted
-value $f_i$ (e.g. $f_3$, where $i=3$) is given by $b$ times the corresponding
+value $\hat{y}_i$ (e.g. $\hat{y}_3$, where $i=3$) is given by $b$ times the corresponding
 $x$ value ($x_3$ where $i=3$) plus $c$.
 
 The error vector $\vec{e}$ is:
@@ -273,7 +284,7 @@ $$
 For our linear model, the errors are:
 
 $$
-\vec{e} = [ y_1 - f_1, y_2 - f_2, ..., y_n - f_n ] \\
+\vec{e} = [ y_1 - \hat{y}_1, y_2 - \hat{y}_2, ..., y_n - \hat{y}_n ] \\
 = [ y_1 - (b x_1 + c), y_2 - (b x_2 + c), ..., y_n - (b x_n + c) ] \\
 $$
 
@@ -287,7 +298,7 @@ $$
 ## Approximation and errors
 
 Our straight line model says that the $y_i$ values are approximately predicted
-by the fitted values $f_i = b x_i + c$.
+by the fitted values $\hat{y}_i = b x_i + c$.
 
 $$
 y_i \approx bx_i + c

@@ -830,6 +830,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notation-for-fitted-values">
+   Notation for fitted values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#approximation-and-errors">
    Approximation and errors
   </a>
@@ -871,6 +876,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mathematical-notation">
    Mathematical notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notation-for-fitted-values">
+   Notation for fitted values
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1071,7 +1081,7 @@ above represent the (positive and negative) lengths of these dashed lines.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f73f1ed8ac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f55942f4ca0&gt;
 </pre></div>
 </div>
 <img alt="_images/regression_notation_21_1.png" src="_images/regression_notation_21_1.png" />
@@ -1128,48 +1138,56 @@ whole number, such as 1, 2, 3 …  In our specific case, <span class="math notra
 \[
 \yvec = [ y_1, y_2, ..., y_{n} ]
 \]</div>
-<p>If we have <span class="math notranslate nohighlight">\(n\)</span> values in <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span> then we have <span class="math notranslate nohighlight">\(n\)</span> <em>fitted</em> values.  Write the fitted value for the first student as <span class="math notranslate nohighlight">\(f_1\)</span>, that for the second as <span class="math notranslate nohighlight">\(f_2\)</span>, and so on:</p>
+</section>
+<section id="notation-for-fitted-values">
+<h2>Notation for fitted values<a class="headerlink" href="#notation-for-fitted-values" title="Permalink to this headline">#</a></h2>
+<p>If we have <span class="math notranslate nohighlight">\(n\)</span> values in <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span> then we have <span class="math notranslate nohighlight">\(n\)</span> <em>fitted</em> values.</p>
+<p>Write the fitted value for the first student as <span class="math notranslate nohighlight">\(\hat{y}_1\)</span>, that for the
+second as <span class="math notranslate nohighlight">\(\hat{y}_2\)</span>, and so on:</p>
 <div class="math notranslate nohighlight">
 \[
-\vec{f} = [ f_1, f_2, ..., f_n ]
+\vec{\hat{y}} = [ \hat{y}_1, \hat{y}_2, ..., \hat{y}_n ]
 \]</div>
-<p>Our regression model says each fitted value comes about by multiplying the corresponding <span class="math notranslate nohighlight">\(x\)</span> value by <span class="math notranslate nohighlight">\(b\)</span> (the slope) and then adding <span class="math notranslate nohighlight">\(c\)</span> (the intercept).</p>
+<p>Read the <span class="math notranslate nohighlight">\(|hat{ }\)</span> over the <span class="math notranslate nohighlight">\(y\)</span> as “estimated”, so <span class="math notranslate nohighlight">\(\hat{y}_1\)</span> is our
+<em>estimate</em> for <span class="math notranslate nohighlight">\(y_1\)</span>, given the model.</p>
+<p>Our regression model says each fitted value comes about by multiplying the
+corresponding <span class="math notranslate nohighlight">\(x\)</span> value by <span class="math notranslate nohighlight">\(b\)</span> (the slope) and then adding <span class="math notranslate nohighlight">\(c\)</span> (the intercept).</p>
 <p>So, the fitted values are:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-f_1 = b x_1 + c \\
-f_2 = b x_2 + c \\
+\hat{y}_1 = b x_1 + c \\
+\hat{y}_2 = b x_2 + c \\
 ... \\
-f_n = b x_n + c
+\hat{y}_n = b x_n + c
 \end{split}\]</div>
 <p>More compactly:</p>
 <div class="math notranslate nohighlight">
 \[
-\vec{f} = [ b x_1 + c, b x_2 + c, ..., b x_n + c ]
+\vec{\hat{y}} = [ b x_1 + c, b x_2 + c, ..., b x_n + c ]
 \]</div>
 <p>We often use <span class="math notranslate nohighlight">\(i\)</span> as a general <em>index</em> into the vectors.  So, instead of writing:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-f_1 = b x_1 + c \\
-f_2 = b x_2 + c \\
+\hat{y}_1 = b x_1 + c \\
+\hat{y}_2 = b x_2 + c \\
 ... \\
-f_n = b x_n + c
+\hat{y}_n = b x_n + c
 \end{split}\]</div>
 <p>we use <span class="math notranslate nohighlight">\(i\)</span> to mean any whole number from 1 through <span class="math notranslate nohighlight">\(n\)</span>, and so:</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\begin{split}
-f_i = b x_i + c \\
+\hat{y}_i = b x_i + c \\
 \text{for } i \in [ 1, 2, ... n]
 $$.\end{split}\\For the second line above, read $\in$ as &quot;in&quot;, and the whole line as &quot;For $i$ in 1 through $n$&quot;, or as &quot;Where $i$
 can take any value from 1 through $n$ inclusive&quot;.\\We mean here, that for any whole number $i$ from 1 through $n$, the fitted
-value $f_i$ (e.g. $f_3$, where $i=3$) is given by $b$ times the corresponding
+value $\hat{y}_i$ (e.g. $\hat{y}_3$, where $i=3$) is given by $b$ times the corresponding
 $x$ value ($x_3$ where $i=3$) plus $c$.\\The error vector $\vec{e}$ is:\end{aligned}\end{align} \]</div>
 <p>\vec{e} = [ e_1, e_2, …, e_n ]
 $$</p>
 <p>For our linear model, the errors are:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\vec{e} = [ y_1 - f_1, y_2 - f_2, ..., y_n - f_n ] \\
+\vec{e} = [ y_1 - \hat{y}_1, y_2 - \hat{y}_2, ..., y_n - \hat{y}_n ] \\
 = [ y_1 - (b x_1 + c), y_2 - (b x_2 + c), ..., y_n - (b x_n + c) ] \\
 \end{split}\]</div>
 <p>Again, we could write this same idea with the general index <span class="math notranslate nohighlight">\(i\)</span> as:</p>
@@ -1181,7 +1199,7 @@ e_i = y_i - (b x_i + c)
 <section id="approximation-and-errors">
 <h2>Approximation and errors<a class="headerlink" href="#approximation-and-errors" title="Permalink to this headline">#</a></h2>
 <p>Our straight line model says that the <span class="math notranslate nohighlight">\(y_i\)</span> values are approximately predicted
-by the fitted values <span class="math notranslate nohighlight">\(f_i = b x_i + c\)</span>.</p>
+by the fitted values <span class="math notranslate nohighlight">\(\hat{y}_i = b x_i + c\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
 y_i \approx bx_i + c

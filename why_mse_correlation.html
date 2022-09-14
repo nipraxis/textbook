@@ -982,12 +982,16 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="why-the-correlation-gives-the-best-slope">
 <h1>Why the correlation gives the best slope<a class="headerlink" href="#why-the-correlation-gives-the-best-slope" title="Permalink to this headline">#</a></h1>
-<p>In which we return to the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">simple regression</span></a> problem, and work through the mathematics to show why the correlation is the best least-squares slope for two z-scored arrays.</p>
+<p>In which we return to the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">simple regression</span></a> problem, and
+work through the mathematics to show why the correlation is the best
+least-squares slope for two z-scored arrays.</p>
+<p>As background, you may also want to read the <a class="reference internal" href="regression_notation.html"><span class="doc std std-doc">regression
+notation</span></a> page.</p>
 <section id="the-example-regression-problem">
 <h2>The example regression problem<a class="headerlink" href="#the-example-regression-problem" title="Permalink to this headline">#</a></h2>
 <p>As you remember, we have (fake) measured scores for a “psychopathy” personality
-trait in 12 students. We also have a measure of how much sweat each student had on their palms, and we
-call this a “clammy” score.</p>
+trait in 12 students. We also have a measure of how much sweat each student had
+on their palms, and we call this a “clammy” score.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import numerical and plotting libraries</span>
@@ -1018,7 +1022,9 @@ call this a “clammy” score.</p>
 <img alt="_images/why_mse_correlation_3_0.png" src="_images/why_mse_correlation_3_0.png" />
 </div>
 </div>
-<p>To get ourselves into a mathematical mood, we will rename our x-axis values to <code class="docutils literal notranslate"><span class="pre">x</span></code> and the y-axis values to <code class="docutils literal notranslate"><span class="pre">y</span></code>.  We will store the number of observations in both as <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>To get ourselves into a mathematical mood, we will rename our x-axis values to
+<code class="docutils literal notranslate"><span class="pre">x</span></code> and the y-axis values to <code class="docutils literal notranslate"><span class="pre">y</span></code>.  We will store the number of observations in
+both as <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">psychopathy</span>
@@ -1034,16 +1040,20 @@ call this a “clammy” score.</p>
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are Numpy <em>arrays</em>, but we can also call them <em>vectors</em>.  Vector is just a technical and mathematical term for a one-dimensional array.</p>
+<p><code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are Numpy <em>arrays</em>, but we can also call them <em>vectors</em>.  Vector is
+just a technical and mathematical term for a one-dimensional array.</p>
 <p>We are on a quest to find why it turned out that the correlation coefficient is
 always the best (least squared error) slope for the z-scored versions of these
 vectors (1D arrays).  To find out why, we need to express these <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>
 vectors in the most general way possible — independent of the numbers we have
 here.</p>
 <p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}\)</span></p>
-<p>First, in mathematical notation, we will call our <code class="docutils literal notranslate"><span class="pre">x</span></code> array <span class="math notranslate nohighlight">\(\xvec\)</span>, to remind us that <code class="docutils literal notranslate"><span class="pre">x</span></code> is a vector of numbers, not just a single number.</p>
+<p>First, in mathematical notation, we will call our <code class="docutils literal notranslate"><span class="pre">x</span></code> array <span class="math notranslate nohighlight">\(\xvec\)</span>, to remind
+us that <code class="docutils literal notranslate"><span class="pre">x</span></code> is a vector of numbers, not just a single number.</p>
 <p>Next we generalize <span class="math notranslate nohighlight">\(\xvec\)</span> to refer to any set of <span class="math notranslate nohighlight">\(n\)</span> numbers.  So, in our <code class="docutils literal notranslate"><span class="pre">x</span></code>
-we have <code class="docutils literal notranslate"><span class="pre">n</span></code> specific numbers, but we generalize <span class="math notranslate nohighlight">\(\xvec\)</span> to mean a series of <span class="math notranslate nohighlight">\(n\)</span> numbers, where <span class="math notranslate nohighlight">\(n\)</span> can be any number.  We can therefore write <span class="math notranslate nohighlight">\(\xvec\)</span> mathematically as:</p>
+we have <code class="docutils literal notranslate"><span class="pre">n</span></code> specific numbers, but we generalize <span class="math notranslate nohighlight">\(\xvec\)</span> to mean a series of <span class="math notranslate nohighlight">\(n\)</span>
+numbers, where <span class="math notranslate nohighlight">\(n\)</span> can be any number.  We can therefore write <span class="math notranslate nohighlight">\(\xvec\)</span>
+mathematically as:</p>
 <div class="math notranslate nohighlight">
 \[
 \xvec = [x_1, x_2, x_3, ..., x_n]
@@ -1058,7 +1068,9 @@ numbers.</p>
 </section>
 <section id="writing-sums">
 <h2>Writing sums<a class="headerlink" href="#writing-sums" title="Permalink to this headline">#</a></h2>
-<p>We are next going to do the z-score transform on <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span>.  As you remember, this involves subtracting the mean and dividing by the standard deviation.   We need to express these mathematically.</p>
+<p>We are next going to do the z-score transform on <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span>.  As you
+remember, this involves subtracting the mean and dividing by the standard
+deviation.   We need to express these mathematically.</p>
 <p>We will use <a class="reference external" href="https://matthew-brett.github.io/teaching/some_sums.html">sum
 notation</a> for this
 task.  This uses the symbol <span class="math notranslate nohighlight">\(\Sigma\)</span> to mean adding up the values in a vector.
@@ -1068,7 +1080,9 @@ operation we are used to calling <code class="docutils literal notranslate"><spa
 \[
 \Sigma_{i=1}^{n} x_i = x_1 + x_2 + x_3 ... + x_n
 \]</div>
-<p>The <span class="math notranslate nohighlight">\(i\)</span> above is the <em>index</em> for the vector, so <span class="math notranslate nohighlight">\(x_i\)</span> means the element from the vector at position <span class="math notranslate nohighlight">\(i\)</span>.  So, if <span class="math notranslate nohighlight">\(i = 3\)</span> then <span class="math notranslate nohighlight">\(x_i\)</span> is <span class="math notranslate nohighlight">\(x_3\)</span> — the element at the third position in the vector.</p>
+<p>The <span class="math notranslate nohighlight">\(i\)</span> above is the <em>index</em> for the vector, so <span class="math notranslate nohighlight">\(x_i\)</span> means the element from
+the vector at position <span class="math notranslate nohighlight">\(i\)</span>.  So, if <span class="math notranslate nohighlight">\(i = 3\)</span> then <span class="math notranslate nohighlight">\(x_i\)</span> is <span class="math notranslate nohighlight">\(x_3\)</span> — the element
+at the third position in the vector.</p>
 <p>Therefore, in code we, can write <span class="math notranslate nohighlight">\(\Sigma_{i=1}^{n} x_i\)</span> as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1084,7 +1098,9 @@ operation we are used to calling <code class="docutils literal notranslate"><spa
 </div>
 <p>The <span class="math notranslate nohighlight">\(i=1\)</span> and <span class="math notranslate nohighlight">\(n\)</span> at the bottom and top of the <span class="math notranslate nohighlight">\(\Sigma\)</span> mean that adding should
 start at position 1 (<span class="math notranslate nohighlight">\(x_1\)</span>) and go up to position <span class="math notranslate nohighlight">\(n\)</span> (<span class="math notranslate nohighlight">\(x_n\)</span>).  Of course, this
-means all the numbers in the vector.   In this page, we will always sum across all the numbers in the vector, and we will miss off the <span class="math notranslate nohighlight">\(i=1\)</span> and <span class="math notranslate nohighlight">\(n\)</span> above and below the <span class="math notranslate nohighlight">\(\Sigma\)</span>, so we will write:</p>
+means all the numbers in the vector.   In this page, we will always sum across
+all the numbers in the vector, and we will miss off the <span class="math notranslate nohighlight">\(i=1\)</span> and <span class="math notranslate nohighlight">\(n\)</span> above and
+below the <span class="math notranslate nohighlight">\(\Sigma\)</span>, so we will write:</p>
 <div class="math notranslate nohighlight">
 \[
 \Sigma x_i
@@ -1097,7 +1113,8 @@ means all the numbers in the vector.   In this page, we will always sum across a
 </section>
 <section id="mean-and-standard-deviation">
 <h2>Mean and standard deviation<a class="headerlink" href="#mean-and-standard-deviation" title="Permalink to this headline">#</a></h2>
-<p>Now we have a notation for adding things up in a vector, we can write the mathematical notation for the mean and standard deviation.</p>
+<p>Now we have a notation for adding things up in a vector, we can write the
+mathematical notation for the mean and standard deviation.</p>
 <div class="math notranslate nohighlight">
 \[
 \newcommand{\xbar}{\bar{x}}
@@ -1540,31 +1557,33 @@ c \Sigma x_i
 </section>
 <section id="the-least-squares-line-for-z-scores">
 <h2>The least-squares line for z-scores<a class="headerlink" href="#the-least-squares-line-for-z-scores" title="Permalink to this headline">#</a></h2>
-<p>Let us say we have a data vector <span class="math notranslate nohighlight">\(\yvec\)</span>.  We have somehow calculated a fitted value <span class="math notranslate nohighlight">\(f_i\)</span> for every corresponding value <span class="math notranslate nohighlight">\(y_i\)</span> in <span class="math notranslate nohighlight">\(\yvec\)</span>.  Then the errors at each value <span class="math notranslate nohighlight">\(i\)</span> are given by:</p>
+<p>Let us say we have a data vector <span class="math notranslate nohighlight">\(\yvec\)</span>.  We have somehow calculated an estimated (fitted)
+value <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> for every corresponding value <span class="math notranslate nohighlight">\(y_i\)</span> in <span class="math notranslate nohighlight">\(\yvec\)</span>.  Then the errors at
+each value <span class="math notranslate nohighlight">\(i\)</span> are given by:</p>
 <div class="math notranslate nohighlight">
 \[
-e_i = y_i - f_i
+e_i = y_i - \hat{y}_i
 \]</div>
 <p>The sum of squared errors are:</p>
 <div class="math notranslate nohighlight">
 \[
-SSE = \Sigma (y_i - f_i)^2
+SSE = \Sigma (y_i - \hat{y}_i)^2
 \]</div>
 <p>Remembering that <span class="math notranslate nohighlight">\((a + b)^2 = (a + b)(a + b) = a^2 + 2ab + b^2\)</span> we get:</p>
 <div class="math notranslate nohighlight">
 \[
-SSE = \Sigma (y_i^2 - 2y_i f_i + f_i^2)
+SSE = \Sigma (y_i^2 - 2y_i \hat{y}_i + \hat{y}_i^2)
 \]</div>
 <p>Simplifying with rules of sums above:</p>
 <div class="math notranslate nohighlight">
 \[
-SSE = \Sigma y_i^2 - 2 \Sigma y_i f_i + \Sigma f_i^2
+SSE = \Sigma y_i^2 - 2 \Sigma y_i \hat{y}_i + \Sigma \hat{y}_i^2
 \]</div>
-<p>Now we introduce our fitted value <span class="math notranslate nohighlight">\(f_i\)</span>, which we get from our straight line
+<p>Now we introduce our fitted value <span class="math notranslate nohighlight">\(\hat{y}_i\)</span>, which we get from our straight line
 with slope <span class="math notranslate nohighlight">\(b\)</span> and intercept <span class="math notranslate nohighlight">\(c\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-f_i = b x_i + c
+\hat{y}_i = b x_i + c
 \]</div>
 <p>Substituting, then simplifying:</p>
 <div class="math notranslate nohighlight">
@@ -1664,8 +1683,35 @@ the function has got to the minimum point, because the gradient is turning from
 negative to positive.  So, when we have found the gradient=0 point, and
 confirmed it is at the bottom of a trough, as we see in the graph, then we have
 found the value of <span class="math notranslate nohighlight">\(b\)</span> that minimizes the original SSE function.</p>
-<p>Let us first take the derivative with respect to <span class="math notranslate nohighlight">\(c\)</span>.  Taking the derivative is
-also called <em>differentiating</em> the function.</p>
+<p>We can see the shape of our function curve, and it looks like it is a simple
+parabola, with one minimum.  When we take the derivative of function, which
+gives us the gradient, we expect to see a single x value where the gradient is
+0, and we can see that is a minimum point.  But, to be sure about this, in the
+general case, we will first want to check that there is in fact only one x
+value for which the derivative is 0.  And next, we will want to check whether
+this point is a minimum point or a maximum point.  You can probably imagine
+that a peak (maximum point) is also going to have a derivative of 0, as the
+slope goes from positive to negative. In order to check whether a 0 in the
+derivative is a maximum or a minimum, we take the gradient of the gradient (the
+derivative of the derivative).  This is the <em>second derivative</em>.  Think of it
+as the rate of change of the gradient.  If we are at a minimum point, then this
+rate of change of the gradient is positive, as the gradient goes from negative
+to positive.  If we are at a maximum point, this rate of change of the gradient
+will be negative, as the gradient goes from positive to negative.</p>
+<p>Taking the derivative is also called <em>differentiating</em> the function.</p>
+<p>You need to know some rules for taking the derivative, but these rules are not
+hard to derive, once you are used to the idea of taking the derivative.  The
+key ones rules here are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Differentiation_rules#Constant_Term_Rule">Constant term
+rule</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Linearity_of_differentiation">Linearity</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Power_rule">Power rule</a></p></li>
+</ul>
+<p>You need to know too, that when differentiating with respect to some variable,
+say <span class="math notranslate nohighlight">\(x\)</span>, you can ignore (set to 0) all terms that do not vary with <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>Let us first take the derivative of the <span class="math notranslate nohighlight">\(SSE_z\)</span> function above, with respect to
+<span class="math notranslate nohighlight">\(c\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial SSE_z}{\partial c} = 2 n c
