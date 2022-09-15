@@ -266,7 +266,7 @@ we use $i$ to mean any whole number from 1 through $n$, and so:
 $$
 \hat{y}_i = b x_i + c \\
 \text{for } i \in [ 1, 2, ... n]
-$$.
+$$
 
 For the second line above, read $\in$ as "in", and the whole line as "For $i$ in 1 through $n$", or as "Where $i$
 can take any value from 1 through $n$ inclusive".
