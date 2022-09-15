@@ -76,11 +76,12 @@ First we chose some x values at which to sample from the gamma PDF:
 x = np.arange(0, 25, 0.1)
 ```
 
-Next we plot the gamma PDF for shape values of 2, 4, 8, 12.
+Next we plot the gamma PDF for shape values of 2, 4, 6, 8, 12.
 
 ```{python}
 plt.plot(x, gamma.pdf(x, 2), label='k=2')
 plt.plot(x, gamma.pdf(x, 4), label='k=4')
+plt.plot(x, gamma.pdf(x, 4), label='k=6')
 plt.plot(x, gamma.pdf(x, 8), label='k=8')
 plt.plot(x, gamma.pdf(x, 12), label='k=12')
 plt.legend()
@@ -97,8 +98,9 @@ the HRF for, and returns the values of the HRF for those times.  We will
 assume that the true HRF starts at zero, and gets to zero sometime before 35
 seconds.
 
-We’re going to try using the sum of two [gamma distribution](https://en.wikipedia.org/wiki/Gamma_distribution) probability density
-functions.
+We’re going to try using the sum of two [gamma
+distribution](https://en.wikipedia.org/wiki/Gamma_distribution) probability
+density functions.
 
 Here is one example of such a function:
 
@@ -161,10 +163,10 @@ all_tr_times = np.arange(173) * TR
 plt.plot(all_tr_times, neural_prediction)
 ```
 
-When we convolve, the output is length N + M-1, where N is the number of
-values in the vector we convolved, and M is the length of the convolution
-kernel (`hrf_at_trs` in our case).  For a reminder of why this is, see the
-[tutorial on convolution](https://matthew-brett.github.io/teaching/on_convolution.html).
+When we convolve, the output is length N + M-1, where N is the number of values
+in the vector we convolved, and M is the length of the convolution kernel
+(`hrf_at_trs` in our case).  For a reminder of why this is, see the [tutorial
+on convolution](https://matthew-brett.github.io/teaching/on_convolution.html).
 
 ```{python}
 convolved = np.convolve(neural_prediction, hrf_at_trs)

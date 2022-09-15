@@ -932,11 +932,12 @@ array) known as the <a class="reference external" href="https://en.wikipedia.org
 </div>
 </div>
 </div>
-<p>Next we plot the gamma PDF for shape values of 2, 4, 8, 12.</p>
+<p>Next we plot the gamma PDF for shape values of 2, 4, 6, 8, 12.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=2&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=4&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=6&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=8&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=12&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -944,7 +945,7 @@ array) known as the <a class="reference external" href="https://en.wikipedia.org
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f35bbc50a30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f354444c970&gt;
 </pre></div>
 </div>
 <img alt="_images/convolution_background_10_1.png" src="_images/convolution_background_10_1.png" />
@@ -960,8 +961,9 @@ brain.</p>
 the HRF for, and returns the values of the HRF for those times.  We will
 assume that the true HRF starts at zero, and gets to zero sometime before 35
 seconds.</p>
-<p>We’re going to try using the sum of two <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma distribution</a> probability density
-functions.</p>
+<p>We’re going to try using the sum of two <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma
+distribution</a> probability
+density functions.</p>
 <p>Here is one example of such a function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1056,16 +1058,16 @@ convert the onsets in the file, to neural time-courses.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f35b96dbfd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3541ac3610&gt;]
 </pre></div>
 </div>
 <img alt="_images/convolution_background_19_1.png" src="_images/convolution_background_19_1.png" />
 </div>
 </div>
-<p>When we convolve, the output is length N + M-1, where N is the number of
-values in the vector we convolved, and M is the length of the convolution
-kernel (<code class="docutils literal notranslate"><span class="pre">hrf_at_trs</span></code> in our case).  For a reminder of why this is, see the
-<a class="reference external" href="https://matthew-brett.github.io/teaching/on_convolution.html">tutorial on convolution</a>.</p>
+<p>When we convolve, the output is length N + M-1, where N is the number of values
+in the vector we convolved, and M is the length of the convolution kernel
+(<code class="docutils literal notranslate"><span class="pre">hrf_at_trs</span></code> in our case).  For a reminder of why this is, see the <a class="reference external" href="https://matthew-brett.github.io/teaching/on_convolution.html">tutorial
+on convolution</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convolved</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">neural_prediction</span><span class="p">,</span> <span class="n">hrf_at_trs</span><span class="p">)</span>
@@ -1103,7 +1105,7 @@ drop the last <code class="docutils literal notranslate"><span class="pre">len(h
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f35b96c48b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3541aac1c0&gt;]
 </pre></div>
 </div>
 <img alt="_images/convolution_background_24_1.png" src="_images/convolution_background_24_1.png" />
