@@ -252,7 +252,8 @@ $$
 \vec{\hat{y}} = [ b x_1 + c, b x_2 + c, ..., b x_n + c ]
 $$
 
-We often use $i$ as a general *index* into the vectors.  So, instead of writing:
+We often use $i$ as a general *index* into the vectors.  So, instead of
+writing:
 
 $$
 \hat{y}_1 = b x_1 + c \\
@@ -268,12 +269,13 @@ $$
 \text{for } i \in [ 1, 2, ... n]
 $$
 
-For the second line above, read $\in$ as "in", and the whole line as "For $i$ in 1 through $n$", or as "Where $i$
-can take any value from 1 through $n$ inclusive".
+For the second line above, read $\in$ as "in", and the whole line as "For $i$
+in 1 through $n$", or as "Where $i$ can take any value from 1 through $n$
+inclusive".
 
 We mean here, that for any whole number $i$ from 1 through $n$, the fitted
-value $\hat{y}_i$ (e.g. $\hat{y}_3$, where $i=3$) is given by $b$ times the corresponding
-$x$ value ($x_3$ where $i=3$) plus $c$.
+value $\hat{y}_i$ (e.g. $\hat{y}_3$, where $i=3$) is given by $b$ times the
+corresponding $x$ value ($x_3$ where $i=3$) plus $c$.
 
 The error vector $\vec{e}$ is:
 
