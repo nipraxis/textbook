@@ -33,6 +33,7 @@ exclude_patterns:
   - comparing_arrays.Rmd
   - comparing_floats.md
   - diag_inverse.md
+  - dot_and_outer.md
   - index_reshape.Rmd
   - keyword_arguments.Rmd
   - numpy_diag.Rmd
