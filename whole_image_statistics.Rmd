@@ -201,7 +201,7 @@ plt.imshow(t_3d[:, :, 15], cmap='gray')
 
 Notice the white areas at the edge of the image.  These are voxels where the t
 value is `nan` – [Not a number](https://en.wikipedia.org/wiki/NaN).  See also
-[Not a number](nan.Rmd).  `nan` values arise when all the scans have 0 at this
+[Not a number](nans.Rmd).  `nan` values arise when all the scans have 0 at this
 voxel, so the numerator and denominator of the t statistic are both 0.
 
 ```{python}
