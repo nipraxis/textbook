@@ -159,17 +159,18 @@ c_b_cov = c @ npl.pinv(X.T @ X) @ c
 c_b_cov
 ```
 
-Here we left `c` as a 1D vector, and let the default of the `dot` method
-treat the 1D vector as a row vector on the left, and as a column vector on the
-right.  See: Dot, vectors and matrices.
+Here we left `c` as a 1D vector, and let the default of the `@` matrix
+multiplication operator treat the 1D vector as a row vector on the left, and as
+a column vector on the right. See: {ref}`Dot, vectors and matrices
+<dot-vectors-matrices>`.
 
 ```{python}
 print(c)
 print(c.shape)
 ```
 
-We could also make `c` into an explicit row vector to match the formula of
-the t statistic above.  See Adding length 1 dimensions with newaxis:
+We could also make `c` into an explicit row vector to match the formula of the
+t statistic above.  See [Adding length 1 dimensions with newaxis](newaxis.Rmd).
 
 ```{python}
 c = c[:, None]
@@ -200,8 +201,8 @@ plt.imshow(t_3d[:, :, 15], cmap='gray')
 
 Notice the white areas at the edge of the image.  These are voxels where the t
 value is `nan` – [Not a number](https://en.wikipedia.org/wiki/NaN).  See also
-Not a number.  `nan` values arise when all the scans have 0 at this voxel, so
-the numerator and denominator of the t statistic are both 0.
+[Not a number](nans.Rmd).  `nan` values arise when all the scans have 0 at this
+voxel, so the numerator and denominator of the t statistic are both 0.
 
 ```{python}
 np.array(0) / 0
@@ -314,32 +315,23 @@ plt.imshow(p_3d[:, :, 15], cmap='gray')
 We now have a very large number of t statistics and p values.  We want to find
 to control the family-wise error rate, where the “family” is the set of all of
 the voxel t tests / p values.  See: [Bonferroni
-correction](bonferroni_correction.Rmd).
-
-We start with the Šidák correction, that gives the correct threshold when all
-the test are independent:
+correction](bonferroni_correction.Rmd).  For reasons that you will in that
+page, the Bonferroni threshold is just the desired family-wise error rate (such
+as 0.05) divided by the number of voxels.  This gives the single-voxel p value
+threshold at which we have a family-wise error rate of (e.g) 0.05.
 
 ```{python}
 N = p.shape[0]
-sidak_thresh = 1 - (1 - 0.05) ** (1./N)
-sidak_thresh
+bonferroni_thresh = 0.05 / N
+bonferroni_thresh
 ```
 
-Binarize the voxel p values at the Šidák correction threshold, so voxels
+Binarize the voxel p values at the Bonferroni correction threshold, so voxels
 surviving correction have True, other voxels have False:
 
 ```{python}
-plt.imshow(p_3d[:, :, 15] < sidak_thresh, cmap='gray')
+plt.imshow(p_3d[:, :, 15] < bonferroni_thresh, cmap='gray')
 ```
 
 The voxels outside the brain have p value 0 (see above), so these always
 survive the correction above, and appear white.
-
-Now we threshold at the Bonferroni correction level.  This does not assume the
-tests are independent:
-
-```{python}
-bonferroni_theta = 0.05 / N
-print(bonferroni_theta)
-plt.imshow(p_3d[:, :, 15] < bonferroni_theta, cmap='gray')
-```

@@ -944,9 +944,9 @@ the start of the TR.</p>
 <img alt="_images/slice_timing_11_0.png" src="_images/slice_timing_11_0.png" />
 </div>
 </div>
-<p>The scanner acquired the slices in interleaved order, first acquiring slice
-index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices 1, 3,
-5, .. 23 <a class="footnote-reference brackets" href="#how-we-know" id="id1">1</a>.</p>
+<p>The scanner acquired the slices (planes) in interleaved order, first acquiring
+slice index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices
+1, 3, 5, .. 23 <a class="footnote-reference brackets" href="#how-we-know" id="id1">1</a>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore this cell.  It is not relevant to slice timing,</span>
@@ -1002,8 +1002,8 @@ through the TR.  In this case the time to acquire the whole volume (the TR) was
 </div>
 </div>
 </div>
-<p>The times of acquisition of first and second slices (slice 0 and slice 1) will
-be:</p>
+<p>The <em>times of acquisition</em> of first and second slices in <em>space</em> (slice 0 and
+slice 1) will be:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_for_slice_0</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1028,11 +1028,11 @@ for different slices in the z axis.</p>
 <p>How can we make a new 4D time series, where all the slices in each volume
 correspond to our best guess at what these slices would have looked like, if we
 had acquired them all at the same time?</p>
-<p>This is the job of the <em>slice timing correction</em>.</p>
+<p>This is the job of <em>slice timing correction</em>.</p>
 <section id="slice-timing-is-interpolation-in-time">
 <h2>Slice timing is interpolation in time<a class="headerlink" href="#slice-timing-is-interpolation-in-time" title="Permalink to this headline">#</a></h2>
-<p>Let’s first get a time series from the bottom slice.  Here’s what the bottom
-slice looks like, for the first volume:</p>
+<p>Let’s first get a time series from the bottom slice (in space).  Here’s what
+the bottom slice looks like, for the first volume:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">vol0</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
@@ -1044,9 +1044,9 @@ slice looks like, for the first volume:</p>
 <img alt="_images/slice_timing_21_0.png" src="_images/slice_timing_21_0.png" />
 </div>
 </div>
-<p>We are going to collect a time series from a sample voxel from this slice, and
-the slice above it (slice 1):</p>
-<p>Our sample voxel coordinates</p>
+<p>We are going to collect a voxel time series from a sample voxel from this
+slice, and the slice above it (slice 1):</p>
+<p>Our sample voxel coordinates:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vox_x</span> <span class="o">=</span> <span class="mi">28</span>  <span class="c1"># voxel coordinate in first dimension</span>
@@ -1081,8 +1081,8 @@ and position 1:</p>
 </div>
 </div>
 </div>
-<p>The times of acquisition of the voxels for slice 0 are at the beginning of each
-TR:</p>
+<p>The <em>times</em> of acquisition of the voxels for slice 0 are at the beginning of
+each TR:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol_nos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
@@ -1206,11 +1206,10 @@ horizontal line across to the y axis.</p></li>
 <p>Now we need to work out where these lines cross the slice 1 time course.</p>
 <p>This is where we can use <a class="reference external" href="https://matthew-brett.github.io/teaching/linear_interpolation.html">Linear
 interpolation</a>.
-This is <em>interpolation</em> because we are estimating a value from the slice 1 time
-course, that is between two points that we have values for (inter == between).
-It is <em>linear</em> interpolation because we are getting our estimate by assuming a
-straight line between to the two known points in order to estimate our new
-value.</p>
+This is <em>inter</em>-polation because we are estimating a value from the slice 1
+time course, that is <em>between</em> two points we do have values for. It is <em>linear</em>
+interpolation because we are getting our estimate by assuming a straight line
+between to the two known points in order to estimate our new value.</p>
 <p>In the general case of linear interpolation (see <a class="reference external" href="https://matthew-brett.github.io/teaching/linear_interpolation.html">Linear
 interpolation</a>),
 we have two points, <span class="math notranslate nohighlight">\(x_1, y_1\)</span> and <span class="math notranslate nohighlight">\(x_2, y_2\)</span>.  In our case we have time on the
@@ -1251,10 +1250,11 @@ interpolated values from the slice 1 time course:</p>
 <p>It is inconvenient to have to do this calculation for every point. We also
 need a good way of deciding what to do about values at the beginning and the
 end.</p>
-<p>Luckily <code class="docutils literal notranslate"><span class="pre">scipy</span></code> has a sub-package called <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> that takes
-care of this for us.</p>
-<p>We use it by first creating an interpolation object, that will do the
-interpolation:</p>
+<p>Luckily Scipy has a sub-package called <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> that takes care of
+this for us.</p>
+<p>We use it by first creating an <em>interpolation object</em>, that will do the
+interpolation.  We create this object using the <code class="docutils literal notranslate"><span class="pre">InterpolatedUnivariateSpline</span></code>
+class from <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">InterpolatedUnivariateSpline</span> <span class="k">as</span> <span class="n">Interp</span>
@@ -1262,8 +1262,8 @@ interpolation:</p>
 </div>
 </div>
 </div>
-<p>This <code class="docutils literal notranslate"><span class="pre">Interp</span></code> class can do more fancy interpolation, but we will use it
-for linear interpolation (<code class="docutils literal notranslate"><span class="pre">k=1</span></code> argument below):</p>
+<p>This class can do more fancy interpolation, but we will use it for linear
+interpolation (<code class="docutils literal notranslate"><span class="pre">k=1</span></code> argument below):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lin_interper</span> <span class="o">=</span> <span class="n">Interp</span><span class="p">(</span><span class="n">times_slice_1</span><span class="p">,</span> <span class="n">time_course_slice_1</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>

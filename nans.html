@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Vector and matrix dot products, “np.outer” &#8212; Practice and theory of brain imaging</title>
+    <title>Not a number &#8212; Practice and theory of brain imaging</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,12 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Adding length 1 dimensions with newaxis" href="newaxis.html" />
-    <link rel="prev" title="Logical operations on Boolean arrays" href="numpy_logical.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -475,7 +471,7 @@ const thebe_selector_output = ".output, .cell_output"
   Notes on arrays and plots
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="methods_vs_functions.html">
    Methods vs functions in NumPy
@@ -496,8 +492,8 @@ const thebe_selector_output = ".output, .cell_output"
    Logical operations on Boolean arrays
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="dot_outer.html">
    Vector and matrix dot products, “np.outer”
   </a>
  </li>
@@ -590,7 +586,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/dot_outer.Rmd"
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/nans.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -608,7 +604,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/dot_outer.Rmd&branch=main"
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/nans.Rmd&branch=main"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -626,7 +622,7 @@ title="Launch on JupyterHub"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/dot_outer.Rmd"
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/nans.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -644,7 +640,7 @@ title="Launch on Colab"
       </li>
       
       <li>
-        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fdot_outer.Rmd"
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fnans.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -722,7 +718,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fdot_outer.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fnans.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -750,7 +746,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/dot_outer.Rmd"
+        <a href="_sources/nans.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -810,23 +806,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-dot-products">
-   Vector dot products
+  <a class="reference internal nav-link" href="#nan-values-are-not-equal-to-anything">
+   NaN values are not equal to anything
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-dot-products">
-   Matrix dot products
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-outer-product">
-   The outer product
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dot-vectors-and-matrices">
-   Dot, vectors and matrices
+  <a class="reference internal nav-link" href="#detecting-nan-values">
+   Detecting NaN values
   </a>
  </li>
 </ul>
@@ -838,7 +824,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Vector and matrix dot products, “np.outer”</h1>
+                <h1>Not a number</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -849,23 +835,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-dot-products">
-   Vector dot products
+  <a class="reference internal nav-link" href="#nan-values-are-not-equal-to-anything">
+   NaN values are not equal to anything
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-dot-products">
-   Matrix dot products
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-outer-product">
-   The outer product
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dot-vectors-and-matrices">
-   Dot, vectors and matrices
+  <a class="reference internal nav-link" href="#detecting-nan-values">
+   Detecting NaN values
   </a>
  </li>
 </ul>
@@ -878,339 +854,91 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="vector-and-matrix-dot-products-np-outer">
-<h1>Vector and matrix dot products, “np.outer”<a class="headerlink" href="#vector-and-matrix-dot-products-np-outer" title="Permalink to this headline">#</a></h1>
-<p>Our standard imports to start:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="not-a-number">
+<h1>Not a number<a class="headerlink" href="#not-a-number" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/NaN">Not a number</a> is a special floating point
+value to signal that the result of a floating point calculation is invalid.</p>
+<p>In text we usually use NaN to refer to the Not-a-Number value.</p>
+<p>For example, dividing 0 by 0 is invalid, and returns a NaN value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1"># Display array values to 6 digits of precision</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="vector-dot-products">
-<h2>Vector dot products<a class="headerlink" href="#vector-dot-products" title="Permalink to this headline">#</a></h2>
-<p>If I have two vectors <span class="math notranslate nohighlight">\(\vec{a}\)</span> with elements <span class="math notranslate nohighlight">\(a_0, a_1, ...
-a_{n-1}\)</span>, and <span class="math notranslate nohighlight">\(\vec{b}\)</span> with elements <span class="math notranslate nohighlight">\(b_0, b_1, ... b_{n-1}\)</span>
-then the <a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">dot product</a> is
-defined as:</p>
-<div class="math notranslate nohighlight">
-\[
-\vec{a} \cdot \vec{b} = \sum_{i=0}^{n-1} a_ib_i = a_0b_0 + a_1b_1 + \cdots + a_{n-1}b_{n-1}
-\]</div>
-<p>In code:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The same thing as</span>
-<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Elementwise multiplication</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4726/2135315712.py:1: RuntimeWarning: invalid value encountered in divide
+  np.array(0) / 0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
 </pre></div>
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">dot</span></code> is also a <em>method</em> of the NumPy array object, and using the method can
-be neater and easier to read:</p>
+<p>As you see above, Numpy uses all lower-case: <code class="docutils literal notranslate"><span class="pre">nan</span></code> for the NaN value.</p>
+<p>You can also find the NaN value in the Numpy module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
 </pre></div>
 </div>
 </div>
 </div>
-<p>Better still, the matrix multiplication operator <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> implies a dot product between two vectors:</p>
+<section id="nan-values-are-not-equal-to-anything">
+<h2>NaN values are not equal to anything<a class="headerlink" href="#nan-values-are-not-equal-to-anything" title="Permalink to this headline">#</a></h2>
+<p>The NaN value has some specific properties.</p>
+<p>It is not equal to anything, even itself:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">@</span> <span class="n">b</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">==</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="matrix-dot-products">
-<h2>Matrix dot products<a class="headerlink" href="#matrix-dot-products" title="Permalink to this headline">#</a></h2>
-<p>Matrix multiplication operates by taking dot products of the rows of the first
-array (matrix) with the columns of the second.</p>
-<p>Let’s say I have a matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, and <span class="math notranslate nohighlight">\(\vec{X_{i,:}}\)</span> is row
-<span class="math notranslate nohighlight">\(i\)</span> in <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. I have a matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>, and
-<span class="math notranslate nohighlight">\(\vec{Y_{:,j}}\)</span> is column <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>. The output
-matrix <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} \mathbf{Y}\)</span> has entry <span class="math notranslate nohighlight">\(Z_{i,j} =
-\vec{X_{i,:}} \cdot \vec{Y_{:, j}}\)</span>.</p>
+<section id="detecting-nan-values">
+<h2>Detecting NaN values<a class="headerlink" href="#detecting-nan-values" title="Permalink to this headline">#</a></h2>
+<p>You have found above that you cannot look for NaN values by using <code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">np.nan</span></code>.</p>
+<p>To allow for this, use <code class="docutils literal notranslate"><span class="pre">np.isnan</span></code> to tell you whether a number or an array
+element is NaN.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
-<span class="n">X</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
-       [3, 4, 5]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
-<span class="n">Y</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7,  8],
-       [ 9, 10],
-       [11, 12]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">@</span> <span class="n">Y</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 31,  34],
-       [112, 124]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">Y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>31
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">Y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>112
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="the-outer-product">
-<h2>The outer product<a class="headerlink" href="#the-outer-product" title="Permalink to this headline">#</a></h2>
-<p>We can use the rules of matrix multiplication for row vectors and column
-vectors.</p>
-<p>A row vector is a 2D vector where the first dimension is length 1.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">row_vector</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">row_vector</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 3)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 3, 2]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>A column vector is a 2D vector where the second dimension is length 1.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">col_vector</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">col_vector</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 1)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2],
-       [0],
-       [1]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>We know what will happen if we matrix multiply the row vector and the column
-vector:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_vector</span> <span class="o">@</span> <span class="n">col_vector</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>What happens when we matrix multiply the column vector by the row vector? We
-know this will work because we are multiplying a 3 by 1 array by a 1 by 3
-array, so this should generate a 3 by 3 array:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_vector</span> <span class="o">@</span> <span class="n">row_vector</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2, 6, 4],
-       [0, 0, 0],
-       [1, 3, 2]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>This arises from the rules of matrix multiplication, except there is only one
-row * column pair making up each of the output elements:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">col_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">row_vector</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">col_vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">row_vector</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">col_vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">row_vector</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2 6 4]]
-[[0 0 0]]
-[[1 3 2]]
-</pre></div>
-</div>
-</div>
-</div>
-<p>This (M by 1) vector matrix multiply with a (1 by N) vector is also called the
-<em>outer product</em> of two vectors. We can generate the same thing from 1D
-vectors, by using the numpy <code class="docutils literal notranslate"><span class="pre">np.outer</span></code> function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">col_vector</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">row_vector</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2, 6, 4],
-       [0, 0, 0],
-       [1, 3, 2]])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="dot-vectors-and-matrices">
-<span id="dot-vectors-matrices"></span><h2>Dot, vectors and matrices<a class="headerlink" href="#dot-vectors-and-matrices" title="Permalink to this headline">#</a></h2>
-<p>Unlike MATLAB, Python has one-dimensional vectors. For example, if I slice a
-column out of a 2D array of shape (M, N), I do not get a column vector, shape
-(M, 1), I get a 1D vector, shape (M,):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">v</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Because the 1D vector has lost the idea of being a column rather than a row in
-a matrix, it is no longer unambiguous what <span class="math notranslate nohighlight">\(v \cdot \mathbf{X}\)</span> means.  It
-could mean a dot product of a row vector shape (1, M) with a matrix shape
-(M, N), which is valid – or a dot product of a row vector (M, 1) with a
-matrix shape (M, N), which is not valid.</p>
-<p>If you pass a 1D vector into the <code class="docutils literal notranslate"><span class="pre">dot</span></code> function or method, or use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>
-matrix multiplier, NumPy assumes you mean it to be a row vector on the left,
-and a column vector on the right, which is nearly always what you intended:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1D vector is row vector on the left hand side of dot / matrix multiply.</span>
-<span class="n">v</span> <span class="o">@</span> <span class="n">X</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9, 12, 15])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1D vector is column vector on the right hand side of dot / matrix multiply.</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">X</span> <span class="o">@</span> <span class="n">w</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 2])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Notice that, in both cases, <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> returns a 1D result.</p>
-<p>It sometimes helps to make a 1D vector into a 2D row or column vector, to make
-your intention explicit, and preserve the 2D shape of the output:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Turn 1D vector into explicit row vector</span>
-<span class="n">row_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="c1"># @ now returns a row vector rather than a 1D vector</span>
-<span class="n">row_v</span> <span class="o">@</span> <span class="n">X</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 9, 12, 15]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False,  True])
 </pre></div>
 </div>
 </div>
@@ -1245,20 +973,6 @@ your intention explicit, and preserve the 2D shape of the output:</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="numpy_logical.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Logical operations on Boolean arrays</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="newaxis.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Adding length 1 dimensions with newaxis</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
