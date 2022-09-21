@@ -38,6 +38,8 @@ $\le \alpha$ that *any* p value will be $\lt \theta$, then
 the threshold $\theta$ can be said to control the *family-wise
 error rate* at level $\alpha$.
 
+(sidak-correction)=
+
 ## Not the Bonferroni correction
 
 The inequality used for the Bonferroni is harder to explain than a
