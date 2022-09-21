@@ -151,6 +151,8 @@ vectors, by using the numpy `np.outer` function:
 np.outer(col_vector.ravel(), row_vector.ravel())
 ```
 
+(dot-vectors-matrices)=
+
 ## Dot, vectors and matrices
 
 Unlike MATLAB, Python has one-dimensional vectors. For example, if I slice a
