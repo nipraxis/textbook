@@ -71,9 +71,9 @@ plt.xlabel('x axis')
 plt.ylabel('z axis');
 ```
 
-The scanner acquired the slices in interleaved order, first acquiring slice
-index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices 1, 3,
-5, .. 23 [^how-we-know].
+The scanner acquired the slices (planes) in interleaved order, first acquiring
+slice index 0, 2, 4, … 22 (where 0 is the bottom slice) then acquiring slices
+1, 3, 5, .. 23 [^how-we-know].
 
 [^how-we-know]: We could not find the slice acquisition order noted in the
 paper about the [relevant
@@ -125,8 +125,8 @@ time_for_single_slice = TR / n_z_slices
 time_for_single_slice
 ```
 
-The times of acquisition of first and second slices (slice 0 and slice 1) will
-be:
+The *times of acquisition* of first and second slices in *space* (slice 0 and
+slice 1) will be:
 
 ```{python}
 time_for_slice_0 = 0
@@ -147,24 +147,24 @@ How can we make a new 4D time series, where all the slices in each volume
 correspond to our best guess at what these slices would have looked like, if we
 had acquired them all at the same time?
 
-This is the job of the *slice timing correction*.
+This is the job of *slice timing correction*.
 
 
 ## Slice timing is interpolation in time
 
 
-Let’s first get a time series from the bottom slice.  Here’s what the bottom
-slice looks like, for the first volume:
+Let’s first get a time series from the bottom slice (in space).  Here’s what
+the bottom slice looks like, for the first volume:
 
 ```{python}
 plt.imshow(vol0[:, :, 0])
 plt.title('Vol 0, z slice 0');
 ```
 
-We are going to collect a time series from a sample voxel from this slice, and
-the slice above it (slice 1):
+We are going to collect a voxel time series from a sample voxel from this
+slice, and the slice above it (slice 1):
 
-Our sample voxel coordinates
+Our sample voxel coordinates:
 
 ```{python}
 vox_x = 28  # voxel coordinate in first dimension
@@ -190,8 +190,8 @@ time_course_slice_0 = data[vox_x, vox_y, 0, :]
 time_course_slice_1 = data[vox_x, vox_y, 1, :]
 ```
 
-The times of acquisition of the voxels for slice 0 are at the beginning of each
-TR:
+The *times* of acquisition of the voxels for slice 0 are at the beginning of
+each TR:
 
 ```{python}
 vol_nos = np.arange(data.shape[-1])
@@ -273,11 +273,10 @@ Now we need to work out where these lines cross the slice 1 time course.
 
 This is where we can use [Linear
 interpolation](https://matthew-brett.github.io/teaching/linear_interpolation.html).
-This is *interpolation* because we are estimating a value from the slice 1 time
-course, that is between two points that we have values for (inter == between).
-It is *linear* interpolation because we are getting our estimate by assuming a
-straight line between to the two known points in order to estimate our new
-value.
+This is *inter*-polation because we are estimating a value from the slice 1
+time course, that is *between* two points we do have values for. It is *linear*
+interpolation because we are getting our estimate by assuming a straight line
+between to the two known points in order to estimate our new value.
 
 In the general case of linear interpolation (see [Linear
 interpolation](https://matthew-brett.github.io/teaching/linear_interpolation.html)),
@@ -317,18 +316,19 @@ It is inconvenient to have to do this calculation for every point. We also
 need a good way of deciding what to do about values at the beginning and the
 end.
 
-Luckily `scipy` has a sub-package called `scipy.interpolate` that takes
-care of this for us.
+Luckily Scipy has a sub-package called `scipy.interpolate` that takes care of
+this for us.
 
-We use it by first creating an interpolation object, that will do the
-interpolation:
+We use it by first creating an *interpolation object*, that will do the
+interpolation.  We create this object using the `InterpolatedUnivariateSpline`
+class from `scipy.interpolate`.
 
 ```{python}
 from scipy.interpolate import InterpolatedUnivariateSpline as Interp
 ```
 
-This `Interp` class can do more fancy interpolation, but we will use it
-for linear interpolation (`k=1` argument below):
+This class can do more fancy interpolation, but we will use it for linear
+interpolation (`k=1` argument below):
 
 ```{python}
 lin_interper = Interp(times_slice_1, time_course_slice_1, k=1)
@@ -370,6 +370,7 @@ plt.xlabel('time (seconds)');
 ```
 
 ## Slice time correction
+
 
 We can do this for each time course in each slice, and make a new 4D image,
 that has a copy of the values in slice 0, but the interpolated values for all
