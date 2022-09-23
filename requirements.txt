@@ -3,6 +3,7 @@ matplotlib
 pandas
 scipy
 nibabel
+nipype
 ipython
 jupytext
 okpy

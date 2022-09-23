@@ -1,19 +1,23 @@
 ---
 jupyter:
   jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
     text_representation:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.10.3
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
 ---
 
-$\newcommand{L}[1]{\| #1 \|}\newcommand{VL}[1]{\L{ \vec{#1} }}\newcommand{R}[1]{\operatorname{Re}\,(#1)}\newcommand{I}[1]{\operatorname{Im}\, (#1)}$
+# Introducing nipype
 
-## Introducing nipype
-
-[Nipype](http://nipy.org/nipype) is a Python module that provides Python interfaces to many imaging
-tools, including SPM, AFNI and FSL.
+[Nipype](http://nipy.org/nipype) is a Python module that provides Python
+interfaces to many imaging tools, including SPM, AFNI and FSL.
 
 We install it with `pip` in the usual way:
 
@@ -27,48 +31,50 @@ After this has run, check that you can import nipype with:
 import nipype
 ```
 
-We are interested in the nipype `interfaces` sub-package.  Specifically, we
-want the interfaces to the SPM routines:
+We are interested in the nipype `interfaces` sub-package.  Specifically,
+we want the interfaces to the SPM routines:
 
 ```{python}
 from nipype.interfaces import spm
+from nipype.interfaces import matlab as nim
 ```
 
-Our first job is to make sure that nipype can run MATLAB. Let’s check with a
-test call:
+Our first job is to make sure that nipype can run MATLAB. Let’s check
+with a test call:
 
-If `nipype` does not have the right command to start MATLAB, this will fail
-with an error. We can set the command to start MATLAB like this:
+If `nipype` does not have the right command to start MATLAB, this will
+fail with an error. We can set the command to start MATLAB like this:
 
 ```{python}
 nim.MatlabCommand.set_default_matlab_cmd('/Applications/MATLAB_R2014a.app/bin/matlab')
 ```
 
-where `/Applications/MATLAB_R2014a.app/bin/matlab` is the path to the MATLAB
-application file.
+where `/Applications/MATLAB_R2014a.app/bin/matlab` is the path to the
+MATLAB application file.
 
 Check this is working by running the code above.
 
 Next we need to make sure that nipype has SPM on the MATLAB path when it
 is running MATLAB. Try running this command to get the SPM version.
 
-If this gives an error message, you may not have SPM set up on your MATLAB
-path by default. You can use Nipype to add SPM to the MATLAB path like this:
+If this gives an error message, you may not have SPM set up on your
+MATLAB path by default. You can use Nipype to add SPM to the MATLAB path
+like this:
 
 ```{python}
 nim.MatlabCommand.set_default_paths('/Users/mb312/dev_trees/spm12')
 ```
 
-Another option is to use the MATLAB GUI to add this directory to the MATLAB
-path, and save this path for future sessions.
+Another option is to use the MATLAB GUI to add this directory to the
+MATLAB path, and save this path for future sessions.
 
 Now try running the `spm ver` command again:
 
-We are going to put the setup we need into a Python file we can import from
-any script that we write that uses nipype.
+We are going to put the setup we need into a Python file we can import
+from any script that we write that uses nipype.
 
-In your current directory, make a new file called `nipype_settings.py` with
-contents like this:
+In your current directory, make a new file called `nipype_settings.py`
+with contents like this:
 
 ```
 """ Defaults for using nipype
@@ -82,32 +88,12 @@ nim.MatlabCommand.set_default_paths('/Users/mb312/dev_trees/spm12')
 
 Now try:
 
-These should run without error.
+```python
+import nipype_settings
+import nipype.interfaces.matlab as nim
+mlab = nim.MatlabCommand()
+mlab.inputs.script = "spm ver"  # get SPM version
+mlab.run()
+```
 
-<!-- vim:ft=rst -->
-<!-- Course -->
-<!-- BIC -->
-<!-- Python distributions -->
-<!-- Version control -->
-<!-- Editors -->
-<!-- Python and common libraries -->
-<!-- IPython -->
-<!-- Virtualenv and helpers -->
-<!-- Pypi and packaging -->
-<!-- Mac development -->
-<!-- Windows development -->
-<!-- Nipy and friends -->
-<!-- FMRI datasets -->
-<!-- Languages -->
-<!-- Imaging software -->
-<!-- Installation -->
-<!-- Tutorials -->
-<!-- MB tutorials -->
-<!-- Ideas -->
-<!-- Psych-214 -->
-<!-- People -->
-<!-- Licenses -->
-<!-- Neuroimaging stuff -->
-<!-- OpenFMRI projects -->
-<!-- Unix -->
-<!-- Substitutions -->
+These should run without error.
