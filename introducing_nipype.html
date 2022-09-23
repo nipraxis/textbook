@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Installing on your computer &#8212; Practice and theory of brain imaging</title>
+    <title>Introducing nipype &#8212; Practice and theory of brain imaging</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Using the pathlib module" href="pathlib.html" />
-    <link rel="prev" title="Brisk introduction to Python" href="brisk_python.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -130,7 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
   The tools
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="to_code.html">
    Ode to code
@@ -161,8 +159,8 @@ const thebe_selector_output = ".output, .cell_output"
    Brisk introduction to Python
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
    Installing on your computer
   </a>
  </li>
@@ -580,6 +578,107 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/introducing_nipype.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/introducing_nipype.Rmd&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/introducing_nipype.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fintroducing_nipype.Rmd"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Deepnote"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_deepnote.svg">
+  </span>
+<span class="headerbtn__text-container">Deepnote</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -619,7 +718,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Finstallation.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fintroducing_nipype.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -647,7 +746,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/installation.md"
+        <a href="_sources/introducing_nipype.Rmd"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -658,7 +757,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.Rmd</span>
 </a>
 
       </li>
@@ -684,60 +783,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installation">
-   Installation
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Installing on your computer</h1>
+                <h1>Introducing nipype</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installation">
-   Installation
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -745,176 +807,83 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="installing-on-your-computer">
-<h1>Installing on your computer<a class="headerlink" href="#installing-on-your-computer" title="Permalink to this headline">#</a></h1>
-<p>We are going to be using the following major software for the class:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://python.org">Python</a></p></li>
-<li><p><a class="reference external" href="https://numpy.org">numpy</a> (the Python array package);</p></li>
-<li><p><a class="reference external" href="https://matplotlib.org">matplotlib</a> (Python plotting package);</p></li>
-<li><p><a class="reference external" href="https://scipy.org">scipy</a> (Python scientific library);</p></li>
-<li><p><a class="reference external" href="https://nipy.org/nibabel">nibabel</a> (read / write of neuroimaging file
-formats in Python);</p></li>
-</ul>
-<p>For the class and homework we will use:</p>
-<ul class="simple">
-<li><p>a text editor of your choice - see <a class="reference internal" href="choosing_editor.html"><span class="doc">Choosing an editor</span></a>.  Choosing an
-editor is an important and personal decision, and one we recommend you invest
-some time in.</p></li>
-<li><p>the <a class="reference external" href="https://git-scm.com/">git</a> version control system.</p></li>
-</ul>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is common to run into problems with installation - don’t worry, we’re
-expecting that.  One of the things we are teaching in this class is how to
-solve problems like installing and using scientific software.  So, if you run
-into trouble - great - that will be a good opportunity for us to work together
-on a not-trivial problem.</p>
-</div>
-<p>Here are the instructions for installing Git and Python:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="installation_on_mac.html"><span class="doc">Installation on Mac</span></a>;</p></li>
-<li><p><a class="reference internal" href="installation_on_linux.html"><span class="doc">Installation on Linux</span></a>;</p></li>
-<li><p><a class="reference internal" href="installation_on_windows.html"><span class="doc">Installation on Windows</span></a>.</p></li>
-</ul>
-<p>Next, open Terminal (Mac) or Powershell (Windows) or a terminal of your choice
-on Linux.</p>
-<p>We suggest you start the steps below in the <code class="docutils literal notranslate"><span class="pre">Documents</span></code> directory in your home
-(user) directory.  To make sure you are working in that directory, run this
-command in the terminal.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $HOME/Documents
+  <section class="tex2jax_ignore mathjax_ignore" id="introducing-nipype">
+<h1>Introducing nipype<a class="headerlink" href="#introducing-nipype" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="http://nipy.org/nipype">Nipype</a> is a Python module that provides Python
+interfaces to many imaging tools, including SPM, AFNI and FSL.</p>
+<p>We install it with <code class="docutils literal notranslate"><span class="pre">pip</span></code> in the usual way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">nipype</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you get <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">system</span> <span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">the</span> <span class="pre">path</span> <span class="pre">specified</span></code>, and you are on Windows,
-make sure you are running a <strong>Powershell</strong> shell, not the much older Windows <code class="docutils literal notranslate"><span class="pre">cmd</span></code> shell.</p>
-</div>
-<p>Make a new directory to store your work:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
-</pre></div>
-</div>
-<p>Change your shell to that directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
-</pre></div>
-</div>
-<p>Confirm you are in the right directory with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
-</pre></div>
-</div>
-<p>This Prints the Working Directory (pwd).  You should see something like the following:</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="968546ce-a10f-403f-a913-682d0b246d9a" name="07aae6b3-2869-4156-a37d-401f51ac313e" type="radio">
-</input><label class="sd-tab-label" for="968546ce-a10f-403f-a913-682d0b246d9a">
-Windows Powershell</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span>
-<span class="o">----</span>
-<span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
-</pre></div>
-</div>
-</div>
-<input id="d72e1fc1-e551-4678-ab98-b30b32288ed0" name="07aae6b3-2869-4156-a37d-401f51ac313e" type="radio">
-</input><label class="sd-tab-label" for="d72e1fc1-e551-4678-ab98-b30b32288ed0">
-Mac</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
-</pre></div>
-</div>
-</div>
-<input id="6682e8f3-62a7-493a-a19a-dc4faebca46c" name="07aae6b3-2869-4156-a37d-401f51ac313e" type="radio">
-</input><label class="sd-tab-label" for="6682e8f3-62a7-493a-a19a-dc4faebca46c">
-Linux</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
+<p>After this has run, check that you can import nipype with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nipype</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now, in the terminal, check you have Python installed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
-</pre></div>
-</div>
-<p>This should show you the Python 3 version report, something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.10.4</span>
-</pre></div>
-</div>
-<p>Check you have the Python package manager installed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="o">--</span><span class="n">version</span>
-</pre></div>
-</div>
-<p>This should show you something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="mf">22.0.4</span> <span class="kn">from</span> <span class="o">&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">directory</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pip</span> <span class="p">(</span><span class="n">python</span> <span class="mf">3.10</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Now finish the install with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">scipy</span> <span class="n">matplotlib</span> <span class="n">pandas</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span> <span class="n">sympy</span> <span class="n">nibabel</span> <span class="n">jupyter</span> <span class="n">ipython</span> <span class="n">jupytext</span> <span class="n">nipraxis</span> <span class="n">okpy</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Don’t worry about warnings like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARNING</span><span class="p">:</span> <span class="n">The</span> <span class="n">script</span> <span class="o">&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">program</span><span class="o">&gt;</span> <span class="ow">is</span> <span class="n">installed</span> <span class="ow">in</span> <span class="s1">&#39;C:\Users\scipy\AppData\Roaming\Python\Python310\Scripts&#39;</span> <span class="n">which</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">on</span> <span class="n">PATH</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
-<p>Keep the terminal open.</p>
-<p>Check your install by downloading <a class="reference download internal" download="" href="_downloads/e88b942b5a72a94c7f29024f97020f7e/check_install.py"><code class="xref download docutils literal notranslate"><span class="pre">check_install.py</span></code></a> to your
-computer.   Note where the file went.  For example, you might have downloaded the file to your <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> directory.</p>
-<p>Move the file to your <code class="docutils literal notranslate"><span class="pre">Documents/nipraxis-work</span></code> directory.  You can use the terminal for this.  For example, if the file did appear in your default <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mv $HOME/Downloads/check_install.py .
-</pre></div>
-</div>
-<p>Check you do have the file in the <code class="docutils literal notranslate"><span class="pre">nipraxis-work</span></code> directory with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-<p>from your terminal.  You should see something like:</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="8a56f750-5443-48c0-b99d-21735c4a38a7" name="b950cef1-cb97-4a98-a8c5-213e0e32efec" type="radio">
-</input><label class="sd-tab-label" for="8a56f750-5443-48c0-b99d-21735c4a38a7">
-Windows Powershell</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">your</span><span class="o">-</span><span class="n">user</span>\<span class="n">Documents</span>\<span class="n">nipraxis</span><span class="o">-</span><span class="n">work</span>
-
-
-<span class="n">Mode</span>                 <span class="n">LastWriteTime</span>         <span class="n">Length</span> <span class="n">Name</span>
-<span class="o">----</span>                 <span class="o">-------------</span>         <span class="o">------</span> <span class="o">----</span>
-<span class="o">-</span><span class="n">a</span><span class="o">----</span>          <span class="mi">4</span><span class="o">/</span><span class="mi">6</span><span class="o">/</span><span class="mi">2022</span>   <span class="mi">5</span><span class="p">:</span><span class="mi">04</span> <span class="n">AM</span>           <span class="mi">1937</span> <span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-</div>
-<input id="fe792c4b-a82d-417f-8fb7-02a690cd775b" name="b950cef1-cb97-4a98-a8c5-213e0e32efec" type="radio">
-</input><label class="sd-tab-label" for="fe792c4b-a82d-417f-8fb7-02a690cd775b">
-Mac or Linux</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
+<p>We are interested in the nipype <code class="docutils literal notranslate"><span class="pre">interfaces</span></code> sub-package.  Specifically,
+we want the interfaces to the SPM routines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces</span> <span class="kn">import</span> <span class="n">spm</span>
+<span class="kn">from</span> <span class="nn">nipype.interfaces</span> <span class="kn">import</span> <span class="n">matlab</span> <span class="k">as</span> <span class="n">nim</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now check your installation has succeeded with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">check_install</span><span class="o">.</span><span class="n">py</span>
+<p>Our first job is to make sure that nipype can run MATLAB. Let’s check
+with a test call:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">nipype</span></code> does not have the right command to start MATLAB, this will
+fail with an error. We can set the command to start MATLAB like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_matlab_cmd</span><span class="p">(</span><span class="s1">&#39;/Applications/MATLAB_R2014a.app/bin/matlab&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You should see something like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Platform</span><span class="p">:</span> <span class="n">macOS</span><span class="o">-</span><span class="mf">12.3.1</span><span class="o">-</span><span class="n">x86_64</span><span class="o">-</span><span class="n">i386</span><span class="o">-</span><span class="mi">64</span><span class="n">bit</span>
-<span class="n">Python</span> <span class="n">version</span><span class="p">:</span> <span class="mf">3.8.13</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Mar</span> <span class="mi">16</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">07</span><span class="p">)</span> 
-<span class="p">[</span><span class="n">Clang</span> <span class="mf">13.0.0</span> <span class="p">(</span><span class="n">clang</span><span class="o">-</span><span class="mf">1300.0.29.30</span><span class="p">)]</span>
-
-<span class="n">Congratulations</span><span class="p">,</span> <span class="nb">all</span> <span class="n">checks</span> <span class="n">passed</span>
+</div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">/Applications/MATLAB_R2014a.app/bin/matlab</span></code> is the path to the
+MATLAB application file.</p>
+<p>Check this is working by running the code above.</p>
+<p>Next we need to make sure that nipype has SPM on the MATLAB path when it
+is running MATLAB. Try running this command to get the SPM version.</p>
+<p>If this gives an error message, you may not have SPM set up on your
+MATLAB path by default. You can use Nipype to add SPM to the MATLAB path
+like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_paths</span><span class="p">(</span><span class="s1">&#39;/Users/mb312/dev_trees/spm12&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>where the details in the first three lines will depend on your system.</p>
-<p>Finally, to get a copy of the textbook files:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nipraxis</span><span class="o">/</span><span class="n">textbook</span>
+</div>
+</div>
+<p>Another option is to use the MATLAB GUI to add this directory to the
+MATLAB path, and save this path for future sessions.</p>
+<p>Now try running the <code class="docutils literal notranslate"><span class="pre">spm</span> <span class="pre">ver</span></code> command again:</p>
+<p>We are going to put the setup we need into a Python file we can import
+from any script that we write that uses nipype.</p>
+<p>In your current directory, make a new file called <code class="docutils literal notranslate"><span class="pre">nipype_settings.py</span></code>
+with contents like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Defaults for using nipype</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">nipype.interfaces.matlab</span> <span class="k">as</span> <span class="nn">nim</span>
+<span class="c1"># If you needed to set the default matlab command above</span>
+<span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_matlab_cmd</span><span class="p">(</span><span class="s1">&#39;/Applications/MATLAB_R2014a.app/bin/matlab&#39;</span><span class="p">)</span>
+<span class="c1"># If you needed to set the SPM path above</span>
+<span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_paths</span><span class="p">(</span><span class="s1">&#39;/Users/mb312/dev_trees/spm12&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now you can open the textbook notebooks with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">textbook</span>
-<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">notebook</span>
+<p>Now try:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nipype_settings</span>
+<span class="kn">import</span> <span class="nn">nipype.interfaces.matlab</span> <span class="k">as</span> <span class="nn">nim</span>
+<span class="n">mlab</span> <span class="o">=</span> <span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="p">()</span>
+<span class="n">mlab</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;spm ver&quot;</span>  <span class="c1"># get SPM version</span>
+<span class="n">mlab</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>This will open your web browser in the Jupyter interface.  Select the file you
-are interested in.</p>
-</section>
+<p>These should run without error.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -944,20 +913,6 @@ are interested in.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="brisk_python.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Brisk introduction to Python</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="pathlib.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
