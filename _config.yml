@@ -53,8 +53,6 @@ exclude_patterns:
   # Statistics
   - pearson_functions.md
   - validate_against_scipy.Rmd
-  # Hemodynamic response modeling
-  - introducing_nipype.Rmd
   # Code organization and collaboration
   - full_scripting.md
   - git_videos.md
