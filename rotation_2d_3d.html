@@ -761,7 +761,9 @@ title="Print to PDF"
 <h1>Rotations and rotation matrices<a class="headerlink" href="#rotations-and-rotation-matrices" title="Permalink to this headline">#</a></h1>
 <section id="rotations-in-two-dimensions">
 <h2>Rotations in two dimensions<a class="headerlink" href="#rotations-in-two-dimensions" title="Permalink to this headline">#</a></h2>
-<p>See: [rotation in 2d] and [Wikipedia on rotation matrices].</p>
+<p>See: <a class="reference external" href="https://matthew-brett.github.io/teaching/rotation_2d.html">rotation in
+2d</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Rotation_matrix">Wikipedia
+on rotation matrices</a>.</p>
 <p>In two dimensions, rotating a vector <span class="math notranslate nohighlight">\(\theta\)</span> around the origin can be
 expressed as a 2 by 2 transformation matrix:</p>
 <div class="math notranslate nohighlight">
@@ -795,12 +797,13 @@ y' = x \sin \theta + y \cos \theta
 </section>
 <section id="rotations-in-three-dimensions">
 <h2>Rotations in three dimensions<a class="headerlink" href="#rotations-in-three-dimensions" title="Permalink to this headline">#</a></h2>
-<p>Rotations in three dimensions extend simply from two dimensions.<br />
-Consider a [right-handed] set of x, y, z axes, maybe forming the x axis with your right thumb, the y axis with your index finger, and the z axis with your middle
-finger.
-Now look down the z axis, from positive z toward negative z.
-You see the x and y axes pointing right and up respectively, on a plane in front of you.
-A rotation around z leaves z unchanged, but changes x and y according to the 2D rotation formula above:</p>
+<p>Rotations in three dimensions extend simply from two dimensions.</p>
+<p>Consider a [right-handed] set of x, y, z axes, maybe forming the x axis with
+your right thumb, the y axis with your index finger, and the z axis with your
+middle finger. Now look down the z axis, from positive z toward negative z. You
+see the x and y axes pointing right and up respectively, on a plane in front of
+you. A rotation around z leaves z unchanged, but changes x and y according to
+the 2D rotation formula above:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 R_z(\theta) =
@@ -827,8 +830,8 @@ R_x(\theta) = \begin{bmatrix}
 \end{bmatrix}
 \end{split}\]</div>
 <p>Now consider a rotation around the y axis.   We look from positive y down the
-y axis to the z and x axes, pointing right and up respectively.  $z$ replaces
-$x$ in the 2D formula, and $x$ replaces $y$:</p>
+y axis to the z and x axes, pointing right and up respectively.  <span class="math notranslate nohighlight">\(z\)</span> replaces
+<span class="math notranslate nohighlight">\(x\)</span> in the 2D formula, and <span class="math notranslate nohighlight">\(x\)</span> replaces <span class="math notranslate nohighlight">\(y\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 z' = z \cos \theta - x \sin \theta \\
@@ -843,7 +846,7 @@ R_y(\theta) = \begin{bmatrix}
 \end{bmatrix}
 \end{split}\]</div>
 <p>We can combine rotations with matrix multiplication. For example, here is an
-rotation of $gamma$ radians around the x axis:</p>
+rotation of <span class="math notranslate nohighlight">\(gamma\)</span> radians around the x axis:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -862,7 +865,7 @@ y\\
 z\\
 \end{bmatrix}
 \end{split}\]</div>
-<p>We could then apply a rotation of $phi$ radians around the y axis:</p>
+<p>We could then apply a rotation of <span class="math notranslate nohighlight">\(phi\)</span> radians around the y axis:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}

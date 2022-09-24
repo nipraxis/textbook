@@ -16,7 +16,9 @@ jupyter:
 
 ## Rotations in two dimensions
 
-See: [rotation in 2d] and [Wikipedia on rotation matrices].
+See: [rotation in
+2d](https://matthew-brett.github.io/teaching/rotation_2d.html) and [Wikipedia
+on rotation matrices](https://en.wikipedia.org/wiki/Rotation_matrix).
 
 In two dimensions, rotating a vector $\theta$ around the origin can be
 expressed as a 2 by 2 transformation matrix:
@@ -54,12 +56,14 @@ See [rotation in 2D] for a visual proof.
 
 ## Rotations in three dimensions
 
-Rotations in three dimensions extend simply from two dimensions.  
-Consider a [right-handed] set of x, y, z axes, maybe forming the x axis with your right thumb, the y axis with your index finger, and the z axis with your middle
-finger.
-Now look down the z axis, from positive z toward negative z.
-You see the x and y axes pointing right and up respectively, on a plane in front of you.
-A rotation around z leaves z unchanged, but changes x and y according to the 2D rotation formula above:
+Rotations in three dimensions extend simply from two dimensions.
+
+Consider a [right-handed] set of x, y, z axes, maybe forming the x axis with
+your right thumb, the y axis with your index finger, and the z axis with your
+middle finger. Now look down the z axis, from positive z toward negative z. You
+see the x and y axes pointing right and up respectively, on a plane in front of
+you. A rotation around z leaves z unchanged, but changes x and y according to
+the 2D rotation formula above:
 
 $$
 R_z(\theta) =
@@ -88,8 +92,8 @@ R_x(\theta) = \begin{bmatrix}
 $$
 
 Now consider a rotation around the y axis.   We look from positive y down the
-y axis to the z and x axes, pointing right and up respectively.  \$z\$ replaces
-\$x\$ in the 2D formula, and \$x\$ replaces \$y\$:
+y axis to the z and x axes, pointing right and up respectively.  $z$ replaces
+$x$ in the 2D formula, and $x$ replaces $y$:
 
 $$
 z' = z \cos \theta - x \sin \theta \\
@@ -105,7 +109,7 @@ R_y(\theta) = \begin{bmatrix}
 $$
 
 We can combine rotations with matrix multiplication. For example, here is an
-rotation of \$gamma\$ radians around the x axis:
+rotation of $gamma$ radians around the x axis:
 
 $$
 \begin{bmatrix}
@@ -125,7 +129,7 @@ z\\
 \end{bmatrix}
 $$
 
-We could then apply a rotation of \$phi\$ radians around the y axis:
+We could then apply a rotation of $phi$ radians around the y axis:
 
 $$
 \begin{bmatrix}
