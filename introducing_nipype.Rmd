@@ -1,6 +1,5 @@
 ---
 jupyter:
-  orphan: true
   jupytext:
     notebook_metadata_filter: all,-language_info
     split_at_heading: true
@@ -13,6 +12,7 @@ jupyter:
     display_name: Python 3
     language: python
     name: python3
+  orphan: true
 ---
 
 # Introducing nipype
@@ -77,13 +77,13 @@ from any script that we write that uses nipype.
 In your current directory, make a new file called `nipype_settings.py`
 with contents like this:
 
-```
+```python
 """ Defaults for using nipype
 """
 import nipype.interfaces.matlab as nim
 # If you needed to set the default matlab command above
 nim.MatlabCommand.set_default_matlab_cmd('/Applications/MATLAB_R2014a.app/bin/matlab')
-# If you needed to set the SPM path above
+# If you needed to set the SPM path above.
 nim.MatlabCommand.set_default_paths('/Users/mb312/dev_trees/spm12')
 ```
 
@@ -98,3 +98,19 @@ mlab.run()
 ```
 
 These should run without error.
+
+## Nipype example using Matlab and SPM
+
+See the example files in:
+
+* {download}`nipype_settings.py`
+* {download}`nipype_ds114_sub009_t2r1.py`.
+
+
+## Installing packages for use with Nipype
+
+You can script various imaging packages with Nipype.  Consider installing one or more of these packages:
+
+* [SPM](https://www.fil.ion.ucl.ac.uk/spm/software).  SPM also needs an installation of Matlab.
+* [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation)
+* [AFNI](https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html)
