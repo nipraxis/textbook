@@ -783,12 +783,41 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nipype-example-using-matlab-and-spm">
+   Nipype example using Matlab and SPM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-packages-for-use-with-nipype">
+   Installing packages for use with Nipype
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -800,6 +829,24 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nipype-example-using-matlab-and-spm">
+   Nipype example using Matlab and SPM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-packages-for-use-with-nipype">
+   Installing packages for use with Nipype
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -866,12 +913,12 @@ MATLAB path, and save this path for future sessions.</p>
 from any script that we write that uses nipype.</p>
 <p>In your current directory, make a new file called <code class="docutils literal notranslate"><span class="pre">nipype_settings.py</span></code>
 with contents like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Defaults for using nipype</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Defaults for using nipype</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">nipype.interfaces.matlab</span> <span class="k">as</span> <span class="nn">nim</span>
 <span class="c1"># If you needed to set the default matlab command above</span>
 <span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_matlab_cmd</span><span class="p">(</span><span class="s1">&#39;/Applications/MATLAB_R2014a.app/bin/matlab&#39;</span><span class="p">)</span>
-<span class="c1"># If you needed to set the SPM path above</span>
+<span class="c1"># If you needed to set the SPM path above.</span>
 <span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_paths</span><span class="p">(</span><span class="s1">&#39;/Users/mb312/dev_trees/spm12&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -884,6 +931,23 @@ with contents like this:</p>
 </pre></div>
 </div>
 <p>These should run without error.</p>
+<section id="nipype-example-using-matlab-and-spm">
+<h2>Nipype example using Matlab and SPM<a class="headerlink" href="#nipype-example-using-matlab-and-spm" title="Permalink to this headline">#</a></h2>
+<p>See the example files in:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/5621c58fb2cabf79a25dcf0eb969d2a5/nipype_settings.py"><code class="xref download docutils literal notranslate"><span class="pre">nipype_settings.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/7f16e9dd5b74a55bcb43a97b0238cc77/nipype_ds114_sub009_t2r1.py"><code class="xref download docutils literal notranslate"><span class="pre">nipype_ds114_sub009_t2r1.py</span></code></a>.</p></li>
+</ul>
+</section>
+<section id="installing-packages-for-use-with-nipype">
+<h2>Installing packages for use with Nipype<a class="headerlink" href="#installing-packages-for-use-with-nipype" title="Permalink to this headline">#</a></h2>
+<p>You can script various imaging packages with Nipype.  Consider installing one or more of these packages:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.fil.ion.ucl.ac.uk/spm/software">SPM</a>.  SPM also needs an installation of Matlab.</p></li>
+<li><p><a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation">FSL</a></p></li>
+<li><p><a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html">AFNI</a></p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
