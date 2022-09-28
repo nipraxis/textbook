@@ -222,7 +222,7 @@ No, because the negative numbers (black) will cancel out the positive numbers
 
 ```{python}
 def mean_abs_mismatch(slice0, slice1):
-    """ Mean absoute difference between images
+    """ Mean absolute difference between images
     """
     return np.mean(np.abs(slice0 - slice1))
 ```
@@ -444,8 +444,11 @@ def cost_function(x_trans, target, moving):
     `target` is the array we are trying to match to.  `moving` is the array we
     are trying to match, by using the `x_trans` transform.
 
-    Specifically, we resample from `moving` after applying coordinate transform
-    `x_trans`.
+    `x_trans` is the correct x translation to go from an x coordinate in the
+    `moving` image to an x coordinate in the `target` image.  It is therefore
+    the "push" transformation.  Conversely, we need `-x_trans` to go from the
+    `target` coordinate to the `moving` coordinate.  This is the "pull"
+    transformation.
     """
     # Calculate X_t - image translated by x_trans
     unmoved = fancy_x_trans_slice(moving, x_trans)
@@ -545,8 +548,11 @@ def fancy_cost_at_xy(x_y_trans, target, moving):
     `target` is the array we are trying to match to.  `moving` is the array we
     are trying to match, by using the `x_trans` transform.
 
-    Specifically, we resample from `moving` after applying coordinate transform
-    `x_y_trans`.
+    `x_y_trans` is the correct x translation to go from an x and y coordinate
+    in the `moving` image to an x and y coordinate in the `target` image.  It
+    is therefore the "push" transformation.  Conversely, we need `-x_y_trans`
+    to go from the `target` coordinate to the `moving` coordinate.  This is the
+    "pull" transformation.
     """
     unshifted = fancy_xy_trans_slice(moving, x_y_trans)
     return correl_mismatch(unshifted, target)
@@ -630,8 +636,8 @@ def cost_at_xyz(x_y_z_trans, target, moving):
     `target` is the array we are trying to match to.  `moving` is the array we
     are trying to match, by using the `x_trans` transform.
 
-    Specifically, we resample from `moving` after applying coordinate transform
-    `x_y_z_trans`.
+    `x_y_z_trans` are the x, y, z translations mapping from the `moving` to the
+    `target` volume.
     """
     unshifted = xyz_trans_vol(moving, x_y_z_trans)
     return correl_mismatch(unshifted, target)

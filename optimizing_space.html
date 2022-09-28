@@ -1005,7 +1005,7 @@ first volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc844220&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3b3e4d02e0&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_9_1.png" src="_images/optimizing_space_9_1.png" />
@@ -1020,7 +1020,7 @@ first volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc754070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3b3c3e1190&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_11_1.png" src="_images/optimizing_space_11_1.png" />
@@ -1074,7 +1074,7 @@ this by pushing slice 0 (<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc5ac6d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3b3c23a580&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_15_1.png" src="_images/optimizing_space_15_1.png" />
@@ -1166,7 +1166,7 @@ two images:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc528a60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3b3c1b8c70&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_19_1.png" src="_images/optimizing_space_19_1.png" />
@@ -1179,7 +1179,7 @@ mismatch?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean_abs_mismatch</span><span class="p">(</span><span class="n">slice0</span><span class="p">,</span> <span class="n">slice1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Mean absoute difference between images</span>
+    <span class="sd">&quot;&quot;&quot; Mean absolute difference between images</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">slice0</span> <span class="o">-</span> <span class="n">slice1</span><span class="p">))</span>
 </pre></div>
@@ -1421,7 +1421,7 @@ the whole process for us.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82accf7730&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3b2a9c1a00&gt;]
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_38_1.png" src="_images/optimizing_space_38_1.png" />
@@ -1460,8 +1460,11 @@ and returns the parameter value.</p>
 <span class="sd">    `target` is the array we are trying to match to.  `moving` is the array we</span>
 <span class="sd">    are trying to match, by using the `x_trans` transform.</span>
 
-<span class="sd">    Specifically, we resample from `moving` after applying coordinate transform</span>
-<span class="sd">    `x_trans`.</span>
+<span class="sd">    `x_trans` is the correct x translation to go from an x coordinate in the</span>
+<span class="sd">    `moving` image to an x coordinate in the `target` image.  It is therefore</span>
+<span class="sd">    the &quot;push&quot; transformation.  Conversely, we need `-x_trans` to go from the</span>
+<span class="sd">    `target` coordinate to the `moving` coordinate.  This is the &quot;pull&quot;</span>
+<span class="sd">    transformation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Calculate X_t - image translated by x_trans</span>
     <span class="n">unmoved</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
@@ -1612,8 +1615,11 @@ parameter values to find the lowest value for the cost function.</p>
 <span class="sd">    `target` is the array we are trying to match to.  `moving` is the array we</span>
 <span class="sd">    are trying to match, by using the `x_trans` transform.</span>
 
-<span class="sd">    Specifically, we resample from `moving` after applying coordinate transform</span>
-<span class="sd">    `x_y_trans`.</span>
+<span class="sd">    `x_y_trans` is the correct x translation to go from an x and y coordinate</span>
+<span class="sd">    in the `moving` image to an x and y coordinate in the `target` image.  It</span>
+<span class="sd">    is therefore the &quot;push&quot; transformation.  Conversely, we need `-x_y_trans`</span>
+<span class="sd">    to go from the `target` coordinate to the `moving` coordinate.  This is the</span>
+<span class="sd">    &quot;pull&quot; transformation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_xy_trans_slice</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_y_trans</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
@@ -1685,7 +1691,7 @@ forward on the second axis:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82ac0a8ac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3b29d54dc0&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_60_1.png" src="_images/optimizing_space_60_1.png" />
@@ -1721,8 +1727,8 @@ forward on the second axis:</p>
 <span class="sd">    `target` is the array we are trying to match to.  `moving` is the array we</span>
 <span class="sd">    are trying to match, by using the `x_trans` transform.</span>
 
-<span class="sd">    Specifically, we resample from `moving` after applying coordinate transform</span>
-<span class="sd">    `x_y_z_trans`.</span>
+<span class="sd">    `x_y_z_trans` are the x, y, z translations mapping from the `moving` to the</span>
+<span class="sd">    `target` volume.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">unshifted</span> <span class="o">=</span> <span class="n">xyz_trans_vol</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_y_z_trans</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
