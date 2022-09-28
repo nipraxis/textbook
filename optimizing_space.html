@@ -1005,7 +1005,7 @@ first volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc782464310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc844220&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_9_1.png" src="_images/optimizing_space_9_1.png" />
@@ -1020,7 +1020,7 @@ first volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc780372280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc754070&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_11_1.png" src="_images/optimizing_space_11_1.png" />
@@ -1074,7 +1074,7 @@ this by pushing slice 0 (<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc7801cb640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc5ac6d0&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_15_1.png" src="_images/optimizing_space_15_1.png" />
@@ -1166,7 +1166,7 @@ two images:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc7801499a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82cc528a60&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_19_1.png" src="_images/optimizing_space_19_1.png" />
@@ -1421,7 +1421,7 @@ the whole process for us.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc76e96f910&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f82accf7730&gt;]
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_38_1.png" src="_images/optimizing_space_38_1.png" />
@@ -1463,7 +1463,6 @@ and returns the parameter value.</p>
 <span class="sd">    Specifically, we resample from `moving` after applying coordinate transform</span>
 <span class="sd">    `x_trans`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Function can use image slices defined in the global scope</span>
     <span class="c1"># Calculate X_t - image translated by x_trans</span>
     <span class="n">unmoved</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
     <span class="c1"># Return mismatch measure for the translated image X_t</span>
@@ -1672,11 +1671,11 @@ transformation because the transformation cannot make the object change shape
 (the object is <em>rigid</em>).</p>
 <p>Implementing the rotations is just slightly out of scope for this tutorial (we
 would have to convert between angles and <a class="reference external" href="https://en.wikipedia.org/wiki/Rotation_matrix">rotation
-matrices</a>), so here is the 3D
-optimization with the three translation parameters:</p>
-<p>To make it a bit more interesting, shift the second volume 8 voxels on
-the first axis, as we did for the 2D case. We will also push the image 5
-voxels forward on the second axis:</p>
+matrices</a>), so here we do the
+3D optimization with the three translation parameters.</p>
+<p>To make it a bit more interesting, shift the second volume 8 voxels on the
+first axis, as we did for the 2D case. We will also push the image 5 voxels
+forward on the second axis:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shifted_vol1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">vol1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -1686,7 +1685,7 @@ voxels forward on the second axis:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc76dd07dc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f82ac0a8ac0&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_60_1.png" src="_images/optimizing_space_60_1.png" />
@@ -1713,8 +1712,7 @@ voxels forward on the second axis:</p>
 </div>
 </div>
 </div>
-<p>Our cost function (picking up <code class="docutils literal notranslate"><span class="pre">vol0</span></code>, <code class="docutils literal notranslate"><span class="pre">shifted_vol1</span></code> from the global
-scope):</p>
+<p>Our cost function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_at_xyz</span><span class="p">(</span><span class="n">x_y_z_trans</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">moving</span><span class="p">):</span>
