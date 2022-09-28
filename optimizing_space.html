@@ -1005,7 +1005,7 @@ first volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f684ac202e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc782464310&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_9_1.png" src="_images/optimizing_space_9_1.png" />
@@ -1020,7 +1020,7 @@ first volume:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6848b300d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc780372280&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_11_1.png" src="_images/optimizing_space_11_1.png" />
@@ -1074,7 +1074,7 @@ this by pushing slice 0 (<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f68489886a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc7801cb640&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_15_1.png" src="_images/optimizing_space_15_1.png" />
@@ -1166,7 +1166,7 @@ two images:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6848908640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc7801499a0&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_19_1.png" src="_images/optimizing_space_19_1.png" />
@@ -1421,7 +1421,7 @@ the whole process for us.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f68371478e0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc76e96f910&gt;]
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_38_1.png" src="_images/optimizing_space_38_1.png" />
@@ -1452,20 +1452,22 @@ the next value of the parameter to try. It continues trying new values until
 it finds a parameter value for which very small changes of the parameter up or
 down only increase the cost function value. At this point the routine stops
 and returns the parameter value.</p>
-<p>To write the cost function, we use the fact that Python functions can access
-variables defined in the <a class="reference external" href="https://matthew-brett.github.io/teaching/global_scope.html">Global and local scope of Python
-variables</a>. In our
-case the function <code class="docutils literal notranslate"><span class="pre">cost_function</span></code> can access variables <code class="docutils literal notranslate"><span class="pre">shifted_mid_vol1</span></code> and
-<code class="docutils literal notranslate"><span class="pre">mid_vol0</span></code> that we defined in the top level (global) scope of our interactive
-session:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x_trans</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x_trans</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">moving</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Correlation of `target` array and `moving`, after applying `x_trans`.</span>
+
+<span class="sd">    `target` is the array we are trying to match to.  `moving` is the array we</span>
+<span class="sd">    are trying to match, by using the `x_trans` transform.</span>
+
+<span class="sd">    Specifically, we resample from `moving` after applying coordinate transform</span>
+<span class="sd">    `x_trans`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Function can use image slices defined in the global scope</span>
     <span class="c1"># Calculate X_t - image translated by x_trans</span>
-    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
     <span class="c1"># Return mismatch measure for the translated image X_t</span>
-    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1473,7 +1475,7 @@ session:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Value of the negative correlation for no translation.</span>
-<span class="n">cost_function</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cost_function</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1486,12 +1488,12 @@ session:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Value of the negative correlation for translation of -8 voxels.</span>
-<span class="n">cost_function</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">cost_function</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.9970308073523466
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.6268892014543177
 </pre></div>
 </div>
 </div>
@@ -1507,11 +1509,13 @@ optimization:</p>
 </div>
 </div>
 </div>
-<p>We pass the <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> routine our Python cost function, and a
-starting value of zero for the translation:</p>
+<p>We pass the <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> routine our Python cost function, and a starting
+value of zero for the translation.  We also need to pass the arguments after
+<code class="docutils literal notranslate"><span class="pre">x_trans</span></code> in our cost function as the <code class="docutils literal notranslate"><span class="pre">args</span></code> argument.  This allows
+<code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> to call the cost function, and pass these extra needed arguments.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">mid_vol0</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1543,7 +1547,10 @@ using a callback function:</p>
 set of parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">mid_vol0</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="p">),</span>
+    <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
 <span class="n">best_params</span>
 </pre></div>
 </div>
@@ -1577,7 +1584,7 @@ optimizing the x translation, then the y translation, like this:</p>
 </ul>
 <p>Although we could do that, in fact <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code> does something slightly
 more complicated when looking for the next best set of parameters to try. The
-details aren’t important to the general idea of searching over different
+details are not important to the general idea of searching over different
 parameter values to find the lowest value for the cost function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1600,11 +1607,17 @@ parameter values to find the lowest value for the cost function.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fancy_cost_at_xy</span><span class="p">(</span><span class="n">x_y_trans</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Give cost function at xy translation values `x_y_trans`</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fancy_cost_at_xy</span><span class="p">(</span><span class="n">x_y_trans</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">moving</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Cost function at xy translation values `x_y_trans`</span>
+
+<span class="sd">    `target` is the array we are trying to match to.  `moving` is the array we</span>
+<span class="sd">    are trying to match, by using the `x_trans` transform.</span>
+
+<span class="sd">    Specifically, we resample from `moving` after applying coordinate transform</span>
+<span class="sd">    `x_y_trans`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_xy_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">x_y_trans</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_xy_trans_slice</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_y_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1612,7 +1625,10 @@ parameter values to find the lowest value for the cost function.</p>
 <p>Do the optimization of <code class="docutils literal notranslate"><span class="pre">fancy_cost_at_xy</span></code> using <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">fancy_cost_at_xy</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">fancy_cost_at_xy</span><span class="p">,</span>
+                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                          <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">mid_vol0</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="p">),</span>
+                          <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
 <span class="n">best_params</span>
 </pre></div>
 </div>
@@ -1670,7 +1686,7 @@ voxels forward on the second axis:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f68364cdca0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc76dd07dc0&gt;
 </pre></div>
 </div>
 <img alt="_images/optimizing_space_60_1.png" src="_images/optimizing_space_60_1.png" />
@@ -1701,11 +1717,17 @@ voxels forward on the second axis:</p>
 scope):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_at_xyz</span><span class="p">(</span><span class="n">x_y_z_trans</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_at_xyz</span><span class="p">(</span><span class="n">x_y_z_trans</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">moving</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Give cost function value at xyz translation values `x_y_z_trans`</span>
+
+<span class="sd">    `target` is the array we are trying to match to.  `moving` is the array we</span>
+<span class="sd">    are trying to match, by using the `x_trans` transform.</span>
+
+<span class="sd">    Specifically, we resample from `moving` after applying coordinate transform</span>
+<span class="sd">    `x_y_z_trans`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">xyz_trans_vol</span><span class="p">(</span><span class="n">shifted_vol1</span><span class="p">,</span> <span class="n">x_y_z_trans</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">vol0</span><span class="p">)</span>
+    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">xyz_trans_vol</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_y_z_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1713,7 +1735,10 @@ scope):</p>
 <p>Do the optimization of <code class="docutils literal notranslate"><span class="pre">cost_at_xyz</span></code> using <code class="docutils literal notranslate"><span class="pre">fmin_powell</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_at_xyz</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span> <span class="o">=</span> <span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_at_xyz</span><span class="p">,</span>
+                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                          <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">vol0</span><span class="p">,</span> <span class="n">shifted_vol1</span><span class="p">),</span>
+                          <span class="n">callback</span><span class="o">=</span><span class="n">my_callback</span><span class="p">)</span>
 <span class="n">best_params</span>
 </pre></div>
 </div>
@@ -1836,17 +1861,13 @@ the lowest cost value across all values of <span class="math notranslate nohighl
 <p>In general, our optimization routines are only able to guarantee that they
 have found a local minimum. So, if we start our search in the wrong place,
 then the optimization routine may well find the wrong minimum.</p>
-<p>Here is our original 1 parameter cost function (it is the same as the version
-above):</p>
+<p>Here is our original 1 parameter cost function.  It is the same as the version
+above, minus docstring and comments for brevity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x_trans</span><span class="p">):</span>
-    <span class="c1"># Function can use image slices defined in the</span>
-    <span class="c1"># global Python scope.</span>
-    <span class="c1"># Calculate X_t - image translated by x_trans</span>
-    <span class="n">unshifted</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">shifted_mid_vol1</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
-    <span class="c1"># Return mismatch measure for the translated image X_t</span>
-    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unshifted</span><span class="p">,</span> <span class="n">mid_vol0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x_trans</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">moving</span><span class="p">):</span>
+    <span class="n">unmoved</span> <span class="o">=</span> <span class="n">fancy_x_trans_slice</span><span class="p">(</span><span class="n">moving</span><span class="p">,</span> <span class="n">x_trans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">correl_mismatch</span><span class="p">(</span><span class="n">unmoved</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1855,7 +1876,7 @@ above):</p>
 nearer the local minimum:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">35</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmin_powell</span><span class="p">(</span><span class="n">cost_function</span><span class="p">,</span> <span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">mid_vol0</span><span class="p">,</span> <span class="n">shifted_mid_vol1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1871,9 +1892,8 @@ nearer the local minimum:</p>
 </div>
 </div>
 </div>
-<p>Here we took a very bad starting value, but we would run the same risk
-if the images started off much further apart and we gave a starting
-value of 0.</p>
+<p>Here we took a very bad starting value, but we would run the same risk if the
+images started off much further apart and we gave a starting value of 0.</p>
 <p>One major part of using optimization, is being aware that it is possible
 for the optimization to find a “best” value that is a local rather than
 a global minimum. The art of optimization is finding a minimization

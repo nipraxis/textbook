@@ -38,12 +38,12 @@ copy the resulting files to your working directory.
 
 ```python
 # Automatic download of data files to working directory.
-import os
+from pathlib import Path
 import shutil
 
 import nipraxis
 
-working_directory = os.getcwd()
+working_directory = Path()
 
 for fname in ['ds114_sub009_highres.nii',
               'ds114_sub009_highres_brain_mask.nii',
@@ -53,7 +53,7 @@ for fname in ['ds114_sub009_highres.nii',
     # Fetch the file
     local_fname = nipraxis.fetch_file(fname)
     # Copy to working directory
-    shutil.copyfile(local_fname, working_directory)
+    shutil.copy2(local_fname, working_directory)
 ```
 
 You should also download the {download}`dipy_registration.py` script file.
@@ -62,12 +62,13 @@ Have a look at `dipy_registration.py` for useful functions;
 
 Now open IPython and:
 
-```ipython
-In [1]: run dipy_registration.py
-In [2]: mapping = register_save('mni_icbm152_t1_tal_nlin_asym_09a.nii',
-...:                            'mni_icbm152_t1_tal_nlin_asym_09a_mask.nii',
-...:                            'ds114_sub009_highres.nii',
-...:                            'ds114_sub009_highres_brain_mask.nii')
+```python
+# In IPython (or Jupyter).
+run dipy_registration.py
+mapping = register_save('mni_icbm152_t1_tal_nlin_asym_09a.nii',
+                        'mni_icbm152_t1_tal_nlin_asym_09a_mask.nii',
+                        'ds114_sub009_highres.nii',
+                        'ds114_sub009_highres_brain_mask.nii')
 ```
 
 Leave that running - it will take something like 10-20 minutes depending on

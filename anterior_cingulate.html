@@ -794,12 +794,12 @@ repository</a>. Another, more automated
 way of getting the files is using Nipraxis to fetch them from the web, then
 copy the resulting files to your working directory.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Automatic download of data files to working directory.</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 
 <span class="kn">import</span> <span class="nn">nipraxis</span>
 
-<span class="n">working_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">working_directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">,</span>
               <span class="s1">&#39;ds114_sub009_highres_brain_mask.nii&#39;</span><span class="p">,</span>
@@ -809,17 +809,18 @@ copy the resulting files to your working directory.</p>
     <span class="c1"># Fetch the file</span>
     <span class="n">local_fname</span> <span class="o">=</span> <span class="n">nipraxis</span><span class="o">.</span><span class="n">fetch_file</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
     <span class="c1"># Copy to working directory</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">local_fname</span><span class="p">,</span> <span class="n">working_directory</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">local_fname</span><span class="p">,</span> <span class="n">working_directory</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You should also download the <a class="reference download internal" download="" href="_downloads/4e4e7ab5c4013aa99311775c76e86769/dipy_registration.py"><code class="xref download docutils literal notranslate"><span class="pre">dipy_registration.py</span></code></a> script file.</p>
 <p>Have a look at <code class="docutils literal notranslate"><span class="pre">dipy_registration.py</span></code> for useful functions;</p>
 <p>Now open IPython and:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">run</span> <span class="n">dipy_registration</span><span class="o">.</span><span class="n">py</span>
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">mapping</span> <span class="o">=</span> <span class="n">register_save</span><span class="p">(</span><span class="s1">&#39;mni_icbm152_t1_tal_nlin_asym_09a.nii&#39;</span><span class="p">,</span>
-<span class="o">...</span><span class="p">:</span>                            <span class="s1">&#39;mni_icbm152_t1_tal_nlin_asym_09a_mask.nii&#39;</span><span class="p">,</span>
-<span class="o">...</span><span class="p">:</span>                            <span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">,</span>
-<span class="o">...</span><span class="p">:</span>                            <span class="s1">&#39;ds114_sub009_highres_brain_mask.nii&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In IPython (or Jupyter).</span>
+<span class="n">run</span> <span class="n">dipy_registration</span><span class="o">.</span><span class="n">py</span>
+<span class="n">mapping</span> <span class="o">=</span> <span class="n">register_save</span><span class="p">(</span><span class="s1">&#39;mni_icbm152_t1_tal_nlin_asym_09a.nii&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;mni_icbm152_t1_tal_nlin_asym_09a_mask.nii&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;ds114_sub009_highres.nii&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;ds114_sub009_highres_brain_mask.nii&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Leave that running - it will take something like 10-20 minutes depending on

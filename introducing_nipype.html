@@ -886,12 +886,12 @@ with a test call:</p>
 fail with an error. We can set the command to start MATLAB like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_matlab_cmd</span><span class="p">(</span><span class="s1">&#39;/Applications/MATLAB_R2014a.app/bin/matlab&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_matlab_cmd</span><span class="p">(</span><span class="s1">&#39;/Applications/MATLAB_R2022b.app/bin/matlab&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">/Applications/MATLAB_R2014a.app/bin/matlab</span></code> is the path to the
+<p>where <code class="docutils literal notranslate"><span class="pre">/Applications/MATLAB_R2022b.app/bin/matlab</span></code> is the path to the
 MATLAB application file.</p>
 <p>Check this is working by running the code above.</p>
 <p>Next we need to make sure that nipype has SPM on the MATLAB path when it
@@ -917,7 +917,7 @@ with contents like this:</p>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">nipype.interfaces.matlab</span> <span class="k">as</span> <span class="nn">nim</span>
 <span class="c1"># If you needed to set the default matlab command above</span>
-<span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_matlab_cmd</span><span class="p">(</span><span class="s1">&#39;/Applications/MATLAB_R2014a.app/bin/matlab&#39;</span><span class="p">)</span>
+<span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_matlab_cmd</span><span class="p">(</span><span class="s1">&#39;/Applications/MATLAB_R2022b.app/bin/matlab&#39;</span><span class="p">)</span>
 <span class="c1"># If you needed to set the SPM path above.</span>
 <span class="n">nim</span><span class="o">.</span><span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_paths</span><span class="p">(</span><span class="s1">&#39;/Users/mb312/dev_trees/spm12&#39;</span><span class="p">)</span>
 </pre></div>
