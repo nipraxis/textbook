@@ -765,20 +765,10 @@ def scale_design_mtx(X):
     return Xs
 ```
 
-Then we can display this scaled design with a title and some default
-image display parameters:
+Then we can display the scaled design with a title and some default image
+display parameters, to see our ANCOVA design at a glance.
 
 ```{python}
-def show_design(X, design_title):
-    """ Show the design matrix nicely """
-    plt.imshow(scale_design_mtx(X),
-               interpolation='nearest',
-               cmap='gray') # Gray colormap
-    plt.title(design_title)
-```
-
-We can then see our ANCOVA design above at a glance:
-
-```{python}
-show_design(X, 'ANCOVA')
+plt.imshow(scale_design_mtx(X), cmap='gray')
+plt.title('ANCOVA')
 ```
