@@ -154,7 +154,7 @@ This coordinate therefore refers to a particular part of the image:
 mean_data = np.mean(data, axis=-1)
 # Make a nice bright dot in the right place
 mean_data[42, 32, 19] = np.max(mean_data)
-plt.imshow(mean_data[:, :, 19], cmap='gray', interpolation='nearest')
+plt.imshow(mean_data[:, :, 19], cmap='gray')
 ```
 
 If we slice into the data array with these coordinates, we will get a vector,
