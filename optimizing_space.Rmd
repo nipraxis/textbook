@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.10.3
   kernelspec:
     display_name: Python 3
     language: python
@@ -437,30 +437,31 @@ it finds a parameter value for which very small changes of the parameter up or
 down only increase the cost function value. At this point the routine stops
 and returns the parameter value.
 
-To write the cost function, we use the fact that Python functions can access
-variables defined in the [Global and local scope of Python
-variables](https://matthew-brett.github.io/teaching/global_scope.html). In our
-case the function `cost_function` can access variables `shifted_mid_vol1` and
-`mid_vol0` that we defined in the top level (global) scope of our interactive
-session:
-
 ```{python}
-def cost_function(x_trans):
+def cost_function(x_trans, target, moving):
+    """ Correlation of `target` array and `moving`, after applying `x_trans`.
+
+    `target` is the array we are trying to match to.  `moving` is the array we
+    are trying to match, by using the `x_trans` transform.
+
+    Specifically, we resample from `moving` after applying coordinate transform
+    `x_trans`.
+    """
     # Function can use image slices defined in the global scope
     # Calculate X_t - image translated by x_trans
-    unshifted = fancy_x_trans_slice(shifted_mid_vol1, x_trans)
+    unmoved = fancy_x_trans_slice(moving, x_trans)
     # Return mismatch measure for the translated image X_t
-    return correl_mismatch(unshifted, mid_vol0)
+    return correl_mismatch(unmoved, target)
 ```
 
 ```{python}
 # Value of the negative correlation for no translation.
-cost_function(0)
+cost_function(0, mid_vol0, shifted_mid_vol1)
 ```
 
 ```{python}
 # Value of the negative correlation for translation of -8 voxels.
-cost_function(-8)
+cost_function(-3, mid_vol0, shifted_mid_vol1)
 ```
 
 Now we get a general optimizing routine from the `scipy` Python
@@ -472,11 +473,13 @@ optimization:
 from scipy.optimize import fmin_powell
 ```
 
-We pass the `fmin_powell` routine our Python cost function, and a
-starting value of zero for the translation:
+We pass the `fmin_powell` routine our Python cost function, and a starting
+value of zero for the translation.  We also need to pass the arguments after
+`x_trans` in our cost function as the `args` argument.  This allows
+`fmin_powell` to call the cost function, and pass these extra needed arguments.
 
 ```{python}
-fmin_powell(cost_function, [0])
+fmin_powell(cost_function, [0], args=(mid_vol0, shifted_mid_vol1))
 ```
 
 The function ran, and found that a translation value very close to -8 gave the
@@ -494,7 +497,10 @@ def my_callback(params):
 set of parameters.
 
 ```{python}
-best_params = fmin_powell(cost_function, [0], callback=my_callback)
+best_params = fmin_powell(cost_function,
+    [0],
+    args=(mid_vol0, shifted_mid_vol1),
+    callback=my_callback)
 best_params
 ```
 
@@ -509,14 +515,12 @@ Our optimization routine could deal with this in a very simple way - by
 optimizing the x translation, then the y translation, like this:
 
 * Adjust the x translation until it has reached a minimum, then;
-
 * Adjust the y translation until it has reached a minimum, then;
-
 * Repeat x, y minimization until the minimum for both is stable.
 
 Although we could do that, in fact `fmin_powell` does something slightly
 more complicated when looking for the next best set of parameters to try. The
-details aren’t important to the general idea of searching over different
+details are not important to the general idea of searching over different
 parameter values to find the lowest value for the cost function.
 
 ```{python}
@@ -536,17 +540,26 @@ def fancy_xy_trans_slice(img_slice, x_y_trans):
 ```
 
 ```{python}
-def fancy_cost_at_xy(x_y_trans):
-    """ Give cost function at xy translation values `x_y_trans`
+def fancy_cost_at_xy(x_y_trans, target, moving):
+    """ Cost function at xy translation values `x_y_trans`
+
+    `target` is the array we are trying to match to.  `moving` is the array we
+    are trying to match, by using the `x_trans` transform.
+
+    Specifically, we resample from `moving` after applying coordinate transform
+    `x_y_trans`.
     """
-    unshifted = fancy_xy_trans_slice(shifted_mid_vol1, x_y_trans)
-    return correl_mismatch(unshifted, mid_vol0)
+    unshifted = fancy_xy_trans_slice(moving, x_y_trans)
+    return correl_mismatch(unshifted, target)
 ```
 
 Do the optimization of `fancy_cost_at_xy` using `fmin_powell`:
 
 ```{python}
-best_params = fmin_powell(fancy_cost_at_xy, [0, 0], callback=my_callback)
+best_params = fmin_powell(fancy_cost_at_xy,
+                          [0, 0],
+                          args=(mid_vol0, shifted_mid_vol1),
+                          callback=my_callback)
 best_params
 ```
 
@@ -613,17 +626,26 @@ Our cost function (picking up `vol0`, `shifted_vol1` from the global
 scope):
 
 ```{python}
-def cost_at_xyz(x_y_z_trans):
+def cost_at_xyz(x_y_z_trans, target, moving):
     """ Give cost function value at xyz translation values `x_y_z_trans`
+
+    `target` is the array we are trying to match to.  `moving` is the array we
+    are trying to match, by using the `x_trans` transform.
+
+    Specifically, we resample from `moving` after applying coordinate transform
+    `x_y_z_trans`.
     """
-    unshifted = xyz_trans_vol(shifted_vol1, x_y_z_trans)
-    return correl_mismatch(unshifted, vol0)
+    unshifted = xyz_trans_vol(moving, x_y_z_trans)
+    return correl_mismatch(unshifted, target)
 ```
 
 Do the optimization of `cost_at_xyz` using `fmin_powell`:
 
 ```{python}
-best_params = fmin_powell(cost_at_xyz, [0, 0, 0], callback=my_callback)
+best_params = fmin_powell(cost_at_xyz,
+                          [0, 0, 0],
+                          args=(vol0, shifted_vol1),
+                          callback=my_callback)
 best_params
 ```
 
@@ -695,29 +717,24 @@ In general, our optimization routines are only able to guarantee that they
 have found a local minimum. So, if we start our search in the wrong place,
 then the optimization routine may well find the wrong minimum.
 
-Here is our original 1 parameter cost function (it is the same as the version
-above):
+Here is our original 1 parameter cost function.  It is the same as the version
+above, minus docstring and comments for brevity:
 
 ```{python}
-def cost_function(x_trans):
-    # Function can use image slices defined in the
-    # global Python scope.
-    # Calculate X_t - image translated by x_trans
-    unshifted = fancy_x_trans_slice(shifted_mid_vol1, x_trans)
-    # Return mismatch measure for the translated image X_t
-    return correl_mismatch(unshifted, mid_vol0)
+def cost_function(x_trans, target, moving):
+    unmoved = fancy_x_trans_slice(moving, x_trans)
+    return correl_mismatch(unmoved, target)
 ```
 
 Now we minimize this cost function with `fmin_powell`, but starting
 nearer the local minimum:
 
 ```{python}
-fmin_powell(cost_function, [35])
+fmin_powell(cost_function, [35], args=(mid_vol0, shifted_mid_vol1))
 ```
 
-Here we took a very bad starting value, but we would run the same risk
-if the images started off much further apart and we gave a starting
-value of 0.
+Here we took a very bad starting value, but we would run the same risk if the
+images started off much further apart and we gave a starting value of 0.
 
 One major part of using optimization, is being aware that it is possible
 for the optimization to find a “best” value that is a local rather than
