@@ -103,7 +103,7 @@ the command line version of this calculation agrees with your Python
 calculation:
 
 ```{bash}
-sha1sum images/reggie.png
+shasum images/reggie.png
 ```
 
 ### Crashing out with an error

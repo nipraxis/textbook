@@ -447,7 +447,6 @@ def cost_function(x_trans, target, moving):
     Specifically, we resample from `moving` after applying coordinate transform
     `x_trans`.
     """
-    # Function can use image slices defined in the global scope
     # Calculate X_t - image translated by x_trans
     unmoved = fancy_x_trans_slice(moving, x_trans)
     # Return mismatch measure for the translated image X_t
@@ -590,12 +589,12 @@ transformation because the transformation cannot make the object change shape
 
 Implementing the rotations is just slightly out of scope for this tutorial (we
 would have to convert between angles and [rotation
-matrices](https://en.wikipedia.org/wiki/Rotation_matrix)), so here is the 3D
-optimization with the three translation parameters:
+matrices](https://en.wikipedia.org/wiki/Rotation_matrix)), so here we do the
+3D optimization with the three translation parameters.
 
-To make it a bit more interesting, shift the second volume 8 voxels on
-the first axis, as we did for the 2D case. We will also push the image 5
-voxels forward on the second axis:
+To make it a bit more interesting, shift the second volume 8 voxels on the
+first axis, as we did for the 2D case. We will also push the image 5 voxels
+forward on the second axis:
 
 ```{python}
 shifted_vol1 = np.zeros(vol1.shape)
@@ -622,8 +621,7 @@ def xyz_trans_vol(vol, x_y_z_trans):
     return trans_vol
 ```
 
-Our cost function (picking up `vol0`, `shifted_vol1` from the global
-scope):
+Our cost function:
 
 ```{python}
 def cost_at_xyz(x_y_z_trans, target, moving):
