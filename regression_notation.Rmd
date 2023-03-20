@@ -231,7 +231,7 @@ $$
 \vec{\hat{y}} = [ \hat{y}_1, \hat{y}_2, ..., \hat{y}_n ]
 $$
 
-Read the $|hat{ }$ over the $y$ as "estimated", so $\hat{y}_1$ is our
+Read the $\hat{ }$ over the $y$ as "estimated", so $\hat{y}_1$ is our
 *estimate* for $y_1$, given the model.
 
 Our regression model says each fitted value comes about by multiplying the
