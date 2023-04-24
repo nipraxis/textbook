@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: /var/lib/apt
         key: apt-cache-v2
