@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Why the correlation gives the best slope &#8212; Practice and theory of brain imaging</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,59 +63,91 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'why_mse_correlation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/reggie.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Practice and theory of brain imaging</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/reggie.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/reggie.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -113,882 +156,437 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  The neuroimaging problem
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The neuroimaging problem</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="the_problem.html">
-   The problem and the plan
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="the_problem.html">The problem and the plan</a></li>
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  The tools
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The tools</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="to_code.html">
-   Ode to code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="surviving_computers.html">
-   Surviving the computer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="the_software.html">
-   Our tools
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="using_jupyter.html">
-   Using Jupyter notebooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="more_on_jupyter.html">
-   More on the Jupyter notebook
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="brisk_python.html">
-   Brisk introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="installation.html">
-   Installing on your computer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="to_code.html">Ode to code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surviving_computers.html">Surviving the computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_software.html">Our tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_jupyter.html">Using Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more_on_jupyter.html">More on the Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brisk_python.html">Brisk introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing on your computer</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Images and code and images
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Images and code and images</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="pathlib.html">
-   Using the
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     pathlib
-    </span>
-   </code>
-   module
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="what_is_an_image.html">
-   What is an image?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_intro.html">
-   Introduction to Numpy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="boolean_arrays.html">
-   Boolean arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_2d.html">
-   Two-dimensions, reshaping
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arrays_and_images.html">
-   Arrays as images, images as arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arrays_3d.html">
-   Three-dimensional arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="images_3d.html">
-   Three-dimensional images, NIfTI
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_3d.html">
-   Reshaping and three-dimensional arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="boolean_indexing.html">
-   Indexing with Boolean arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="boolean_indexing_nd.html">
-   Boolean indexing with more than one dimension
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_to_4d.html">
-   Working with four dimensional images, masks and functions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="reshape_and_4d.html">
-   Reshaping, 4D to 2D
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="voxels_by_time.html">
-   Voxels and time
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_is_an_image.html">What is an image?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_intro.html">Introduction to Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boolean_arrays.html">Boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reshape_and_2d.html">Two-dimensions, reshaping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arrays_and_images.html">Arrays as images, images as arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arrays_3d.html">Three-dimensional arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images_3d.html">Three-dimensional images, NIfTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reshape_and_3d.html">Reshaping and three-dimensional arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boolean_indexing.html">Indexing with Boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boolean_indexing_nd.html">Boolean indexing with more than one dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_4d.html">Working with four dimensional images, masks and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reshape_and_4d.html">Reshaping, 4D to 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voxels_by_time.html">Voxels and time</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Working reproducibly
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working reproducibly</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="on_modules.html">
-   Modules and scripts
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sys_path.html">
-   Where does Python look for modules?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="assert.html">
-   Using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     assert
-    </span>
-   </code>
-   for testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="coding_style.html">
-   Python coding style
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="docstrings.html">
-   Docstrings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="module_directories.html">
-   Module directories
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="on_testing.html">
-   On testing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="on_modules.html">Modules and scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sys_path.html">Where does Python look for modules?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">Using <code class="docutils literal notranslate"><span class="pre">assert</span></code> for testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coding_style.html">Python coding style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_directories.html">Module directories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="on_testing.html">On testing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Detecting activation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Detecting activation</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="voxel_time_courses.html">
-   Correlating with voxel time courses
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="on_convolution.html">
-   Convolution
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convolution_background.html">
-   Convolving with the hemodyamic response function
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="on_regression.html">
-   Introducing regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regress_one_voxel.html">
-   Regression for a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="regression_notation.html">
-   Notation for regression models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="glm_intro.html">
-   Introduction to the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mean_test_example.html">
-   A worked example of the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="model_one_voxel.html">
-   Modeling a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multi_multiply.html">
-   Estimation for many voxels at the same time
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hypothesis_tests.html">
-   Hypothesis testing with the general linear model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="test_one_voxel.html">
-   Testing a single voxel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="non_tr_onsets.html">
-   Using onsets that do not start on a TR
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="whole_image_statistics.html">
-   Whole-brain t tests and p values
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bonferroni_correction.html">
-   Notes on the Bonferroni threshold
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="voxel_time_courses.html">Correlating with voxel time courses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="on_convolution.html">Convolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolution_background.html">Convolving with the hemodyamic response function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="on_regression.html">Introducing regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regress_one_voxel.html">Regression for a single voxel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression_notation.html">Notation for regression models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glm_intro.html">Introduction to the general linear model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mean_test_example.html">A worked example of the general linear model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="model_one_voxel.html">Modeling a single voxel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_multiply.html">Estimation for many voxels at the same time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypothesis_tests.html">Hypothesis testing with the general linear model</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="test_one_voxel.html">Testing a single voxel</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="non_tr_onsets.html">Using onsets that do not start on a TR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whole_image_statistics.html">Whole-brain t tests and p values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonferroni_correction.html">Notes on the Bonferroni threshold</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Spatial processing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial processing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="slice_timing.html">
-   Slice timing correction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="optimizing_space.html">
-   Calculating transformations between images
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="diagonal_zooms.html">
-   Encoding zooms (scaling) with a diagonal matrix
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="nibabel_affines.html">
-   The
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     nibabel.affines
-    </span>
-   </code>
-   module
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="nibabel_apply_affine.html">
-   Applying coordinate transforms with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     nibabel.affines.apply_affine
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="map_coordinates.html">
-   General resampling between images with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     scipy.ndimage.map_coordinates
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="image_header_and_affine.html">
-   The image header and affine
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="images_and_affines.html">
-   Images and affines
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rotation_2d_3d.html">
-   Rotations and rotation matrices
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="resampling_with_ndimage.html">
-   Resampling with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     scipy.ndimage
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dipy_registration.html">
-   Registration with dipy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="anterior_cingulate.html">
-   Anterior cingulate
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="slice_timing.html">Slice timing correction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizing_space.html">Calculating transformations between images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagonal_zooms.html">Encoding zooms (scaling) with a diagonal matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nibabel_affines.html">The <code class="docutils literal notranslate"><span class="pre">nibabel.affines</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nibabel_apply_affine.html">Applying coordinate transforms with <code class="docutils literal notranslate"><span class="pre">nibabel.affines.apply_affine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_coordinates.html">General resampling between images with <code class="docutils literal notranslate"><span class="pre">scipy.ndimage.map_coordinates</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_header_and_affine.html">The image header and affine</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="images_and_affines.html">Images and affines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rotation_2d_3d.html">Rotations and rotation matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resampling_with_ndimage.html">Resampling with <code class="docutils literal notranslate"><span class="pre">scipy.ndimage</span></code></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="dipy_registration.html">Registration with dipy</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="anterior_cingulate.html">Anterior cingulate</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Notes on arrays and plots
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Notes on arrays and plots</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="methods_vs_functions.html">
-   Methods vs functions in NumPy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="allclose.html">
-   Testing for near equality with “allclose”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arange.html">
-   NumPy arange
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_logical.html">
-   Logical operations on Boolean arrays
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dot_outer.html">
-   Vector and matrix dot products, “np.outer”
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="newaxis.html">
-   Adding length 1 dimensions with newaxis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="array_reductions.html">
-   Array reduction operations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="numpy_random.html">
-   Numpy random number generators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subtract_means.html">
-   Subtracting the mean from columns or rows
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_lines.html">
-   Plotting lines in matplotlib
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="subplots.html">
-   Subplots and axes in matplotlib
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="methods_vs_functions.html">Methods vs functions in NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="allclose.html">Testing for near equality with “allclose”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arange.html">NumPy arange</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_logical.html">Logical operations on Boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dot_outer.html">Vector and matrix dot products, “np.outer”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newaxis.html">Adding length 1 dimensions with newaxis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array_reductions.html">Array reduction operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_random.html">Numpy random number generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subtract_means.html">Subtracting the mean from columns or rows</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="plot_lines.html">Plotting lines in matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subplots.html">Subplots and axes in matplotlib</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/why_mse_correlation.Rmd"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/why_mse_correlation.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
       
-      <li>
-        <a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/why_mse_correlation.Rmd&branch=main"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on JupyterHub"
+      
+      
+      
+      <li><a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/why_mse_correlation.Rmd&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_jupyterhub.svg">
   </span>
-<span class="headerbtn__text-container">JupyterHub</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
-
-      </li>
+</li>
       
-      <li>
-        <a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/why_mse_correlation.Rmd"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/why_mse_correlation.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-      <li>
-        <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fwhy_mse_correlation.Rmd"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Deepnote"
+      
+      
+      
+      <li><a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fwhy_mse_correlation.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onDeepnote"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_deepnote.svg">
   </span>
-<span class="headerbtn__text-container">Deepnote</span>
+<span class="btn__text-container">Deepnote</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/nipraxis/textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fwhy_mse_correlation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/why_mse_correlation.Rmd" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.Rmd</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/nipraxis/textbook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fwhy_mse_correlation.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/why_mse_correlation.Rmd"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.Rmd</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-example-regression-problem">
-   The example regression problem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#writing-sums">
-   Writing sums
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mean-and-standard-deviation">
-   Mean and standard deviation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-z-score-transformation">
-   The z-score transformation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#correlation">
-   Correlation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sum-of-squared-error-for-z-scored-lines">
-   Sum of squared error for z-scored lines
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-interesting-characteristics-of-z-scores">
-   Some interesting characteristics of z-scores
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#addition-inside-sum">
-     Addition inside sum
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multiplication-by-constant-inside-sum">
-     Multiplication by constant inside sum
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sum-of-constant-value">
-     Sum of constant value
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#characteristics-of-z-scores">
-   Characteristics of z-scores
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-least-squares-line-for-z-scores">
-   The least-squares line for z-scores
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reality-check">
-   Reality check
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finding-the-trough-in-the-sse-function">
-   Finding the trough in the SSE function
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Why the correlation gives the best slope</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-example-regression-problem">
-   The example regression problem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#writing-sums">
-   Writing sums
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mean-and-standard-deviation">
-   Mean and standard deviation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-z-score-transformation">
-   The z-score transformation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#correlation">
-   Correlation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sum-of-squared-error-for-z-scored-lines">
-   Sum of squared error for z-scored lines
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-interesting-characteristics-of-z-scores">
-   Some interesting characteristics of z-scores
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#addition-inside-sum">
-     Addition inside sum
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multiplication-by-constant-inside-sum">
-     Multiplication by constant inside sum
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sum-of-constant-value">
-     Sum of constant value
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#characteristics-of-z-scores">
-   Characteristics of z-scores
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-least-squares-line-for-z-scores">
-   The least-squares line for z-scores
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reality-check">
-   Reality check
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finding-the-trough-in-the-sse-function">
-   Finding the trough in the SSE function
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Why the correlation gives the best slope</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-regression-problem">The example regression problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-sums">Writing sums</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-standard-deviation">Mean and standard deviation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-z-score-transformation">The z-score transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-squared-error-for-z-scored-lines">Sum of squared error for z-scored lines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-interesting-characteristics-of-z-scores">Some interesting characteristics of z-scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition-inside-sum">Addition inside sum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication-by-constant-inside-sum">Multiplication by constant inside sum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-constant-value">Sum of constant value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-z-scores">Characteristics of z-scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-line-for-z-scores">The least-squares line for z-scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reality-check">Reality check</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-trough-in-the-sse-function">Finding the trough in the SSE function</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="why-the-correlation-gives-the-best-slope">
-<h1>Why the correlation gives the best slope<a class="headerlink" href="#why-the-correlation-gives-the-best-slope" title="Permalink to this headline">#</a></h1>
+<h1>Why the correlation gives the best slope<a class="headerlink" href="#why-the-correlation-gives-the-best-slope" title="Permalink to this heading">#</a></h1>
 <p>In which we return to the <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">simple regression</span></a> problem, and
 work through the mathematics to show why the correlation is the best
 least-squares slope for two z-scored arrays.</p>
 <p>As background, you may also want to read the <a class="reference internal" href="regression_notation.html"><span class="doc std std-doc">regression
 notation</span></a> page.</p>
 <section id="the-example-regression-problem">
-<h2>The example regression problem<a class="headerlink" href="#the-example-regression-problem" title="Permalink to this headline">#</a></h2>
+<h2>The example regression problem<a class="headerlink" href="#the-example-regression-problem" title="Permalink to this heading">#</a></h2>
 <p>As you remember, we have (fake) measured scores for a “psychopathy” personality
 trait in 12 students. We also have a measure of how much sweat each student had
 on their palms, and we call this a “clammy” score.</p>
@@ -1019,7 +617,7 @@ on their palms, and we call this a “clammy” score.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_3_0.png" src="_images/why_mse_correlation_3_0.png" />
+<img alt="_images/325526b2e6c2e46def953b4819c549ac6ad4f3e9c94b59a988f4ea912def7c04.png" src="_images/325526b2e6c2e46def953b4819c549ac6ad4f3e9c94b59a988f4ea912def7c04.png" />
 </div>
 </div>
 <p>To get ourselves into a mathematical mood, we will rename our x-axis values to
@@ -1067,7 +665,7 @@ numbers.</p>
 \]</div>
 </section>
 <section id="writing-sums">
-<h2>Writing sums<a class="headerlink" href="#writing-sums" title="Permalink to this headline">#</a></h2>
+<h2>Writing sums<a class="headerlink" href="#writing-sums" title="Permalink to this heading">#</a></h2>
 <p>We are next going to do the z-score transform on <span class="math notranslate nohighlight">\(\xvec\)</span> and <span class="math notranslate nohighlight">\(\yvec\)</span>.  As you
 remember, this involves subtracting the mean and dividing by the standard
 deviation.   We need to express these mathematically.</p>
@@ -1112,7 +710,7 @@ below the <span class="math notranslate nohighlight">\(\Sigma\)</span>, so we wi
 \]</div>
 </section>
 <section id="mean-and-standard-deviation">
-<h2>Mean and standard deviation<a class="headerlink" href="#mean-and-standard-deviation" title="Permalink to this headline">#</a></h2>
+<h2>Mean and standard deviation<a class="headerlink" href="#mean-and-standard-deviation" title="Permalink to this heading">#</a></h2>
 <p>Now we have a notation for adding things up in a vector, we can write the
 mathematical notation for the mean and standard deviation.</p>
 <div class="math notranslate nohighlight">
@@ -1307,7 +905,7 @@ vector name as a subscript.  For example, if we mean the standard deviation for
 </div>
 </section>
 <section id="the-z-score-transformation">
-<h2>The z-score transformation<a class="headerlink" href="#the-z-score-transformation" title="Permalink to this headline">#</a></h2>
+<h2>The z-score transformation<a class="headerlink" href="#the-z-score-transformation" title="Permalink to this heading">#</a></h2>
 <p>The z-score transformation is to subtract the mean and divide by the standard
 deviation.  Put another way, the z-scores are the <em>deviations</em> divided by the
 <em>standard deviation</em>:</p>
@@ -1357,7 +955,7 @@ z_{x_i} = (x_i - \xbar) / \sigma_x
 \]</div>
 </section>
 <section id="correlation">
-<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">#</a></h2>
+<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this heading">#</a></h2>
 <p>You may remember that the correlation calculation is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1379,7 +977,7 @@ r = \frac{1}{n} \Sigma z_{x_i} z_{y_i}
 \]</div>
 </section>
 <section id="sum-of-squared-error-for-z-scored-lines">
-<h2>Sum of squared error for z-scored lines<a class="headerlink" href="#sum-of-squared-error-for-z-scored-lines" title="Permalink to this headline">#</a></h2>
+<h2>Sum of squared error for z-scored lines<a class="headerlink" href="#sum-of-squared-error-for-z-scored-lines" title="Permalink to this heading">#</a></h2>
 <p>We remind ourselves of the sum of squared error (SSE) for a given slope <code class="docutils literal notranslate"><span class="pre">b</span></code> and
 intercept <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
 <p>Here is a function to calculate the sum of squared error for a given x and y
@@ -1387,7 +985,7 @@ vector, slope and intercept:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_sse</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Sum of squared error for slope `b`, intercept `c`</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Sum of squared error for slope `b`, intercept `c`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">predicted</span> <span class="o">=</span> <span class="n">x_vals</span> <span class="o">*</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
     <span class="n">errors</span> <span class="o">=</span> <span class="n">y_vals</span> <span class="o">-</span> <span class="n">predicted</span>
@@ -1413,7 +1011,7 @@ vector, slope and intercept:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_40_0.png" src="_images/why_mse_correlation_40_0.png" />
+<img alt="_images/07fbe5c96bd3cc1b497adf6fd2bdc2c642f619b1a39f2d1d3159e77772d267b4.png" src="_images/07fbe5c96bd3cc1b497adf6fd2bdc2c642f619b1a39f2d1d3159e77772d267b4.png" />
 </div>
 </div>
 <p>As <a class="reference internal" href="on_regression.html"><span class="doc std std-doc">before</span></a>, it looks as though <span class="math notranslate nohighlight">\(c=0\)</span> is the intercept that
@@ -1434,7 +1032,7 @@ minimizes the SSE, for a slope of 0.6.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_42_0.png" src="_images/why_mse_correlation_42_0.png" />
+<img alt="_images/435ad7331b5e6b2b7bf283be0b42e030bb615579d06df5c598681c77ab83464d.png" src="_images/435ad7331b5e6b2b7bf283be0b42e030bb615579d06df5c598681c77ab83464d.png" />
 </div>
 </div>
 <p>This suggests that the slope minimizing the SSE is around 0.52, at least, for
@@ -1443,7 +1041,7 @@ the best SSE slope for the z-score line.  Our remaining task is to prove this
 with the mathematical notation we have built up.</p>
 </section>
 <section id="some-interesting-characteristics-of-z-scores">
-<h2>Some interesting characteristics of z-scores<a class="headerlink" href="#some-interesting-characteristics-of-z-scores" title="Permalink to this headline">#</a></h2>
+<h2>Some interesting characteristics of z-scores<a class="headerlink" href="#some-interesting-characteristics-of-z-scores" title="Permalink to this heading">#</a></h2>
 <p>Z-score vectors have a couple of interesting and important mathematical properties.</p>
 <p>They have a sum of zero (within the calculation precision of the computer):</p>
 <div class="cell docutils container">
@@ -1488,7 +1086,7 @@ with the mathematical notation we have built up.</p>
 <p>To answer that question, we need the results from the <a class="reference external" href="https://matthew-brett.github.io/teaching/some_sums.html">algebra of
 sums</a>.  If you read that short page, you fill find that these general results hold:</p>
 <section id="addition-inside-sum">
-<h3>Addition inside sum<a class="headerlink" href="#addition-inside-sum" title="Permalink to this headline">#</a></h3>
+<h3>Addition inside sum<a class="headerlink" href="#addition-inside-sum" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \Sigma (x_i + y_i) = \\
@@ -1498,7 +1096,7 @@ sums</a>.  If you read that short page, you fill find that these general results
 \end{split}\]</div>
 </section>
 <section id="multiplication-by-constant-inside-sum">
-<h3>Multiplication by constant inside sum<a class="headerlink" href="#multiplication-by-constant-inside-sum" title="Permalink to this headline">#</a></h3>
+<h3>Multiplication by constant inside sum<a class="headerlink" href="#multiplication-by-constant-inside-sum" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \Sigma c x_i = \\
@@ -1509,7 +1107,7 @@ c \Sigma x_i
 <p>where <span class="math notranslate nohighlight">\(c\)</span> is some constant (number).</p>
 </section>
 <section id="sum-of-constant-value">
-<h3>Sum of constant value<a class="headerlink" href="#sum-of-constant-value" title="Permalink to this headline">#</a></h3>
+<h3>Sum of constant value<a class="headerlink" href="#sum-of-constant-value" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \Sigma_{i=1}^n c = c + c + ... + c = n c
@@ -1517,7 +1115,7 @@ c \Sigma x_i
 </section>
 </section>
 <section id="characteristics-of-z-scores">
-<h2>Characteristics of z-scores<a class="headerlink" href="#characteristics-of-z-scores" title="Permalink to this headline">#</a></h2>
+<h2>Characteristics of z-scores<a class="headerlink" href="#characteristics-of-z-scores" title="Permalink to this heading">#</a></h2>
 <p>With the results above, we can prove z-scores have a sum of 0:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1556,7 +1154,7 @@ c \Sigma x_i
 \]</div>
 </section>
 <section id="the-least-squares-line-for-z-scores">
-<h2>The least-squares line for z-scores<a class="headerlink" href="#the-least-squares-line-for-z-scores" title="Permalink to this headline">#</a></h2>
+<h2>The least-squares line for z-scores<a class="headerlink" href="#the-least-squares-line-for-z-scores" title="Permalink to this heading">#</a></h2>
 <p>Let us say we have a data vector <span class="math notranslate nohighlight">\(\yvec\)</span>.  We have somehow calculated an estimated (fitted)
 value <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> for every corresponding value <span class="math notranslate nohighlight">\(y_i\)</span> in <span class="math notranslate nohighlight">\(\yvec\)</span>.  Then the errors at
 each value <span class="math notranslate nohighlight">\(i\)</span> are given by:</p>
@@ -1611,14 +1209,14 @@ SSE_z = n - 2 b \Sigma z_{y_i} z_{x_i} + b^2 n + n c^2
 \]</div>
 </section>
 <section id="reality-check">
-<h2>Reality check<a class="headerlink" href="#reality-check" title="Permalink to this headline">#</a></h2>
+<h2>Reality check<a class="headerlink" href="#reality-check" title="Permalink to this heading">#</a></h2>
 <p>Let us pause at this point for a reality check.  If we have done our derivation
 correctly, then the formula above should give the same answer as the <code class="docutils literal notranslate"><span class="pre">calc_sse</span></code>
 function above.  Let’s check.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_sse_simplified</span><span class="p">(</span><span class="n">z_x</span><span class="p">,</span> <span class="n">z_y</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Implement simplified z-score SSE equation above</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Implement simplified z-score SSE equation above</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">z_x</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">z_x</span> <span class="o">*</span> <span class="n">z_y</span><span class="p">)</span> <span class="o">+</span>
@@ -1655,7 +1253,7 @@ slope of 0.6?</p>
 <p>No errors — we appear to be on the right mathematical track.</p>
 </section>
 <section id="finding-the-trough-in-the-sse-function">
-<h2>Finding the trough in the SSE function<a class="headerlink" href="#finding-the-trough-in-the-sse-function" title="Permalink to this headline">#</a></h2>
+<h2>Finding the trough in the SSE function<a class="headerlink" href="#finding-the-trough-in-the-sse-function" title="Permalink to this heading">#</a></h2>
 <p>We want to find the slope, intercept pair <span class="math notranslate nohighlight">\(b, c\)</span> that gives us the lowest SSE
 value.</p>
 <p>To do this, we remind ourselves that the SSE equation above is a <em>function</em>
@@ -1670,7 +1268,7 @@ that varies with respect to <span class="math notranslate nohighlight">\(b\)</sp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/why_mse_correlation_69_0.png" src="_images/why_mse_correlation_69_0.png" />
+<img alt="_images/fc5cd6060413ef5f8c40476ed766759a2e116534ff297e70d7cdc8483879b60e.png" src="_images/fc5cd6060413ef5f8c40476ed766759a2e116534ff297e70d7cdc8483879b60e.png" />
 </div>
 </div>
 <p>We would like to find the slope <span class="math notranslate nohighlight">\(b\)</span> value corresponding to the minimum of the
@@ -1761,7 +1359,7 @@ corresponds to a trough (minimum) rather than a peak (maximum).</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1769,36 +1367,102 @@ corresponds to a trough (minimum) rather than a peak (maximum).</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-regression-problem">The example regression problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-sums">Writing sums</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-standard-deviation">Mean and standard deviation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-z-score-transformation">The z-score transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-squared-error-for-z-scored-lines">Sum of squared error for z-scored lines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-interesting-characteristics-of-z-scores">Some interesting characteristics of z-scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition-inside-sum">Addition inside sum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication-by-constant-inside-sum">Multiplication by constant inside sum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-constant-value">Sum of constant value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-z-scores">Characteristics of z-scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-line-for-z-scores">The least-squares line for z-scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reality-check">Reality check</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-trough-in-the-sse-function">Finding the trough in the SSE function</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By The nipraxis team<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By The nipraxis team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
