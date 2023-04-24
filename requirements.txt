@@ -7,8 +7,8 @@ nipype
 ipython
 jupytext
 okpy
-dipy==1.4.1
-fury==0.7.1  # pacify dipy imports
+dipy>=1.7.0
+fury
 scikit-image
 sympy
 nipraxis

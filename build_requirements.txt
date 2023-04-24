@@ -1,14 +1,9 @@
 # Build requirements
 jupyter-book
 sphinx-design
-# Notebook execution problem with older attrs?
-# attrs==21.4
 
 # To allow static build / upload
 ghp-import
 
 # Notebook etc requirements
 -r requirements.txt
-
-# For nicer sidebars
-# sphinx-book-theme>=0.2
