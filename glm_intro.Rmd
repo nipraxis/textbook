@@ -100,7 +100,7 @@ plt.title('Clammy vs psychopathy with guessed line')
 plt.legend()
 ```
 
-As you saw in [regresssion notation](regression_notation.Rmd), we can write out
+As you saw in [regression notation](regression_notation.Rmd), we can write out
 this model more formally and more generally in mathematical symbols.
 
 $\newcommand{\yvec}{\vec{y}} \newcommand{\xvec}{\vec{x}} \newcommand{\evec}{\vec{\varepsilon}}$

@@ -131,7 +131,7 @@ np.all(top_of_t == B[1, :])
 
 The denominator of the t statistic is given by the square root of two components:
 
-* The estimated variance (from the squared residual errors in the data), multplied by
+* The estimated variance (from the squared residual errors in the data), multiplied by
 * The covariance of the design - that depends only on the contrast and the design.
 
 For the variance estimate, we need the *degrees of freedom*.
