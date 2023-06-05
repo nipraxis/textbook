@@ -92,7 +92,7 @@ fslinfo ds114_sub009_highres.nii
 It is important to have a clear picture of what we are dealing with.
 First, we have the NIfTI file, which is a regular file stored in a hard disk with name `ds114_sub009_highres.nii`.
 In order to access the contents of the file, we invoked NiBabel's `load()` function.
-The call created a Pyton representation (meaning, a Python object) that is capable of understanding the NIfTI format and therefore access the file.
+The call created a Python representation (meaning, a Python object) that is capable of understanding the NIfTI format and therefore access the file.
 As an example, we printed out the information contained in the header with NiBabel's interface.
 The interface has other convenience tools to access information about the image, for instance, the shape of the data grid contained by the NIfTI file:
 
