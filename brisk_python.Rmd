@@ -269,9 +269,9 @@ print('not True:', not True)
 print('not False:', not False)
 ```
 
-In fact, the logical operators will first force their arguments to be True or False before they give their answer.  So, in the case of `and` or `or`, they force force their left and right arguents to be `bool` values, before they calculate the answer.  So, in fact, you can use things other than exact True and False on either side of the `and` or `or`, as long as applying `bool(value)` to the thing to the left and right will produce a True or False value.  See {doc}`truthiness` for more detail.
+In fact, the logical operators will first force their arguments to be True or False before they give their answer.  So, in the case of `and` or `or`, they force force their left and right arguments to be `bool` values, before they calculate the answer.  So, in fact, you can use things other than exact True and False on either side of the `and` or `or`, as long as applying `bool(value)` to the thing to the left and right will produce a True or False value.  See {doc}`truthiness` for more detail.
 
-## “If” statements, blocks and indention
+## “If” statements, blocks and indentation
 
 A conditional statement in Python looks like this:
 

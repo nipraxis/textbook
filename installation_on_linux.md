@@ -8,8 +8,8 @@ orphan: true
 
 ### On Ubuntu or Debian
 
-Tested on: Ubuntus 14.04, 15.04 through 16.10, 20.04; Debians Bullseye and
-Sid (March 2022).
+Tested on: Ubuntu 14.04, 15.04 through 16.10, 20.04; Debian 11 (Bullseye) and
+Unstable (Sid, March 2022).
 
 Install git and Python 3:
 

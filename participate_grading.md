@@ -24,5 +24,5 @@ Consisting of:
   interface, particularly difference between number of PRs involving you,
   minus the number of PRs you authored;
 - 5 GP for the quality of your self-assessment writeup.  Quality of
-  self-assessment, quality of writing; level of relfection on performance and
+  self-assessment, quality of writing; level of reflection on performance and
   quality of evidence presented.

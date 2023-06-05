@@ -272,7 +272,7 @@ def sub2img_mask(root, sub_no):
 
 
 def write_highres(root):
-    """ Calculcate parameters, write anatomicals from OpenFMRI directory `root`
+    """ Calculate parameters, write anatomicals from OpenFMRI directory `root`
 
     Parameters
     ----------
@@ -285,7 +285,7 @@ def write_highres(root):
 
 
 def write_highres_parallel(root):
-    """ Calculcate parameters, write anatomicals from OpenFMRI directory `root`
+    """ Calculate parameters, write anatomicals from OpenFMRI directory `root`
 
     Use parallel execution.  Careful, this can crash your machine with too many
     images found at `root`.
@@ -305,7 +305,7 @@ def write_highres_parallel(root):
 
 
 def register_subject(root, sub_no):
-    """ Calculcate parameters, write anatomical for subject at OpenFMRI `root`
+    """ Calculate parameters, write anatomical for subject at OpenFMRI `root`
 
     Parameters
     ----------

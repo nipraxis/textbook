@@ -28,9 +28,9 @@ The script should do the following, using nibabel and Nipype:
   image during registration (it modifies the image affine);
 - drop the first 4 volumes from the functional run.  Save the new functional
   image with a filename prefix of `f`.
-- run slice timing, assuming an ascending interleaved slice acqusition order
+- run slice timing, assuming an ascending interleaved slice acquisition order
   (first, third, ..., second, fourth, ...).  See
-  {doc}`spm_slice_timing_exercise` for details.  The resulting funcitonal
+  {doc}`spm_slice_timing_exercise` for details.  The resulting functional
   image will have a filename prefix of `af`;
 - run motion correction estimation, and write out the mean image across
   volumes.  You will need `nipype.interfaces.spm.Realign`.  The mean image
