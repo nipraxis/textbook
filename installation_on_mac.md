@@ -12,12 +12,33 @@ We'll be typing at the "terminal" prompt often during the class.  In macOS, the
 program giving the terminal prompt is `Terminal.app`.  It comes installed
 with macOS.
 
-Press the Command key and the spacebar at the same time to open the Spotlight
-search box.  (You can also click on the magnifier glass icon in menu bar
-towards the right). Type "terminal" and press return to open Terminal.app.
-You should get a terminal window.  Consider pinning Terminal.app to your dock
-by right-clicking on the Terminal icon in the dock, chose "Options" and "Keep
-in dock".
+You'll find it in the Utilities sub-folder of your Applications folder, but
+the easiest way to start it is via Spotlight.
+
+Start spotlight by either:
+
+*   Clicking on the magnifying glass icon at the right of your menu bar at the
+    top of your screen
+
+    ![](images/spotlight_on_menu.png)
+
+    or (the better option):
+*   Press the command key (the key with the ⌘ symbol) and then (at the same
+    time) the spacebar.
+
+In either case, a mini-window like this will come up:
+
+![](images/spotlight_mini_window.png)
+
+Type `terminal` in this window.  The first option that comes up is almost
+invariably the Terminal application:
+
+![](images/spotlight_terminal.png)
+
+Select this by pressing Enter, and you should see the Terminal application window, as above.
+
+Consider pinning Terminal.app to your dock by right-clicking on the Terminal
+icon in the dock, chose "Options" and "Keep in dock".
 
 ## Git
 
@@ -105,7 +126,11 @@ export PATH=/usr/local/bin:$PATH
 Be very careful that TextEdit doesn't automatically capitalize `export` above
 to `Export`.  Correct it again to lower case if it does.
 
-Save, and close the text editor.  Close Terminal.app  Start Terminal.app again, and confirm you are looking at the right Python:
+* Save, and close the text editor.
+* Close Terminal.app.
+* Start Terminal.app again, and
+
+— confirm you are looking at the right Python:
 
 ```bash
 which python3
