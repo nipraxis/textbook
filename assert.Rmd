@@ -82,6 +82,8 @@ assert 0
 assert None
 ```
 
+<!-- #md -->
+
 ```{warning}
 Note that `assert` *should not* be used in order to raise errors at runtime.
 
@@ -97,3 +99,5 @@ control whether your code is run with optimization or not.
 For error conditions that you expect to encounter in runtime,
 [raise exceptions](https://docs.python.org/3/tutorial/errors.html#raising-exceptions).
 ```
+
+<!-- #endmd -->
