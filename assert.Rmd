@@ -81,3 +81,19 @@ assert 0
 # Error
 assert None
 ```
+
+```{warning}
+Note that `assert` *should not* be used in order to raise errors at runtime.
+
+The use cases for assertions are development, testing and debugging your code,
+and are for declaring "This condition is expected to be to true".
+If this always succeeds during testing, it is considered safe to remove
+[in production](https://en.wikipedia.org/wiki/Deployment_environment#Production).
+
+If Python is run [with optimization](https://docs.python.org/3/using/cmdline.html#cmdoption-O),
+`assert` statements will be removed for speed, and you as the developer do not
+control whether your code is run with optimization or not.
+
+For error conditions that you expect to encounter in runtime,
+[raise exceptions](https://docs.python.org/3/tutorial/errors.html#raising-exceptions).
+```
