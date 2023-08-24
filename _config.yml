@@ -3,7 +3,6 @@
 
 title: Practice and theory of brain imaging
 author: The nipraxis team
-logo: images/reggie.png
 # >- starts a multiline string, where newlines replaced by spaces, and final
 # newlines are stripped.
 description: >-
@@ -122,6 +121,10 @@ launch_buttons:
 
 sphinx:
   config:
+    html_theme_options:
+      logo:
+        image_light: images/reggie.png
+        image_dark: images/reggie-inv.png
     nb_custom_formats:
       .Rmd:
         - jupytext.reads
