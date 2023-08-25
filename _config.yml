@@ -120,6 +120,7 @@ launch_buttons:
   thebe: true
 
 sphinx:
+  recursive_update: true
   config:
     html_theme_options:
       logo:
