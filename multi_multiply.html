@@ -100,8 +100,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
+         placeholder="Search this book..."
+         aria-label="Search this book..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -142,12 +142,20 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/reggie.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/reggie-inv.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <script>document.write(`<img src="_static/reggie.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Practice and theory of brain imaging
+                </a>
+            </li>
+        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The neuroimaging problem</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="the_problem.html">The problem and the plan</a></li>
@@ -293,6 +301,156 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/nipraxis/textbook/main?urlpath=tree/multi_multiply.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://hub.nipraxis.org/hub/user-redirect/git-pull?repo=https%3A//github.com/nipraxis/textbook&urlpath=tree/textbook/multi_multiply.Rmd&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/nipraxis/textbook/blob/main/multi_multiply.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnipraxis%2Ftextbook%2Fblob%2Fmain%2Fmulti_multiply.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onDeepnote"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_deepnote.svg">
+  </span>
+<span class="btn__text-container">Deepnote</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/nipraxis/textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/nipraxis/textbook/issues/new?title=Issue%20on%20page%20%2Fmulti_multiply.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -418,7 +576,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f548c716290&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5838ca22c0&gt;
 </pre></div>
 </div>
 <img alt="_images/51f48efc5eb9ab8c77ad3b9d8b0524ce573b419af752182b315f4c26786e9a2b.png" src="_images/51f48efc5eb9ab8c77ad3b9d8b0524ce573b419af752182b315f4c26786e9a2b.png" />
@@ -468,8 +626,8 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.1 ,  2.21, -0.76, -0.13,  0.49, -0.35,  0.06,  0.56,  0.3 ,
-        1.17, -0.9 , -1.55])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.04,  0.41,  1.62,  0.08, -0.78,  1.31,  0.24,  0.01,  0.77,
+        1.64, -0.02,  0.93])
 </pre></div>
 </div>
 </div>
@@ -482,7 +640,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.32, -0.  ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.21, 0.52])
 </pre></div>
 </div>
 </div>
@@ -496,8 +654,8 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.83, -0.3 ,  1.11, -0.52, -0.65,  1.14, -0.76, -0.47,  1.31,
-        0.83,  0.1 , -0.29])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.51e-01,  1.04e+00, -9.91e-01,  2.65e-01, -2.57e+00, -5.72e-01,
+       -1.53e+00, -1.74e-03, -1.79e+00,  1.81e-01, -1.03e+00,  1.06e+00])
 </pre></div>
 </div>
 </div>
@@ -510,7 +668,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.3 , 0.06])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.01, -0.51])
 </pre></div>
 </div>
 </div>
@@ -525,7 +683,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.08, -0.02])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.19, -0.62])
 </pre></div>
 </div>
 </div>
@@ -541,18 +699,18 @@ to these three sets of data with the one single matrix multiply:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.1 , -0.83,  1.03],
-       [ 2.21, -0.3 , -0.7 ],
-       [-0.76,  1.11, -1.37],
-       [-0.13, -0.52, -0.3 ],
-       [ 0.49, -0.65,  0.77],
-       [-0.35,  1.14,  0.67],
-       [ 0.06, -0.76, -0.66],
-       [ 0.56, -0.47,  1.68],
-       [ 0.3 ,  1.31, -0.6 ],
-       [ 1.17,  0.83, -0.69],
-       [-0.9 ,  0.1 ,  1.57],
-       [-1.55, -0.29, -1.62]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3.81e-02, -1.51e-01,  7.13e-01],
+       [ 4.14e-01,  1.04e+00, -8.63e-01],
+       [ 1.62e+00, -9.91e-01,  3.48e-01],
+       [ 8.42e-02,  2.65e-01,  5.75e-01],
+       [-7.84e-01, -2.57e+00, -1.59e+00],
+       [ 1.31e+00, -5.72e-01, -1.67e+00],
+       [ 2.38e-01, -1.53e+00, -2.30e+00],
+       [ 1.01e-02, -1.74e-03, -1.49e+00],
+       [ 7.65e-01, -1.79e+00, -9.41e-01],
+       [ 1.64e+00,  1.81e-01, -6.22e-01],
+       [-2.13e-02, -1.03e+00, -1.35e-01],
+       [ 9.31e-01,  1.06e+00,  5.58e-01]])
 </pre></div>
 </div>
 </div>
@@ -565,8 +723,8 @@ to these three sets of data with the one single matrix multiply:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.32,  0.3 , -0.08],
-       [-0.  ,  0.06, -0.02]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.21, -0.01, -0.19],
+       [ 0.52, -0.51, -0.62]])
 </pre></div>
 </div>
 </div>
@@ -595,8 +753,8 @@ voxel array, and use technique here for very fast estimation.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "nipraxis/textbook",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
