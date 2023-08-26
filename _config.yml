@@ -121,6 +121,7 @@ launch_buttons:
   thebe: true
 
 sphinx:
+  recursive_update: true
   config:
     nb_custom_formats:
       .Rmd:
