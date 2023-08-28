@@ -693,6 +693,19 @@ False, the test that assert uses is more general than
 </div>
 </div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">assert</span></code> <em>should not</em> be used in order to raise errors at runtime.</p>
+<p>The use cases for assertions are development, testing and debugging your code,
+and are for declaring “This condition is expected to be to true”.
+If this always succeeds during testing, it is considered safe to remove
+<a class="reference external" href="https://en.wikipedia.org/wiki/Deployment_environment#Production">in production</a>.</p>
+<p>If Python is run <a class="reference external" href="https://docs.python.org/3/using/cmdline.html#cmdoption-O">with optimization</a>,
+<code class="docutils literal notranslate"><span class="pre">assert</span></code> statements will be removed for speed, and you as the developer do not
+control whether your code is run with optimization or not.</p>
+<p>For error conditions that you expect to encounter in runtime,
+<a class="reference external" href="https://docs.python.org/3/tutorial/errors.html#raising-exceptions">raise exceptions</a>.</p>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
