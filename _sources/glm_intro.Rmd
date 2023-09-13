@@ -18,7 +18,7 @@ jupyter:
 
 For more detail on the General Linear Model, see [The general linear model and
 fMRI: Does love last
-forever?](http://matthew.dynevor.org/_downloads/does_glm_love.pdf).
+forever?](http://matthew.dynevor.org/research/articles/does_glm_love.pdf).
 
 ```{python}
 # Import numerical and plotting libraries
