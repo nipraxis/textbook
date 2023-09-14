@@ -644,12 +644,21 @@ the “psychopathy” score (our <em>predicted</em> variable).</p>
 <img alt="_images/1630239afd8df17b506f87cb473e358dc554089eb35d762bbaeba115d35d3112.png" src="_images/1630239afd8df17b506f87cb473e358dc554089eb35d762bbaeba115d35d3112.png" />
 </div>
 </div>
+<p>Let’s immediately rename the values we are <em>predicting</em> to <code class="docutils literal notranslate"><span class="pre">y</span></code>, and the values we are <em>predicting with</em> to <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">psychopathy</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">clammy</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>You have already seen a preliminary guess we made at a straight line that links
 the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> scores to the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> scores.  Our guess was:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guessed_slope</span> <span class="o">=</span> <span class="mf">0.9</span>
-<span class="n">guessed_intercept</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
@@ -657,8 +666,8 @@ the <code class="docutils literal notranslate"><span class="pre">clammy</span></
 <p>We use this line to <em>predict</em> the <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> scores from the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> scores.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_psychopathy</span> <span class="o">=</span> <span class="n">guessed_slope</span> <span class="o">*</span> <span class="n">clammy</span> <span class="o">+</span> <span class="n">guessed_intercept</span>
-<span class="n">predicted_psychopathy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">clammy</span> <span class="o">+</span> <span class="n">c</span>
+<span class="n">predicted</span>
 </pre></div>
 </div>
 </div>
@@ -672,8 +681,8 @@ the <code class="docutils literal notranslate"><span class="pre">clammy</span></
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the data and the predictions</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clammy</span><span class="p">,</span> <span class="n">psychopathy</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clammy</span><span class="p">,</span> <span class="n">predicted_psychopathy</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Clamminess of handshake&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Psychopathy score&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Clammy vs psychopathy with guessed line&#39;</span><span class="p">)</span>
@@ -682,7 +691,7 @@ the <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6c6ca67b20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f811c3dbdc0&gt;
 </pre></div>
 </div>
 <img alt="_images/3446bed11862eeac122ccf72712c09e39e493ffaceb569a8034a26f425af4a96.png" src="_images/3446bed11862eeac122ccf72712c09e39e493ffaceb569a8034a26f425af4a96.png" />
@@ -715,7 +724,7 @@ student <span class="math notranslate nohighlight">\(i\)</span> where <span clas
 <span class="n">vector_indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">sy_y_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sy_y_ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vector_indices</span><span class="p">])</span>
 
-<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y</span><span class="p">,</span> <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">psychopathy</span><span class="p">)),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_y</span><span class="p">,</span> <span class="n">Eq</span><span class="p">(</span><span class="n">sy_y_val</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -739,7 +748,7 @@ student (= 0.389) and <span class="math notranslate nohighlight">\(x_i\)</span> 
 <span class="n">sy_x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\vec</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">sy_x_ind</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">sy_x_val</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sy_x_ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vector_indices</span><span class="p">])</span>
-<span class="n">Eq</span><span class="p">(</span><span class="n">sy_x</span><span class="p">,</span> <span class="n">Eq</span><span class="p">(</span><span class="n">sy_x_val</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">clammy</span><span class="p">)),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">Eq</span><span class="p">(</span><span class="n">sy_x</span><span class="p">,</span> <span class="n">Eq</span><span class="p">(</span><span class="n">sy_x_val</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -762,6 +771,15 @@ vectors.</p>
 <p><span class="math notranslate nohighlight">\(\evec\)</span> is the vector of as-yet-unknown errors <span class="math notranslate nohighlight">\(e_1, e_2,  ... e_{12}\)</span>.  The
 values of the errors depend on the predicted values, and therefore, on our
 slope <span class="math notranslate nohighlight">\(b\)</span> and intercept <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<p>We calculate the errors as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">predicted</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We write the errors as an error vector:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -809,6 +827,15 @@ slope <span class="math notranslate nohighlight">\(b\)</span> and intercept <spa
 \[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = b \left[\begin{matrix}{x}_{1}\\{x}_{2}\\{x}_{3}\\{x}_{4}\\{x}_{5}\\{x}_{6}\\{x}_{7}\\{x}_{8}\\{x}_{9}\\{x}_{10}\\{x}_{11}\\{x}_{12}\end{matrix}\right] + c + \left[\begin{matrix}{e}_{1}\\{e}_{2}\\{e}_{3}\\{e}_{4}\\{e}_{5}\\{e}_{6}\\{e}_{7}\\{e}_{8}\\{e}_{9}\\{e}_{10}\\{e}_{11}\\{e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
+<p>Confirm this is true when we calculate on our particular values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Confirm that y is close as dammit to b * x + c + e</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Bear with with us for a little trick. We define <span class="math notranslate nohighlight">\(\vec{o}\)</span> as a vector of ones,
 like this:</p>
 <div class="cell tag_hide-input docutils container">
@@ -829,6 +856,14 @@ like this:</p>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\displaystyle \vec{o} = \left[\begin{matrix}1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>In code, in our case:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 <p>Now we can rewrite the formula as:</p>
@@ -875,11 +910,44 @@ like this:</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}c + b {x}_{1} + {e}_{1}\\c + b {x}_{2} + {e}_{2}\\c + b {x}_{3} + {e}_{3}\\c + b {x}_{4} + {e}_{4}\\c + b {x}_{5} + {e}_{5}\\c + b {x}_{6} + {e}_{6}\\c + b {x}_{7} + {e}_{7}\\c + b {x}_{8} + {e}_{8}\\c + b {x}_{9} + {e}_{9}\\c + b {x}_{10} + {e}_{10}\\c + b {x}_{11} + {e}_{11}\\c + b {x}_{12} + {e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Confirm that y is close as dammit to b * x + c * o + e</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">o</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><span class="math notranslate nohighlight">\(\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}\)</span></p>
 <p>We can now rephrase the calculation in terms of matrix multiplication.</p>
 <p>Call <span class="math notranslate nohighlight">\(\Xmat\)</span> the matrix of two columns, where the first column is <span class="math notranslate nohighlight">\(\xvec\)</span> and
-the second column is the column of ones (<span class="math notranslate nohighlight">\(\vec{o}\)</span> above). Call <span class="math notranslate nohighlight">\(\bvec\)</span> the
-column vector:</p>
+the second column is the column of ones (<span class="math notranslate nohighlight">\(\vec{o}\)</span> above).</p>
+<p>In code, for our case:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">o</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.389, 1.   ],
+       [0.2  , 1.   ],
+       [0.241, 1.   ],
+       [0.463, 1.   ],
+       [4.585, 1.   ],
+       [1.097, 1.   ],
+       [1.642, 1.   ],
+       [4.972, 1.   ],
+       [7.957, 1.   ],
+       [5.585, 1.   ],
+       [5.527, 1.   ],
+       [6.964, 1.   ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Call <span class="math notranslate nohighlight">\(\bvec\)</span> the column vector:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left[
@@ -889,6 +957,20 @@ c \\
 \end{array}
 \right]
 \end{split}\]</div>
+<p>In code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">])</span>
+<span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.9, 10. ])
+</pre></div>
+</div>
+</div>
+</div>
 <p>This gives us exactly the same calculation as <span class="math notranslate nohighlight">\(\yvec = b \xvec + c + \evec\)</span>
 above, but in terms of matrix multiplication:</p>
 <div class="cell tag_hide-input docutils container">
@@ -936,8 +1018,17 @@ intended result:</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}{y}_{1}\\{y}_{2}\\{y}_{3}\\{y}_{4}\\{y}_{5}\\{y}_{6}\\{y}_{7}\\{y}_{8}\\{y}_{9}\\{y}_{10}\\{y}_{11}\\{y}_{12}\end{matrix}\right] = \left[\begin{matrix}c + b {x}_{1} + {e}_{1}\\c + b {x}_{2} + {e}_{2}\\c + b {x}_{3} + {e}_{3}\\c + b {x}_{4} + {e}_{4}\\c + b {x}_{5} + {e}_{5}\\c + b {x}_{6} + {e}_{6}\\c + b {x}_{7} + {e}_{7}\\c + b {x}_{8} + {e}_{8}\\c + b {x}_{9} + {e}_{9}\\c + b {x}_{10} + {e}_{10}\\c + b {x}_{11} + {e}_{11}\\c + b {x}_{12} + {e}_{12}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>We still haven’t found our best fitting line. But before we go further,
-it might be obvious that we can easily add a new predictor here.</p>
+<p>We write <em>matrix multiplication</em> in Numpy as <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Confirm that y is close as dammit to X @ B + e</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We still haven’t found our best fitting line. But before we go further, it
+might be clear that we can easily add a new predictor here.</p>
 </section>
 <section id="multiple-regression">
 <h2>Multiple regression<a class="headerlink" href="#multiple-regression" title="Permalink to this heading">#</a></h2>
@@ -954,9 +1045,26 @@ student’s age as another predictor:</p>
 </div>
 </div>
 <p>Now rename the <code class="docutils literal notranslate"><span class="pre">clammy</span></code> predictor vector from <span class="math notranslate nohighlight">\(\xvec\)</span> to
-<span class="math notranslate nohighlight">\(\xvec_1\)</span>. Of course <span class="math notranslate nohighlight">\(\xvec_1\)</span> has 12 values <span class="math notranslate nohighlight">\(x_{1, 1}..x_{1,
-12}\)</span>. Call the <code class="docutils literal notranslate"><span class="pre">age</span></code> predictor vector <span class="math notranslate nohighlight">\(\xvec_2\)</span>. Call the slope for
-<code class="docutils literal notranslate"><span class="pre">clammy</span></code> <span class="math notranslate nohighlight">\(b_1\)</span> (slope for <span class="math notranslate nohighlight">\(\xvec_1\)</span>). Call the slope for age
+<span class="math notranslate nohighlight">\(\xvec_1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clammy (our previous x) is the first column we will use to predict.</span>
+<span class="n">x_1</span> <span class="o">=</span> <span class="n">clammy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course <span class="math notranslate nohighlight">\(\xvec_1\)</span> has 12 values <span class="math notranslate nohighlight">\(x_{1, 1}..x_{1, 12}\)</span>. Call the <code class="docutils literal notranslate"><span class="pre">age</span></code>
+predictor vector <span class="math notranslate nohighlight">\(\xvec_2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># age is the second column we use to predict</span>
+<span class="n">x_2</span> <span class="o">=</span> <span class="n">age</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Call the slope for <code class="docutils literal notranslate"><span class="pre">clammy</span></code> <span class="math notranslate nohighlight">\(b_1\)</span> (slope for <span class="math notranslate nohighlight">\(\xvec_1\)</span>). Call the slope for age
 <span class="math notranslate nohighlight">\(b_2\)</span> (slope for <span class="math notranslate nohighlight">\(\xvec_2\)</span>). Our model is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1024,7 +1132,33 @@ column of ones, to express the intercept in the model.</p>
 \[\begin{split}\displaystyle \boldsymbol{X} = \left[\begin{matrix}{x_{1,}}_{1} &amp; {x_{2,}}_{1} &amp; 1\\{x_{1,}}_{2} &amp; {x_{2,}}_{2} &amp; 1\\{x_{1,}}_{3} &amp; {x_{2,}}_{3} &amp; 1\\{x_{1,}}_{4} &amp; {x_{2,}}_{4} &amp; 1\\{x_{1,}}_{5} &amp; {x_{2,}}_{5} &amp; 1\\{x_{1,}}_{6} &amp; {x_{2,}}_{6} &amp; 1\\{x_{1,}}_{7} &amp; {x_{2,}}_{7} &amp; 1\\{x_{1,}}_{8} &amp; {x_{2,}}_{8} &amp; 1\\{x_{1,}}_{9} &amp; {x_{2,}}_{9} &amp; 1\\{x_{1,}}_{10} &amp; {x_{2,}}_{10} &amp; 1\\{x_{1,}}_{11} &amp; {x_{2,}}_{11} &amp; 1\\{x_{1,}}_{12} &amp; {x_{2,}}_{12} &amp; 1\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>and therefore:</p>
+<p>In code in our case:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Design X in values</span>
+<span class="n">X_3_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="n">o</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_3_cols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.389, 22.5  ,  1.   ],
+       [ 0.2  , 25.3  ,  1.   ],
+       [ 0.241, 24.6  ,  1.   ],
+       [ 0.463, 21.4  ,  1.   ],
+       [ 4.585, 20.7  ,  1.   ],
+       [ 1.097, 23.3  ,  1.   ],
+       [ 1.642, 23.8  ,  1.   ],
+       [ 4.972, 21.7  ,  1.   ],
+       [ 7.957, 21.3  ,  1.   ],
+       [ 5.585, 25.2  ,  1.   ],
+       [ 5.527, 24.6  ,  1.   ],
+       [ 6.964, 21.8  ,  1.   ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>In symbols:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1194,7 +1328,7 @@ and <code class="docutils literal notranslate"><span class="pre">clammy</span></
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6c6213f5b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f810db23b20&gt;]
 </pre></div>
 </div>
 <img alt="_images/4419f13f0357b59924ec92f20d01a9931fd8e21a0a74d3dbbba7d40d80873869.png" src="_images/4419f13f0357b59924ec92f20d01a9931fd8e21a0a74d3dbbba7d40d80873869.png" />
