@@ -75,25 +75,33 @@ plt.xlabel('Clamminess of handshake')
 plt.ylabel('Psychopathy score')
 ```
 
+Let's immediately rename the values we are *predicting* to `y`, and the values we are *predicting with* to `x`:
+
+```{python}
+y = psychopathy
+x = clammy
+```
+
+
 You have already seen a preliminary guess we made at a straight line that links
 the `clammy` scores to the `psychopathy` scores.  Our guess was:
 
 ```{python}
-guessed_slope = 0.9
-guessed_intercept = 10
+b = 0.9
+c = 10
 ```
 
 We use this line to *predict* the `psychopathy` scores from the `clammy` scores.
 
 ```{python}
-predicted_psychopathy = guessed_slope * clammy + guessed_intercept
-predicted_psychopathy
+predicted = b * clammy + c
+predicted
 ```
 
 ```{python}
 # Plot the data and the predictions
-plt.plot(clammy, psychopathy, '+', label='Actual data')
-plt.plot(clammy, predicted_psychopathy, 'ro', label='Predictions')
+plt.plot(x, y, '+', label='Actual data')
+plt.plot(x, predicted, 'ro', label='Predictions')
 plt.xlabel('Clamminess of handshake')
 plt.ylabel('Psychopathy score')
 plt.title('Clammy vs psychopathy with guessed line')
@@ -125,7 +133,7 @@ sy_y_ind = IndexedBase("y")
 vector_indices = range(1, n + 1)
 sy_y_val = Matrix([sy_y_ind[i] for i in vector_indices])
 
-Eq(sy_y, Eq(sy_y_val, Matrix(psychopathy)), evaluate=False)
+Eq(sy_y, Eq(sy_y_val, Matrix(y)), evaluate=False)
 ```
 
 `x` (the `clammy` score) is a *predictor*. Lets call the clammy scores $\xvec$.
@@ -137,7 +145,7 @@ student (= 0.389) and $x_i$ is the value for student $i$ where $i \in 1 .. 12$.
 sy_x = symbols(r'\vec{x}')
 sy_x_ind = IndexedBase("x")
 sy_x_val = Matrix([sy_x_ind[i] for i in vector_indices])
-Eq(sy_x, Eq(sy_x_val, Matrix(clammy)), evaluate=False)
+Eq(sy_x, Eq(sy_x_val, Matrix(x)), evaluate=False)
 ```
 
 In [regression notation](regression_notation.Rmd), we wrote our straight line
@@ -158,6 +166,14 @@ We already the $y$ values in our $\yvec$ vector above, and the $x$ values in the
 $\evec$ is the vector of as-yet-unknown errors $e_1, e_2,  ... e_{12}$.  The
 values of the errors depend on the predicted values, and therefore, on our
 slope $b$ and intercept $c$.
+
+We calculate the errors as:
+
+```{python}
+e = y - predicted
+```
+
+We write the errors as an error vector:
 
 ```{python tags=c("hide-input")}
 # Ignore this cell.
@@ -181,6 +197,13 @@ rhs = MatAdd(MatMul(sy_b, sy_x_val), sy_c_mat, sy_e_val)
 Eq(sy_y_val, rhs, evaluate=False)
 ```
 
+Confirm this is true when we calculate on our particular values:
+
+```{python}
+# Confirm that y is close as dammit to b * x + c + e
+assert np.allclose(y, b * x + c + e)
+```
+
 Bear with with us for a little trick. We define $\vec{o}$ as a vector of ones,
 like this:
 
@@ -189,6 +212,12 @@ like this:
 sy_o = symbols(r'\vec{o}')
 sy_o_val = Matrix([1 for i in vector_indices])
 Eq(sy_o, sy_o_val, evaluate=False)
+```
+
+In code, in our case:
+
+```{python}
+o = np.ones(n)
 ```
 
 Now we can rewrite the formula as:
@@ -212,13 +241,27 @@ This evaluates to the result we intend:
 Eq(sy_y_val, sy_c * sy_o_val + sy_b * sy_x_val + sy_e_val, evaluate=False)
 ```
 
+```{python}
+# Confirm that y is close as dammit to b * x + c * o + e
+assert np.allclose(y, b * x + c * o + e)
+```
+
 $\newcommand{Xmat}{\boldsymbol X} \newcommand{\bvec}{\vec{\beta}}$
 
 We can now rephrase the calculation in terms of matrix multiplication.
 
 Call $\Xmat$ the matrix of two columns, where the first column is $\xvec$ and 
-the second column is the column of ones ($\vec{o}$ above). Call $\bvec$ the
-column vector:
+the second column is the column of ones ($\vec{o}$ above).
+
+
+In code, for our case:
+
+```{python}
+X = np.stack([x, o], axis=1)
+X
+```
+
+Call $\bvec$ the column vector:
 
 $$
 \left[
@@ -228,6 +271,13 @@ c \\
 \end{array}
 \right]
 $$
+
+In code:
+
+```{python}
+B = np.array([b, c])
+B
+```
 
 This gives us exactly the same calculation as $\yvec = b \xvec + c + \evec$
 above, but in terms of matrix multiplication:
@@ -245,7 +295,6 @@ $$
 \yvec = \Xmat \bvec + \evec
 $$
 
-
 Because of the way that matrix multiplication works, this again gives us the
 intended result:
 
@@ -254,8 +303,15 @@ intended result:
 Eq(sy_y_val, sy_xmat_val @ sy_beta_val + sy_e_val, evaluate=False)
 ```
 
-We still haven’t found our best fitting line. But before we go further,
-it might be obvious that we can easily add a new predictor here.
+We write *matrix multiplication* in Numpy as `@`:
+
+```{python}
+# Confirm that y is close as dammit to X @ B + e
+assert np.allclose(y, X @ B + e)
+```
+
+We still haven’t found our best fitting line. But before we go further, it
+might be clear that we can easily add a new predictor here.
 
 
 ## Multiple regression
@@ -272,9 +328,22 @@ age = np.array(
 ```
 
 Now rename the `clammy` predictor vector from $\xvec$ to
-$\xvec_1$. Of course $\xvec_1$ has 12 values $x_{1, 1}..x_{1,
-12}$. Call the `age` predictor vector $\xvec_2$. Call the slope for
-`clammy` $b_1$ (slope for $\xvec_1$). Call the slope for age
+$\xvec_1$.
+
+```{python}
+# clammy (our previous x) is the first column we will use to predict.
+x_1 = clammy
+```
+
+Of course $\xvec_1$ has 12 values $x_{1, 1}..x_{1, 12}$. Call the `age`
+predictor vector $\xvec_2$.
+
+```{python}
+# age is the second column we use to predict
+x_2 = age
+```
+
+Call the slope for `clammy` $b_1$ (slope for $\xvec_1$). Call the slope for age
 $b_2$ (slope for $\xvec_2$). Our model is:
 
 $$
@@ -323,7 +392,15 @@ sy_Xmat = symbols(r'\boldsymbol{X}')
 Eq(sy_Xmat, sy_xmat3_val, evaluate=False)
 ```
 
-and therefore:
+In code in our case:
+
+```{python}
+# Design X in values
+X_3_cols = np.stack([x_1, x_2, o], axis=1)
+X_3_cols
+```
+
+In symbols:
 
 ```{python tags=c("hide-input")}
 # Ignore this cell.
