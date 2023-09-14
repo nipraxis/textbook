@@ -753,7 +753,7 @@ above represent the (positive and negative) lengths of these dashed lines.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa0aacbd0f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5068133340&gt;
 </pre></div>
 </div>
 <img alt="_images/234670078200dc751d6620cb982f89232f1228c326fad7fcdbc438dc80cfc3ba.png" src="_images/234670078200dc751d6620cb982f89232f1228c326fad7fcdbc438dc80cfc3ba.png" />
@@ -762,53 +762,330 @@ above represent the (positive and negative) lengths of these dashed lines.</p>
 </section>
 <section id="mathematical-notation">
 <h2>Mathematical notation<a class="headerlink" href="#mathematical-notation" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Utilities to format LaTeX output.</span>
+<span class="c1"># You don&#39;t need to understand this code - it is to format</span>
+<span class="c1"># the mathematics in the notebook.</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Math</span>
+
+<span class="k">def</span> <span class="nf">format_vec</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">break_every</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">, &#39;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+    <span class="n">indent</span> <span class="o">=</span> <span class="sa">rf</span><span class="s1">&#39;\hspace</span><span class="se">{{</span><span class="s1">1.5em</span><span class="se">}}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">pi</span><span class="p">,</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">break_every</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">break_every</span><span class="p">)):</span>
+        <span class="n">vals</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">pos</span> <span class="o">+</span> <span class="n">pi</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">rf</span><span class="s1">&#39;\vec</span><span class="se">{{</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">}}</span><span class="s1"> = [%s]&#39;</span> <span class="o">%</span>  <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 <p>Our next step is to write out this model more generally and more formally in
 mathematical symbols, so we can think about <em>any</em> vector (sequence) of x values
 <span class="math notranslate nohighlight">\(\xvec\)</span>, and any sequence (vector) of matching y values <span class="math notranslate nohighlight">\(\yvec\)</span>.  But to start
 with, let’s think about the actual set of values we have for <span class="math notranslate nohighlight">\(\xvec\)</span>.  We could
 write the actual values in mathematical notation as:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\xvec = [ 0.389,  0.2  ,  0.241,  0.463, \\
-     4.585,  1.097,  1.642,  4.972, \\
-     7.957,  5.585,  5.527,  6.964 ]
-\end{split}\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">format_vec</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{x} = [0.389, 0.2, 0.241, 0.463, 4.585, 1.097, \\
+\hspace{1.5em}1.642, 4.972, 7.957, 5.585, 5.527, 6.964]\end{split}\]</div>
+</div>
+</div>
 <p>This means that <span class="math notranslate nohighlight">\(\xvec\)</span> is a sequence of these specific 12 values.  But we
 could write <span class="math notranslate nohighlight">\(\xvec\)</span> in a more general way, to be <em>any</em> 12 values, like this:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\xvec = [ x_1, x_2, x_3, x_4, x_5, x_6,\\
-          x_7, x_8, x_9, x_{10}, x_{11}, x_{12} ]
-\end{split}\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x_is</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;x_</span><span class="se">{{</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">}}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">format_vec</span><span class="p">(</span><span class="n">x_is</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{x} = [x_{1}, x_{2}, x_{3}, x_{4}, x_{5}, x_{6}, \\
+\hspace{1.5em}x_{7}, x_{8}, x_{9}, x_{10}, x_{11}, x_{12}]\end{split}\]</div>
+</div>
+</div>
 <p>This means that <span class="math notranslate nohighlight">\(\xvec\)</span> consists of 12 numbers, <span class="math notranslate nohighlight">\(x_1, x_2 ..., x_{12}\)</span>, where
 <span class="math notranslate nohighlight">\(x_1\)</span> can be any number, <span class="math notranslate nohighlight">\(x_2\)</span> can be any number, and so on.</p>
-<p><span class="math notranslate nohighlight">\(x_1\)</span> is the value for the first student, <span class="math notranslate nohighlight">\(x_2\)</span> is the value for the second student, and so on.</p>
-<p>In our <em>particular case</em>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-x_1 = 0.389 \\
-x_2 = 0.2 \\
-... \\
-x_{12} = 6.964
-\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(x_1\)</span> is the value for the first student, <span class="math notranslate nohighlight">\(x_2\)</span> is the value for the second student, etc.</p>
+<p>Here’s another way of looking at the relationship of the values in our
+particular case, and their notation:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;1-based index&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="sa">r</span><span class="s1">&#39;$\vec</span><span class="si">{x}</span><span class="s1">$ values&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">&#39;$x$ value notation&#39;</span><span class="p">:</span> 
+     <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">$&#39;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x_is</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">df_index</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>$\vec{x}$ values</th>
+      <th>$x$ value notation</th>
+    </tr>
+    <tr>
+      <th>1-based index</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.389</td>
+      <td>$x_{1}$</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.200</td>
+      <td>$x_{2}$</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.241</td>
+      <td>$x_{3}$</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.463</td>
+      <td>$x_{4}$</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.585</td>
+      <td>$x_{5}$</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1.097</td>
+      <td>$x_{6}$</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1.642</td>
+      <td>$x_{7}$</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4.972</td>
+      <td>$x_{8}$</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>7.957</td>
+      <td>$x_{9}$</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>5.585</td>
+      <td>$x_{10}$</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>5.527</td>
+      <td>$x_{11}$</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>6.964</td>
+      <td>$x_{12}$</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <p>We can make <span class="math notranslate nohighlight">\(\xvec\)</span> be even more general, by writing it like this:</p>
 <div class="math notranslate nohighlight">
 \[
-\xvec = [ x_1, x_2, ..., x_{n} ]
+\xvec = [x_1, x_2, ..., x_{n} ]
 \]</div>
 <p>This means that <span class="math notranslate nohighlight">\(\xvec\)</span> is a sequence of any <span class="math notranslate nohighlight">\(n\)</span> numbers, where <span class="math notranslate nohighlight">\(n\)</span> can be any
 whole number, such as 1, 2, 3 …  In our specific case, <span class="math notranslate nohighlight">\(n = 12\)</span>.</p>
 <p>Similarly, for our <code class="docutils literal notranslate"><span class="pre">psychopathy</span></code> (<span class="math notranslate nohighlight">\(\yvec\)</span>) values, we can write:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\yvec = [ 11.416,   4.514,  12.204,  14.835, \\
-8.416,   6.563,  17.343,  13.02, \\
-15.19 ,  11.902,  22.721,  22.324 ]
-\end{split}\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">format_vec</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \vec{y} = [11.416, 4.514, 12.204, 14.835, 8.416, 6.563, \\
+\hspace{1.5em}17.343, 13.02, 15.19, 11.902, 22.721, 22.324]\end{split}\]</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="sa">r</span><span class="s1">&#39;$\vec</span><span class="si">{y}</span><span class="s1">$ values&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">&#39;$y$ value notation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$y_</span><span class="se">{{</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">}}</span><span class="s1">$&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
+    <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">df_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>$\vec{y}$ values</th>
+      <th>$y$ value notation</th>
+    </tr>
+    <tr>
+      <th>1-based index</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>11.416</td>
+      <td>$y_{1}$</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.514</td>
+      <td>$y_{2}$</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12.204</td>
+      <td>$y_{3}$</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>14.835</td>
+      <td>$y_{4}$</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>8.416</td>
+      <td>$y_{5}$</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6.563</td>
+      <td>$y_{6}$</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>17.343</td>
+      <td>$y_{7}$</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>13.020</td>
+      <td>$y_{8}$</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>15.190</td>
+      <td>$y_{9}$</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11.902</td>
+      <td>$y_{10}$</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>22.721</td>
+      <td>$y_{11}$</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>22.324</td>
+      <td>$y_{12}$</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <p>More generally we can write <span class="math notranslate nohighlight">\(\yvec\)</span> as a vector of any <span class="math notranslate nohighlight">\(n\)</span> numbers:</p>
 <div class="math notranslate nohighlight">
 \[
-\yvec = [ y_1, y_2, ..., y_{n} ]
+\yvec = [y_1, y_2, ..., y_{n} ]
 \]</div>
 </section>
 <section id="notation-for-fitted-values">
