@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -76,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -513,10 +523,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -524,7 +534,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -605,10 +615,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7961b11480&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3464611720&gt;
 </pre></div>
 </div>
-<img alt="_images/d3bdaf09ab4de248ada9006c6f3f6aa396b99a66bfa57157f6ea8e325e463d84.png" src="_images/d3bdaf09ab4de248ada9006c6f3f6aa396b99a66bfa57157f6ea8e325e463d84.png" />
+<img alt="_images/4069e58a8e71ff556644c33166a0501e7d790a6b2ec6b153c7042a4786b7ba4c.png" src="_images/4069e58a8e71ff556644c33166a0501e7d790a6b2ec6b153c7042a4786b7ba4c.png" />
 </div>
 </div>
 <p>The image is weirdly colorful. That is because matplotlib is using the default
@@ -625,10 +635,10 @@ to show the colormap:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f7961a73850&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f346455fe80&gt;
 </pre></div>
 </div>
-<img alt="_images/7f2041d66705ba898f072957a1e419ad4221effecb638c2f99721a6a701413a8.png" src="_images/7f2041d66705ba898f072957a1e419ad4221effecb638c2f99721a6a701413a8.png" />
+<img alt="_images/31d9e7a1af0004d3450fcb6381a59af1a7420c18b92d66f9f8118b71fab5f4c6.png" src="_images/31d9e7a1af0004d3450fcb6381a59af1a7420c18b92d66f9f8118b71fab5f4c6.png" />
 </div>
 </div>
 <p>In our case, our image would make more sense as grayscale, so we use the
@@ -641,10 +651,10 @@ to show the colormap:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f796194a020&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f34644367a0&gt;
 </pre></div>
 </div>
-<img alt="_images/fe16d4e426399645442aeb8f95a9539a2cd871326863a43b068580fae0825035.png" src="_images/fe16d4e426399645442aeb8f95a9539a2cd871326863a43b068580fae0825035.png" />
+<img alt="_images/260cb9351dc38035aabe9a8a7e8fa471035d78be827419418e8cf5dbd2f91bd8.png" src="_images/260cb9351dc38035aabe9a8a7e8fa471035d78be827419418e8cf5dbd2f91bd8.png" />
 </div>
 </div>
 <p>A grayscale image is an array containing numbers giving the pixel intensity
@@ -668,10 +678,10 @@ values - in our case between 0 and 99.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f7961806e30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f34644f7610&gt;
 </pre></div>
 </div>
-<img alt="_images/fe16d4e426399645442aeb8f95a9539a2cd871326863a43b068580fae0825035.png" src="_images/fe16d4e426399645442aeb8f95a9539a2cd871326863a43b068580fae0825035.png" />
+<img alt="_images/260cb9351dc38035aabe9a8a7e8fa471035d78be827419418e8cf5dbd2f91bd8.png" src="_images/260cb9351dc38035aabe9a8a7e8fa471035d78be827419418e8cf5dbd2f91bd8.png" />
 </div>
 </div>
 <p>Matplotlib does not save this change, so we would have to rerun this command
@@ -731,10 +741,10 @@ the 9th row of the array.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f79618cb6d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f34643bfe50&gt;]
 </pre></div>
 </div>
-<img alt="_images/2b8bb81f4e9577b5fd6a61124fb022b604d30f0a9c02dc7bc38db52b09b63e1d.png" src="_images/2b8bb81f4e9577b5fd6a61124fb022b604d30f0a9c02dc7bc38db52b09b63e1d.png" />
+<img alt="_images/a808e6bd388eee111be19c6947ad98893a16480dc0df328afce5a862d0a026ad.png" src="_images/a808e6bd388eee111be19c6947ad98893a16480dc0df328afce5a862d0a026ad.png" />
 </div>
 </div>
 <p>The x axis is the column position in the array (0 through 7) and the y axis is
@@ -748,10 +758,10 @@ the value of the array row at that position.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f79617581f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f346424a5c0&gt;]
 </pre></div>
 </div>
-<img alt="_images/2b8bb81f4e9577b5fd6a61124fb022b604d30f0a9c02dc7bc38db52b09b63e1d.png" src="_images/2b8bb81f4e9577b5fd6a61124fb022b604d30f0a9c02dc7bc38db52b09b63e1d.png" />
+<img alt="_images/a808e6bd388eee111be19c6947ad98893a16480dc0df328afce5a862d0a026ad.png" src="_images/a808e6bd388eee111be19c6947ad98893a16480dc0df328afce5a862d0a026ad.png" />
 </div>
 </div>
 <p>The plot shows us the 0 values at the edges of the bar of the “i”, and the ramp
@@ -785,10 +795,10 @@ of flipping the rows and columns (in 2D):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f79617ab280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3464297eb0&gt;
 </pre></div>
 </div>
-<img alt="_images/9bcb92f79177b8fb8f11c684a06580360455b68ab7128fbc898cbd03dae4c906.png" src="_images/9bcb92f79177b8fb8f11c684a06580360455b68ab7128fbc898cbd03dae4c906.png" />
+<img alt="_images/5acc3ffa75dc5d8377df2de6de63693460d3ef44d97e845fcae52c2d17ecb813.png" src="_images/5acc3ffa75dc5d8377df2de6de63693460d3ef44d97e845fcae52c2d17ecb813.png" />
 </div>
 </div>
 <p>We can also reshape the original array to a 1D array, by stacking all the rows
@@ -888,7 +898,7 @@ distribution of values in the array:</p>
  &lt;BarContainer object of 10 artists&gt;)
 </pre></div>
 </div>
-<img alt="_images/f30e659312d04ed688f08c2629bb0df2d0be78f70aedb8d922c1df93a5d8d992.png" src="_images/f30e659312d04ed688f08c2629bb0df2d0be78f70aedb8d922c1df93a5d8d992.png" />
+<img alt="_images/f35ebdbf57877df7d8665013b0bfdf2a50f478e516c9b663acfbacd184cf036c.png" src="_images/f35ebdbf57877df7d8665013b0bfdf2a50f478e516c9b663acfbacd184cf036c.png" />
 </div>
 </div>
 <p>By default, the <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> function uses 50 bins, but you can specify how
@@ -918,7 +928,7 @@ many bins you want with the <code class="docutils literal notranslate"><span cla
  &lt;BarContainer object of 75 artists&gt;)
 </pre></div>
 </div>
-<img alt="_images/dcf052d895cdf2c87163015893963a108d94e53dd80ccbd837cb194b44f0e834.png" src="_images/dcf052d895cdf2c87163015893963a108d94e53dd80ccbd837cb194b44f0e834.png" />
+<img alt="_images/6850f9c4a772a475452b9b3581b06030862906b30caa47f174e7555cf3c362a5.png" src="_images/6850f9c4a772a475452b9b3581b06030862906b30caa47f174e7555cf3c362a5.png" />
 </div>
 </div>
 <p>As you can imagine, it’s not hard to go back to the 2D shape, by splitting the
@@ -932,10 +942,10 @@ many bins you want with the <code class="docutils literal notranslate"><span cla
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7961734760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f3464202ef0&gt;
 </pre></div>
 </div>
-<img alt="_images/18c626fa333ccff444a9c11a6cc744f5e6d415ebd17dcb03858b11315228feb1.png" src="_images/18c626fa333ccff444a9c11a6cc744f5e6d415ebd17dcb03858b11315228feb1.png" />
+<img alt="_images/7f7629cc69a377457fe37d95fe756f78aedaa26ca6b2ef9e538f4cf02512001c.png" src="_images/7f7629cc69a377457fe37d95fe756f78aedaa26ca6b2ef9e538f4cf02512001c.png" />
 </div>
 </div>
 <p>In numpy, basic operations like multiplication, addition, comparison, are
@@ -1003,10 +1013,10 @@ binarizing the image at a threshold (of 50 in this case):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f7961445120&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f344ef1e140&gt;
 </pre></div>
 </div>
-<img alt="_images/61f258561c288035a850ceefdaec326ed1f81c4ed252d89a938ef76cdfb3161d.png" src="_images/61f258561c288035a850ceefdaec326ed1f81c4ed252d89a938ef76cdfb3161d.png" />
+<img alt="_images/77c87396be0f8aac6bf692fd243b7f550b26b32011c021f912b559a30678d35e.png" src="_images/77c87396be0f8aac6bf692fd243b7f550b26b32011c021f912b559a30678d35e.png" />
 </div>
 </div>
 <p>We can slice arrays as we slice strings or lists. The difference for arrays is
@@ -1021,10 +1031,10 @@ that we want to the top 4 rows, and the last 5 columns:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f79614ae500&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f344ef8f070&gt;
 </pre></div>
 </div>
-<img alt="_images/18ccb330c61b39ab784fa743c5ee5421b6ac6715a76520699ab647c2394864e6.png" src="_images/18ccb330c61b39ab784fa743c5ee5421b6ac6715a76520699ab647c2394864e6.png" />
+<img alt="_images/26ef8498d0f941de7a26b59ebdb14e13b9ea9082bd7f1ff806ae21c618e9068c.png" src="_images/26ef8498d0f941de7a26b59ebdb14e13b9ea9082bd7f1ff806ae21c618e9068c.png" />
 </div>
 </div>
 </section>
@@ -1054,11 +1064,10 @@ that we want to the top 4 rows, and the last 5 columns:</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="reshape_and_2d.html"
@@ -1078,10 +1087,7 @@ that we want to the top 4 rows, and the last 5 columns:</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1130,8 +1136,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

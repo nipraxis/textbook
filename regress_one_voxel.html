@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -76,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -513,10 +523,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -524,7 +534,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -619,10 +629,10 @@ Voxel time courses was at (42, 32, 19):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3bd460fdc0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc6d8658700&gt;]
 </pre></div>
 </div>
-<img alt="_images/32ad0efcaa8cf122a623375f718a538cd73d3629fee5528424318a96755eb093.png" src="_images/32ad0efcaa8cf122a623375f718a538cd73d3629fee5528424318a96755eb093.png" />
+<img alt="_images/e43d77989eb6969e3172bedf3f22795c38b314f2472a86de28e3fe1a0c519617.png" src="_images/e43d77989eb6969e3172bedf3f22795c38b314f2472a86de28e3fe1a0c519617.png" />
 </div>
 </div>
 <p>Now we are going to use the convolved regressor from <a class="reference internal" href="convolution_background.html"><span class="doc std std-doc">Convolving with the
@@ -653,10 +663,10 @@ regression on this voxel time course.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3bd4503bb0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc6d854c880&gt;]
 </pre></div>
 </div>
-<img alt="_images/4884e95143aca1f905e76d77be92f6893ecfd472cbd6678e4f90bf178de0f810.png" src="_images/4884e95143aca1f905e76d77be92f6893ecfd472cbd6678e4f90bf178de0f810.png" />
+<img alt="_images/2ba4708926aba140afde2a5feb8294af635de2c391349d69b4dca682fd36605f.png" src="_images/2ba4708926aba140afde2a5feb8294af635de2c391349d69b4dca682fd36605f.png" />
 </div>
 </div>
 <p>Finally, we plot the convolved prediction and the time-course together:</p>
@@ -672,7 +682,7 @@ regression on this voxel time course.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Voxel values&#39;)
 </pre></div>
 </div>
-<img alt="_images/128305f3f0cebf323341ec2549a69ad90715c5f3cb85d0db119631f9a278f694.png" src="_images/128305f3f0cebf323341ec2549a69ad90715c5f3cb85d0db119631f9a278f694.png" />
+<img alt="_images/399b877b6133629133f5ccc019f4889be24d936b9434c0e9316256c530effb91.png" src="_images/399b877b6133629133f5ccc019f4889be24d936b9434c0e9316256c530effb91.png" />
 </div>
 </div>
 <section id="using-correlation-like-calculations">
@@ -733,7 +743,7 @@ Best intercept: 2029.367689291584
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Voxel values&#39;)
 </pre></div>
 </div>
-<img alt="_images/ae16f9e3826f1d0855b85704def093ba68d65b84d88466e9aa210d46370a6512.png" src="_images/ae16f9e3826f1d0855b85704def093ba68d65b84d88466e9aa210d46370a6512.png" />
+<img alt="_images/d0eaea836df9f7e4bdbd5937b2e2e5d28743c91dd9d10e3bb5f5351d4448d1f4.png" src="_images/d0eaea836df9f7e4bdbd5937b2e2e5d28743c91dd9d10e3bb5f5351d4448d1f4.png" />
 </div>
 </div>
 <p>Using Scipy:</p>
@@ -778,11 +788,10 @@ Best intercept: 2029.367689291584
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="on_regression.html"
@@ -802,10 +811,7 @@ Best intercept: 2029.367689291584
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -868,8 +874,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

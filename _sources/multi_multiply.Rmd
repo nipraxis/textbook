@@ -88,7 +88,7 @@ to these three sets of data with the one single matrix multiply:
 
 ```{python}
 # Stack the data vectors into columns in a 2D array.
-Y = np.vstack((y_0, y_1, y_2)).T
+Y = np.stack([y_0, y_1, y_2], axis=1)
 Y
 ```
 

@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -515,10 +525,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -526,7 +536,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -629,7 +639,7 @@ seconds, might look like this:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Neural model for 5 second event starting at time 4&#39;)
 </pre></div>
 </div>
-<img alt="_images/ed94956b85a42a3ee1a1404a9564e49fc70484b7db82d38dcae081fc62e17216.png" src="_images/ed94956b85a42a3ee1a1404a9564e49fc70484b7db82d38dcae081fc62e17216.png" />
+<img alt="_images/085b571ea06bb8d263c71830b6607a237874ed9e9bb2d67c0093d0cbdded2d68.png" src="_images/085b571ea06bb8d263c71830b6607a237874ed9e9bb2d67c0093d0cbdded2d68.png" />
 </div>
 </div>
 <p>This type of simple off - on - off model is a <a class="reference external" href="https://en.wikipedia.org/wiki/Boxcar_function">boxcar function</a>.</p>
@@ -661,7 +671,7 @@ spike in time instead of the sustained rise of the box-car function.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Neural model for very brief event at time 4&#39;)
 </pre></div>
 </div>
-<img alt="_images/d955e01e66aecd56ab8acead93ee6f6a9e4335bebfec7867485e4931433c4a15.png" src="_images/d955e01e66aecd56ab8acead93ee6f6a9e4335bebfec7867485e4931433c4a15.png" />
+<img alt="_images/255b38e2b8c4fedac8cef7d6ef09157e9ac3be3b0107a481dfaa5a16eae9f084.png" src="_images/255b38e2b8c4fedac8cef7d6ef09157e9ac3be3b0107a481dfaa5a16eae9f084.png" />
 </div>
 </div>
 <p>Let us now imagine that I know what the hemodynamic <em>response</em> will be to such
@@ -692,7 +702,7 @@ estimate of the hemodynamic <em>response</em> to a very brief stimulus:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Estimated BOLD signal for event at time 0&#39;)
 </pre></div>
 </div>
-<img alt="_images/af68d428e9c1d5b0afb8a53f4f5132217a29263b93af5985cea71538df7af84b.png" src="_images/af68d428e9c1d5b0afb8a53f4f5132217a29263b93af5985cea71538df7af84b.png" />
+<img alt="_images/27d4fd74ba383a254fabad85180cd87aa9bf4e79ee11138905cb4e57bbd5757c.png" src="_images/27d4fd74ba383a254fabad85180cd87aa9bf4e79ee11138905cb4e57bbd5757c.png" />
 </div>
 </div>
 <p>This is the hemodynamic response to a neural impulse.  In signal processing
@@ -723,7 +733,7 @@ shift it by 4 seconds-worth to give our predicted output:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Output BOLD signal for event at time=4&#39;)
 </pre></div>
 </div>
-<img alt="_images/7203bf78c188736c329b8009b65e5393de7c2a50fe3ce1e2e65a0db9b89e3b6d.png" src="_images/7203bf78c188736c329b8009b65e5393de7c2a50fe3ce1e2e65a0db9b89e3b6d.png" />
+<img alt="_images/e4ecf35e463db50b0f07ebeb870a33b911da7692343e1a0068b78d7127c3c019.png" src="_images/e4ecf35e463db50b0f07ebeb870a33b911da7692343e1a0068b78d7127c3c019.png" />
 </div>
 </div>
 <p>Our impulse so far has an amplitude of 1.  What if the impulse was twice as
@@ -743,7 +753,7 @@ strong, with an amplitude of 2?</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Neural model for amplitude 2 impulse&#39;)
 </pre></div>
 </div>
-<img alt="_images/edd9fca96a4d65ac818eee64731378f5c7ea86c9c3d748bf12b22f2f99b777ab.png" src="_images/edd9fca96a4d65ac818eee64731378f5c7ea86c9c3d748bf12b22f2f99b777ab.png" />
+<img alt="_images/3ba18a3ef271d6b9c283e3c6bb64a4a1b71e0f34730da606cb68eb21a91c0a68.png" src="_images/3ba18a3ef271d6b9c283e3c6bb64a4a1b71e0f34730da606cb68eb21a91c0a68.png" />
 </div>
 </div>
 <p>Maybe I can make the assumption that, if the impulse is twice as large then the
@@ -766,7 +776,7 @@ shifting by 4, as before, and then multiplying the HRF by 2:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Output BOLD signal for amplitude 2 impulse&#39;)
 </pre></div>
 </div>
-<img alt="_images/ba3d703fcc29368307340cbdeec6fd2ac57746a0b655d17b7a23a3f04934c28b.png" src="_images/ba3d703fcc29368307340cbdeec6fd2ac57746a0b655d17b7a23a3f04934c28b.png" />
+<img alt="_images/095385fb4da18569b9f53bd9ad98217c4fb9921b8fae893c4a32b6af5a9d6212.png" src="_images/095385fb4da18569b9f53bd9ad98217c4fb9921b8fae893c4a32b6af5a9d6212.png" />
 </div>
 </div>
 <p>What if I have several impulses?  For example, imagine I had an impulse
@@ -791,7 +801,7 @@ of amplitude 3 at time == 20.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Neural model for three impulses&#39;)
 </pre></div>
 </div>
-<img alt="_images/87ce9e3ae5b7f2a4696ab6b1c27d3a782848cac61a93c65417f28aef34189e7a.png" src="_images/87ce9e3ae5b7f2a4696ab6b1c27d3a782848cac61a93c65417f28aef34189e7a.png" />
+<img alt="_images/8ced9bc19aef6887663a189958cf566c263ad7943053bc89fc797521758b72c3.png" src="_images/8ced9bc19aef6887663a189958cf566c263ad7943053bc89fc797521758b72c3.png" />
 </div>
 </div>
 <p>Maybe I can also make the assumption that the response to an impulse will be
@@ -818,7 +828,7 @@ the HRF shifted to time == 20 and scaled by 3:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Output BOLD signal for three impulses&#39;)
 </pre></div>
 </div>
-<img alt="_images/ac5bc0da40edc9d8e0d9bb703f20ef241a0a1f12c4d8acb6c54d0b99fce8786c.png" src="_images/ac5bc0da40edc9d8e0d9bb703f20ef241a0a1f12c4d8acb6c54d0b99fce8786c.png" />
+<img alt="_images/f1a908d2fa75c96ff0c65b933c5141f8e78419e13126b3766b47e0a4606dfffe.png" src="_images/f1a908d2fa75c96ff0c65b933c5141f8e78419e13126b3766b47e0a4606dfffe.png" />
 </div>
 </div>
 <p>At the moment, an <em>impulse</em> is an event that lasts for just one time point. In
@@ -842,7 +852,7 @@ seconds apart:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Neural model including event lasting 0.5 seconds&#39;)
 </pre></div>
 </div>
-<img alt="_images/8cde0eb419d2f63e09404c5d32ff66c9da2cb0974bf1e4f5541615a7abfb66de.png" src="_images/8cde0eb419d2f63e09404c5d32ff66c9da2cb0974bf1e4f5541615a7abfb66de.png" />
+<img alt="_images/c8b39bf9c6b7bf6aef7799028ac8db4ed9e9ad3a20e0def082741de04786f54e.png" src="_images/c8b39bf9c6b7bf6aef7799028ac8db4ed9e9ad3a20e0def082741de04786f54e.png" />
 </div>
 </div>
 <p>Now I need to add a new shifted HRF for the impulse corresponding to time == 4,
@@ -865,7 +875,7 @@ and for time == 4.1 and so on until time == 4.4:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Output BOLD signal with event lasting 0.5 seconds&#39;)
 </pre></div>
 </div>
-<img alt="_images/2552360087caa59d468eb08e7dd721eb2d27f5bd92e6bf60eb6c16071980c65a.png" src="_images/2552360087caa59d468eb08e7dd721eb2d27f5bd92e6bf60eb6c16071980c65a.png" />
+<img alt="_images/cceba90f71d1341ec12091331593f80843845fc5eeed751f6637f338e5b9ce4e.png" src="_images/cceba90f71d1341ec12091331593f80843845fc5eeed751f6637f338e5b9ce4e.png" />
 </div>
 </div>
 </section>
@@ -920,7 +930,7 @@ M-1 points. Now we can do our algorithm in code.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Output BOLD signal using our algorithm&#39;)
 </pre></div>
 </div>
-<img alt="_images/e27fe1da873f5e95a8b6c89991e7fed261e31faab5754e1f8f0026cb101282ac.png" src="_images/e27fe1da873f5e95a8b6c89991e7fed261e31faab5754e1f8f0026cb101282ac.png" />
+<img alt="_images/59eca2775625118f5546883c5c7eb704777e5a20af69a12b8f48765167d9b253.png" src="_images/59eca2775625118f5546883c5c7eb704777e5a20af69a12b8f48765167d9b253.png" />
 </div>
 </div>
 </section>
@@ -942,7 +952,7 @@ M-1 points. Now we can do our algorithm in code.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Our algorithm is the same as convolution&#39;)
 </pre></div>
 </div>
-<img alt="_images/366476beaa781a5f9b08de7aa2f7c7fba658fd42a2df18d669547607d2272e2c.png" src="_images/366476beaa781a5f9b08de7aa2f7c7fba658fd42a2df18d669547607d2272e2c.png" />
+<img alt="_images/236bb575f3b0149f600188944aab1dc69b96d85970ae4083fda89b8c4eb48d12.png" src="_images/236bb575f3b0149f600188944aab1dc69b96d85970ae4083fda89b8c4eb48d12.png" />
 </div>
 </div>
 <p>For more detail and background, see <a class="reference internal" href="convolution_matrices.html"><span class="doc std std-doc">convolution with
@@ -975,11 +985,10 @@ matrices</span></a></p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="voxel_time_courses.html"
@@ -999,10 +1008,7 @@ matrices</span></a></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1070,8 +1076,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -76,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -513,10 +523,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -524,7 +534,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -576,10 +586,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6aec725d20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5ad9636380&gt;
 </pre></div>
 </div>
-<img alt="_images/21fd6a8505f7e647193c9487f5e648d3be472a84cd83a9098a5d6e7fea58bc41.png" src="_images/21fd6a8505f7e647193c9487f5e648d3be472a84cd83a9098a5d6e7fea58bc41.png" />
+<img alt="_images/b3d17d1b8d74147f42453659e3f9ea2806c7a58bca40979cc3373740b68fa500.png" src="_images/b3d17d1b8d74147f42453659e3f9ea2806c7a58bca40979cc3373740b68fa500.png" />
 </div>
 </div>
 <p>To fit this design to any data, we take the pseudo-inverse:</p>
@@ -626,8 +636,8 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.67, -1.17,  1.59, -0.49, -0.81, -0.83, -0.19, -0.88, -1.11,
-       -0.29,  1.49,  0.95])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.78,  0.23,  0.6 ,  0.06, -0.15,  0.73, -0.13, -1.64,  0.87,
+       -0.53,  1.06, -0.78])
 </pre></div>
 </div>
 </div>
@@ -640,7 +650,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.22, -0.09])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.03, -0.04])
 </pre></div>
 </div>
 </div>
@@ -654,8 +664,8 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.65,  0.73,  0.9 , -1.05, -1.47, -0.19,  0.37, -0.89, -1.19,
-       -0.97, -0.86,  0.59])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.43,  1.23,  1.78,  0.24, -0.81, -0.14,  0.84, -1.56, -1.39,
+       -1.26,  0.46, -0.73])
 </pre></div>
 </div>
 </div>
@@ -668,7 +678,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.02, -0.47])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.79, -0.15])
 </pre></div>
 </div>
 </div>
@@ -683,7 +693,7 @@ normal distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.68, 0.31])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.66, -0.09])
 </pre></div>
 </div>
 </div>
@@ -693,24 +703,24 @@ to these three sets of data with the one single matrix multiply:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stack the data vectors into columns in a 2D array.</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">y_0</span><span class="p">,</span> <span class="n">y_1</span><span class="p">,</span> <span class="n">y_2</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">y_0</span><span class="p">,</span> <span class="n">y_1</span><span class="p">,</span> <span class="n">y_2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">Y</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.67, -1.65, -1.6 ],
-       [-1.17,  0.73, -0.39],
-       [ 1.59,  0.9 ,  0.76],
-       [-0.49, -1.05,  0.02],
-       [-0.81, -1.47,  0.24],
-       [-0.83, -0.19,  1.28],
-       [-0.19,  0.37, -0.33],
-       [-0.88, -0.89,  0.29],
-       [-1.11, -1.19,  1.4 ],
-       [-0.29, -0.97,  1.72],
-       [ 1.49, -0.86,  0.59],
-       [ 0.95,  0.59, -0.29]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.78, -0.43, -1.34],
+       [ 0.23,  1.23,  0.56],
+       [ 0.6 ,  1.78, -1.2 ],
+       [ 0.06,  0.24,  0.77],
+       [-0.15, -0.81, -1.26],
+       [ 0.73, -0.14,  0.03],
+       [-0.13,  0.84, -0.31],
+       [-1.64, -1.56,  1.43],
+       [ 0.87, -1.39, -1.63],
+       [-0.53, -1.26,  0.09],
+       [ 1.06,  0.46, -0.08],
+       [-0.78, -0.73,  1.89]])
 </pre></div>
 </div>
 </div>
@@ -723,8 +733,8 @@ to these three sets of data with the one single matrix multiply:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.22, -0.02,  0.68],
-       [-0.09, -0.47,  0.31]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.03, -0.79,  0.66],
+       [-0.04, -0.15, -0.09]])
 </pre></div>
 </div>
 </div>
@@ -774,11 +784,10 @@ voxel array, and use technique here for very fast estimation.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="model_one_voxel.html"
@@ -798,10 +807,7 @@ voxel array, and use technique here for very fast estimation.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -850,8 +856,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

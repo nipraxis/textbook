@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -515,10 +525,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -526,7 +536,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -656,7 +666,7 @@ and <code class="docutils literal notranslate"><span class="pre">psychopathy</sp
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Psychopathy score&#39;)
 </pre></div>
 </div>
-<img alt="_images/1630239afd8df17b506f87cb473e358dc554089eb35d762bbaeba115d35d3112.png" src="_images/1630239afd8df17b506f87cb473e358dc554089eb35d762bbaeba115d35d3112.png" />
+<img alt="_images/0d0fc12b3cf6e20c9b01a9c76a5ed320fdc809373a23c1f8268d404336f0538b.png" src="_images/0d0fc12b3cf6e20c9b01a9c76a5ed320fdc809373a23c1f8268d404336f0538b.png" />
 </div>
 </div>
 <p>It looks like there may be some sort of straight line relationship.  We can
@@ -716,10 +726,10 @@ and slope <span class="math notranslate nohighlight">\(0.9\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdb5c8f3ca0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc4a46a00d0&gt;
 </pre></div>
 </div>
-<img alt="_images/b539e4567497b2c9a26fc492cc35e57cbfd2a6fc65d6c9c20ec82486c8fb2436.png" src="_images/b539e4567497b2c9a26fc492cc35e57cbfd2a6fc65d6c9c20ec82486c8fb2436.png" />
+<img alt="_images/2576afd972f742ebaab54a5c74b7873282723caafd248efe4e42278eb7222b63.png" src="_images/2576afd972f742ebaab54a5c74b7873282723caafd248efe4e42278eb7222b63.png" />
 </div>
 </div>
 <p>That’s the guess for the line, but is it a good guess?</p>
@@ -748,7 +758,7 @@ actual y value, like this:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/977f240eea666e75668b1ea6c1866cbe291abe5fbec38b7369f5649a5bec3912.png" src="_images/977f240eea666e75668b1ea6c1866cbe291abe5fbec38b7369f5649a5bec3912.png" />
+<img alt="_images/2c1fa51ae9408fbe89ebd695890ad0ce302e634e456c865ee1825fbb4dbf74fa.png" src="_images/2c1fa51ae9408fbe89ebd695890ad0ce302e634e456c865ee1825fbb4dbf74fa.png" />
 </div>
 </div>
 <p>Here are all 12 differences between the actual and predicted values.  We will call these the prediction <em>errors</em>:</p>
@@ -829,7 +839,7 @@ actual y value, like this:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25a9abd06ec872bd89a2f18a723635664b4079eacced4cef1692e0ccf1993efb.png" src="_images/25a9abd06ec872bd89a2f18a723635664b4079eacced4cef1692e0ccf1993efb.png" />
+<img alt="_images/abfed42a5fe8572bddd22877d8691712bd825f47170a6080d1068e0d0540a5a9.png" src="_images/abfed42a5fe8572bddd22877d8691712bd825f47170a6080d1068e0d0540a5a9.png" />
 </div>
 </div>
 <p>But the sum is nearly the same, because the positive and negative errors are canceling:</p>
@@ -1006,7 +1016,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;x, y in z-score form&#39;)
 </pre></div>
 </div>
-<img alt="_images/8e601a4fd07478bd5935c3dbf52974ff314b990ede922e748d04b431229dc9f1.png" src="_images/8e601a4fd07478bd5935c3dbf52974ff314b990ede922e748d04b431229dc9f1.png" />
+<img alt="_images/a5f1edaa96c3aa2ae476d44d541529223ec5414a1c1556c82ab433e26246ca82.png" src="_images/a5f1edaa96c3aa2ae476d44d541529223ec5414a1c1556c82ab433e26246ca82.png" />
 </div>
 </div>
 <p>Let’s try a slope of about 0.6, and an intercept of 0.</p>
@@ -1030,10 +1040,10 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdb5c44fe50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc480743a00&gt;
 </pre></div>
 </div>
-<img alt="_images/9102f40a72d439230363ab4416b021c1f6b217ef46b7799ab9a135075c7fe25c.png" src="_images/9102f40a72d439230363ab4416b021c1f6b217ef46b7799ab9a135075c7fe25c.png" />
+<img alt="_images/86fc9d62c33f81d7852df97cf1f2e033194d69561b718db954cec740e61433e4.png" src="_images/86fc9d62c33f81d7852df97cf1f2e033194d69561b718db954cec740e61433e4.png" />
 </div>
 </div>
 <p>In fact, let’s make that into a function to do some plots later:</p>
@@ -1063,10 +1073,10 @@ right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdb5c30e860&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc4807f9480&gt;
 </pre></div>
 </div>
-<img alt="_images/a9ec4d32c46437bc348fd52602b1f121b3da8bee8ee9c716c7487b688effe8ca.png" src="_images/a9ec4d32c46437bc348fd52602b1f121b3da8bee8ee9c716c7487b688effe8ca.png" />
+<img alt="_images/ad01b12e9d8aa56c6df1fff16c05ee4da6b518857bfade4f09cd9958fcedc255.png" src="_images/ad01b12e9d8aa56c6df1fff16c05ee4da6b518857bfade4f09cd9958fcedc255.png" />
 </div>
 </div>
 <p>The MSE is:</p>
@@ -1143,7 +1153,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;MSE values for intercepts, slope=0.6&#39;)
 </pre></div>
 </div>
-<img alt="_images/f4c24bdc030f99ecf585962f38efcb670135268259e33263304e732c3f186861.png" src="_images/f4c24bdc030f99ecf585962f38efcb670135268259e33263304e732c3f186861.png" />
+<img alt="_images/686a60f5a31ad554d6d20288421454aa831d35bf60a6945c648bbd60191b0a29.png" src="_images/686a60f5a31ad554d6d20288421454aa831d35bf60a6945c648bbd60191b0a29.png" />
 </div>
 </div>
 <p>This is the minimum (best) value we found for MSE, for all the intercepts we tried.</p>
@@ -1232,7 +1242,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;MSE values for intercepts, slope=0.2&#39;)
 </pre></div>
 </div>
-<img alt="_images/bff9f0973ed4ad5f7cd8b37eff96e327ea5501b291db905d8b53076ffed5bc21.png" src="_images/bff9f0973ed4ad5f7cd8b37eff96e327ea5501b291db905d8b53076ffed5bc21.png" />
+<img alt="_images/0b99734468d6394e7125e2f1b157a0101ff7acb56dfa4d83af5af949a976a897.png" src="_images/0b99734468d6394e7125e2f1b157a0101ff7acb56dfa4d83af5af949a976a897.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1295,7 +1305,7 @@ right:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;MSE values for slopes, intercept=0&#39;)
 </pre></div>
 </div>
-<img alt="_images/b180e14512d966b93eb590a89b711ae6e193b46b22025958d08b846db1476382.png" src="_images/b180e14512d966b93eb590a89b711ae6e193b46b22025958d08b846db1476382.png" />
+<img alt="_images/4edd4958c7ce4d33cdcca22c03e84ea2895bde6d19e57fa99214f38d3d481b91.png" src="_images/4edd4958c7ce4d33cdcca22c03e84ea2895bde6d19e57fa99214f38d3d481b91.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1340,10 +1350,10 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdb5c52d270&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc4809f3af0&gt;
 </pre></div>
 </div>
-<img alt="_images/eaf9eb86127b4412c920b9e66a263b82495e5f7216e931952b1174c5f662ba4c.png" src="_images/eaf9eb86127b4412c920b9e66a263b82495e5f7216e931952b1174c5f662ba4c.png" />
+<img alt="_images/3bb51952b1d8c69a2f7e61e779de8d20cca73bcdae165297138599ee75c3c434.png" src="_images/3bb51952b1d8c69a2f7e61e779de8d20cca73bcdae165297138599ee75c3c434.png" />
 </div>
 </div>
 </section>
@@ -1363,7 +1373,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Best-fit (MSE) line to z-scored x, de-meaned y&#39;)
 </pre></div>
 </div>
-<img alt="_images/90cf554432e3db1a3111e68863555111f7104be32b68d90f6d6f2acdafae5624.png" src="_images/90cf554432e3db1a3111e68863555111f7104be32b68d90f6d6f2acdafae5624.png" />
+<img alt="_images/db1440f42d78cb940a9b6d81b7bb583375f06f5a5732f60064de5c223a89a37d.png" src="_images/db1440f42d78cb940a9b6d81b7bb583375f06f5a5732f60064de5c223a89a37d.png" />
 </div>
 </div>
 <p>Notice that, when we do this, the <code class="docutils literal notranslate"><span class="pre">y</span></code> values all stretch on the <code class="docutils literal notranslate"><span class="pre">y</span></code> axis by a factor of <code class="docutils literal notranslate"><span class="pre">np.std(y)</span></code> How about slope of the best-fit line?</p>
@@ -1381,7 +1391,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Best-fit (MSE) line to de-meaned x and y&#39;)
 </pre></div>
 </div>
-<img alt="_images/6c0f963e68ff47d81fafdb510c90c231bf742abddd851ecfec3f6213cd6e80a5.png" src="_images/6c0f963e68ff47d81fafdb510c90c231bf742abddd851ecfec3f6213cd6e80a5.png" />
+<img alt="_images/d8d4eb5f36b0821d41a4454ccdb84edd5d38e22681155aa1b88b4309897dad71.png" src="_images/d8d4eb5f36b0821d41a4454ccdb84edd5d38e22681155aa1b88b4309897dad71.png" />
 </div>
 </div>
 <p>Now the <code class="docutils literal notranslate"><span class="pre">x_z</span></code> values stretch by a factor of <code class="docutils literal notranslate"><span class="pre">np.std(x)</span></code> along the x-axis.  The previous y increase for one unit in x (the slope) becomes the y increase for a <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">*</span> <span class="pre">np.std(x)</span></code> increase on x, so, to get the new slope, we divide the previous slope by <code class="docutils literal notranslate"><span class="pre">np.std(x)</span></code>.</p>
@@ -1401,7 +1411,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2cf32a29c3c0ce3868658f3253af1f96dc07cb956ff18e66ae3c7f16a7e7d9c6.png" src="_images/2cf32a29c3c0ce3868658f3253af1f96dc07cb956ff18e66ae3c7f16a7e7d9c6.png" />
+<img alt="_images/a9701fbe5a7d94c75a3dcddeafb4405ea83025b9034c9b7f8a6d4c6f936bcb43.png" src="_images/a9701fbe5a7d94c75a3dcddeafb4405ea83025b9034c9b7f8a6d4c6f936bcb43.png" />
 </div>
 </div>
 <p>It might seem intuitive, and it is in fact correct, that when we shift the points on the graph like this, we can shift the line with them.  That is, the line just moves with the points, as you can see from the updated predictions above.  So, the slope does not change, and we already know the slope.</p>
@@ -1443,7 +1453,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/240a7e4ad1792649f4d5e6af2610e537ea50b63de0e921b6e51a27d9b47e262b.png" src="_images/240a7e4ad1792649f4d5e6af2610e537ea50b63de0e921b6e51a27d9b47e262b.png" />
+<img alt="_images/46c8bec83af70063eac1407370724cc5142c1dd26315680fd23f9aead8105280.png" src="_images/46c8bec83af70063eac1407370724cc5142c1dd26315680fd23f9aead8105280.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1486,10 +1496,10 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdb57f618a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc480273af0&gt;]
 </pre></div>
 </div>
-<img alt="_images/b811ea13971eee734e654601afaf70e35890b9d22a4ad9dfc0f49fc6b01f8b28.png" src="_images/b811ea13971eee734e654601afaf70e35890b9d22a4ad9dfc0f49fc6b01f8b28.png" />
+<img alt="_images/24a5912219b9be632d5b16d99d5e4dddfaa75094427b922224cb1758a6d6c787.png" src="_images/24a5912219b9be632d5b16d99d5e4dddfaa75094427b922224cb1758a6d6c787.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1533,10 +1543,10 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdb57fa4ca0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc48029dab0&gt;]
 </pre></div>
 </div>
-<img alt="_images/9978edde8250ef2349594211d9ed12567c5d678dbe95fe6708baf27389f153fe.png" src="_images/9978edde8250ef2349594211d9ed12567c5d678dbe95fe6708baf27389f153fe.png" />
+<img alt="_images/f744d79d522a03a64348732b9848c157a1eef4636fc87dfeeabfe7c6363a2b97.png" src="_images/f744d79d522a03a64348732b9848c157a1eef4636fc87dfeeabfe7c6363a2b97.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1606,11 +1616,10 @@ best-fit (MSE) line for the z-scored x and y values.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="convolution_background.html"
@@ -1630,10 +1639,7 @@ best-fit (MSE) line for the z-scored x and y values.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1704,8 +1710,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

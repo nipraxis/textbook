@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -76,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -513,10 +523,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -524,7 +534,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -628,7 +638,7 @@ resolution — say one time point per second.  We will make the first event last
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Predicted BOLD signal from convolution, 1 second resolution&#39;)
 </pre></div>
 </div>
-<img alt="_images/f170019042201ff040e102d208a59fb3ef1f2346d9fddbf8dcc2c0ebbd366495.png" src="_images/f170019042201ff040e102d208a59fb3ef1f2346d9fddbf8dcc2c0ebbd366495.png" />
+<img alt="_images/907325712140e395ce463d57e0067a462b8417c7fe37bb53e6b8ebd365ad0c8c.png" src="_images/907325712140e395ce463d57e0067a462b8417c7fe37bb53e6b8ebd365ad0c8c.png" />
 </div>
 </div>
 <p>Our algorithm, which turned out to give convolution, had us add a shifted,
@@ -693,7 +703,7 @@ signal:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Predicted BOLD signal from convolution, 1 second resolution&#39;)
 </pre></div>
 </div>
-<img alt="_images/ad155d7f4b6beb82d2817e57daa716d12af77379fa27fab0daa7fd043e38a874.png" src="_images/ad155d7f4b6beb82d2817e57daa716d12af77379fa27fab0daa7fd043e38a874.png" />
+<img alt="_images/7d01882a592153cbe02bab51638346fb092920a9ad33ffce2e21e3f4fd31f3c0.png" src="_images/7d01882a592153cbe02bab51638346fb092920a9ad33ffce2e21e3f4fd31f3c0.png" />
 </div>
 </div>
 <p>We can also do exactly the same operation by first making an array with the
@@ -730,10 +740,10 @@ same operation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5b04d7ec80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fb011f8b340&gt;
 </pre></div>
 </div>
-<img alt="_images/83782de8fe090067602d303f892ad20da65dc9707a25ce4eb7bace5bc8274eb2.png" src="_images/83782de8fe090067602d303f892ad20da65dc9707a25ce4eb7bace5bc8274eb2.png" />
+<img alt="_images/63bf707064058d9f22862170d21b0c0cca7733e6ea3af8559585d4920d2d9bf8.png" src="_images/63bf707064058d9f22862170d21b0c0cca7733e6ea3af8559585d4920d2d9bf8.png" />
 </div>
 </div>
 <p>Each new row of <code class="docutils literal notranslate"><span class="pre">shifted_hrfs</span></code> corresponds to the HRF, shifted by one more
@@ -747,7 +757,7 @@ column to the right:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/59da663228440426dda23f81e935f114a1bb2e9305598a32d649964efaa7ac92.png" src="_images/59da663228440426dda23f81e935f114a1bb2e9305598a32d649964efaa7ac92.png" />
+<img alt="_images/b37b4db637fabd27b10a567bffa109b7121304fd47a3e8f03b7eb0c57b16026d.png" src="_images/b37b4db637fabd27b10a567bffa109b7121304fd47a3e8f03b7eb0c57b16026d.png" />
 </div>
 </div>
 <p>Now remember how matrix multiplication works:</p>
@@ -824,10 +834,10 @@ column <span class="math notranslate nohighlight">\(i\)</span> in <code class="d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5b04a28af0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb011dbc0d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/13004ecc6c938b84ee6c94a4db468e22957e9ae1a3c46a5b60f9d23ce477601d.png" src="_images/13004ecc6c938b84ee6c94a4db468e22957e9ae1a3c46a5b60f9d23ce477601d.png" />
+<img alt="_images/44b5be1844479c42a010decc42274c2a50567c25bf5c5dddf1a3c7d2f22ff845.png" src="_images/44b5be1844479c42a010decc42274c2a50567c25bf5c5dddf1a3c7d2f22ff845.png" />
 </div>
 </div>
 <p>The column contains a <em>reversed</em> copy of the HRF signal, where the first value
@@ -933,16 +943,12 @@ function <span class="math notranslate nohighlight">\(g\)</span> is reversed and
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1007,8 +1013,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

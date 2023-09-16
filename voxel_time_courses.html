@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -76,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -513,10 +523,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -524,7 +534,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -666,10 +676,10 @@ image.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f5344c974c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa235dc7d60&gt;
 </pre></div>
 </div>
-<img alt="_images/40b70e8508875d14f0bc497739668c7e186e4945a510145099c802e79e725422.png" src="_images/40b70e8508875d14f0bc497739668c7e186e4945a510145099c802e79e725422.png" />
+<img alt="_images/59d2a6aacda2313bd54d9e5cde2741cb8ef44a71a1628b0e1d08ac99fe626309.png" src="_images/59d2a6aacda2313bd54d9e5cde2741cb8ef44a71a1628b0e1d08ac99fe626309.png" />
 </div>
 </div>
 <p>If I slice into the data array with these coordinates, I will get a vector,
@@ -687,10 +697,10 @@ with the image value at that position (43, 32, 19), for every point in time:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(172,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5344bf7670&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa233b4c130&gt;]
 </pre></div>
 </div>
-<img alt="_images/1468bedccbbd785348467c85465d070bf4f89369f43d31803a8f650bc71cdeef.png" src="_images/1468bedccbbd785348467c85465d070bf4f89369f43d31803a8f650bc71cdeef.png" />
+<img alt="_images/d4fb77a1fefe4b0dc449875d2d981d724caab3bc22978bfe71a3588d6d5224de.png" src="_images/d4fb77a1fefe4b0dc449875d2d981d724caab3bc22978bfe71a3588d6d5224de.png" />
 </div>
 </div>
 <p>This is a “voxel time course”.</p>
@@ -732,10 +742,10 @@ data:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f5342a8e260&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa235c55de0&gt;]
 </pre></div>
 </div>
-<img alt="_images/1ca81fc00ab7d58bcdbaf91ce991bc70b927628de4b32cd6b35926e032d51808.png" src="_images/1ca81fc00ab7d58bcdbaf91ce991bc70b927628de4b32cd6b35926e032d51808.png" />
+<img alt="_images/ca19873017bbb74a06f283f57d3f01b19fd0780c2e24dcd578be6eb3731fc89a.png" src="_images/ca19873017bbb74a06f283f57d3f01b19fd0780c2e24dcd578be6eb3731fc89a.png" />
 </div>
 </div>
 <p>Here we plot the voxel time course against this neural prediction:</p>
@@ -755,7 +765,7 @@ data:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.1, 1.1)
 </pre></div>
 </div>
-<img alt="_images/fd261c02dc166a09d6fc74b5e32724b1b1ade423ac5f29bb6d5c66a62f373389.png" src="_images/fd261c02dc166a09d6fc74b5e32724b1b1ade423ac5f29bb6d5c66a62f373389.png" />
+<img alt="_images/d10e545c4b6da00f7fcb3271f9f55ff667da6aef7bba7dd558afca654179fdcf.png" src="_images/d10e545c4b6da00f7fcb3271f9f55ff667da6aef7bba7dd558afca654179fdcf.png" />
 </div>
 </div>
 <p>We can look at the correlation between the on-off prediction and the voxel
@@ -913,11 +923,10 @@ error</a>.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="on_testing.html"
@@ -937,10 +946,7 @@ error</a>.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1003,8 +1009,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

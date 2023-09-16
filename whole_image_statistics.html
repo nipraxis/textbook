@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -515,10 +525,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -526,7 +536,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -594,10 +604,10 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9441f3ba90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffb642403d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/22d7ec38787a333d5c1d0bd57cbe5e27fc938a0290eb1695cbe114d04f3d988b.png" src="_images/22d7ec38787a333d5c1d0bd57cbe5e27fc938a0290eb1695cbe114d04f3d988b.png" />
+<img alt="_images/ef5efd9f15f1a1789f517950019fa5b519ef745d557f4827d301be2b1a10d47e.png" src="_images/ef5efd9f15f1a1789f517950019fa5b519ef745d557f4827d301be2b1a10d47e.png" />
 </div>
 </div>
 <p>Fetch and load the FMRI data, drop the first four volumes:</p>
@@ -637,10 +647,10 @@ single voxel</span></a>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f943fe38310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ffb642f1090&gt;
 </pre></div>
 </div>
-<img alt="_images/22548fd7f8ae316aeba05529869cb92ea4442da69e1818bc9b1ce4e4e9dc866b.png" src="_images/22548fd7f8ae316aeba05529869cb92ea4442da69e1818bc9b1ce4e4e9dc866b.png" />
+<img alt="_images/d809708c679ce397afa842f576656678d14e32b807ece96e39c264011c99ae26.png" src="_images/d809708c679ce397afa842f576656678d14e32b807ece96e39c264011c99ae26.png" />
 </div>
 </div>
 <section id="analysis-on-whole-volume-reshaped">
@@ -853,7 +863,7 @@ the t statistic, one for each voxel:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4949/4169539846.py:1: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5159/4169539846.py:1: RuntimeWarning: invalid value encountered in divide
   t = top_of_t / np.sqrt(sigma_2 * c_b_cov)
 </pre></div>
 </div>
@@ -876,10 +886,10 @@ statistic back into the correct voxel position:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f943fe942e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ffb6416d870&gt;
 </pre></div>
 </div>
-<img alt="_images/5417064dc226eb0e89bb1e096ada7b68164e8b42e10f9b34e6d6e8e3d4461ba7.png" src="_images/5417064dc226eb0e89bb1e096ada7b68164e8b42e10f9b34e6d6e8e3d4461ba7.png" />
+<img alt="_images/91e7c64a63ab993dac4ae646ee5092f8ee126f9098376a878b99446ce36a2a82.png" src="_images/91e7c64a63ab993dac4ae646ee5092f8ee126f9098376a878b99446ce36a2a82.png" />
 </div>
 </div>
 <p>Notice the white areas at the edge of the image.  These are voxels where the t
@@ -893,7 +903,7 @@ voxel, so the numerator and denominator of the t statistic are both 0.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4949/2135315712.py:1: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5159/2135315712.py:1: RuntimeWarning: invalid value encountered in divide
   np.array(0) / 0
 </pre></div>
 </div>
@@ -990,7 +1000,7 @@ method</span></a>.  You will need
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(64, 64, 30, 169)
 </pre></div>
 </div>
-<img alt="_images/16fed23c6ab5c6cd0ebffd221c0f65bad079a27d2db331593d2bede75920ccb4.png" src="_images/16fed23c6ab5c6cd0ebffd221c0f65bad079a27d2db331593d2bede75920ccb4.png" />
+<img alt="_images/70ac5992a25aa283ebc5b48a362d2bf5975fd2fd5aa4cf4b3b5a1473e0ef607f.png" src="_images/70ac5992a25aa283ebc5b48a362d2bf5975fd2fd5aa4cf4b3b5a1473e0ef607f.png" />
 </div>
 </div>
 <p>This is the number of voxels for which the mask value is True:</p>
@@ -1069,10 +1079,10 @@ mask as an index on the left hand side:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f940ffc8b80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ffb2c184ee0&gt;
 </pre></div>
 </div>
-<img alt="_images/0f9ecb9bef311408b8f4ce29bfa75691cd4ea1a7ac2bb1045ab18be6fc73a3a2.png" src="_images/0f9ecb9bef311408b8f4ce29bfa75691cd4ea1a7ac2bb1045ab18be6fc73a3a2.png" />
+<img alt="_images/bbcf6bab8a558cb9644b5169c35148287fafe3d92d07fc85c77867d17b91c033.png" src="_images/bbcf6bab8a558cb9644b5169c35148287fafe3d92d07fc85c77867d17b91c033.png" />
 </div>
 </div>
 <p>Now we calculate the p value for each t statistic:</p>
@@ -1092,10 +1102,10 @@ mask as an index on the left hand side:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21604,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f943fd436a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ffb5bf2ad10&gt;
 </pre></div>
 </div>
-<img alt="_images/ac1a38609e173f49f4ede790fd2e53f55a7944b2fb4b318f00e6a28cd5cc2e7e.png" src="_images/ac1a38609e173f49f4ede790fd2e53f55a7944b2fb4b318f00e6a28cd5cc2e7e.png" />
+<img alt="_images/01eacdbf0958b95ff4059a4df78711a79faf6de6583cd377e12f37d8ce20ee6c.png" src="_images/01eacdbf0958b95ff4059a4df78711a79faf6de6583cd377e12f37d8ce20ee6c.png" />
 </div>
 </div>
 </section>
@@ -1131,10 +1141,10 @@ surviving correction have True, other voxels have False:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f943fdd89a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7ffb5bfb10f0&gt;
 </pre></div>
 </div>
-<img alt="_images/b65550569b2729329affbc92a7046a8955fc25aa0fa8647d665df354a02ff9a0.png" src="_images/b65550569b2729329affbc92a7046a8955fc25aa0fa8647d665df354a02ff9a0.png" />
+<img alt="_images/6cd2a0d00297ff277bf553aee71a8e80bd84f4af18b709a6391579babc6faee1.png" src="_images/6cd2a0d00297ff277bf553aee71a8e80bd84f4af18b709a6391579babc6faee1.png" />
 </div>
 </div>
 <p>The voxels outside the brain have p value 0 (see above), so these always
@@ -1167,11 +1177,10 @@ survive the correction above, and appear white.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="non_tr_onsets.html"
@@ -1191,10 +1200,7 @@ survive the correction above, and appear white.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1259,8 +1265,8 @@ By The nipraxis team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>
