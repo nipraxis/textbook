@@ -71,7 +71,7 @@ regressor, and a column of ones:
 N = len(convolved)
 X = np.ones((N, 2))
 X[:, 0] = convolved
-plt.imshow(X, cmap='gray', aspect=0.1)
+plt.imshow(X, cmap='gray', aspect=0.1, interpolation='none')
 ```
 
 $\newcommand{\yvec}{\vec{y}}$

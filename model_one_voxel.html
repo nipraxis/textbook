@@ -600,7 +600,7 @@ Model</span></a> notation and matrix calculations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7feb74c3caf0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f557836cbe0&gt;]
 </pre></div>
 </div>
 <img alt="_images/e43d77989eb6969e3172bedf3f22795c38b314f2472a86de28e3fe1a0c519617.png" src="_images/e43d77989eb6969e3172bedf3f22795c38b314f2472a86de28e3fe1a0c519617.png" />
@@ -640,15 +640,15 @@ regressor, and a column of ones:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">convolved</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7feb72b8b610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f55783b6830&gt;
 </pre></div>
 </div>
-<img alt="_images/ac2d07de444e8024d69c201ccc241d243ed31559a083e1a76ef3bbd762610c70.png" src="_images/ac2d07de444e8024d69c201ccc241d243ed31559a083e1a76ef3bbd762610c70.png" />
+<img alt="_images/12ff4e781d96313abc1d7a8db0e08a719fbb1aaaacd3191c25140023913622ff.png" src="_images/12ff4e781d96313abc1d7a8db0e08a719fbb1aaaacd3191c25140023913622ff.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\newcommand{\yvec}{\vec{y}}\)</span>
